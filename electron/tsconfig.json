@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "outDir": "../dist/electron",
+    "declaration": true,
+    "emitDecoratorMetadata": true,
+    "removeComments": false,
+    "experimentalDecorators": true,
+    "lib": ["es6", "dom"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "target": "es2016"
+  }
+}

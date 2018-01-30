@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lindo</title>
+    <base href="./index.html">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <script>
+        const electron = require('electron');
+        const electronSettings = require('electron-settings');
+        const cryptoLib = require('crypto');
+        const markedLib = require('marked');
+        const httpsLib = require('https');
+        const fsExtraLib = require('fs-extra');
+        const fsLib = require('fs');
+        const requestLib = require('request');
+        const requestProgressLib = require('request-progress');
+        const nodeProcess = process;
+        const {
+            Application
+        } = require('electron').remote.require('./application');
+        const {
+            Settings
+        } = require('electron').remote.require('./settings/settings');
+        const LoggerLib = require('electron').remote.require('./core/logger/logger-app').Logger;
+    </script>
+</head>
+
+<body class="dt-no-emu-default">
+
+    <component-app></component-app>
+
+    <div class="loader-container" id="loading">
+        <div class="loader-egg"></div>
+    </div>
+
+</body>
+
+</html>

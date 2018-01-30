@@ -1,0 +1,56 @@
+.loader-container {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+
+  background: #e6e6e6;
+  opacity: 1;
+  transition: opacity 500ms linear;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.loader-egg {
+
+  background: url("../images/logo.svg");
+  background-image: url("../images/logo.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  height: 200px;
+  width: 145px;
+
+  animation: breathing 2.5s ease-out infinite normal;
+}
+
+@keyframes breathing {
+
+  0% {
+    -webkit-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    transform: scale(0.8);
+  }
+
+  50% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+
+  85% {
+    -ms-transform: scale(0.8);
+    transform: rotate(-360deg) scale(0.8);
+  }
+
+  100% {
+    -webkit-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    transform: rotate(0deg) scale(0.8);
+  }
+}

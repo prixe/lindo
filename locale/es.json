@@ -1,0 +1,276 @@
+{
+  "app": {
+    "main": {
+      "tab": {
+        "add": "Añadir juegos"
+      },
+      "head": {
+        "toggle-audio-on": "Habilitar sonido",
+        "toggle-audio-off": "Mudo",
+        "new-window": "Abrir una nueva ventana"
+      },
+      "prompt": {
+        "tabs-overflow": {
+          "text": "Lindo does'nt support more than 6 tab per window, above that it can be laggy and buggy. But you can open a new window and it will be working just fine."
+        }
+      }
+    },
+    "notifications": {
+      "fight-turn": "Inicio del torno de {{character}}",
+      "private-message": "Message de {{character}}",
+      "tax-collector": "A tax collector is attacked!",
+      "kolizeum": "A Kolizeum has been find !"
+    },
+    "window": {
+      "changelog": {
+        "title": "Actualizar notas",
+        "prefixe": "Versión"
+      },
+      "master-password": {
+        "continue": "Continuar",
+        "skip": "Omita este paso",
+        "password-label": "Introduzca la contraseña maestra",
+        "password-bad": "La contraseña es incorrecta"
+      },
+      "update-dofus": {
+        "title": "Actualizar Dofus Touch",
+        "information": {
+          "start": "Inicio del descarga...",
+          "install": "Instalación de la actualización...",
+          "error": "No se puede descargar la actualización! Por favor, inténtelo de nuevo otra vez"
+        }
+      },
+      "options": {
+        "title": "Opciones",
+        "button": {
+          "close": "Terminado"
+        },
+        "general": {
+          "reset-game": "Volver a descargar los datos",
+          "reset-all": "Reiniciar",
+          "shortcuts": "Configurar atajos",
+          "resolution": {
+            "confirm-body": "Está de acuerdo con la resolución actual ?<br/>La recuperación automática en 10 segundos.."
+          }
+        },
+        "features": {
+          "title": "Funciones",
+          "general": {
+            "header": "Général",
+            "disable-inactivity": "Extender el período de inactividad",
+            "health-bar": "Visualización de barras de vida por debajo de los combatientes",
+            "health-bar-shortcut": "Atajos para mostrar las barras de salud",
+            "estimator": "Hechizos de daño estimado durante el combate"
+          },
+          "groups": {
+            "header": "Grupo"
+          },
+          "accounts": {
+            "header": "Cuentas"
+          }
+        },
+        "about": {
+          "title": "Acerca de",
+          "links": {
+            "website": "Sitio web",
+            "changelog": "Actualizar notas"
+          },
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        }
+      },
+      "shortcuts": {
+        "title": "Atajos",
+        "description1": "Puede utilizar teclas CTRL, SHIFT, SPACE, ALT (CTRL = cmd en Mac OS X)",
+        "description2": "Para entrar en los accesos directos sólo tiene que pulsar la combinación de teclas que desee en el campo.",
+        "tab": {
+          "application": "Programa",
+          "interface": "Interfaz",
+          "spell": "Conjuros",
+          "inventory": "Inventario",
+          "other": "Diverso"
+        }
+      }
+    },
+    "option": {
+      "vip": {
+        "auto-group": {
+          "header": "Grupo",
+          "active": "Habilitar agrupación automática",
+          "warning": "Atención siguiendo al líder del grupo puede ser considerado como un bot para los otros jugadores, lo utilizan con moderación y en las zonas despobladas.",
+          "explanation-1": "Los personajes del grupo deben ser amigos con el líder de la invitación a ser automática.",
+          "explanation-2": "Los miembros siguen el líder si está en la misma tarjeta.",
+          "leader": "Nombre del jefe",
+          "members": "Nombres de los personajes",
+          "members-add": "Añadir un personaje",
+          "follow-leader": "Siga el líder del grupo",
+          "ready": "Skip \"listo\" de forma automática",
+          "fight": "La entrada automática en la lucha contra",
+          "delay": "Tiempo antes de seguir (en segundos)",
+          "follow-on-map": "Sigue al líder en un mapa",
+          "strict-move": "Muevete sobre la celda que mueve el líder",
+          "pvp-warning": "No puedes unirte a una pelea PvP automáticamente"
+        },
+        "multi-account": {
+          "home-no-master": "Para utilizar esta función, una contraseña debe configurarse. Se utiliza para iniciar Lindo con varias cuentas de automatización.",
+          "header": "Múltiples cuentas",
+          "active": "Habilitar múltiples cuentas",
+          "window": "Ventana",
+          "delete-window": "Quitar",
+          "add-window": "Añadir ventana",
+          "add": "Añadir cuenta",
+          "account-name": "Login",
+          "password": "Contraseña",
+          "modify_password": "Cambiar la contraseña",
+          "configure_password": "Configurar la contraseña",
+          "delete_password": "Eliminación de la contraseña",
+          "request-master-password": {
+            "explanation": "Para acceder a la gestión de sus cuentas, primero debe introducir su contraseña. Esta contraseña se define en la primera activación de varias cuentas.",
+            "label": "Introduzca su contraseña",
+            "bad": "La contraseña es incorrecta",
+            "confirm": "Continuar",
+            "ignore-step": "Omita este paso"
+          },
+          "prompt": {
+            "add-master": {
+              "title": "Configuración de la contraseña",
+              "confirm": "Registro",
+              "cancel": "Anular",
+              "min-lenght": "La contraseña debe contener al menos {{ lenght }} caracteres de longitud",
+              "success-text": "La contraseña que tendrá que iniciar la aplicación ahora"
+            },
+            "edit-master": {
+              "title": "Cambio de contraseña",
+              "input-old-placeholder": "Antigua contraseña",
+              "input-new-placeholder": "Nueva contraseña",
+              "confirm": "Registro",
+              "cancel": "Anular",
+              "min-lenght": "La nueva contraseña debe contener al menos {{ lenght }} caracteres de longitud",
+              "incorrect-old": "La antigua contraseña es incorrecta",
+              "success-text": "La contraseña se ha cambiado."
+            },
+            "delete-master": {
+              "title": "Eliminación de la contraseña",
+              "text": "Para eliminar la contraseña, confírmela..<br/>Esto eliminará las cuentas grabadas.",
+              "confirm": "Quitar",
+              "cancel": "Anular",
+              "incorrect-old": "La contraseña introducida no es correcta.",
+              "success-text": "La contraseña ha sido borrada."
+            },
+            "maximum-account": {
+              "title": "Uy !",
+              "text": "Puede guardar siendo más de 4 cuentas el rango de Wabbit donante.",
+              "confirm": "Aumentar mi rango VIP",
+              "cancel": "He entendido"
+            },
+            "add-account": {
+              "title": "Añadir cuenta",
+              "input-login-placeholder": "Login",
+              "input-password-placeholder": "Contraseña",
+              "confirm": "Registro",
+              "cancel": "Anular",
+              "min-lenght-login": "El login debe contener al menos 1 carácter",
+              "min-lenght-password": "El contraseña debe contener al menos 1 carácter"
+            },
+            "edit-account": {
+              "title": "Edición de una cuenta",
+              "input-login-placeholder": "Login",
+              "input-password-placeholder": "Contraseña",
+              "confirm": "Registro",
+              "cancel": "Anular",
+              "min-lenght-login": "El login debe contener al menos 1 carácter",
+              "min-lenght-password": "El contraseña debe contener al menos 1 carácter"
+            }
+          }
+        },
+        "status": {
+          "header": "Estatus VIP"
+        }
+      },
+      "general": {
+        "title": "General",
+        "language": "Idioma",
+        "resolution": "Resolución",
+        "hide-shop": "Ocultar el botón Shop",
+        "hide-tab": "Ocultar la barra de tareas multicuentas",
+        "local-content": "Habilitar descargar mapas locales (beta)"
+      },
+      "shortcuts": {
+        "title": "Atajos",
+        "diver": {
+          "header": "Diverso",
+          "end-turn": "Saltar su torno / Listo (combate)",
+          "open-chat": "Abrir el chat"
+        },
+        "interfaces": {
+          "header": "Interfaces",
+          "carac": "Personaje",
+          "spell": "Hechizos",
+          "bag": "Inventario",
+          "bidhouse": "Mercadillo",
+          "map": "Mapa",
+          "friend": "Amigos",
+          "book": "Misiones",
+          "guild": "Gremio",
+          "conquest": "Koliseo",
+          "goultine": "Tienda",
+          "job": "Oficios",
+          "alliance": "Alianza",
+          "mount": "Montura",
+          "directory": "Repertorio de gremio y alianza",
+          "alignement": "Alineamiento",
+          "bestiary": "Bestiario",
+          "title": "Titulo y ornamentos",
+          "achievement": "Logros",
+          "almanax": "Almanax",
+          "spouse": "Cónyuge",
+          "shop": "Mercante"
+        },
+        "items": {
+          "header": "Objetos",
+          "slot": "Localización {{x}}"
+        },
+        "no-emu": {
+          "header": "Lindo",
+          "new-window": "Nueva ventana",
+          "new-tab": "Nueva Pestaña",
+          "tab": "Lengüeta {{x}}",
+          "next-tab": "Pestaña siguiente ",
+          "prev-tab": "Pestaña anterior"
+        },
+        "spells": {
+          "header": "Hechizos",
+          "slot": "Localización {{x}}"
+        }
+      },
+      "notifications": {
+        "title": "Notificacións",
+        "description": "Puede recibir las notificaciones del juego Dofus cuando esta en otra applicación. Puede ser notificado :",
+        "fight-turn": "Al inicio del torno (combate)",
+        "private-message": "A la llegada de un mensaje privado",
+        "tax-collector": "When a tax collector is attacked",
+        "kolizeum": "When kolizeum fight is find"
+      },
+      "reset": "Reiniciar",
+      "save": "Validar",
+      "prompt": {
+        "reset-option": {
+          "text": "Al continuar, todos los ajustes se reiniciarán.<br/>Esta operación no es reversible."
+        }
+      }
+    },
+    "prompt": {
+      "title": {
+        "confirm": "Se requiere confirmación",
+        "warning": "Atención !",
+        "success": "Éxito!",
+        "error": "Error en la operación!",
+        "info": "Información"
+      },
+      "button": {
+        "cancel": "Anular",
+        "confirm": "Confirmo",
+        "close": "Cerrar"
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+<div class="dialog-settings light-theme">
+
+    <div class="settings-left">
+        <div class="tab-bar SIDE">
+
+            <div class="tab-bar-header" translate>app.window.changelog.title</div>
+
+            <a class="tab-bar-item" *ngFor="let version of versionList; let i = index" [class.selected]="i == 0" (click)="selectVersion($event, version.number)">{{ version.number }} - {{ version.date | date: 'shortDate' }}</a>
+        </div>
+    </div>
+
+    <div class="settings-right">
+
+        <div class="settings-header">
+            <h2>
+                <span translate>app.window.changelog.prefixe</span> {{ versionNumber }}
+                <span class="version-date">{{ versionDate | date: 'longDate' }}</span>
+            </h2>
+        </div>
+
+        <div class="settings-inner">
+            <div class="option-content">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div [innerHTML]="versionContent"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="settings-actions">
+            <button type="button" color="primary" (click)="dialogRef.close()" mat-raised-button>Fermer</button>
+        </div>
+    </div>
+</div>

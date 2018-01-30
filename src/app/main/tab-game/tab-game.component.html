@@ -1,0 +1,26 @@
+<div class="tabs-container">
+    <div [sortablejs]="tabService.tabs">
+
+        <div class="tab tab-tab" [class.focus]="tab.isFocus" [class.notification]="tab.notification" *ngFor="let tab of tabService.tabs;"
+            (click)="tabGameService.selectTabGame(tab.id);" matTooltip="{{tab.character}}" matTooltipPosition="right">
+
+            <mat-icon *ngIf="!tab.icon">keyboard</mat-icon>
+            <div class='icon-char' id="tab-icon-{{tab.id}}"></div>
+
+            <div class="tab-close" (click)="tabGameService.removeTabGame(tab.id)">
+                <mat-icon class="mat-16">close</mat-icon>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab tab-add" (click)="tabGameService.addTabGame()" *ngIf="tabService.tabs.length < 8" matTooltip="{{ 'app.main.tab.add' | translate }}"
+        matTooltipPosition="right">
+        <mat-icon class="mat-24">add</mat-icon>
+    </div>
+</div>
+
+<div class="options">
+    <button mat-icon-button (click)="option.open()">
+        <mat-icon>settings</mat-icon>
+    </button>
+</div>

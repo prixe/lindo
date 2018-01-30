@@ -1,0 +1,9 @@
+<nav mat-tab-nav-bar>
+    <a mat-tab-link class="nav-link" [routerLink]="['/option/features', {outlets: {featuresOutlet: 'general' }}]" routerLinkActive #rla1="routerLinkActive" [active]="rlaSafe && rla1.isActive">{{ 'app.window.options.features.general.header' | translate }}</a>
+    <a mat-tab-link class="nav-link" [routerLink]="['/option/features', {outlets: {featuresOutlet: 'groups' }}]" routerLinkActive #rla2="routerLinkActive" [active]="rlaSafe && rla2.isActive">{{ 'app.window.options.features.groups.header' | translate }}</a>
+    <a mat-tab-link class="nav-link" [routerLink]="['/option/features', {outlets: {featuresOutlet: 'accounts' }}]" routerLinkActive #rla3="routerLinkActive" [active]="rlaSafe && rla3.isActive">{{ 'app.window.options.features.accounts.header' | translate }}</a>
+</nav>
+
+<div class="option-content">
+    <router-outlet name="featuresOutlet"></router-outlet>
+</div>

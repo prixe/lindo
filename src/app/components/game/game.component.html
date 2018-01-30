@@ -1,0 +1,5 @@
+<div class="loader-container" id="LoadingGame_{{game.id}}">
+    <div class="loader-egg"></div>
+</div>
+
+<iframe id="Frame{{game.id}}" (load)="gameReady()" [src]="gamePath | safe: 'resourceUrl'"></iframe>

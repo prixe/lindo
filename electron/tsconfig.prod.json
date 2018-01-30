@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig",
+  "compilerOptions": {
+    "declaration": false,
+    "emitDecoratorMetadata": false,
+    "removeComments": true,
+    "experimentalDecorators": false,
+    "sourceMap": false
+  }
+}

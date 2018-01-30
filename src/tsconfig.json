@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "inlineSources": true,
+    "declaration": false,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "ES5",
+    "lib": [
+      "es2015",
+      "es2016",
+      "dom"
+    ],
+    "outDir": "../dist/app",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "baseUrl": "",
+    "types": []
+  }
+}

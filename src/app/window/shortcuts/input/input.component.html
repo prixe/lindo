@@ -1,0 +1,9 @@
+<mat-input-container style="width:100%">
+    <input matInput [(ngModel)]="model" placeholder="{{name}}" (ngModelChange)="modelChange.emit($event)" (keyup)="keyUp($event)"
+        (keydown)="keyDown($event)" type="text" class="shortcut form-control" id="{{id}}">
+
+    <button mat-button (click)="erase()" matSuffix mat-icon-button aria-label="Clear">
+        <mat-icon>close</mat-icon>
+    </button>
+
+</mat-input-container>

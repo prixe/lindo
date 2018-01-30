@@ -1,0 +1,38 @@
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/material-icons/MaterialIcons-Regular.ttf");
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    vertical-align: bottom;
+    
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Rules for sizing the icon. */
+.material-icons.mat-16 { font-size: 16px; height: 16px; }
+.material-icons.mat-18 { font-size: 18px; height: 18px; }
+.material-icons.mat-20 { font-size: 20px; height: 20px; }
+.material-icons.mat-24 { font-size: 24px; height: 24px; }
+.material-icons.mat-36 { font-size: 36px; height: 36px; }
+.material-icons.mat-48 { font-size: 48px; height: 48px; }
+
+.material-icons.mat-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.mat-dark.mat-inactive { color: rgba(0, 0, 0, 0.26); }
+
+.material-icons.mat-light { color: rgba(255, 255, 255, 1); }
+.material-icons.mat-light.mat-inactive { color: rgba(255, 255, 255, 0.3); }

@@ -1,0 +1,27 @@
+<div class="option-content">
+
+    <div class="row" style="margin-bottom: 15px;">
+        <div class="col-xs-12" translate>app.window.shortcuts.description1</div>
+        <div class="col-xs-12" translate>app.window.shortcuts.description2</div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-3">
+            <component-option-input-shortcuts id="new-window" name="{{ 'app.option.shortcuts.no-emu.new-window' | translate }}" [(model)]="settingsService.option.shortcuts.no_emu.new_window"></component-option-input-shortcuts>
+            <component-option-input-shortcuts id="new-tab" name="{{ 'app.option.shortcuts.no-emu.new-tab' | translate }}" [(model)]="settingsService.option.shortcuts.no_emu.new_tab"></component-option-input-shortcuts>
+        </div>
+        <div class="col-xs-3">
+            <component-option-input-shortcuts id="next-tab" name="{{ 'app.option.shortcuts.no-emu.next-tab' | translate }}" [(model)]="settingsService.option.shortcuts.no_emu.next_tab"></component-option-input-shortcuts>
+            <component-option-input-shortcuts id="prev-tab" name="{{ 'app.option.shortcuts.no-emu.prev-tab' | translate }}" [(model)]="settingsService.option.shortcuts.no_emu.prev_tab"></component-option-input-shortcuts>
+        </div>
+
+        <div class="col-xs-3">
+            <component-option-input-shortcuts *ngFor="let i of range(1,4)" id="tab{{i}}" name="{{ 'app.option.shortcuts.no-emu.tab' | translate:{x:i} }}"
+                [(model)]="settingsService.option.shortcuts.no_emu.tabs[i-1]"></component-option-input-shortcuts>
+        </div>
+        <div class="col-xs-3">
+            <component-option-input-shortcuts *ngFor="let i of range(5,8)" id="tab{{i}}" name="{{ 'app.option.shortcuts.no-emu.tab' | translate:{x:i} }}"
+                [(model)]="settingsService.option.shortcuts.no_emu.tabs[i-1]"></component-option-input-shortcuts>
+        </div>
+    </div>
+</div>

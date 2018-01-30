@@ -1,0 +1,16 @@
+<div class="option-content">
+
+    <div class="row" style="margin-bottom: 15px;">
+        <div class="col-xs-12" translate>app.window.shortcuts.description1</div>
+        <div class="col-xs-12" translate>app.window.shortcuts.description2</div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-4">
+            <component-option-input-shortcuts id="end-turn" name="{{ 'app.option.shortcuts.diver.end-turn' | translate }}" [(model)]="settingsService.option.shortcuts.diver.end_turn"></component-option-input-shortcuts>
+        </div>
+        <div class="col-xs-4">
+            <component-option-input-shortcuts id="open-chat" name="{{ 'app.option.shortcuts.diver.open-chat' | translate }}" [(model)]="settingsService.option.shortcuts.diver.open_chat"></component-option-input-shortcuts>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,115 @@
+.toolbar {
+    
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+
+    height: 36px;
+    padding-left: 12px;
+    padding-right: 12px;
+    background-color: #262626 !important;
+    color: white;
+    -webkit-user-select: none;
+    -webkit-app-region: drag;
+
+    button {
+        -webkit-app-region: no-drag;
+    }
+
+    .title {
+        flex: 1;
+        font-size: 22px;
+        order: 1;
+    }
+    
+    .system-buttons {
+        -webkit-app-region: no-drag;
+        display: flex;
+        justify-content: space-between;
+        opacity: .8;
+        mat-icon {
+            opacity: .9;
+            &:hover {
+                opacity: 1;
+            }
+            &:active {
+                opacity: .9;
+            }
+        }
+        &.all {
+            width: 55px;
+            order: 1;
+        }
+
+        &.only-close{
+            width: 22px;
+            margin-left: 15px;
+            order: 1;
+        }
+
+        &.win {
+            width: 120px;
+            margin-left: 15px;
+            order: 1;
+            mat-icon {
+                &.window-minimize {
+                    position: relative;
+                    top: 7px;
+                }
+                &.window-fullscreen{
+                    font-size: 30px;
+                    width: 30px;
+                    position: relative;
+                    top:-3px;
+                }
+            }
+        }
+        &.mac {
+            mat-icon {
+                &.window-minimize {
+                    color: #B98E39
+                }
+                &.window-maximize {
+                    color: #2E953F
+                }
+                &.window-close {
+                    color: #B84D4B
+                }
+            }
+        }
+    }
+}
+
+.toolbar-child-window {
+
+    display: flex;
+    align-items: center;
+    height: 36px;
+    overflow: hidden;
+
+    position: relative;
+    width: 100%;
+
+    background-color: #424242 !important;
+    color: white;
+    
+    -webkit-user-select: none;
+
+    .title {
+        flex: 1;
+        font-size: 18px;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .close{
+        padding-left: 12px;
+        padding-right: 12px;
+        order: 1;
+    }
+}
+
+component-toolbar{
+    z-index: 2000;
+    position: relative;
+}

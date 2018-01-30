@@ -1,0 +1,33 @@
+.change-log-button-container {
+    position: relative;
+    padding-top: 10px;
+    margin-top: 6px;
+
+    &:before {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 1px;
+        background-color: hsla(0,0%,100%,.1);
+        top: 0;
+        left: 20px;
+    }
+
+    .change-log-button {
+        display: block;
+        color: #faa61a;
+        font-size: 12px;
+        padding: 8px 6px 10px 20px;
+        opacity: .7;
+        -webkit-transition: opacity .2s ease;
+        transition: opacity .2s ease;
+        text-decoration: none;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 1;
+            color: #faa61a;
+        }
+    }
+}
+

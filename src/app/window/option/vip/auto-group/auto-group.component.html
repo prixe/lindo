@@ -1,0 +1,77 @@
+<div class="row">
+    <div class="col-xs-6">
+        <div class="row">
+
+            <div class="col-xs-12">
+                <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.autogroup.fight">{{'app.option.vip.auto-group.fight' | translate }}</mat-checkbox>
+            </div>
+
+            <div class="col-xs-12" *ngIf="settingsService.option.vip.autogroup.fight">
+                <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.autogroup.ready">{{'app.option.vip.auto-group.ready' | translate }}</mat-checkbox>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-6">
+        <div class="row">
+            <div class="col-xs-12">
+                <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.autogroup.follow_leader">
+                    {{'app.option.vip.auto-group.follow-leader' | translate }}
+                    <mat-icon class="mat-18 text-primary" matTooltipPosition="below" matTooltip="{{ 'app.option.vip.auto-group.explanation-2' | translate }}">info</mat-icon>
+                </mat-checkbox>
+            </div>
+
+            <div *ngIf="settingsService.option.vip.autogroup.follow_leader">
+
+                <div class="col-xs-12">
+                    <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.autogroup.follow_on_map">{{'app.option.vip.auto-group.follow-on-map' | translate }}</mat-checkbox>
+                </div>
+
+                <div class="col-xs-12" *ngIf="settingsService.option.vip.autogroup.follow_on_map">
+                    <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.autogroup.strict_move">{{'app.option.vip.auto-group.strict-move' | translate }}</mat-checkbox>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 mt-2">
+                        <strong>{{ 'app.option.vip.auto-group.warning' | translate }}</strong>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr/>
+
+<div class="row">
+    <div class="col-xs-6">
+        <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.autogroup.active">{{ 'app.option.vip.auto-group.active' | translate }}</mat-checkbox>
+    </div>
+</div>
+
+<ng-container *ngIf="settingsService.option.vip.autogroup.active">
+
+    <div class="row">
+        <div class="col-xs-5 mt-2">
+            <mat-input-container>
+                <input matInput="" [placeholder]="'app.option.vip.auto-group.leader' | translate" [(ngModel)]="settingsService.option.vip.autogroup.leader"
+                    type="text">
+            </mat-input-container>
+        </div>
+
+        <div class="col-xs-7">
+            <label for="members">{{ 'app.option.vip.auto-group.members' | translate }} <mat-icon class="mat-18 text-primary" matTooltip="{{ 'app.option.vip.auto-group.explanation-1' | translate }}">info</mat-icon></label>
+            <tag-input id="members"
+                       [ngModel]='groupMembers'
+                       [placeholder]="'app.option.vip.auto-group.members-add' | translate"
+                       [secondaryPlaceholder]="'app.option.vip.auto-group.members-add' | translate"
+                       (onRemove)="onRemoveMemberList($event)"
+                       (onAdd)="onAddMemberList($event)"
+                       [maxItems]='7'
+                       [separatorKeyCodes]="[32,13]"
+                       [editable]="true"></tag-input>
+        </div>
+    </div>
+
+</ng-container>

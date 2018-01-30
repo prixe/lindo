@@ -1,0 +1,14 @@
+.idea
+/game
+/instruction.md
+node_modules
+jspm_packages
+link-checker-results.txt
+yarn.lock
+!typings/typings.d.ts
+
+/npm-debug.log
+**/*npm-debug.log.*
+
+/dist
+/releases

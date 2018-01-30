@@ -1,0 +1,26 @@
+<div class="dialog-settings light-theme">
+
+    <div class="settings-left">
+        <div class="tab-bar SIDE">
+
+            <div class="tab-bar-header" translate>app.window.shortcuts.title</div>
+
+            <a class="tab-bar-item selected" (click)="selectRoute($event, 'application')" translate>app.window.shortcuts.tab.application</a>
+            <a class="tab-bar-item" (click)="selectRoute($event, 'interface')" translate>app.window.shortcuts.tab.interface</a>
+            <a class="tab-bar-item" (click)="selectRoute($event, 'spell')" translate>app.window.shortcuts.tab.spell</a>
+            <a class="tab-bar-item" (click)="selectRoute($event, 'inventory')" translate>app.window.shortcuts.tab.inventory</a>
+            <a class="tab-bar-item" (click)="selectRoute($event, 'other')" translate>app.window.shortcuts.tab.other</a>
+        </div>
+    </div>
+
+    <div class="settings-right">
+
+        <div class="settings-inner">
+            <router-outlet></router-outlet>
+        </div>
+
+        <div class="settings-actions">
+            <button type="button" color="primary" (click)="dialogRef.close()" mat-raised-button>Terminer</button>
+        </div>
+    </div>
+</div>

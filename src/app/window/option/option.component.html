@@ -1,0 +1,31 @@
+<div class="dialog-settings light-theme">
+
+    <div class="settings-left">
+        <div class="tab-bar SIDE">
+
+            <div class="tab-bar-header" translate>app.window.options.title</div>
+
+            <a class="tab-bar-item selected" (click)="navigateTo($event, '/option/general')" translate>app.option.general.title</a>
+            <a class="tab-bar-item" (click)="navigateTo($event, '/option/features')" translate>app.window.options.features.title</a>
+            <a class="tab-bar-item" (click)="navigateTo($event, '/option/notification')" translate>app.option.notifications.title</a>
+            <a class="tab-bar-item" (click)="navigateTo($event, '/option/about')">{{ 'app.window.options.about.title' | translate }}  {{ applicationService.appName }}</a>
+
+            <div class="change-log-button-container">
+                <a class="change-log-button" (click)="changelog.open($event); dialogRef.close();" translate>app.window.options.about.links.changelog</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="settings-right">
+
+        <div class="settings-inner">
+            <router-outlet></router-outlet>
+        </div>
+
+        <div class="settings-actions">
+            <button mat-raised-button color="accent" style="float:left;" (click)="reset()">{{ 'app.window.options.general.reset-all' | translate }}</button>
+            <button mat-raised-button color="primary" (click)="dialogRef.close()">{{ 'app.window.options.button.close' | translate }}</button>
+        </div>
+
+    </div>
+</div>

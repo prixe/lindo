@@ -1,0 +1,9 @@
+version: '2'
+services:
+  electron-builder:
+    image: electronuserland/electron-builder:wine
+    volumes:
+    - $PWD:/project
+#    - ${PWD##*/}-node-modules:/project/node_modules
+    - ~/.electron:/root/.electron
+    command: npm run release:win
