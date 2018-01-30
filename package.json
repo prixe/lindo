@@ -14,7 +14,7 @@
     "build:prod": "npm run build:electron:prod && npm run lint && ng build --prod",
     "start": "electron ./",
     "release:win": "build --win --x64 --ia32",
-    "release:mac": "build --mac",
+    "release:mac": "build --mac --config.electronVersion=1.4.16",
     "release:linux": "build --linux --x64 --ia32",
     "toc": "doctoc README.md"
   },
