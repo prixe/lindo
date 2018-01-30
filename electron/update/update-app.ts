@@ -3,6 +3,7 @@ import { Logger } from '../core/logger/logger-electron';
 import { UpdateInformations } from './update-informations.interface';
 import { app, BrowserWindow, dialog, shell } from 'electron';
 
+const compareVersions = require('compare-versions');
 const pkg = require('../../../package.json');
 const i18n = require('node-translate');
 
@@ -10,7 +11,9 @@ export class UpdateApp {
 
     public static check(response: UpdateInformations): boolean {
         Logger.info("[UPDATE] Check the application version..");
-        return (Application.version == response.noemu.version) ? false : true;
+
+        const diff = compareVersions(Application.version, response.noemu.version);
+        return (diff == -1);
     }
 
     public static update(response: UpdateInformations): Promise<UpdateInformations> {

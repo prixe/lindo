@@ -41,6 +41,7 @@
     "angular-sortablejs": "~2.5.1",
     "async": "~2.6.0",
     "codelyzer": "~4.1.0",
+    "compare-versions": "^3.1.0",
     "core-js": "~2.4.1",
     "crypto": "~0.0.3",
     "decompress": "~4.2.0",
