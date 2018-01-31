@@ -10,33 +10,38 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 
     <script>
-        const electron = require('electron');
-        const electronSettings = require('electron-settings');
-        const cryptoLib = require('crypto');
-        const markedLib = require('marked');
-        const httpsLib = require('https');
-        const fsExtraLib = require('fs-extra');
-        const fsLib = require('fs');
-        const requestLib = require('request');
-        const requestProgressLib = require('request-progress');
-        const nodeProcess = process;
+        let isElectron = false;
+        if (window && window.process && window.process.type) {
+            isElectron = true;
+        }
+
+        const electron = isElectron ? require('electron') : undefined;
+        const electronSettings = isElectron ? require('electron-settings') : undefined;
+        const cryptoLib = isElectron ? require('crypto') : undefined;
+        const markedLib = isElectron ? require('marked') : undefined;
+        const httpsLib = isElectron ? require('https') : undefined;
+        const fsExtraLib = isElectron ? require('fs-extra') : undefined;
+        const fsLib = isElectron ? require('fs') : undefined;
+        const requestLib = isElectron ? require('request') : undefined;
+        const requestProgressLib = isElectron ? require('request-progress') : undefined;
+        const nodeProcess = window.process;
         const {
             Application
-        } = require('electron').remote.require('./application');
+        } = isElectron ? _require('electron').remote.require('./application') : {Application: undefined};
         const {
             Settings
-        } = require('electron').remote.require('./settings/settings');
-        const LoggerLib = require('electron').remote.require('./core/logger/logger-app').Logger;
+        } = isElectron ? _require('electron').remote.require('./settings/settings') : {Settings: undefined};
+        const LoggerLib = isElectron ? _require('electron').remote.require('./core/logger/logger-app').Logger : undefined;
     </script>
 </head>
 
 <body class="dt-no-emu-default">
 
-    <component-app></component-app>
+<component-app></component-app>
 
-    <div class="loader-container" id="loading">
-        <div class="loader-egg"></div>
-    </div>
+<div class="loader-container" id="loading">
+    <div class="loader-egg"></div>
+</div>
 
 </body>
 

@@ -34,6 +34,9 @@ export class AuthService {
 
     public requireAuthentification(): boolean {
 
+        if(!isElectron)
+            return false;
+
         if (Application.isAuthentified == false && Application.skipAuthentification == false) {
 
             if (this.settingsService.option.vip.multiaccount.active && Application.masterPassword == "") {

@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
 import { IpcRendererService } from 'app/core/electron/ipcrenderer.service';
-import { Logger } from "app/core/electron/logger.helper";
+import { Logger } from 'app/core/electron/logger.helper';
+import { SettingsProvider } from '../classes/settings.provider';
+import { SettingsProviderIpc } from '../classes/settings.provider.ipc';
+import { SettingsProviderLocal } from '../classes/settings.provider.local';
+import { WindowService } from './window.service';
+import { SettingsInterface } from '../../../../electron/settings/settings.interface';
+import { SettingsDefault } from '../../../../electron/settings/settings-default';
 
 export class Option {
     public general: Option.General;
@@ -8,13 +14,11 @@ export class Option {
     public notification: Option.Notification;
     public vip: Option.VIP;
 
-    constructor(
-        private ipcRendererService: IpcRendererService
-    ) {
-        this.general = new Option.General(ipcRendererService);
-        this.shortcuts = new Option.Shortcuts(ipcRendererService);
-        this.notification = new Option.Notification(ipcRendererService);
-        this.vip = new Option.VIP(ipcRendererService);
+    constructor(private settingsProvider: SettingsProvider) {
+        this.general = new Option.General(settingsProvider);
+        this.shortcuts = new Option.Shortcuts(settingsProvider);
+        this.notification = new Option.Notification(settingsProvider);
+        this.vip = new Option.VIP(settingsProvider);
     }
 }
 
@@ -27,12 +31,12 @@ export module Option {
         private _spell: Array<string>;
         private _item: Array<string>;
 
-        constructor(private ipcRendererService: IpcRendererService) {
-            this.no_emu = new Shortcuts.NoEmu(ipcRendererService);
-            this.diver = new Shortcuts.Diver(ipcRendererService);
-            this.interface = new Shortcuts.Interface(ipcRendererService);
-            this._spell = this.ipcRendererService.sendSync('read-settings', 'option.shortcuts.spell');
-            this._item = this.ipcRendererService.sendSync('read-settings', 'option.shortcuts.item');
+        constructor(private settingsProvider: SettingsProvider) {
+            this.no_emu = new Shortcuts.NoEmu(settingsProvider);
+            this.diver = new Shortcuts.Diver(settingsProvider);
+            this.interface = new Shortcuts.Interface(settingsProvider);
+            this._spell = this.settingsProvider.read('option.shortcuts.spell');
+            this._item = this.settingsProvider.read('option.shortcuts.item');
         }
 
 
@@ -44,14 +48,14 @@ export module Option {
                 },
                 set(target: any, prop: string, value: any) {
                     target[prop] = value;
-                    self.ipcRendererService.send('write-settings', 'option.shortcuts.spell', target);
+                    self.settingsProvider.write('option.shortcuts.spell', target);
                     return true;
                 }
             });
         }
 
         set spell(spell: Array<string>) {
-            this.ipcRendererService.send('write-settings', 'option.shortcuts.spell', spell);
+            this.settingsProvider.write('option.shortcuts.spell', spell);
             this._spell = spell;
         }
 
@@ -63,14 +67,14 @@ export module Option {
                 },
                 set(target, prop: string, value) {
                     target[prop] = value;
-                    self.ipcRendererService.send('write-settings', 'option.shortcuts.item', target);
+                    self.settingsProvider.write('option.shortcuts.item', target);
                     return true;
                 }
             });
         }
 
         set item(item: Array<string>) {
-            this.ipcRendererService.send('write-settings', 'option.shortcuts.item', item);
+            this.settingsProvider.write('option.shortcuts.item', item);
             this._item = item;
         }
     }
@@ -105,7 +109,7 @@ export module Option {
             }
 
             set carac(carac: string) {
-                this.ipcRendererService.send('write-settings', 'option.shortcuts.interface.carac', carac);
+                this.settingsProvider.write('option.shortcuts.interface.carac', carac);
                 this._carac = carac;
             }
 
@@ -114,7 +118,7 @@ export module Option {
             }
 
             set spell(spell: string) {
-                this.ipcRendererService.send('write-settings', 'option.shortcuts.interface.spell', spell);
+                this.settingsProvider.write('option.shortcuts.interface.spell', spell);
                 this._spell = spell;
             }
 
@@ -123,7 +127,7 @@ export module Option {
             }
 
             set bag(bag: string) {
-                this.ipcRendererService.send('write-settings', 'option.shortcuts.interface.bag', bag);
+                this.settingsProvider.write('option.shortcuts.interface.bag', bag);
                 this._bag = bag;
             }
 
@@ -132,7 +136,7 @@ export module Option {
             }
 
             set bidhouse(bidhouse: string) {
-                this.ipcRendererService.send('write-settings', 'option.shortcuts.interface.bidhouse', bidhouse);
+                this.settingsProvider.write('option.shortcuts.interface.bidhouse', bidhouse);
                 this._bidhouse = bidhouse;
             }
 
@@ -141,7 +145,7 @@ export module Option {
             }
 
             set map(map: string) {
-                this.ipcRendererService.send('write-settings', 'option.shortcuts.interface.map', map);
+                this.settingsProvider.write('option.shortcuts.interface.map', map);
                 this._map = map;
             }
 
@@ -150,7 +154,7 @@ export module Option {
             }
 
             set friend(friend: string) {
-                this.ipcRendererService.send('write-settings', 'option.shortcuts.interface.friend', friend);
+                this.settingsProvider.write('option.shortcuts.interface.friend', friend);
                 this._friend = friend;
             }
 
@@ -159,7 +163,7 @@ export module Option {
             }
 
             set book(book: string) {
-                this.ipcRendererService.send('write-settings', 'option.shortcuts.interface.book', book);
+                this.settingsProvider.write('option.shortcuts.interface.book', book);
                 this._book = book;
             }
 
@@ -168,7 +172,7 @@ export module Option {
             }
 
             set guild(guild: string) {
-                this.ipcRendererService.send('write-settings', 'option.shortcuts.interface.guild', guild);
+                this.settingsProvider.write('option.shortcuts.interface.guild', guild);
                 this._guild = guild;
             }
 
@@ -177,7 +181,7 @@ export module Option {
             }
 
             set conquest(conquest: string) {
-                this.ipcRendererService.send('write-settings', 'option.shortcuts.interface.conquest', conquest);
+                this.settingsProvider.write('option.shortcuts.interface.conquest', conquest);
                 this._conquest = conquest;
             }
 
@@ -186,7 +190,7 @@ export module Option {
             }
 
             set job(job: string) {
-                this.ipcRendererService.send('write-settings', 'option.shortcuts.interface.job', job);
+                this.settingsProvider.write('option.shortcuts.interface.job', job);
                 this._job = job;
             }
 
@@ -195,7 +199,7 @@ export module Option {
             }
 
             set alliance(alliance: string) {
-                this.ipcRendererService.send('write-settings', 'option.shortcuts.interface.alliance', alliance);
+                this.settingsProvider.write('option.shortcuts.interface.alliance', alliance);
                 this._alliance = alliance;
             }
 
@@ -204,7 +208,7 @@ export module Option {
             }
 
             set mount(mount: string) {
-                this.ipcRendererService.send('write-settings', 'option.shortcuts.interface.mount', mount);
+                this.settingsProvider.write('option.shortcuts.interface.mount', mount);
                 this._mount = mount;
             }
 
@@ -213,7 +217,7 @@ export module Option {
             }
 
             set directory(directory: string) {
-                this.ipcRendererService.send('write-settings', 'option.shortcuts.interface.directory', directory);
+                this.settingsProvider.write('option.shortcuts.interface.directory', directory);
                 this._directory = directory;
             }
 
@@ -222,7 +226,7 @@ export module Option {
             }
 
             set alignement(alignement: string) {
-                this.ipcRendererService.send('write-settings', 'option.shortcuts.interface.alignement', alignement);
+                this.settingsProvider.write('option.shortcuts.interface.alignement', alignement);
                 this._alignement = alignement;
             }
 
@@ -231,7 +235,7 @@ export module Option {
             }
 
             set bestiary(bestiary: string) {
-                this.ipcRendererService.send('write-settings', 'option.shortcuts.interface.bestiary', bestiary);
+                this.settingsProvider.write('option.shortcuts.interface.bestiary', bestiary);
                 this._bestiary = bestiary;
             }
 
@@ -240,7 +244,7 @@ export module Option {
             }
 
             set title(title: string) {
-                this.ipcRendererService.send('write-settings', 'option.shortcuts.interface.title', title);
+                this.settingsProvider.write('option.shortcuts.interface.title', title);
                 this._title = title;
             }
 
@@ -249,7 +253,7 @@ export module Option {
             }
 
             set achievement(achievement: string) {
-                this.ipcRendererService.send('write-settings', 'option.shortcuts.interface.achievement', achievement);
+                this.settingsProvider.write('option.shortcuts.interface.achievement', achievement);
                 this._achievement = achievement;
             }
 
@@ -258,7 +262,7 @@ export module Option {
             }
 
             set almanax(almanax: string) {
-                this.ipcRendererService.send('write-settings', 'option.shortcuts.interface.almanax', almanax);
+                this.settingsProvider.write('option.shortcuts.interface.almanax', almanax);
                 this._almanax = almanax;
             }
 
@@ -267,7 +271,7 @@ export module Option {
             }
 
             set spouse(spouse: string) {
-                this.ipcRendererService.send('write-settings', 'option.shortcuts.interface.spouse', spouse);
+                this.settingsProvider.write('option.shortcuts.interface.spouse', spouse);
                 this._spouse = spouse;
             }
 
@@ -276,7 +280,7 @@ export module Option {
             }
 
             set shop(shop: string) {
-                this.ipcRendererService.send('write-settings', 'option.shortcuts.interface.shop', shop);
+                this.settingsProvider.write('option.shortcuts.interface.shop', shop);
                 this._shop = shop;
             }
 
@@ -285,7 +289,7 @@ export module Option {
             }
 
             set goultine(goultine: string) {
-                this.ipcRendererService.send('write-settings', 'option.shortcuts.interface.goultine', goultine);
+                this.settingsProvider.write('option.shortcuts.interface.goultine', goultine);
                 this._goultine = goultine;
             }
 
@@ -293,7 +297,7 @@ export module Option {
                 let tab: Array<any> = [];
 
                 for (let prop in this) {
-                    if(prop.charAt(0) === '_'){
+                    if (prop.charAt(0) === '_') {
                         let newProp = prop.replace('_', '');
                         tab.push({
                             key: newProp,
@@ -305,28 +309,28 @@ export module Option {
                 return tab;
             }
 
-            constructor(private ipcRendererService: IpcRendererService) {
-                this._carac = this.ipcRendererService.sendSync('read-settings', 'option.shortcuts.interface.carac');
-                this._spell = this.ipcRendererService.sendSync('read-settings', 'option.shortcuts.interface.spell');
-                this._bag = this.ipcRendererService.sendSync('read-settings', 'option.shortcuts.interface.bag');
-                this._bidhouse = this.ipcRendererService.sendSync('read-settings', 'option.shortcuts.interface.bidhouse');
-                this._map = this.ipcRendererService.sendSync('read-settings', 'option.shortcuts.interface.map');
-                this._friend = this.ipcRendererService.sendSync('read-settings', 'option.shortcuts.interface.friend');
-                this._book = this.ipcRendererService.sendSync('read-settings', 'option.shortcuts.interface.book');
-                this._guild = this.ipcRendererService.sendSync('read-settings', 'option.shortcuts.interface.guild');
-                this._conquest = this.ipcRendererService.sendSync('read-settings', 'option.shortcuts.interface.conquest');
-                this._job = this.ipcRendererService.sendSync('read-settings', 'option.shortcuts.interface.job');
-                this._alliance = this.ipcRendererService.sendSync('read-settings', 'option.shortcuts.interface.alliance');
-                this._mount = this.ipcRendererService.sendSync('read-settings', 'option.shortcuts.interface.mount');
-                this._directory = this.ipcRendererService.sendSync('read-settings', 'option.shortcuts.interface.directory');
-                this._alignement = this.ipcRendererService.sendSync('read-settings', 'option.shortcuts.interface.alignement');
-                this._bestiary = this.ipcRendererService.sendSync('read-settings', 'option.shortcuts.interface.bestiary');
-                this._title = this.ipcRendererService.sendSync('read-settings', 'option.shortcuts.interface.title');
-                this._achievement = this.ipcRendererService.sendSync('read-settings', 'option.shortcuts.interface.achievement');
-                this._almanax = this.ipcRendererService.sendSync('read-settings', 'option.shortcuts.interface.almanax');
-                this._spouse = this.ipcRendererService.sendSync('read-settings', 'option.shortcuts.interface.spouse');
-                this._shop = this.ipcRendererService.sendSync('read-settings', 'option.shortcuts.interface.shop');
-                this._goultine = this.ipcRendererService.sendSync('read-settings', 'option.shortcuts.interface.goultine');
+            constructor(private settingsProvider: SettingsProvider) {
+                this._carac = this.settingsProvider.read('option.shortcuts.interface.carac');
+                this._spell = this.settingsProvider.read('option.shortcuts.interface.spell');
+                this._bag = this.settingsProvider.read('option.shortcuts.interface.bag');
+                this._bidhouse = this.settingsProvider.read('option.shortcuts.interface.bidhouse');
+                this._map = this.settingsProvider.read('option.shortcuts.interface.map');
+                this._friend = this.settingsProvider.read('option.shortcuts.interface.friend');
+                this._book = this.settingsProvider.read('option.shortcuts.interface.book');
+                this._guild = this.settingsProvider.read('option.shortcuts.interface.guild');
+                this._conquest = this.settingsProvider.read('option.shortcuts.interface.conquest');
+                this._job = this.settingsProvider.read('option.shortcuts.interface.job');
+                this._alliance = this.settingsProvider.read('option.shortcuts.interface.alliance');
+                this._mount = this.settingsProvider.read('option.shortcuts.interface.mount');
+                this._directory = this.settingsProvider.read('option.shortcuts.interface.directory');
+                this._alignement = this.settingsProvider.read('option.shortcuts.interface.alignement');
+                this._bestiary = this.settingsProvider.read('option.shortcuts.interface.bestiary');
+                this._title = this.settingsProvider.read('option.shortcuts.interface.title');
+                this._achievement = this.settingsProvider.read('option.shortcuts.interface.achievement');
+                this._almanax = this.settingsProvider.read('option.shortcuts.interface.almanax');
+                this._spouse = this.settingsProvider.read('option.shortcuts.interface.spouse');
+                this._shop = this.settingsProvider.read('option.shortcuts.interface.shop');
+                this._goultine = this.settingsProvider.read('option.shortcuts.interface.goultine');
             }
         }
 
@@ -343,7 +347,7 @@ export module Option {
             }
 
             set new_tab(new_tab: string) {
-                this.ipcRendererService.send('write-settings', 'option.shortcuts.no_emu.new_tab', new_tab);
+                this.settingsProvider.write('option.shortcuts.no_emu.new_tab', new_tab);
                 this._new_tab = new_tab;
             }
 
@@ -352,7 +356,7 @@ export module Option {
             }
 
             set new_window(new_window: string) {
-                this.ipcRendererService.send('write-settings', 'option.shortcuts.no_emu.new_window', new_window);
+                this.settingsProvider.write('option.shortcuts.no_emu.new_window', new_window);
                 this._new_window = new_window;
             }
 
@@ -361,7 +365,7 @@ export module Option {
             }
 
             set next_tab(next_tab: string) {
-                this.ipcRendererService.send('write-settings', 'option.shortcuts.no_emu.next_tab', next_tab);
+                this.settingsProvider.write('option.shortcuts.no_emu.next_tab', next_tab);
                 this._next_tab = next_tab;
             }
 
@@ -370,7 +374,7 @@ export module Option {
             }
 
             set prev_tab(prev_tab: string) {
-                this.ipcRendererService.send('write-settings', 'option.shortcuts.no_emu.prev_tab', prev_tab);
+                this.settingsProvider.write('option.shortcuts.no_emu.prev_tab', prev_tab);
                 this._prev_tab = prev_tab;
             }
 
@@ -379,7 +383,7 @@ export module Option {
             }
 
             set activ_tab(activ_tab: string) {
-                this.ipcRendererService.send('write-settings', 'option.shortcuts.no_emu.activ_tab', activ_tab);
+                this.settingsProvider.write('option.shortcuts.no_emu.activ_tab', activ_tab);
                 this._activ_tab = activ_tab;
             }
 
@@ -391,24 +395,24 @@ export module Option {
                     },
                     set(target: any, prop: string, value: any) {
                         target[prop] = value;
-                        self.ipcRendererService.send('write-settings', 'option.shortcuts.no_emu.tabs', target);
+                        self.settingsProvider.write('option.shortcuts.no_emu.tabs', target);
                         return true;
                     }
                 });
             }
 
             set tabs(tabs: Array<string>) {
-                this.ipcRendererService.send('write-settings', 'option.shortcuts.no_emu.tabs', tabs);
+                this.settingsProvider.write('option.shortcuts.no_emu.tabs', tabs);
                 this._tabs = tabs;
             }
 
-            constructor(private ipcRendererService: IpcRendererService) {
-                this.new_tab = this.ipcRendererService.sendSync('read-settings', 'option.shortcuts.no_emu.new_tab');
-                this.new_window = this.ipcRendererService.sendSync('read-settings', 'option.shortcuts.no_emu.new_window');
-                this.next_tab = this.ipcRendererService.sendSync('read-settings', 'option.shortcuts.no_emu.next_tab');
-                this.prev_tab = this.ipcRendererService.sendSync('read-settings', 'option.shortcuts.no_emu.prev_tab');
-                this.activ_tab = this.ipcRendererService.sendSync('read-settings', 'option.shortcuts.no_emu.activ_tab');
-                this.tabs = this.ipcRendererService.sendSync('read-settings', 'option.shortcuts.no_emu.tabs');
+            constructor(private settingsProvider: SettingsProvider) {
+                this.new_tab = this.settingsProvider.read('option.shortcuts.no_emu.new_tab');
+                this.new_window = this.settingsProvider.read('option.shortcuts.no_emu.new_window');
+                this.next_tab = this.settingsProvider.read('option.shortcuts.no_emu.next_tab');
+                this.prev_tab = this.settingsProvider.read('option.shortcuts.no_emu.prev_tab');
+                this.activ_tab = this.settingsProvider.read('option.shortcuts.no_emu.activ_tab');
+                this.tabs = this.settingsProvider.read('option.shortcuts.no_emu.tabs');
             }
         }
 
@@ -421,7 +425,7 @@ export module Option {
             }
 
             set end_turn(end_turn: string) {
-                this.ipcRendererService.send('write-settings', 'option.shortcuts.diver.end_turn', end_turn);
+                this.settingsProvider.write('option.shortcuts.diver.end_turn', end_turn);
                 this._end_turn = end_turn;
             }
 
@@ -430,13 +434,13 @@ export module Option {
             }
 
             set open_chat(open_chat: string) {
-                this.ipcRendererService.send('write-settings', 'option.shortcuts.diver.open_chat', open_chat);
+                this.settingsProvider.write('option.shortcuts.diver.open_chat', open_chat);
                 this._open_chat = open_chat;
             }
 
-            constructor(private ipcRendererService: IpcRendererService) {
-                this.end_turn = this.ipcRendererService.sendSync('read-settings', 'option.shortcuts.diver.end_turn');
-                this.open_chat = this.ipcRendererService.sendSync('read-settings', 'option.shortcuts.diver.open_chat');
+            constructor(private settingsProvider: SettingsProvider) {
+                this.end_turn = this.settingsProvider.read('option.shortcuts.diver.end_turn');
+                this.open_chat = this.settingsProvider.read('option.shortcuts.diver.open_chat');
             }
         }
     }
@@ -458,7 +462,7 @@ export module Option {
         }
 
         set hidden_shop(hidden_shop: boolean) {
-            this.ipcRendererService.send('write-settings', 'option.general.hidden_shop', hidden_shop);
+            this.settingsProvider.write('option.general.hidden_shop', hidden_shop);
             this._hidden_shop = hidden_shop;
         }
 
@@ -467,7 +471,7 @@ export module Option {
         }
 
         set user_agent(user_agent: string) {
-            this.ipcRendererService.send('write-settings', 'option.general.user_agent', user_agent);
+            this.settingsProvider.write('option.general.user_agent', user_agent);
             this._user_agent = user_agent;
         }
 
@@ -476,7 +480,7 @@ export module Option {
         }
 
         set hidden_tabs(hidden_tabs: boolean) {
-            this.ipcRendererService.send('write-settings', 'option.general.hidden_tabs', hidden_tabs);
+            this.settingsProvider.write('option.general.hidden_tabs', hidden_tabs);
             this._hidden_tabs = hidden_tabs;
         }
 
@@ -485,7 +489,7 @@ export module Option {
         }
 
         set resolution(resolution: any) {
-            this.ipcRendererService.send('write-settings', 'option.general.resolution', resolution);
+            this.settingsProvider.write('option.general.resolution', resolution);
             this._resolution = resolution;
         }
 
@@ -494,7 +498,7 @@ export module Option {
         }
 
         set local_content(local_content: boolean) {
-            this.ipcRendererService.send('write-settings', 'option.general.local_content', local_content);
+            this.settingsProvider.write('option.general.local_content', local_content);
             this._local_content = local_content;
         }
 
@@ -503,17 +507,17 @@ export module Option {
         }
 
         set sound_focus(sound_focus: boolean) {
-            this.ipcRendererService.send('write-settings', 'option.general.sound_focus', sound_focus);
+            this.settingsProvider.write('option.general.sound_focus', sound_focus);
             this._sound_focus = sound_focus;
         }
 
-        constructor(private ipcRendererService: IpcRendererService) {
-            this.user_agent = this.ipcRendererService.sendSync('read-settings', 'option.general.user_agent');
-            this.hidden_shop = this.ipcRendererService.sendSync('read-settings', 'option.general.hidden_shop');
-            this.hidden_tabs = this.ipcRendererService.sendSync('read-settings', 'option.general.hidden_tabs');
-            this.resolution = this.ipcRendererService.sendSync('read-settings', 'option.general.resolution');
-            this.local_content = this.ipcRendererService.sendSync('read-settings', 'option.general.local_content');
-            this.sound_focus = this.ipcRendererService.sendSync('read-settings', 'option.general.sound_focus');
+        constructor(private settingsProvider: SettingsProvider) {
+            this.user_agent = this.settingsProvider.read('option.general.user_agent');
+            this.hidden_shop = this.settingsProvider.read('option.general.hidden_shop');
+            this.hidden_tabs = this.settingsProvider.read('option.general.hidden_tabs');
+            this.resolution = this.settingsProvider.read('option.general.resolution');
+            this.local_content = this.settingsProvider.read('option.general.local_content');
+            this.sound_focus = this.settingsProvider.read('option.general.sound_focus');
         }
     }
 
@@ -531,7 +535,7 @@ export module Option {
         }
 
         set private_message(private_message: any) {
-            this.ipcRendererService.send('write-settings', 'option.notification.private_message', private_message);
+            this.settingsProvider.write('option.notification.private_message', private_message);
             this._private_message = private_message;
         }
 
@@ -540,7 +544,7 @@ export module Option {
         }
 
         set fight_turn(fight_turn: any) {
-            this.ipcRendererService.send('write-settings', 'option.notification.fight_turn', fight_turn);
+            this.settingsProvider.write('option.notification.fight_turn', fight_turn);
             this._fight_turn = fight_turn;
         }
 
@@ -549,7 +553,7 @@ export module Option {
         }
 
         set tax_collector(tax_collector: any) {
-            this.ipcRendererService.send('write-settings', 'option.notification.tax_collector', tax_collector);
+            this.settingsProvider.write('option.notification.tax_collector', tax_collector);
             this._tax_collector = tax_collector;
         }
 
@@ -558,7 +562,7 @@ export module Option {
         }
 
         set kolizeum(kolizeum: any) {
-            this.ipcRendererService.send('write-settings', 'option.notification.kolizeum', kolizeum);
+            this.settingsProvider.write('option.notification.kolizeum', kolizeum);
             this._kolizeum = kolizeum;
         }
 
@@ -567,7 +571,7 @@ export module Option {
         }
 
         set party_invitation(party_invitation: any) {
-            this.ipcRendererService.send('write-settings', 'option.notification.party_invitation', party_invitation);
+            this.settingsProvider.write('option.notification.party_invitation', party_invitation);
             this._party_invitation = party_invitation;
         }
 
@@ -576,7 +580,7 @@ export module Option {
         }
 
         set aggression(aggression: any) {
-            this.ipcRendererService.send('write-settings', 'option.notification.aggression', aggression);
+            this.settingsProvider.write('option.notification.aggression', aggression);
             this._aggression = aggression;
         }
 
@@ -585,18 +589,18 @@ export module Option {
         }
 
         set focus_fight_turn(focus_fight_turn: any) {
-            this.ipcRendererService.send('write-settings', 'option.notification.focus_fight_turn', focus_fight_turn);
+            this.settingsProvider.write('option.notification.focus_fight_turn', focus_fight_turn);
             this._focus_fight_turn = focus_fight_turn;
         }
 
-        constructor(private ipcRendererService: IpcRendererService) {
-            this.fight_turn = this.ipcRendererService.sendSync('read-settings', 'option.notification.fight_turn');
-            this.private_message = this.ipcRendererService.sendSync('read-settings', 'option.notification.private_message');
-            this.tax_collector = this.ipcRendererService.sendSync('read-settings', 'option.notification.tax_collector');
-            this.kolizeum = this.ipcRendererService.sendSync('read-settings', 'option.notification.kolizeum');
-            this.party_invitation = this.ipcRendererService.sendSync('read-settings', 'option.notification.party_invitation');
-            this.aggression = this.ipcRendererService.sendSync('read-settings', 'option.notification.aggression');
-            this.focus_fight_turn = this.ipcRendererService.sendSync('read-settings', 'option.notification.focus_fight_turn');
+        constructor(private settingsProvider: SettingsProvider) {
+            this.fight_turn = this.settingsProvider.read('option.notification.fight_turn');
+            this.private_message = this.settingsProvider.read('option.notification.private_message');
+            this.tax_collector = this.settingsProvider.read('option.notification.tax_collector');
+            this.kolizeum = this.settingsProvider.read('option.notification.kolizeum');
+            this.party_invitation = this.settingsProvider.read('option.notification.party_invitation');
+            this.aggression = this.settingsProvider.read('option.notification.aggression');
+            this.focus_fight_turn = this.settingsProvider.read('option.notification.focus_fight_turn');
         }
     }
 
@@ -605,10 +609,10 @@ export module Option {
         public autogroup: VIP.AutoGroup;
         public multiaccount: VIP.MultiAccount;
 
-        constructor(private ipcRendererService: IpcRendererService) {
-            this.general = new VIP.General(ipcRendererService);
-            this.autogroup = new VIP.AutoGroup(ipcRendererService);
-            this.multiaccount = new VIP.MultiAccount(ipcRendererService);
+        constructor(private settingsProvider: SettingsProvider) {
+            this.general = new VIP.General(settingsProvider);
+            this.autogroup = new VIP.AutoGroup(settingsProvider);
+            this.multiaccount = new VIP.MultiAccount(settingsProvider);
         }
     }
 
@@ -624,7 +628,7 @@ export module Option {
             }
 
             set estimator(estimator: boolean) {
-                this.ipcRendererService.send('write-settings', 'option.vip.general.estimator', estimator);
+                this.settingsProvider.write('option.vip.general.estimator', estimator);
                 this._estimator = estimator;
             }
 
@@ -633,7 +637,7 @@ export module Option {
             }
 
             set disable_inactivity(disable_inactivity: boolean) {
-                this.ipcRendererService.send('write-settings', 'option.vip.general.disable_inactivity', disable_inactivity);
+                this.settingsProvider.write('option.vip.general.disable_inactivity', disable_inactivity);
                 this._disable_inactivity = disable_inactivity;
             }
 
@@ -642,7 +646,7 @@ export module Option {
             }
 
             set health_bar(health_bar: boolean) {
-                this.ipcRendererService.send('write-settings', 'option.vip.general.health_bar', health_bar);
+                this.settingsProvider.write('option.vip.general.health_bar', health_bar);
                 this._health_bar = health_bar;
             }
 
@@ -651,15 +655,15 @@ export module Option {
             }
 
             set health_bar_shortcut(health_bar_shortcut: string) {
-                this.ipcRendererService.send('write-settings', 'option.vip.general.health_bar_shortcut', health_bar_shortcut);
+                this.settingsProvider.write('option.vip.general.health_bar_shortcut', health_bar_shortcut);
                 this._health_bar_shortcut = health_bar_shortcut;
             }
 
-            constructor(private ipcRendererService: IpcRendererService) {
-                this.disable_inactivity = this.ipcRendererService.sendSync('read-settings', 'option.vip.general.disable_inactivity');
-                this.health_bar = this.ipcRendererService.sendSync('read-settings', 'option.vip.general.health_bar');
-                this.health_bar_shortcut = this.ipcRendererService.sendSync('read-settings', 'option.vip.general.health_bar_shortcut');
-                this.estimator = this.ipcRendererService.sendSync('read-settings', 'option.vip.general.estimator');
+            constructor(private settingsProvider: SettingsProvider) {
+                this.disable_inactivity = this.settingsProvider.read('option.vip.general.disable_inactivity');
+                this.health_bar = this.settingsProvider.read('option.vip.general.health_bar');
+                this.health_bar_shortcut = this.settingsProvider.read('option.vip.general.health_bar_shortcut');
+                this.estimator = this.settingsProvider.read('option.vip.general.estimator');
             }
         }
 
@@ -678,7 +682,7 @@ export module Option {
             }
 
             set active(active: boolean) {
-                this.ipcRendererService.send('write-settings', 'option.vip.auto_group.active', active);
+                this.settingsProvider.write('option.vip.auto_group.active', active);
                 this._active = active;
             }
 
@@ -687,7 +691,7 @@ export module Option {
             }
 
             set leader(leader: string) {
-                this.ipcRendererService.send('write-settings', 'option.vip.auto_group.leader', leader);
+                this.settingsProvider.write('option.vip.auto_group.leader', leader);
                 this._leader = leader;
             }
 
@@ -696,7 +700,7 @@ export module Option {
             }
 
             set members(members: string) {
-                this.ipcRendererService.send('write-settings', 'option.vip.auto_group.members', members);
+                this.settingsProvider.write('option.vip.auto_group.members', members);
                 this._members = members;
             }
 
@@ -705,7 +709,7 @@ export module Option {
             }
 
             set follow_leader(follow_leader: boolean) {
-                this.ipcRendererService.send('write-settings', 'option.vip.auto_group.follow_leader', follow_leader);
+                this.settingsProvider.write('option.vip.auto_group.follow_leader', follow_leader);
                 this._follow_leader = follow_leader;
             }
 
@@ -714,7 +718,7 @@ export module Option {
             }
 
             set ready(ready: boolean) {
-                this.ipcRendererService.send('write-settings', 'option.vip.auto_group.ready', ready);
+                this.settingsProvider.write('option.vip.auto_group.ready', ready);
                 this._ready = ready;
             }
 
@@ -723,7 +727,7 @@ export module Option {
             }
 
             set fight(fight: boolean) {
-                this.ipcRendererService.send('write-settings', 'option.vip.auto_group.fight', fight);
+                this.settingsProvider.write('option.vip.auto_group.fight', fight);
                 this._fight = fight;
             }
 
@@ -732,7 +736,7 @@ export module Option {
             }
 
             set follow_on_map(follow_on_map: boolean) {
-                this.ipcRendererService.send('write-settings', 'option.vip.auto_group.follow_on_map', follow_on_map);
+                this.settingsProvider.write('option.vip.auto_group.follow_on_map', follow_on_map);
                 this._follow_on_map = follow_on_map;
             }
 
@@ -741,20 +745,20 @@ export module Option {
             }
 
             set strict_move(strict_move: boolean) {
-                this.ipcRendererService.send('write-settings', 'option.vip.auto_group.strict_move', strict_move);
+                this.settingsProvider.write('option.vip.auto_group.strict_move', strict_move);
                 this._strict_move = strict_move;
             }
 
-            constructor(private ipcRendererService: IpcRendererService) {
-                this.active = this.ipcRendererService.sendSync('read-settings', 'option.vip.auto_group.active');
-                this.leader = this.ipcRendererService.sendSync('read-settings', 'option.vip.auto_group.leader');
-                this.members = this.ipcRendererService.sendSync('read-settings', 'option.vip.auto_group.members');
-                this.follow_leader = this.ipcRendererService.sendSync('read-settings', 'option.vip.auto_group.follow_leader');
-                this.leader = this.ipcRendererService.sendSync('read-settings', 'option.vip.auto_group.leader');
-                this.ready = this.ipcRendererService.sendSync('read-settings', 'option.vip.auto_group.ready');
-                this.fight = this.ipcRendererService.sendSync('read-settings', 'option.vip.auto_group.fight');
-                this.follow_on_map = this.ipcRendererService.sendSync('read-settings', 'option.vip.auto_group.follow_on_map');
-                this.strict_move = this.ipcRendererService.sendSync('read-settings', 'option.vip.auto_group.strict_move');
+            constructor(private settingsProvider: SettingsProvider) {
+                this.active = this.settingsProvider.read('option.vip.auto_group.active');
+                this.leader = this.settingsProvider.read('option.vip.auto_group.leader');
+                this.members = this.settingsProvider.read('option.vip.auto_group.members');
+                this.follow_leader = this.settingsProvider.read('option.vip.auto_group.follow_leader');
+                this.leader = this.settingsProvider.read('option.vip.auto_group.leader');
+                this.ready = this.settingsProvider.read('option.vip.auto_group.ready');
+                this.fight = this.settingsProvider.read('option.vip.auto_group.fight');
+                this.follow_on_map = this.settingsProvider.read('option.vip.auto_group.follow_on_map');
+                this.strict_move = this.settingsProvider.read('option.vip.auto_group.strict_move');
             }
         }
 
@@ -768,7 +772,7 @@ export module Option {
             }
 
             set active(active: boolean) {
-                this.ipcRendererService.send('write-settings', 'option.vip.multi_account.active', active);
+                this.settingsProvider.write('option.vip.multi_account.active', active);
                 this._active = active;
             }
 
@@ -777,7 +781,7 @@ export module Option {
             }
 
             set master_password(active: string) {
-                this.ipcRendererService.send('write-settings', 'option.vip.multi_account.master_password', active);
+                this.settingsProvider.write('option.vip.multi_account.master_password', active);
                 this._master_password = active;
             }
 
@@ -786,14 +790,14 @@ export module Option {
             }
 
             set windows(windows: { account_name_encrypted: string, password_encrypted: string }[][]) {
-                this.ipcRendererService.send('write-settings', 'option.vip.multi_account.windows', windows);
+                this.settingsProvider.write('option.vip.multi_account.windows', windows);
                 this._windows = windows;
             }
 
-            constructor(private ipcRendererService: IpcRendererService) {
-                this.active = this.ipcRendererService.sendSync('read-settings', 'option.vip.multi_account.active');
-                this.master_password = this.ipcRendererService.sendSync('read-settings', 'option.vip.multi_account.master_password');
-                this.windows = this.ipcRendererService.sendSync('read-settings', 'option.vip.multi_account.windows');
+            constructor(private settingsProvider: SettingsProvider) {
+                this.active = this.settingsProvider.read('option.vip.multi_account.active');
+                this.master_password = this.settingsProvider.read('option.vip.multi_account.master_password');
+                this.windows = this.settingsProvider.read('option.vip.multi_account.windows');
             }
         }
     }
@@ -804,6 +808,7 @@ export module Option {
 export class SettingsService {
 
     public option: Option;
+    private settingsProvider: SettingsProvider;
 
     private _buildVersion: string;
     private _appVersion: string;
@@ -818,7 +823,7 @@ export class SettingsService {
     }
 
     set last_news(last_news: number) {
-        this.ipcRendererService.send('write-settings', 'last_news', last_news);
+        this.settingsProvider.write('last_news', last_news);
         this._last_news = last_news;
     }
 
@@ -827,7 +832,7 @@ export class SettingsService {
     }
 
     set vip_id(vip_id: string) {
-        this.ipcRendererService.send('write-settings', 'vip_id', vip_id);
+        this.settingsProvider.write('vip_id', vip_id);
         this._vip_id = vip_id;
     }
 
@@ -836,7 +841,7 @@ export class SettingsService {
     }
 
     set alertCounter(alertCounter: number) {
-        this.ipcRendererService.send('write-settings', 'alertCounter', alertCounter);
+        this.settingsProvider.write('alertCounter', alertCounter);
         this._alertCounter = alertCounter;
     }
 
@@ -845,7 +850,7 @@ export class SettingsService {
     }
 
     set buildVersion(buildVersion: string) {
-        this.ipcRendererService.send('write-settings', 'buildVersion', buildVersion);
+        this.settingsProvider.write('buildVersion', buildVersion);
         this._buildVersion = buildVersion;
     }
 
@@ -854,7 +859,7 @@ export class SettingsService {
     }
 
     set appVersion(appVersion: string) {
-        this.ipcRendererService.send('write-settings', 'appVersion', appVersion);
+        this.settingsProvider.write('appVersion', appVersion);
         this._appVersion = appVersion;
     }
 
@@ -863,7 +868,7 @@ export class SettingsService {
     }
 
     set macAddress(macAddress: string) {
-        this.ipcRendererService.send('write-settings', 'macAddress', macAddress);
+        this.settingsProvider.write('macAddress', macAddress);
         this._macAddress = macAddress;
     }
 
@@ -872,32 +877,41 @@ export class SettingsService {
     }
 
     set language(language: string) {
-        this.ipcRendererService.send('write-settings', 'language', language);
+        this.settingsProvider.write('language', language);
         this._language = language;
     }
 
     constructor(
-        private ipcRendererService: IpcRendererService
+        private ipcRendererService: IpcRendererService,
+        private windowService: WindowService
     ) {
 
-        let init = () => {
-            this.option = new Option(ipcRendererService);
+        if (isElectron) {
+            this.settingsProvider = new SettingsProviderIpc(ipcRendererService);
+        } else {
+            this.settingsProvider = new SettingsProviderLocal(windowService);
+        }
 
-            this._appVersion = this.ipcRendererService.sendSync('read-settings', 'appVersion');
-            this._macAddress = this.ipcRendererService.sendSync('read-settings', 'macAddress');
-            this._buildVersion = this.ipcRendererService.sendSync('read-settings', 'buildVersion');
-            this._alertCounter = this.ipcRendererService.sendSync('read-settings', 'alertCounter');
-            this._language = this.ipcRendererService.sendSync('read-settings', 'language');
-            this._vip_id = this.ipcRendererService.sendSync('read-settings', 'vip_id');
-            this._last_news = this.ipcRendererService.sendSync('read-settings', 'last_news');
+        let init = () => {
+            this.option = new Option(this.settingsProvider);
+
+            this._appVersion = this.settingsProvider.read('appVersion');
+            this._macAddress = this.settingsProvider.read('macAddress');
+            this._buildVersion = this.settingsProvider.read('buildVersion');
+            this._alertCounter = this.settingsProvider.read('alertCounter');
+            this._language = this.settingsProvider.read('language');
+            this._vip_id = this.settingsProvider.read('vip_id');
+            this._last_news = this.settingsProvider.read('last_news');
         };
         init();
 
-        this.ipcRendererService.on('reload-settings', () => {
-            Logger.verbose('receive->reload-settings');
-            init();
-            Logger.verbose('emit->reload-settings-done');
-            this.ipcRendererService.send('reload-settings-done');
-        });
+        if (isElectron) {
+            this.ipcRendererService.on('reload-settings', () => {
+                Logger.verbose('receive->reload-settings');
+                init();
+                Logger.verbose('emit->reload-settings-done');
+                this.ipcRendererService.send('reload-settings-done');
+            });
+        }
     }
 }

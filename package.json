@@ -82,7 +82,7 @@
     "electron": "1.8.2-beta.4",
     "electron-builder": "~19.55.3",
     "electron-packager": "~10.1.2",
-    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp": "^4.0.0",
     "gulp-jsbeautifier": "^2.1.2",
     "gulp-replace": "~0.5.4",
     "ncp": "~2.0.0",

@@ -19,15 +19,13 @@ export class TabGameComponent implements OnInit {
     public windowService: WindowService;
     public appName: string;
 
-    constructor(
-        public option: OptionWindowService,
-        public tabService: TabService,
-        public tabGameService: TabGameService,
-        private applicationService: ApplicationService,
-        public settingsService: SettingsService,
-        private ipcRendererService: IpcRendererService,
-        private injector: Injector
-    ) {
+    constructor(public option: OptionWindowService,
+                public tabService: TabService,
+                public tabGameService: TabGameService,
+                private applicationService: ApplicationService,
+                public settingsService: SettingsService,
+                private ipcRendererService: IpcRendererService,
+                private injector: Injector) {
         this.windowService = this.injector.get(WindowService)
         this.appName = applicationService.appName;
     }
@@ -36,20 +34,25 @@ export class TabGameComponent implements OnInit {
 
         this.tabGameService.on('icon-change', (tab: Tab) => {
             this.windowService.window.document.getElementById(`tab-icon-${tab.id}`).innerHTML = '';
-            this.windowService.window.document.getElementById(`tab-icon-${tab.id}`).style.display = "none";
+            this.windowService.window.document.getElementById(`tab-icon-${tab.id}`).style.display = 'none';
             if (tab.icon) {
                 this.windowService.window.document.getElementById(`tab-icon-${tab.id}`).appendChild(tab.icon);
-                this.windowService.window.document.getElementById(`tab-icon-${tab.id}`).style.display = "block";
+                this.windowService.window.document.getElementById(`tab-icon-${tab.id}`).style.display = 'block';
             }
 
         });
 
+        if (!isElectron) {
+            this.tabGameService.addTabGame();
+            return;
+        }
+
         //Ouverture du premier onglet
-        if (this.settingsService.option.vip.multiaccount.active && Application.masterPassword != "")
+        if (this.settingsService.option.vip.multiaccount.active && Application.masterPassword != '')
             if (this.settingsService.option.vip.multiaccount.windows.length == 0) {
                 this.tabGameService.addTabGame();
             } else {
-                this.ipcRendererService.send("window-ready");
+                this.ipcRendererService.send('window-ready');
             }
         else {
             this.tabGameService.addTabGame();
@@ -71,10 +74,10 @@ export class TabGameComponent implements OnInit {
                 return element.id == currentTab.id;
             });
 
-            if (typeof (this.tabService.tabs[(currentTabIndex - 1)]) != "undefined") {
+            if (typeof (this.tabService.tabs[(currentTabIndex - 1)]) != 'undefined') {
                 this.tabGameService.selectTabGame(this.tabService.tabs[(currentTabIndex - 1)].id);
             } else {
-                if (typeof (this.tabService.tabs.slice(-1).pop()) != "undefined") {
+                if (typeof (this.tabService.tabs.slice(-1).pop()) != 'undefined') {
                     this.tabGameService.selectTabGame(this.tabService.tabs.slice(-1).pop().id);
                 }
             }
@@ -87,10 +90,10 @@ export class TabGameComponent implements OnInit {
                 return element.id == currentTab.id;
             });
 
-            if (typeof (this.tabService.tabs[(currentTabIndex + 1)]) != "undefined") {
+            if (typeof (this.tabService.tabs[(currentTabIndex + 1)]) != 'undefined') {
                 this.tabGameService.selectTabGame(this.tabService.tabs[(currentTabIndex + 1)].id);
             } else {
-                if (typeof (this.tabService.tabs[0]) != "undefined") {
+                if (typeof (this.tabService.tabs[0]) != 'undefined') {
                     this.tabGameService.selectTabGame(this.tabService.tabs[0].id);
                 }
             }
@@ -98,7 +101,7 @@ export class TabGameComponent implements OnInit {
 
         this.ipcRendererService.on('switch-tab', (event: Event, tabIndex: number) => {
 
-            if (typeof (this.tabService.tabs[tabIndex]) != "undefined") {
+            if (typeof (this.tabService.tabs[tabIndex]) != 'undefined') {
                 this.tabGameService.selectTabGame(this.tabService.tabs[tabIndex].id);
             }
         });

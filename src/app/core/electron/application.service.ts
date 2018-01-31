@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IpcRendererService } from 'app/core/electron/ipcrenderer.service';
 import { environment } from 'environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class ApplicationService {
@@ -19,25 +20,47 @@ export class ApplicationService {
     public version: string;
 
     constructor(
-        private ipcRendererService: IpcRendererService
-    ) { }
+        private ipcRendererService: IpcRendererService,
+        private http: HttpClient
+    ) {
+    }
 
-    public load(): void {
+    public async load(): Promise<void> {
 
         // Chargement de la configuration distance
         this.appName = environment.appName;
         this.websiteUrl = environment.websiteUrl;
         this.apiUrl = environment.apiUrl;
 
-        //On récupère la version de DT distante
-        this.remoteBuildVersion = Application.remoteBuildVersion;
-        this.remoteAppVersion = Application.remoteAppVersion;
-        this.version = Application.version;
+        return new Promise<void>((resolve, reject)=>{
 
-        let appConfig = Settings.getAppConfig();
-        this.appPath = appConfig.appPath;
-        this.gamePath = appConfig.gamePath;
-        this.appVersion = appConfig.appVersion;
-        this.buildVersion = appConfig.buildVersion;
+            //On récupère la version de DT distante
+            if (isElectron) {
+                this.remoteBuildVersion = Application.remoteBuildVersion;
+                this.remoteAppVersion = Application.remoteAppVersion;
+                this.version = Application.version;
+
+                let appConfig = Settings.getAppConfig();
+                this.appPath = appConfig.appPath;
+                this.gamePath = appConfig.gamePath;
+                this.appVersion = appConfig.appVersion;
+                this.buildVersion = appConfig.buildVersion;
+
+                return resolve();
+            } else {
+                this.http.get(`${this.apiUrl}/version.json?time=${new Date().getTime()}`).subscribe((data:any) =>{
+                    this.remoteAppVersion = data.appVersion;
+                    this.remoteAppVersion = data.buildVersion;
+
+                    // TODO : retrieve appVersion from the update.php
+                    this.appVersion = data.appVersion;
+                    this.buildVersion = data.buildVersion;
+
+                    return resolve();
+                }, err =>{
+                    return reject(err);
+                });
+            }
+        });
     }
 }

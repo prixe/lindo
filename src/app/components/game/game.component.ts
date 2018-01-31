@@ -60,7 +60,10 @@ export class GameComponent implements AfterViewInit {
         private applicationService: ApplicationService,
         private http: HttpClient
     ) {
-        this.gamePath = this.applicationService.gamePath + '/index.html?delayed=true';
+        if(isElectron)
+            this.gamePath = this.applicationService.gamePath + '/index.html?delayed=true';
+        else
+            this.gamePath = "game/index.html?delayed=true";
     }
 
     ngAfterViewInit() {

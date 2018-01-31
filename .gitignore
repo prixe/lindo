@@ -1,7 +1,8 @@
-.idea
-/game
-/instruction.md
-node_modules
+/src/locale/
+/src/game/
+.idea/
+/game/
+node_modules/
 jspm_packages
 link-checker-results.txt
 yarn.lock
@@ -10,5 +11,5 @@ yarn.lock
 /npm-debug.log
 **/*npm-debug.log.*
 
-/dist
-/releases
+dist/
+releases/

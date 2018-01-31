@@ -15,17 +15,17 @@ import { WindowService } from 'app/core/service/window.service';
 })
 export class MainComponent implements OnInit {
 
-    constructor(
-        private windowService: WindowService,
-        public tabGameService: TabGameService,
-        public gameService: GameService,
-        private ipcRendererService: IpcRendererService,
-        private settingsService: SettingsService,
-        private applicationService: ApplicationService,
-        public authService: AuthService
-    ) {
-        this.windowService.window.appVersion = Application.remoteAppVersion;
-        this.windowService.window.buildVersion = Application.remoteBuildVersion;
+    public isElectron = isElectron;
+
+    constructor(private windowService: WindowService,
+                public tabGameService: TabGameService,
+                public gameService: GameService,
+                private ipcRendererService: IpcRendererService,
+                private settingsService: SettingsService,
+                private applicationService: ApplicationService,
+                public authService: AuthService) {
+        this.windowService.window.appVersion = applicationService.remoteAppVersion;
+        this.windowService.window.buildVersion = applicationService.remoteBuildVersion;
     }
 
     ngOnInit(): void {
@@ -40,17 +40,18 @@ export class MainComponent implements OnInit {
     }
 
     setEventListener(): void {
+        if (isElectron) {
+            //On connecte les comptes dans des onglets de la fenêtre
+            this.ipcRendererService.on('accounts', (event: Event, accounts: any) => {
+                this.tabGameService.addMultiAccountGames(accounts);
+            });
 
-        //On connecte les comptes dans des onglets de la fenêtre
-        this.ipcRendererService.on('accounts', (event: Event, accounts: any) => {
-            this.tabGameService.addMultiAccountGames(accounts);
-        });
-
-        //On renvoie les ouvertures d'url vers le navigateur du pc
-        let window = electron.getCurrentWindow();
-        window.webContents.on("new-window", ($event: any, url: string) => {
-            $event.preventDefault();
-            electron.openExternal(url);
-        });
+            //On renvoie les ouvertures d'url vers le navigateur du pc
+            let window = electron.getCurrentWindow();
+            window.webContents.on('new-window', ($event: any, url: string) => {
+                $event.preventDefault();
+                electron.openExternal(url);
+            });
+        }
     }
 }

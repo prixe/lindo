@@ -1,6 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
 
-const { ipcRenderer } = electron;
+const { ipcRenderer } = isElectron?electron:{ipcRenderer:undefined};
 
 @Injectable()
 export class IpcRendererService {

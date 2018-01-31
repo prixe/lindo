@@ -11,7 +11,7 @@ import { SoundService } from 'app/core/service/sound.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, AfterViewInit {
-  
+
   constructor(
     private translate: TranslateService,
     private settingsService: SettingsService,
@@ -24,10 +24,12 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.translate.addLangs(["en", "fr", "es"]);
     this.translate.setDefaultLang(this.settingsService.language);
 
-    this.ipcRendererService.on('reload-settings-done', () => {
-      Logger.info('receive->reload-settings-done');
-      this.translate.use(this.settingsService.language);
-    });
+    if(isElectron) {
+        this.ipcRendererService.on('reload-settings-done', () => {
+            Logger.info('receive->reload-settings-done');
+            this.translate.use(this.settingsService.language);
+        });
+    }
 
   }
 
