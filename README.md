@@ -21,6 +21,7 @@ Lindo No-Emu work on :
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
+- [Community](#community)
 - [Installation](#installation)
   - [Prerequisites](#prerequisites)
     - [Node.js](#nodejs)
@@ -40,6 +41,10 @@ Lindo No-Emu work on :
 - [Credits](#credits)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Community
+- [Discord](https://discord.gg/xdt5J4N)
+- [Trello](https://trello.com/b/d1mc9DeS/lindo)
 
 ## Installation 
 ### Prerequisites
