@@ -27,11 +27,11 @@
         const nodeProcess = window.process;
         const {
             Application
-        } = isElectron ? _require('electron').remote.require('./application') : {Application: undefined};
+        } = isElectron ? require('electron').remote.require('./application') : {Application: undefined};
         const {
             Settings
-        } = isElectron ? _require('electron').remote.require('./settings/settings') : {Settings: undefined};
-        const LoggerLib = isElectron ? _require('electron').remote.require('./core/logger/logger-app').Logger : undefined;
+        } = isElectron ? require('electron').remote.require('./settings/settings') : {Settings: undefined};
+        const LoggerLib = isElectron ? require('electron').remote.require('./core/logger/logger-app').Logger : undefined;
     </script>
 </head>
 

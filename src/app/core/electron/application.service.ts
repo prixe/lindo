@@ -50,7 +50,7 @@ export class ApplicationService {
             } else {
                 this.http.get(`${this.apiUrl}/version.json?time=${new Date().getTime()}`).subscribe((data:any) =>{
                     this.remoteAppVersion = data.appVersion;
-                    this.remoteAppVersion = data.buildVersion;
+                    this.remoteBuildVersion = data.buildVersion;
 
                     // TODO : retrieve appVersion from the update.php
                     this.appVersion = data.appVersion;
