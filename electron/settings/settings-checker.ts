@@ -62,7 +62,7 @@ export function checkSettings() {
 
     if (!settings.get('macAddress')) {
         address.mac((err, addr) => {
-            settings.set('macAddress', addr);
+            settings.set('macAddress', btoa(addr));
         });
     }
 
