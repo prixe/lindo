@@ -64,8 +64,8 @@ export class Settings {
         settings.setAll(SettingsDefault);
 
         address.mac((err, addr) => {
-            settings.set('macAddress', btoa(addr));
-            Logger.info("[SETTING] All settings are restored.")
+            settings.set('macAddress', Buffer.from(addr).toString('base64'));
+            Logger.info("[SETTING] All settings are restored.");
             this.reloadSettings();
         });
     };
