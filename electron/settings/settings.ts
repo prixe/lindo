@@ -48,14 +48,11 @@ export class Settings {
         });
 
         ipcMain.on('read-settings', (event, args) => {
-            console.log(args);
-            console.log('read');
             let value = settings.get(args[0]);
             event.returnValue = value;
         });
 
         ipcMain.on('write-settings', (event, args) => {
-            console.log('write');
             event.returnValue = settings.set(args[0], args[1]);
         });
     };
