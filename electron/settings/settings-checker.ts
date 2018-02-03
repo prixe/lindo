@@ -1,7 +1,7 @@
 import { Logger } from '../core/logger/logger-electron';
 import { SettingsDefault } from './settings-default';
 import { SettingsInterface } from './settings.interface';
-import * as address from 'address';
+import * as macAddress from 'macaddress';
 
 const settings = require('electron-settings');
 
@@ -61,8 +61,13 @@ export function checkSettings() {
     }
 
     if (!settings.get('macAddress')) {
-        address.mac((err, addr) => {
-            settings.set('macAddress', Buffer.from(addr).toString('base64'));
+        macAddress.one((err, addr) => {
+            if(err || !addr){
+                settings.set('macAddress',  Math.random().toString());
+                Logger.warn("[SETTING] Unable to retrieve the mac address");
+            }else{
+                settings.set('macAddress', Buffer.from(addr).toString('base64'));
+            }
         });
     }
 

@@ -2,7 +2,7 @@ import { Application } from '../application';
 import { Logger } from '../core/logger/logger-electron';
 import { checkSettings } from './settings-checker';
 import { SettingsDefault } from './settings-default';
-import * as address from 'address';
+import * as macAddress from 'macaddress';
 import { app, ipcMain } from 'electron';
 
 const settings = require('electron-settings');
@@ -63,8 +63,14 @@ export class Settings {
 
         settings.setAll(SettingsDefault);
 
-        address.mac((err, addr) => {
-            settings.set('macAddress', Buffer.from(addr).toString('base64'));
+        macAddress.one((err, addr) => {
+            if(err || !addr){
+                settings.set('macAddress',  Math.random().toString());
+                Logger.warn("[SETTING] Unable to retrieve the mac address");
+            }else{
+                settings.set('macAddress', Buffer.from(addr).toString('base64'));
+            }
+
             Logger.info("[SETTING] All settings are restored.");
             this.reloadSettings();
         });
