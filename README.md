@@ -128,7 +128,7 @@ $ npm run toc
 [TODO]
 
 ## License
-**Lindo** is under GNU GPLv3 read [LICENCE](https://github.com/prixe/lindo/blob/master/LICENSE)
+**Lindo** is under GNU GPLv3 read [LICENCE](https://github.com/prixe/lindo/blob/master/LICENCE)
 
 ## Credits
 - Daniel & Thomas for created the original **No-Emu**
