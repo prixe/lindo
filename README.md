@@ -8,10 +8,12 @@
 
 Lindo allow you to play DofusTouch without android emulator, it's entirely coded in javascript via electron & angular. Lindo is totally corss-platform.
 
-**/!\ This project is only for educational purposes, Dofus Touch is the entire property of Ankama Game and it's not affiliated with Ankama. Lindo doesn't respect the CGU of Dofus Touch, so use it at your own risk.**
+**/!\ Dofus Touch is the entire property of Ankama Games, and we are not affiliated in any way with Ankama. None of the files hosted in this repository is under copyright: They come from Open Source projects, libraries, the original DofusTouch No-Emu created by Daniel & Thomas, and our own Team (Lindo). Also, this project is for educational purposes only, we will never make any money from it.**
+
+**Keep in mind that Lindo doesn't respect the TOU (also known as Conditions Générales d'Utilisation in french) of Dofus Touch, use it at your own risk.**
 
 ## Supported Platform
-Lindo No-Emu work on :
+Lindo No-Emu works on :
 - **Windows** 7 and newer (ia32/amd64) 
 - **macOS** 10.9 and newer
 - **Linu**x (Debian >= 8, Ubuntu >= 12, Fedora >= 21) (ia32/amd64)
@@ -101,7 +103,7 @@ $ npm run build:mac
 
 ## Development
 ### Introduction
-**Lindo** is develop with [Angular](https://angular.io/) for the web framework and use [Material](https://material.angular.io/) for the UI. To run an application as a native application it's use [electron] (https://github.com/electron/electron) wich is based on Node.js and Chromium.
+**Lindo** is developed with [Angular](https://angular.io/) as web framework and uses [Material](https://material.angular.io/) for the UI. It uses [electron](https://github.com/electron/electron) to be run as an standalone application, wich is based on Node.js and Chromium.
 
 So we have to distinguish 2 contexts :
 - **Navigator context** -> executed by Chromium (the Angular part) 
@@ -126,7 +128,7 @@ $ npm run toc
 [TODO]
 
 ## License
-**Lindo** is under GNU GPLv3 read [LICENCE](https://github.com/Ehstrali/TouchEmu/blob/master/LICENSE)
+**Lindo** is under GNU GPLv3 read [LICENCE](https://github.com/prixe/lindo/blob/master/LICENSE)
 
 ## Credits
 - Daniel & Thomas for created the original **No-Emu**
