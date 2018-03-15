@@ -2,7 +2,7 @@ import {NgZone} from '@angular/core';
 import { TranslateService } from "@ngx-translate/core";
 import {Observable} from 'rxjs/Observable';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {EventEmitter} from 'eventemitter3';
+import * as EventEmitter from 'eventemitter3';
 import { Mods, IMods } from "../mods";
 import { Option } from "app/core/service/settings.service";
 import { ElectronService as electron } from "app/core/electron/electron.service";

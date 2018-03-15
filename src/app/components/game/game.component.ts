@@ -78,11 +78,13 @@ export class GameComponent implements AfterViewInit {
             this.game.window.initDofus(() => {
                 /* Hide the game loading overlay */
                 let loading = document.getElementById("LoadingGame_" + this.game.id);
-                loading.style.opacity = '0';
-                
-                setTimeout(function () {
-                    loading.remove();
-                }, 500);
+
+                if (loading) {
+                    loading.style.opacity = '0';
+                    setTimeout(function () {
+                        loading.remove();
+                    }, 500);
+                }
 
                 //this.plugins = new PluginsContainer(this.game.window);
 

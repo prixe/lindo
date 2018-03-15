@@ -28,11 +28,11 @@ export function updateGameScript(cb) {
                     .pipe(replace(/this.send\(.*, d\("login"\)\)/g, 'var _scm_ = d("login"); for (var i in window._){ _scm_[i] = window._[i]}; this.send("connecting", _scm_);'))
                     .pipe(replace(/(this\.send\(.*,.d\({\n.*\n.*\n.*\n.*\n.*)(}\),.*\("serverDisconnecting")/g, 'var _scm_ = d({address: a,port: r,id: e}); for (var i in window._) {_scm_[i] = window._[i]};this.send("connecting", _scm_);$2'))
                     .pipe(replace(/window\.buildVersion.*=.*"\d*\.\d*\.\d*",/g, ""))
-                    .pipe(replace(/(var.*=.*\.touches\s\|\|.*\[\],)/g, 'if (e.type === "mousedown" || e.type === "mouseup") {return o.x = e.clientX, o.y = e.clientY, { x: o.x, y: o.y, touchCount: "mouseup" === e.type ? 0 : 1, touches: [{x: o.x, y: o.y }] } }\n$1'))
-                    .pipe(replace(/(\"ontouchstart\" in window)/g, "false && $1"))
+                    // .pipe(replace(/(var.*=.*\.touches\s\|\|.*\[\],)/g, 'if (e.type === "mousedown" || e.type === "mouseup") {return o.x = e.clientX, o.y = e.clientY, { x: o.x, y: o.y, touchCount: "mouseup" === e.type ? 0 : 1, touches: [{x: o.x, y: o.y }] } }\n$1'))
+                    // .pipe(replace(/(\"ontouchstart\" in window)/g, "false && $1"))
                     .pipe(replace(/(var\s*[a-z]*\s*=\s*this,\n*\s*[a-z]*\s=\s*window\.dofus\.connectionManager;\n\s*i.on\("ServersListMessage",)/g, "window.d = this; \n $1"))
                     .pipe(replace(/([a-z]\([a-z],\s*[a-z]\),\s*[a-z]\.exports\s*=\s*n,\s*n\.prototype\._addFightModeToolTip\s*=\s*function\([a-z],\s*[a-z],\s*[a-z]\)\s*{)/g, "window.CharacterDisplay = c;\n\t$1"))
-                    .pipe(replace(/(, window\.fetch\(.+\/logger)/, "; return null $1"))
+                    .pipe(replace(/(, window\.fetch\(.+\/logger)/g, "; top.console.log(n); return null $1"))
                     .pipe(gulp.dest('./game'))
                     .on('end', callback);
             });
