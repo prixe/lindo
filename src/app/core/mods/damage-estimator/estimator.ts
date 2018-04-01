@@ -374,7 +374,7 @@ export class Estimator {
         let res = 0;
         switch (element) {
             case 'air':
-                res = stats.waterElementReduction;
+                res = stats.airElementReduction;
                 break;
             case 'fire':
                 res = stats.fireElementReduction;
@@ -443,7 +443,7 @@ export class Estimator {
         let res = 0;
         switch (element) {
             case 'air':
-                res = stats.waterElementResistPercent;
+                res = stats.airElementResistPercent;
                 break;
             case 'fire':
                 res = stats.fireElementResistPercent;
