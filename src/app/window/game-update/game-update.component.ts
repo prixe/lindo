@@ -61,7 +61,12 @@ export class GameUpdateComponent implements OnInit, OnDestroy {
 
     download() {
 
-        progress(request(this.remoteUrl), {})
+        Logger.info(this.remoteUrl);
+
+        progress(request(this.remoteUrl), {
+            rejectUnauthorized : false,
+            strictSSL : false
+        })
             .on('progress', (state: any) => {
 
                 this.progressMode = "determinate";
