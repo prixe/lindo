@@ -18,6 +18,8 @@ app.on('certificate-error', (event, webContents, url, error, certificate, callba
     callback(true);
 });
 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+
 (process as NodeJS.EventEmitter).on('uncaughtException', function (error) {
 
     Logger.error(error);
