@@ -27,7 +27,7 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
     dialog.showMessageBox(BrowserWindow.getFocusedWindow(), {
         type: 'error',
         title: 'Error',
-        message: 'An error occured in yout settings, they will be reseted :' + error.toString(),
+        message: 'An error occured in your settings, they will be reseted :' + error.toString(),
         buttons: ['Close']
     }, () => {
 

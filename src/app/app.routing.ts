@@ -14,6 +14,7 @@ import { ShortcutsInventoryComponent } from "app/window/shortcuts/inventory/inve
 import { ShortcutsInterfaceComponent } from "app/window/shortcuts/interface/interface.component";
 import { ShortcutsSpellComponent } from "app/window/shortcuts/spell/spell.component";
 import { GameUpdateComponent } from "app/window/game-update/game-update.component";
+import { OfficialGameUpdateComponent } from "app/window/official-game-update/official-game-update.component";
 import { AboutComponent } from "app/window/option/about/about.component";
 
 const appRoutes: Routes = [
@@ -51,6 +52,12 @@ const appRoutes: Routes = [
         path: 'game-update',
         children: [
             { path: ':savePath/:remoteUrl', component: GameUpdateComponent }
+        ]
+    },
+    {
+        path: 'official-game-update',
+        children: [
+            { path: ':destinationPath', component: OfficialGameUpdateComponent }
         ]
     }
 ];

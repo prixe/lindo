@@ -37,8 +37,8 @@
       "update-dofus": {
         "title": "Dofus Touch update",
         "information": {
-          "start": "Starting download...",
-          "install": "Installing the update...",
+          "search": "Looking for updates...",
+          "downloading": "Downloading...",
           "error": "Can't download the update ! Please try again later"
         }
       },

@@ -22,6 +22,7 @@
         const httpsLib = isElectron ? require('https') : undefined;
         const fsExtraLib = isElectron ? require('fs-extra') : undefined;
         const fsLib = isElectron ? require('fs') : undefined;
+        const pathLib = isElectron ? require('path') : undefined;
         const requestLib = isElectron ? require('request') : undefined;
         const requestProgressLib = isElectron ? require('request-progress') : undefined;
         const nodeProcess = window.process;

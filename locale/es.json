@@ -35,8 +35,8 @@
       "update-dofus": {
         "title": "Actualizar Dofus Touch",
         "information": {
-          "start": "Inicio del descarga...",
-          "install": "Instalación de la actualización...",
+          "search": "Buscando actualizaciones...",
+          "downloading": "Descargando...",
           "error": "No se puede descargar la actualización! Por favor, inténtelo de nuevo otra vez"
         }
       },

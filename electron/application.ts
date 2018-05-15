@@ -28,66 +28,49 @@ export class Application {
 
         this.version = pkg.version;
 
-        Api.getRemoteVersion().then((version) => {
+        UpdateAll.run().then((versions) => {
 
-            settings.set('appVersion', version.appVersion);
+            settings.set('appVersion', versions.appVersion);
 
-            this.remoteBuildVersion = version.buildVersion;
-            this.remoteAppVersion = version.appVersion;
+            this.remoteBuildVersion = versions.buildVersion;
+            this.remoteAppVersion = versions.appVersion;
 
-            UpdateAll.run().then(() => {
-
-                Logger.info("[APPLICATION] Starting..");
-                this.canAddWindow = true;
-                this.addWindow();
-                
-            }).catch((error: any) => {
-
-                Logger.error('Error occured on update process : ');
-                Logger.error(error);
-
-                dialog.showMessageBox(BrowserWindow.getFocusedWindow(), {
-                    type: 'error',
-                    title: 'Error',
-                    message: "Error occured on update process.",
-                    buttons: ['Close']
-                }, () => {
-                    app.exit();
-                });
-            });
-
-            //Renvoi de l'événement à toute les fenêtres
-            ipcMain.on('auto-group-reset-counter', (event, arg) => {
-                this.mainWindows.forEach((gWindow, index) => {
-                    gWindow.win.webContents.send('auto-group-reset-counter');
-                });
-            });
-
-            ipcMain.on('auto-group-push-path', (event, arg) => {
-                arg.unshift('auto-group-push-path');
-                this.mainWindows.forEach((gWindow, index) => {
-                    gWindow.win.webContents.send.apply(gWindow.win.webContents, arg);
-                });
-            });
-
-            ipcMain.on('window-ready', (event, arg) => {
-                this.mainWindows.forEach((gWindow, index) => {
-                    gWindow.win.webContents.send('window-ready');
-                });
-            });
-
+            Logger.info("[APPLICATION] Starting..");
+            this.canAddWindow = true;
+            this.addWindow();
+            
         }).catch((error: any) => {
 
-            Logger.error('Error occured on version check process : ');
+            Logger.error('Error occured on update process : ');
             Logger.error(error);
 
             dialog.showMessageBox(BrowserWindow.getFocusedWindow(), {
                 type: 'error',
                 title: 'Error',
-                message: "Error occured on version check process.",
+                message: "Error occured on update process.",
                 buttons: ['Close']
             }, () => {
                 app.exit();
+            });
+        });
+
+        //Renvoi de l'événement à toute les fenêtres
+        ipcMain.on('auto-group-reset-counter', (event, arg) => {
+            this.mainWindows.forEach((gWindow, index) => {
+                gWindow.win.webContents.send('auto-group-reset-counter');
+            });
+        });
+
+        ipcMain.on('auto-group-push-path', (event, arg) => {
+            arg.unshift('auto-group-push-path');
+            this.mainWindows.forEach((gWindow, index) => {
+                gWindow.win.webContents.send.apply(gWindow.win.webContents, arg);
+            });
+        });
+
+        ipcMain.on('window-ready', (event, arg) => {
+            this.mainWindows.forEach((gWindow, index) => {
+                gWindow.win.webContents.send('window-ready');
             });
         });
 

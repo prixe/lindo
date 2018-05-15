@@ -40,6 +40,7 @@ import { InputComponent } from 'app/window/shortcuts/input/input.component';
 import { ServiceModule } from "app/core/modules/service.module";
 import { CommonModule } from "@angular/common";
 import { GameUpdateComponent } from "app/window/game-update/game-update.component";
+import { OfficialGameUpdateComponent } from "app/window/official-game-update/official-game-update.component";
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 export function translateModuleFactory(http: HttpClient) {
@@ -84,6 +85,7 @@ export function translateModuleFactory(http: HttpClient) {
         VipGeneralComponent,
         MultiAccountComponent,
         GameUpdateComponent,
+        OfficialGameUpdateComponent,
 
         ShortcutsComponent,
         ShortcutsApplicationComponent,
