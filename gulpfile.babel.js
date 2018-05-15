@@ -12,6 +12,9 @@ gulp.task('update:game', gulp.series(updateGameScript, updateGameAssets));
 
 // Beta URL: https://earlyproxy.touch.dofus.com/
 
+// DON'T EDIT THESE REGEX
+// Since the auto update feature, regex to patch the script.js are stored in the repo:
+// https://github.com/Clover-Lindo/lindo-game-base
 export function updateGameScript(cb) {
 
     async.waterfall([

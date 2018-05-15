@@ -37,7 +37,8 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
     private remoteOrigin: string = "https://proxyconnection.touch.dofus.com/";
     private remoteManifestPath: string = "manifest.json";
     private remoteAssetMapPath: string = "assetMap.json";
-    private remotelindoManifest: string = "https://raw.githubusercontent.com/Clover-Lindo/lindo-game-base/master/manifest.json";
+    private remoteLindoManifest: string = "https://raw.githubusercontent.com/Clover-Lindo/lindo-game-base/master/manifest.json";
+    private remoteLindoManifestAlt: string = "http://api.no-emu.co/manifest.json";
     private remoteKeymaster: string = "https://raw.githubusercontent.com/madrobby/keymaster/master/keymaster.js";
     private remoteITunesAppVersion: string = "http://itunes.apple.com/lookup?id=1041406978&t=" + (new Date().getTime());
 
@@ -91,9 +92,11 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
                 let manifestDifferences = this.differences(this.currentManifest, this.manifest);
                 let assetMapDifferences = this.differences(this.currentAssetMap, this.assetMap);
 
-                this.computeProgressTotal(manifestDifferences, assetMapDifferences);
-
-                this.progressMode = "determinate";
+                // Redownload script & style if regex has changed
+                if (lindoManifestDifferences['regex.json'] == 1) {
+                    for (let i in manifestDifferences)
+                        manifestDifferences[i] = 1;
+                }
 
                 setTimeout(() => {
                     this.translate.get('app.window.update-dofus.information.downloading').subscribe((res: string) => {
@@ -103,11 +106,9 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
 
                 this.log("Updating required files");
 
-                // Redownload script & style if regex has changed
-                if (lindoManifestDifferences['regex.json'] == 1) {
-                    for (let i in manifestDifferences)
-                        manifestDifferences[i] = 1;
-                }
+                this.computeProgressTotal(manifestDifferences, assetMapDifferences);
+
+                this.progressMode = "determinate";
 
 
                 // Downloading & saving assets
@@ -258,12 +259,15 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
                 if (err) {
                     reject(err);
                 }
+                else if (response.statusCode >= 300) {
+                    reject(response.statusCode);
+                }
                 else {
+                    this.addProgress(weight - currentProgress);
                     if (json)
                         resolve(JSON.parse(body));
                     else
                         resolve(body);
-                    this.addProgress(weight - currentProgress);
                 }
             })).on("progress", (state) => {
                 let progress = state.percent * weight;
@@ -274,7 +278,15 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
     }
 
     async downloadLindoManifest() {
-        return this.lindoManifest = await this.download(this.remotelindoManifest, true);
+        try {
+            return this.lindoManifest = await this.download(this.remoteLindoManifest, true);
+        } catch(e) {
+            return await this.downloadLindoManifestAlt();
+        }
+    }
+
+    async downloadLindoManifestAlt() {
+        return this.lindoManifest = await this.download(this.remoteLindoManifestAlt, true);
     }
 
     async downloadManifest() {
@@ -371,7 +383,7 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
                 }
             }
             return files;
-        } catch (e) { Logger.info(e.message); }
+        } catch (e) { Logger.error(e.message); }
     }
 
     applyRegex(regex, files) {
@@ -396,7 +408,7 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
             for (var filename in files) {
                 promises.push(this.saveOneFile(this.destinationPath + filename, files[filename]));
             }
-        } catch (e) { Logger.info(e.message); }
+        } catch (e) { Logger.error(e.message); }
         return await Promise.all(promises);
     }
 
@@ -421,7 +433,7 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
                         this.destinationPath + manifest.files[i].filename));
                 }
             }
-        } catch (e) { Logger.info(e.message); }
+        } catch (e) { Logger.error(e.message); }
         await Promise.all(promises);
         return;
     }
@@ -471,7 +483,7 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
                     resolve();
                 })
                 .pipe(fileStream);
-            } catch (e) { Logger.info(e.message); }
+            } catch (e) { Logger.error(e.message); }
         });
     }
 
