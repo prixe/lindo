@@ -12,6 +12,10 @@ import { TagInputModule } from 'ngx-chips';
 import { CoreModule } from "app/core/modules/core.module";
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import localeFr from '@angular/common/locales/fr';
+import localeEn from '@angular/common/locales/en';
+import localeEs from '@angular/common/locales/es';
+
 
 import { AppRoutingModule } from './app.routing';
 
@@ -38,7 +42,7 @@ import { ShortcutsComponent } from "app/window/shortcuts/shortcuts.component";
 import { InputComponent } from 'app/window/shortcuts/input/input.component';
 
 import { ServiceModule } from "app/core/modules/service.module";
-import { CommonModule } from "@angular/common";
+import { registerLocaleData, CommonModule } from "@angular/common";
 import { GameUpdateComponent } from "app/window/game-update/game-update.component";
 import { OfficialGameUpdateComponent } from "app/window/official-game-update/official-game-update.component";
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -46,6 +50,10 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 export function translateModuleFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, '../../locale/', '.json')
 }
+
+registerLocaleData(localeFr);
+registerLocaleData(localeEn);
+registerLocaleData(localeEs);
 
 @NgModule({
     imports: [
