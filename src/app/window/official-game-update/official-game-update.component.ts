@@ -45,6 +45,7 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
     private currentLindoManifest: any;
     private currentManifest: any;
     private currentAssetMap: any;
+    private currentRegex: any;
 
     private lindoManifest: any;
     private manifest: any;
@@ -81,7 +82,7 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
                 // Downloading manifests
 
                 await Promise.all([
-                    this.loadCurrentLindoManifest(), this.loadCurrentManifest(), this.loadCurrentAssetMap(), this.loadVersions(),
+                    this.loadCurrentLindoManifest(), this.loadCurrentManifest(), this.loadCurrentAssetMap(), this.loadVersions(), this.loadCurrentRegex(),
                     this.downloadLindoManifest(), this.downloadManifest(), this.downloadAssetMap()
                     ]);
 
@@ -156,12 +157,10 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
                 
                 promises.push(new Promise(async (resolve, reject) => {
 
-                    if (lindoManifestDifferences['regex.json'] == 1) {
-                        try {
-                            this.applyRegex(JSON.parse(lindoMissingFiles['regex.json']), manifestMissingFiles);
-                        } catch (e) { Logger.error(e.message); }
-                    }
-
+                    this.applyRegex(lindoManifestDifferences['regex.json'] == 1
+                                        ? JSON.parse(lindoMissingFiles['regex.json'])
+                                        : this.currentRegex,
+                                    manifestMissingFiles);
 
                     // Saving lindo & game files
 
@@ -246,6 +245,18 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
                 if (err) resolve(null);
                 else {
                     this.versions = JSON.parse(data);
+                    resolve(data);
+                }
+            });
+        });
+    }
+
+    loadCurrentRegex() {
+        return new Promise((resolve, reject) => {
+            fs.readFile(this.destinationPath + "regex.json", (err, data) => {
+                if (err) resolve(null);
+                else {
+                    this.currentRegex = JSON.parse(data);
                     resolve(data);
                 }
             });
