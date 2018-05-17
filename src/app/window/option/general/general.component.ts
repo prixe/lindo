@@ -6,6 +6,7 @@ import { PromptService } from 'app/core/service/prompt.service';
 import { SettingsService } from 'app/core/service/settings.service';
 import { WindowService } from 'app/core/service/window.service';
 import { OptionWindowService } from '../option.window';
+import { app, ipcMain } from 'electron';
 
 interface select {
     name: string;
@@ -93,10 +94,6 @@ export class GeneralComponent implements OnInit {
     }
 
     public resetGameFile() {
-
-        this.settingsService.appVersion = null;
-        this.settingsService.buildVersion = null;
-
-        electron.restart();
+        this.ipcRendererService.send('reset-game');
     }
 }

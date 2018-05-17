@@ -4,6 +4,7 @@ import { checkSettings } from './settings-checker';
 import { SettingsDefault } from './settings-default';
 import * as macAddress from 'macaddress';
 import { app, ipcMain } from 'electron';
+import * as del from 'del';
 
 const settings = require('electron-settings');
 const i18n = require('node-translate');
@@ -55,6 +56,10 @@ export class Settings {
         ipcMain.on('write-settings', (event, args) => {
             event.returnValue = settings.set(args[0], args[1]);
         });
+
+        ipcMain.on('reset-game', (event, args) => {
+            this.resetGame();
+        });
     };
 
     public static resetSettings(): void {
@@ -97,5 +102,14 @@ export class Settings {
             language: settings.get('language')
         };
     };
+
+    public static resetGame() {
+        let destinationPath = app.getPath('userData') + '/game';
+
+        del([destinationPath + "/*"], {force: true}).then((paths) => {
+            app.relaunch();
+            app.quit();
+        });
+    }
 
 }
