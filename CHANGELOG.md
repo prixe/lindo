@@ -1,6 +1,6 @@
 ## [2.0.0] - 2018-05-19
 
-## Améliorations
+### Améliorations
 - Mise à jour d'Angular et Electron qui devraient offrir une meilleure stabilité, ainsi qu'un meilleur support pour les hautes résolutions.
 - Introduction d'un système de mises à jour automatique: Le jeu se met désormais à jour immédiatement après la maintenance. Le téléchargement de cette mise à jour devrait être plus stable et plus rapide, puisque seuls les fichiers nécessaires sont re-téléchargés. Aussi, Lindo n'est plus dépendant des serveurs de Lindo pour fonctionner, ce qui devrait corriger d'éventuels problèmes d'indisponibilité.
 - Nouveau bouton dans les paramètres pour vider le cache.
