@@ -1,3 +1,16 @@
+## [2.0.0] - 2018-05-19
+
+## Améliorations
+- Mise à jour d'Angular et Electron qui devraient offrir une meilleure stabilité, ainsi qu'un meilleur support pour les hautes résolutions.
+- Introduction d'un système de mises à jour automatique: Le jeu se met désormais à jour immédiatement après la maintenance. Le téléchargement de cette mise à jour devrait être plus stable et plus rapide, puisque seuls les fichiers nécessaires sont re-téléchargés. Aussi, Lindo n'est plus dépendant des serveurs de Lindo pour fonctionner, ce qui devrait corriger d'éventuels problèmes d'indisponibilité.
+
+### Bugs
+- Correction du crash sur Linux lié à la récupération de l'adresse Mac (utilisé pour généré le User Agent semi-aléatoire).
+- Correction du crash des mods (raccourcis, barres de vies, auto follow...) lors de la reconnexion d'un personnage.
+- L'estimation des dégâts air prend correctement en compte les résistances.
+- Correction d'un bug provoquant l'ouverture d'une fenêtre restant blanche, introduit dans une beta 2.0.0.
+- L'erreur SELF_SIGNED_CERT_IN_CHAIN provoquée lors d'une requête HTTPS depuis certaines connexions est désormais ignoré et non-bloquante.
+
 ## [1.1.6] - 2017-11-07
 
 ### Amélioration
@@ -6,7 +19,7 @@
 
 ## [1.1.5] - 2017-09-23
 
-### Bug
+### Bugs
 - Correction du crash lors de l'entrée en combat en suivi automatique
 - Les options des menus déroulants sont à nouveau visibles
 
@@ -41,12 +54,12 @@
 
 ## [1.1.3] - 2017-04-20
 
-### Bug
+### Bugs
 - Correction d'un problème qui empêchait l'ouverture des fenêtres multi-compte.
 
 ## [1.1.2] - 2017-04-20
 
-### Bug
+### Bugs
 - Problème qui empêchait de changer d'onglet dans les options pendant le chargement.
 - Les cliques sur les liens en jeu ouvrent maintenant le navigateur de l'ordinateur.
 - Certaines touches pour les raccourcis ne fonctionnaient pas (ex: ESPACE, DELETE, etc.)

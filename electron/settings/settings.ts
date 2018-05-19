@@ -3,7 +3,7 @@ import { Logger } from '../core/logger/logger-electron';
 import { checkSettings } from './settings-checker';
 import { SettingsDefault } from './settings-default';
 import * as macAddress from 'macaddress';
-import { app, ipcMain } from 'electron';
+import { app, ipcMain, session, dialog, BrowserWindow } from 'electron';
 import * as del from 'del';
 
 const settings = require('electron-settings');
@@ -60,6 +60,10 @@ export class Settings {
         ipcMain.on('reset-game', (event, args) => {
             this.resetGame();
         });
+
+        ipcMain.on('clear-cache', (event, args) => {
+            this.clearCache();
+        });
     };
 
     public static resetSettings(): void {
@@ -109,6 +113,26 @@ export class Settings {
         del([destinationPath + "/*"], {force: true}).then((paths) => {
             app.relaunch();
             app.quit();
+        });
+    }
+
+    public static clearCache() {
+        let promises = [];
+        promises.push(new Promise((resolve, reject) => {
+            Application.mainWindows.forEach((mainWindow) => {
+                mainWindow.win.webContents.session.clearCache(() => {
+                    resolve();
+                });
+            });
+        }));
+        Promise.all(promises).then(() => {
+            dialog.showMessageBox(BrowserWindow.getFocusedWindow(), {
+                type: 'info',
+                title: i18n.t('options.clear-cache.title'),
+                message: i18n.t('options.clear-cache.message'),
+                buttons: ['OK']
+            }, () => {
+            });
         });
     }
 

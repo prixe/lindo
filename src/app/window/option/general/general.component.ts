@@ -96,4 +96,8 @@ export class GeneralComponent implements OnInit {
     public resetGameFile() {
         this.ipcRendererService.send('reset-game');
     }
+
+    public clearCache() {
+        this.ipcRendererService.send('clear-cache');
+    }
 }

@@ -49,6 +49,7 @@
           "reset-game": "Volver a descargar los datos",
           "reset-all": "Reiniciar",
           "shortcuts": "Configurar atajos",
+          "clear-cache": "Vaciar la caché",
           "resolution": {
             "confirm-body": "Está de acuerdo con la resolución actual ?<br/>La recuperación automática en 10 segundos.."
           }

@@ -51,6 +51,7 @@
           "reset-game": "Re-download game data",
           "reset-all": "Reset",
           "shortcuts": "Configure shortcuts",
+          "clear-cache": "Clear cache",
           "resolution": {
             "confirm-body": "Does the current resolution suit you?<br/>Automatic reset within 10 seconds.."
           }

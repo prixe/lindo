@@ -46,5 +46,11 @@ module.exports = {
             "ignore": "Ignoran",
             "go-site": "Ir en el sitio web"
         },
+    },
+    "options": {
+        "clear-cache": {
+            "title": "Caché despejada",
+            "message": "La memoria caché se borró en las ventanas actualmente abiertas"
+        }
     }
 };

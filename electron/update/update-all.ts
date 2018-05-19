@@ -13,39 +13,6 @@ export class UpdateAll {
 
         return new Promise((resolve, reject) => {
 
-            // TODO: Use settings, and prompt the user to change the setting in the catch close
-
-            /*
-            Api.getUpdateInformations().then((response: UpdateInformations) => {
-
-                let doAppUpdate = UpdateApp.check(response);
-                if (doAppUpdate) {
-                    Logger.info("[UPDATE] Application update required.");
-                    return UpdateApp.update(response);
-                } else {
-                    Logger.info("[UPDATE] Application is up to date.");
-                    return new Promise((resolve) => { resolve(response) });
-                }
-
-            }).then((response: UpdateInformations) => {
-
-                let doGameUpdate = UpdateGame.check(response);
-                if (doGameUpdate) {
-                    Logger.info("[UPDATE] Game update required.");
-                    return UpdateGame.update(response);
-                } else {
-                    Logger.info("[UPDATE] Game is up to date.");
-                    return new Promise((resolve) => { resolve(response) });
-                }
-
-            }).then((response: UpdateInformations) => {
-
-                resolve(response);
-
-            }).catch((response: UpdateInformations | any) => {
-                reject(response);
-            });*/
-
             Api.getUpdateInformations().then((response: UpdateInformations) => {
 
                 let doAppUpdate = UpdateApp.check(response);

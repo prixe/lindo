@@ -51,6 +51,7 @@
           "reset-game": "Re-télécharger les données du jeu",
           "reset-all": "Réinitialiser",
           "shortcuts": "Configurer les raccourcis",
+          "clear-cache": "Vider le cache",
           "resolution": {
             "confirm-body": "La résolution actuelle vous convient-elle ?<br/>Rétablissement automatique dans 10 secondes.."
           }

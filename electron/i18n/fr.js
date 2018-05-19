@@ -46,5 +46,11 @@ module.exports = {
             "ignore": "Ignorer",
             "go-site": "Se rendre sur le site"
         },
+    },
+    "options": {
+        "clear-cache": {
+            "title": "Cache vidé",
+            "message": "Le cache des fenêtres ouvertes a été vidé avec succès"
+        }
     }
 };

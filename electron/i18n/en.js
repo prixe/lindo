@@ -46,5 +46,11 @@ module.exports = {
             "ignore": "Ignore",
             "go-site": "Go on the website"
         },
+    },
+    "options": {
+        "clear-cache": {
+            "title": "Cache clared",
+            "message": "Cache has been cleared on currently opened windows"
+        }
     }
 };
