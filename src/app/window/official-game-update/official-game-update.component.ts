@@ -465,16 +465,25 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
 
     queuePromise(fct) {
         return new Promise((resolve, reject) => {
-            this.promiseQueue.push(() => {
+            var retry = 0;
+            let fctToRetry = () => {
                 this.promiseQueueProcessing++;
                 fct()
                     .then(resolve)
-                    .catch(reject)
+                    .catch(() => {
+                        retry++;
+                        this.log('Failed on queued function! Retrying... (' + retry + ')');
+                        if (retry < 6)
+                            fctToRetry();
+                        else
+                            reject();
+                    })
                     .finally(() => {
                         this.promiseQueueProcessing--;
                         this.processNextPromise();
                     });
-            });
+            };
+            this.promiseQueue.push(fctToRetry);
             if (this.promiseQueueProcessing < this.promiseQueueProcessingMax)
                 this.processNextPromise();
         });
