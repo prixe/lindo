@@ -135,7 +135,7 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
 
 
 
-                promises.push(new Promise(async (resolve, reject) => {
+                promises.push((async (resolve, reject) => {
                     if (manifestMissingFiles["build/script.js"]) {
                         this.log("Getting new versions numbers");
                         if (this.versions == null)
@@ -149,18 +149,21 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
                         });
                     }
                     this.log("buildVersion: " + this.versions.buildVersion + ", appVersion: " + this.versions.appVersion);
-                    resolve();
-                }));
+                })());
 
 
                 // Applying regex to game files
                 
-                promises.push(new Promise(async (resolve, reject) => {
+                promises.push((async (resolve, reject) => {
+
+                    this.log("Applying regex...");
 
                     this.applyRegex(lindoManifestDifferences['regex.json'] == 1
                                         ? JSON.parse(lindoMissingFiles['regex.json'])
                                         : this.currentRegex,
                                     manifestMissingFiles);
+
+                    this.log("Regex applied. Saving files");
 
                     // Saving lindo & game files
 
@@ -169,8 +172,8 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
                             this.saveFiles(manifestMissingFiles)
                         ]);
 
-                    resolve();
-                }));
+                    this.log("Files saved");
+                })());
 
 
                 // Await other promises
@@ -311,12 +314,14 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
     downloadKeymaster() {
         return new Promise((resolve, reject) => {
             fs.readFile(this.destinationPath + "keymaster.js", async (err, data) => {
-                if (err) {
-                    let body = await this.download(this.remoteKeymaster);
-                    await this.saveOneFile(this.destinationPath + "keymaster.js", body);
-                    resolve();
-                }
-                else resolve();
+                try {
+                    if (err) {
+                        let body = await this.download(this.remoteKeymaster);
+                        await this.saveOneFile(this.destinationPath + "keymaster.js", body);
+                        resolve();
+                    }
+                    else resolve();
+                } catch(e) { reject(e.message); }
             });
         });
     }
@@ -386,15 +391,14 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
      * { "filename": "fileContent" }
      */
     async downloadMissingFiles(manifest, differences, basePath = "") {
-        try {
-            let files = {};
-            for (var i in differences) {
-                if (differences[i] == 1) {
-                    files[i] = await this.download(basePath + manifest.files[i].filename, false, this.getFileEstimatedWeight(manifest.files[i].filename));
-                }
+        let files = {};
+        for (var i in differences) {
+            if (differences[i] == 1) {
+                files[i] = await this.download(basePath + manifest.files[i].filename, false, this.getFileEstimatedWeight(manifest.files[i].filename));
             }
-            return files;
-        } catch (e) { Logger.error(e.message); }
+        }
+        this.log("Downloaded missing files from one manifest");
+        return files;
     }
 
     applyRegex(regex, files) {
@@ -427,8 +431,7 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
         return new Promise((resolve, reject) => {
             this.ensureDirectoryExists(filePath);
             fs.writeFile(filePath, content, err => {
-                if (err) debugger;
-                if (err) reject();
+                if (err) reject(err);
                 else resolve();
             });
         });
@@ -453,7 +456,9 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
         return new Promise((resolve, reject) => {
             this.queuePromise(() => {
                 return this.downloadAndSaveFile(url, filePath);
-            }).then(resolve);
+            })
+            .then(resolve)
+            .catch(err => reject(err));
         });
     }
 
@@ -494,7 +499,7 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
                     resolve();
                 })
                 .pipe(fileStream);
-            } catch (e) { Logger.error(e.message); }
+            } catch (e) { Logger.error(e.message); reject(e.message); }
         });
     }
 
