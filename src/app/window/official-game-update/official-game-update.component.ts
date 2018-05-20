@@ -25,7 +25,7 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
     public informations: string;
     private sub: Subscription;
 
-    private promiseQueueProcessingMax: number = 10;
+    private promiseQueueProcessingMax: number = 6;
     private promiseQueueProcessing: number = 0;
     private promiseQueue: any = [];
 
@@ -442,6 +442,7 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
         try {
             for (var i in differences) {
                 if (differences[i] == 1) {
+                    await new Promise(resolve => setTimeout(resolve, 50));
                     promises.push(this.queueNextFile(
                         basePath + manifest.files[i].filename,
                         this.destinationPath + manifest.files[i].filename));
