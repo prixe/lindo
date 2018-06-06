@@ -85,7 +85,7 @@ If you want to make a release for a specific system you can use this command :
 ### Windows
 On a windows environment :
 ```sh
-$ npm run build:win
+$ npm run release:win
 ```
 On a unix system (require docker)
 ```sh
@@ -93,12 +93,12 @@ $ docker-compose up
 ```
 ### Linux
 ```sh
-$ npm run build:linux
+$ npm run release:linux
 ```
 ### macOS
 Only available on macOS system :
 ```sh
-$ npm run build:mac
+$ npm run release:mac
 ```
 
 ## Development
