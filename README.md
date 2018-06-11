@@ -16,7 +16,7 @@ Lindo allow you to play DofusTouch without android emulator, it's entirely coded
 Lindo No-Emu works on :
 - **Windows** 7 and newer (ia32/amd64) 
 - **macOS** 10.9 and newer
-- **Linu**x (Debian >= 8, Ubuntu >= 12, Fedora >= 21) (ia32/amd64)
+- **Linux** (Debian >= 8, Ubuntu >= 12, Fedora >= 21) (ia32/amd64)
 
 ## Table of contents
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -85,7 +85,7 @@ If you want to make a release for a specific system you can use this command :
 ### Windows
 On a windows environment :
 ```sh
-$ npm run build:win
+$ npm run release:win
 ```
 On a unix system (require docker)
 ```sh
@@ -93,12 +93,12 @@ $ docker-compose up
 ```
 ### Linux
 ```sh
-$ npm run build:linux
+$ npm run release:linux
 ```
 ### macOS
 Only available on macOS system :
 ```sh
-$ npm run build:mac
+$ npm run release:mac
 ```
 
 ## Development
