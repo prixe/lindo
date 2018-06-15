@@ -140,11 +140,16 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
                         this.log("Getting new versions numbers");
                         if (this.versions == null)
                             this.versions = {};
-                        this.versions.buildVersion = manifestMissingFiles["build/script.js"].match(/window\.buildVersion\s?=\s?"(\d+\.\d+\.\d+)"/)[1];
+                        this.versions.buildVersion = manifestMissingFiles["build/script.js"].match(/window\.buildVersion\s?=\s?"(\d+\.\d+\.\d+(?:\-\d+)?)"/)[1];
                         this.versions.appVersion = await new Promise((resolve, reject) => {
                             request(this.remoteITunesAppVersion, (err, response, body) => {
-                                if (err) reject(err);
-                                else resolve(JSON.parse(body).results[0].version)
+                                try {
+                                    if (err) reject(err);
+                                    else resolve(JSON.parse("abç" + body).results[0].version)
+                                } catch (e) {
+                                    this.log(JSON.stringify(response, null, 2));
+                                    reject(e);
+                                }
                             });
                         });
                     }
