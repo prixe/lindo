@@ -145,7 +145,7 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
                             request(this.remoteITunesAppVersion, (err, response, body) => {
                                 try {
                                     if (err) reject(err);
-                                    else resolve(JSON.parse("abç" + body).results[0].version)
+                                    else resolve(JSON.parse(body).results[0].version)
                                 } catch (e) {
                                     this.log(JSON.stringify(response, null, 2));
                                     reject(e);
