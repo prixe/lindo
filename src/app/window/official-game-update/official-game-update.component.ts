@@ -40,7 +40,7 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
     private remoteLindoManifest: string = "https://raw.githubusercontent.com/Clover-Lindo/lindo-game-base/master/manifest.json";
     private remoteLindoManifestAlt: string = "http://api.no-emu.co/manifest.json";
     private remoteKeymaster: string = "https://raw.githubusercontent.com/madrobby/keymaster/master/keymaster.js";
-    private remoteITunesAppVersion: string = "http://itunes.apple.com/lookup?id=1041406978&t=" + (new Date().getTime());
+    private remoteITunesAppVersion: string = "https://itunes.apple.com/lookup?id=1041406978&t=" + (new Date().getTime());
 
     private currentLindoManifest: any;
     private currentManifest: any;
