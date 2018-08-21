@@ -630,7 +630,7 @@ export module Option {
 
             set hidden_mount(hidden_mount: boolean) {
                 this.settingsProvider.write('option.vip.general.hidden_mount', hidden_mount);
-                this.hidden_mount = hidden_mount;
+                this._hidden_mount = hidden_mount;
             }
 
             get estimator(): boolean {
