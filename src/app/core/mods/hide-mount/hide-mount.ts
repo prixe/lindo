@@ -14,31 +14,43 @@ export class HideMount extends Mods
             Logger.info(' - enable Hide-Mount');
             let toggle = () => {
                 try {
+                    console.log(this.wGame.actorManager.userActor.actorManager.userActor.look)
                     setTimeout(() => {
                         let actionNeeded = false;
+                        // Main character
                         if (this.wGame.actorManager.userActor.actorManager.userActor.look.subentities != null) {
                             if (this.wGame.actorManager.userActor.actorManager.userActor.look.subentities.length > 0) {
                                 actionNeeded = true;
                                 this.wGame.actorManager.userActor.actorManager.userActor.look.bonesId = 1;
-                                this.wGame.actorManager.userActor.actorManager.userActor.look.skins = this.wGame.actorManager.userActor.actorManager.userActor.look.subentities["0"].subEntityLook.skins;
-                                this.wGame.actorManager.userActor.actorManager.userActor.look.scales = this.wGame.actorManager.userActor.look.subentities["0"].subEntityLook.scales;
-                                this.wGame.actorManager.userActor.actorManager.userActor.look.indexedColors = this.wGame.actorManager.userActor.look.subentities["0"].subEntityLook.indexedColors;
+                                if (this.wGame.actorManager.userActor.actorManager.userActor.look.subentities["0"].subEntityLook.skins.length > 0) {
+                                    this.wGame.actorManager.userActor.actorManager.userActor.look.skins = this.wGame.actorManager.userActor.actorManager.userActor.look.subentities["0"].subEntityLook.skins;
+                                }
+                                // Character size
+                                this.wGame.actorManager.userActor.actorManager.userActor.look.scales = [140];
+                                if (this.wGame.actorManager.userActor.look.subentities["0"].subEntityLook.indexedColors.length > 0) {
+                                    this.wGame.actorManager.userActor.actorManager.userActor.look.indexedColors = this.wGame.actorManager.userActor.look.subentities["0"].subEntityLook.indexedColors;
+                                }
                                 this.wGame.actorManager.userActor.actorManager.userActor.look.subentities = null;
                             }
                         }
+                        // Other character
                         for (let key in this.wGame.actorManager.actors) {
                             if (+key > 0) {
                                 if (this.wGame.actorManager.actors[key].look.subentities != null) {
                                     actionNeeded = true;
                                     this.wGame.actorManager.actors[key].look.bonesId = 1;
-                                    this.wGame.actorManager.actors[key].look.skins = this.wGame.actorManager.actors[key].look.subentities["0"].subEntityLook.skins;
-                                    this.wGame.actorManager.actors[key].look.scales = this.wGame.actorManager.actors[key].look.subentities["0"].subEntityLook.scales;
-                                    this.wGame.actorManager.actors[key].look.indexedColors = this.wGame.actorManager.actors[key].look.subentities["0"].subEntityLook.indexedColors;
+                                    this.wGame.actorManager.actors[key].look.scales = [140];
+                                    if (this.wGame.actorManager.actors[key].look.subentities["0"].subEntityLook.skins.length > 0) {
+                                        this.wGame.actorManager.actors[key].look.skins = this.wGame.actorManager.actors[key].look.subentities["0"].subEntityLook.skins;
+                                    }
+                                    if (this.wGame.actorManager.actors[key].look.subentities["0"].subEntityLook.indexedColors.length > 0) {
+                                        this.wGame.actorManager.actors[key].look.indexedColors = this.wGame.actorManager.actors[key].look.subentities["0"].subEntityLook.indexedColors;
+                                    }
                                     this.wGame.actorManager.actors[key].look.subentities = null;
                                 }
                             }
                         }
-                        if (actionNeeded) {
+                        if (actionNeeded && 0) {
                             setTimeout(() => {
                                 this.wGame.gui.mainControls._creatureModeButton.tap();
                                 setTimeout(() => {
