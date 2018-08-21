@@ -81,6 +81,7 @@ export class HealthBar extends Mods{
             this.setFightStart();
             this.displayOnStart();
             this.stopOnFightEnd();
+            this.stopOnFightStop();
 
 
             this.shortcutsHelper.bind(this.params.health_bar_shortcut, () => {
@@ -125,6 +126,16 @@ export class HealthBar extends Mods{
 
     private stopOnFightEnd(): void {
         this.on(this.wGame.dofus.connectionManager, 'GameFightEndMessage', (e: any) => {
+            try {
+                this.barContainer.fightEnded();
+            } catch (ex) {
+                Logger.info(ex);
+            }
+        });
+    }
+
+    private stopOnFightStop(): void {
+        this.on(this.wGame.dofus.connectionManager, 'GameFightLeaveMessage', (e: any) => {
             try {
                 this.barContainer.fightEnded();
             } catch (ex) {
