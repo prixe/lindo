@@ -622,6 +622,16 @@ export module Option {
             private _health_bar: boolean;
             private _health_bar_shortcut: string;
             private _estimator: boolean;
+            private _hidden_mount: boolean;
+
+            get hidden_mount(): boolean {
+                return this._hidden_mount;
+            }
+
+            set hidden_mount(hidden_mount: boolean) {
+                this.settingsProvider.write('option.vip.general.hidden_mount', hidden_mount);
+                this.hidden_mount = hidden_mount;
+            }
 
             get estimator(): boolean {
                 return this._estimator;
