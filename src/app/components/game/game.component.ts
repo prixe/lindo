@@ -131,6 +131,7 @@ export class GameComponent implements AfterViewInit {
                 if (this.jsFixes) this.jsFixes.reset();
                 if (this.hideShop) this.hideShop.reset();
                 if (this.keyboardInput) this.keyboardInput.reset();
+                if (this.hideMount) this.hideMount.reset();
         }
     }
 
@@ -169,7 +170,7 @@ export class GameComponent implements AfterViewInit {
                 this.cssOverload = new CssOverload(this.game.window);
                 this.jsFixes = new JsFixes(this.game.window);
                 this.hideShop = new HideShop(this.game.window, this.settingsService.option.general.hidden_shop);
-                this.hideMount = new HideMount(this.game.window);
+                this.hideMount = new HideMount(this.game.window, this.settingsService.option.vip.general.hidden_mount);
                 this.rapidExchange = new RapidExchange(this.game.window);
                 //this.wizAssets = new WizAssetsContainer(this.game.window, this.applicationService, this.http, this.settingsService.option.general);
                 this.keyboardInput = new KeyboardInput(this.game.window);

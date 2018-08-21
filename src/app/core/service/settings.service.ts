@@ -674,6 +674,7 @@ export module Option {
                 this.health_bar = this.settingsProvider.read('option.vip.general.health_bar');
                 this.health_bar_shortcut = this.settingsProvider.read('option.vip.general.health_bar_shortcut');
                 this.estimator = this.settingsProvider.read('option.vip.general.estimator');
+                this.hidden_mount = this.settingsProvider.read('option.vip.general.hidden_mount');
             }
         }
 
