@@ -8,13 +8,12 @@ export class HideMount extends Mods
 {
     constructor (wGame: any | Window) {
         super(wGame);
-        Logger.debug('Mod HideMount - OK');
+        Logger.info(' - enable Hide-Mount');
 
         // That function shows or hides the shop button
         let toggle = () => {
             try {
                 setTimeout(() => {
-                    Logger.info('Begin Fight');
                     let actionNeeded = false;
                     if (this.wGame.actorManager.userActor.actorManager.userActor.look.subentities != null) {
                         if (this.wGame.actorManager.userActor.actorManager.userActor.look.subentities.length > 0) {
@@ -54,6 +53,6 @@ export class HideMount extends Mods
         }
 
         // Wait begin fight
-        this.on(this.wGame.dofus.connectionManager, 'GameFightNewRoundMessage', toggle);
+        this.on(this.wGame.dofus.connectionManager, 'GameFightStartMessage', toggle);
     }
 }
