@@ -50,7 +50,7 @@ export class HideMount extends Mods
                                 }
                             }
                         }
-                        if (actionNeeded && 0) {
+                        if (actionNeeded) {
                             setTimeout(() => {
                                 this.wGame.gui.mainControls._creatureModeButton.tap();
                                 setTimeout(() => {
