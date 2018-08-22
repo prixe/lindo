@@ -14,7 +14,6 @@ export class HideMount extends Mods
             Logger.info(' - enable Hide-Mount');
             let toggle = () => {
                 try {
-                    console.log(this.wGame.actorManager.userActor.actorManager.userActor.look)
                     setTimeout(() => {
                         let actionNeeded = false;
                         // Main character
@@ -70,9 +69,5 @@ export class HideMount extends Mods
           Logger.info('- disable Hide-Mount');
         }
 
-    }
-
-    public reset() {
-        super.reset();
     }
 }
