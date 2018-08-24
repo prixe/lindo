@@ -148,7 +148,8 @@ export const SettingsDefault: SettingsInterface = {
                 disable_inactivity: false,
                 health_bar: true,
                 health_bar_shortcut: 'p',
-                estimator: true
+                estimator: true,
+                hidden_mount: false
             },
             auto_group: {
                 active: false,

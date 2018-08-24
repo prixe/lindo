@@ -74,6 +74,7 @@ export interface SettingsInterface {
                 health_bar: boolean;
                 health_bar_shortcut: string;
                 estimator: boolean;
+                hidden_mount: boolean;
             },
             auto_group: {
                 active: boolean;
