@@ -1,3 +1,12 @@
+# Lindo01
+
+[![Build Status](https://travis-ci.org/JulienCoutault/lindo01.svg?branch=master01)](https://travis-ci.org/JulienCoutault/lindo01)
+
+This repo is a fork of [Lindo](https://github.com/prixe/lindo), the branch [lindo01/master](https://github.com/JulienCoutault/lindo01/tree/master) is sync with [lindo/master](https://github.com/prixe/lindo/tree/master).
+
+The default branch of this repo is [lindo01/master01](https://github.com/JulienCoutault/lindo01/tree/master01). This branch contain all feature and bugfix not merge yet in Lindo.
+
+
 # Lindo
 [![Build Status](https://travis-ci.org/prixe/lindo.svg?branch=master)](https://travis-ci.org/prixe/lindo)
 [![npm](https://img.shields.io/badge/npm-%3E%3D%205.6.0-blue.svg)]()
