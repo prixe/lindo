@@ -40,20 +40,3 @@ script:
   fi
 before_cache:
 - rm -rf $HOME/.cache/electron-builder/wine
-branches:
-  except:
-  - "/^(?!v\\d+\\.\\d+\\.\\d+(-beta\\.\\d+)?).+$/"
-deploy:
-  provider: releases
-  api_key:
-    secure: GNO9HFkKNvLuViGmQ8iaymGNnj8oSq6O9wH9XPz/qYDHUZt9C2yLPnpUjKL9T+Hr02/pp7JR5x8K5fEHQJPp5POGm4b5ey8qtEqXJtaSxvO1nlK2MslMSITSNF6vkBXSKHUCeJxxHfFsIfwdcMNndHdGLTdCmsX8oNKyG21IK19+OPieNZ3x5TzaA0DTVnypNaai/4kX9syS3A5bRv8cIF+8yImfXLHoCFOCWsrOnRJjXBttcdyzX0oV0zzAKnR0vHk1CIraOZNnV5QVGtFq0FnTLJz4A8xf5NPeDmMX6FGRJSbxbC976AqR1MPQkxE3FiS2zHTD71otburIJi2Ul+rEOikRKQovTpn1ztAhb1S4fRxckPi+nApLQVPOEthz8yWxi0Obav4M6jQqmJAYwJES820PqJmzV/iCZp/bgKWp+fkKd9gLMzA0YD9OZcpSoZc48NSP6UujmuJ0cIYddPRPA1UNJ42cJH6HeRRoD6liq8CP9dI3VX05wmN6etYsCVcyPlLhrOAEBN3Mond/4f0pvQDIta78gSHHo1E0s1163xyrLHAjZw0jmr3cCb1nwVexfrRHTMgjqrLPX26uuAL13T/3Nk/sYOFXy5nH9XT6jeBGN4ZRfXL5rkeoMAysQXkCOykY1ZsfTQ0IzoN3a4/mgPHQCPKyvZRX60pAtQk=
-  skip_cleanup: true
-  file_glob: true
-  file:
-    - releases/Lindo-*.dmg
-    - releases/Lindo-*.zip
-    - releases/lindo-*.tar.gz
-    - releases/Lindo*.exe
-  on:
-    tags: true
-    repo: prixe/lindo
