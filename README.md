@@ -4,7 +4,7 @@
 
 This repo is a fork of [Lindo](https://github.com/prixe/lindo), the branch [lindo01/master](https://github.com/JulienCoutault/lindo01/tree/master) is sync with [lindo/master](https://github.com/prixe/lindo/tree/master).
 
-The default branch of this repo is [lindo01/master01](https://github.com/JulienCoutault/lindo01/tree/master01). This branch contain all feature and bugfix not merge yet in Lindo.
+The default branch of this repo is [lindo01/master01](https://github.com/JulienCoutault/lindo01/tree/master01). This branch contain all features and bugfix not merge yet in Lindo.
 
 
 # Lindo
