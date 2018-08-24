@@ -22,6 +22,8 @@ import { RapidExchange } from "app/core/mods/rapid-exchange/rapid-exchange";
 import { HideShop } from "app/core/mods/hide-shop/hide-shop";
 import { KeyboardInput } from "app/core/mods/keyboard-input/keyboard-input";
 import { HttpClient } from '@angular/common/http';
+import { HideMount } from "app/core/mods/hide-mount/hide-mount";
+
 
 @Component({
     selector: 'component-game',
@@ -50,6 +52,7 @@ export class GameComponent implements AfterViewInit {
     private plugins: PluginsContainer;
     private hideShop: HideShop;
     private keyboardInput: KeyboardInput;
+    private hideMount: HideMount;
 
     constructor(
         private windowService: WindowService,
@@ -100,7 +103,7 @@ export class GameComponent implements AfterViewInit {
                         this.reloadMods();
                     }
                 });
-                
+
             });
 
         }
@@ -111,7 +114,7 @@ export class GameComponent implements AfterViewInit {
     public removeMods(): void {
 
         let vipStatus = 5;
-        
+
         switch (vipStatus) {
             case 5:
             case 4:
@@ -128,7 +131,8 @@ export class GameComponent implements AfterViewInit {
                 if (this.jsFixes) this.jsFixes.reset();
                 if (this.hideShop) this.hideShop.reset();
                 if (this.keyboardInput) this.keyboardInput.reset();
-        }        
+                if (this.hideMount) this.hideMount.reset();
+        }
     }
 
     public reloadMods(start: boolean = true): void {
@@ -166,6 +170,7 @@ export class GameComponent implements AfterViewInit {
                 this.cssOverload = new CssOverload(this.game.window);
                 this.jsFixes = new JsFixes(this.game.window);
                 this.hideShop = new HideShop(this.game.window, this.settingsService.option.general.hidden_shop);
+                this.hideMount = new HideMount(this.game.window, this.settingsService.option.vip.general.hidden_mount);
                 this.rapidExchange = new RapidExchange(this.game.window);
                 //this.wizAssets = new WizAssetsContainer(this.game.window, this.applicationService, this.http, this.settingsService.option.general);
                 this.keyboardInput = new KeyboardInput(this.game.window);

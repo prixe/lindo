@@ -622,6 +622,16 @@ export module Option {
             private _health_bar: boolean;
             private _health_bar_shortcut: string;
             private _estimator: boolean;
+            private _hidden_mount: boolean;
+
+            get hidden_mount(): boolean {
+                return this._hidden_mount;
+            }
+
+            set hidden_mount(hidden_mount: boolean) {
+                this.settingsProvider.write('option.vip.general.hidden_mount', hidden_mount);
+                this._hidden_mount = hidden_mount;
+            }
 
             get estimator(): boolean {
                 return this._estimator;
@@ -664,6 +674,7 @@ export module Option {
                 this.health_bar = this.settingsProvider.read('option.vip.general.health_bar');
                 this.health_bar_shortcut = this.settingsProvider.read('option.vip.general.health_bar_shortcut');
                 this.estimator = this.settingsProvider.read('option.vip.general.estimator');
+                this.hidden_mount = this.settingsProvider.read('option.vip.general.hidden_mount');
             }
         }
 

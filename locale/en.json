@@ -63,7 +63,8 @@
             "disable-inactivity": "Extend the delay before disconnection for inactivity",
             "health-bar": "Activate the display of the life bars below the fighters",
             "health-bar-shortcut": "Shortcuts for show/hide life bars",
-            "estimator": "Estimating spell damage in battle"
+            "estimator": "Estimating spell damage in battle",
+            "hide-mount": "Hide mounts during fights (beta)"
           },
           "groups": {
             "header": "Groups"

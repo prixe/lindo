@@ -63,7 +63,8 @@
             "disable-inactivity": "Prolonger le délai maximum d'inactivité",
             "estimator": "Estimation de dégats des sorts en combat",
             "health-bar": "Barres de vie en-dessous des combatants",
-            "health-bar-shortcut": "Raccourcis pour les barres de vie"
+            "health-bar-shortcut": "Raccourcis pour les barres de vie",
+            "hide-mount": "Cacher les montures pendant les combats (beta)"
           },
           "groups": {
             "header": "Groupe"
