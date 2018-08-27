@@ -9,6 +9,7 @@ The default branch of this repo is [lindo01/master01](https://github.com/JulienC
 
 
 # Lindo
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1da8c9d640994bb18d961b41a8c2aaec)](https://app.codacy.com/app/git_25/lindo01?utm_source=github.com&utm_medium=referral&utm_content=JulienCoutault/lindo01&utm_campaign=Badge_Grade_Dashboard)
 [![Build Status](https://travis-ci.org/prixe/lindo.svg?branch=master)](https://travis-ci.org/prixe/lindo)
 [![npm](https://img.shields.io/badge/npm-%3E%3D%205.6.0-blue.svg)]()
 [![node](https://img.shields.io/badge/node-%3E%3D%2010.0.0-green.svg)]()
