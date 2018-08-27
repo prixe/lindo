@@ -25,6 +25,13 @@ export class AuthService {
     public loginWithMasterPassword(masterPassword: string): Promise<string | any> {
         return new Promise((resolve, reject) => {
             if (this.settingsService.option.vip.multiaccount.master_password == this.cryptService.createHash(masterPassword)) {
+                // hash sha512
+                resolve(masterPassword);
+            } else if (this.settingsService.option.vip.multiaccount.master_password == this.cryptService.createHashMd5(masterPassword)) {
+                // hash md5
+
+                // update hash password using sha512
+                this.settingsService.option.vip.multiaccount.master_password = this.cryptService.createHash(masterPassword);
                 resolve(masterPassword);
             } else {
                 reject();

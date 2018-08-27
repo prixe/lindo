@@ -44,7 +44,10 @@ export class MultiAccountComponent {
 
                 return new Promise(function (resolve, reject) {
 
-                    if (masterPassword.length < 8) { reject(self.translate.instant("app.option.vip.multi-account.prompt.add-master.min-lenght", { "lenght": 8 })); return false; }
+                    if (masterPassword.length < 8) {
+                        reject(self.translate.instant("app.option.vip.multi-account.prompt.add-master.min-lenght", { "lenght": 8 }));
+                        return false;
+                    }
 
                     self.applicationService.masterpassword = masterPassword;
                     self.settingsService.option.vip.multiaccount.master_password = self.crypt.createHash(masterPassword);
