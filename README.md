@@ -1,6 +1,7 @@
 # Lindo01
 
 [![Build Status](https://travis-ci.org/JulienCoutault/lindo01.svg?branch=master01)](https://travis-ci.org/JulienCoutault/lindo01)
+[![Known Vulnerabilities](https://snyk.io/test/github/JulienCoutault/lindo01/badge.svg)](https://snyk.io/test/github/JulienCoutault/lindo01)
 
 This repo is a fork of [Lindo](https://github.com/prixe/lindo), the branch [lindo01/master](https://github.com/JulienCoutault/lindo01/tree/master) is sync with [lindo/master](https://github.com/prixe/lindo/tree/master).
 
@@ -23,7 +24,7 @@ Lindo allow you to play DofusTouch without android emulator, it's entirely coded
 
 ## Supported Platform
 Lindo No-Emu works on :
-- **Windows** 7 and newer (ia32/amd64) 
+- **Windows** 7 and newer (ia32/amd64)
 - **macOS** 10.9 and newer
 - **Linux** (Debian >= 8, Ubuntu >= 12, Fedora >= 21) (ia32/amd64)
 
@@ -57,7 +58,7 @@ Lindo No-Emu works on :
 - [Discord](https://discord.gg/xdt5J4N)
 - [Trello](https://trello.com/b/d1mc9DeS/lindo)
 
-## Installation 
+## Installation
 ### Prerequisites
 #### Node.js
 - Windows : [Website](https://nodejs.org)
@@ -115,7 +116,7 @@ $ npm run release:mac
 **Lindo** is developed with [Angular](https://angular.io/) as web framework and uses [Material](https://material.angular.io/) for the UI. It uses [electron](https://github.com/electron/electron) to be run as an standalone application, wich is based on Node.js and Chromium.
 
 So we have to distinguish 2 contexts :
-- **Navigator context** -> executed by Chromium (the Angular part) 
+- **Navigator context** -> executed by Chromium (the Angular part)
 - **Electron context** -> executed by Node.js (it's allow platform interaction)
 
 Navigator context is in the ```src/```folder and Electron context is in the ```electron/``` folder.
@@ -127,7 +128,7 @@ The idea is to simulate the environment Dofus Touch to run it on PC, because Dof
 You can contact a senior developer of the project as [Clover](https://github.com/Clover-Lindo) or [Prixe](https://github.com/prixe). Or you can eventually join our [Discord](https://discord.gg/wcCgtsv).
 Then you can create a pull request to add or fix features, you can also submit improvement idea or bug issue in the [issues section](https://github.com/prixe/lindo/issues).
 
-### Generate the TOC 
+### Generate the TOC
 If you edit the README.MD you wanna update the table of contents you can easily achieve it by using this command :
 ```sh
 $ npm run toc
