@@ -24,6 +24,10 @@ export class CryptService {
     }
 
     public createHash(text: string) {
+        return crypto.createHash('sha512').update('lindo' + text).digest("hex");
+    }
+
+    public createHashMd5(text: string) {
         return crypto.createHash('md5').update(text).digest("hex");
     }
 }
