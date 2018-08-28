@@ -1,6 +1,7 @@
 # Lindo01
 
 [![Build Status](https://travis-ci.org/JulienCoutault/lindo01.svg?branch=master01)](https://travis-ci.org/JulienCoutault/lindo01)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1da8c9d640994bb18d961b41a8c2aaec)](https://app.codacy.com/app/git_25/lindo01?utm_source=github.com&utm_medium=referral&utm_content=JulienCoutault/lindo01&utm_campaign=Badge_Grade_Dashboard)
 [![Known Vulnerabilities](https://snyk.io/test/github/JulienCoutault/lindo01/badge.svg)](https://snyk.io/test/github/JulienCoutault/lindo01)
 
 This repo is a fork of [Lindo](https://github.com/prixe/lindo), the branch [lindo01/master](https://github.com/JulienCoutault/lindo01/tree/master) is sync with [lindo/master](https://github.com/prixe/lindo/tree/master).
