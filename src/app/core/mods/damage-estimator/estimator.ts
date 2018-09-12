@@ -279,17 +279,17 @@ export class Estimator {
 //retourne le montant total de la carac (bonus inclus)
     private getFullCharaBonus(characteristic: any) {
         let sum = 0;
-        if (typeof characteristic.base !== 'undefined') {
-            sum += characteristic.base;
+        if (typeof characteristic.getBasePts() !== 'undefined') {
+            sum += characteristic.getBasePts();
         }
-        if (typeof characteristic.contextModif !== 'undefined') {
-            sum += characteristic.contextModif;
+        if (typeof characteristic.getContextModif() !== 'undefined') {
+            sum += characteristic.getContextModif();
         }
-        if (typeof characteristic.objectsAndMountBonus !== 'undefined') {
-            sum += characteristic.objectsAndMountBonus;
+        if (typeof characteristic.getEquipmentPts() !== 'undefined') {
+            sum += characteristic.getEquipmentPts();
         }
-        if (typeof characteristic.alignGiftBonus !== 'undefined') {
-            sum += characteristic.alignGiftBonus;
+        if (typeof characteristic.getAlignGiftPts() !== 'undefined') {
+            sum += characteristic.getAlignGiftPts();
         }
         return sum;
     }
