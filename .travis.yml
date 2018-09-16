@@ -27,9 +27,11 @@ before_script:
 script:
 - |
   npm run build:prod
+  ENVS=`env | grep -iE '^(DEBUG|NODE_|ELECTRON_|YARN_|NPM_|CI|CIRCLE|TRAVIS|APPVEYOR_|CSC_|_TOKEN|_KEY|AWS_|STRIP|BUILD_)' | sed -n '/^[^\t]/s/=.*//p' | sed '/^$/d' | sed 's/^/-e /g' | tr '\n' ' '`
+  echo `env`
+  echo $ENVS
   if [ "$TRAVIS_OS_NAME" == "linux" ]; then
-    docker run --rm \
-      --env-file <(env | sed -n '/^[^\t]/s/=.*//p' | sed '/^$/d' | sed 's/^/-e /g' | tr '\n' ' ' | grep -iE 'DEBUG|NODE_|ELECTRON_|YARN_|NPM_|CI|CIRCLE|TRAVIS|APPVEYOR_|CSC_|_TOKEN|_KEY|AWS_|STRIP|BUILD_') \
+    docker run $ENVS --rm \
       -v ${PWD}:/project \
       -v ~/.cache/electron:/root/.cache/electron \
       -v ~/.cache/electron-builder:/root/.cache/electron-builder \
@@ -57,3 +59,6 @@ deploy:
   on:
     tags: true
     repo: prixe/lindo
+    all_branches: true
+    condition: $TRAVIS_BRANCH =~ ^master$
+
