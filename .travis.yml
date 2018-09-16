@@ -57,3 +57,4 @@ deploy:
   on:
     tags: true
     repo: prixe/lindo
+
