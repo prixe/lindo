@@ -1,25 +1,30 @@
 import * as fs from 'fs';
+import { app } from 'electron';
+import { Logger } from '../logger/logger-electron';
 
-var Logger = function() {
+var FileLogger = function() {
 
   var file = null;
 
-  var LOGS_PATH = process.env.APPDATA + '/lindo/logs/';
+  var LOGS_PATH = app.getPath('userData') + '/logs/';
 
   var openFile = function() {
     fs.open(LOGS_PATH + (new Date()).toISOString().substr(0,10) + ".log", "a", function(err, fd) {
-      file = fd;
+      if (!err) file = fd;
     });
   };
 
   fs.readdir(LOGS_PATH, function(err, files) {
-    var today = new Date().getTime();
-    files.forEach(function(file) {
-      var fileDate = new Date(file.split('.')[0]).getTime();
-      if (today - fileDate > 1296000000) { // 15 days
-        fs.unlink(LOGS_PATH + file, function() {});
-      }
-    });
+    if (err) Logger.info(err.toString());
+    else {
+      var today = new Date().getTime();
+      files.forEach(function(file) {
+        var fileDate = new Date(file.split('.')[0]).getTime();
+        if (today - fileDate > 1296000000) { // 15 days
+          fs.unlink(LOGS_PATH + file, function() {});
+        }
+      });
+    }
   });
 
   fs.access(LOGS_PATH, function(err) {
@@ -35,4 +40,4 @@ var Logger = function() {
 
 };
 
-export const logger = new Logger();
+export const logger = new FileLogger();
