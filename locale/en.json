@@ -79,7 +79,9 @@
             "website": "Website",
             "changelog": "Release notes"
           },
-          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          "text0": "Lindo is an open-source software that allows you to play DOFUS Touch from your computer.",
+          "text1": "Unlike an Android emulator, the code is directly interpreted by your computer, which makes faster so you can play DOFUS Touch whith the full performance of your computer !",
+          "text2": "Originally known as DOFUS Touch No-Emu, this software developed by Daniel and Thomas was forced to close cause of an avertissement from Ankama."
         }
       },
       "shortcuts": {

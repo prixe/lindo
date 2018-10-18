@@ -77,7 +77,9 @@
             "website": "Sitio web",
             "changelog": "Actualizar notas"
           },
-          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          "text0": "Lindo es un software de código abierto que te permite jugar DOFUS Touch desde tu computadora.",
+          "text1": "A diferencia de un emulador de Android, el código es interpretado directamente por su computadora, lo que lo hace más rápido para jugar, ¡así que puede jugar DOFUS Touch mientras disfruta del rendimiento completo de su computadora !",
+          "text2": "Originalmente conocido como DOFUS Touch No-Emu, este software desarrollado por Daniel y Thomas se vio obligado a cerrar debido a una advertencia de Ankama."
         }
       },
       "shortcuts": {
