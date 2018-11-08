@@ -2,96 +2,96 @@
   "app": {
     "main": {
       "tab": {
-        "add": "Add a game"
+        "add": "Aggiungi un gioco"
       },
       "head": {
-        "toggle-audio-on": "Enable sound",
-        "toggle-audio-off": "Mute",
-        "new-window": "Open a new window"
+        "toggle-audio-on": "Abilita suoni",
+        "toggle-audio-off": "Muta",
+        "new-window": "Apri una nuova finestra"
       },
       "prompt": {
         "tabs-overflow": {
-          "text": "Lindo does'nt support more than 6 tab per window, above that it can be laggy and buggy. But you can open a new window and it will be working just fine."
+          "text": "Lindo non supporta più di 6 tab per finestra, oltre potrebbe risultare lento e malfunzionante. Puoi comunque aprire una nuova finestra e tutto andrà bene."
         }
       }
     },
     "notifications": {
-      "fight-turn": "Starting turn for {{character}}",
-      "private-message": "Incoming message from {{character}}",
-      "tax-collector": "A tax collector is being attacked !",
-      "kolizeum": "A Kolizeum has been find !",
-      "party-invitation": "You are invited to join {{character}}'s group.",
-      "aggression": "You have been aggressed !"
+      "fight-turn": "Inzio del turno per {{character}}",
+      "private-message": "Nuovo messaggio da {{character}}",
+      "tax-collector": "Un precettore è stato attaccato !",
+      "kolizeum": "Trovata battaglia Kolosseo !",
+      "party-invitation": "{{character}} ti ha invitato ad unirsi al suo gruppo.",
+      "aggression": "Sei stato assalito !"
     },
     "window": {
       "changelog": {
-        "title": "Release notes",
-        "prefixe": "Release"
+        "title": "Note di rilascio",
+        "prefixe": "Aggiornamento"
       },
       "master-password": {
-        "continue": "Continue",
-        "skip": "Skip this step",
-        "password-label": "Enter the master password",
-        "password-bad": "The password is incorrect"
+        "continue": "Continua",
+        "skip": "Salta questo passaggio",
+        "password-label": "Inserisci la password principale",
+        "password-bad": "La password è sbagliata"
       },
       "update-dofus": {
-        "title": "Dofus Touch update",
+        "title": "Aggiornamento Dofus Touch",
         "information": {
-          "search": "Looking for updates...",
-          "downloading": "Downloading...",
-          "error": "Can't download the update ! Please try again later"
+          "search": "In cerca di aggiornamenti...",
+          "downloading": "Scaricamento...",
+          "error": "Impossibile scaricare l'aggiornamento ! Riprova più tardi"
         }
       },
       "options": {
-        "title": "Options",
+        "title": "Opzioni",
         "button": {
-          "close": "Completed"
+          "close": "Fine"
         },
         "general": {
-          "reset-game": "Re-download game data",
-          "reset-all": "Reset",
-          "shortcuts": "Configure shortcuts",
-          "clear-cache": "Clear cache",
+          "reset-game": "Ri-scarica i dati di gioco",
+          "reset-all": "Ripristina",
+          "shortcuts": "Configurazione tasti rapidi",
+          "clear-cache": "Pulisci cache",
           "resolution": {
-            "confirm-body": "Does the current resolution suit you?<br/>Automatic reset within 10 seconds.."
+            "confirm-body": "Questa risoluzione ti va bene?<br/>Ripristino automatico in 10 secondi.."
           }
         },
         "features": {
-          "title": "Features",
+          "title": "Contenuti",
           "general": {
-            "header": "General",
-            "disable-inactivity": "Extend the delay before disconnection for inactivity",
-            "health-bar": "Activate the display of the life bars below the fighters",
-            "health-bar-shortcut": "Shortcuts for show/hide life bars",
-            "estimator": "Estimating spell damage in battle",
-            "hide-mount": "Hide mounts during fights (beta)"
+            "header": "Generali",
+            "disable-inactivity": "Aumenta il tempo per disconessione da inattività",
+            "health-bar": "Visualizza le barre della vita sotto i combattenti",
+            "health-bar-shortcut": "Tasto rapido per mostrare/nascondere le barre della vita",
+            "estimator": "Fai una stima dei danni da incantesimi in battaglia",
+            "hide-mount": "Nascondi le cavalcature durante i combattimenti (beta)"
           },
           "groups": {
-            "header": "Groups"
+            "header": "Gruppi"
           },
           "accounts": {
             "header": "Accounts"
           }
         },
         "about": {
-          "title": "About",
+          "title": "Su",
           "links": {
-            "website": "Website",
-            "changelog": "Release notes"
+            "website": "Sito web",
+            "changelog": "Note di rilascio"
           },
           "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         }
       },
       "shortcuts": {
-        "title": "Shortcuts",
-        "description1": "You can use special keys CTRL, SHIFT, SPACE, ALT (CTRL = cmd on Mac OS X)",
-        "description2": "You can specify your shortcut by pressing the desired keys at the same time after selecting the input",
+        "title": "Tasti rapidi",
+        "description1": "Puoi utilizzare i tasti speciali CTRL, SHIFT, SPACE, ALT (CTRL = cmd su Mac OS X)",
+        "description2": "Puoi specificare il tasto rapido selezionando la casella relativa e premendo i tasti desiderati allo stesso tempo",
         "tab": {
-          "application": "Application",
-          "interface": "Interface",
-          "spell": "Spells",
-          "inventory": "Inventory",
-          "other": "Various"
+          "application": "Applicazione",
+          "interface": "Interfaccia",
+          "spell": "Incantesimi",
+          "inventory": "Inventario",
+          "other": "Varie"
         }
       }
     },
