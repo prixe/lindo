@@ -98,158 +98,158 @@
     "option": {
       "vip": {
         "auto-group": {
-          "header": "Group",
-          "active": "Enable automatic grouping",
-          "warning": "Beware, following the group leader can be considered as a boting for other players, use it with caution and in unpopulated areas.",
-          "explanation-1": "The characters in the group must be friends with the leader so that the invitation is automatic.",
-          "explanation-2": "The members follow the leader if the latter is on the same map.",
-          "leader": "Name of leader",
-          "members": "Names of characters",
-          "members-add": "Add a character",
-          "follow-leader": "Follow the group leader",
-          "ready": "Skip \"ready\" automatically",
-          "fight": "Entry into combat automatically",
-          "delay": "Time to follow (in seconds)",
-          "follow-on-map": "Follow the leader on a map",
-          "strict-move": "Move on the same cell the leader moves",
-          "pvp-warning": "You can't join a PvP fight automatically"
+          "header": "Gruppo",
+          "active": "Abilita creazione gruppo automatica",
+          "warning": "Attenzione, seguire il capo-gruppo può essere considerato utilizzo di bot per altri giocatore, utilizza questa funzione con cautela e in zone poco affollate.",
+          "explanation-1": "I personaggi nel gruppo devono essere amici con il capo-gruppo per rendere automatico l'invito.",
+          "explanation-2": "I membri seguono il capo-gruppo se quest'ultimo è sulla stessa mappa.",
+          "leader": "Nome del capo-gruppo",
+          "members": "Nome dei personaggi",
+          "members-add": "Aggiungi un personaggio",
+          "follow-leader": "Segui il capo-gruppo",
+          "ready": "Salta \"ready\" automaticamente",
+          "fight": "Entra in combattimento automaticamente",
+          "delay": "Tempo di attesa nel seguire il capo-gruppo (in secondi)",
+          "follow-on-map": "Segui il capo-gruppo su una mappa",
+          "strict-move": "Muoviti sulla stessa cella in cui si muove il capo-gruppo",
+          "pvp-warning": "Non puoi entrare in un combattimento PvP automaticamente"
         },
         "multi-account": {
-          "home-no-master": "To use this feature, a password must be configured. It will be used to start Lindo with multi-account automation.",
-          "header": "Multi accounts",
-          "active": "Enable multi accounts",
-          "window": "Window",
-          "delete-window": "Delete",
-          "add-window": "Add a window",
-          "add": "Add an account",
-          "account-name": "Username",
+          "home-no-master": "Devi configurare una password. Sarà usata per far partire Lindo in modalità multi-account.",
+          "header": "Multi-accounts",
+          "active": "Abilita multi-accounts",
+          "window": "Finestra",
+          "delete-window": "Elimina",
+          "add-window": "Aggiungi una finestra",
+          "add": "Aggiungi un account",
+          "account-name": "Nome utente",
           "password": "Password",
-          "modify_password": "Change the password",
-          "configure_password": "Setting password",
-          "delete_password": "Removing the password",
+          "modify_password": "Cambia la password",
+          "configure_password": "Impostazioni password",
+          "delete_password": "Elimina la password",
           "request-master-password": {
-            "explanation": "To access your account management, you must first enter your master password. This password was set on the first activation of the multi-account.",
-            "label": "Enter your password",
-            "bad": "The password is incorrect",
-            "confirm": "Carry on",
-            "ignore-step": "Skip this step"
+            "explanation": "Per accere alla gestione dell'account, devi prima inserire la password principale. E' la password che hai inserito all'attivazione del multi-account.",
+            "label": "Inserisci la tua password",
+            "bad": "La password è sbagliata",
+            "confirm": "Continua",
+            "ignore-step": "Salta questo passaggio"
           },
           "prompt": {
             "add-master": {
-              "title": "Setting the Password",
-              "confirm": "Save",
-              "cancel": "Cancel",
-              "min-lenght": "The password must contain at least {{lenght}} characters",
-              "success-text": "The password will now be used to start the application."
+              "title": "Configura la Password",
+              "confirm": "Salva",
+              "cancel": "Annulla",
+              "min-lenght": "La password deve contenere almeno {{lenght}} caratteri",
+              "success-text": "La password non sarà utilizzata per avviare l'applicazione."
             },
             "edit-master": {
-              "title": "Changing the password",
-              "input-old-placeholder": "Old password",
-              "input-new-placeholder": "New password",
-              "confirm": "Save",
-              "cancel": "Cancel",
-              "min-lenght": "The new password must contain at least {{lenght}} characters",
-              "incorrect-old": "The old password is incorrect",
-              "success-text": "The password has been changed."
+              "title": "Cambia la password",
+              "input-old-placeholder": "Vecchia password",
+              "input-new-placeholder": "Nuova password",
+              "confirm": "Salva",
+              "cancel": "Annulla",
+              "min-lenght": "La nuova password deve contenere almeno {{lenght}} caratteri",
+              "incorrect-old": "La vecchia password è sbagliata",
+              "success-text": "La password è stata cambiata."
             },
             "delete-master": {
-              "title": "Removing the password",
-              "text": "In order to delete the password, it must be confirmed.<br/>This will delete the saved accounts.",
-              "confirm": "Remove",
-              "cancel": "Cancel",
-              "incorrect-old": "The password entered is not correct.",
-              "success-text": "The password has been deleted."
+              "title": "Rimuovi la password",
+              "text": "Prima di rimuovere la password, serve una tua conferma.<br/>Verranno eliminati tutti gli accounts salvati.",
+              "confirm": "Rimuovi",
+              "cancel": "Annulla",
+              "incorrect-old": "La password inserita è sbagliata.",
+              "success-text": "La password è stata eliminata."
             },
             "maximum-account": {
               "title": "Oops!",
-              "text": "You can not save more than 4 accounts with Wabbit donor rank.",
-              "confirm": "Increase my VIP rank",
-              "cancel": "I understood"
+              "text": "Non puoi salvare più di 4 account con un rank VIP uguale a Wabbit.",
+              "confirm": "Aumenta rank VIP",
+              "cancel": "Capisco"
             },
             "add-account": {
-              "title": "Adding an account",
-              "input-login-placeholder": "Username",
+              "title": "Aggiungi un account",
+              "input-login-placeholder": "Nome utente",
               "input-password-placeholder": "Password",
-              "confirm": "Save",
-              "cancel": "Cancel",
-              "min-lenght-login": "The username must contain at least 1 character",
-              "min-lenght-password": "The password must contain at least 1 character"
+              "confirm": "Salva",
+              "cancel": "Annulla",
+              "min-lenght-login": "Il nome utente deve contenere almeno 1 carattere",
+              "min-lenght-password": "La password deve contenere almeno 1 carattere"
             },
             "edit-account": {
-              "title": "Changing an account",
-              "input-login-placeholder": "Username",
+              "title": "Cambia un account",
+              "input-login-placeholder": "Nome utente",
               "input-password-placeholder": "Password",
-              "confirm": "Save",
-              "cancel": "Cancel",
-              "min-lenght-login": "The username must contain at least 1 character",
-              "min-lenght-password": "The password must contain at least 1 character"
+              "confirm": "Salva",
+              "cancel": "Annulla",
+              "min-lenght-login": "Il nome utente deve contenere almeno 1 carattere",
+              "min-lenght-password": "La password deve contenere almeno 1 carattere"
             }
           }
         },
         "status": {
-          "header": "VIP Status"
+          "header": "Stato VIP"
         }
       },
       "general": {
-        "title": "General",
-        "language": "Language",
-        "resolution": "Resolution",
-        "hide-shop": "Hide the Shop button",
-        "hide-tab": "Hide the multi-account tab bar",
-        "focus-fight-turn": "Automatically switch to an account when its turn starts",
-        "local-content": "Enable local map download (beta)",
-        "sound-focus": "Game sound only on foreground window"
+        "title": "Generale",
+        "language": "Lingua",
+        "resolution": "Risoluzione",
+        "hide-shop": "Nascondi il bottone dello Shop",
+        "hide-tab": "Nascondi la barra multi-account",
+        "focus-fight-turn": "Fai focus su account quando inizia il suo turno di combattimento",
+        "local-content": "Abilita download mappa in locale (beta)",
+        "sound-focus": "Suoni di giochi solamente quando la finestra è in primo piano"
       },
       "shortcuts": {
-        "title": "Shortcuts",
+        "title": "Tasti rapidi",
         "diver": {
-          "header": "Miscellaneous",
-          "end-turn": "End your turn / Ready (fight)",
-          "open-chat": "Open the chat"
+          "header": "Varie",
+          "end-turn": "Finisci il turno / Pronto (combattimenti)",
+          "open-chat": "Apri la chat"
         },
         "interfaces": {
-          "header": "Interfaces",
-          "carac": "Character",
-          "spell": "Spells",
-          "bag": "Inventory",
-          "bidhouse": "Market place",
-          "map": "Map",
-          "friend": "Friends",
-          "book": "Quests",
-          "guild": "Guild",
-          "conquest": "Kolizeum",
+          "header": "Interfaccia",
+          "carac": "Personaggio",
+          "spell": "Incantesimi",
+          "bag": "Inventario",
+          "bidhouse": "Mercato",
+          "map": "Mappa",
+          "friend": "Amici",
+          "book": "Missioni",
+          "guild": "Gilda",
+          "conquest": "Kolosseo",
           "goultine": "Shop",
-          "job": "Jobs",
-          "alliance": "Alliance",
-          "mount": "Mount",
-          "directory": "List of Guilds and Alliances",
-          "alignement": "Alignment",
-          "bestiary": "Bestiary",
-          "title": "Titles and Ornaments",
-          "achievement": "Achievements",
+          "job": "Mestieri",
+          "alliance": "Alleanza",
+          "mount": "Cavalcatura",
+          "directory": "Lista delle gilde e delle alleanze",
+          "alignement": "Allineamento",
+          "bestiary": "Bestiario",
+          "title": "Titoli ed ornamenti",
+          "achievement": "Obbiettivi",
           "almanax": "Almanax",
-          "spouse": "Spouse",
-          "shop": "Shopkeeper"
+          "spouse": "Matrimonio",
+          "shop": "Negoziante"
         },
         "items": {
-          "header": "Items",
+          "header": "Oggetti",
           "slot": "Slot {{x}}"
         },
         "no-emu": {
           "header": "Lindo",
-          "new-window": "New window",
-          "new-tab": "New tab",
+          "new-window": "Nuova finestra",
+          "new-tab": "Nuova tab",
           "tab": "Tab {{x}}",
-          "next-tab": "Next tab",
-          "prev-tab": "Previous tab"
+          "next-tab": "Tab successiva",
+          "prev-tab": "Tab precedente"
         },
         "spells": {
-          "header": "Spells",
+          "header": "Incantesimi",
           "slot": "Slot {{x}}"
         }
       },
       "notifications": {
-        "title": "Notifications",
+        "title": "Notifiche",
         "description": "You can receive notifications from the game when the application is on the background. You will be notified:",
         "fight-turn": "When your turn starts (fight)",
         "private-message": "By incoming private messages",
@@ -259,7 +259,7 @@
         "aggression": "When someone aggresses you"
       },
       "reset": "Reset",
-      "save": "Apply",
+      "save": "Applica",
       "prompt": {
         "reset-option": {
           "text": "By continuing, all parameters will be reset.<br/>This operation is not reversible."
