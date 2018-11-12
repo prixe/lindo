@@ -1,3 +1,27 @@
+## [2.1.3] - 2018-05-20
+
+### Bugs
+
+- L'estimation des dégâts est désormais fonctionnelle et compatible avec la version 1.35 de DofusTouch
+- Annulation des mises à jours de librairies effectuées pour Lindo v2.1.2, provoquant une non-compatibilité sur Mac. Solution temporaire qui nous donnera le temps de trouver ce qui posait problème.
+
+## [2.1.2] - 2018-05-20
+
+### Améliorations
+
+- Mise à jour de certaines librairies pour corriger des failles de sécurités
+- Le mot de passe maître est désormais hashé avec un algorithme plus sécurisé (MD5 => SHA512 + sel)
+
+## [2.1.1] - 2018-08-24
+
+### Améliorations
+
+- Nouvelle option pour cacher les montures de combat. Vous pouvez l'activer dans les options de Lindo avec les autres fonctionnalités. (beta)
+
+### Bugs
+
+- Les barres de vie devraient s'effacer correctement après avoir quitté un combat en tant que spectateur.
+
 ## [2.0.0] - 2018-05-19
 
 ### Améliorations
