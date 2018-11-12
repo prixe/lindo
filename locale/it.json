@@ -79,7 +79,9 @@
             "website": "Sito web",
             "changelog": "Note di rilascio"
           },
-          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          "text0": "Lindo è un software open-source che ti permette di giocare a DOFUS Touch dal tuo computer.",
+          "text1": "Diversamente da un emulatore Android, il codice è interpretato direttamente dal tuo computer, il che permetter di sfruttare le performance del tuo computer al meglio !",
+          "text2": "Originariamente conosciuto come DOFUS Touch No-Emu, questo software sviluppato da Daniel e Thomas è stato forzato alla chiusura per un avvertimento da parte di Ankama."
         }
       },
       "shortcuts": {
@@ -250,34 +252,34 @@
       },
       "notifications": {
         "title": "Notifiche",
-        "description": "You can receive notifications from the game when the application is on the background. You will be notified:",
-        "fight-turn": "When your turn starts (fight)",
-        "private-message": "By incoming private messages",
-        "tax-collector": "When a tax collector is attacked",
-        "kolizeum": "When kolizeum fight is find",
-        "party-invitation": "When someone invites you to join a group",
-        "aggression": "When someone aggresses you"
+        "description": "Puoi ricevere notifiche dal gioco quando l'applicazione è in background. Sarai notificato per:",
+        "fight-turn": "Quando il tuo turno inizia (combattimenti)",
+        "private-message": "Quando arrivano messaggi privati",
+        "tax-collector": "Quanto un percettore viene attaccato",
+        "kolizeum": "Quando viene trovata una battaglia Kolosseo",
+        "party-invitation": "Quando qualcuno ti invita in un gruppo",
+        "aggression": "Quando qualcuno ti assalta"
       },
-      "reset": "Reset",
+      "reset": "Reimposta",
       "save": "Applica",
       "prompt": {
         "reset-option": {
-          "text": "By continuing, all parameters will be reset.<br/>This operation is not reversible."
+          "text": "Verranno reimpostati tutti i parametri.<br/>Questa operazione non è reversibile."
         }
       }
     },
     "prompt": {
       "title": {
-        "confirm": "Confirmation required",
-        "warning": "Warning !",
-        "success": "Successful operation !",
-        "error": "Operation failed !",
-        "info": "Information"
+        "confirm": "Conferma richiesta",
+        "warning": "Attenzione !",
+        "success": "Operazione completata !",
+        "error": "Operazione fallita !",
+        "info": "Informazioni"
       },
       "button": {
-        "cancel": "Cancel",
-        "confirm": "I confirm",
-        "close": "Close"
+        "cancel": "Annulla",
+        "confirm": "Confermo",
+        "close": "Chiudi"
       }
     }
   }
