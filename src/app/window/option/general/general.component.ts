@@ -39,7 +39,8 @@ export class GeneralComponent implements OnInit {
     public languages: select[] = [
         { name: 'Français', value: "fr" },
         { name: 'English', value: "en" },
-        { name: 'Espagnol', value: "es" }
+        { name: 'Espagnol', value: "es" },
+        { name: 'Italiano', value: "it" }
     ];
     
     public windowService: WindowService;
