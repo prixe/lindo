@@ -38,7 +38,7 @@ export class Settings {
             'en': require(Application.appPath + `/dist/electron/i18n/en`),
             'fr': require(Application.appPath + `/dist/electron/i18n/fr`),
             'es': require(Application.appPath + `/dist/electron/i18n/es`),
-            'es': require(Application.appPath + `/dist/electron/i18n/it`)
+            'it': require(Application.appPath + `/dist/electron/i18n/it`)
         }).setLocale(settings.get('language'));
 
         settings.watch('language', (newValue, oldValue) => {
