@@ -3,54 +3,54 @@
 module.exports = {
     "game-menu": {
         "file": {
-            "title": "Application",
-            "new-window": "New window",
-            "new-tab": "New tab",
-            "close-tab": "Close tab",
-            "close-window": "Exit"
+            "title": "Applicazione",
+            "new-window": "Nuova finestra",
+            "new-tab": "Nuova tab",
+            "close-tab": "Chiudi tab",
+            "close-window": "Esci"
         },
         "edit": {
-            "title": "Edit",
-            "undo": "Undo",
-            "redo": "Redo",
-            "cut": "Cut",
-            "copy": "Copy",
-            "paste": "Paste",
-            "selectall": "Select all"
+            "title": "Modifica",
+            "undo": "Annulla",
+            "redo": "Ripeti",
+            "cut": "Taglia",
+            "copy": "Copia",
+            "paste": "Incolla",
+            "selectall": "Seleziona tutto"
         },
         "window": {
-            "title": "Window",
-            "reload": "Reload",
-            "prev-tab": "Previous tab",
-            "next-tab": "Next tab",
-            "sound": "Sound",
-            "enable-sound": "Turn on sound",
-            "disable-sound": "Turn off sound",
-            "zoomin": "Zoom in",
-            "zoomout": "Zoom out",
-            "resetzoom": "Reset zoom",
-            "full-screen": "Full screen"
+            "title": "Finestra",
+            "reload": "Ricarica",
+            "prev-tab": "Tab precedente",
+            "next-tab": "Tab successiva",
+            "sound": "Suoni",
+            "enable-sound": "Abilita suoni",
+            "disable-sound": "Disabilita suoni",
+            "zoomin": "Ingrandisci",
+            "zoomout": "Riduci",
+            "resetzoom": "Reimposta zoom",
+            "full-screen": "Schermo intero"
         },
         "infos": {
             "title": "?",
-            "changelog": "Release notes",
-            "console": "Developer console",
-            "about": "About us..."
+            "changelog": "Note di rilascio",
+            "console": "Console sviluppatori",
+            "about": "Su di noi..."
         }
     },
     "updater": {
         "new-update": {
-            "title": "New update %{version}",
-            "default": "A new update of Lindo is available, you can download it on our website!\n",
-            "required": "A required update of Lindo is available, you must download it on our website.",
+            "title": "Nuovo update %{version}",
+            "default": "E' disponibile un nuovo update di Lindo, puoi scaricarlo dal nostro sito!\n",
+            "required": "E' disponibile un update importante di Lindo, devi scaricarlo dal nostro sito.",
             "ignore": "Ignore",
-            "go-site": "Go on the website"
+            "go-site": "Vai al sito"
         },
     },
     "options": {
         "clear-cache": {
-            "title": "Cache clared",
-            "message": "Cache has been cleared on currently opened windows"
+            "title": "Cache pulita",
+            "message": "La cache è stata pulita sulle finestre attualmente aperte"
         }
     }
 };
