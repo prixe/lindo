@@ -1,0 +1,286 @@
+{
+  "app": {
+    "main": {
+      "tab": {
+        "add": "Aggiungi un gioco"
+      },
+      "head": {
+        "toggle-audio-on": "Abilita suoni",
+        "toggle-audio-off": "Muta",
+        "new-window": "Apri una nuova finestra"
+      },
+      "prompt": {
+        "tabs-overflow": {
+          "text": "Lindo non supporta più di 6 tab per finestra, oltre potrebbe risultare lento e malfunzionante. Puoi comunque aprire una nuova finestra e tutto andrà bene."
+        }
+      }
+    },
+    "notifications": {
+      "fight-turn": "Inzio del turno per {{character}}",
+      "private-message": "Nuovo messaggio da {{character}}",
+      "tax-collector": "Un precettore è stato attaccato !",
+      "kolizeum": "Trovata battaglia Kolosseo !",
+      "party-invitation": "{{character}} ti ha invitato ad unirsi al suo gruppo.",
+      "aggression": "Sei stato assalito !"
+    },
+    "window": {
+      "changelog": {
+        "title": "Note di rilascio",
+        "prefixe": "Aggiornamento"
+      },
+      "master-password": {
+        "continue": "Continua",
+        "skip": "Salta questo passaggio",
+        "password-label": "Inserisci la password principale",
+        "password-bad": "La password è sbagliata"
+      },
+      "update-dofus": {
+        "title": "Aggiornamento Dofus Touch",
+        "information": {
+          "search": "In cerca di aggiornamenti...",
+          "downloading": "Scaricamento...",
+          "error": "Impossibile scaricare l'aggiornamento ! Riprova più tardi"
+        }
+      },
+      "options": {
+        "title": "Opzioni",
+        "button": {
+          "close": "Fine"
+        },
+        "general": {
+          "reset-game": "Ri-scarica i dati di gioco",
+          "reset-all": "Ripristina",
+          "shortcuts": "Configurazione tasti rapidi",
+          "clear-cache": "Pulisci cache",
+          "resolution": {
+            "confirm-body": "Questa risoluzione ti va bene?<br/>Ripristino automatico in 10 secondi.."
+          }
+        },
+        "features": {
+          "title": "Contenuti",
+          "general": {
+            "header": "Generali",
+            "disable-inactivity": "Aumenta il tempo per disconessione da inattività",
+            "health-bar": "Visualizza le barre della vita sotto i combattenti",
+            "health-bar-shortcut": "Tasto rapido per mostrare/nascondere le barre della vita",
+            "estimator": "Fai una stima dei danni da incantesimi in battaglia",
+            "hide-mount": "Nascondi le cavalcature durante i combattimenti (beta)"
+          },
+          "groups": {
+            "header": "Gruppi"
+          },
+          "accounts": {
+            "header": "Accounts"
+          }
+        },
+        "about": {
+          "title": "Su",
+          "links": {
+            "website": "Sito web",
+            "changelog": "Note di rilascio"
+          },
+          "text0": "Lindo è un software open-source che ti permette di giocare a DOFUS Touch dal tuo computer.",
+          "text1": "Diversamente da un emulatore Android, il codice è interpretato direttamente dal tuo computer, il che permetter di sfruttare le performance del tuo computer al meglio !",
+          "text2": "Originariamente conosciuto come DOFUS Touch No-Emu, questo software sviluppato da Daniel e Thomas è stato forzato alla chiusura per un avvertimento da parte di Ankama."
+        }
+      },
+      "shortcuts": {
+        "title": "Tasti rapidi",
+        "description1": "Puoi utilizzare i tasti speciali CTRL, SHIFT, SPACE, ALT (CTRL = cmd su Mac OS X)",
+        "description2": "Puoi specificare il tasto rapido selezionando la casella relativa e premendo i tasti desiderati allo stesso tempo",
+        "tab": {
+          "application": "Applicazione",
+          "interface": "Interfaccia",
+          "spell": "Incantesimi",
+          "inventory": "Inventario",
+          "other": "Varie"
+        }
+      }
+    },
+    "option": {
+      "vip": {
+        "auto-group": {
+          "header": "Gruppo",
+          "active": "Abilita creazione gruppo automatica",
+          "warning": "Attenzione, seguire il capo-gruppo può essere considerato utilizzo di bot per altri giocatore, utilizza questa funzione con cautela e in zone poco affollate.",
+          "explanation-1": "I personaggi nel gruppo devono essere amici con il capo-gruppo per rendere automatico l'invito.",
+          "explanation-2": "I membri seguono il capo-gruppo se quest'ultimo è sulla stessa mappa.",
+          "leader": "Nome del capo-gruppo",
+          "members": "Nome dei personaggi",
+          "members-add": "Aggiungi un personaggio",
+          "follow-leader": "Segui il capo-gruppo",
+          "ready": "Salta \"ready\" automaticamente",
+          "fight": "Entra in combattimento automaticamente",
+          "delay": "Tempo di attesa nel seguire il capo-gruppo (in secondi)",
+          "follow-on-map": "Segui il capo-gruppo su una mappa",
+          "strict-move": "Muoviti sulla stessa cella in cui si muove il capo-gruppo",
+          "pvp-warning": "Non puoi entrare in un combattimento PvP automaticamente"
+        },
+        "multi-account": {
+          "home-no-master": "Devi configurare una password. Sarà usata per far partire Lindo in modalità multi-account.",
+          "header": "Multi-accounts",
+          "active": "Abilita multi-accounts",
+          "window": "Finestra",
+          "delete-window": "Elimina",
+          "add-window": "Aggiungi una finestra",
+          "add": "Aggiungi un account",
+          "account-name": "Nome utente",
+          "password": "Password",
+          "modify_password": "Cambia la password",
+          "configure_password": "Impostazioni password",
+          "delete_password": "Elimina la password",
+          "request-master-password": {
+            "explanation": "Per accere alla gestione dell'account, devi prima inserire la password principale. E' la password che hai inserito all'attivazione del multi-account.",
+            "label": "Inserisci la tua password",
+            "bad": "La password è sbagliata",
+            "confirm": "Continua",
+            "ignore-step": "Salta questo passaggio"
+          },
+          "prompt": {
+            "add-master": {
+              "title": "Configura la Password",
+              "confirm": "Salva",
+              "cancel": "Annulla",
+              "min-lenght": "La password deve contenere almeno {{lenght}} caratteri",
+              "success-text": "La password non sarà utilizzata per avviare l'applicazione."
+            },
+            "edit-master": {
+              "title": "Cambia la password",
+              "input-old-placeholder": "Vecchia password",
+              "input-new-placeholder": "Nuova password",
+              "confirm": "Salva",
+              "cancel": "Annulla",
+              "min-lenght": "La nuova password deve contenere almeno {{lenght}} caratteri",
+              "incorrect-old": "La vecchia password è sbagliata",
+              "success-text": "La password è stata cambiata."
+            },
+            "delete-master": {
+              "title": "Rimuovi la password",
+              "text": "Prima di rimuovere la password, serve una tua conferma.<br/>Verranno eliminati tutti gli accounts salvati.",
+              "confirm": "Rimuovi",
+              "cancel": "Annulla",
+              "incorrect-old": "La password inserita è sbagliata.",
+              "success-text": "La password è stata eliminata."
+            },
+            "maximum-account": {
+              "title": "Oops!",
+              "text": "Non puoi salvare più di 4 account con un rank VIP uguale a Wabbit.",
+              "confirm": "Aumenta rank VIP",
+              "cancel": "Capisco"
+            },
+            "add-account": {
+              "title": "Aggiungi un account",
+              "input-login-placeholder": "Nome utente",
+              "input-password-placeholder": "Password",
+              "confirm": "Salva",
+              "cancel": "Annulla",
+              "min-lenght-login": "Il nome utente deve contenere almeno 1 carattere",
+              "min-lenght-password": "La password deve contenere almeno 1 carattere"
+            },
+            "edit-account": {
+              "title": "Cambia un account",
+              "input-login-placeholder": "Nome utente",
+              "input-password-placeholder": "Password",
+              "confirm": "Salva",
+              "cancel": "Annulla",
+              "min-lenght-login": "Il nome utente deve contenere almeno 1 carattere",
+              "min-lenght-password": "La password deve contenere almeno 1 carattere"
+            }
+          }
+        },
+        "status": {
+          "header": "Stato VIP"
+        }
+      },
+      "general": {
+        "title": "Generale",
+        "language": "Lingua",
+        "resolution": "Risoluzione",
+        "hide-shop": "Nascondi il bottone dello Shop",
+        "hide-tab": "Nascondi la barra multi-account",
+        "focus-fight-turn": "Fai focus su account quando inizia il suo turno di combattimento",
+        "local-content": "Abilita download mappa in locale (beta)",
+        "sound-focus": "Suoni di giochi solamente quando la finestra è in primo piano"
+      },
+      "shortcuts": {
+        "title": "Tasti rapidi",
+        "diver": {
+          "header": "Varie",
+          "end-turn": "Finisci il turno / Pronto (combattimenti)",
+          "open-chat": "Apri la chat"
+        },
+        "interfaces": {
+          "header": "Interfaccia",
+          "carac": "Personaggio",
+          "spell": "Incantesimi",
+          "bag": "Inventario",
+          "bidhouse": "Mercato",
+          "map": "Mappa",
+          "friend": "Amici",
+          "book": "Missioni",
+          "guild": "Gilda",
+          "conquest": "Kolosseo",
+          "goultine": "Shop",
+          "job": "Mestieri",
+          "alliance": "Alleanza",
+          "mount": "Cavalcatura",
+          "directory": "Lista delle gilde e delle alleanze",
+          "alignement": "Allineamento",
+          "bestiary": "Bestiario",
+          "title": "Titoli ed ornamenti",
+          "achievement": "Obbiettivi",
+          "almanax": "Almanax",
+          "spouse": "Matrimonio",
+          "shop": "Negoziante"
+        },
+        "items": {
+          "header": "Oggetti",
+          "slot": "Slot {{x}}"
+        },
+        "no-emu": {
+          "header": "Lindo",
+          "new-window": "Nuova finestra",
+          "new-tab": "Nuova tab",
+          "tab": "Tab {{x}}",
+          "next-tab": "Tab successiva",
+          "prev-tab": "Tab precedente"
+        },
+        "spells": {
+          "header": "Incantesimi",
+          "slot": "Slot {{x}}"
+        }
+      },
+      "notifications": {
+        "title": "Notifiche",
+        "description": "Puoi ricevere notifiche dal gioco quando l'applicazione è in background. Sarai notificato per:",
+        "fight-turn": "Quando il tuo turno inizia (combattimenti)",
+        "private-message": "Quando arrivano messaggi privati",
+        "tax-collector": "Quanto un percettore viene attaccato",
+        "kolizeum": "Quando viene trovata una battaglia Kolosseo",
+        "party-invitation": "Quando qualcuno ti invita in un gruppo",
+        "aggression": "Quando qualcuno ti assalta"
+      },
+      "reset": "Reimposta",
+      "save": "Applica",
+      "prompt": {
+        "reset-option": {
+          "text": "Verranno reimpostati tutti i parametri.<br/>Questa operazione non è reversibile."
+        }
+      }
+    },
+    "prompt": {
+      "title": {
+        "confirm": "Conferma richiesta",
+        "warning": "Attenzione !",
+        "success": "Operazione completata !",
+        "error": "Operazione fallita !",
+        "info": "Informazioni"
+      },
+      "button": {
+        "cancel": "Annulla",
+        "confirm": "Confermo",
+        "close": "Chiudi"
+      }
+    }
+  }
+}
