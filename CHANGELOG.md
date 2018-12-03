@@ -1,3 +1,10 @@
+## [2.1.4] - 2018-12-01
+
+### Améliorations
+
+- Mise à jour de la section "À propos"
+- Support de l'italien
+
 ## [2.1.3] - 2018-05-20
 
 ### Bugs
