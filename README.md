@@ -67,7 +67,7 @@ $ npm install -g gulp
 ### Build Lindo
 ```sh
 $ git clone https://github.com/prixe/lindo.git
-$ cd lindo-master
+$ cd lindo
 $ npm install
 ```
 
