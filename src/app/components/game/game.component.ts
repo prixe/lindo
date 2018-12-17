@@ -134,6 +134,7 @@ export class GameComponent implements AfterViewInit {
                 if (this.hideShop) this.hideShop.reset();
                 if (this.keyboardInput) this.keyboardInput.reset();
                 if (this.hideMount) this.hideMount.reset();
+				if (this.partyInfo) this.partyInfo.reset();
         }
     }
 
@@ -176,7 +177,7 @@ export class GameComponent implements AfterViewInit {
                 this.rapidExchange = new RapidExchange(this.game.window);
                 //this.wizAssets = new WizAssetsContainer(this.game.window, this.applicationService, this.http, this.settingsService.option.general);
                 this.keyboardInput = new KeyboardInput(this.game.window);
-				this.partyInfo = new PartyInfo(this.game.window);
+				this.partyInfo = new PartyInfo(this.game.window,this.settingsService.option.vip.general.party_info,this.translate);
 				
         }
     }
