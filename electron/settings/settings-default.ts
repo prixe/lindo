@@ -149,7 +149,8 @@ export const SettingsDefault: SettingsInterface = {
                 health_bar: true,
                 health_bar_shortcut: 'p',
                 estimator: true,
-                hidden_mount: false
+                hidden_mount: false,
+                party_info: false
             },
             auto_group: {
                 active: false,
