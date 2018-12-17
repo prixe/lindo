@@ -21,21 +21,18 @@ export class PartyInfo extends Mods {
 		Logger.info(this.party_info);
 		if(this.party_info){
 		this.partyInitialized = (this.wGame.document.querySelector("#party-info-container") === null ? false : true);
-		setTimeout(()=>{this.onPartyJoin()},100);
-		this.on(this.wGame.dofus.connectionManager, 'PartyJoinMessage', this.onPartyJoin.bind(this));
+		setTimeout(()=>{this.updatePartyInfo()},100);
+		this.on(this.wGame.dofus.connectionManager, 'PartyJoinMessage', this.updatePartyInfo.bind(this));
 		this.on(this.wGame.dofus.connectionManager,'PartyUpdateMessage',this.updatePartyInfo.bind(this));
 		this.on(this.wGame.dofus.connectionManager,'PartyMemberEjectedMessage',this.updatePartyInfo.bind(this));
 		this.on(this.wGame.dofus.connectionManager,'PartyMemberRemoveMessage',this.updatePartyInfo.bind(this));
 		this.on(this.wGame.dofus.connectionManager,'PartyNewMemberMessage',this.updatePartyInfo.bind(this));
 		this.on(this.wGame.dofus.connectionManager,'PartyUpdateMessage',this.updatePartyInfo.bind(this));
+		this.on(this.wGame.dofus.connectionManager,'PartyNewGuestMessage',this.updatePartyInfo.bind(this));
+		this.on(this.wGame.dofus.connectionManager,'PartyLeaderUpdateMessage',this.updatePartyInfo.bind(this));
 		}
 	}	
 	
-	 private onPartyJoin(){
-			if (!this.partyInitialized) {
-				this.updatePartyInfo();
-			}
-	}
 	//initialize party info container
 	private initializePartyInfo() {	
 		if (this.partyInitialized)
@@ -80,15 +77,18 @@ export class PartyInfo extends Mods {
 			try{
 				var partyLevel = 0;
 				var prospecting = 0;
-				if(this.wGame.gui.party.currentParty)
+				if(this.wGame.gui.party.currentParty && this.wGame.gui.party.currentParty._childrenList.length > 0){
 					this.wGame.gui.party.currentParty._childrenList.forEach((c) => {
 						partyLevel += c.memberData.level;
 						prospecting += c.memberData.prospecting;
 				});
 				this.wGame.document.querySelector("#party-level").textContent = this.translate.instant('app.option.vip.party-info.level') +": "+ (isNaN(partyLevel) ? "?" : partyLevel);
 				this.wGame.document.querySelector("#party-pr").textContent = this.translate.instant('app.option.vip.party-info.prospecting') +": "+ (isNaN(prospecting) ? "?":prospecting);
-			}catch(e){}
-		},Math.random() * (500));
+				}
+				
+				
+				}catch(e){}
+		},(Math.random() * 500) + 500);
 	}
 		
 	
