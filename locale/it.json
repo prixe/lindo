@@ -188,6 +188,11 @@
             }
           }
         },
+		"party-info": {
+			"header":"Mostra livello di gruppo e prospezione",
+			"level":"Livello",
+			"prospecting":"Prospezione"
+		},
         "status": {
           "header": "Stato VIP"
         }
