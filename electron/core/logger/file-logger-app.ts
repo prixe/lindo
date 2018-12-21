@@ -14,6 +14,7 @@ var FileLogger = function() {
     });
   };
 
+  // Delete old files
   fs.readdir(LOGS_PATH, function(err, files) {
     if (err) Logger.info(err.toString());
     else {
@@ -29,7 +30,7 @@ var FileLogger = function() {
 
   fs.access(LOGS_PATH, function(err) {
     if (err) fs.mkdir(LOGS_PATH, openFile);
-    openFile();
+    else openFile();
   });
 
   this.writeLindoLog = function(msg) {
