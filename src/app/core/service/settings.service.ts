@@ -623,6 +623,16 @@ export module Option {
             private _health_bar_shortcut: string;
             private _estimator: boolean;
             private _hidden_mount: boolean;
+			private _party_info:boolean;
+			
+			get party_info():boolean{
+				return this._party_info;
+			}
+			
+			set party_info(party_info:boolean){
+				this.settingsProvider.write('option.vip.general.party_info', party_info);
+                this._party_info = party_info;
+			}
 
             get hidden_mount(): boolean {
                 return this._hidden_mount;
@@ -675,6 +685,7 @@ export module Option {
                 this.health_bar_shortcut = this.settingsProvider.read('option.vip.general.health_bar_shortcut');
                 this.estimator = this.settingsProvider.read('option.vip.general.estimator');
                 this.hidden_mount = this.settingsProvider.read('option.vip.general.hidden_mount');
+				this.party_info = this.settingsProvider.read('option.vip.general.party_info');
             }
         }
 

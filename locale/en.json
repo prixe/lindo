@@ -188,6 +188,11 @@
             }
           }
         },
+        "party-info": {
+          "header":"Show party's level and prospecting",
+          "level":"Lvl.",
+          "prospecting":"Prospecting"
+        },
         "status": {
           "header": "VIP Status"
         }
