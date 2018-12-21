@@ -186,11 +186,11 @@
             }
           }
         },
-		"party-info": {
-			"header":"Mostrar nivel del grupo y prospeccion",
-			"level":"Nivel",
-			"prospecting":"Prospeccion"
-		},
+        "party-info": {
+          "header":"Mostrar nivel del grupo y prospeccion",
+          "level":"Niv.",
+          "prospecting":"Prospeccion"
+        },
         "status": {
           "header": "Estatus VIP"
         }
