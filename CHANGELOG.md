@@ -1,3 +1,9 @@
+## [2.2.0] - 2018-12-21
+
+### Ajouts
+
+- Prévisualisation du niveau et de la prospection totale d'un groupe. Cette fonctionnalité est activable dans les options de Lindo.
+
 ## [2.1.4] - 2018-12-01
 
 ### Améliorations
