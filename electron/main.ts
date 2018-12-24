@@ -37,7 +37,13 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 });
 
-app.on('ready', () => {
-    Settings.init();
-    Application.run();
-});
+const gotTheLock = app.requestSingleInstanceLock()
+
+if (!gotTheLock) {
+  app.quit()
+} else {
+    app.on('ready', () => {
+        Settings.init();
+        Application.run();
+    });
+}

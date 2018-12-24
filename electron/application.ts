@@ -74,11 +74,9 @@ export class Application {
             });
         });
 
-        if (app.makeSingleInstance((argv, workingDirectory) => {
+        app.on('second-instance', (event, commandLine, workingDirectory) => {
             if (this.canAddWindow) this.addWindow();
-        })) {
-            app.quit();
-        }
+        });
 
         app.setAppUserModelId('co.lindo.no-emu');
 
