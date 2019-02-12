@@ -74,10 +74,6 @@ $ npm install
 ## Start project in dev mode
 Compile electron typescript source and angular source in developpement mode with a watcher :
 ```sh
-$ npm run build:dev
-```
-Start the project in electron :
-```sh
 $ npm start
 ```
 ## Distribution building
@@ -85,7 +81,7 @@ If you want to make a release for a specific system you can use this command :
 ### Windows
 On a windows environment :
 ```sh
-$ npm run release:win
+$ npm run release:windows
 ```
 On a unix system (require docker)
 ```sh
@@ -106,10 +102,10 @@ $ npm run release:mac
 **Lindo** is developed with [Angular](https://angular.io/) as web framework and uses [Material](https://material.angular.io/) for the UI. It uses [electron](https://github.com/electron/electron) to be run as an standalone application, wich is based on Node.js and Chromium.
 
 So we have to distinguish 2 contexts :
-- **Navigator context** -> executed by Chromium (the Angular part) 
-- **Electron context** -> executed by Node.js (it's allow platform interaction)
+- **Renderer context** -> executed by Chromium (the Angular part) 
+- **Electron (main) context** -> executed by Node.js (it's allow platform interaction)
 
-Navigator context is in the ```src/```folder and Electron context is in the ```electron/``` folder.
+Renderer context is in the ```src/renderer/```folder and main context is in the ```src/`main/`` folder.
 
 
 The idea is to simulate the environment Dofus Touch to run it on PC, because Dofus Touch is based on [Apache Cordova](https://cordova.apache.org/).

@@ -6,4 +6,4 @@ services:
     - $PWD:/project
 #    - ${PWD##*/}-node-modules:/project/node_modules
     - ~/.electron:/root/.electron
-    command: npm run release:win
+    command: npm run release:windows
