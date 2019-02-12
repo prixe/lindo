@@ -1,0 +1,22 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "dependencies": {
+    "@angular/common": "7.2.4",
+    "@angular/core": "7.2.4",
+    "rollup": "1.1.2",
+    "rxjs": "6.4.0"
+  },
+  "devDependencies": {
+    "rollup-plugin-angular": "^0.5.3",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "4.0.0",
+    "rollup-plugin-typescript": "1.0.0",
+    "rollup-plugin-typescript2": "0.19.2",
+    "typescript": "3.1.6"
+  }
+}
