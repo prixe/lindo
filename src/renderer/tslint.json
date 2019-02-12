@@ -1,0 +1,5 @@
+{
+  "extends": ["angular-tslint-rules", "./../../tslint.json"],
+  "rules": {
+  }
+}

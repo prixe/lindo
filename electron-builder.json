@@ -1,5 +1,5 @@
 {
-  "productName": "angular-electron",
+  "productName": "lindo",
   "directories": {
     "output": "release/",
     "buildResources": "build/"

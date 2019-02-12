@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PluginTestConponent } from './plugin-test.conponent';
+import { PluginTestComponent } from './plugin-test.component';
 
 @NgModule({
   imports: [
     CommonModule
   ],
-  declarations: [PluginTestConponent],
-  entryComponents: [PluginTestConponent],
+  declarations: [PluginTestComponent],
+  entryComponents: [PluginTestComponent],
   providers: [{
     provide: 'plugins',
     useValue: [{
       name: 'plugin-test-component',
-      component: PluginTestConponent
+      component: PluginTestComponent
     }],
     multi: true
   }]
