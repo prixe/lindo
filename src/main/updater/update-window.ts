@@ -1,19 +1,23 @@
-import {autoUpdater} from 'electron-updater';
-import {app} from 'electron';
-import BrowserWindow = Electron.BrowserWindow;
+import {BrowserWindow} from 'electron';
 
 export enum EUpdateType {
   Application,
   Game
 }
 
-export class UpdateWindow extends BrowserWindow {
+export class UpdateWindow {
+
+  private window: BrowserWindow;
 
   constructor(private updateType: EUpdateType) {
-    super({
+    this.window = new BrowserWindow({
       width: 700,
       height: 700,
-      center: true
+      center: true,
+      resizable: false,
+      show: false,
+      frame: false,
+      backgroundColor: '#e6e6e6'
     });
   }
 
