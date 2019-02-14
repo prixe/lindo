@@ -1,16 +1,22 @@
 import {autoUpdater} from 'electron-updater';
+import {app} from 'electron';
+import {EUpdateType, UpdateWindow} from './update-window';
 
 export class Updater {
   constructor() {
   }
 
   async checkForUpdatesAndUpdate(): Promise<void> {
-    const result = await autoUpdater.checkForUpdates();
-    console.log('infof', result);
+    await this.updateApp();
   }
 
-  updateApp() {
-
+  private async updateApp() {
+    const result = await autoUpdater.checkForUpdates();
+    if (result.updateInfo.version !== app.getVersion()) {
+      console.log('update require');
+      const windowAppUpdate = new UpdateWindow(EUpdateType.Application);
+      windowAppUpdate.run();
+    }
   }
 
 }
