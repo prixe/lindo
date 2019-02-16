@@ -1,18 +1,16 @@
-import {BrowserWindow} from 'electron';
+import {GenericWindow} from '../generic-window';
 
 export enum EUpdateType {
   Application,
   Game
 }
 
-export class UpdateWindow {
-
-  private window: BrowserWindow;
+export class UpdateWindow extends GenericWindow {
 
   constructor(private updateType: EUpdateType) {
-    this.window = new BrowserWindow({
+    super({
       width: 700,
-      height: 700,
+      height: 190,
       center: true,
       resizable: false,
       show: false,
@@ -22,7 +20,7 @@ export class UpdateWindow {
   }
 
   run(): void {
-
+    this.loadUrl('updater');
   }
 
 }

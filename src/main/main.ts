@@ -1,9 +1,7 @@
 import {app, BrowserWindow, dialog} from 'electron';
-import * as commandLineArgs from 'command-line-args';
 import * as log from 'electron-log';
 import {autoUpdater} from 'electron-updater';
 import {Application} from './application';
-import {OPTION_DEFITIONS, OptionDefinitions} from './option-definitions';
 
 // ignore black list GPU for WebGL
 app.commandLine.appendSwitch('ignore-gpu-blacklist', 'true');
@@ -23,9 +21,6 @@ log.transports.file.level = 'info';
 autoUpdater.logger = log;
 log.info('App starting...');
 
-const options: OptionDefinitions = commandLineArgs(OPTION_DEFITIONS);
-const application = new Application(options);
-
 // intercept uncaughtException
 (process as NodeJS.EventEmitter).on('uncaughtException', function (error) {
   // Logger.error(error);
@@ -40,9 +35,14 @@ const application = new Application(options);
 });
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
+const application = new Application();
 // start the application
 app.on('ready', () => {
   application.run();
+});
+
+app.on('quit', () => {
+  // application.destroy();
 });
 
 /* try {

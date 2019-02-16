@@ -1,18 +1,12 @@
-import {BrowserWindow, screen} from 'electron';
-import * as url from 'url';
-import * as path from 'path';
-import {OptionDefinitions} from './option-definitions';
-import {Store} from 'redux';
-import {AppState} from '../shared/store/store';
+import {screen} from 'electron';
+import {GenericWindow} from './generic-window';
 
-export class MainWindow {
+export class MainWindow extends GenericWindow {
 
-  private window: BrowserWindow;
 
-  constructor(private options: OptionDefinitions, private store: Store<AppState>) {
+  constructor() {
     const {height, width} = screen.getPrimaryDisplay().workAreaSize;
-
-    this.window = new BrowserWindow({
+    super({
       width,
       height,
       center: true,
@@ -23,19 +17,7 @@ export class MainWindow {
   }
 
   run(): void {
-    if (this.options.serve) {
-      require('electron-reload')(__dirname, {
-        electron: require(`${__dirname}/../../node_modules/electron`)
-      });
-      this.window.loadURL('http://localhost:4200');
-      this.window.webContents.openDevTools();
-    } else {
-      this.window.loadURL(url.format({
-        pathname: path.join(__dirname, '../renderer/index.html'),
-        protocol: 'file:',
-        slashes: true
-      }));
-    }
+    this.loadUrl('');
   }
 
 }

@@ -1,35 +1,29 @@
-import {OptionDefinitions} from './option-definitions';
-import configureStore from '../shared/store/configureStore';
-import {AppState} from '../shared/store/store';
-import {Store} from 'redux';
 import {Updater} from './updater/updater';
 import {MainWindow} from './main-window';
+import {AppStore} from './app-store';
 
 export class Application {
 
-  private readonly store: Store<AppState>;
   private readonly updater: Updater;
 
-  constructor(private options: OptionDefinitions) {
-    this.store = configureStore({}, 'main');
+  constructor() {
     this.updater = new Updater();
-
-    this.store.subscribe(async () => {
-      console.log(this.store.getState());
-      // persist store changes
-      // await storage.set('state', global.state);
-    });
-    // this.store.dispatch(setRemindersEnabled(true));
   }
 
   async run(): Promise<void> {
+    await AppStore.configure();
+
+    AppStore.subscribe(async () => {
+      console.log(AppStore.getState());
+    });
+    // this.store.dispatch(setRemindersEnabled(true));
     await this.updater.checkForUpdatesAndUpdate();
     this.createWindow();
   }
 
   private createWindow() {
     // Create the browser window.
-    const win = new MainWindow(this.options, this.store);
+    const win = new MainWindow();
     win.run();
   }
 }
