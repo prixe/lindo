@@ -4,6 +4,7 @@ import { JitCompilerFactory } from '@angular/platform-browser-dynamic';
 import { SharedModule } from '../shared/shared.module';
 import { StoreModule } from '../store/store.module';
 import { GameComponent } from './game.component';
+import { GameRoutingModule } from './game-routing.module';
 
 const createCompiler = (fn: CompilerFactory): Compiler => {
   return fn.createCompiler();
@@ -15,7 +16,8 @@ const createCompiler = (fn: CompilerFactory): Compiler => {
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    GameRoutingModule
   ],
   providers: [
     {
