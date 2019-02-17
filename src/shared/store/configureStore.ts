@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import promise from 'redux-promise';
 import { forwardToMain, forwardToRenderer, replayActionMain, replayActionRenderer, triggerAlias, } from 'electron-redux';
 import { AppState } from './store';
-import getRootReducer from './reducers';
+import { getRootReducer } from './reducers';
 
 export default function configureStore(initialState: Partial<AppState>, scope: 'main' | 'renderer' = 'main'): Store {
   let middleware = [

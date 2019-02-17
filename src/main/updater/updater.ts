@@ -9,6 +9,7 @@ export class Updater {
 
   async checkForUpdatesAndUpdate(): Promise<void> {
     await this.updateApp();
+    await this.updateGame();
   }
 
   private async updateApp() {

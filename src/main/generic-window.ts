@@ -1,8 +1,8 @@
-import {BrowserWindow} from 'electron';
+import {BrowserWindow, BrowserWindowConstructorOptions} from 'electron';
 import * as url from 'url';
 import * as path from 'path';
 import {options} from './options';
-import BrowserWindowConstructorOptions = Electron.BrowserWindowConstructorOptions;
+import * as buildUrl from 'build-url';
 
 export abstract class GenericWindow {
 
@@ -14,14 +14,15 @@ export abstract class GenericWindow {
 
   protected loadUrl(target, query?: { [key: string]: any }): void {
     if (options.serve) {
+      console.log('serve');
       require('electron-reload')(__dirname, {
         electron: require(`${__dirname}/../../node_modules/electron`)
       });
-      this.window.loadURL(url.format({
-        href: `http://localhost:4200/${target}`,
-        slashes: true,
-        query
-      }));
+      const uri = buildUrl('http://localhost:4200', {
+        path: target,
+        queryParams: query
+      });
+      this.window.loadURL(uri);
       this.window.webContents.openDevTools();
     } else {
       this.window.loadURL(url.format({

@@ -11,6 +11,7 @@ import { AppState } from '../../shared/store/store';
 export class AppComponent {
   constructor(public store: NgRedux<AppState>) {
     store.dispatch(setRemindersEnabled(false));
+    store.dispatch(setRemindersEnabled(true));
     store.subscribe(() => console.log(store.getState()));
   }
 }

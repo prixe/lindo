@@ -1,18 +1,44 @@
-import configureStore from '../shared/store/configureStore';
 import { AppState } from '../shared/store/store';
-import { AnyAction, Store, Unsubscribe } from 'redux';
+import { AnyAction, applyMiddleware, compose, createStore, Store, StoreEnhancerStoreCreator, Unsubscribe } from 'redux';
+import thunk from 'redux-thunk';
+import promise from 'redux-promise';
+import { Persistor, persistReducer, persistStore } from 'redux-persist';
+import { forwardToMain, forwardToRenderer, replayActionMain, replayActionRenderer, triggerAlias, } from 'electron-redux';
+// @ts-ignore
+import * as createElectronStorage from 'redux-persist-electron-storage';
+import { getRootReducer } from '../shared/store/reducers';
 
 export class AppStore {
   private static store: Store<AppState>;
+  private static persistor: Persistor;
 
   static async configure(): Promise<void> {
     if (this.store !== undefined) {
       throw new Error('AppStore has already been configure');
     }
-    this.store = configureStore({}, 'main');
-    this.store.subscribe(() => {
-      // await storage.set('state', this.store.getState());
-    });
+    const middleware = [
+      triggerAlias,
+      promise,
+      thunk,
+      forwardToRenderer,
+    ];
+    const enhanced = [
+      applyMiddleware(...middleware),
+    ];
+
+    const rootReducer = getRootReducer('main');
+
+    const persistConfig = {
+      key: 'root',
+      storage: createElectronStorage()
+    };
+    const persistedReducer = persistReducer(persistConfig, rootReducer);
+    const enhancer = compose<StoreEnhancerStoreCreator<AppState>>(...enhanced);
+
+    this.store = createStore(persistedReducer, {}, enhancer);
+    this.persistor = persistStore(this.store);
+
+    replayActionMain(this.store);
   }
 
   static getState(): AppState {
