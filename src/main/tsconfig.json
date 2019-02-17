@@ -4,6 +4,6 @@
     "outDir": "../../dist"
   },
   "include": [
-    "options.ts"
+    "main.ts"
   ]
 }

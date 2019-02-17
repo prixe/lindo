@@ -1,6 +1,6 @@
 import configureStore from '../shared/store/configureStore';
-import {AppState} from '../shared/store/store';
-import {AnyAction, Store, Unsubscribe} from 'redux';
+import { AppState } from '../shared/store/store';
+import { AnyAction, Store, Unsubscribe } from 'redux';
 
 export class AppStore {
   private static store: Store<AppState>;
@@ -21,6 +21,10 @@ export class AppStore {
 
   static dispatch(action: AnyAction): any {
     return this.store.dispatch(action);
+  }
+
+  static select<T>(selector: (state: AppState) => T): T {
+    return selector(this.store.getState());
   }
 
   static subscribe(listener: () => void): Unsubscribe {

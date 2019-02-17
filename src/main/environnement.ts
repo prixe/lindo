@@ -1,8 +1,9 @@
-export const Config = {
+export const ENV = {
+  itunesUrl: 'https://itunes.apple.com/',
   dofusTouch: {
     origin: 'https://proxyconnection.touch.dofus.com',
     manifestPath: 'manifest.json',
     assetMapPath: 'assetMap.json',
-    itunesAppUrl: 'https://itunes.apple.com/lookup?id=1041406978'
+    itunesAppId: '1041406978'
   }
 };
