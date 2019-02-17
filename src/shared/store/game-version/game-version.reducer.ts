@@ -1,5 +1,8 @@
 import * as gameVersion from './game-version.action';
 import { ActionType } from 'typesafe-actions';
+import { AppState } from '../store';
+
+export const gameVersionSelector = (state: AppState) => state.gameVersion;
 
 export interface GameVersionState {
   build: {
@@ -45,5 +48,7 @@ export default function gameVersionReducer(state = initialGameVersionState, acti
         appVersion: action.payload
       };
     }
+    default:
+      return state;
   }
 }
