@@ -1,6 +1,7 @@
 import {autoUpdater} from 'electron-updater';
 import {app} from 'electron';
 import {EUpdateType, UpdateWindow} from './update-window';
+import { GameUpdater } from './game-updater';
 
 export class Updater {
   constructor() {
@@ -17,6 +18,11 @@ export class Updater {
       const windowAppUpdate = new UpdateWindow(EUpdateType.Application);
       windowAppUpdate.run();
     }
+  }
+
+  private async updateGame(): Promise<void> {
+    const gameUpdater = new GameUpdater();
+    await gameUpdater.checkForUpdatesAndUpdate();
   }
 
 }
