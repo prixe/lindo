@@ -44,7 +44,8 @@ export const SettingsDefault: SettingsInterface = {
             },
             diver: {
                 end_turn: "backspace",
-                open_chat: "return"
+                open_chat: "return",
+                open_menu: "escape"
             },
             spell: [
                 "",

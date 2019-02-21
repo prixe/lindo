@@ -211,7 +211,8 @@
         "diver": {
           "header": "Divers",
           "end-turn": "Passer son tour / Prêt (combat)",
-          "open-chat": "Ouvrir le chat"
+          "open-chat": "Ouvrir le chat",
+          "open-menu": "Ouvrir le menu"
         },
         "interfaces": {
           "header": "Interfaces",

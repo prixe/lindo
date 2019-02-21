@@ -22,18 +22,23 @@ export class Shortcuts extends Mods {
 
         Logger.info('bindAll');
 
-        // end turn
+        // End turn
         this.shortcutsHelper.bind(this.params.diver.end_turn, () => {
             if (this.wGame.gui.fightManager.fightState == 0) this.wGame.gui.timeline.fightControlButtons.toggleReadyForFight();
             else if (this.wGame.gui.fightManager.fightState == 1) this.wGame.gui.fightManager.finishTurn();
         });
 
-        // open chat
+        // Open chat
         this.shortcutsHelper.bind(this.params.diver.open_chat, () => {
             if (!this.wGame.gui.numberInputPad.isVisible()) this.wGame.gui.chat.activate()
         });
 
-        // spell
+        // Open menu
+        this.shortcutsHelper.bind(this.params.diver.open_menu, () => {
+            // todo
+        });
+
+        // Spell
         async.forEachOf(this.params.spell, (shortcut: string, index: number) => {
             this.shortcutsHelper.bind(shortcut, () => {
                 this.wGame.gui.shortcutBar._panels.spell.slotList[index].tap();
