@@ -4,8 +4,8 @@ import { NgModule } from '@angular/core';
 import { applyMiddleware, compose, createStore, StoreEnhancerStoreCreator } from 'redux';
 import { getRootReducer } from '../../../shared/store/reducers';
 import { AppState } from '../../../shared/store/store';
-import { SharedModule } from '../shared/shared.module';
 import { ElectronService } from '../shared/providers/electron.service';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -18,7 +18,7 @@ export class StoreModule {
     public store: NgRedux<AppState>,
     public electron: ElectronService
   ) {
-    let middleware = [];
+    const middleware = [];
 
     if (electron.isElectron()) {
       middleware.push(window.require('electron-redux').forwardToMain);
