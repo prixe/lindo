@@ -2,6 +2,7 @@
   "extends": ["angular-tslint-rules", "./../../tslint.json"],
   "rules": {
     "no-implicit-dependencies": [true, "dev"],
+    "no-require-imports": false,
     "component-selector": [true, "element", ["game", "updater", "core", "app"], "kebab-case"]
   }
 }

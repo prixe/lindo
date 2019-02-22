@@ -19,7 +19,7 @@
     "build:dev": "npm run build -- -c dev",
     "build:prod": "npm run build -- -c production",
     "ng:serve": "ng serve",
-    "ng:serve:web": "npm run postinstall:web && ng serve -o",
+    "ng:serve:web": "npm run postinstall:web && ng serve",
     "electron:serve-tsc": "tsc -p src/main/tsconfig.json",
     "electron:serve": "wait-on http-get://localhost:4200/ && npm run electron:serve-tsc && electron . --serve",
     "electron:serve-no-ng": "npm run electron:serve-tsc && electron . --serve",
@@ -91,7 +91,7 @@
     "systemjs": "^0.21.6",
     "ts-node": "7.0.1",
     "tslint": "5.12.1",
-    "typescript": "3.1.6",
+    "typescript": "3.2.2",
     "wait-on": "3.2.0",
     "webdriver-manager": "12.1.0",
     "zone.js": "0.8.26"

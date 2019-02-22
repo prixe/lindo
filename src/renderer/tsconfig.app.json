@@ -1,8 +1,7 @@
 {
   "extends": "./../../tsconfig.json",
   "compilerOptions": {
-    "module": "es2015",
-    "types": []
+    "module": "es2015"
   },
   "exclude": [
     "**/*.spec.ts"
