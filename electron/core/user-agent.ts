@@ -1,11 +1,6 @@
 const settings = require('electron-settings');
 import { Logger } from '../core/logger/logger-electron';
 
-interface Crosswalk {
-    chrome: String;
-    crosswalk: String;
-}
-
 export class UserAgent {
 
     private subSeed: number;
@@ -25,24 +20,24 @@ export class UserAgent {
         "Linux; Android 7.1.2; Nexus 5X Build/N2G47O",
         "Linux; Android 7.0; SM-G930S Build/NRD90M",
         "Linux; Android 6.0.1; XT1254 Build/MCG24.251-5-5",
-        "Linux; Android 4.3; GT-I9300 Build/JSS15J",
-        "Linux; Android 6.0; LG-F460K Build/MRA58K",
-        "Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21",
+        "Linux; Android 8.0.0; SM-G960F Build/R16NW", // Samsung Galaxy S9
+        "Linux; Android 7.0; SM-G892A Build/NRD90M", // Samsung Galaxy S8
+        "Linux; Android 7.0; SM-G930VC Build/NRD90M", // Samsung Galaxy S7
         "Linux; Android 7.0; ZTE A2017U Build/NRD90M",
         "Linux; Android 7.0; Nexus 5X Build/NRD90M",
-        "Linux; Android 4.3; GT-I9300 Build/JSS15J",
+        "Linux; Android 6.0.1; SM-G920V Build/MMB29K", // Samsung Galaxy S6
         "Linux; Android 6.0.1; Z988 Build/MMB29M",
         "Linux; Android 7.0; Nexus 5X Build/NRD90M",
-        "Linux; Android 4.1.2; GT-I8552 Build/JZO54K",
-        "Linux; Android 5.1; LPT_200AR Build/LMY47I",
+        "Linux; Android 6.0.1; SM-G928X Build/LMY47X", // Samsung Galaxy S6 Edge Plus
+        "Linux; Android 6.0.1; Nexus 6P Build/MMB29P", // Nexus 6P
         "Linux; Android 7.1.1; K92 Build/NMF26V",
-        "Linux; Android 4.2.2; GT-I9295 Build/JDQ39",
-        "Linux; Android 6.0; HTC One_M8 Build/MRA58K6",
+        "Linux; Android 7.1.1; G8231 Build/41.2.A.0.219", // Sony Xperia XZ
+        "Linux; Android 6.0; HTC One X10 Build/MRA58K", // HTC One X10
         "Linux; Android 7.1.1; ONEPLUS A5000 Build/NMF26X",
         "Linux; Android 5.1.1; SM-G928X Build/LMY47X",
         "Linux; Android 6.0.1; Nexus 6P Build/MMB29P",
         "Linux; Android 6.0.1; E6653 Build/32.2.A.0.253",
-        "Linux; Android 6.0; HTC One M9 Build/MRA58K",
+        "Linux; Android 6.0.1; E6653 Build/32.2.A.0.253", // Sony Xperia Z5
         "Linux; Android 6.0.1; SM-G920V Build/MMB29K",
         "Linux; Android 7.0; LG-H840 Build/NRD90U"
     ];
@@ -51,8 +46,8 @@ export class UserAgent {
         "Linux; Android 4.4.4; DUK-AL20 Build/KTU84P",
         "Linux; Android 5.1; LPT_200AR Build/LMY47I",
         "Linux; Android 5.1.1; HUAWEI M2-801L Build/HUAWEIM2-801L",
-        "Linux; Android 4.0.4; SM-T330 Build/IMM76D",
-        "Linux; Android 7.0; Pixel C Build/NRD90M",
+        "Linux; Android 7.0; SM-T827R4 Build/NRD90M", // Samsung Galaxy Tab S3
+        "Linux; Android 7.0; Pixel C Build/NRD90M", // Google Pixel C
         "Linux; Android 7.1.2; SAMSUNG SM-T700 Build/N2G47E",
         "Linux; Android 7.1.2; SM-T805 Build/N2G47O",
         "Linux; Android 6.0.1; SAMSUNG SM-T805 Build/MMB29K",
@@ -65,7 +60,7 @@ export class UserAgent {
         "Linux; Android 6.0.1; SGP771 Build/32.2.A.0.253",
         "Linux; Android 5.1.1; SHIELD Tablet Build/LMY48C",
         "Linux; Android 5.0; SHIELD Tablet Build/LRX21M",
-        "Linux; Android 4.4.2; SHIELD Tablet Build/KOT49H",
+        "Linux; Android 5.0.2; LG-V410/V41020c Build/LRX22G", // LG G Pad 7.0
         "Linux; Android 5.0.1; SHIELD Tablet Build/LRX22C",
         "Linux; Android 6.0; SHIELD Tablet K1 Build/MRA58K",
         "Linux; Android 7.0; SHIELD Tablet K1 Build/NRD90M",
@@ -76,99 +71,60 @@ export class UserAgent {
         "Linux; Android 6.0; BTV-DL09 Build/HUAWEIBEETHOVEN-DL09"
     ];
 
-    private _crosswalks:Crosswalk[] = [
-        {
-            chrome: "Chrome/44.0.2403.157",
-            crosswalk: "Crosswalk/15.44.384.13"
-        },
-        {
-            chrome: "Chrome/53.0.2785.143",
-            crosswalk: "Crosswalk/23.53.589.4"
-        },
-        {
-            chrome: "Chrome/43.0.2357.18",
-            crosswalk: "Crosswalk/14.43.336.0"
-        },
-        {
-            chrome: "Chrome/50.0.2661.102",
-            crosswalk: "Crosswalk/20.50.533.12"
-        },
-        {
-            chrome: "Chrome/50.0.2661.102",
-            crosswalk: "Crosswalk/20.50.533.27"
-        },
-        {
-            chrome: "Chrome/53.0.2785.143",
-            crosswalk: "Crosswalk/23.53.589.2"
-        },
-        {
-            chrome: "Chrome/40.0.2214.91",
-            crosswalk: "Crosswalk/11.40.277.7"
-        },
-        {
-            chrome: "Chrome/43.0.2357.130",
-            crosswalk: "Crosswalk/14.43.343.22"
-        },
-        {
-            chrome: "Chrome/40.0.2214.91",
-            crosswalk: "Crosswalk/11.40.277.7"
-        },
-        {
-            chrome: "Chrome/50.0.2661.102",
-            crosswalk: "Crosswalk/20.50.533.27"
-        },
-        {
-            chrome: "Chrome/50.0.2661.102",
-            crosswalk: "Crosswalk/20.50.533.12"
-        },
-        {
-            chrome: "Chrome/43.0.2357.130",
-            crosswalk: "Crosswalk/14.43.343.22"
-        },
-        {
-            chrome: "Chrome/50.0.2661.102",
-            crosswalk: "Crosswalk/20.50.533.19"
-        },
-        {
-            chrome: "Chrome/43.0.2357.130",
-            crosswalk: "Crosswalk/14.43.343.22"
-        },
-        {
-            chrome: "Chrome/44.0.2403.157",
-            crosswalk: "Crosswalk/15.44.384.6"
-        },
-        {
-            chrome: "Chrome/50.0.2661.102",
-            crosswalk: "Crosswalk/20.50.533.11"
-        },
-        {
-            chrome: "Chrome/40.0.2214.28",
-            crosswalk: "Crosswalk/11.40.277.1"
-        },
-        {
-            chrome: "Chrome/50.0.2661.102",
-            crosswalk: "Crosswalk/20.50.533.11"
-        },
-        {
-            chrome: "Chrome/45.0.2454.101",
-            crosswalk: "Crosswalk/16.45.421.19"
-        },
-        {
-            chrome: "Chrome/39.0.2171.71",
-            crosswalk: "Crosswalk/10.39.235.15"
-        },
-        {
-            chrome: "Chrome/43.0.2357.130",
-            crosswalk: "Crosswalk/14.43.343.22"
-        },
-        {
-            chrome: "Chrome/45.0.2454.101",
-            crosswalk: "Crosswalk/16.45.421.196"
-        },
-        {
-            chrome: "Chrome/44.0.2403.157",
-            crosswalk: "Crosswalk/15.44.384.13"
-        }
+    private _chromes:String[] = [
+        "Chrome/72.0.3626.121",
+        "Chrome/71.0.3578.80",
+        "Chrome/71.0.3578.98",
+        "Chrome/70.0.3538.102",
+        "Chrome/70.0.3538.80",
+        "Chrome/70.0.3538.67",
+        "Chrome/70.0.3538.77",
+        "Chrome/70.0.3538.110",
+        "Chrome/69.0.3497.100",
+        "Chrome/69.0.3497.81",
+        "Chrome/69.0.3497.92",
+        "Chrome/68.0.3440.91",
+        "Chrome/68.0.3440.106",
+        "Chrome/68.0.3440.84",
+        "Chrome/68.0.3440.1805",
+        "Chrome/68.0.3440.75",
+        "Chrome/67.0.3396.87",
+        "Chrome/67.0.3396.99",
+        "Chrome/67.0.3396.79",
+        "Chrome/67.0.3396.62",
+        "Chrome/66.0.3359.117",
+        "Chrome/66.0.3359.139",
+        "Chrome/66.0.3359.181",
+        "Chrome/66.0.3359.158",
+        "Chrome/66.0.3359.170",
+        "Chrome/65.0.3325.181",
+        "Chrome/65.0.3325.109",
+        "Chrome/65.0.3325.162",
+        "Chrome/64.0.3282.186",
+        "Chrome/64.0.3282.140",
+        "Chrome/64.0.3282.137",
+        "Chrome/64.0.3282.167",
+        "Chrome/64.0.3282.119",
+        "Chrome/63.0.3239.83",
+        "Chrome/63.0.3239.111",
+        "Chrome/63.0.3239.108",
+        "Chrome/63.0.3239.84",
+        "Chrome/63.0.3239.132",
+        "Chrome/62.0.3202.94",
+        "Chrome/62.0.3202.89",
+        "Chrome/62.0.3202.84",
+        "Chrome/62.0.3202.62",
+        "Chrome/61.0.3163.100",
+        "Chrome/61.0.3163.79",
+        "Chrome/61.0.3163.98",
+        "Chrome/60.0.3112.78",
+        "Chrome/60.0.3112.90",
+        "Chrome/60.0.3112.113",
+        "Chrome/60.0.3112.116",
+        "Chrome/60.0.3112.101",
+        "Chrome/59.0.3071.115",
+        "Chrome/59.0.3071.125",
+        "Chrome/58.0.3029.110"
     ];
 
     public getString(): string {
@@ -190,12 +146,13 @@ export class UserAgent {
         let deviceType = seed % 2 == 0 ? 'phone' : 'tablet';
         let devicesList = deviceType == 'phone' ? this._phones : this._tablets;
         let randomDevice = seed % devicesList.length;
-        let randomCrosswalk = seed % this._crosswalks.length;
-        let firstMobile = deviceType == 'phone' ? (seed % 5 <= 2 ? ' Mobile' : '') : '';
-        let secondMobile = deviceType == 'phone' ? (seed % 5 >= 2 ? ' Mobile' : '') : '';
-        this.userAgentString = "Mozilla/5.0 (" + devicesList[randomDevice] + ")"
+        let randomChrome = seed % this._chromes.length;
+        let device = devicesList[randomDevice];
+        let chrome = this._chromes[randomChrome];
+        chrome = chrome.replace(/(\w+\/)((\d+\.){3})(\d+)/, "$1$2" + Math.round(seed % 90 + 60));
+        this.userAgentString = "Mozilla/5.0 (" + device + "; wv)"
             + " AppleWebKit/537.36 (KHTML, like Gecko) "
-            + this._crosswalks[/*randomCrosswalk*/0].chrome + firstMobile + ' '
-            + this._crosswalks[/*randomCrosswalk*/0].crosswalk + secondMobile + " Safari/537.36";
+            + chrome
+            + " Mobile Safari/537.36";
     }
 }
