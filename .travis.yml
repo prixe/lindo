@@ -42,7 +42,7 @@ before_cache:
 - rm -rf $HOME/.cache/electron-builder/wine
 deploy:
   provider: releases
-  api_key: 8941e9654a5cefaea83eb85da59086c38dc1a51a
+  api_key: b6e32c2c5429b7e7fc9f298573fd284fd1d58b0f
   skip_cleanup: true
   file_glob: true
   file:
