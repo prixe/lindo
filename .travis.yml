@@ -42,7 +42,8 @@ before_cache:
 - rm -rf $HOME/.cache/electron-builder/wine
 deploy:
   provider: releases
-  api_key: 6912937fb830ba2fc67e291ba37b05334127a729
+  api_key:
+    secure: 'to add'
   skip_cleanup: true
   file_glob: true
   file:
@@ -50,6 +51,7 @@ deploy:
     - releases/Lindo-*.zip
     - releases/lindo-*.tar.gz
     - releases/Lindo*.exe
+    - releases/lindo*.deb
   on:
     tags: true
 repo: JulienCoutault/lindo01
