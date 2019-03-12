@@ -121,10 +121,12 @@
       "category": "public.app-category.games"
     },
     "linux": {
-      "executableName": "Lindo",
+      "executableName": "lindo",
       "target": [
+        "deb",
         "tar.gz"
       ],
+      "icon": "build/icon.png",
       "maintainer": "Prixe"
     },
     "win": {
