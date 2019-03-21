@@ -12,12 +12,13 @@ export class PartyInfo extends Mods {
 
   constructor(
     wGame: any,
-    private party_info: boolean,
+    private party_info_pp: boolean,
+    private party_info_lvl: boolean,
     private translate: TranslateService
   ) {
     super(wGame);
     this.translate = translate;
-    if (this.party_info) {
+    if (this.party_info_pp || this.party_info_lvl) {
       Logger.info(' - enable PartyInfo');
 
       this.partyInitialized = (this.wGame.document.querySelector("#party-info-container") === null ? false : true);
@@ -31,18 +32,20 @@ export class PartyInfo extends Mods {
       this.on(this.wGame.dofus.connectionManager, 'PartyNewGuestMessage', this.updatePartyInfo.bind(this));
       this.on(this.wGame.dofus.connectionManager, 'PartyLeaderUpdateMessage', this.updatePartyInfo.bind(this));
     } else {
-      Logger.info(' - enable PartyInfo');
+      Logger.info(' - disable PartyInfo');
     }
   }
 
   // Initialize party info container
   private initializePartyInfo() {
-    if (this.partyInitialized)
-      return;
+    if (this.partyInitialized) {
+        return;
+    }
     let partyBoxes = this.wGame.document.querySelector(".partyBoxes");
     if(!partyBoxes) return;
     let parent = partyBoxes.parentElement;
     this.container = this.wGame.document.createElement("div");
+    this.container.id = "party-info-container";
     this.container.style = `background: rgba(0, 0, 0, 0.6);
                             margin: 2px;
                             border-radius: 5px;
@@ -52,31 +55,33 @@ export class PartyInfo extends Mods {
                             color: #ced0bb;
                             font-family: berlin_sans_fb_demibold;
                             box-shadow: 0 2px 10px rgba(0, 0, 0, 1) inset;`;
-    let partyLevelElement = this.wGame.document.createElement("div");
-    let prospectionContainerElement = this.wGame.document.createElement("div");
-    let prospectionImageElement = this.wGame.document.createElement("img");
-    let prospectionTextElement = this.wGame.document.createElement("span");
 
-    this.container.id = "party-info-container";
+    if (this.party_info_lvl) {
+        let partyLevelElement = this.wGame.document.createElement("div");
 
-    partyLevelElement.textContent = this.translate.instant('app.option.vip.party-info.level') + " ?";
-    partyLevelElement.id = "party-level";
-    partyLevelElement.style = "font-size: 13px;user-select: none;cursor: default;"
+        partyLevelElement.textContent = this.translate.instant('app.option.vip.party-info.level') + " ?";
+        partyLevelElement.id = "party-level";
+        partyLevelElement.style = "font-size: 13px;user-select: none;cursor: default;"
+        this.container.appendChild(partyLevelElement);
+    }
 
-    prospectionContainerElement.style = "font-size: 13px;user-select: none;cursor: default;"
+    if (this.party_info_pp) {
+        let prospectionContainerElement = this.wGame.document.createElement("div");
+        let prospectionImageElement = this.wGame.document.createElement("img");
+        let prospectionTextElement = this.wGame.document.createElement("span");
 
-    prospectionImageElement.src = "./assets/ui/icons/prospecting.png";
-    prospectionImageElement.style = "height: 1em; vertical-align: middle;"
+        prospectionImageElement.src = "./assets/ui/icons/prospecting.png";
+        prospectionImageElement.style = "height: 1em; vertical-align: middle;"
+        prospectionContainerElement.appendChild(prospectionImageElement);
+        prospectionContainerElement.style = "font-size: 13px;user-select: none;cursor: default;"
 
-    prospectionTextElement.textContent = " ?";
-    prospectionTextElement.id = "party-pr";
-    prospectionTextElement.style = "vertical-align: middle;"
+        prospectionTextElement.textContent = " ?";
+        prospectionTextElement.id = "party-pr";
+        prospectionTextElement.style = "vertical-align: middle;"
 
-    prospectionContainerElement.appendChild(prospectionImageElement);
-    prospectionContainerElement.appendChild(prospectionTextElement);
-
-    this.container.appendChild(partyLevelElement);
-    this.container.appendChild(prospectionContainerElement);
+        prospectionContainerElement.appendChild(prospectionTextElement);
+        this.container.appendChild(prospectionContainerElement);
+    }
 
     parent.insertBefore(this.container, partyBoxes);
     this.partyInitialized = true;
@@ -101,8 +106,12 @@ export class PartyInfo extends Mods {
             partyLevel += c.memberData.level;
             prospecting += c.memberData.prospecting;
           });
-        this.wGame.document.querySelector("#party-level").textContent = this.translate.instant('app.option.vip.party-info.level') +" "+ (isNaN(partyLevel) ? "?" : partyLevel);
-        this.wGame.document.querySelector("#party-pr").textContent = " "+ (isNaN(prospecting) ? "?":prospecting);
+          if (this.party_info_lvl) {
+            this.wGame.document.querySelector("#party-level").textContent = this.translate.instant('app.option.vip.party-info.level') +" "+ (isNaN(partyLevel) ? "?" : partyLevel);
+          }
+          if (this.party_info_pp) {
+            this.wGame.document.querySelector("#party-pr").textContent = " "+ (isNaN(prospecting) ? "?":prospecting);
+          }
         }
       } catch(e) {}
     },(Math.random() * 500) + 500);
@@ -110,7 +119,7 @@ export class PartyInfo extends Mods {
 
   public reset() {
         super.reset();
-        if (this.party_info) {
+        if (this.party_info_pp || this.party_info_lvl) {
             this.destroy();
         }
     }

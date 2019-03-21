@@ -75,7 +75,8 @@ export interface SettingsInterface {
                 health_bar_shortcut: string;
                 estimator: boolean;
                 hidden_mount: boolean;
-                party_info: boolean;
+                party_info_pp: boolean;
+                party_info_lvl: boolean;
             },
             auto_group: {
                 active: boolean;
