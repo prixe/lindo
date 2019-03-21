@@ -623,26 +623,26 @@ export module Option {
             private _health_bar_shortcut: string;
             private _estimator: boolean;
             private _hidden_mount: boolean;
-			private _party_info_pp:boolean;
-			private _party_info_lvl:boolean;
+            private _party_info_pp:boolean;
+            private _party_info_lvl:boolean;
 
-			get party_info_pp():boolean{
-				return this._party_info_pp;
-			}
+            get party_info_pp():boolean{
+                return this._party_info_pp;
+            }
 
-			set party_info_pp(party_info_pp:boolean){
-				this.settingsProvider.write('option.vip.general.party_info_pp', party_info_pp);
+            set party_info_pp(party_info_pp:boolean){
+                this.settingsProvider.write('option.vip.general.party_info_pp', party_info_pp);
                 this._party_info_pp = party_info_pp;
-			}
+            }
 
-			get party_info_lvl():boolean{
-				return this._party_info_lvl;
-			}
+            get party_info_lvl():boolean{
+                return this._party_info_lvl;
+            }
 
-			set party_info_lvl(party_info_lvl:boolean){
-				this.settingsProvider.write('option.vip.general.party_info_lvl', party_info_lvl);
+            set party_info_lvl(party_info_lvl:boolean){
+                this.settingsProvider.write('option.vip.general.party_info_lvl', party_info_lvl);
                 this._party_info_lvl = party_info_lvl;
-			}
+            }
 
             get hidden_mount(): boolean {
                 return this._hidden_mount;
@@ -695,8 +695,8 @@ export module Option {
                 this.health_bar_shortcut = this.settingsProvider.read('option.vip.general.health_bar_shortcut');
                 this.estimator = this.settingsProvider.read('option.vip.general.estimator');
                 this.hidden_mount = this.settingsProvider.read('option.vip.general.hidden_mount');
-				this.party_info_pp = this.settingsProvider.read('option.vip.general.party_info_pp');
-				this.party_info_lvl = this.settingsProvider.read('option.vip.general.party_info_lvl');
+                this.party_info_pp = this.settingsProvider.read('option.vip.general.party_info_pp');
+                this.party_info_lvl = this.settingsProvider.read('option.vip.general.party_info_lvl');
             }
         }
 
