@@ -212,7 +212,8 @@
         "diver": {
           "header": "Miscellaneous",
           "end-turn": "End your turn / Ready (fight)",
-          "open-chat": "Open the chat"
+          "open-chat": "Open the chat",
+          "open-menu": "Open the menu"
         },
         "interfaces": {
           "header": "Interfaces",

@@ -208,7 +208,8 @@
         "diver": {
           "header": "Diverso",
           "end-turn": "Saltar su torno / Listo (combate)",
-          "open-chat": "Abrir el chat"
+          "open-chat": "Abrir el chat",
+          "open-menu": "Abre el menu"
         },
         "interfaces": {
           "header": "Interfaces",
