@@ -32,6 +32,7 @@ export interface SettingsInterface {
             diver: {
                 end_turn: string;
                 open_chat: string;
+                open_menu: string;
             }
             spell: Array<string>;
             item: Array<string>;
