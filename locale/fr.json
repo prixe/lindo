@@ -188,9 +188,9 @@
           }
         },
         "party-info": {
-          "header":"Afficher le niveau du groupe et la prospection",
-          "level":"Niv.",
-          "prospecting":"Prospection"
+          "header-lvl": "Afficher le niveau du groupe",
+          "header-pp": "Afficher la prospection du groupe",
+          "level": "Niv."
         },
         "status": {
           "header": "Statut VIP"
@@ -211,7 +211,8 @@
         "diver": {
           "header": "Divers",
           "end-turn": "Passer son tour / Prêt (combat)",
-          "open-chat": "Ouvrir le chat"
+          "open-chat": "Ouvrir le chat",
+          "open-menu": "Ouvrir le menu"
         },
         "interfaces": {
           "header": "Interfaces",

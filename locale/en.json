@@ -189,9 +189,9 @@
           }
         },
         "party-info": {
-          "header":"Show party's level and prospecting",
-          "level":"Lvl.",
-          "prospecting":"Prospecting"
+          "header-lvl":"Show party's level",
+          "header-pp":"Show party's prospecting",
+          "level":"Lvl."
         },
         "status": {
           "header": "VIP Status"
@@ -212,7 +212,8 @@
         "diver": {
           "header": "Miscellaneous",
           "end-turn": "End your turn / Ready (fight)",
-          "open-chat": "Open the chat"
+          "open-chat": "Open the chat",
+          "open-menu": "Open the menu"
         },
         "interfaces": {
           "header": "Interfaces",

@@ -44,7 +44,8 @@ export const SettingsDefault: SettingsInterface = {
             },
             diver: {
                 end_turn: "backspace",
-                open_chat: "return"
+                open_chat: "return",
+                open_menu: ""
             },
             spell: [
                 "",
@@ -150,7 +151,8 @@ export const SettingsDefault: SettingsInterface = {
                 health_bar_shortcut: 'p',
                 estimator: true,
                 hidden_mount: false,
-                party_info: false
+                party_info_pp: false,
+                party_info_lvl: false
             },
             auto_group: {
                 active: false,
