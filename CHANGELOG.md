@@ -1,3 +1,12 @@
+## [2.3.0] - 2019-03-30
+
+### Améliorations
+
+- La prévisualisation du niveau et de la prospection peuvent être activées ou désactivées séparément
+- Appuyer sur Echap lorsqu'aucune fenêtre n'est ouverte ouvrira le menu
+- Un raccourci clavier supplémentaire pour ouvrir ce menu a été ajouté
+- Mise à jour des dépendances, dont Electron
+
 ## [2.2.0] - 2018-12-21
 
 ### Ajouts
