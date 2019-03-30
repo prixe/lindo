@@ -25,11 +25,12 @@ export class CssOverload extends Mods{
     private menuStyleFix() {
         this.styleTag.innerHTML += `
             .topBorder {
-              max-width: 0;
+                max-width: 0;
             }
 
-            .PingBtn .borderBox .emoteBtn::before, {
-              border-width: 20px;
+            .PingBtn .borderBox .emoteBtn::before {
+                border-width: 20px;
+                border-image-slice: 40;
             }
         `;
     }
