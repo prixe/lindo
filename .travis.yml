@@ -27,7 +27,7 @@ before_script:
 script:
 - |
   npm run build:prod
-   ENVS=`env | grep -iE '^([A-Z]|_)*(DEBUG|NODE_|ELECTRON_|YARN_|NPM_|CI|CIRCLE|TRAVIS|APPVEYOR_|CSC_|_TOKEN|_KEY|AWS_|STRIP|BUILD_)([A-Z]|_)*=' | sed -n '/^[^\t]/s/=.*//p' | sed '/^$/d' | sed 's/^/-e /g' | tr '\n' ' '`
+  ENVS=`env | grep -iE '^([A-Z]|_)*(DEBUG|NODE_|ELECTRON_|YARN_|NPM_|CI|CIRCLE|TRAVIS|APPVEYOR_|CSC_|_TOKEN|_KEY|AWS_|STRIP|BUILD_)([A-Z]|_)*=' | sed -n '/^[^\t]/s/=.*//p' | sed '/^$/d' | sed 's/^/-e /g' | tr '\n' ' '`
   if [ "$TRAVIS_OS_NAME" == "linux" ]; then
     docker run $ENVS --rm \
       -v ${PWD}:/project \
@@ -43,7 +43,7 @@ before_cache:
 deploy:
   provider: releases
   api_key:
-    secure: "wV+icEcQNGSRZ8VrozDOVctX+Ag7inFlUzkuBOk4J3Pqsic1sQedt6gOq4z9oOqF5Ju60fpQAeHVHOW/Y51OlgMu7w/0jTdKUw6iAvooiJVPM4wJeYiMkU4naWT5IZB6+mW6mzw1lQAi28FaNuSfS93kx4exDFhFXxwV1yZfbo4Jc7GqgsB3mRTo7sDj61KlWFzojBqI+hG+riZpjBI2u+q825zjrCqOCbdHZBl/n4mx0Km0C6inNoleuzzuGipY9rfpsbm0iv+lsnFxseiPfih9efLVmioAlNigIevn3fAXSAOBBDbwDCrsxIrB5Cdw/4XEDzBY6rDGBC/gWqGi6+gQr0sy1nI+8xLW1VaLPiQOH+cX0ZVT4VR8FAiF9cSl6lcaTBM56cRjyDLhQeVQ7yKuGATwKWNwzPOCI+GrCHaJ0hwFGGpUQORevJ7jwDN64Liw101FNiUOKArTGPihc4isB9WzMG7FVK2fev8stEQRkJ5p0MQbkjhRJfuNFqNpp/ZQ5Sgh9Uf8w3KuyPbaOudjS2INuG9zXMC7YiIFp4rK8jiF/2RI4idY3p/8CMVg83SiCG4AR5dLRTyU98anoaeiCmtTyXtokdCF/fTYLams1xBbDcdJqjHTv+Gl73Q+Jam5seIYZPWIhTc6PdMo1gO+gYodlZQT2Uko/nhNkIQ="
+    secure: "skUfo2v9SXITbL6zw4sMIMp9pgxOS1cQ1gLjJzt1GtUCJ55Z7scMO4IVQl62sgKRZEKdK7JSpf3rcNrKNPU12J0pK8rCZiqdCklpHSBW+2qR/RUIt1u2Xf2O20J5DrXqu6bR9FiVrCLvplPMJoP+o8KhKH5ESkoHi9Ij73Z45cLOsfE7RbyxyPwjKFrSlEweovPZvaINJYf/X9DqSZCoKAT0UfvZ56Hs+1+sYkSeOl7VGDpwrZeQ8eKYewpT0oyTCKehE4NESOCc1pzooPQPlq2XAzLE/t2tdQoyNphnWWCuDmXfjVouwt9P1ii1u3i4PFwbB62FpnhPoK9y1ovdmQLY0PmaksWUXkUPe4hkfkJKrKuny0+xByZ79Roian4V/wE4GcL5ZkFs4ZKBUhgT2rsw8CpHdzIRj7n3QvYtT/wY8brS9LCbAJlEAXaO8vZ+h85upmqVt4EyzH4S6LCO1AFyegHPJtTxiZDIkOogZUPsh9NPvTKSEu86uoy78y4VMpOdQR3cazto9qDD42DGKE/RfRjnpombkrKxwxKIL7P9SXbN72rT3uHUcH5+IOTUqXuF84Vo3RE+6GfAnD3Q0K1LTHBLHbrh26nY0CM4v0jlc/izHAQwvk3aZDu7u+ZOJ2Ila5GAC2NxhV/6mHHunDHiAZrt7639YjlvyJ4+pUo="
   skip_cleanup: true
   file_glob: true
   file:
