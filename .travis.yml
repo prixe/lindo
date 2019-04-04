@@ -43,7 +43,7 @@ before_cache:
 deploy:
   provider: releases
   api_key:
-    secure: 'to add'
+    secure: "wV+icEcQNGSRZ8VrozDOVctX+Ag7inFlUzkuBOk4J3Pqsic1sQedt6gOq4z9oOqF5Ju60fpQAeHVHOW/Y51OlgMu7w/0jTdKUw6iAvooiJVPM4wJeYiMkU4naWT5IZB6+mW6mzw1lQAi28FaNuSfS93kx4exDFhFXxwV1yZfbo4Jc7GqgsB3mRTo7sDj61KlWFzojBqI+hG+riZpjBI2u+q825zjrCqOCbdHZBl/n4mx0Km0C6inNoleuzzuGipY9rfpsbm0iv+lsnFxseiPfih9efLVmioAlNigIevn3fAXSAOBBDbwDCrsxIrB5Cdw/4XEDzBY6rDGBC/gWqGi6+gQr0sy1nI+8xLW1VaLPiQOH+cX0ZVT4VR8FAiF9cSl6lcaTBM56cRjyDLhQeVQ7yKuGATwKWNwzPOCI+GrCHaJ0hwFGGpUQORevJ7jwDN64Liw101FNiUOKArTGPihc4isB9WzMG7FVK2fev8stEQRkJ5p0MQbkjhRJfuNFqNpp/ZQ5Sgh9Uf8w3KuyPbaOudjS2INuG9zXMC7YiIFp4rK8jiF/2RI4idY3p/8CMVg83SiCG4AR5dLRTyU98anoaeiCmtTyXtokdCF/fTYLams1xBbDcdJqjHTv+Gl73Q+Jam5seIYZPWIhTc6PdMo1gO+gYodlZQT2Uko/nhNkIQ="
   skip_cleanup: true
   file_glob: true
   file:
