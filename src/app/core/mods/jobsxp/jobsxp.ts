@@ -1,8 +1,6 @@
 import { Mods } from "../mods";
 import { Option } from "app/core/service/settings.service";
 import { Logger } from "app/core/electron/logger.helper";
-import * as util from 'util' // has no default export
-import { inspect } from 'util' // or directly
 
 export class Jobsxp extends Mods{
 
