@@ -15,6 +15,7 @@ import { DamageEstimator } from "app/core/mods/damage-estimator/damageestimator"
 import { Shortcuts } from "app/core/mods/shortcuts/shortcuts";
 import { Inactivity } from "app/core/mods/general/inactivity";
 import { HealthBar } from "app/core/mods/health-bar/healthbar";
+import { Jobsxp } from "app/core/mods/jobsxp/jobsxp";
 import { Notifications } from "app/core/mods/notifications/notifications";
 import { CssOverload } from "app/core/mods/cssOverload/cssOverload";
 import { JsFixes } from "app/core/mods/jsFixes/jsFixes";
@@ -44,6 +45,7 @@ export class GameComponent implements AfterViewInit {
     private autogroup: AutoGroup;
     private inactivity: Inactivity;
     private healthbar: HealthBar;
+    private jobsxp: Jobsxp;
     private damageEstimator: DamageEstimator;
     private notifications: Notifications;
     private cssOverload: CssOverload;
@@ -122,6 +124,7 @@ export class GameComponent implements AfterViewInit {
             case 4:
             case 3:
                 if (this.healthbar) this.healthbar.reset();
+                if (this.jobsxp) this.jobsxp.reset();
             case 2:
                 if (this.autogroup) this.autogroup.reset();
                 if (this.inactivity) this.inactivity.reset();
@@ -153,6 +156,7 @@ export class GameComponent implements AfterViewInit {
             case 4:
             case 3:
                 this.healthbar = new HealthBar(this.game.window, this.settingsService.option.vip.general);
+                this.jobsxp = new Jobsxp(this.game.window, this.settingsService.option.vip.general);
             case 2:
                 this.autogroup = new AutoGroup(this.game.window, this.settingsService.option.vip.autogroup, this.ipcRendererService, this.translate);
                 this.inactivity = new Inactivity(this.game.window, this.settingsService.option.vip.general.disable_inactivity);

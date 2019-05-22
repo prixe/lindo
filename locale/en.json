@@ -63,6 +63,7 @@
             "disable-inactivity": "Extend the delay before disconnection for inactivity",
             "health-bar": "Activate the display of the life bars below the fighters",
             "health-bar-shortcut": "Shortcuts for show/hide life bars",
+            "jobsxp": "Activate the display of the job xp need for leveling",
             "estimator": "Estimating spell damage in battle",
             "hide-mount": "Hide mounts during fights (beta)"
           },

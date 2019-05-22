@@ -63,6 +63,7 @@
             "disable-inactivity": "Aumenta il tempo per disconessione da inattività",
             "health-bar": "Visualizza le barre della vita sotto i combattenti",
             "health-bar-shortcut": "Tasto rapido per mostrare/nascondere le barre della vita",
+            "jobsxp": "Activate the display of the job xp need for leveling",
             "estimator": "Fai una stima dei danni da incantesimi in battaglia",
             "hide-mount": "Nascondi le cavalcature durante i combattimenti (beta)"
           },
