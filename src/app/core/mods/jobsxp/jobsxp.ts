@@ -22,9 +22,9 @@ export class Jobsxp extends Mods{
             jobsxpbarCss.id = 'jobsxpbarCss';
             jobsxpbarCss.innerHTML = `
             .xpRestanteText {
+                opacity = 0.6;
                 box-sizing: border-box;
                 border: 1px gray solid;
-                background-color: #222;
                 border-radius: 3px;
                 overflow: hidden;
                 background-color: #333;
@@ -37,11 +37,12 @@ export class Jobsxp extends Mods{
                 text-align: right;
                 text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.9);
                 right: 10px;
-                opacity = 0.5;
             }`;
             this.wGame.document.getElementsByTagName('head')[0].appendChild(jobsxpbarCss);
             
-            this.setFightStart();
+            setTimeout(() => {
+                this.create();
+            }, 5000);
             this.updateJob();
         }
     }
@@ -52,7 +53,13 @@ export class Jobsxp extends Mods{
         this.xpRestanteText.id = 'xpRestanteId';
         this.xpRestanteText.className = 'xpRestanteText';
         this.xpRestanteText.style.visibility = 'visible';
-
+        let jobs = this.wGame.gui.playerData.jobs.list;
+        this.xpRestanteText.innerHTML = '';
+        for (var id in jobs) {
+            if(this.wGame.gui.playerData.jobs.list[id].experience.jobXpNextLevelFloor){
+                this.xpRestanteText.innerHTML += "<div style=\"color:  red\" >"+ this.wGame.gui.playerData.jobs.list[id].info.nameId + ": </div>"+(this.wGame.gui.playerData.jobs.list[id].experience.jobXpNextLevelFloor - this.wGame.gui.playerData.jobs.list[id].experience.jobXP) + " xp manquante avant le lvl "+ (this.wGame.gui.playerData.jobs.list[id].experience.jobLevel + 1 + "</br>");
+            }
+        }
         this.wGame.foreground.rootElement.appendChild(this.xpRestanteText);
     }
 
@@ -66,18 +73,7 @@ export class Jobsxp extends Mods{
                 }
                 if(e.experiencesUpdate.jobXpNextLevelFloor){
                     this.create();
-                    this.xpRestanteText.innerHTML = this.wGame.gui.playerData.jobs.list[e.experiencesUpdate.jobId].info.nameId + ": </br>"+(e.experiencesUpdate.jobXpNextLevelFloor - e.experiencesUpdate.jobXP) + " xp manquante avant le lvl "+ (e.experiencesUpdate.jobLevel + 1);
                 }
-            } catch (ex) {
-                Logger.info(ex);
-            }
-        });
-    }
-
-    private setFightStart(): void {
-        this.on(this.wGame.dofus.connectionManager, 'GameFightStartingMessage', (e: any) => {
-            try {
-                // il se passe quelque chose
             } catch (ex) {
                 Logger.info(ex);
             }
