@@ -60,7 +60,8 @@ export class Jobsxp extends Mods{
                 this.xpRestanteText.innerHTML += "<div style=\"color:  red\" >"+ this.wGame.gui.playerData.jobs.list[id].info.nameId + ": </div>"+(this.wGame.gui.playerData.jobs.list[id].experience.jobXpNextLevelFloor - this.wGame.gui.playerData.jobs.list[id].experience.jobXP) + " xp manquante avant le lvl "+ (this.wGame.gui.playerData.jobs.list[id].experience.jobLevel + 1 + "</br>");
             }
         }
-        this.wGame.foreground.rootElement.appendChild(this.xpRestanteText);
+        if (this.xpRestanteText.innerHTML != '')
+            this.wGame.foreground.rootElement.appendChild(this.xpRestanteText);
     }
 
     private updateJob(): void {
