@@ -1,3 +1,9 @@
+## [2.2.1] - 2019-06-19
+
+### Bugs
+
+- Une tentative de suppression d'assets manquants ne bloque plus la mise à jour
+
 ## [2.2.0] - 2018-12-21
 
 ### Ajouts
