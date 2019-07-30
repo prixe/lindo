@@ -24,17 +24,17 @@ export class Jobsxp extends Mods{
             .xpRestanteText {
                 opacity = 0.6;
                 box-sizing: border-box;
-                border: 1px gray solid;
+                border: 1.5px #232323 solid;
                 border-radius: 3px;
                 overflow: hidden;
                 background-color: #333;
                 font-size: 11px;
                 position: absolute;
                 color: white;
-                width: 115px;
+                width: 150px;
                 margin-right: 10px;
                 margin-top: 10px;
-                text-align: right;
+                text-align: center;
                 text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.9);
                 right: 10px;
             }`;
@@ -60,7 +60,7 @@ export class Jobsxp extends Mods{
             this.xpRestanteText.innerHTML = '';
             for (var id in jobs) {
                 if(this.wGame.gui.playerData.jobs.list[id].experience.jobXpNextLevelFloor){
-                    this.xpRestanteText.innerHTML += "<div style=\"color:  red\" >"+ this.wGame.gui.playerData.jobs.list[id].info.nameId + ": </div>"+(this.wGame.gui.playerData.jobs.list[id].experience.jobXpNextLevelFloor - this.wGame.gui.playerData.jobs.list[id].experience.jobXP) + " xp manquante avant le lvl "+ (this.wGame.gui.playerData.jobs.list[id].experience.jobLevel + 1 + "</br>");
+                    this.xpRestanteText.innerHTML += "<br>" + "<div style=\"color:  #2196f3; font-size: 20px\" >"+ this.wGame.gui.playerData.jobs.list[id].info.nameId + ": </div>"+(this.wGame.gui.playerData.jobs.list[id].experience.jobXpNextLevelFloor - this.wGame.gui.playerData.jobs.list[id].experience.jobXP) + " XP manquant " + " <br> " + " avant le niveau " + (this.wGame.gui.playerData.jobs.list[id].experience.jobLevel + 1 + "</br>") + "<br>";
                 }
             }
             if (this.xpRestanteText.innerHTML != '')
