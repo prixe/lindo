@@ -44,11 +44,13 @@ export class Jobsxp extends Mods{
                 this.create();
             }, 5000);
             this.updateJob();
+            this.setFightStart()
+            this.stopOnFightEnd()
+            this.stopOnFightStop()
         }
     }
 
     private create(): void{
-        // xpRestanteText
         if (this.params.jobsxp) {
             this.xpRestanteText = document.createElement('div');
             this.xpRestanteText.id = 'xpRestanteId';
