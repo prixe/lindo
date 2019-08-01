@@ -1,15 +1,17 @@
 import { Mods } from "../mods";
+import { TranslateService } from "@ngx-translate/core";
 import { Option } from "app/core/service/settings.service";
 import { Logger } from "app/core/electron/logger.helper";
 
 export class Jobsxp extends Mods{
-
-    private params: Option.VIP.General;
     private xpRestanteText : HTMLDivElement;
 
-    constructor(wGame: any, params: Option.VIP.General) {
+    constructor(
+        wGame: any,
+        private params: Option.VIP.General,
+        private translate: TranslateService
+    ) {
         super(wGame);
-        this.params = params;
 
         if (this.params.jobsxp) {
             Logger.info('- enable jobsxp');
@@ -62,8 +64,10 @@ export class Jobsxp extends Mods{
         let jobs = this.wGame.gui.playerData.jobs.list;
         this.xpRestanteText.innerHTML = '';
         for (var id in jobs) {
-            if(this.wGame.gui.playerData.jobs.list[id].experience.jobXpNextLevelFloor){
-                this.xpRestanteText.innerHTML += "<br>" + "<div style=\"color:  #2196f3; font-size: 20px\" >"+ this.wGame.gui.playerData.jobs.list[id].info.nameId + ": </div>"+(this.wGame.gui.playerData.jobs.list[id].experience.jobXpNextLevelFloor - this.wGame.gui.playerData.jobs.list[id].experience.jobXP) + " XP manquant " + " <br> " + " avant le niveau " + (this.wGame.gui.playerData.jobs.list[id].experience.jobLevel + 1 + "</br>") + "<br>";
+            let job = this.wGame.gui.playerData.jobs.list[id];
+            if (job.experience.jobXpNextLevelFloor) {
+                let xpToWin = job.experience.jobXpNextLevelFloor - job.experience.jobXP;
+                this.xpRestanteText.innerHTML += "<br>" + "<div style=\"color:  #2196f3; font-size: 20px\" >"+ job.info.nameId + " </div>"+ xpToWin + this.translate.instant('app.option.vip.jobsxp.text') + (job.experience.jobLevel + 1 + "</br>") + "<br>";
             }
         }
         if (this.xpRestanteText.innerHTML != '') {

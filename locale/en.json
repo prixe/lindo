@@ -194,6 +194,9 @@
           "header-pp":"Show party's prospecting",
           "level":"Lvl."
         },
+        "jobsxp": {
+            "text": " XP missing<br>before level "
+        },
         "status": {
           "header": "VIP Status"
         }
