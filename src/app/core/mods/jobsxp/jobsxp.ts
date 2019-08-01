@@ -12,11 +12,15 @@ export class Jobsxp extends Mods{
         this.params = params;
 
         if (this.params.jobsxp) {
+            Logger.info('- enable jobsxp');
             let jobsxpbarCssverif = this.wGame.document.getElementById('jobsxpbarCss');
             let xpRestanteIdverif = this.wGame.document.getElementById('xpRestanteId');
-            if (jobsxpbarCssverif && jobsxpbarCssverif.parentElement) jobsxpbarCssverif.parentElement.removeChild(jobsxpbarCssverif);
-            if (xpRestanteIdverif && xpRestanteIdverif.parentElement) xpRestanteIdverif.parentElement.removeChild(xpRestanteIdverif);
-            Logger.info('- enable jobsxp');
+            if (jobsxpbarCssverif && jobsxpbarCssverif.parentElement) {
+                jobsxpbarCssverif.parentElement.removeChild(jobsxpbarCssverif);
+            }
+            if (xpRestanteIdverif && xpRestanteIdverif.parentElement) {
+                xpRestanteIdverif.parentElement.removeChild(xpRestanteIdverif);
+            }
 
             let jobsxpbarCss = document.createElement('style');
             jobsxpbarCss.id = 'jobsxpbarCss';
@@ -39,7 +43,7 @@ export class Jobsxp extends Mods{
                 right: 10px;
             }`;
             this.wGame.document.getElementsByTagName('head')[0].appendChild(jobsxpbarCss);
-            
+
             setTimeout(() => {
                 this.create();
             }, 5000);
@@ -50,34 +54,33 @@ export class Jobsxp extends Mods{
         }
     }
 
-    private create(): void{
-        if (this.params.jobsxp) {
-            this.xpRestanteText = document.createElement('div');
-            this.xpRestanteText.id = 'xpRestanteId';
-            this.xpRestanteText.className = 'xpRestanteText';
-            this.xpRestanteText.style.visibility = 'visible';
-            let jobs = this.wGame.gui.playerData.jobs.list;
-            this.xpRestanteText.innerHTML = '';
-            for (var id in jobs) {
-                if(this.wGame.gui.playerData.jobs.list[id].experience.jobXpNextLevelFloor){
-                    this.xpRestanteText.innerHTML += "<br>" + "<div style=\"color:  #2196f3; font-size: 20px\" >"+ this.wGame.gui.playerData.jobs.list[id].info.nameId + ": </div>"+(this.wGame.gui.playerData.jobs.list[id].experience.jobXpNextLevelFloor - this.wGame.gui.playerData.jobs.list[id].experience.jobXP) + " XP manquant " + " <br> " + " avant le niveau " + (this.wGame.gui.playerData.jobs.list[id].experience.jobLevel + 1 + "</br>") + "<br>";
-                }
+    private create(): void {
+        this.xpRestanteText = document.createElement('div');
+        this.xpRestanteText.id = 'xpRestanteId';
+        this.xpRestanteText.className = 'xpRestanteText';
+        this.xpRestanteText.style.visibility = 'visible';
+        let jobs = this.wGame.gui.playerData.jobs.list;
+        this.xpRestanteText.innerHTML = '';
+        for (var id in jobs) {
+            if(this.wGame.gui.playerData.jobs.list[id].experience.jobXpNextLevelFloor){
+                this.xpRestanteText.innerHTML += "<br>" + "<div style=\"color:  #2196f3; font-size: 20px\" >"+ this.wGame.gui.playerData.jobs.list[id].info.nameId + ": </div>"+(this.wGame.gui.playerData.jobs.list[id].experience.jobXpNextLevelFloor - this.wGame.gui.playerData.jobs.list[id].experience.jobXP) + " XP manquant " + " <br> " + " avant le niveau " + (this.wGame.gui.playerData.jobs.list[id].experience.jobLevel + 1 + "</br>") + "<br>";
             }
-            if (this.xpRestanteText.innerHTML != '')
-                this.wGame.foreground.rootElement.appendChild(this.xpRestanteText);
+        }
+        if (this.xpRestanteText.innerHTML != '') {
+            this.wGame.foreground.rootElement.appendChild(this.xpRestanteText);
         }
     }
 
     private setFightStart(): void {
         this.on(this.wGame.dofus.connectionManager, 'GameFightStartingMessage', (e: any) => {
             try {
-                this.effacer();
+                this.clean();
             } catch (ex) {
                 Logger.info(ex);
             }
         });
     }
-    
+
     private stopOnFightEnd(): void {
         this.on(this.wGame.dofus.connectionManager, 'GameFightEndMessage', (e: any) => {
             try {
@@ -98,18 +101,19 @@ export class Jobsxp extends Mods{
         });
     }
 
-    private effacer():void {
-        if (this.xpRestanteText && this.xpRestanteText.parentElement){
+    private clean(): void {
+        if (this.xpRestanteText && this.xpRestanteText.parentElement) {
             this.xpRestanteText.style.visibility = '';
             this.xpRestanteText.innerHTML = '';
             this.xpRestanteText.parentElement.removeChild(this.xpRestanteText);
         }
     }
+
     private updateJob(): void {
         this.on(this.wGame.gui, 'JobExperienceUpdateMessage', (e: any) => {
             try {
-                this.effacer();
-                if(e.experiencesUpdate.jobXpNextLevelFloor){
+                this.clean();
+                if (e.experiencesUpdate.jobXpNextLevelFloor) {
                     this.create();
                 }
             } catch (ex) {
@@ -122,8 +126,12 @@ export class Jobsxp extends Mods{
         super.reset();
         if (!this.params.jobsxp) {
             let jobsxpbarCss = this.wGame.document.getElementById('jobsxpbarCss');
-            if (jobsxpbarCss && jobsxpbarCss.parentElement) jobsxpbarCss.parentElement.removeChild(jobsxpbarCss);
-            if (this.xpRestanteText && this.xpRestanteText.parentElement) this.xpRestanteText.parentElement.removeChild(this.xpRestanteText);
+            if (jobsxpbarCss && jobsxpbarCss.parentElement) {
+                jobsxpbarCss.parentElement.removeChild(jobsxpbarCss);
+            }
+            if (this.xpRestanteText && this.xpRestanteText.parentElement) {
+                this.xpRestanteText.parentElement.removeChild(this.xpRestanteText);
+            }
         }
     }
 
