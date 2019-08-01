@@ -149,6 +149,7 @@ export const SettingsDefault: SettingsInterface = {
                 disable_inactivity: false,
                 health_bar: true,
                 health_bar_shortcut: 'p',
+                jobsxp: true,
                 estimator: true,
                 hidden_mount: false,
                 party_info_pp: false,

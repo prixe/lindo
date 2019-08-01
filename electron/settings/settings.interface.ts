@@ -74,6 +74,7 @@ export interface SettingsInterface {
                 disable_inactivity: boolean;
                 health_bar: boolean;
                 health_bar_shortcut: string;
+                jobsxp: boolean,
                 estimator: boolean;
                 hidden_mount: boolean;
                 party_info_pp: boolean;
