@@ -212,6 +212,7 @@
           "header": "Divers",
           "end-turn": "Passer son tour / Prêt (combat)",
           "open-chat": "Ouvrir le chat",
+          "active-open-menu": "Ouvrir le menu lorsqu'aucune fenêtre n'est ouverte (ECHAP)",
           "open-menu": "Ouvrir le menu"
         },
         "interfaces": {

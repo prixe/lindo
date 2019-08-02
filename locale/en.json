@@ -213,6 +213,7 @@
           "header": "Miscellaneous",
           "end-turn": "End your turn / Ready (fight)",
           "open-chat": "Open the chat",
+          "active-open-menu": "Open menu when no window is open (ECHAP)",
           "open-menu": "Open the menu"
         },
         "interfaces": {

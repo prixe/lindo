@@ -15,6 +15,10 @@ export class Shortcuts extends Mods {
         this.params = params;
         this.shortcutsHelper = new ShortcutsHelper(this.wGame);
 
+        if (this.params.diver.active_open_menu) {
+            Logger.info(' - enable open_menu');
+        }
+
         this.bindAll();
     }
 
@@ -85,7 +89,7 @@ export class Shortcuts extends Mods {
                         break;
                     }
                 }
-                if (!winClosed) {
+                if (this.params.diver.active_open_menu && !winClosed) {
                     // If no window closed open menu
                     this.wGame.gui.mainControls.buttonBox._childrenList[14].tap()
                 }
