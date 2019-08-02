@@ -193,6 +193,9 @@
           "header-pp": "Afficher la prospection du groupe",
           "level": "Niv."
         },
+        "jobsxp": {
+            "text": " XP manquant<br>avant le niveau "
+        },
         "status": {
           "header": "Statut VIP"
         }

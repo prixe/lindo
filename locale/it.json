@@ -194,6 +194,9 @@
           "header-pp": "Mostra prospezione di gruppo",
           "level": "Lvl."
         },
+        "jobsxp": {
+            "text": " XP mancante<br>prima livello "
+        },
         "status": {
           "header": "Stato VIP"
         }

@@ -156,7 +156,7 @@ export class GameComponent implements AfterViewInit {
             case 4:
             case 3:
                 this.healthbar = new HealthBar(this.game.window, this.settingsService.option.vip.general);
-                this.jobsxp = new Jobsxp(this.game.window, this.settingsService.option.vip.general);
+                this.jobsxp = new Jobsxp(this.game.window, this.settingsService.option.vip.general, this.translate);
             case 2:
                 this.autogroup = new AutoGroup(this.game.window, this.settingsService.option.vip.autogroup, this.ipcRendererService, this.translate);
                 this.inactivity = new Inactivity(this.game.window, this.settingsService.option.vip.general.disable_inactivity);
