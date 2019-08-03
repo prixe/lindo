@@ -1,3 +1,9 @@
+## [2.2.2] - 2019-08-03
+
+### Améliorations
+
+- Ajout d'une option pour désactiver l'ouverture du menu avec la touche Echap
+
 ## [2.2.1] - 2019-06-19
 
 ### Bugs
