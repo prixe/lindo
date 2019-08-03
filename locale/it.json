@@ -213,6 +213,7 @@
           "header": "Varie",
           "end-turn": "Finisci il turno / Pronto (combattimenti)",
           "open-chat": "Apri la chat",
+          "active-open-menu": "Apri menu quando nessuna finestra è aperta (ECHAP)",
           "open-menu": "Apri il menu"
         },
         "interfaces": {

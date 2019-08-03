@@ -209,6 +209,7 @@
           "header": "Diverso",
           "end-turn": "Saltar su torno / Listo (combate)",
           "open-chat": "Abrir el chat",
+          "active-open-menu": "Apri menu quando nessuna finestra è aperta (ECHAP)",
           "open-menu": "Abre el menu"
         },
         "interfaces": {
