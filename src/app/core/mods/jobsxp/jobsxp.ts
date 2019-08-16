@@ -57,22 +57,25 @@ export class Jobsxp extends Mods{
     }
 
     private create(): void {
-        this.xpRestanteText = document.createElement('div');
-        this.xpRestanteText.id = 'xpRestanteId';
-        this.xpRestanteText.className = 'xpRestanteText';
-        this.xpRestanteText.style.visibility = 'visible';
-        let jobs = this.wGame.gui.playerData.jobs.list;
-        this.xpRestanteText.innerHTML = '';
-        for (var id in jobs) {
-            let job = this.wGame.gui.playerData.jobs.list[id];
-            if (job.experience.jobXpNextLevelFloor) {
-                let xpToWin = job.experience.jobXpNextLevelFloor - job.experience.jobXP;
-                this.xpRestanteText.innerHTML += "<br>" + "<div style=\"color:  #2196f3; font-size: 20px\" >"+ job.info.nameId + " </div>"+ xpToWin + this.translate.instant('app.option.vip.jobsxp.text') + (job.experience.jobLevel + 1 + "</br>") + "<br>";
+        setTimeout(() => {
+            this.clean();
+            this.xpRestanteText = document.createElement('div');
+            this.xpRestanteText.id = 'xpRestanteId';
+            this.xpRestanteText.className = 'xpRestanteText';
+            this.xpRestanteText.style.visibility = 'visible';
+            let jobs = this.wGame.gui.playerData.jobs.list;
+            this.xpRestanteText.innerHTML = '';
+            for (var id in jobs) {
+                let job = this.wGame.gui.playerData.jobs.list[id];
+                if (job.experience.jobXpNextLevelFloor) {
+                    let xpToWin = job.experience.jobXpNextLevelFloor - job.experience.jobXP;
+                    this.xpRestanteText.innerHTML += "<br>" + "<div style=\"color:  #2196f3; font-size: 20px\" >"+ job.info.nameId + " </div>"+ xpToWin + this.translate.instant('app.option.vip.jobsxp.text') + (job.experience.jobLevel + 1 + "</br>") + "<br>";
+                }
             }
-        }
-        if (this.xpRestanteText.innerHTML != '') {
-            this.wGame.foreground.rootElement.appendChild(this.xpRestanteText);
-        }
+            if (this.xpRestanteText.innerHTML != '') {
+                this.wGame.foreground.rootElement.appendChild(this.xpRestanteText);
+            }
+        }, 500);
     }
 
     private setFightStart(): void {
@@ -116,7 +119,6 @@ export class Jobsxp extends Mods{
     private updateJob(): void {
         this.on(this.wGame.gui, 'JobExperienceUpdateMessage', (e: any) => {
             try {
-                this.clean();
                 if (e.experiencesUpdate.jobXpNextLevelFloor) {
                     this.create();
                 }
