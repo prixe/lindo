@@ -65,13 +65,13 @@ export class AutoGroup extends Mods {
 
                     let idInt = setInterval(() => {
                         this.masterParty(this.params.members.split(';'));
-                    }, this.getRandomTime(5, 7));
+                    }, 6000);
 
                     this.addOnResetListener(() => {
                         clearInterval(idInt);
                     });
                 }
-            }, this.getRandomTime(2, 3));
+            }, 3000);
         } catch (e) {
             Logger.info(e);
         }
@@ -90,11 +90,12 @@ export class AutoGroup extends Mods {
         try {
             setTimeout(() => {
                 this.on(this.wGame.dofus.connectionManager, 'PartyInvitationMessage', (msg: any) => {
-                    if (this.params.leader === msg.fromName) {
-                        this.acceptPartyInvitation(msg.partyId);
-                    }
-                });
-            }, this.getRandomTime(1, 2));
+                if (this.params.leader === msg.fromName) {
+                    this.acceptPartyInvitation(msg.partyId);
+                }
+            });
+            }, 2000);
+
         } catch (e) {
             Logger.info(e);
         }
@@ -118,6 +119,7 @@ export class AutoGroup extends Mods {
     private masterParty(nameList: Array<string>) {
         let partyMembers = this.getPartyMembers();
         nameList.forEach((name) => {
+
             if (!partyMembers.includes(name)) {
                 this.wGame.dofus.sendMessage('BasicWhoIsRequestMessage', {
                     search: name,
@@ -125,6 +127,7 @@ export class AutoGroup extends Mods {
                 });
 
                 this.once(this.wGame.dofus.connectionManager, 'BasicWhoIsMessage', (msg: any) => {
+
                     //si perso pas dans le groupe
                     if (msg.playerState == 1) {
                         this.inviteToParty(name);
@@ -185,7 +188,8 @@ export class AutoGroup extends Mods {
             let changeMapRetry = () => {
                 if (this.wGame.isoEngine.actorManager.getActor(this.wGame.isoEngine.actorManager.userId).moving || previousMap == this.wGame.isoEngine.mapRenderer.mapId) {
                     setTimeout(changeMapRetry, 300);
-                } else {
+                }
+                else {
                     setTimeout(callback, 100 + Math.random() * 700);
                 }
             }
@@ -253,7 +257,7 @@ export class AutoGroup extends Mods {
                     this.movedOnRandomCell = true;
                     if (Math.random() > 0.2) this.moveToRandomCellOnMap();
                 }
-            }, this.getRandomTime(2, 5));
+            }, this.getRandomInt(1000, 10000));
         }
     }
 
@@ -499,8 +503,11 @@ export class AutoGroup extends Mods {
     }
 
     public followLeader(skipLogin: boolean = false): void {
+
         let onCharacterSelectedSuccess = () => {
+
             try {
+
                 this.turnIdle();
                 this.on(this.ipcRendererService, 'auto-group-push-path', (event: Event, followInstruction: any) => {
                     this.log('Got event! ' + followInstruction.type + ' on ' + followInstruction.mapId);
@@ -509,7 +516,7 @@ export class AutoGroup extends Mods {
                         this.path.push(followInstruction);
                         setTimeout(() => {
                             if (this.idle) this.checkFollow();
-                        }, this.getRandomTime(1, 2));
+                        }, 700 + Math.random() * 2500);
                     }
                 });
 
@@ -539,7 +546,8 @@ export class AutoGroup extends Mods {
                     this.on(this.wGame.dofus.connectionManager, 'CurrentMapMessage', onCurrentMapMessage);
                     this.on(this.wGame.dofus.connectionManager, 'GameFightStartingMessage', onGameFightStartingMessage);
                     this.on(this.wGame.dofus.connectionManager, 'GameFightEndMessage', onGameFightEndMessage);
-                }, this.getRandomTime(1, 2));
+                }, 2000);
+
             } catch (e) {
                 Logger.info(e);
             }
@@ -553,6 +561,7 @@ export class AutoGroup extends Mods {
     }
 
     public autoEnterFight(skipLogin: boolean = false) {
+
         try {
             let joinFight = (fightId: number, fighterId: number) => {
                 if (this.isPvMFight(fightId)) {
@@ -563,9 +572,10 @@ export class AutoGroup extends Mods {
                             setTimeout(() => {
                                 resolve();
                             }, 1500);
-                        }, this.getRandomTime(1, 3));
+                        }, this.getRandomInt(1000, 2500));
                     });
-                } else {
+                }
+                else {
                     this.wGame.gui.chat.logMsg(this.translate.instant('app.option.vip.auto-group.pvp-warning'));
                 }
             };
@@ -578,7 +588,7 @@ export class AutoGroup extends Mods {
                             setTimeout(() => {
                                 resolve();
                             }, 200);
-                        }, this.getRandomTime(1, 4));
+                        }, this.getRandomInt(1000, 5000));
                     }
                 });
             };
@@ -609,7 +619,7 @@ export class AutoGroup extends Mods {
                                         else
                                             return;
                                     });
-                            }, this.getRandomTime(1, 2));
+                            }, this.getRandomInt(500, 1000));
                             return;
                         }
                     }
@@ -620,7 +630,8 @@ export class AutoGroup extends Mods {
                 this.on(this.wGame.dofus.connectionManager, "PartyMemberInFightMessage", onPartyMemberInFightMessage);
                 this.on(this.wGame.dofus.connectionManager, 'MapComplementaryInformationsDataMessage', onMapComplementaryInformationsDataMessage);
                 this.on(this.wGame.dofus.connectionManager, 'MapComplementaryInformationsWithCoordsMessage', onMapComplementaryInformationsDataMessage);
-            }, this.getRandomTime(1, 2));
+            }, 2000);
+
         } catch (e) {
             Logger.info(e);
         }

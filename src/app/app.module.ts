@@ -15,7 +15,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import localeFr from '@angular/common/locales/fr';
 import localeEn from '@angular/common/locales/en';
 import localeEs from '@angular/common/locales/es';
-import localeIt from '@angular/common/locales/it';
 
 
 import { AppRoutingModule } from './app.routing';
@@ -55,7 +54,6 @@ export function translateModuleFactory(http: HttpClient) {
 registerLocaleData(localeFr);
 registerLocaleData(localeEn);
 registerLocaleData(localeEs);
-registerLocaleData(localeIt);
 
 @NgModule({
     imports: [

@@ -33,7 +33,6 @@
             Settings
         } = isElectron ? require('electron').remote.require('./settings/settings') : {Settings: undefined};
         const LoggerLib = isElectron ? require('electron').remote.require('./core/logger/logger-app').Logger : undefined;
-        window.FileLoggerLib = isElectron ? require('electron').remote.require('./core/logger/file-logger-app').logger : undefined;
     </script>
 </head>
 

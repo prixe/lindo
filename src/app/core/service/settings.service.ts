@@ -419,8 +419,10 @@ export module Option {
         export class Diver {
             private _end_turn: string;
             private _open_chat: string;
-            private _active_open_menu: boolean;
-            private _open_menu: string;
+            private _goto_up_map: string;
+            private _goto_bottom_map: string;
+            private _goto_left_map: string;
+            private _goto_right_map: string;
 
             get end_turn(): string {
                 return this._end_turn;
@@ -440,29 +442,49 @@ export module Option {
                 this._open_chat = open_chat;
             }
 
-            set active_open_menu(active_open_menu: boolean) {
-                this.settingsProvider.write('option.shortcuts.diver.active_open_menu', active_open_menu);
-                this._active_open_menu = active_open_menu;
+            get goto_up_map(): string {
+                return this._goto_up_map;
             }
 
-            get active_open_menu(): boolean {
-                return this._active_open_menu;
+            set goto_up_map(goto_up_map: string) {
+                this.settingsProvider.write('option.shortcuts.diver.goto_up_map', goto_up_map);
+                this._goto_up_map = goto_up_map;
             }
 
-            get open_menu(): string {
-                return this._open_menu;
+            get goto_bottom_map(): string {
+                return this._goto_bottom_map;
             }
 
-            set open_menu(open_menu: string) {
-                this.settingsProvider.write('option.shortcuts.diver.open_menu', open_menu);
-                this._open_menu = open_menu;
+            set goto_bottom_map(goto_bottom_map: string) {
+                this.settingsProvider.write('option.shortcuts.diver.goto_bottom_map', goto_bottom_map);
+                this._goto_bottom_map = goto_bottom_map;
+            }
+
+            get goto_left_map(): string {
+                return this._goto_left_map;
+            }
+
+            set goto_left_map(goto_left_map: string) {
+                this.settingsProvider.write('option.shortcuts.diver.goto_left_map', goto_left_map);
+                this._goto_left_map = goto_left_map;
+            }
+
+            get goto_right_map(): string {
+                return this._goto_right_map;
+            }
+
+            set goto_right_map(goto_right_map: string) {
+                this.settingsProvider.write('option.shortcuts.diver.goto_right_map', goto_right_map);
+                this._goto_right_map = goto_right_map;
             }
 
             constructor(private settingsProvider: SettingsProvider) {
                 this.end_turn = this.settingsProvider.read('option.shortcuts.diver.end_turn');
                 this.open_chat = this.settingsProvider.read('option.shortcuts.diver.open_chat');
-                this.active_open_menu = this.settingsProvider.read('option.shortcuts.diver.active_open_menu');
-                this.open_menu = this.settingsProvider.read('option.shortcuts.diver.open_menu');
+                this.goto_up_map = this.settingsProvider.read('option.shortcuts.diver.goto_up_map');
+                this.goto_bottom_map = this.settingsProvider.read('option.shortcuts.diver.goto_bottom_map');
+                this.goto_left_map = this.settingsProvider.read('option.shortcuts.diver.goto_left_map');
+                this.goto_right_map = this.settingsProvider.read('option.shortcuts.diver.goto_right_map');
             }
         }
     }
@@ -645,26 +667,6 @@ export module Option {
             private _health_bar_shortcut: string;
             private _estimator: boolean;
             private _hidden_mount: boolean;
-            private _party_info_pp:boolean;
-            private _party_info_lvl:boolean;
-
-            get party_info_pp():boolean{
-                return this._party_info_pp;
-            }
-
-            set party_info_pp(party_info_pp:boolean){
-                this.settingsProvider.write('option.vip.general.party_info_pp', party_info_pp);
-                this._party_info_pp = party_info_pp;
-            }
-
-            get party_info_lvl():boolean{
-                return this._party_info_lvl;
-            }
-
-            set party_info_lvl(party_info_lvl:boolean){
-                this.settingsProvider.write('option.vip.general.party_info_lvl', party_info_lvl);
-                this._party_info_lvl = party_info_lvl;
-            }
 
             get hidden_mount(): boolean {
                 return this._hidden_mount;
@@ -717,8 +719,6 @@ export module Option {
                 this.health_bar_shortcut = this.settingsProvider.read('option.vip.general.health_bar_shortcut');
                 this.estimator = this.settingsProvider.read('option.vip.general.estimator');
                 this.hidden_mount = this.settingsProvider.read('option.vip.general.hidden_mount');
-                this.party_info_pp = this.settingsProvider.read('option.vip.general.party_info_pp');
-                this.party_info_lvl = this.settingsProvider.read('option.vip.general.party_info_lvl');
             }
         }
 

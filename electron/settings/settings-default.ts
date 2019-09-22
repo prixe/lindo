@@ -45,8 +45,10 @@ export const SettingsDefault: SettingsInterface = {
             diver: {
                 end_turn: "backspace",
                 open_chat: "return",
-                active_open_menu: true,
-                open_menu: ""
+                goto_up_map: "up",
+                goto_bottom_map: "down",
+                goto_left_map: "left",
+                goto_right_map: "right"
             },
             spell: [
                 "",
@@ -151,9 +153,7 @@ export const SettingsDefault: SettingsInterface = {
                 health_bar: true,
                 health_bar_shortcut: 'p',
                 estimator: true,
-                hidden_mount: false,
-                party_info_pp: false,
-                party_info_lvl: false
+                hidden_mount: false
             },
             auto_group: {
                 active: false,

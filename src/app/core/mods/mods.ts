@@ -19,10 +19,6 @@ export abstract class Mods implements IMods {
         this.onReset.push(fct);
     }
 
-    protected getRandomTime(min: number, max: number): number {
-        return (Math.random() * (max * 1000 - min * 1000) + min * 1000);
-    }
-
     protected on(manager: any, eventHandler: string, fct: any) {
         manager.on(eventHandler, fct);
         this.events.push({
