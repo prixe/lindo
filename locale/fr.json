@@ -79,7 +79,9 @@
             "website": "Site web",
             "changelog": "Notes de version"
           },
-          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          "text0": "Lindo est un logiciel open-source vous permettant de jouer à DOFUS Touch depuis votre ordinateur.",
+          "text1": "Contrairement à un émulateur Android, le code est directement interprété par votre ordinateur, ce qui rend sa lecture plus rapide et vous permet donc de jouer à DOFUS Touch en profitant pleinement des performances de votre ordinateur !",
+          "text2": "Initialement connu sous le nom de DOFUS Touch No-Emu, ce logiciel développé par Daniel et Thomas a été contraint de fermer ses portes suite à un avertissement de la part d'Ankama."
         }
       },
       "shortcuts": {
@@ -185,6 +187,11 @@
             }
           }
         },
+        "party-info": {
+          "header-lvl": "Afficher le niveau du groupe",
+          "header-pp": "Afficher la prospection du groupe",
+          "level": "Niv."
+        },
         "status": {
           "header": "Statut VIP"
         }
@@ -205,6 +212,8 @@
           "header": "Divers",
           "end-turn": "Passer son tour / Prêt (combat)",
           "open-chat": "Ouvrir le chat",
+          "active-open-menu": "Ouvrir le menu lorsqu'aucune fenêtre n'est ouverte (ECHAP)",
+          "open-menu": "Ouvrir le menu",
           "goto_up_map": "Go to Upper Map",
           "goto_bottom_map": "Go to Lower Map",
           "goto_left_map": "Go to Left Map",

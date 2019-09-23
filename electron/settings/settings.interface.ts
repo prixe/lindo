@@ -32,6 +32,8 @@ export interface SettingsInterface {
             diver: {
                 end_turn: string;
                 open_chat: string;
+                active_open_menu: boolean;
+                open_menu: string;
                 goto_up_map: string;
                 goto_bottom_map: string;
                 goto_left_map: string;
@@ -79,6 +81,8 @@ export interface SettingsInterface {
                 health_bar_shortcut: string;
                 estimator: boolean;
                 hidden_mount: boolean;
+                party_info_pp: boolean;
+                party_info_lvl: boolean;
             },
             auto_group: {
                 active: boolean;
