@@ -65,13 +65,13 @@ export class AutoGroup extends Mods {
 
                     let idInt = setInterval(() => {
                         this.masterParty(this.params.members.split(';'));
-                    }, 6000);
+                    }, this.getRandomTime(5, 7));
 
                     this.addOnResetListener(() => {
                         clearInterval(idInt);
                     });
                 }
-            }, 3000);
+            }, this.getRandomTime(2, 3);
         } catch (e) {
             Logger.info(e);
         }
@@ -94,7 +94,7 @@ export class AutoGroup extends Mods {
                     this.acceptPartyInvitation(msg.partyId);
                 }
             });
-            }, 2000);
+            }, this.getRandomTime(1, 2));
 
         } catch (e) {
             Logger.info(e);
@@ -119,15 +119,13 @@ export class AutoGroup extends Mods {
     private masterParty(nameList: Array<string>) {
         let partyMembers = this.getPartyMembers();
         nameList.forEach((name) => {
-
             if (!partyMembers.includes(name)) {
                 this.wGame.dofus.sendMessage('BasicWhoIsRequestMessage', {
                     search: name,
                     verbose: true
                 });
-
+                
                 this.once(this.wGame.dofus.connectionManager, 'BasicWhoIsMessage', (msg: any) => {
-
                     //si perso pas dans le groupe
                     if (msg.playerState == 1) {
                         this.inviteToParty(name);
@@ -257,7 +255,7 @@ export class AutoGroup extends Mods {
                     this.movedOnRandomCell = true;
                     if (Math.random() > 0.2) this.moveToRandomCellOnMap();
                 }
-            }, this.getRandomInt(1000, 10000));
+            }, this.getRandomTime(2, 5));
         }
     }
 
@@ -516,7 +514,7 @@ export class AutoGroup extends Mods {
                         this.path.push(followInstruction);
                         setTimeout(() => {
                             if (this.idle) this.checkFollow();
-                        }, 700 + Math.random() * 2500);
+                        }, this.getRandomTime(1, 2));
                     }
                 });
 
@@ -546,7 +544,7 @@ export class AutoGroup extends Mods {
                     this.on(this.wGame.dofus.connectionManager, 'CurrentMapMessage', onCurrentMapMessage);
                     this.on(this.wGame.dofus.connectionManager, 'GameFightStartingMessage', onGameFightStartingMessage);
                     this.on(this.wGame.dofus.connectionManager, 'GameFightEndMessage', onGameFightEndMessage);
-                }, 2000);
+                }, this.getRandomTime(1, 2));
 
             } catch (e) {
                 Logger.info(e);
@@ -572,7 +570,7 @@ export class AutoGroup extends Mods {
                             setTimeout(() => {
                                 resolve();
                             }, 1500);
-                        }, this.getRandomInt(1000, 2500));
+                        }, this.getRandomTime(1, 3));
                     });
                 }
                 else {
@@ -588,7 +586,7 @@ export class AutoGroup extends Mods {
                             setTimeout(() => {
                                 resolve();
                             }, 200);
-                        }, this.getRandomInt(1000, 5000));
+                        }, this.getRandomTime(1, 4));
                     }
                 });
             };
@@ -619,7 +617,7 @@ export class AutoGroup extends Mods {
                                         else
                                             return;
                                     });
-                            }, this.getRandomInt(500, 1000));
+                            }, this.getRandomTime(1, 2));
                             return;
                         }
                     }
@@ -630,7 +628,7 @@ export class AutoGroup extends Mods {
                 this.on(this.wGame.dofus.connectionManager, "PartyMemberInFightMessage", onPartyMemberInFightMessage);
                 this.on(this.wGame.dofus.connectionManager, 'MapComplementaryInformationsDataMessage', onMapComplementaryInformationsDataMessage);
                 this.on(this.wGame.dofus.connectionManager, 'MapComplementaryInformationsWithCoordsMessage', onMapComplementaryInformationsDataMessage);
-            }, 2000);
+            }, this.getRandomTime(1, 2));
 
         } catch (e) {
             Logger.info(e);
