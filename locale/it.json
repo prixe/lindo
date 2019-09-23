@@ -214,7 +214,11 @@
           "end-turn": "Finisci il turno / Pronto (combattimenti)",
           "open-chat": "Apri la chat",
           "active-open-menu": "Apri menu quando nessuna finestra è aperta (ECHAP)",
-          "open-menu": "Apri il menu"
+          "open-menu": "Apri il menu",
+          "go_up": "Vai alla Mappa superiore",
+          "go_bottom": "Vai alla mappa inferiore",
+          "go_left": "Vai a sinistra mappa",
+          "go_right": "Vai alla mappa di destra"
         },
         "interfaces": {
           "header": "Interfaccia",

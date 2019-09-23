@@ -214,7 +214,11 @@
           "end-turn": "End your turn / Ready (fight)",
           "open-chat": "Open the chat",
           "active-open-menu": "Open menu when no window is open (ECHAP)",
-          "open-menu": "Open the menu"
+          "open-menu": "Open the menu",
+          "go_up": "Go to Upper Map",
+          "go_bottom": "Go to Lower Map",
+          "go_left": "Go to Left Map",
+          "go_right": "Go to Right Map"
         },
         "interfaces": {
           "header": "Interfaces",
