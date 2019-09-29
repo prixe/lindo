@@ -61,6 +61,7 @@
             "disable-inactivity": "Extender el período de inactividad",
             "health-bar": "Visualización de barras de vida por debajo de los combatientes",
             "health-bar-shortcut": "Atajos para mostrar las barras de salud",
+            "jobsxp": "Activate the display of the job xp need for leveling",
             "estimator": "Hechizos de daño estimado durante el combate",
             "hide-mount": "Ocultar monturas durante las peleas (beta)"
           },
@@ -190,6 +191,9 @@
           "header-lvl": "Mostrar nivel del grupo",
           "header-pp": "Mostrar prospeccion del grupo",
           "level":"Niv."
+        },
+        "jobsxp": {
+            "text": " XP faltante<br>antes nivel "
         },
         "status": {
           "header": "Estatus VIP"
