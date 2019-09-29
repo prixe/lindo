@@ -419,7 +419,12 @@ export module Option {
         export class Diver {
             private _end_turn: string;
             private _open_chat: string;
+            private _active_open_menu: boolean;
             private _open_menu: string;
+            private _go_up: string;
+            private _go_bottom: string;
+            private _go_left: string;
+            private _go_right: string;
 
             get end_turn(): string {
                 return this._end_turn;
@@ -439,6 +444,15 @@ export module Option {
                 this._open_chat = open_chat;
             }
 
+            set active_open_menu(active_open_menu: boolean) {
+                this.settingsProvider.write('option.shortcuts.diver.active_open_menu', active_open_menu);
+                this._active_open_menu = active_open_menu;
+            }
+
+            get active_open_menu(): boolean {
+                return this._active_open_menu;
+            }
+
             get open_menu(): string {
                 return this._open_menu;
             }
@@ -448,10 +462,51 @@ export module Option {
                 this._open_menu = open_menu;
             }
 
+            get go_up(): string {
+                return this._go_up;
+            }
+
+            set go_up(go_up: string) {
+                this.settingsProvider.write('option.shortcuts.diver.go_up', go_up);
+                this._go_up = go_up;
+            }
+
+            get go_bottom(): string {
+                return this._go_bottom;
+            }
+
+            set go_bottom(go_bottom: string) {
+                this.settingsProvider.write('option.shortcuts.diver.go_bottom', go_bottom);
+                this._go_bottom = go_bottom;
+            }
+
+            get go_left(): string {
+                return this._go_left;
+            }
+
+            set go_left(go_left: string) {
+                this.settingsProvider.write('option.shortcuts.diver.go_left', go_left);
+                this._go_left = go_left;
+            }
+
+            get go_right(): string {
+                return this._go_right;
+            }
+
+            set go_right(go_right: string) {
+                this.settingsProvider.write('option.shortcuts.diver.go_right', go_right);
+                this._go_right = go_right;
+            }
+
             constructor(private settingsProvider: SettingsProvider) {
                 this.end_turn = this.settingsProvider.read('option.shortcuts.diver.end_turn');
                 this.open_chat = this.settingsProvider.read('option.shortcuts.diver.open_chat');
+                this.active_open_menu = this.settingsProvider.read('option.shortcuts.diver.active_open_menu');
                 this.open_menu = this.settingsProvider.read('option.shortcuts.diver.open_menu');
+                this.go_up = this.settingsProvider.read('option.shortcuts.diver.go_up');
+                this.go_bottom = this.settingsProvider.read('option.shortcuts.diver.go_bottom');
+                this.go_left = this.settingsProvider.read('option.shortcuts.diver.go_left');
+                this.go_right = this.settingsProvider.read('option.shortcuts.diver.go_right');
             }
         }
     }

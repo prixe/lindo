@@ -1,3 +1,16 @@
+## [2.2.3] - 2019-09-29
+
+### Ajouts
+
+- Nouvelle fonctionnalité pour afficher l'XP restante avant de monter un niveau métier
+- Raccourci pour changer de map avec les flèches du clavier
+
+## [2.2.2] - 2019-08-03
+
+### Améliorations
+
+- Ajout d'une option pour désactiver l'ouverture du menu avec la touche Echap
+
 ## [2.2.1] - 2019-06-19
 
 ### Bugs
