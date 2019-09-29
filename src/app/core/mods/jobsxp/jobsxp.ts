@@ -28,27 +28,69 @@ export class Jobsxp extends Mods{
             jobsxpbarCss.id = 'jobsxpbarCss';
             jobsxpbarCss.innerHTML = `
             .xpRestanteText {
-                opacity = 0.6;
                 box-sizing: border-box;
-                border: 1.5px #232323 solid;
-                border-radius: 3px;
                 overflow: hidden;
-                background-color: #333;
                 font-size: 11px;
                 position: absolute;
                 color: white;
-                width: 150px;
                 margin-right: 10px;
                 margin-top: 10px;
-                text-align: center;
                 text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.9);
                 right: 10px;
-            }`;
+                pointer-events: none;
+                padding: 5px 16px;
+            }
+
+            .xpRestanteText::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border-image-source: url(./assets/ui/container.png);
+                border-image-slice: 63;
+                border-image-width: 37px;
+                border-radius: 10px;
+                border-style: solid;
+                background-color: #2e2d28;
+                z-index: -1;
+                box-sizing: border-box;
+                opacity: 0.8;
+            }
+
+            .xpRestanteText .job {
+                display: flex;
+                margin: 8px;
+                align-items: center;
+            }
+
+            .xpRestanteText img {
+                flex-grow: 0;
+                flex-shrink: 0;
+                width: 50px;
+                height: 50px;
+                margin-left: 10px;
+            }
+
+            .xpRestanteText .description {
+                flex-grow: 1;
+                width: 120px;
+                text-align: right;
+            }
+
+            .xpRestanteText .name {
+                font-family: berlin_sans_fb_demibold;
+                font-size: 1.6em;
+                color: #ced0bb;
+                text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.9);
+            }
+
+
+            `;
             this.wGame.document.getElementsByTagName('head')[0].appendChild(jobsxpbarCss);
 
-            setTimeout(() => {
-                this.create();
-            }, 5000);
+            this.create();
             this.updateJob();
             this.setFightStart()
             this.stopOnFightEnd()
@@ -58,23 +100,43 @@ export class Jobsxp extends Mods{
 
     private create(): void {
         setTimeout(() => {
-            this.clean();
-            this.xpRestanteText = document.createElement('div');
-            this.xpRestanteText.id = 'xpRestanteId';
-            this.xpRestanteText.className = 'xpRestanteText';
-            this.xpRestanteText.style.visibility = 'visible';
-            let jobs = this.wGame.gui.playerData.jobs.list;
-            this.xpRestanteText.innerHTML = '';
-            for (var id in jobs) {
-                let job = this.wGame.gui.playerData.jobs.list[id];
-                if (job.experience.jobXpNextLevelFloor) {
-                    let xpToWin = job.experience.jobXpNextLevelFloor - job.experience.jobXP;
-                    this.xpRestanteText.innerHTML += "<br>" + "<div style=\"color:  #2196f3; font-size: 20px\" >"+ job.info.nameId + " </div>"+ xpToWin + this.translate.instant('app.option.vip.jobsxp.text') + (job.experience.jobLevel + 1 + "</br>") + "<br>";
+            if (this.wGame.gui.playerData && this.wGame.gui.playerData.jobs && this.wGame.gui.playerData.jobs.list) {
+                let jobs = this.wGame.gui.playerData.jobs.list;
+                if (Object.keys(jobs).length > 0 && typeof jobs[Object.keys(jobs)[0]].experience == "undefined") this.create();
+                else {
+                    this.clean();
+                    this.xpRestanteText = document.createElement('div');
+                    this.xpRestanteText.id = 'xpRestanteId';
+                    this.xpRestanteText.className = 'xpRestanteText';
+                    this.xpRestanteText.style.visibility = 'visible';
+                    this.xpRestanteText.innerHTML = '';
+                    for (var id in jobs) {
+                        let job = jobs[id];
+                        if (job.experience.jobXpNextLevelFloor) {
+                            let xpToWin = job.experience.jobXpNextLevelFloor - job.experience.jobXP;
+                            let html = `
+                                <div class="job">
+                                    <div class="description">
+                                        <div class="name">${job.info.nameId}</div>
+                                        <div class="text">
+                                            ${xpToWin}
+                                            ${this.translate.instant('app.option.vip.jobsxp.text')}
+                                            ${job.experience.jobLevel + 1}
+                                        </div>
+                                    </div>
+                                    ${this.getIconHTML(job)}
+                                </div>
+                            `;
+
+                            this.xpRestanteText.insertAdjacentHTML('beforeend', html);
+                        }
+                    }
+                    if (this.xpRestanteText.innerHTML != '') {
+                        this.wGame.foreground.rootElement.appendChild(this.xpRestanteText);
+                    }
                 }
             }
-            if (this.xpRestanteText.innerHTML != '') {
-                this.wGame.foreground.rootElement.appendChild(this.xpRestanteText);
-            }
+            else this.create();
         }, 500);
     }
 
@@ -126,6 +188,11 @@ export class Jobsxp extends Mods{
                 Logger.info(ex);
             }
         });
+    }
+
+    private getIconHTML(job): string {
+        let src = this.wGame.Config.assetsUrl + "/gfx/jobs/" + job.info.iconId + ".png";
+        return '<img src="' + src + '" />';
     }
 
     public reset() {
