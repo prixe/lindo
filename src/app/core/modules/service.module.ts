@@ -15,6 +15,7 @@ import { WindowService } from 'app/core/service/window.service';
 import { ChangelogWindowService } from 'app/window/changelog/changelog.window';
 import { OptionWindowService } from 'app/window/option/option.window';
 import { ShortcutsWindowService } from 'app/window/shortcuts/shortcuts.window';
+import { BugReportService } from 'app/core/service/bug-report.service';
 
 export function applicationServiceFactory(config: ApplicationService) {
     return function () {
@@ -46,6 +47,7 @@ export function settingModuleFactory(setting: SettingsService) {
         ApplicationService,
         VipService,
         SoundService,
+        BugReportService,
         {
             provide: APP_INITIALIZER,
             useFactory: applicationServiceFactory,

@@ -95,6 +95,18 @@
           "inventory": "Inventory",
           "other": "Various"
         }
+      },
+      "bug-report": {
+        "title": "Report a bug",
+        "description": "If you've observed an unexpected behavior on Lindo, you can report it by describing it below.",
+        "instructions": "Please provide at least these information:",
+        "list": {
+          "1": "The unexpected behavior description",
+          "2": "How to reproduce it",
+          "3": "What would the usual expected behavior be"
+        },
+        "placeholder": "Description",
+        "send": "Send"
       }
     },
     "option": {

@@ -9,6 +9,7 @@ import { IpcRendererService } from "app/core/electron/ipcrenderer.service";
 import { Game } from "app/core/classes/game";
 import { PluginsContainer } from "./plugins/pluginsContainer";
 import { Logger } from 'app/core/electron/logger.helper';
+import { BugReportService } from 'app/core/service/bug-report.service';
 
 import { AutoGroup } from "app/core/mods/auto-group/autogroup";
 import { DamageEstimator } from "app/core/mods/damage-estimator/damageestimator";
@@ -61,6 +62,7 @@ export class GameComponent implements AfterViewInit {
         private ipcRendererService: IpcRendererService,
         private zone: NgZone,
         private settingsService: SettingsService,
+        private bugReportService: BugReportService,
         private translate: TranslateService,
         private applicationService: ApplicationService,
         private http: HttpClient
@@ -232,6 +234,30 @@ export class GameComponent implements AfterViewInit {
 
         this.game.window.gui.playerData.on("characterSelectedSuccess", onCharacterSelectedSuccess);
         this.game.window.gui.on("disconnect", onDisconnect);
+
+        this.game.window.onerror = (messageOrEvent, source, line, column, error) => {
+            try {
+                let identification = this.game.window.gui.playerData.identification;
+                let sum = 'disconnected';
+                if (identification.accountId && identification.nickname) {
+                    let accountId = identification.accountId;
+                    let nicknameSum = identification.nickname
+                                        .split('')
+                                        .map((char) => { return char.charCodeAt() })
+                                        .reduce((accumulator, currentValue) => { 
+                                            return accumulator + currentValue
+                                        });
+                    // This sum ensures privacy
+                    sum = accountId + nicknameSum;
+                }
+                // Remove the full path to avoid sending OS account name
+                let stack = error.stack.replace(/(\S+)(\/lindo\/)/g, '$2');
+
+                this.bugReportService.writeLog(sum, stack);
+            } catch (e) {
+                Logger.error(e);
+            }
+        };
 
     }
 

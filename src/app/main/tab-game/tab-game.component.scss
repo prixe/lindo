@@ -77,21 +77,21 @@ div.tab {
 .options {
   
   display: flex;
-  margin: auto;
-  height: 65px;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 14px;
   
-  mat-icon {
+  button {
     opacity: .7;
+    height: 40px;
+    width: 40px;
+    margin-bottom: 14px;
     &:hover {
       opacity: 1;
     }
     &:active {
       opacity: .9;
     }
-  }
-
-  button{
-      margin: auto;
   }
 }
 

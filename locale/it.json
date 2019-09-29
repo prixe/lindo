@@ -95,6 +95,18 @@
           "inventory": "Inventario",
           "other": "Varie"
         }
+      },
+      "bug-report": {
+        "title": "Segnalare un bug",
+        "description": "Se hai osservato un comportamento imprevisto su Lindo, puoi segnalarlo descrivendolo di seguito.",
+        "instructions": "Fornisci almeno queste informazioni:",
+        "list": {
+          "1": "La descrizione del comportamento imprevisto",
+          "2": "Come riprodurlo",
+          "3": "Quale sarebbe il solito comportamento previsto"
+        },
+        "placeholder": "Descrizione",
+        "send": "Spedire"
       }
     },
     "option": {
