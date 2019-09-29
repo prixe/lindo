@@ -1,3 +1,11 @@
+## [2.3.1] - 2019-09-29
+
+### Ajouts
+
+- Possibilité d'effectuer un rapport de bug auquel sont attachées les précédentes erreurs survenue au cours de l'exécution de Lindo
+- Forçage du rendu des onglets en arrière plan (corrige le mauvais affichage des résultats de combat)
+- Les ajouts des version 2.2.1, 2.2.2 et 2.2.3 n'étaient pas présentent dans la 2.3.0. Ils le sont dans la 2.3.1.
+
 ## [2.3.0] - 2019-03-30
 
 ### Améliorations
@@ -6,6 +14,25 @@
 - Appuyer sur Echap lorsqu'aucune fenêtre n'est ouverte ouvrira le menu
 - Un raccourci clavier supplémentaire pour ouvrir ce menu a été ajouté
 - Mise à jour des dépendances, dont Electron
+
+## [2.2.3] - 2019-09-29
+
+### Ajouts
+
+- Nouvelle fonctionnalité pour afficher l'XP restante avant de monter un niveau métier
+- Raccourci pour changer de map avec les flèches du clavier
+
+## [2.2.2] - 2019-08-03
+
+### Améliorations
+
+- Ajout d'une option pour désactiver l'ouverture du menu avec la touche Echap
+
+## [2.2.1] - 2019-06-19
+
+### Bugs
+
+- Une tentative de suppression d'assets manquants ne bloque plus la mise à jour
 
 ## [2.2.0] - 2018-12-21
 

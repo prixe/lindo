@@ -61,6 +61,7 @@
             "disable-inactivity": "Extender el período de inactividad",
             "health-bar": "Visualización de barras de vida por debajo de los combatientes",
             "health-bar-shortcut": "Atajos para mostrar las barras de salud",
+            "jobsxp": "Activate the display of the job xp need for leveling",
             "estimator": "Hechizos de daño estimado durante el combate",
             "hide-mount": "Ocultar monturas durante las peleas (beta)"
           },
@@ -203,6 +204,9 @@
           "header-pp": "Mostrar prospeccion del grupo",
           "level":"Niv."
         },
+        "jobsxp": {
+            "text": " XP faltante<br>antes nivel "
+        },
         "status": {
           "header": "Estatus VIP"
         }
@@ -221,7 +225,12 @@
           "header": "Diverso",
           "end-turn": "Saltar su torno / Listo (combate)",
           "open-chat": "Abrir el chat",
-          "open-menu": "Abre el menu"
+          "active-open-menu": "Apri menu quando nessuna finestra è aperta (ECHAP)",
+          "open-menu": "Abre el menu",
+          "go_up": "Ir a Mapa Superior",
+          "go_bottom": "Ir a Lower Map",
+          "go_left": "Ir al Mapa de la Izquierda",
+          "go_right": "Ir al mapa de la derecha"
         },
         "interfaces": {
           "header": "Interfaces",

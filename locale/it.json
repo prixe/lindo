@@ -63,6 +63,7 @@
             "disable-inactivity": "Aumenta il tempo per disconessione da inattività",
             "health-bar": "Visualizza le barre della vita sotto i combattenti",
             "health-bar-shortcut": "Tasto rapido per mostrare/nascondere le barre della vita",
+            "jobsxp": "Attiva il display dell'esperienza del lavoro necessaria ad aumentarne il livello",
             "estimator": "Fai una stima dei danni da incantesimi in battaglia",
             "hide-mount": "Nascondi le cavalcature durante i combattimenti (beta)"
           },
@@ -205,6 +206,9 @@
           "header-pp": "Mostra prospezione di gruppo",
           "level": "Lvl."
         },
+        "jobsxp": {
+            "text": " XP mancante<br>prima livello "
+        },
         "status": {
           "header": "Stato VIP"
         }
@@ -225,7 +229,12 @@
           "header": "Varie",
           "end-turn": "Finisci il turno / Pronto (combattimenti)",
           "open-chat": "Apri la chat",
-          "open-menu": "Apri il menu"
+          "active-open-menu": "Apri menu quando nessuna finestra è aperta (ECHAP)",
+          "open-menu": "Apri il menu",
+          "go_up": "Vai alla Mappa superiore",
+          "go_bottom": "Vai alla mappa inferiore",
+          "go_left": "Vai a sinistra mappa",
+          "go_right": "Vai alla mappa di destra"
         },
         "interfaces": {
           "header": "Interfaccia",

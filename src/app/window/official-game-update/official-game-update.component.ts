@@ -525,8 +525,18 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
                 ((filename) => {
                     promises.push(new Promise((resolve, reject) => {
                         fs.unlink(this.destinationPath + filename, err => {
-                            if (err) reject(err);
-                            else resolve();
+                            try {
+                                if (err) {
+                                    if (err.code == 'ENOENT') this.log("Can't delete file. " + err);
+                                    else {
+                                        reject(err);
+                                        return;
+                                    }
+                                }
+                                resolve();
+                            } catch(e) {
+                                reject(e);
+                            }
                         });
                     }));
                 })(i);
