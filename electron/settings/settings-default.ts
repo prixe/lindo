@@ -46,7 +46,11 @@ export const SettingsDefault: SettingsInterface = {
                 end_turn: "backspace",
                 open_chat: "return",
                 active_open_menu: true,
-                open_menu: ""
+                open_menu: "",
+                go_up: "up",
+                go_bottom: "down",
+                go_left: "left",
+                go_right: "right"
             },
             spell: [
                 "",

@@ -214,7 +214,11 @@
           "end-turn": "Saltar su torno / Listo (combate)",
           "open-chat": "Abrir el chat",
           "active-open-menu": "Apri menu quando nessuna finestra è aperta (ECHAP)",
-          "open-menu": "Abre el menu"
+          "open-menu": "Abre el menu",
+          "go_up": "Ir a Mapa Superior",
+          "go_bottom": "Ir a Lower Map",
+          "go_left": "Ir al Mapa de la Izquierda",
+          "go_right": "Ir al mapa de la derecha"
         },
         "interfaces": {
           "header": "Interfaces",

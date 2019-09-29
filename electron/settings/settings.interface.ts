@@ -34,6 +34,10 @@ export interface SettingsInterface {
                 open_chat: string;
                 active_open_menu: boolean;
                 open_menu: string;
+                go_up: string;
+                go_bottom: string;
+                go_left: string;
+                go_right: string;
             }
             spell: Array<string>;
             item: Array<string>;
