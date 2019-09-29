@@ -39,36 +39,36 @@ export class Shortcuts extends Mods {
         // go to top map
         this.shortcutsHelper.bind(this.params.diver.go_up, () => {
             this.mover.move("top", () => {
-                console.log('Move to Up OK');
+                console.debug('Move to Up OK');
             }, (reason: string = '') => {
-                console.log('Move to Up Failed... (' + reason + ')');
+                console.debug('Move to Up Failed... (' + reason + ')');
             });
         });
 
         // go to bottom map
         this.shortcutsHelper.bind(this.params.diver.go_bottom, () => {
             this.mover.move("bottom", () => {
-                console.log('Move to Bottom OK');
+                console.debug('Move to Bottom OK');
             }, (reason: string = '') => {
-                console.log('Move to Bottom Failed... (' + reason + ')');
+                console.debug('Move to Bottom Failed... (' + reason + ')');
             });
         });
 
         // go to left map
         this.shortcutsHelper.bind(this.params.diver.go_left, () => {
             this.mover.move("left", () => {
-                console.log('Move to Left OK');
+                console.debug('Move to Left OK');
             }, (reason: string = '') => {
-                console.log('Move to Left Failed... (' + reason + ')');
+                console.debug('Move to Left Failed... (' + reason + ')');
             });
         });
 
         // go to right map
         this.shortcutsHelper.bind(this.params.diver.go_right, () => {
             this.mover.move("right", () => {
-                console.log('Move to Right OK');
+                console.debug('Move to Right OK');
             }, (reason: string = '') => {
-                console.log('Move to Right Failed... (' + reason + ')');
+                console.debug('Move to Right Failed... (' + reason + ')');
             });
         });
 
