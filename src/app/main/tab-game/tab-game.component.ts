@@ -26,7 +26,7 @@ export class TabGameComponent implements OnInit {
                 private applicationService: ApplicationService,
                 public settingsService: SettingsService,
                 private ipcRendererService: IpcRendererService,
-                private bugReportService: BugReportService,
+                public bugReportService: BugReportService,
                 private injector: Injector) {
         this.windowService = this.injector.get(WindowService)
         this.appName = applicationService.appName;
