@@ -47,10 +47,10 @@ export const SettingsDefault: SettingsInterface = {
                 open_chat: "return",
                 active_open_menu: true,
                 open_menu: "",
-                go_up: "up",
-                go_bottom: "down",
-                go_left: "left",
-                go_right: "right"
+                go_up: "ctrl+up",
+                go_bottom: "ctrl+down",
+                go_left: "ctrl+left",
+                go_right: "ctrl+right"
             },
             spell: [
                 "",
