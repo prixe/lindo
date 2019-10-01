@@ -35,6 +35,9 @@ import { MultiAccountComponent } from "app/window/option/vip/multi-account/multi
 import { NotificationComponent } from "app/window/option/notification/notification.component";
 import { AuthComponent } from "app/components/auth/auth.component";
 import { AboutComponent } from "app/window/option/about/about.component";
+import { GameUpdateComponent } from "app/window/game-update/game-update.component";
+import { OfficialGameUpdateComponent } from "app/window/official-game-update/official-game-update.component";
+import { BugReportComponent } from "app/window/bug-report/bug-report.component";
 
 import { SortablejsModule } from "angular-sortablejs/dist";
 import { MaterialModule } from "app/core/modules/material.module";
@@ -44,8 +47,6 @@ import { InputComponent } from 'app/window/shortcuts/input/input.component';
 
 import { ServiceModule } from "app/core/modules/service.module";
 import { registerLocaleData, CommonModule } from "@angular/common";
-import { GameUpdateComponent } from "app/window/game-update/game-update.component";
-import { OfficialGameUpdateComponent } from "app/window/official-game-update/official-game-update.component";
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 export function translateModuleFactory(http: HttpClient) {
@@ -96,6 +97,7 @@ registerLocaleData(localeIt);
         MultiAccountComponent,
         GameUpdateComponent,
         OfficialGameUpdateComponent,
+        BugReportComponent,
 
         ShortcutsComponent,
         ShortcutsApplicationComponent,

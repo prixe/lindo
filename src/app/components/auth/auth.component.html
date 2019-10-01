@@ -4,11 +4,11 @@
 
         <div class="row auth-inputs">
             <div class="col-xs-12">
-                <mat-input-container style="width:100%;">
+                <mat-form-field style="width:100%;">
                     <input type="password" type="password" matInput autofocus placeholder="{{'app.window.master-password.password-label' | translate}}"
                         [(ngModel)]="inputMasterPassword" name="password">
                     <mat-hint *ngIf="badMasterPassword" align="end">{{'app.window.master-password.password-bad' | translate}}</mat-hint>
-                </mat-input-container>
+                </mat-form-field>
             </div>
         </div>
 
