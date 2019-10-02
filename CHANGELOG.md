@@ -1,9 +1,15 @@
+## [2.3.2] - 2019-10-02
+
+### Modifications
+
+- Forçage du rendu des onglets en arrière plan (corrige le mauvais affichage des résultats de combat)
+- Envoi des erreurs automatisés, et anonymisation de l'adresse IP
+
 ## [2.3.1] - 2019-09-29
 
 ### Ajouts
 
 - Possibilité d'effectuer un rapport de bug auquel sont attachées les précédentes erreurs survenue au cours de l'exécution de Lindo
-- Forçage du rendu des onglets en arrière plan (corrige le mauvais affichage des résultats de combat)
 - Les ajouts des version 2.2.1, 2.2.2 et 2.2.3 n'étaient pas présentent dans la 2.3.0. Ils le sont dans la 2.3.1.
 
 ## [2.3.0] - 2019-03-30
