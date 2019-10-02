@@ -243,28 +243,44 @@ export class GameComponent implements AfterViewInit {
 
         this.game.window.onerror = (messageOrEvent, source, line, column, error) => {
             try {
-                let identification = this.game.window.gui.playerData.identification;
-                let sum = 'disconnected';
-                if (identification.accountId && identification.nickname) {
-                    let accountId = identification.accountId;
-                    let nicknameSum = identification.nickname
-                                        .split('')
-                                        .map((char) => { return char.charCodeAt() })
-                                        .reduce((accumulator, currentValue) => { 
-                                            return accumulator + currentValue
-                                        });
-                    // This sum ensures privacy
-                    sum = accountId + nicknameSum;
-                }
-                // Remove the full path to avoid sending OS account name
-                let stack = error.stack.replace(/(\S+)(\/lindo\/)/g, '$2');
+                let anonymousIdentity = this.getAnonymousIdentity();
+                let stack = error.stack.replace(/(\S+)(\/lindo\/)/g, '$2'); // Remove the full path to avoid sending OS account name
 
-                this.bugReportService.writeLog(sum, stack);
+                this.bugReportService.writeLog(anonymousIdentity, stack);
             } catch (e) {
                 Logger.error(e);
             }
         };
 
+        let consoleError = this.game.window.console.error;
+        this.game.window.console.error = function() {
+            let anonymousIdentity = this.getAnonymousIdentity();
+            let report = "";
+            for (let i = 0 ; i < arguments.length ; i++) {
+                report += JSON.stringify(arguments[i]) + "\n";
+            }
+            report = report.trim();
+            this.bugReportService.writeLog(anonymousIdentity, report);
+            return consoleError.apply(this.game.window.console, arguments)
+        }.bind(this);
+
+    }
+
+    private getAnonymousIdentity(): string {
+        let identification = this.game.window.gui.playerData.identification;
+        let sum = 'disconnected';
+        if (identification.accountId && identification.nickname) {
+            let accountId = identification.accountId;
+            let nicknameSum = identification.nickname
+                                .split('')
+                                .map((char) => { return char.charCodeAt() })
+                                .reduce((accumulator, currentValue) => { 
+                                    return accumulator + currentValue
+                                });
+            // This sum ensures privacy
+            sum = (accountId + nicknameSum).toString();
+        }
+        return sum;
     }
 
     private checkMaxZoom() {
