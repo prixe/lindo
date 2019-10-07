@@ -213,6 +213,7 @@
           "header": "Diverso",
           "end-turn": "Saltar su torno / Listo (combate)",
           "open-chat": "Abrir el chat",
+          "alignement_scan":"Escanear alineaciones de reproductores", 
           "active-open-menu": "Apri menu quando nessuna finestra è aperta (ECHAP)",
           "open-menu": "Abre el menu",
           "go_up": "Ir a Mapa Superior",

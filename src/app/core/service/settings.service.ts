@@ -419,6 +419,7 @@ export module Option {
         export class Diver {
             private _end_turn: string;
             private _open_chat: string;
+            private _alignement_scan: string;
             private _active_open_menu: boolean;
             private _open_menu: string;
             private _go_up: string;
@@ -442,6 +443,15 @@ export module Option {
             set open_chat(open_chat: string) {
                 this.settingsProvider.write('option.shortcuts.diver.open_chat', open_chat);
                 this._open_chat = open_chat;
+            }
+
+            set alignement_scan(active_open_menu: string) {
+                this.settingsProvider.write('option.shortcuts.diver.active_open_menu', active_open_menu);
+                this._alignement_scan = active_open_menu;
+            }
+
+            get alignement_scan(): string {
+                return this._alignement_scan;
             }
 
             set active_open_menu(active_open_menu: boolean) {
@@ -501,6 +511,7 @@ export module Option {
             constructor(private settingsProvider: SettingsProvider) {
                 this.end_turn = this.settingsProvider.read('option.shortcuts.diver.end_turn');
                 this.open_chat = this.settingsProvider.read('option.shortcuts.diver.open_chat');
+                this.alignement_scan = this.settingsProvider.read('option.shortcuts.diver.alignement_scan');
                 this.active_open_menu = this.settingsProvider.read('option.shortcuts.diver.active_open_menu');
                 this.open_menu = this.settingsProvider.read('option.shortcuts.diver.open_menu');
                 this.go_up = this.settingsProvider.read('option.shortcuts.diver.go_up');

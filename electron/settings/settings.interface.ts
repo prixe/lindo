@@ -32,6 +32,7 @@ export interface SettingsInterface {
             diver: {
                 end_turn: string;
                 open_chat: string;
+                alignement_scan: string,
                 active_open_menu: boolean;
                 open_menu: string;
                 go_up: string;

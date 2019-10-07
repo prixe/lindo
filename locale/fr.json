@@ -216,6 +216,7 @@
           "header": "Divers",
           "end-turn": "Passer son tour / Prêt (combat)",
           "open-chat": "Ouvrir le chat",
+          "alignement_scan":"Scanner les alignements des joueurs",
           "active-open-menu": "Ouvrir le menu lorsqu'aucune fenêtre n'est ouverte (ECHAP)",
           "open-menu": "Ouvrir le menu",
           "go_up" : "Aller à la carte du dessus",

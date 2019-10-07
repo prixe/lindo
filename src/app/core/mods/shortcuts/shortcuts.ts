@@ -5,13 +5,14 @@ import { ShortcutsHelper } from "app/core/helpers/shortcuts.helper";
 import { Option } from "app/core/service/settings.service";
 import { Logger } from "app/core/electron/logger.helper";
 import { Mover } from "app/core/mods/mover/mover";
+import { Alignement } from '../aligement/alignement';
 
 export class Shortcuts extends Mods {
 
     private params: Option.Shortcuts;
     private shortcutsHelper: ShortcutsHelper;
     private mover: Mover;
-
+    private alignement : Alignement
     constructor(wGame: any, params: Option.Shortcuts) {
         super(wGame);
         this.params = params;
@@ -21,6 +22,7 @@ export class Shortcuts extends Mods {
             Logger.info(' - enable open_menu');
         }
         this.mover = new Mover(this.wGame);
+        this.alignement = new Alignement(this.wGame);
         this.bindAll();
     }
 
@@ -77,6 +79,11 @@ export class Shortcuts extends Mods {
             if (!this.wGame.gui.numberInputPad.isVisible()) {
               this.wGame.gui.chat.activate()
             }
+        });
+
+        // Open menu
+        this.shortcutsHelper.bind(this.params.diver.alignement_scan, () => {
+            this.alignement.scan();
         });
 
         // Open menu
@@ -142,6 +149,7 @@ export class Shortcuts extends Mods {
     public reset() {
         super.reset();
         if (this.mover) this.mover.reset();
+        if (this.alignement) this.alignement.reset();
         this.shortcutsHelper.unBindAll();
     }
 }

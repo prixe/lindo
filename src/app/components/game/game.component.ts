@@ -21,6 +21,7 @@ import { CssOverload } from "app/core/mods/cssOverload/cssOverload";
 import { JsFixes } from "app/core/mods/jsFixes/jsFixes";
 import { RapidExchange } from "app/core/mods/rapid-exchange/rapid-exchange";
 import { HideShop } from "app/core/mods/hide-shop/hide-shop";
+import { Alignement } from "app/core/mods/aligement/alignement";
 import { KeyboardInput } from "app/core/mods/keyboard-input/keyboard-input";
 import { HttpClient } from '@angular/common/http';
 import { HideMount } from "app/core/mods/hide-mount/hide-mount";
@@ -58,6 +59,7 @@ export class GameComponent implements AfterViewInit {
     private hideMount: HideMount;
 	private partyInfo:PartyInfo;
     private mover: Mover;
+    private alignement: Alignement;
     constructor(
         private windowService: WindowService,
         private ipcRendererService: IpcRendererService,
@@ -139,6 +141,7 @@ export class GameComponent implements AfterViewInit {
                 if (this.hideMount) this.hideMount.reset();
                 if (this.partyInfo) this.partyInfo.reset();
                 if (this.mover) this.mover.reset();
+                if (this.alignement) this.alignement.reset();
         }
     }
 
@@ -184,6 +187,7 @@ export class GameComponent implements AfterViewInit {
                 this.keyboardInput = new KeyboardInput(this.game.window);
 				this.partyInfo = new PartyInfo(this.game.window, this.settingsService.option.vip.general.party_info_pp, this.settingsService.option.vip.general.party_info_lvl, this.translate);
                 this.mover = new Mover(this.game.window);
+                this.alignement = new Alignement(this.game.window);
         }
     }
 
