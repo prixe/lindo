@@ -72,7 +72,7 @@ export class Alignement extends Mods{
         this.container.show();
         setTimeout(() => {
         this.container.destroy();
-        }, 2000);
+        }, 20000);
     }
     public reset() {
         super.reset();

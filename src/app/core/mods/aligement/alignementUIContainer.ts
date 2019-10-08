@@ -49,7 +49,7 @@ export class alignementUIContainer {
             let player = this.wGame.actorManager.getPlayers();
             for (let index in player) {
                 let theplayer =  player[index];
-                    this.bars[theplayer.data.playerId] = new alignementUIBar(theplayer, this, this.wGame);
+                    this.bars[theplayer.data.playerId] = new alignementUIBar(theplayer, this.wGame);
             }
             this.updateInterval = setInterval(()=>{
                 this.update();
