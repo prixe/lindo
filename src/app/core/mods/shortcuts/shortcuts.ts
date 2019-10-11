@@ -81,11 +81,13 @@ export class Shortcuts extends Mods {
             }
         });
 
-        // Open menu
-        this.shortcutsHelper.bind(this.params.diver.alignement_scan, () => {
+        // Scan alignement
+        this.shortcutsHelper.bind(this.params.diver.alignement_scan, (e:any) => {
             this.alignement.scan();
         });
-
+        this.shortcutsHelper.bindVanillaKeyUp(this.params.diver.alignement_scan, (e:any) => {
+            this.alignement.destroy();
+        });
         // Open menu
         this.shortcutsHelper.bind(this.params.diver.open_menu, () => {
             this.wGame.gui.mainControls.buttonBox._childrenList[14].tap()

@@ -7,32 +7,14 @@ import { alignementUIContainer } from "./alignementUIContainer";
  */
 export class Alignement extends Mods{
 
-    private AlignementBarContainer : HTMLDivElement;
-    private AlignementBar : HTMLDivElement;
-    private shieldBar : HTMLDivElement;
-    private lifePointsText : HTMLDivElement;
     private container : alignementUIContainer;
 
     constructor (wGame: any | Window) {
         super(wGame);
-
-       //Side definition :
-       // 0 => neutre
-       // 1 => Bonta
-       // 2 => Brakmar
-       // 
-       //Grade :
-       //0 = aussi les ailes cachés.
-       // de 0 à 10
-        //Value Currently unknown
-
-
-
-
-
-        let healthbarCss = document.createElement('style');
-        healthbarCss.id = 'AlignementBarCss';
-        healthbarCss.innerHTML = `
+        /*Ajout de la balyse <style>*/
+        let alignementbarCss = document.createElement('style');
+        alignementbarCss.id = 'AlignementBarCss';
+        alignementbarCss.innerHTML = `
         .AlignementBarsContainer {
             position: absolute;
             top: 0;
@@ -62,23 +44,25 @@ export class Alignement extends Mods{
             background-color: #333;
         }
         `;
-        this.wGame.document.getElementsByTagName('head')[0].appendChild(healthbarCss);
+        this.wGame.document.getElementsByTagName('head')[0].appendChild(alignementbarCss);
        
     }
-    public scan(){
-        if(this.container!=null)
+    public scan(){//fonction appelé quand tu clique sur le raccourci.
+        if(this.container!=null)//Si on rescan avant la fin on détruit le container
             this.container.destroy();
         this.container = new alignementUIContainer(this.wGame);
-        this.container.show();
-        setTimeout(() => {
-        this.container.destroy();
-        }, 20000);
+        this.container.show();//Scan en lui même
     }
+    public destroy(){
+        this.container.destroy();
+        this.container=null;
+    }
+
     public reset() {
         super.reset();
             if (this.container) this.container.destroy();
-            let healthbarCss = this.wGame.document.getElementById('AlignementBarCss');
-            if (healthbarCss && healthbarCss.parentElement) healthbarCss.parentElement.removeChild(healthbarCss);
+            let alignementbarCss = this.wGame.document.getElementById('AlignementBarCss');
+            if (alignementbarCss && alignementbarCss.parentElement) alignementbarCss.parentElement.removeChild(alignementbarCss);
     }
 
 }

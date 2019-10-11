@@ -8,7 +8,6 @@ export class HideMount extends Mods
 {
     constructor (wGame: any | Window, private hidden_mount: boolean) {
         super(wGame);
-
         // feature active
         if (this.hidden_mount) {
             Logger.info(' - enable Hide-Mount');

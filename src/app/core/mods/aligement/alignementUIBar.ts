@@ -25,12 +25,12 @@ export class alignementUIBar {
 
         /* Création de la barre conteneur */
         this.alignementBarContainer = document.createElement('div');
-        this.alignementBarContainer.id = 'fighterAlignementBarContainer' + this.player.data.playerId;
+        this.alignementBarContainer.id = 'playerAlignementBarContainer' + this.player.data.playerId;
         this.alignementBarContainer.className = 'AlignementBarContainer';
 
         /* Création de la barre en elle même */
         this.alignementBar = document.createElement('div');
-        this.alignementBar.id = 'fighterAlignementBar' + this.player.data.playerId;
+        this.alignementBar.id = 'playerAlignementBar' + this.player.data.playerId;
         this.alignementBar.className = 'AlignementBar';
 
         /*Gestion des couleurs en fonction de l'alignement*/
