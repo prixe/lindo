@@ -73,6 +73,8 @@ export interface SettingsInterface {
             party_invitation: boolean;
             aggression: boolean;
             focus_fight_turn: boolean;
+            level_up: boolean;
+            full_pods: boolean;
         },
         vip: {
             general: {

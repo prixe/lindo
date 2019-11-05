@@ -37,7 +37,12 @@ export class Notifications extends Mods {
         this.on(this.wGame.dofus.connectionManager, 'GameRolePlayAggressionMessage', (e: any) => {
             this.sendAggressionNotif(e);
         });
-
+        this.on(this.wGame.dofus.connectionManager, 'CharacterLevelUpInformationMessage', (e: any) => {
+          this.sendLevelUpNotif(e);
+        });
+        this.on(this.wGame.dofus.connectionManager, 'InventoryWeightMessage', (e: any) => {
+          this.sendFullPodsNotif(e);
+        });
     }
 
 
@@ -150,6 +155,39 @@ export class Notifications extends Mods {
                 this.eventEmitter.emit('focusTab');
             };
         }
+    }
+
+    private sendLevelUpNotif(e: any) {
+      if (!this.wGame.document.hasFocus()
+        && this.params.level_up) {
+
+        this.eventEmitter.emit('newNotification');
+
+        const fromName: string = e.name;
+        const newLevel: number = e.newLevel;
+
+        let levelUpNotif = new Notification(this.translate.instant('app.notifications.level-up', {character: fromName, level: newLevel}));
+
+        levelUpNotif.onclick = () => {
+          electron.getCurrentWindow().focus();
+          this.eventEmitter.emit('focusTab');
+        };
+      }
+    }
+
+    private sendFullPodsNotif(e: any) {
+      if (!this.wGame.document.hasFocus()
+        && this.params.full_pods && e.weight >= e.weightMax) {
+          
+        this.eventEmitter.emit('newNotification');
+        const fromName : string = e.name;
+        let fullPodsNotif = new Notification(this.translate.instant('app.notifications.full-pods', { character: fromName }));
+
+        fullPodsNotif.onclick = () => {
+          electron.getCurrentWindow().focus();
+          this.eventEmitter.emit('focusTab');
+        };
+      }
     }
 
     public reset() {

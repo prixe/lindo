@@ -30,5 +30,13 @@
         <div class="col-xs-12">
             <mat-checkbox color="primary" [(ngModel)]="settingsService.option.notification.aggression">{{ 'app.option.notifications.aggression' | translate }}</mat-checkbox>
         </div>
+
+        <div class="col-xs-12">
+            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.notification.level_up">{{ 'app.option.notifications.level-up' | translate }}</mat-checkbox>
+        </div>
+
+        <div class="col-xs-12">
+            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.notification.full_pods">{{ 'app.option.notifications.full-pods' | translate }}</mat-checkbox>
+        </div>
     </div>
 </div>

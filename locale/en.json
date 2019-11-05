@@ -21,7 +21,9 @@
       "tax-collector": "A tax collector is being attacked !",
       "kolizeum": "A Kolizeum has been find !",
       "party-invitation": "You are invited to join {{character}}'s group.",
-      "aggression": "You have been aggressed !"
+      "aggression": "You have been aggressed !",
+      "level-up": "{{character}} is now lvl {{level}} !",
+      "full-pods": "{{character}} is too heavy to move !"
     },
     "window": {
       "changelog": {
@@ -274,7 +276,9 @@
         "tax-collector": "When a tax collector is attacked",
         "kolizeum": "When kolizeum fight is find",
         "party-invitation": "When someone invites you to join a group",
-        "aggression": "When someone aggresses you"
+        "aggression": "When someone aggresses you",
+        "level-up": "When a character goes level up",
+        "full-pods": "When a character is too heavy to move"
       },
       "reset": "Reset",
       "save": "Apply",

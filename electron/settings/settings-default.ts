@@ -148,6 +148,8 @@ export const SettingsDefault: SettingsInterface = {
             party_invitation: true,
             aggression: true,
             focus_fight_turn: true,
+            level_up: true,
+            full_pods: true
         },
         vip: {
             general: {

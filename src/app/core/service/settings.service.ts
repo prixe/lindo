@@ -595,6 +595,8 @@ export module Option {
         private _party_invitation: boolean;
         private _aggression: boolean;
         private _focus_fight_turn: boolean;
+        private _level_up: boolean;
+        private _full_pods: boolean;
 
         get private_message() {
             return this._private_message;
@@ -659,6 +661,24 @@ export module Option {
             this._focus_fight_turn = focus_fight_turn;
         }
 
+        get level_up() {
+          return this._level_up;
+        }
+
+        set level_up(level_up: any) {
+          this.settingsProvider.write('option.notification.level_up', level_up);
+          this._level_up = level_up;
+        }
+
+        get full_pods() {
+          return this._full_pods;
+        }
+
+        set full_pods(full_pods: any) {
+          this.settingsProvider.write('option.notification.full_pods', full_pods);
+          this._full_pods = full_pods;
+        }
+
         constructor(private settingsProvider: SettingsProvider) {
             this.fight_turn = this.settingsProvider.read('option.notification.fight_turn');
             this.private_message = this.settingsProvider.read('option.notification.private_message');
@@ -667,6 +687,8 @@ export module Option {
             this.party_invitation = this.settingsProvider.read('option.notification.party_invitation');
             this.aggression = this.settingsProvider.read('option.notification.aggression');
             this.focus_fight_turn = this.settingsProvider.read('option.notification.focus_fight_turn');
+            this.level_up = this.settingsProvider.read('option.notification.level_up');
+            this.full_pods = this.settingsProvider.read('option.notification.full_pods');
         }
     }
 

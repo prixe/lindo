@@ -21,7 +21,9 @@
       "tax-collector": "Un percepteur est attaqué !",
       "kolizeum": "Un Kolizéum a été trouvé !",
       "party-invitation": "{{character}} vous invite à rejoindre son groupe.",
-      "aggression": "Vous avez été aggressé !"
+      "aggression": "Vous avez été aggressé !",
+      "level-up": "{{character}} passe niveau {{level}} !",
+      "full-pods": "{{character}} est trop lourd pour se déplacer !"
     },
     "window": {
       "changelog": {
@@ -273,7 +275,9 @@
         "tax-collector": "Quand un percepteur est attaqué",
         "kolizeum": "Quand un combat de kolizéum est trouvé",
         "party-invitation": "Quand un joueur vous invite dans un groupe",
-        "aggression": "Quand un joueur vous aggresse"
+        "aggression": "Quand un joueur vous aggresse",
+        "level-up": "Quand un perso monte de niveau",
+        "full-pods": "Quand un perso est trop lourd pour bouger"
       },
       "save": "Valider",
       "prompt": {

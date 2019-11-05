@@ -21,7 +21,9 @@
       "tax-collector": "Un precettore è stato attaccato !",
       "kolizeum": "Trovata battaglia Kolosseo !",
       "party-invitation": "{{character}} ti ha invitato ad unirsi al suo gruppo.",
-      "aggression": "Sei stato assalito !"
+      "aggression": "Sei stato assalito !",
+      "level-up": "{{character}} è ora di livello {{level}} !",
+      "full-pods": "{{character}} è troppo pesante per muoversi !"
     },
     "window": {
       "changelog": {
@@ -274,7 +276,9 @@
         "tax-collector": "Quanto un percettore viene attaccato",
         "kolizeum": "Quando viene trovata una battaglia Kolosseo",
         "party-invitation": "Quando qualcuno ti invita in un gruppo",
-        "aggression": "Quando qualcuno ti assalta"
+        "aggression": "Quando qualcuno ti assalta",
+        "level-up": "Quando un personaggio sale di livello",
+        "full-pods": "Quando un personaggio è troppo pesante per muoversi"
       },
       "reset": "Reimposta",
       "save": "Applica",

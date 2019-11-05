@@ -18,8 +18,12 @@
     "notifications": {
       "fight-turn": "Inicio del torno de {{character}}",
       "private-message": "Message de {{character}}",
-      "tax-collector": "A tax collector is attacked!",
-      "kolizeum": "A Kolizeum has been find !"
+      "tax-collector": "¡A tax collector is attacked!",
+      "kolizeum": "¡Se encuentra un Kolizeum!",
+      "party-invitation": "{{character}} te invita a su grupo",
+      "aggression": "¡Estás aprobado!",
+      "level-up": "¡{{character}} ahora es nivel {{level}}!",
+      "full-pods": "¡{{character}} es demasiado pesado para moverse!"
     },
     "window": {
       "changelog": {
@@ -267,8 +271,10 @@
         "description": "Puede recibir las notificaciones del juego Dofus cuando esta en otra applicación. Puede ser notificado :",
         "fight-turn": "Al inicio del torno (combate)",
         "private-message": "A la llegada de un mensaje privado",
-        "tax-collector": "When a tax collector is attacked",
-        "kolizeum": "When kolizeum fight is find"
+        "tax-collector": "Quando viene attaccato un esattore delle tasse",
+        "kolizeum": "Quando viene trovato un kolizeum",
+        "level-up": "Cuando un personaje sube de nivel",
+        "full-pods": "Cuando un personaje es demasiado pesado para moverse"
       },
       "reset": "Reiniciar",
       "save": "Validar",
