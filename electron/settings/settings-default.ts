@@ -156,6 +156,7 @@ export const SettingsDefault: SettingsInterface = {
                 health_bar_shortcut: 'p',
                 jobsxp: false,
                 estimator: true,
+                fightchronometer: true,
                 hidden_mount: false,
                 party_info_pp: false,
                 party_info_lvl: false
