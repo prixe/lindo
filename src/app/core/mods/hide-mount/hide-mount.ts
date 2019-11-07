@@ -1,16 +1,19 @@
-import {Mods} from "../mods";
-import {Logger} from "app/core/electron/logger.helper";
+import { Mods } from "../mods";
+import { Option } from "app/core/service/settings.service";
+import { Logger } from "app/core/electron/logger.helper";
 
 /**
 * This mod add the possibility to hide mount durring fight
 */
 export class HideMount extends Mods
 {
-    constructor (wGame: any | Window, private hidden_mount: boolean) {
+    constructor (
+        wGame: any,
+        private params: Option.VIP.General
+    ) {
         super(wGame);
 
-        // feature active
-        if (this.hidden_mount) {
+        if (this.params.hidden_mount) {
             Logger.info('- enable Hide-Mount');
             let toggle = () => {
                 try {
