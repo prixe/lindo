@@ -112,7 +112,7 @@ export class Shortcuts extends Mods {
                 }
             });
         });
-
+        
         // Close interfaces
         this.shortcutsHelper.bindVanilla('escape', () => {
             if (this.wGame.gui.chat.active) {
@@ -126,6 +126,11 @@ export class Shortcuts extends Mods {
                         winClosed++;
                         break;
                     }
+                }
+                if (this.wGame.gui.notificationBar._elementIsVisible) {
+                  const dialogName = this.wGame.gui.notificationBar.currentOpenedId;
+                  // If notifiaction is openened, allow to close it with ESC
+                  return this.wGame.gui.notificationBar.dialogs[dialogName]._childrenList[0]._childrenList[1].tap();
                 }
                 if (this.params.diver.active_open_menu && !winClosed) {
                     // If no window closed open menu
