@@ -90,7 +90,7 @@
     "gulp-jsbeautifier": "~3.0.0",
     "gulp-replace": "~1.0.0",
     "ncp": "~2.0.0",
-    "node-sass": "~4.11.0",
+    "node-sass": "~4.13.0",
     "replace": "~1.0.1",
     "typescript": "~3.1.6"
   },
