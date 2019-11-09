@@ -130,8 +130,6 @@ export class Notifications extends Mods {
             
             this.eventEmitter.emit('newNotification');
 
-            let fromName: string = e.fromName;
-
             let partyInvitationNotif = new Notification(this.translate.instant('app.notifications.party-invitation', {character: e.fromName}));
 
             partyInvitationNotif.onclick = () => {
@@ -158,15 +156,13 @@ export class Notifications extends Mods {
     }
 
     private sendLevelUpNotif(e: any) {
-      if (!this.wGame.document.hasFocus()
-        && this.params.level_up) {
+      if (!this.wGame.document.hasFocus() && 
+           this.params.level_up && 
+           this.wGame.gui.playerData.characterBaseInformations.id == e.id) {
 
         this.eventEmitter.emit('newNotification');
 
-        const fromName: string = e.name;
-        const newLevel: number = e.newLevel;
-
-        let levelUpNotif = new Notification(this.translate.instant('app.notifications.level-up', {character: fromName, level: newLevel}));
+        const levelUpNotif = new Notification(this.translate.instant('app.notifications.level-up', {character: e.name, level: e.newLevel}));
 
         levelUpNotif.onclick = () => {
           electron.getCurrentWindow().focus();
@@ -176,12 +172,13 @@ export class Notifications extends Mods {
     }
 
     private sendFullPodsNotif(e: any) {
-      if (!this.wGame.document.hasFocus()
-        && this.params.full_pods && e.weight >= e.weightMax) {
+      if (!this.wGame.document.hasFocus() && 
+           this.params.full_pods && 
+           e.weight >= e.weightMax) {
           
         this.eventEmitter.emit('newNotification');
-        const fromName : string = e.name;
-        let fullPodsNotif = new Notification(this.translate.instant('app.notifications.full-pods', { character: fromName }));
+        
+        const fullPodsNotif = new Notification(this.translate.instant('app.notifications.full-pods', {character: e.name}));
 
         fullPodsNotif.onclick = () => {
           electron.getCurrentWindow().focus();
