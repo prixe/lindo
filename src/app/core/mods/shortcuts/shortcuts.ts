@@ -95,22 +95,16 @@ export class Shortcuts extends Mods {
             selectedSpell.on('doubletap', () => {
               /*TODO (HoPollo) : 
               / Allow double shortcut tap to work as well (currently only mouseclick works)
-              / Opti : Find & Use a "clickToCellId" w/ "timeline.~player.~cellid"
               */
               if (this.wGame.gui.fightManager.fightState === 0) {
                 return;
               }
-
-              //To avoid confirmation box
-              selectedSpell.enableDrag();
-
-              const fighters = this.wGame.gui.timeline.fighterList._childrenList;
-              const ownerId = this.wGame.gui.playerData.characterBaseInformations.id;
-              for (const fighter in fighters) {
-                if (fighters[fighter]._name == ownerId) {
-                  return fighters[fighter].tap();
-                }
-              }
+            
+              selectedSpell.tap();
+              
+              setTimeout(() => {
+                this.wGame.isoEngine._castSpellImmediately(this.wGame.isoEngine.actorManager.userActor.cellId);
+              }, 150);
             });
         });
 
