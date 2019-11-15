@@ -93,7 +93,7 @@ export class Shortcuts extends Mods {
                 //this.tab.window.gui.shortcutBar.panels.spell.slotList[index].tap();
             });
             selectedSpell.on('doubletap', () => {
-              /*TODO (HoPollo) : 
+              /*TODO (HoPollo) :
               / Allow double shortcut tap to work as well (currently only mouseclick works)
               / Opti : Find & Use a "clickToCellId" w/ "timeline.~player.~cellid"
               */
@@ -134,7 +134,7 @@ export class Shortcuts extends Mods {
                 }
             });
         });
-        
+
         // Close interfaces
         this.shortcutsHelper.bindVanilla('escape', () => {
             if (this.wGame.gui.chat.active) {
@@ -153,6 +153,7 @@ export class Shortcuts extends Mods {
                     const dialogName = this.wGame.gui.notificationBar.currentOpenedId;
                     // If notifiaction is openened, allow to close it with ESC
                     this.wGame.gui.notificationBar.dialogs[dialogName]._childrenList[0]._childrenList[1].tap();
+                    winClosed++;
                 }
                 if (this.params.diver.active_open_menu && !winClosed) {
                     // If no window closed open menu
