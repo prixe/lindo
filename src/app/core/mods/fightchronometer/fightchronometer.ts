@@ -57,51 +57,53 @@ export class FightChronometer extends Mods {
                 this.wGame.document.querySelector('.fightControlButtons'));
                 this.chronometerInitialized = true;
                 this.alreadyCounting = false;
-            } catch (ex) {
-                Logger.error(ex);
-            }
-        }
-
-        private update() {
-            if (!this.chronometerInitialized) {
-                this.create();
-            }
-            if (this.alreadyCounting) {
-                return;
-            }
-            let chronometerTime = 0;
-            try {
-                this.chronometerInterval = setInterval(() => {
-                    if (this.wGame.gui.fightManager.fightState != 1) return;
-                    this.alreadyCounting = true;
-                    this.chronometerContainer.innerHTML = new Date(chronometerTime++ * 1000).toISOString().substr(11, 8);
-                }, 1000);
-            } catch (ex) {
-                Logger.error(ex);
-            }
-        }
-
-        private clear() {
-            try {
-                this.chronometerContainer.innerHTML = '00:00:00';
-                clearInterval(this.chronometerInterval);
-            } catch (ex) {
-                Logger.error(ex);
-            }
-        }
-
-        private destroy() {
-            this.chronometerInitialized = false;
-            if (this.chronometerContainer && this.container) {
-                this.container.removeChild(this.chronometerContainer);
-                clearInterval(this.chronometerInterval);
-            }
-        }
-
-        public reset() {
-            super.reset();
-            if (!this.params.fightchronometer) {
-                this.destroy();
-            }
+        } catch (ex) {
+            Logger.error(ex);
         }
     }
+
+    private update() {
+        if (!this.chronometerInitialized) {
+            this.create();
+        }
+        if (this.alreadyCounting) {
+            return;
+        }
+        let chronometerTime = 0;
+        try {
+            this.chronometerInterval = setInterval(() => {
+                if (this.wGame.gui.fightManager.fightState != 1) {
+                    return;
+                }
+                this.alreadyCounting = true;
+                this.chronometerContainer.innerHTML = new Date(chronometerTime++ * 1000).toISOString().substr(11, 8);
+            }, 1000);
+        } catch (ex) {
+            Logger.error(ex);
+        }
+    }
+
+    private clear() {
+        try {
+            this.chronometerContainer.innerHTML = '00:00:00';
+            clearInterval(this.chronometerInterval);
+        } catch (ex) {
+            Logger.error(ex);
+        }
+    }
+
+    private destroy() {
+        this.chronometerInitialized = false;
+        if (this.chronometerContainer && this.container) {
+            this.container.removeChild(this.chronometerContainer);
+            clearInterval(this.chronometerInterval);
+        }
+    }
+
+    public reset() {
+        super.reset();
+        if (!this.params.fightchronometer) {
+            this.destroy();
+        }
+    }
+}
