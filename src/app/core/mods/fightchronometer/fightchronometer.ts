@@ -10,7 +10,6 @@ import { Logger } from "app/core/electron/logger.helper";
 export class FightChronometer extends Mods {
     private container              : any;
     private chronometerInitialized : boolean;
-    private alreadyCounting        : boolean;
     private chronometerInterval    : any;
     private chronometerContainer   : any;
 
@@ -56,7 +55,6 @@ export class FightChronometer extends Mods {
             this.container.insertBefore(this.chronometerContainer,
                 this.wGame.document.querySelector('.fightControlButtons'));
                 this.chronometerInitialized = true;
-                this.alreadyCounting = false;
         } catch (ex) {
             Logger.error(ex);
         }
@@ -66,16 +64,12 @@ export class FightChronometer extends Mods {
         if (!this.chronometerInitialized) {
             this.create();
         }
-        if (this.alreadyCounting) {
-            return;
-        }
         let chronometerTime = 0;
         try {
             this.chronometerInterval = setInterval(() => {
                 if (this.wGame.gui.fightManager.fightState != 1) {
                     return;
                 }
-                this.alreadyCounting = true;
                 this.chronometerContainer.innerHTML = new Date(chronometerTime++ * 1000).toISOString().substr(11, 8);
             }, 1000);
         } catch (ex) {
