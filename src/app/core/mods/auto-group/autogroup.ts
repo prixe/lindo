@@ -577,7 +577,9 @@ export class AutoGroup extends Mods {
         
               if (currentPlayerId !== leaderId) {
                   if (challengeId != challengeResult) {
-                      return this.wGame.gui.fightManager.finishTurn();
+                      return setTimeout(() => {
+                          this.wGame.gui.fightManager.finishTurn();
+                      }, this.getRandomTime(1, 2));
                   }
               }
           });
