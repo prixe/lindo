@@ -94,6 +94,7 @@ export interface SettingsInterface {
                 strict_move: boolean;
                 ready: boolean;
                 fight: boolean;
+                auto_pass: boolean;
             },
             multi_account: {
                 active: boolean;

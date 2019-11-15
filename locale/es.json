@@ -104,6 +104,7 @@
           "warning": "Atención siguiendo al líder del grupo puede ser considerado como un bot para los otros jugadores, lo utilizan con moderación y en las zonas despobladas.",
           "explanation-1": "Los personajes del grupo deben ser amigos con el líder de la invitación a ser automática.",
           "explanation-2": "Los miembros siguen el líder si está en la misma tarjeta.",
+          "explanation-auto-pass": "Los miembros no pasarán si los desafíos los obligan a jugar",
           "leader": "Nombre del jefe",
           "members": "Nombres de los personajes",
           "members-add": "Añadir un personaje",
@@ -113,7 +114,8 @@
           "delay": "Tiempo antes de seguir (en segundos)",
           "follow-on-map": "Sigue al líder en un mapa",
           "strict-move": "Muevete sobre la celda que mueve el líder",
-          "pvp-warning": "No puedes unirte a una pelea PvP automáticamente"
+          "pvp-warning": "No puedes unirte a una pelea PvP automáticamente",
+          "auto-pass": "Los miembros pasan sus visitas automáticamente"
         },
         "multi-account": {
           "home-no-master": "Para utilizar esta función, una contraseña debe configurarse. Se utiliza para iniciar Lindo con varias cuentas de automatización.",

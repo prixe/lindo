@@ -786,6 +786,7 @@ export module Option {
             private _fight: boolean;
             private _follow_on_map: boolean;
             private _strict_move: boolean;
+            private _auto_pass: boolean;
 
             get active(): boolean {
                 return this._active;
@@ -859,6 +860,15 @@ export module Option {
                 this._strict_move = strict_move;
             }
 
+            get auto_pass(): boolean {
+              return this._auto_pass;
+            }
+
+            set auto_pass(auto_pass: boolean) {
+                this.settingsProvider.write('option.vip.auto_group.auto_pass', auto_pass);
+                this._auto_pass = auto_pass;
+            }
+
             constructor(private settingsProvider: SettingsProvider) {
                 this.active = this.settingsProvider.read('option.vip.auto_group.active');
                 this.leader = this.settingsProvider.read('option.vip.auto_group.leader');
@@ -869,6 +879,7 @@ export module Option {
                 this.fight = this.settingsProvider.read('option.vip.auto_group.fight');
                 this.follow_on_map = this.settingsProvider.read('option.vip.auto_group.follow_on_map');
                 this.strict_move = this.settingsProvider.read('option.vip.auto_group.strict_move');
+                this.auto_pass = this.settingsProvider.read('option.vip.auto_group.auto_pass');
             }
         }
 

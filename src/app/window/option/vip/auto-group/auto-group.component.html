@@ -1,13 +1,19 @@
 <div class="row">
     <div class="col-xs-6">
         <div class="row">
-
             <div class="col-xs-12">
                 <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.autogroup.fight">{{'app.option.vip.auto-group.fight' | translate }}</mat-checkbox>
             </div>
 
             <div class="col-xs-12" *ngIf="settingsService.option.vip.autogroup.fight">
                 <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.autogroup.ready">{{'app.option.vip.auto-group.ready' | translate }}</mat-checkbox>
+            </div>
+
+            <div class="col-xs-12" *ngIf="settingsService.option.vip.autogroup.fight">
+                <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.autogroup.auto_pass">
+                  {{'app.option.vip.auto-group.auto-pass' | translate }}
+                  <mat-icon class="mat-18 text-primary" matTooltipPosition="below" matTooltip="{{ 'app.option.vip.auto-group.explanation-auto-pass' | translate }}">info</mat-icon>
+                </mat-checkbox>
             </div>
         </div>
     </div>

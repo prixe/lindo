@@ -55,6 +55,11 @@ export class AutoGroup extends Mods {
         if (this.params.fight)
             this.autoEnterFight(this.wGame.gui.isConnected);
 
+
+        // automaticly pass alt characters turns
+        if (this.params.auto_pass)
+            this.autoPassTurns();
+
     }
 
     public autoMasterParty(skipLogin: boolean = false) {
@@ -550,6 +555,35 @@ export class AutoGroup extends Mods {
         }
 
         this.on(this.wGame.gui.playerData, "characterSelectedSuccess", onCharacterSelectedSuccess);
+    }
+
+    public autoPassTurns() {
+      try {
+          this.on(this.wGame.gui, 'GameFightTurnStartMessage', () => {
+              if (!this.wGame.gui.party.currentParty) {
+                  return;
+              }
+      
+              const leaderId = this.wGame.gui.party.currentParty.partyLeaderId;
+              const currentPlayerId = this.wGame.gui.playerData.characterBaseInformations.id;
+              const challengeId = this.wGame.gui.challengeIndicator.iconDetailsListByChallengeId;
+        
+              const challengesToNotFail = [1,7,8,14,15,36,37,39,40,41];
+              const challengeResult = challengesToNotFail.find(challId => challId == challengeId);
+              
+              if (!leaderId || !challengeId) {
+                  return;
+              }
+        
+              if (currentPlayerId !== leaderId) {
+                  if (challengeId != challengeResult) {
+                      return this.wGame.gui.fightManager.finishTurn();
+                  }
+              }
+          });
+      } catch (e) {
+          Logger.info(e);
+      }
     }
 
     public autoEnterFight(skipLogin: boolean = false) {

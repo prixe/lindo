@@ -169,6 +169,7 @@ export const SettingsDefault: SettingsInterface = {
                 strict_move: false,
                 ready: false,
                 fight: false,
+                auto_pass: false
             },
             multi_account: {
                 active: false,

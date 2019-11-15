@@ -105,6 +105,7 @@
           "warning": "Attention, suivre le meneur peut être considéré comme du boting pour les autres joueurs, utilisez le avec modération et dans des zones non peuplées.",
           "explanation-1": "Les personnages du groupe doivent être amis avec le meneur pour que l'invitation soit automatique.",
           "explanation-2": "Les membres suivent le meneur si ce dernier est sur la même carte.",
+          "explanation-auto-pass": "Les membres ne passeront pas si les défis leurs demandent de jouer",
           "leader": "Nom du meneur",
           "members": "Noms des personnages",
           "members-add": "Ajouter un personnage",
@@ -114,7 +115,8 @@
           "delay": "Délai avant de suivre (en seconde)",
           "follow-on-map": "Suivre le leader sur une carte",
           "strict-move": "Aller sur la même case que le leader",
-          "pvp-warning": "Vous ne pouvez pas rejoindre un combat PvP automatiquement"
+          "pvp-warning": "Vous ne pouvez pas rejoindre un combat PvP automatiquement",
+          "auto-pass": "Les mules passent leurs tours automatiquement"
         },
         "multi-account": {
           "home-no-master": "Pour utiliser cette fonctionnalité, un mot de passe doit être configuré. Il sera utilisé afin de démarrer Lindo avec les automatismes du multi-compte.",

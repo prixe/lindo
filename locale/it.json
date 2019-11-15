@@ -106,6 +106,7 @@
           "warning": "Attenzione, seguire il capo-gruppo può essere considerato utilizzo di bot per altri giocatore, utilizza questa funzione con cautela e in zone poco affollate.",
           "explanation-1": "I personaggi nel gruppo devono essere amici con il capo-gruppo per rendere automatico l'invito.",
           "explanation-2": "I membri seguono il capo-gruppo se quest'ultimo è sulla stessa mappa.",
+          "explanation-auto-pass": "I membri non passeranno se le sfide li richiedono per giocare",
           "leader": "Nome del capo-gruppo",
           "members": "Nome dei personaggi",
           "members-add": "Aggiungi un personaggio",
@@ -115,7 +116,8 @@
           "delay": "Tempo di attesa nel seguire il capo-gruppo (in secondi)",
           "follow-on-map": "Segui il capo-gruppo su una mappa",
           "strict-move": "Muoviti sulla stessa cella in cui si muove il capo-gruppo",
-          "pvp-warning": "Non puoi entrare in un combattimento PvP automaticamente"
+          "pvp-warning": "Non puoi entrare in un combattimento PvP automaticamente",
+          "auto-pass": "I membri passano le loro visite automaticamente"
         },
         "multi-account": {
           "home-no-master": "Devi configurare una password. Sarà usata per far partire Lindo in modalità multi-account.",
