@@ -96,15 +96,15 @@ export class Shortcuts extends Mods {
               /*TODO (HoPollo) : 
               / Allow double shortcut tap to work as well (currently only mouseclick works)
               */
-              if (this.wGame.gui.fightManager.fightState === 0) {
-                return;
-              }
-            
-              selectedSpell.tap();
+                if (this.wGame.gui.fightManager.fightState === 0) {
+                    return;
+                }
               
-              setTimeout(() => {
-                this.wGame.isoEngine._castSpellImmediately(this.wGame.isoEngine.actorManager.userActor.cellId);
-              }, 150);
+                selectedSpell.tap();
+                
+                setTimeout(() => {
+                    this.wGame.isoEngine._castSpellImmediately(this.wGame.isoEngine.actorManager.userActor.cellId);
+                }, 150);
             });
         });
 
