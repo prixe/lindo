@@ -557,6 +557,25 @@ export class AutoGroup extends Mods {
         this.on(this.wGame.gui.playerData, "characterSelectedSuccess", onCharacterSelectedSuccess);
     }
 
+    /**
+     * Checks if the current player have learn a specific spell
+     * @param spellId Id of the spell to check
+     */
+    public checkSpell(spellId :number) :void {
+        console.log(`Do i have spell ${spellId}`);
+        //TODO (HoPollo) Get player spells to compare
+        this.endTurn();
+    }
+
+    /** 
+     * Finish the turn of the current player
+    */
+    public endTurn() {
+        return setTimeout(() => {
+          this.wGame.gui.fightManager.finishTurn();
+        }, this.getRandomTime(1, 2));
+    }
+
     public autoPassTurns() {
       try {
           this.on(this.wGame.gui, 'GameFightTurnStartMessage', () => {
@@ -566,21 +585,27 @@ export class AutoGroup extends Mods {
       
               const leaderId = this.wGame.gui.party.currentParty.partyLeaderId;
               const currentPlayerId = this.wGame.gui.playerData.characterBaseInformations.id;
-              const challengeId = this.wGame.gui.challengeIndicator.iconDetailsListByChallengeId;
+              // response 'Object {ID: Object}'
+              const challengeId = this.wGame.gui.challengeIndicator.iconDetailsListByChallengeId.split('{')[1].split(':')[0];
         
               const challengesToNotFail = [1,7,8,14,15,36,37,39,40,41];
-              const challengeResult = challengesToNotFail.find(challId => challId == challengeId);
+              // || 0 to not deal with nulls
+              const challengeResult = challengesToNotFail.find(challId => challId == challengeId) || 0;
               
-              if (!leaderId || !challengeId) {
+              if (!leaderId) {
                   return;
               }
-        
+
+              //TODO(HoPollo) Add spells id for challs
+              // Add proximity ally/enemi check for chall "stuck / no stuck to"
+
               if (currentPlayerId !== leaderId) {
-                  if (challengeId != challengeResult) {
-                      return setTimeout(() => {
-                          this.wGame.gui.fightManager.finishTurn();
-                      }, this.getRandomTime(1, 2));
-                  }
+                switch(challengeResult) {
+                  case 7:  this.checkSpell(123);  break;  // cawotte
+                  case 15: this.checkSpell(456);  break;  // Arakne
+                  case 14: this.checkSpell(789);  break;  // Roulette
+                  default: this.endTurn();
+                }
               }
           });
       } catch (e) {
