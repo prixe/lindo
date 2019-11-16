@@ -585,23 +585,24 @@ export class AutoGroup extends Mods {
       
               const leaderId = this.wGame.gui.party.currentParty.partyLeaderId;
               const currentPlayerId = this.wGame.gui.playerData.characterBaseInformations.id;
-              // response 'Object {ID: Object}'
-              const challengeId = this.wGame.gui.challengeIndicator.iconDetailsListByChallengeId.split('{')[1].split(':')[0];
+
+              const challenge = Object.keys(this.wGame.gui.challengeIndicator.iconDetailsListByChallengeId).map(Number)[0];
         
               const challengesToNotFail = [1,7,8,14,15,36,37,39,40,41];
               // || 0 to not deal with nulls
-              const challengeResult = challengesToNotFail.find(challId => challId == challengeId) || 0;
+              const challengeResult = challengesToNotFail.find(challId => challId == challenge) || 0;
               
               if (!leaderId) {
                   return;
               }
 
               //TODO(HoPollo) Add spells id for challs
+              // Prevent the focus() if chall don't requiere a play
               // Add proximity ally/enemi check for chall "stuck / no stuck to"
 
               if (currentPlayerId !== leaderId) {
                 switch(challengeResult) {
-                  case 7:  this.checkSpell(123);  break;  // cawotte
+                  case 7 : this.checkSpell(123);  break;  // cawotte
                   case 15: this.checkSpell(456);  break;  // Arakne
                   case 14: this.checkSpell(789);  break;  // Roulette
                   default: this.endTurn();
