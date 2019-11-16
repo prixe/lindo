@@ -590,7 +590,7 @@ export class AutoGroup extends Mods {
         
               const challengesToNotFail = [1,7,8,14,15,36,37,39,40,41];
               // || 0 to not deal with nulls
-              const challengeResult = challengesToNotFail.find(challId => challId == challenge) || 0;
+              const challengeResult = challengesToNotFail.find(challId => challId == challenge);
               
               if (!leaderId) {
                   return;
@@ -601,11 +601,15 @@ export class AutoGroup extends Mods {
               // Add proximity ally/enemi check for chall "stuck / no stuck to"
 
               if (currentPlayerId !== leaderId) {
+                if (!challengeResult) {
+                    return this.endTurn();
+                }
+
                 switch(challengeResult) {
                   case 7 : this.checkSpell(123);  break;  // cawotte
                   case 15: this.checkSpell(456);  break;  // Arakne
                   case 14: this.checkSpell(789);  break;  // Roulette
-                  default: this.endTurn();
+                  default: return;
                 }
               }
           });
