@@ -558,13 +558,16 @@ export class AutoGroup extends Mods {
     }
 
     /**
-     * Checks if the current player have learn a specific spell
+     * Checks & returns boolean if the current player have a specific spell
      * @param spellId Id of the spell to check
      */
     public checkSpell(spellId :number) :void {
         console.log(`Do i have spell ${spellId}`);
         //TODO (HoPollo) Get player spells to compare
-        this.endTurn();
+
+        /**DESING GOAL : (HoPollo)
+        *should return true/false as player have the spell (available for use? or learned?) or not
+        */
     }
 
     /** 
@@ -586,11 +589,13 @@ export class AutoGroup extends Mods {
               const leaderId = this.wGame.gui.party.currentParty.partyLeaderId;
               const currentPlayerId = this.wGame.gui.playerData.characterBaseInformations.id;
 
-              const challenge = Object.keys(this.wGame.gui.challengeIndicator.iconDetailsListByChallengeId).map(Number)[0];
-        
+              const challengeId = Object.keys(this.wGame.gui.challengeIndicator.iconDetailsListByChallengeId).map(Number)[0];
+              // returns "undefined" if challenge is still running
+              const challengeSuccess = this.wGame.gui.challengeIndicator.iconDetailsListByChallengeId[challengeId].success;
+
               const challengesToNotFail = [1,7,8,14,15,36,37,39,40,41];
               // || 0 to not deal with nulls
-              const challengeResult = challengesToNotFail.find(challId => challId == challenge);
+              const challengeResult = challengesToNotFail.find(challId => challId == challengeId);
               
               if (!leaderId) {
                   return;
@@ -601,7 +606,7 @@ export class AutoGroup extends Mods {
               // Add proximity ally/enemi check for chall "stuck / no stuck to"
 
               if (currentPlayerId !== leaderId) {
-                if (!challengeResult) {
+                if (!challengeResult || challengeSuccess != null) {
                     return this.endTurn();
                 }
 
