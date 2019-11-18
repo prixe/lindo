@@ -65,11 +65,15 @@ export class FightChronometer extends Mods {
             this.create();
         }
         let chronometerTime = 0;
+        /**TODO(HoPollo) : Opti : use "this.wGame.gui.fightManager.timeCreationStarted" for accuracy
+         * & to allow chornometer to count if activated mid game (missing start event)
+         * */
         try {
             this.chronometerInterval = setInterval(() => {
                 if (this.wGame.gui.fightManager.fightState != 1) {
-                    return;
+                    return clearImmediate(this.chronometerInterval);
                 }
+                
                 this.chronometerContainer.innerHTML = new Date(chronometerTime++ * 1000).toISOString().substr(11, 8);
             }, 1000);
         } catch (ex) {
@@ -79,8 +83,8 @@ export class FightChronometer extends Mods {
 
     private clear() {
         try {
-            this.chronometerContainer.innerHTML = '00:00:00';
             clearInterval(this.chronometerInterval);
+            this.chronometerContainer.innerHTML = '00:00:00';
         } catch (ex) {
             Logger.error(ex);
         }
