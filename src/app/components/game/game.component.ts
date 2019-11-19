@@ -204,7 +204,7 @@ export class GameComponent implements AfterViewInit {
         let onCharacterSelectedSuccess = () => {
             // retrieve character name and update zone.js
             this.zone.run(() => {
-                this.game.emit('character', this.game.window.gui.playerData.characterBaseInformations.name);
+                this.game.emit('character', this.game.window.gui.playerData.characterBaseInformations.name, this.game.window.gui.playerData.characterBaseInformations.level);
                 this.game.emit('logged', true);
 
                 /* create icon */
@@ -226,17 +226,51 @@ export class GameComponent implements AfterViewInit {
             this.checkMaxZoom();
         };
 
+        let onCharacterEnterFight = () => {
+          this.zone.run(() => {
+              this.game.emit('fight', true);
+          });
+        };
+
+        let onCharacterLeaveFight = () => {
+          this.zone.run(() => {
+              this.game.emit('fight', false);
+          });
+        };
+
+        let onCharacterReadyFight = () => {
+          this.zone.run(() => {
+              this.game.emit('ready', true);
+          });
+        };
+
+        let onCharacterMoving = () => {
+          this.zone.run(() => {
+              this.game.emit('moving', true);
+          });
+        }
+
         let onDisconnect = () => {
             this.zone.run(() => {
                 this.game.emit('character', null);
                 this.game.emit('logged', false);
                 this.game.emit('icon', null);
+                this.game.emit('fight', false);
+                this.game.emit('ready', false);
+                this.game.emit('fullPods', false);
+                this.game.emit('moving', false);
                 this.removeMods();
             });
             this.removeMods();
         };
 
+        /** TODO (HoPollo) : 
+         * Add missing events
+         * Change functions to toggle
+         */
         this.game.window.gui.playerData.on("characterSelectedSuccess", onCharacterSelectedSuccess);
+        this.game.window.gui.on("GameFightStartingMessage", onCharacterEnterFight);
+        this.game.window.gui.on("GameFightEndMessage", onCharacterLeaveFight);
         this.game.window.gui.on("disconnect", onDisconnect);
 
     }

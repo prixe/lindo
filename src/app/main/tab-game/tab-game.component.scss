@@ -37,6 +37,18 @@ div.tab {
       height: 100%;
       display: none;
     }
+    .states-char {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        bottom: 15px;
+        right: 10px;
+        color: yellow;
+        .mat-icon {
+          width: 10px;
+        }
+    }
     .tab-close {
       display: none;
     }

@@ -1,11 +1,21 @@
 <div class="tabs-container">
     <div [sortablejs]="tabService.tabs">
-
-        <div class="tab tab-tab" [class.focus]="tab.isFocus" [class.notification]="tab.notification" *ngFor="let tab of tabService.tabs;"
-            (click)="tabGameService.selectTabGame(tab.id);" matTooltip="{{tab.character}}" matTooltipPosition="right">
+         <div class="tab tab-tab" [class.focus]="tab.isFocus" [class.notification]="tab.notification" *ngFor="let tab of tabService.tabs;"
+            (click)="tabGameService.selectTabGame(tab.id);" matTooltip="{{tab.character}} {{tab.level}}" matTooltipPosition="right">
 
             <mat-icon *ngIf="!tab.icon">keyboard</mat-icon>
             <div class='icon-char' id="tab-icon-{{tab.id}}"></div>
+            <!-- TODO (HoPollo) : 
+              Change completly to a system with bubbles as events
+              Replace Angulars icons to game ones
+              Finish implementing click on fight icon to remotly toggleReady on the destination
+            -->
+            <div class="states-char">
+              <mat-icon *ngIf="tab.isFighting" (click)="tabGameService.sendReady(tab.id)">priority_high</mat-icon>
+              <mat-icon *ngIf="tab.ready">check_circle_outline</mat-icon>
+              <mat-icon *ngIf="tab.isMoving">directions_run</mat-icon>
+              <mat-icon *ngIf="tab.fullPods">report</mat-icon>
+            </div>
 
             <div class="tab-close" (click)="tabGameService.removeTabGame(tab.id)">
                 <mat-icon class="mat-16">close</mat-icon>
