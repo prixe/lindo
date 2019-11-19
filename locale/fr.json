@@ -112,6 +112,7 @@
           "ready": "Passer automatique en ready",
           "fight": "Entrée dans les combats automatique",
           "delay": "Délai avant de suivre (en seconde)",
+          "clean-window": "Aucuns popups en fin de combats",
           "follow-on-map": "Suivre le leader sur une carte",
           "strict-move": "Aller sur la même case que le leader",
           "pvp-warning": "Vous ne pouvez pas rejoindre un combat PvP automatiquement"

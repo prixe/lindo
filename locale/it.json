@@ -113,6 +113,7 @@
           "ready": "Salta \"ready\" automaticamente",
           "fight": "Entra in combattimento automaticamente",
           "delay": "Tempo di attesa nel seguire il capo-gruppo (in secondi)",
+          "clean-window": "Elimina i popup al termine della lotta",
           "follow-on-map": "Segui il capo-gruppo su una mappa",
           "strict-move": "Muoviti sulla stessa cella in cui si muove il capo-gruppo",
           "pvp-warning": "Non puoi entrare in un combattimento PvP automaticamente"

@@ -111,6 +111,7 @@
           "ready": "Skip \"listo\" de forma automática",
           "fight": "La entrada automática en la lucha contra",
           "delay": "Tiempo antes de seguir (en segundos)",
+          "clean-window": "Borrar ventanas emergentes cuando la pelea termina",
           "follow-on-map": "Sigue al líder en un mapa",
           "strict-move": "Muevete sobre la celda que mueve el líder",
           "pvp-warning": "No puedes unirte a una pelea PvP automáticamente"

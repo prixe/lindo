@@ -55,6 +55,10 @@ export class AutoGroup extends Mods {
         if (this.params.fight)
             this.autoEnterFight(this.wGame.gui.isConnected);
 
+        // automaticly clear all popups on window
+        if (this.params.clean_window)
+            this.cleanWindow();
+
     }
 
     public autoMasterParty(skipLogin: boolean = false) {
@@ -550,6 +554,32 @@ export class AutoGroup extends Mods {
         }
 
         this.on(this.wGame.gui.playerData, "characterSelectedSuccess", onCharacterSelectedSuccess);
+    }
+
+    public cleanWindow() {
+      try {
+        this.on(this.wGame.connectionManager, 'GameFightEndMessage', () => {
+            if (!this.wGame.gui.party.currentParty) {
+                return;
+            }
+
+            const leaderId = this.wGame.gui.party.currentParty.partyLeaderId;
+            const currentPlayerId = this.wGame.gui.playerData.characterBaseInformations.id;
+
+            if (currentPlayerId !== leaderId) {
+                setTimeout(() => {
+                    for (let i = this.wGame.gui.windowsContainer._childrenList.length - 1; i >= 0; i--) {
+                        let win = this.wGame.gui.windowsContainer._childrenList[i];
+                        if (win.isVisible()) {
+                          win.close();
+                        }
+                    }
+                }, this.getRandomTime(1, 3));
+            }
+        });
+      } catch (e) {
+        Logger.info(e);
+      }
     }
 
     public autoEnterFight(skipLogin: boolean = false) {
