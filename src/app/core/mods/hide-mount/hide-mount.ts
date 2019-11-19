@@ -3,7 +3,7 @@ import { Option } from "app/core/service/settings.service";
 import { Logger } from "app/core/electron/logger.helper";
 
 /**
-* This mod add the possibility to hide mount durring fight
+* This mod add the possibility to hide mount and pet durring fight
 */
 export class HideMount extends Mods
 {
@@ -15,7 +15,7 @@ export class HideMount extends Mods
 
         if (this.params.hidden_mount) {
             Logger.info('- enable Hide-Mount');
-            let toggle = () => {
+            let hideMount = () => {
                 try {
                     let actionNeeded = false;
                     // Main character
@@ -23,30 +23,45 @@ export class HideMount extends Mods
                         if (this.wGame.actorManager.userActor.actorManager.userActor.look.subentities.length > 0) {
                             actionNeeded = true;
                             this.wGame.actorManager.userActor.actorManager.userActor.look.bonesId = 1;
-                            if (this.wGame.actorManager.userActor.actorManager.userActor.look.subentities["0"].subEntityLook.skins.length > 0) {
-                                this.wGame.actorManager.userActor.actorManager.userActor.look.skins = this.wGame.actorManager.userActor.actorManager.userActor.look.subentities["0"].subEntityLook.skins;
-                            }
+
                             // Character size
                             this.wGame.actorManager.userActor.actorManager.userActor.look.scales = [140];
+
+                            // Colors
                             if (this.wGame.actorManager.userActor.look.subentities["0"].subEntityLook.indexedColors.length > 0) {
                                 this.wGame.actorManager.userActor.actorManager.userActor.look.indexedColors = this.wGame.actorManager.userActor.look.subentities["0"].subEntityLook.indexedColors;
                             }
+
+                            // Remove mount
+                            if (this.wGame.actorManager.userActor.actorManager.userActor.look.subentities["0"].subEntityLook.skins.length > 0) {
+                                this.wGame.actorManager.userActor.actorManager.userActor.look.skins = this.wGame.actorManager.userActor.actorManager.userActor.look.subentities["0"].subEntityLook.skins;
+                            }
+
+                            // Remove pet and mount
                             this.wGame.actorManager.userActor.actorManager.userActor.look.subentities = null;
                         }
                     }
-                    // Other character
+                    // Other characters
                     for (let key in this.wGame.actorManager.actors) {
                         if (+key > 0) {
                             if (this.wGame.actorManager.actors[key].look.subentities != null) {
                                 actionNeeded = true;
                                 this.wGame.actorManager.actors[key].look.bonesId = 1;
+
+                                // Character size
                                 this.wGame.actorManager.actors[key].look.scales = [140];
-                                if (this.wGame.actorManager.actors[key].look.subentities["0"].subEntityLook.skins.length > 0) {
-                                    this.wGame.actorManager.actors[key].look.skins = this.wGame.actorManager.actors[key].look.subentities["0"].subEntityLook.skins;
-                                }
+
+                                // Colors
                                 if (this.wGame.actorManager.actors[key].look.subentities["0"].subEntityLook.indexedColors.length > 0) {
                                     this.wGame.actorManager.actors[key].look.indexedColors = this.wGame.actorManager.actors[key].look.subentities["0"].subEntityLook.indexedColors;
                                 }
+
+                                // Remove mount
+                                if (this.wGame.actorManager.actors[key].look.subentities["0"].subEntityLook.skins.length > 0) {
+                                    this.wGame.actorManager.actors[key].look.skins = this.wGame.actorManager.actors[key].look.subentities["0"].subEntityLook.skins;
+                                }
+
+                                // Remove pet and mount
                                 this.wGame.actorManager.actors[key].look.subentities = null;
                             }
                         }
@@ -58,12 +73,12 @@ export class HideMount extends Mods
                         }, 100);
                     }
                 } catch (ex) {
-                    Logger.info(ex);
+                    Logger.error(ex);
                 }
             };
 
             // Wait begin fight
-            this.on(this.wGame.dofus.connectionManager, 'GameFightStartMessage', toggle);
+            this.on(this.wGame.dofus.connectionManager, 'GameFightStartMessage', hideMount);
         }
     }
 }
