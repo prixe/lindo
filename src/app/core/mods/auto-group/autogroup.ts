@@ -10,8 +10,8 @@ import { TranslateService } from "@ngx-translate/core";
 type Direction = "top" | "bottom" | "left" | "right" | false;
 
 export class AutoGroup extends Mods {
-
     private params: Option.VIP.AutoGroup;
+    private paramsNotification: Option.Notification;
     private lock: boolean = false;
     private followProgress: number = 0;
     private idle: boolean = true;
@@ -25,18 +25,19 @@ export class AutoGroup extends Mods {
     constructor(
         wGame: any,
         params: Option.VIP.AutoGroup,
+        paramsNotification: Option.Notification,
         private ipcRendererService: IpcRendererService,
         private translate: TranslateService
     ) {
         super(wGame);
         this.params = params;
+        this.paramsNotification = paramsNotification;
         this.ipcRendererService = ipcRendererService;
         this.translate = translate;
 
         if (this.params.active) {
-
+          
             Logger.info('- Auto-Group enable');
-
             // le leader invite les membres
             this.autoMasterParty();
 
@@ -44,8 +45,6 @@ export class AutoGroup extends Mods {
             // acceptation de l'invitation automatiquement
             this.autoAcceptPartyInvitation();
         }
-
-
         // suit le leader automatiquement
         if (this.params.follow_leader)
             this.followLeader(this.wGame.gui.isConnected);
@@ -59,7 +58,6 @@ export class AutoGroup extends Mods {
         // automaticly pass alt characters turns
         if (this.params.auto_pass)
             this.autoPassTurns();
-
     }
 
     public autoMasterParty(skipLogin: boolean = false) {
@@ -607,8 +605,12 @@ export class AutoGroup extends Mods {
 
               if (currentPlayerId !== leaderId) {
                 if (!challengeResult || challengeSuccess != null) {
+                    this.paramsNotification.focus_fight_turn = false;
                     return this.endTurn();
                 }
+
+                // Reset the value of focus_fight_turn back on
+                this.paramsNotification.focus_fight_turn = true;
 
                 switch(challengeResult) {
                   case 7 : this.checkSpell(123);  break;  // cawotte
