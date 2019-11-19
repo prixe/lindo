@@ -22,23 +22,7 @@ export class HideMount extends Mods
                     if (this.wGame.actorManager.userActor.actorManager.userActor.look.subentities != null) {
                         if (this.wGame.actorManager.userActor.actorManager.userActor.look.subentities.length > 0) {
                             actionNeeded = true;
-                            this.wGame.actorManager.userActor.actorManager.userActor.look.bonesId = 1;
-
-                            // Character size
-                            this.wGame.actorManager.userActor.actorManager.userActor.look.scales = [140];
-
-                            // Colors
-                            if (this.wGame.actorManager.userActor.look.subentities["0"].subEntityLook.indexedColors.length > 0) {
-                                this.wGame.actorManager.userActor.actorManager.userActor.look.indexedColors = this.wGame.actorManager.userActor.look.subentities["0"].subEntityLook.indexedColors;
-                            }
-
-                            // Remove mount
-                            if (this.wGame.actorManager.userActor.actorManager.userActor.look.subentities["0"].subEntityLook.skins.length > 0) {
-                                this.wGame.actorManager.userActor.actorManager.userActor.look.skins = this.wGame.actorManager.userActor.actorManager.userActor.look.subentities["0"].subEntityLook.skins;
-                            }
-
-                            // Remove pet and mount
-                            this.wGame.actorManager.userActor.actorManager.userActor.look.subentities = null;
+                            this.removeMountToPlayer(this.wGame.actorManager.userActor.actorManager.userActor);
                         }
                     }
                     // Other characters
@@ -46,23 +30,7 @@ export class HideMount extends Mods
                         if (+key > 0) {
                             if (this.wGame.actorManager.actors[key].look.subentities != null) {
                                 actionNeeded = true;
-                                this.wGame.actorManager.actors[key].look.bonesId = 1;
-
-                                // Character size
-                                this.wGame.actorManager.actors[key].look.scales = [140];
-
-                                // Colors
-                                if (this.wGame.actorManager.actors[key].look.subentities["0"].subEntityLook.indexedColors.length > 0) {
-                                    this.wGame.actorManager.actors[key].look.indexedColors = this.wGame.actorManager.actors[key].look.subentities["0"].subEntityLook.indexedColors;
-                                }
-
-                                // Remove mount
-                                if (this.wGame.actorManager.actors[key].look.subentities["0"].subEntityLook.skins.length > 0) {
-                                    this.wGame.actorManager.actors[key].look.skins = this.wGame.actorManager.actors[key].look.subentities["0"].subEntityLook.skins;
-                                }
-
-                                // Remove pet and mount
-                                this.wGame.actorManager.actors[key].look.subentities = null;
+                                this.removeMountToPlayer(this.wGame.actorManager.actors[key]);
                             }
                         }
                     }
@@ -80,5 +48,25 @@ export class HideMount extends Mods
             // Wait begin fight
             this.on(this.wGame.dofus.connectionManager, 'GameFightStartMessage', hideMount);
         }
+    }
+
+    private removeMountToPlayer(player): void {
+        this.wGame.actorManager.userActor.actorManager.userActor.look.bonesId = 1;
+
+        // Character size
+        this.wGame.actorManager.userActor.actorManager.userActor.look.scales = [140];
+
+        // Colors
+        if (this.wGame.actorManager.userActor.look.subentities["0"].subEntityLook.indexedColors.length > 0) {
+            this.wGame.actorManager.userActor.actorManager.userActor.look.indexedColors = this.wGame.actorManager.userActor.look.subentities["0"].subEntityLook.indexedColors;
+        }
+
+        // Remove mount
+        if (this.wGame.actorManager.userActor.actorManager.userActor.look.subentities["0"].subEntityLook.skins.length > 0) {
+            this.wGame.actorManager.userActor.actorManager.userActor.look.skins = this.wGame.actorManager.userActor.actorManager.userActor.look.subentities["0"].subEntityLook.skins;
+        }
+
+        // Remove pet and mount
+        this.wGame.actorManager.userActor.actorManager.userActor.look.subentities = null;
     }
 }
