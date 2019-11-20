@@ -64,7 +64,7 @@
             "jobsxp": "Activate the display of the job xp need for leveling",
             "fightchronometer" : "Mostrar peleas cronómetro",
             "estimator": "Hechizos de daño estimado durante el combate",
-            "hide-mount": "Ocultar monturas durante las peleas (beta)"
+            "hide-mount": "Ocultar monturas durante las peleas"
           },
           "groups": {
             "header": "Grupo"

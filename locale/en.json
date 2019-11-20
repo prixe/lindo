@@ -66,7 +66,7 @@
             "jobsxp": "Activate the display of the job xp need for leveling",
             "estimator": "Estimating spell damage in battle",
             "fightchronometer" : "Show combats chronometer",
-            "hide-mount": "Hide mounts during fights (beta)"
+            "hide-mount": "Hide mounts during fights"
           },
           "groups": {
             "header": "Groups"
