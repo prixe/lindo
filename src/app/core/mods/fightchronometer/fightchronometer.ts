@@ -71,7 +71,7 @@ export class FightChronometer extends Mods {
         try {
             this.chronometerInterval = setInterval(() => {
                 if (this.wGame.gui.fightManager.fightState != 1) {
-                    return clearImmediate(this.chronometerInterval);
+                    return clearInterval(this.chronometerInterval);
                 }
                 
                 this.chronometerContainer.innerHTML = new Date(chronometerTime++ * 1000).toISOString().substr(11, 8);
