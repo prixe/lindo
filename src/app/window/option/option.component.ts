@@ -7,6 +7,8 @@ import { Logger } from 'app/core/electron/logger.helper';
 import { PromptService } from 'app/core/service/prompt.service';
 import { ChangelogWindowService } from '../changelog/changelog.window';
 import { MatDialogRef } from '@angular/material/dialog';
+import { ElectronService as electron } from 'app/core/electron/electron.service';
+import { SettingsService } from 'app/core/service/settings.service';
 
 @Component({
     selector: 'component-options',
@@ -14,7 +16,8 @@ import { MatDialogRef } from '@angular/material/dialog';
     styleUrls: ['./option.component.scss']
 })
 export class OptionComponent {
-
+    public serverName: string = (this.settingsService.serverName == "Production") ? "Early" : "Production";
+    public window: any | Window;
     constructor(
         public dialogRef: MatDialogRef<OptionComponent>,
         public changelog: ChangelogWindowService,
@@ -23,9 +26,12 @@ export class OptionComponent {
         private ipcRendererService: IpcRendererService,
         private promptService: PromptService,
         private router: Router,
+        public settingsService: SettingsService,
     ) {
         this.router.navigate(['/option/general']);
+        this.window = electron;
     }
+
 
     public validate() {
         Logger.verbose('emit->valite-option');
@@ -44,6 +50,16 @@ export class OptionComponent {
             Settings.resetSettings();
 
         }, (dismiss) => { });
+    }
+
+    public server(){
+        if(this.settingsService.serverName == "Production"){
+            this.settingsService.serverName = "Early"
+            this.window.serverChange();
+        }else{
+            this.settingsService.serverName = "Production"
+            this.window.serverChange();
+        }
     }
 
     public navigateTo($event: any, route: string) {

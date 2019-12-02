@@ -100,6 +100,7 @@ export class Settings {
     }
 
     public static getAppConfig() {
+        Logger.info(app.getPath('userData') + '/game')
         return {
             gamePath: app.getPath('userData') + '/game',
             appPath: Application.appPath,

@@ -8,6 +8,7 @@ export const SettingsDefault: SettingsInterface = {
     alertCounter: 0,
     vip_id: null,
     last_news: null,
+    serverName: "Production",
     appPreferences: null,
     option: {
         general: {
@@ -46,11 +47,7 @@ export const SettingsDefault: SettingsInterface = {
                 end_turn: "backspace",
                 open_chat: "return",
                 active_open_menu: true,
-                open_menu: "",
-                go_up: "ctrl+up",
-                go_bottom: "ctrl+down",
-                go_left: "ctrl+left",
-                go_right: "ctrl+right"
+                open_menu: ""
             },
             spell: [
                 "",
@@ -154,7 +151,6 @@ export const SettingsDefault: SettingsInterface = {
                 disable_inactivity: false,
                 health_bar: true,
                 health_bar_shortcut: 'p',
-                jobsxp: false,
                 estimator: true,
                 hidden_mount: false,
                 party_info_pp: false,

@@ -3,13 +3,18 @@
     <div class="row" style="margin-top: 12px; margin-bottom: 15px;">
         <!-- Je sais pas comment faire mieux pour les select encore -->
         <div class="col-xs-4">
-            <mat-select placeholder="{{ 'app.option.general.language' | translate }}" [(ngModel)]="settingsService.language">
-                <mat-option *ngFor="let l of languages" [value]="l.value">{{ l.name }}</mat-option>
+            <mat-select placeholder="{{ 'app.option.general.language' |
+                translate }}" [(ngModel)]="settingsService.language">
+                <mat-option *ngFor="let l of languages" [value]="l.value">{{
+                    l.name }}</mat-option>
             </mat-select>
         </div>
         <div class="col-xs-4">
-            <mat-select placeholder="{{ 'app.option.general.resolution' | translate }}" [(ngModel)]="_resolution" (change)="setResolution($event)">
-                <mat-option *ngFor="let resolution of resolutions" [value]="resolution.value">{{ resolution.name }}</mat-option>
+            <mat-select placeholder="{{ 'app.option.general.resolution' |
+                translate }}" [(ngModel)]="_resolution"
+                (change)="setResolution($event)">
+                <mat-option *ngFor="let resolution of resolutions"
+                    [value]="resolution.value">{{ resolution.name }}</mat-option>
             </mat-select>
         </div>
     </div>
@@ -17,20 +22,30 @@
     <div class="row">
 
         <div class="col-xs-12">
-            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.general.hidden_shop">{{ 'app.option.general.hide-shop' | translate }}</mat-checkbox>
+            <mat-checkbox color="primary"
+                [(ngModel)]="settingsService.option.general.hidden_shop">{{
+                'app.option.general.hide-shop' | translate }}</mat-checkbox>
         </div>
         <div class="col-xs-12">
-            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.shortcuts.diver.active_open_menu">{{ 'app.option.shortcuts.diver.active-open-menu' | translate }}</mat-checkbox>
+            <mat-checkbox color="primary"
+                [(ngModel)]="settingsService.option.shortcuts.diver.active_open_menu">{{
+                'app.option.shortcuts.diver.active-open-menu' | translate }}</mat-checkbox>
         </div>
         <div class="col-xs-12">
-            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.notification.focus_fight_turn">{{ 'app.option.general.focus-fight-turn' | translate }}</mat-checkbox>
+            <mat-checkbox color="primary"
+                [(ngModel)]="settingsService.option.notification.focus_fight_turn">{{
+                'app.option.general.focus-fight-turn' | translate }}</mat-checkbox>
         </div>
 
         <div class="col-xs-12">
-            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.general.local_content">{{ 'app.option.general.local-content' | translate }}</mat-checkbox>
+            <mat-checkbox color="primary"
+                [(ngModel)]="settingsService.option.general.local_content">{{
+                'app.option.general.local-content' | translate }}</mat-checkbox>
         </div>
         <div class="col-xs-12">
-            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.general.sound_focus">{{ 'app.option.general.sound-focus' | translate }}</mat-checkbox>
+            <mat-checkbox color="primary"
+                [(ngModel)]="settingsService.option.general.sound_focus">{{
+                'app.option.general.sound-focus' | translate }}</mat-checkbox>
         </div>
         <!--<div class="col-xs-12" style="margin-top: 10px;">
             <mat-input-container style="width: 100%">
@@ -41,21 +56,27 @@
 
     <div class="row" style="margin-top: 10px;">
         <div class="col-xs-6">
-            <button type="button" color="primary" (click)="option.closeAndOpenShortcuts();" mat-raised-button>
-                <mat-icon>keyboard</mat-icon> {{ 'app.window.options.general.shortcuts' | translate }}
+            <button type="button" color="primary"
+                (click)="option.closeAndOpenShortcuts();" mat-raised-button>
+                <mat-icon>keyboard</mat-icon> {{
+                'app.window.options.general.shortcuts' | translate }}
             </button>
         </div>
     </div>
 
     <div class="row" style="margin-top: 10px;">
         <div class="col-xs-6">
-            <button type="button" color="primary" (click)="resetGameFile()" mat-raised-button>{{ 'app.window.options.general.reset-game' | translate }}</button>
+            <button type="button" color="primary" (click)="resetGameFile()"
+                mat-raised-button>{{ 'app.window.options.general.reset-game' |
+                translate }}</button>
         </div>
     </div>
 
-        <div class="row" style="margin-top: 10px;">
+    <div class="row" style="margin-top: 10px;">
         <div class="col-xs-6">
-            <button type="button" color="primary" (click)="clearCache()" mat-raised-button>{{ 'app.window.options.general.clear-cache' | translate }}</button>
+            <button type="button" color="primary" (click)="clearCache()"
+                mat-raised-button>{{ 'app.window.options.general.clear-cache' |
+                translate }}</button>
         </div>
     </div>
 </div>

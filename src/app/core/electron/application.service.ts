@@ -48,6 +48,7 @@ export class ApplicationService {
 
                 return resolve();
             } else {
+                
                 this.http.get(`${this.apiUrl}/version.json?time=${new Date().getTime()}`).subscribe((data:any) =>{
                     this.remoteAppVersion = data.appVersion;
                     this.remoteBuildVersion = data.buildVersion;
