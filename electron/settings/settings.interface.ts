@@ -35,6 +35,10 @@ export interface SettingsInterface {
                 open_chat: string;
                 active_open_menu: boolean;
                 open_menu: string;
+                go_up: string;
+                go_bottom: string;
+                go_left: string;
+                go_right: string;
             }
             spell: Array<string>;
             item: Array<string>;
@@ -76,7 +80,9 @@ export interface SettingsInterface {
                 disable_inactivity: boolean;
                 health_bar: boolean;
                 health_bar_shortcut: string;
+                jobsxp: boolean;
                 estimator: boolean;
+                fightchronometer: boolean;
                 hidden_mount: boolean;
                 party_info_pp: boolean;
                 party_info_lvl: boolean;

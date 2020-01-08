@@ -65,6 +65,8 @@
             "estimator": "Estimation de dégats des sorts en combat",
             "health-bar": "Barres de vie en-dessous des combatants",
             "health-bar-shortcut": "Raccourcis pour les barres de vie",
+            "jobsxp": "Activer l'affichage de l'xp a obtenir pour monter de niveau (métier)",
+            "fightchronometer": "Afficher le chronomètre de combats",
             "hide-mount": "Cacher les montures pendant les combats (beta)"
           },
           "groups": {
@@ -193,6 +195,9 @@
           "header-pp": "Afficher la prospection du groupe",
           "level": "Niv."
         },
+        "jobsxp": {
+          "text": " XP manquant<br>avant le niveau "
+        },
         "status": {
           "header": "Statut VIP"
         }
@@ -214,7 +219,11 @@
           "end-turn": "Passer son tour / Prêt (combat)",
           "open-chat": "Ouvrir le chat",
           "active-open-menu": "Ouvrir le menu lorsqu'aucune fenêtre n'est ouverte (ECHAP)",
-          "open-menu": "Ouvrir le menu"
+          "open-menu": "Ouvrir le menu",
+          "go_up" : "Aller à la carte du dessus",
+          "go_bottom" : "Aller à la carte du dessous",
+          "go_left" : "Aller à la carte de gauche",
+          "go_right" : "Aller à la carte de droite"
         },
         "interfaces": {
           "header": "Interfaces",

@@ -15,6 +15,8 @@ import { DamageEstimator } from "app/core/mods/damage-estimator/damageestimator"
 import { Shortcuts } from "app/core/mods/shortcuts/shortcuts";
 import { Inactivity } from "app/core/mods/general/inactivity";
 import { HealthBar } from "app/core/mods/health-bar/healthbar";
+import { Jobsxp } from "app/core/mods/jobsxp/jobsxp";
+import { FightChronometer } from "app/core/mods/fightchronometer/fightchronometer";
 import { Notifications } from "app/core/mods/notifications/notifications";
 import { CssOverload } from "app/core/mods/cssOverload/cssOverload";
 import { JsFixes } from "app/core/mods/jsFixes/jsFixes";
@@ -24,7 +26,7 @@ import { KeyboardInput } from "app/core/mods/keyboard-input/keyboard-input";
 import { HttpClient } from '@angular/common/http';
 import { HideMount } from "app/core/mods/hide-mount/hide-mount";
 import { PartyInfo } from "app/core/mods/party-info/party-info";
-
+import { Mover } from "app/core/mods/mover/mover";
 
 @Component({
     selector: 'component-game',
@@ -44,6 +46,8 @@ export class GameComponent implements AfterViewInit {
     private autogroup: AutoGroup;
     private inactivity: Inactivity;
     private healthbar: HealthBar;
+    private jobsxp: Jobsxp;
+    private fightchronometer: FightChronometer;
     private damageEstimator: DamageEstimator;
     private notifications: Notifications;
     private cssOverload: CssOverload;
@@ -55,6 +59,7 @@ export class GameComponent implements AfterViewInit {
     private keyboardInput: KeyboardInput;
     private hideMount: HideMount;
 	private partyInfo:PartyInfo;
+    private mover: Mover;
 
     constructor(
         private windowService: WindowService,
@@ -79,7 +84,6 @@ export class GameComponent implements AfterViewInit {
     public gameReady(): void {
 
         if (this.gameLoaded) {
-            Logger.info(this.game.credentials)
 
             this.game.window.initDofus(() => {
                 /* Hide the game loading overlay */
@@ -123,6 +127,8 @@ export class GameComponent implements AfterViewInit {
             case 4:
             case 3:
                 if (this.healthbar) this.healthbar.reset();
+                if (this.jobsxp) this.jobsxp.reset();
+                if (this.fightchronometer) this.fightchronometer.reset();
             case 2:
                 if (this.autogroup) this.autogroup.reset();
                 if (this.inactivity) this.inactivity.reset();
@@ -135,7 +141,8 @@ export class GameComponent implements AfterViewInit {
                 if (this.hideShop) this.hideShop.reset();
                 if (this.keyboardInput) this.keyboardInput.reset();
                 if (this.hideMount) this.hideMount.reset();
-				if (this.partyInfo) this.partyInfo.reset();
+                if (this.partyInfo) this.partyInfo.reset();
+                if (this.mover) this.mover.reset();
         }
     }
 
@@ -154,6 +161,8 @@ export class GameComponent implements AfterViewInit {
             case 4:
             case 3:
                 this.healthbar = new HealthBar(this.game.window, this.settingsService.option.vip.general);
+                this.jobsxp = new Jobsxp(this.game.window, this.settingsService.option.vip.general, this.translate);
+                this.fightchronometer = new FightChronometer(this.game.window, this.settingsService.option.vip.general);
             case 2:
                 this.autogroup = new AutoGroup(this.game.window, this.settingsService.option.vip.autogroup, this.ipcRendererService, this.translate);
                 this.inactivity = new Inactivity(this.game.window, this.settingsService.option.vip.general.disable_inactivity);
@@ -179,6 +188,7 @@ export class GameComponent implements AfterViewInit {
                 //this.wizAssets = new WizAssetsContainer(this.game.window, this.applicationService, this.http, this.settingsService.option.general);
                 this.keyboardInput = new KeyboardInput(this.game.window);
 				this.partyInfo = new PartyInfo(this.game.window, this.settingsService.option.vip.general.party_info_pp, this.settingsService.option.vip.general.party_info_lvl, this.translate);
+                this.mover = new Mover(this.game.window);
         }
     }
 

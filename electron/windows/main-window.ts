@@ -57,7 +57,6 @@ export class MainWindow {
             }
         });
 
-
         MainWindow.count++;
 
         this.userAgent = new UserAgent(windowId);

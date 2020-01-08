@@ -64,7 +64,9 @@
             "disable-inactivity": "Extend the delay before disconnection for inactivity",
             "health-bar": "Activate the display of the life bars below the fighters",
             "health-bar-shortcut": "Shortcuts for show/hide life bars",
+            "jobsxp": "Activate the display of the job xp need for leveling",
             "estimator": "Estimating spell damage in battle",
+            "fightchronometer" : "Show combats chronometer",
             "hide-mount": "Hide mounts during fights (beta)"
           },
           "groups": {
@@ -194,6 +196,9 @@
           "header-pp":"Show party's prospecting",
           "level":"Lvl."
         },
+        "jobsxp": {
+          "text": " XP missing<br>before level "
+        },
         "status": {
           "header": "VIP Status"
         }
@@ -215,7 +220,11 @@
           "end-turn": "End your turn / Ready (fight)",
           "open-chat": "Open the chat",
           "active-open-menu": "Open menu when no window is open (ECHAP)",
-          "open-menu": "Open the menu"
+          "open-menu": "Open the menu",
+          "go_up": "Go to Upper Map",
+          "go_bottom": "Go to Lower Map",
+          "go_left": "Go to Left Map",
+          "go_right": "Go to Right Map"
         },
         "interfaces": {
           "header": "Interfaces",

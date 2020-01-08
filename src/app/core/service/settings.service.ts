@@ -643,6 +643,8 @@ export module Option {
             private _disable_inactivity: boolean;
             private _health_bar: boolean;
             private _health_bar_shortcut: string;
+            private _jobsxp: boolean;
+            private _fightchronometer: boolean;
             private _estimator: boolean;
             private _hidden_mount: boolean;
             private _party_info_pp:boolean;
@@ -697,6 +699,15 @@ export module Option {
                 return this._health_bar;
             }
 
+            get fightchronometer(): boolean {
+              return this._fightchronometer;
+            }
+
+            set fightchronometer(fightchronometer: boolean) {
+              this.settingsProvider.write('option.vip.general.fightchronometer', fightchronometer);
+              this._fightchronometer = fightchronometer;
+            }
+
             set health_bar(health_bar: boolean) {
                 this.settingsProvider.write('option.vip.general.health_bar', health_bar);
                 this._health_bar = health_bar;
@@ -714,6 +725,8 @@ export module Option {
             constructor(private settingsProvider: SettingsProvider) {
                 this.disable_inactivity = this.settingsProvider.read('option.vip.general.disable_inactivity');
                 this.health_bar = this.settingsProvider.read('option.vip.general.health_bar');
+                this.jobsxp = this.settingsProvider.read('option.vip.general.jobsxp');
+                this.fightchronometer = this.settingsProvider.read('option.vip.general.fightchronometer');
                 this.health_bar_shortcut = this.settingsProvider.read('option.vip.general.health_bar_shortcut');
                 this.estimator = this.settingsProvider.read('option.vip.general.estimator');
                 this.hidden_mount = this.settingsProvider.read('option.vip.general.hidden_mount');
