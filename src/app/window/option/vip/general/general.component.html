@@ -10,21 +10,19 @@
         <div class="col-xs-12">
             <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.hidden_mount">{{ 'app.window.options.features.general.hide-mount' | translate }}</mat-checkbox>
         </div>
-        <div class="col-xs-12">
+		<div class="col-xs-12">
             <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.party_info_pp">{{ 'app.option.vip.party-info.header-pp' | translate }}</mat-checkbox>
-        </div>
-        <div class="col-xs-12">
+		</div>
+		<div class="col-xs-12">
             <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.party_info_lvl">{{ 'app.option.vip.party-info.header-lvl' | translate }}</mat-checkbox>
-        </div>
-        <div class="col-xs-12">
-            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.fightchronometer">{{ 'app.window.options.features.general.fightchronometer' | translate }}</mat-checkbox>
-        </div>
-        <div class="col-xs-12">
+		</div>
+	<div class="col-xs-12">
             <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.jobsxp">{{ 'app.window.options.features.general.jobsxp' | translate }}</mat-checkbox>
         </div>
         <div class="col-xs-12" style="margin-bottom: 10px;"> <!-- En attendant de savoir ce qu'on fait avec ce input en dessous -->
             <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.health_bar">{{ 'app.window.options.features.general.health-bar' | translate }}</mat-checkbox>
         </div>
+
 
         <div class="col-xs-12">
             <ng-container *ngIf="settingsService.option.vip.general.health_bar">
@@ -33,7 +31,6 @@
                 </component-option-input-shortcuts>
             </ng-container>
         </div>
-
 
     </div>
 </div>

@@ -4,11 +4,13 @@ import { Mods } from "../mods";
 import { ShortcutsHelper } from "app/core/helpers/shortcuts.helper";
 import { Option } from "app/core/service/settings.service";
 import { Logger } from "app/core/electron/logger.helper";
+import { Mover } from "app/core/mods/mover/mover";
 
 export class Shortcuts extends Mods {
 
     private params: Option.Shortcuts;
     private shortcutsHelper: ShortcutsHelper;
+    private mover: Mover;
 
     constructor(wGame: any, params: Option.Shortcuts) {
         super(wGame);
@@ -18,7 +20,7 @@ export class Shortcuts extends Mods {
         if (this.params.diver.active_open_menu) {
             Logger.info(' - enable open_menu');
         }
-
+        this.mover = new Mover(this.wGame);
         this.bindAll();
     }
 
@@ -32,6 +34,42 @@ export class Shortcuts extends Mods {
             } else if (this.wGame.gui.fightManager.fightState == 1) {
               this.wGame.gui.fightManager.finishTurn();
             }
+        });
+
+        // go to top map
+        this.shortcutsHelper.bind(this.params.diver.go_up, () => {
+            this.mover.move("top", () => {
+                console.debug('Move to Up OK');
+            }, (reason: string = '') => {
+                console.debug('Move to Up Failed... (' + reason + ')');
+            });
+        });
+
+        // go to bottom map
+        this.shortcutsHelper.bind(this.params.diver.go_bottom, () => {
+            this.mover.move("bottom", () => {
+                console.debug('Move to Bottom OK');
+            }, (reason: string = '') => {
+                console.debug('Move to Bottom Failed... (' + reason + ')');
+            });
+        });
+
+        // go to left map
+        this.shortcutsHelper.bind(this.params.diver.go_left, () => {
+            this.mover.move("left", () => {
+                console.debug('Move to Left OK');
+            }, (reason: string = '') => {
+                console.debug('Move to Left Failed... (' + reason + ')');
+            });
+        });
+
+        // go to right map
+        this.shortcutsHelper.bind(this.params.diver.go_right, () => {
+            this.mover.move("right", () => {
+                console.debug('Move to Right OK');
+            }, (reason: string = '') => {
+                console.debug('Move to Right Failed... (' + reason + ')');
+            });
         });
 
         // Open chat
@@ -103,6 +141,7 @@ export class Shortcuts extends Mods {
 
     public reset() {
         super.reset();
+        if (this.mover) this.mover.reset();
         this.shortcutsHelper.unBindAll();
     }
 }
