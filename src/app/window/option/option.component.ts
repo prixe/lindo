@@ -39,7 +39,6 @@ export class OptionComponent {
     }
 
     public reset() {
-
         this.promptService.confirm({
             title: this.translateService.instant('app.prompt.title.confirm'),
             html: this.translateService.instant('app.option.prompt.reset-option.text'),
@@ -52,11 +51,12 @@ export class OptionComponent {
         }, (dismiss) => { });
     }
 
-    public server(){
-        if(this.settingsService.serverName == "Production"){
+    public switchServer() {
+        this.ipcRendererService.send('reset-game');
+        if (this.settingsService.serverName == "Production") {
             this.settingsService.serverName = "Early"
             this.window.serverChange();
-        }else{
+        } else {
             this.settingsService.serverName = "Production"
             this.window.serverChange();
         }
