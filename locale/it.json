@@ -50,6 +50,7 @@
         "general": {
           "reset-game": "Ri-scarica i dati di gioco",
           "reset-all": "Ripristina",
+          "server-change" : "Sostantivo",
           "shortcuts": "Configurazione tasti rapidi",
           "clear-cache": "Pulisci cache",
           "resolution": {

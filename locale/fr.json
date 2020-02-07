@@ -50,7 +50,7 @@
         "general": {
           "reset-game": "Re-télécharger les données du jeu",
           "reset-all": "Réinitialiser",
-          "server-change" : "Sostantivo",
+          "server-change" : "Serveur",
           "shortcuts": "Configurer les raccourcis",
           "clear-cache": "Vider le cache",
           "resolution": {
