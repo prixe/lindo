@@ -45,21 +45,14 @@ export class OptionComponent {
             type: 'warning',
             target: 'component-options'
         }).then(() => {
-
             Settings.resetSettings();
-
-        }, (dismiss) => { });
+        }, (dismiss) => {});
     }
 
     public switchServer() {
         this.ipcRendererService.send('reset-game');
-        if (this.settingsService.serverName == "Production") {
-            this.settingsService.serverName = "Early"
-            this.window.serverChange();
-        } else {
-            this.settingsService.serverName = "Production"
-            this.window.serverChange();
-        }
+        this.settingsService.serverName = (this.settingsService.serverName == "Production") ? "Early" : "Production";
+        this.window.restart();
     }
 
     public navigateTo($event: any, route: string) {

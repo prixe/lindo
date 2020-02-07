@@ -35,10 +35,4 @@ export class ElectronService {
         app.relaunch();
         app.quit();
     }
-
-    public static serverChange(){
-        app.relaunch();
-        app.exit(0);
-    }
-
 }
