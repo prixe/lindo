@@ -66,7 +66,7 @@
             "jobsxp": "Attiva il display dell'esperienza del lavoro necessaria ad aumentarne il livello",
             "fightchronometer": "Mostra combattimenti di cronometri",
             "estimator": "Fai una stima dei danni da incantesimi in battaglia",
-            "hide-mount": "Nascondi le cavalcature durante i combattimenti (beta)"
+            "hide-mount": "Nascondi le cavalcature durante i combattimenti"
           },
           "groups": {
             "header": "Gruppi"
