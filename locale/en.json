@@ -65,8 +65,13 @@
             "health-bar-shortcut": "Shortcuts for show/hide life bars",
             "jobsxp": "Activate the display of the job xp need for leveling",
             "estimator": "Estimating spell damage in battle",
+<<<<<<< HEAD
             "fightchronometer" : "Show combats chronometer",
             "hide-mount": "Hide mounts during fights"
+=======
+            "hide-mount": "Hide mounts during fights",
+            "fightchronometer" : "Show combats chronometer"
+>>>>>>> master
           },
           "groups": {
             "header": "Groups"
