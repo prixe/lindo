@@ -50,6 +50,7 @@
         "general": {
           "reset-game": "Re-télécharger les données du jeu",
           "reset-all": "Réinitialiser",
+          "server-change" : "Serveur",
           "shortcuts": "Configurer les raccourcis",
           "clear-cache": "Vider le cache",
           "resolution": {
@@ -65,7 +66,8 @@
             "health-bar": "Barres de vie en-dessous des combatants",
             "health-bar-shortcut": "Raccourcis pour les barres de vie",
             "jobsxp": "Activer l'affichage de l'xp a obtenir pour monter de niveau (métier)",
-            "hide-mount": "Cacher les montures pendant les combats (beta)"
+            "hide-mount": "Cacher les montures pendant les combats",
+            "fightchronometer": "Afficher le chronomètre de combats",
           },
           "groups": {
             "header": "Groupe"
@@ -206,7 +208,7 @@
           "level": "Niv."
         },
         "jobsxp": {
-            "text": " XP manquant<br>avant le niveau "
+          "text": " XP manquant<br>avant le niveau "
         },
         "status": {
           "header": "Statut VIP"

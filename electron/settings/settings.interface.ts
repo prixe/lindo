@@ -6,6 +6,7 @@ export interface SettingsInterface {
     alertCounter: number;
     vip_id: string;
     last_news: number;
+    serverName: string;
     appPreferences: any;
     option: {
         general: {
@@ -79,8 +80,9 @@ export interface SettingsInterface {
                 disable_inactivity: boolean;
                 health_bar: boolean;
                 health_bar_shortcut: string;
-                jobsxp: boolean,
+                jobsxp: boolean;
                 estimator: boolean;
+                fightchronometer: boolean;
                 hidden_mount: boolean;
                 party_info_pp: boolean;
                 party_info_lvl: boolean;

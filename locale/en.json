@@ -50,6 +50,7 @@
         "general": {
           "reset-game": "Re-download game data",
           "reset-all": "Reset",
+          "server-change" : "Server",
           "shortcuts": "Configure shortcuts",
           "clear-cache": "Clear cache",
           "resolution": {
@@ -65,7 +66,8 @@
             "health-bar-shortcut": "Shortcuts for show/hide life bars",
             "jobsxp": "Activate the display of the job xp need for leveling",
             "estimator": "Estimating spell damage in battle",
-            "hide-mount": "Hide mounts during fights (beta)"
+            "hide-mount": "Hide mounts during fights",
+            "fightchronometer" : "Show combats chronometer"
           },
           "groups": {
             "header": "Groups"
@@ -207,7 +209,7 @@
           "level":"Lvl."
         },
         "jobsxp": {
-            "text": " XP missing<br>before level "
+          "text": " XP missing<br>before level "
         },
         "status": {
           "header": "VIP Status"

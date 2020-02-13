@@ -8,6 +8,7 @@ export const SettingsDefault: SettingsInterface = {
     alertCounter: 0,
     vip_id: null,
     last_news: null,
+    serverName: "Production",
     appPreferences: null,
     option: {
         general: {
@@ -156,6 +157,7 @@ export const SettingsDefault: SettingsInterface = {
                 health_bar_shortcut: 'p',
                 jobsxp: false,
                 estimator: true,
+                fightchronometer: true,
                 hidden_mount: false,
                 party_info_pp: false,
                 party_info_lvl: false

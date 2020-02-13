@@ -86,9 +86,25 @@ export class Shortcuts extends Mods {
 
         // Spell
         async.forEachOf(this.params.spell, (shortcut: string, index: number) => {
+            const selectedSpell = this.wGame.gui.shortcutBar._panels.spell.slotList[index];
+
             this.shortcutsHelper.bind(shortcut, () => {
-                this.wGame.gui.shortcutBar._panels.spell.slotList[index].tap();
+                selectedSpell.tap();
                 //this.tab.window.gui.shortcutBar.panels.spell.slotList[index].tap();
+            });
+            selectedSpell.on('doubletap', () => {
+              /*TODO (HoPollo) :
+              / Allow double shortcut tap to work as well (currently only mouseclick works)
+              */
+                if (this.wGame.gui.fightManager.fightState === 0) {
+                    return;
+                }
+              
+                selectedSpell.tap();
+                
+                setTimeout(() => {
+                    this.wGame.isoEngine._castSpellImmediately(this.wGame.isoEngine.actorManager.userActor.cellId);
+                }, 150);
             });
         });
 
@@ -126,6 +142,12 @@ export class Shortcuts extends Mods {
                         winClosed++;
                         break;
                     }
+                }
+                if (this.wGame.gui.notificationBar._elementIsVisible) {
+                    const dialogName = this.wGame.gui.notificationBar.currentOpenedId;
+                    // If notifiaction is openened, allow to close it with ESC
+                    this.wGame.gui.notificationBar.dialogs[dialogName]._childrenList[0]._childrenList[1].tap();
+                    winClosed++;
                 }
                 if (this.params.diver.active_open_menu && !winClosed) {
                     // If no window closed open menu

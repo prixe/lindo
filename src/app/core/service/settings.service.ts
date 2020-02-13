@@ -462,6 +462,7 @@ export module Option {
                 this._open_menu = open_menu;
             }
 
+
             get go_up(): string {
                 return this._go_up;
             }
@@ -688,6 +689,7 @@ export module Option {
             private _health_bar: boolean;
             private _health_bar_shortcut: string;
             private _jobsxp: boolean;
+            private _fightchronometer: boolean;
             private _estimator: boolean;
             private _hidden_mount: boolean;
             private _party_info_pp:boolean;
@@ -741,7 +743,7 @@ export module Option {
             get health_bar(): boolean {
                 return this._health_bar;
             }
-            
+
             get jobsxp(): boolean {
                 return this._jobsxp;
             }
@@ -749,6 +751,15 @@ export module Option {
             set jobsxp(jobsxp: boolean) {
                 this.settingsProvider.write('option.vip.general.jobsxp', jobsxp);
                 this._jobsxp = jobsxp;
+            }
+
+            get fightchronometer(): boolean {
+              return this._fightchronometer;
+            }
+
+            set fightchronometer(fightchronometer: boolean) {
+              this.settingsProvider.write('option.vip.general.fightchronometer', fightchronometer);
+              this._fightchronometer = fightchronometer;
             }
 
             set health_bar(health_bar: boolean) {
@@ -769,6 +780,7 @@ export module Option {
                 this.disable_inactivity = this.settingsProvider.read('option.vip.general.disable_inactivity');
                 this.health_bar = this.settingsProvider.read('option.vip.general.health_bar');
                 this.jobsxp = this.settingsProvider.read('option.vip.general.jobsxp');
+                this.fightchronometer = this.settingsProvider.read('option.vip.general.fightchronometer');
                 this.health_bar_shortcut = this.settingsProvider.read('option.vip.general.health_bar_shortcut');
                 this.estimator = this.settingsProvider.read('option.vip.general.estimator');
                 this.hidden_mount = this.settingsProvider.read('option.vip.general.hidden_mount');
@@ -927,6 +939,16 @@ export class SettingsService {
     private _language: string;
     private _vip_id: string;
     private _last_news: number;
+    private _serverName: string;
+
+    get serverName(): string {
+        return this._serverName;
+    }
+
+    set serverName(serverName: string) {
+        this.settingsProvider.write('serverName', serverName);
+        this._serverName = serverName;
+    }
 
     get last_news(): number {
         return this._last_news;
@@ -1012,6 +1034,7 @@ export class SettingsService {
             this._language = this.settingsProvider.read('language');
             this._vip_id = this.settingsProvider.read('vip_id');
             this._last_news = this.settingsProvider.read('last_news');
+            this._serverName = this.settingsProvider.read('serverName');
         };
         init();
 
