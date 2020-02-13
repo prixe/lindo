@@ -462,6 +462,7 @@ export module Option {
                 this._open_menu = open_menu;
             }
 
+
             get go_up(): string {
                 return this._go_up;
             }
@@ -742,7 +743,7 @@ export module Option {
             get health_bar(): boolean {
                 return this._health_bar;
             }
-            
+
             get jobsxp(): boolean {
                 return this._jobsxp;
             }
@@ -938,6 +939,16 @@ export class SettingsService {
     private _language: string;
     private _vip_id: string;
     private _last_news: number;
+    private _serverName: string;
+
+    get serverName(): string {
+        return this._serverName;
+    }
+
+    set serverName(serverName: string) {
+        this.settingsProvider.write('serverName', serverName);
+        this._serverName = serverName;
+    }
 
     get last_news(): number {
         return this._last_news;
@@ -1023,6 +1034,7 @@ export class SettingsService {
             this._language = this.settingsProvider.read('language');
             this._vip_id = this.settingsProvider.read('vip_id');
             this._last_news = this.settingsProvider.read('last_news');
+            this._serverName = this.settingsProvider.read('serverName');
         };
         init();
 

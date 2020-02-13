@@ -6,6 +6,7 @@ export interface SettingsInterface {
     alertCounter: number;
     vip_id: string;
     last_news: number;
+    serverName: string;
     appPreferences: any;
     option: {
         general: {

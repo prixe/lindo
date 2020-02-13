@@ -8,6 +8,7 @@ type Param = 'language'
     | 'alertCounter'
     | 'vip_id'
     | 'last_news'
+    | 'serverName'
     | 'appPreferences'
     | 'option'
     /* GENERAL */

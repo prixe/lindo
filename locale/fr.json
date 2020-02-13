@@ -50,6 +50,7 @@
         "general": {
           "reset-game": "Re-télécharger les données du jeu",
           "reset-all": "Réinitialiser",
+          "server-change" : "Serveur",
           "shortcuts": "Configurer les raccourcis",
           "clear-cache": "Vider le cache",
           "resolution": {
@@ -195,7 +196,7 @@
           "level": "Niv."
         },
         "jobsxp": {
-            "text": " XP manquant<br>avant le niveau "
+          "text": " XP manquant<br>avant le niveau "
         },
         "status": {
           "header": "Statut VIP"

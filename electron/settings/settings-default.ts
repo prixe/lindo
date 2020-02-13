@@ -8,6 +8,7 @@ export const SettingsDefault: SettingsInterface = {
     alertCounter: 0,
     vip_id: null,
     last_news: null,
+    serverName: "Production",
     appPreferences: null,
     option: {
         general: {

@@ -24,6 +24,7 @@
 
         <div class="settings-actions">
             <button mat-raised-button color="accent" style="float:left;" (click)="reset()">{{ 'app.window.options.general.reset-all' | translate }}</button>
+            <button mat-raised-button style="float:left; margin-left: 10px" (click)="switchServer()">(Beta) {{ 'app.window.options.general.server-change' | translate }} {{ serverName }}</button>
             <button mat-raised-button color="primary" (click)="dialogRef.close()">{{ 'app.window.options.button.close' | translate }}</button>
         </div>
 
