@@ -67,7 +67,7 @@
             "health-bar-shortcut": "Raccourcis pour les barres de vie",
             "jobsxp": "Activer l'affichage de l'xp a obtenir pour monter de niveau (métier)",
             "hide-mount": "Cacher les montures pendant les combats",
-            "fightchronometer": "Afficher le chronomètre de combats",
+            "fightchronometer": "Afficher le chronomètre de combats"
           },
           "groups": {
             "header": "Groupe"
