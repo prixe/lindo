@@ -7,7 +7,6 @@ import { Subscription } from 'rxjs';
 import { Logger } from "app/core/electron/logger.helper";
 import { SettingsService } from 'app/core/service/settings.service';
 import { js as BeautifyJs, css as BeautifyCss } from 'js-beautify';
-const Path = require('path');
 const progress = requestProgressLib;
 const request = requestLib;
 const fs = fsLib;
@@ -548,7 +547,7 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
 
         if (fs.existsSync(this.destinationPath)) {
             await fs.readdirSync(this.destinationPath).forEach((file, index) => {
-                const curPath = Path.join(this.destinationPath, file);
+                const curPath = path.join(this.destinationPath, file);
                 if (fs.lstatSync(curPath).isDirectory()) {
                     this.deleteFolderRecursive();
                 } else {
