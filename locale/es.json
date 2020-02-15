@@ -168,10 +168,9 @@
             },
             "delete-master": {
               "title": "Eliminación de la contraseña",
-              "text": "Para eliminar la contraseña, confírmela..<br/>Esto eliminará las cuentas grabadas.",
+              "text": "¿Está usted seguro?<br/>Esto eliminará las cuentas grabadas.",
               "confirm": "Quitar",
               "cancel": "Anular",
-              "incorrect-old": "La contraseña introducida no es correcta.",
               "success-text": "La contraseña ha sido borrada."
             },
             "maximum-account": {

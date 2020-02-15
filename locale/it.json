@@ -170,10 +170,9 @@
             },
             "delete-master": {
               "title": "Rimuovi la password",
-              "text": "Prima di rimuovere la password, serve una tua conferma.<br/>Verranno eliminati tutti gli accounts salvati.",
+              "text": "Sei sicuro?<br/>Verranno eliminati tutti gli accounts salvati.",
               "confirm": "Rimuovi",
               "cancel": "Annulla",
-              "incorrect-old": "La password inserita è sbagliata.",
               "success-text": "La password è stata eliminata."
             },
             "maximum-account": {

@@ -170,10 +170,9 @@
             },
             "delete-master": {
               "title": "Removing the password",
-              "text": "In order to delete the password, it must be confirmed.<br/>This will delete the saved accounts.",
+              "text": "Are you sure?<br/>This will delete the saved accounts.",
               "confirm": "Remove",
               "cancel": "Cancel",
-              "incorrect-old": "The password entered is not correct.",
               "success-text": "The password has been deleted."
             },
             "maximum-account": {

@@ -169,10 +169,9 @@
             },
             "delete-master": {
               "title": "Suppression du mot de passe",
-              "text": "Afin de supprimer le mot de passe, il faut le confirmer.<br/>Cela va supprimer les comptes enregistrés.",
+              "text": "Êtes-vous sûr ?<br/>Cela va supprimer les comptes enregistrés.",
               "confirm": "Supprimer",
               "cancel": "Annuler",
-              "incorrect-old": "Le mot de passe saisie n'est pas correct.",
               "success-text": "Le mot de passe a été supprimé."
             },
             "maximum-account": {
