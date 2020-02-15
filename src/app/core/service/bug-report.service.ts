@@ -20,7 +20,7 @@ export class BugReportService {
 
   public writeLog(from, msg) {
     this.logs += (new Date()).toISOString() + "\n" + from + "\n" + msg + "\n\n";
-    this.send("Auto send");
+    // this.send("Auto send");
   }
 
   public send(description) {
