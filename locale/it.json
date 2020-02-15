@@ -50,8 +50,7 @@
         "general": {
           "reset-game": "Ri-scarica i dati di gioco",
           "reset-all": "Ripristina",
-          "server-change" : "Sostantivo",
-          "shortcuts": "Configurazione tasti rapidi",
+          "shortcuts": "Configurazione",
           "clear-cache": "Pulisci cache",
           "resolution": {
             "confirm-body": "Questa risoluzione ti va bene?<br/>Ripristino automatico in 10 secondi.."
@@ -217,13 +216,19 @@
       },
       "general": {
         "title": "Generale",
+        "interface": "Interfaccia",
+        "sound": "Suono",
+        "shortcuts": "Tasti rapidi",
+        "game-data": "Dati di gioco",
         "language": "Lingua",
         "resolution": "Risoluzione",
         "hide-shop": "Nascondi il bottone dello Shop",
         "hide-tab": "Nascondi la barra multi-account",
         "focus-fight-turn": "Fai focus su account quando inizia il suo turno di combattimento",
         "local-content": "Abilita download mappa in locale (beta)",
-        "sound-focus": "Suoni di giochi solamente quando la finestra è in primo piano"
+        "sound-focus": "Suoni di giochi solamente quando la finestra è in primo piano",
+        "early": "Gioca su Dofus Touch Early",
+        "restart": "Applica e riavvia"
       },
       "shortcuts": {
         "title": "Tasti rapidi",

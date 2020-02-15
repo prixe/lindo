@@ -50,8 +50,7 @@
         "general": {
           "reset-game": "Re-télécharger les données du jeu",
           "reset-all": "Réinitialiser",
-          "server-change" : "Serveur",
-          "shortcuts": "Configurer les raccourcis",
+          "shortcuts": "Configurer",
           "clear-cache": "Vider le cache",
           "resolution": {
             "confirm-body": "La résolution actuelle vous convient-elle ?<br/>Rétablissement automatique dans 10 secondes.."
@@ -216,13 +215,19 @@
       },
       "general": {
         "title": "Général",
+        "interface": "Interface",
+        "sound": "Son",
+        "shortcuts": "Raccourcis clavier",
+        "game-data": "Données du jeu",
         "language": "Langage",
         "resolution": "Résolution",
         "hide-shop": "Cacher le bouton Shop",
         "hide-tab": "Masquer la barre d'onglets multi-compte",
         "focus-fight-turn": "Basculer automatiquement vers un compte à son tour de jeu",
         "local-content": "Activer le téléchargement local des cartes (beta)",
-        "sound-focus": "Son du jeu uniquement sur la fenêtre au premier plan"
+        "sound-focus": "Son du jeu uniquement sur la fenêtre au premier plan",
+        "early": "Jouer sur Dofus Touch Early",
+        "restart": "Appliquer et redémarrer"
       },
       "shortcuts": {
         "title": "Raccourcis",

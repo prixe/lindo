@@ -48,8 +48,7 @@
         "general": {
           "reset-game": "Volver a descargar los datos",
           "reset-all": "Reiniciar",
-          "server-change" : "Servidor",
-          "shortcuts": "Configurar atajos",
+          "shortcuts": "Configurar",
           "clear-cache": "Vaciar la caché",
           "resolution": {
             "confirm-body": "Está de acuerdo con la resolución actual ?<br/>La recuperación automática en 10 segundos.."
@@ -215,11 +214,17 @@
       },
       "general": {
         "title": "General",
+        "interface": "Interfaz",
+        "sound": "Sonido",
+        "shortcuts": "Atajos de teclado",
+        "game-data": "Datos del juego",
         "language": "Idioma",
         "resolution": "Resolución",
         "hide-shop": "Ocultar el botón Shop",
         "hide-tab": "Ocultar la barra de tareas multicuentas",
-        "local-content": "Habilitar descargar mapas locales (beta)"
+        "local-content": "Habilitar descargar mapas locales (beta)",
+        "early": "Juega en Dofus Touch Early",
+        "restart": "Aplicar y reiniciar"
       },
       "shortcuts": {
         "title": "Atajos",

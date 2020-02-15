@@ -7,7 +7,6 @@ import { Logger } from 'app/core/electron/logger.helper';
 import { PromptService } from 'app/core/service/prompt.service';
 import { ChangelogWindowService } from '../changelog/changelog.window';
 import { MatDialogRef } from '@angular/material/dialog';
-import { ElectronService as electron } from 'app/core/electron/electron.service';
 import { SettingsService } from 'app/core/service/settings.service';
 
 @Component({
@@ -16,8 +15,6 @@ import { SettingsService } from 'app/core/service/settings.service';
     styleUrls: ['./option.component.scss']
 })
 export class OptionComponent {
-    public serverName: string = (this.settingsService.serverName == "Production") ? "Early" : "Production";
-    public window: any | Window;
     constructor(
         public dialogRef: MatDialogRef<OptionComponent>,
         public changelog: ChangelogWindowService,
@@ -29,7 +26,6 @@ export class OptionComponent {
         public settingsService: SettingsService,
     ) {
         this.router.navigate(['/option/general']);
-        this.window = electron;
     }
 
 
@@ -47,12 +43,6 @@ export class OptionComponent {
         }).then(() => {
             Settings.resetSettings();
         }, (dismiss) => {});
-    }
-
-    public switchServer() {
-        this.ipcRendererService.send('reset-game');
-        this.settingsService.serverName = (this.settingsService.serverName == "Production") ? "Early" : "Production";
-        this.window.restart();
     }
 
     public navigateTo($event: any, route: string) {

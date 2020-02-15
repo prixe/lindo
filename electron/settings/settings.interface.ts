@@ -6,7 +6,6 @@ export interface SettingsInterface {
     alertCounter: number;
     vip_id: string;
     last_news: number;
-    serverName: string;
     appPreferences: any;
     option: {
         general: {
@@ -20,6 +19,7 @@ export interface SettingsInterface {
             },
             local_content: boolean;
             sound_focus: boolean;
+            early: boolean;
         }
         shortcuts: {
             no_emu: {

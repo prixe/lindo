@@ -523,6 +523,7 @@ export module Option {
         private _local_content: boolean;
         private _sound_focus: boolean;
         private _user_agent: string;
+        private _early: boolean;
 
         get hidden_shop(): boolean {
             return this._hidden_shop;
@@ -578,6 +579,15 @@ export module Option {
             this._sound_focus = sound_focus;
         }
 
+        get early(): boolean {
+            return this._early;
+        }
+
+        set early(early: boolean) {
+            this.settingsProvider.write('option.general.early', early);
+            this._early = early;
+        }
+
         constructor(private settingsProvider: SettingsProvider) {
             this.user_agent = this.settingsProvider.read('option.general.user_agent');
             this.hidden_shop = this.settingsProvider.read('option.general.hidden_shop');
@@ -585,6 +595,7 @@ export module Option {
             this.resolution = this.settingsProvider.read('option.general.resolution');
             this.local_content = this.settingsProvider.read('option.general.local_content');
             this.sound_focus = this.settingsProvider.read('option.general.sound_focus');
+            this.early = this.settingsProvider.read('option.general.early');
         }
     }
 
@@ -939,16 +950,6 @@ export class SettingsService {
     private _language: string;
     private _vip_id: string;
     private _last_news: number;
-    private _serverName: string;
-
-    get serverName(): string {
-        return this._serverName;
-    }
-
-    set serverName(serverName: string) {
-        this.settingsProvider.write('serverName', serverName);
-        this._serverName = serverName;
-    }
 
     get last_news(): number {
         return this._last_news;
@@ -1034,7 +1035,6 @@ export class SettingsService {
             this._language = this.settingsProvider.read('language');
             this._vip_id = this.settingsProvider.read('vip_id');
             this._last_news = this.settingsProvider.read('last_news');
-            this._serverName = this.settingsProvider.read('serverName');
         };
         init();
 
