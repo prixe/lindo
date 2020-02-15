@@ -1,3 +1,14 @@
+## [2.4.0] - 2019-10-02
+
+### Modifications
+
+- Il n'est plus nécessaire de renseigner le mot de passe maître pour supprimer les comptes enregistrés
+- Désactivation du rapport d'erreur automatique
+- Il est désormais possible de jouer sur la version Early de Dofus Touch avec Lindo
+- Mise à jour de la disposition des options générales
+- Les échanges peuvent être refusés avec Echap
+- Une nouvelle fonctionnalité activable permet d'afficher dans la timeline le temps passé en combat
+
 ## [2.3.2] - 2019-10-02
 
 ### Modifications
