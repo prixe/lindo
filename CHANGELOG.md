@@ -64,14 +64,14 @@
 - Mise à jour de la section "À propos"
 - Support de l'italien
 
-## [2.1.3] - 2018-05-20
+## [2.1.3] - 2018-09-16
 
 ### Bugs
 
 - L'estimation des dégâts est désormais fonctionnelle et compatible avec la version 1.35 de DofusTouch
 - Annulation des mises à jours de librairies effectuées pour Lindo v2.1.2, provoquant une non-compatibilité sur Mac. Solution temporaire qui nous donnera le temps de trouver ce qui posait problème.
 
-## [2.1.2] - 2018-05-20
+## [2.1.2] - 2018-08-28
 
 ### Améliorations
 
