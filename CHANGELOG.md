@@ -8,6 +8,7 @@
 - Mise à jour de la disposition des options générales
 - Les échanges peuvent être refusés avec Echap
 - Une nouvelle fonctionnalité activable permet d'afficher dans la timeline le temps passé en combat
+- Double-cliquer sur un sort permet de l'utiliser instantanément sur soi-même
 
 ## [2.3.2] - 2019-10-02
 
