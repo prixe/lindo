@@ -15,7 +15,7 @@
     "start": "electron ./",
     "release:win": "build --win --x64 --ia32",
     "release:mac": "build --mac --config.electronVersion=4.1.3",
-    "release:linux": "build --linux --x64 --ia32",
+    "release:linux": "build --linux --x64",
     "toc": "doctoc README.md",
     "update": "ng update @angular/cli --migrate-only --from=1.7.4"
   },
