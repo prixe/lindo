@@ -19,7 +19,8 @@ type Param = 'language'
     | 'option.general.resolution.x'
     | 'option.general.resolution.y'
     | 'option.general.local_content'
-    | 'option.general.sound_focus';
+    | 'option.general.sound_focus'
+    | 'option.general.early';
 
 @Injectable()
 export class ConfigService extends EventEmitter {

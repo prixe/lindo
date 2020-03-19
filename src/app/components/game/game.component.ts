@@ -61,6 +61,7 @@ export class GameComponent implements AfterViewInit {
     private hideMount: HideMount;
 	private partyInfo:PartyInfo;
     private mover: Mover;
+
     constructor(
         private windowService: WindowService,
         private ipcRendererService: IpcRendererService,
