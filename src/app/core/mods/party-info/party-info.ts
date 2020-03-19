@@ -9,20 +9,25 @@ import { Logger } from "app/core/electron/logger.helper";
 export class PartyInfo extends Mods {
     private partyInitialized:boolean;
     private container: any;
+    private info_pp: boolean;
+    private info_lvl: boolean;
 
     constructor(
         wGame: any,
-        private party_info_pp: boolean,
-        private party_info_lvl: boolean,
+        options: any,
         private translate: TranslateService
     ) {
         super(wGame);
+        this.info_pp = options.party_info_pp;
+        this.info_lvl = options.party_info_lvl;
         this.translate = translate;
-        if (this.party_info_pp || this.party_info_lvl) {
+        if (this.info_pp || this.info_lvl) {
             Logger.info(' - enable PartyInfo');
 
             this.partyInitialized = (this.wGame.document.querySelector("#party-info-container") === null ? false : true);
-            setTimeout(() => {this.updatePartyInfo()}, 100);
+            setTimeout(() => {
+                this.updatePartyInfo()
+            }, 100);
             this.on(this.wGame.dofus.connectionManager, 'PartyJoinMessage', this.updatePartyInfo.bind(this));
             this.on(this.wGame.dofus.connectionManager, 'PartyUpdateMessage', this.updatePartyInfo.bind(this));
             this.on(this.wGame.dofus.connectionManager, 'PartyMemberEjectedMessage', this.updatePartyInfo.bind(this));
@@ -58,7 +63,7 @@ export class PartyInfo extends Mods {
         font-family: berlin_sans_fb_demibold;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 1) inset;`;
 
-        if (this.party_info_lvl) {
+        if (this.info_lvl) {
             let partyLevelElement = this.wGame.document.createElement("div");
 
             partyLevelElement.textContent = this.translate.instant('app.option.vip.party-info.level') + " ?";
@@ -67,7 +72,7 @@ export class PartyInfo extends Mods {
             this.container.appendChild(partyLevelElement);
         }
 
-        if (this.party_info_pp) {
+        if (this.info_pp) {
             let prospectionContainerElement = this.wGame.document.createElement("div");
             let prospectionImageElement = this.wGame.document.createElement("img");
             let prospectionTextElement = this.wGame.document.createElement("span");
@@ -109,10 +114,10 @@ export class PartyInfo extends Mods {
                     partyLevel += c.memberData.level;
                     prospecting += c.memberData.prospecting;
                 });
-                if (this.party_info_lvl) {
+                if (this.info_lvl) {
                     this.wGame.document.querySelector("#party-level").textContent = this.translate.instant('app.option.vip.party-info.level') +" "+ (isNaN(partyLevel) ? "?" : partyLevel);
                 }
-                if (this.party_info_pp) {
+                if (this.info_pp) {
                     this.wGame.document.querySelector("#party-pr").textContent = " "+ (isNaN(prospecting) ? "?":prospecting);
                 }
             }
@@ -121,7 +126,7 @@ export class PartyInfo extends Mods {
 
     public reset() {
         super.reset();
-        if (this.party_info_pp || this.party_info_lvl) {
+        if (this.info_pp || this.info_lvl) {
             this.destroy();
         }
     }
