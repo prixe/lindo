@@ -50,7 +50,7 @@
         "general": {
           "reset-game": "Re-télécharger les données du jeu",
           "reset-all": "Réinitialiser",
-          "shortcuts": "Configurer les raccourcis",
+          "shortcuts": "Configurer",
           "clear-cache": "Vider le cache",
           "resolution": {
             "confirm-body": "La résolution actuelle vous convient-elle ?<br/>Rétablissement automatique dans 10 secondes.."
@@ -65,13 +65,8 @@
             "health-bar": "Barres de vie en-dessous des combatants",
             "health-bar-shortcut": "Raccourcis pour les barres de vie",
             "jobsxp": "Activer l'affichage de l'xp a obtenir pour monter de niveau (métier)",
-<<<<<<< HEAD
             "fightchronometer": "Afficher le chronomètre de combats",
             "hide-mount": "Cacher les montures pendant les combats"
-=======
-            "hide-mount": "Cacher les montures pendant les combats",
-            "fightchronometer": "Afficher le chronomètre de combats",
->>>>>>> master
           },
           "groups": {
             "header": "Groupe"
@@ -174,10 +169,9 @@
             },
             "delete-master": {
               "title": "Suppression du mot de passe",
-              "text": "Afin de supprimer le mot de passe, il faut le confirmer.<br/>Cela va supprimer les comptes enregistrés.",
+              "text": "Êtes-vous sûr ?<br/>Cela va supprimer les comptes enregistrés.",
               "confirm": "Supprimer",
               "cancel": "Annuler",
-              "incorrect-old": "Le mot de passe saisie n'est pas correct.",
               "success-text": "Le mot de passe a été supprimé."
             },
             "maximum-account": {
@@ -212,21 +206,24 @@
           "level": "Niv."
         },
         "jobsxp": {
-            "text": " XP manquant<br>avant le niveau "
-        },
-        "status": {
-          "header": "Statut VIP"
+          "text": " XP manquant<br>avant le niveau "
         }
       },
       "general": {
         "title": "Général",
+        "interface": "Interface",
+        "sound": "Son",
+        "shortcuts": "Raccourcis clavier",
+        "game-data": "Données du jeu",
         "language": "Langage",
         "resolution": "Résolution",
         "hide-shop": "Cacher le bouton Shop",
         "hide-tab": "Masquer la barre d'onglets multi-compte",
         "focus-fight-turn": "Basculer automatiquement vers un compte à son tour de jeu",
         "local-content": "Activer le téléchargement local des cartes (beta)",
-        "sound-focus": "Son du jeu uniquement sur la fenêtre au premier plan"
+        "sound-focus": "Son du jeu uniquement sur la fenêtre au premier plan",
+        "early": "Jouer sur Dofus Touch Early",
+        "restart": "Appliquer et redémarrer"
       },
       "shortcuts": {
         "title": "Raccourcis",

@@ -7,6 +7,7 @@ import { Logger } from 'app/core/electron/logger.helper';
 import { PromptService } from 'app/core/service/prompt.service';
 import { ChangelogWindowService } from '../changelog/changelog.window';
 import { MatDialogRef } from '@angular/material/dialog';
+import { SettingsService } from 'app/core/service/settings.service';
 
 @Component({
     selector: 'component-options',
@@ -14,7 +15,6 @@ import { MatDialogRef } from '@angular/material/dialog';
     styleUrls: ['./option.component.scss']
 })
 export class OptionComponent {
-
     constructor(
         public dialogRef: MatDialogRef<OptionComponent>,
         public changelog: ChangelogWindowService,
@@ -23,9 +23,11 @@ export class OptionComponent {
         private ipcRendererService: IpcRendererService,
         private promptService: PromptService,
         private router: Router,
+        public settingsService: SettingsService,
     ) {
         this.router.navigate(['/option/general']);
     }
+
 
     public validate() {
         Logger.verbose('emit->valite-option');
@@ -33,17 +35,14 @@ export class OptionComponent {
     }
 
     public reset() {
-
         this.promptService.confirm({
             title: this.translateService.instant('app.prompt.title.confirm'),
             html: this.translateService.instant('app.option.prompt.reset-option.text'),
             type: 'warning',
             target: 'component-options'
         }).then(() => {
-
             Settings.resetSettings();
-
-        }, (dismiss) => { });
+        }, (dismiss) => {});
     }
 
     public navigateTo($event: any, route: string) {

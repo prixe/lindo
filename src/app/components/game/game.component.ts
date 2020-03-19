@@ -10,24 +10,24 @@ import { Game } from "app/core/classes/game";
 import { PluginsContainer } from "./plugins/pluginsContainer";
 import { Logger } from 'app/core/electron/logger.helper';
 import { BugReportService } from 'app/core/service/bug-report.service';
+import { HttpClient } from '@angular/common/http';
 
 import { AutoGroup } from "app/core/mods/auto-group/autogroup";
-import { DamageEstimator } from "app/core/mods/damage-estimator/damageestimator";
-import { Shortcuts } from "app/core/mods/shortcuts/shortcuts";
-import { Inactivity } from "app/core/mods/general/inactivity";
-import { HealthBar } from "app/core/mods/health-bar/healthbar";
-import { Jobsxp } from "app/core/mods/jobsxp/jobsxp";
-import { FightChronometer } from "app/core/mods/fightchronometer/fightchronometer";
-import { Notifications } from "app/core/mods/notifications/notifications";
 import { CssOverload } from "app/core/mods/cssOverload/cssOverload";
-import { JsFixes } from "app/core/mods/jsFixes/jsFixes";
-import { RapidExchange } from "app/core/mods/rapid-exchange/rapid-exchange";
-import { HideShop } from "app/core/mods/hide-shop/hide-shop";
-import { KeyboardInput } from "app/core/mods/keyboard-input/keyboard-input";
-import { HttpClient } from '@angular/common/http';
+import { DamageEstimator } from "app/core/mods/damage-estimator/damageestimator";
+import { FightChronometer } from "app/core/mods/fightchronometer/fightchronometer";
+import { HealthBar } from "app/core/mods/health-bar/healthbar";
 import { HideMount } from "app/core/mods/hide-mount/hide-mount";
-import { PartyInfo } from "app/core/mods/party-info/party-info";
+import { HideShop } from "app/core/mods/hide-shop/hide-shop";
+import { Inactivity } from "app/core/mods/general/inactivity";
+import { Jobsxp } from "app/core/mods/jobsxp/jobsxp";
+import { JsFixes } from "app/core/mods/jsFixes/jsFixes";
+import { KeyboardInput } from "app/core/mods/keyboard-input/keyboard-input";
 import { Mover } from "app/core/mods/mover/mover";
+import { Notifications } from "app/core/mods/notifications/notifications";
+import { PartyInfo } from "app/core/mods/party-info/party-info";
+import { RapidExchange } from "app/core/mods/rapid-exchange/rapid-exchange";
+import { Shortcuts } from "app/core/mods/shortcuts/shortcuts";
 
 @Component({
     selector: 'component-game',
@@ -61,6 +61,7 @@ export class GameComponent implements AfterViewInit {
     private hideMount: HideMount;
 	private partyInfo:PartyInfo;
     private mover: Mover;
+
     constructor(
         private windowService: WindowService,
         private ipcRendererService: IpcRendererService,
@@ -120,31 +121,21 @@ export class GameComponent implements AfterViewInit {
     }
 
     public removeMods(): void {
-
-        let vipStatus = 5;
-
-        switch (vipStatus) {
-            case 5:
-            case 4:
-            case 3:
-                if (this.healthbar) this.healthbar.reset();
-                if (this.jobsxp) this.jobsxp.reset();
-                if (this.fightchronometer) this.fightchronometer.reset();
-            case 2:
-                if (this.autogroup) this.autogroup.reset();
-                if (this.inactivity) this.inactivity.reset();
-                if (this.damageEstimator) this.damageEstimator.reset();
-            default:
-                if (this.notifications) this.notifications.reset();
-                if (this.shortcuts) this.shortcuts.reset();
-                if (this.cssOverload) this.cssOverload.reset();
-                if (this.jsFixes) this.jsFixes.reset();
-                if (this.hideShop) this.hideShop.reset();
-                if (this.keyboardInput) this.keyboardInput.reset();
-                if (this.hideMount) this.hideMount.reset();
-                if (this.partyInfo) this.partyInfo.reset();
-                if (this.mover) this.mover.reset();
-        }
+        if (this.autogroup) this.autogroup.reset();
+        if (this.cssOverload) this.cssOverload.reset();
+        if (this.damageEstimator) this.damageEstimator.reset();
+        if (this.fightchronometer) this.fightchronometer.reset();
+        if (this.healthbar) this.healthbar.reset();
+        if (this.hideMount) this.hideMount.reset();
+        if (this.hideShop) this.hideShop.reset();
+        if (this.inactivity) this.inactivity.reset();
+        if (this.jobsxp) this.jobsxp.reset();
+        if (this.jsFixes) this.jsFixes.reset();
+        if (this.keyboardInput) this.keyboardInput.reset();
+        if (this.mover) this.mover.reset();
+        if (this.notifications) this.notifications.reset();
+        if (this.partyInfo) this.partyInfo.reset();
+        if (this.shortcuts) this.shortcuts.reset();
     }
 
     public reloadMods(start: boolean = true): void {
@@ -154,43 +145,33 @@ export class GameComponent implements AfterViewInit {
     }
 
     public setMods(): void {
-
-        let vipStatus = 5;
-
-        switch (vipStatus) {
-            case 5:
-            case 4:
-            case 3:
-                this.healthbar = new HealthBar(this.game.window, this.settingsService.option.vip.general);
-                this.jobsxp = new Jobsxp(this.game.window, this.settingsService.option.vip.general, this.translate);
-                this.fightchronometer = new FightChronometer(this.game.window, this.settingsService.option.vip.general);
-            case 2:
-                this.autogroup = new AutoGroup(this.game.window, this.settingsService.option.vip.autogroup, this.ipcRendererService, this.translate);
-                this.inactivity = new Inactivity(this.game.window, this.settingsService.option.vip.general.disable_inactivity);
-                this.damageEstimator = new DamageEstimator(this.game.window, this.settingsService.option.vip.general);
-            default:
-                this.notifications = new Notifications(this.game.window, this.settingsService.option.notification, this.translate);
-                this.notifications.eventEmitter.on('newNotification', () => {
-                    this.zone.run(() => {
-                        this.game.emit('notification');
-                    });
-                });
-                this.notifications.eventEmitter.on('focusTab', () => {
-                    this.zone.run(() => {
-                        this.selected.emit(this.game);
-                    });
-                });
-                this.shortcuts = new Shortcuts(this.game.window, this.settingsService.option.shortcuts);
-                this.cssOverload = new CssOverload(this.game.window);
-                this.jsFixes = new JsFixes(this.game.window);
-                this.hideShop = new HideShop(this.game.window, this.settingsService.option.general.hidden_shop);
-                this.hideMount = new HideMount(this.game.window, this.settingsService.option.vip.general);
-                this.rapidExchange = new RapidExchange(this.game.window);
-                //this.wizAssets = new WizAssetsContainer(this.game.window, this.applicationService, this.http, this.settingsService.option.general);
-                this.keyboardInput = new KeyboardInput(this.game.window);
-				this.partyInfo = new PartyInfo(this.game.window, this.settingsService.option.vip.general.party_info_pp, this.settingsService.option.vip.general.party_info_lvl, this.translate);
-                this.mover = new Mover(this.game.window);
-        }
+        this.autogroup = new AutoGroup(this.game.window, this.settingsService.option.vip.autogroup, this.ipcRendererService, this.translate);
+        this.cssOverload = new CssOverload(this.game.window);
+        this.damageEstimator = new DamageEstimator(this.game.window, this.settingsService.option.vip.general);
+        this.notifications = new Notifications(this.game.window, this.settingsService.option.notification, this.translate);
+        this.notifications.eventEmitter.on('newNotification', () => {
+            this.zone.run(() => {
+                this.game.emit('notification');
+            });
+        });
+        this.notifications.eventEmitter.on('focusTab', () => {
+            this.zone.run(() => {
+                this.selected.emit(this.game);
+            });
+        });
+        this.fightchronometer = new FightChronometer(this.game.window, this.settingsService.option.vip.general);
+        this.healthbar = new HealthBar(this.game.window, this.settingsService.option.vip.general);
+        this.hideMount = new HideMount(this.game.window, this.settingsService.option.vip.general);
+        this.hideShop = new HideShop(this.game.window, this.settingsService.option.general);
+        this.inactivity = new Inactivity(this.game.window, this.settingsService.option.vip.general);
+        this.jobsxp = new Jobsxp(this.game.window, this.settingsService.option.vip.general, this.translate);
+        this.jsFixes = new JsFixes(this.game.window);
+        this.keyboardInput = new KeyboardInput(this.game.window);
+        this.mover = new Mover(this.game.window);
+        this.partyInfo = new PartyInfo(this.game.window, this.settingsService.option.vip.general, this.translate);
+        this.rapidExchange = new RapidExchange(this.game.window);
+        this.shortcuts = new Shortcuts(this.game.window, this.settingsService.option.shortcuts);
+        //this.wizAssets = new WizAssetsContainer(this.game.window, this.applicationService, this.http, this.settingsService.option.general);
     }
 
     private setEventListener(): void {
@@ -278,7 +259,7 @@ export class GameComponent implements AfterViewInit {
             let nicknameSum = identification.nickname
                                 .split('')
                                 .map((char) => { return char.charCodeAt() })
-                                .reduce((accumulator, currentValue) => { 
+                                .reduce((accumulator, currentValue) => {
                                     return accumulator + currentValue
                                 });
             // This sum ensures privacy

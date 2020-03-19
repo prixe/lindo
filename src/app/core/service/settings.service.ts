@@ -462,6 +462,7 @@ export module Option {
                 this._open_menu = open_menu;
             }
 
+
             get go_up(): string {
                 return this._go_up;
             }
@@ -522,6 +523,7 @@ export module Option {
         private _local_content: boolean;
         private _sound_focus: boolean;
         private _user_agent: string;
+        private _early: boolean;
 
         get hidden_shop(): boolean {
             return this._hidden_shop;
@@ -577,6 +579,15 @@ export module Option {
             this._sound_focus = sound_focus;
         }
 
+        get early(): boolean {
+            return this._early;
+        }
+
+        set early(early: boolean) {
+            this.settingsProvider.write('option.general.early', early);
+            this._early = early;
+        }
+
         constructor(private settingsProvider: SettingsProvider) {
             this.user_agent = this.settingsProvider.read('option.general.user_agent');
             this.hidden_shop = this.settingsProvider.read('option.general.hidden_shop');
@@ -584,6 +595,7 @@ export module Option {
             this.resolution = this.settingsProvider.read('option.general.resolution');
             this.local_content = this.settingsProvider.read('option.general.local_content');
             this.sound_focus = this.settingsProvider.read('option.general.sound_focus');
+            this.early = this.settingsProvider.read('option.general.early');
         }
     }
 
@@ -742,7 +754,7 @@ export module Option {
             get health_bar(): boolean {
                 return this._health_bar;
             }
-            
+
             get jobsxp(): boolean {
                 return this._jobsxp;
             }

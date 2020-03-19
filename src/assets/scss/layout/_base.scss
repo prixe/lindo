@@ -47,6 +47,10 @@ component-options, component-bug-report {
     flex-direction: column !important;
 }
 
+component-option-general {
+    overflow: auto;
+}
+
 component-option-general,
 component-game-update,
 component-official-game-update,

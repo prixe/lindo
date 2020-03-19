@@ -50,7 +50,7 @@
         "general": {
           "reset-game": "Re-download game data",
           "reset-all": "Reset",
-          "shortcuts": "Configure shortcuts",
+          "shortcuts": "Configure",
           "clear-cache": "Clear cache",
           "resolution": {
             "confirm-body": "Does the current resolution suit you?<br/>Automatic reset within 10 seconds.."
@@ -175,10 +175,9 @@
             },
             "delete-master": {
               "title": "Removing the password",
-              "text": "In order to delete the password, it must be confirmed.<br/>This will delete the saved accounts.",
+              "text": "Are you sure?<br/>This will delete the saved accounts.",
               "confirm": "Remove",
               "cancel": "Cancel",
-              "incorrect-old": "The password entered is not correct.",
               "success-text": "The password has been deleted."
             },
             "maximum-account": {
@@ -213,21 +212,24 @@
           "level":"Lvl."
         },
         "jobsxp": {
-            "text": " XP missing<br>before level "
-        },
-        "status": {
-          "header": "VIP Status"
+          "text": " XP missing<br>before level "
         }
       },
       "general": {
         "title": "General",
+        "interface": "Interface",
+        "sound": "Sound",
+        "shortcuts": "Keyboard shortcuts",
+        "game-data": "Game data",
         "language": "Language",
         "resolution": "Resolution",
         "hide-shop": "Hide the Shop button",
         "hide-tab": "Hide the multi-account tab bar",
         "focus-fight-turn": "Automatically switch to an account when its turn starts",
         "local-content": "Enable local map download (beta)",
-        "sound-focus": "Game sound only on foreground window"
+        "sound-focus": "Game sound only on foreground window",
+        "early": "Play on Dofus Touch Early",
+        "restart": "Apply and restart"
       },
       "shortcuts": {
         "title": "Shortcuts",
