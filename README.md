@@ -16,7 +16,7 @@ Lindo allow you to play DofusTouch without android emulator, it's entirely coded
 Lindo No-Emu works on :
 - **Windows** 7 and newer (ia32/amd64) 
 - **macOS** 10.9 and newer
-- **Linux** (Debian >= 8, Ubuntu >= 12, Fedora >= 21) (ia32/amd64)
+- **Linux** (Debian >= 8, Ubuntu >= 12, Fedora >= 21) (amd64)
 
 ## Table of contents
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
