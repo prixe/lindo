@@ -265,7 +265,7 @@
         },
         "items": {
           "header": "Oggetti",
-          "slot": "Slot {{x}}"
+          "slot": "Posizione {{x}}"
         },
         "no-emu": {
           "header": "Lindo",
@@ -277,7 +277,7 @@
         },
         "spells": {
           "header": "Incantesimi",
-          "slot": "Slot {{x}}"
+          "slot": "Posizione {{x}}"
         }
       },
       "notifications": {

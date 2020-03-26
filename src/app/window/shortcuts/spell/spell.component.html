@@ -7,16 +7,16 @@
 
     <div class="row">
         <div class="col-xs-3">
-            <component-option-input-shortcuts *ngFor="let i of range(1,8)" id="spell{{i}}" name="Emplacement {{i}}" [(model)]="settingsService.option.shortcuts.spell[i-1]"></component-option-input-shortcuts>
+            <component-option-input-shortcuts *ngFor="let i of range(1,8)" id="spell{{i}}" name="{{ 'app.option.shortcuts.spells.slot' | translate:{x:i} }}" [(model)]="settingsService.option.shortcuts.spell[i-1]"></component-option-input-shortcuts>
         </div>
         <div class="col-xs-3">
-            <component-option-input-shortcuts *ngFor="let i of range(9,16)" id="spell{{i}}" name="Emplacement {{i}}" [(model)]="settingsService.option.shortcuts.spell[i-1]"></component-option-input-shortcuts>
+            <component-option-input-shortcuts *ngFor="let i of range(9,16)" id="spell{{i}}" name="{{ 'app.option.shortcuts.spells.slot' | translate:{x:i} }}" [(model)]="settingsService.option.shortcuts.spell[i-1]"></component-option-input-shortcuts>
         </div>
         <div class="col-xs-3">
-            <component-option-input-shortcuts *ngFor="let i of range(17,24)" id="spell{{i}}" name="Emplacement {{i}}" [(model)]="settingsService.option.shortcuts.spell[i-1]"></component-option-input-shortcuts>
+            <component-option-input-shortcuts *ngFor="let i of range(17,24)" id="spell{{i}}" name="{{ 'app.option.shortcuts.spells.slot' | translate:{x:i} }}" [(model)]="settingsService.option.shortcuts.spell[i-1]"></component-option-input-shortcuts>
         </div>
         <div class="col-xs-3">
-            <component-option-input-shortcuts *ngFor="let i of range(25,30)" id="spell{{i}}" name="Emplacement {{i}}" [(model)]="settingsService.option.shortcuts.spell[i-1]"></component-option-input-shortcuts>
+            <component-option-input-shortcuts *ngFor="let i of range(25,30)" id="spell{{i}}" name="{{ 'app.option.shortcuts.spells.slot' | translate:{x:i} }}" [(model)]="settingsService.option.shortcuts.spell[i-1]"></component-option-input-shortcuts>
         </div>
     </div>
 </div>
