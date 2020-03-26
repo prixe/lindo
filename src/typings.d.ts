@@ -6,6 +6,7 @@ declare let electronSettings: any;
 declare let electronAnalytics: any;  
 declare let cryptoLib: any;  
 declare let fsLib: any;  
+declare let osLib: any;  
 declare let pathLib: any;  
 declare let httpsLib: any;  
 declare let fsExtraLib: any;  

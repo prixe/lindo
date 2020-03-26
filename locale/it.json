@@ -50,7 +50,7 @@
         "general": {
           "reset-game": "Ri-scarica i dati di gioco",
           "reset-all": "Ripristina",
-          "shortcuts": "Configurazione tasti rapidi",
+          "shortcuts": "Configurazione",
           "clear-cache": "Pulisci cache",
           "resolution": {
             "confirm-body": "Questa risoluzione ti va bene?<br/>Ripristino automatico in 10 secondi.."
@@ -64,8 +64,9 @@
             "health-bar": "Visualizza le barre della vita sotto i combattenti",
             "health-bar-shortcut": "Tasto rapido per mostrare/nascondere le barre della vita",
             "jobsxp": "Attiva il display dell'esperienza del lavoro necessaria ad aumentarne il livello",
+            "fightchronometer": "Mostra combattimenti di cronometri",
             "estimator": "Fai una stima dei danni da incantesimi in battaglia",
-            "hide-mount": "Nascondi le cavalcature durante i combattimenti (beta)"
+            "hide-mount": "Nascondi le cavalcature durante i combattimenti"
           },
           "groups": {
             "header": "Gruppi"
@@ -96,6 +97,18 @@
           "inventory": "Inventario",
           "other": "Varie"
         }
+      },
+      "bug-report": {
+        "title": "Segnalare un bug",
+        "description": "Se hai osservato un comportamento imprevisto su Lindo, puoi segnalarlo descrivendolo di seguito.",
+        "instructions": "Fornisci almeno queste informazioni:",
+        "list": {
+          "1": "La descrizione del comportamento imprevisto",
+          "2": "Come riprodurlo",
+          "3": "Quale sarebbe il solito comportamento previsto"
+        },
+        "placeholder": "Descrizione",
+        "send": "Spedire"
       }
     },
     "option": {
@@ -157,10 +170,9 @@
             },
             "delete-master": {
               "title": "Rimuovi la password",
-              "text": "Prima di rimuovere la password, serve una tua conferma.<br/>Verranno eliminati tutti gli accounts salvati.",
+              "text": "Sei sicuro?<br/>Verranno eliminati tutti gli accounts salvati.",
               "confirm": "Rimuovi",
               "cancel": "Annulla",
-              "incorrect-old": "La password inserita è sbagliata.",
               "success-text": "La password è stata eliminata."
             },
             "maximum-account": {
@@ -195,21 +207,24 @@
           "level": "Lvl."
         },
         "jobsxp": {
-            "text": " XP mancante<br>prima livello "
-        },
-        "status": {
-          "header": "Stato VIP"
+          "text": " XP mancante<br>prima livello "
         }
       },
       "general": {
         "title": "Generale",
+        "interface": "Interfaccia",
+        "sound": "Suono",
+        "shortcuts": "Tasti rapidi",
+        "game-data": "Dati di gioco",
         "language": "Lingua",
         "resolution": "Risoluzione",
         "hide-shop": "Nascondi il bottone dello Shop",
         "hide-tab": "Nascondi la barra multi-account",
         "focus-fight-turn": "Fai focus su account quando inizia il suo turno di combattimento",
         "local-content": "Abilita download mappa in locale (beta)",
-        "sound-focus": "Suoni di giochi solamente quando la finestra è in primo piano"
+        "sound-focus": "Suoni di giochi solamente quando la finestra è in primo piano",
+        "early": "Gioca su Dofus Touch Early",
+        "restart": "Applica e riavvia"
       },
       "shortcuts": {
         "title": "Tasti rapidi",
@@ -251,7 +266,7 @@
         },
         "items": {
           "header": "Oggetti",
-          "slot": "Slot {{x}}"
+          "slot": "Posizione {{x}}"
         },
         "no-emu": {
           "header": "Lindo",
@@ -263,7 +278,7 @@
         },
         "spells": {
           "header": "Incantesimi",
-          "slot": "Slot {{x}}"
+          "slot": "Posizione {{x}}"
         }
       },
       "notifications": {

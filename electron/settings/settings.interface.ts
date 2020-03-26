@@ -19,6 +19,7 @@ export interface SettingsInterface {
             },
             local_content: boolean;
             sound_focus: boolean;
+            early: boolean;
         }
         shortcuts: {
             no_emu: {
@@ -80,8 +81,9 @@ export interface SettingsInterface {
                 disable_inactivity: boolean;
                 health_bar: boolean;
                 health_bar_shortcut: string;
-                jobsxp: boolean,
+                jobsxp: boolean;
                 estimator: boolean;
+                fightchronometer: boolean;
                 hidden_mount: boolean;
                 party_info_pp: boolean;
                 party_info_lvl: boolean;

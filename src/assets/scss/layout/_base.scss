@@ -40,10 +40,15 @@ component-auth{
     background-size: 100%;
 }
 
-component-options {
+component-options, component-bug-report {
+    width: 100%;
     flex: 1;
     display: flex !important;
     flex-direction: column !important;
+}
+
+component-option-general {
+    overflow: auto;
 }
 
 component-option-general,

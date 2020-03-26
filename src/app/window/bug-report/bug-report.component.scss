@@ -1,0 +1,50 @@
+.toolbar-child-window{
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.main-content{
+    width: 100%;
+    background-color: white;
+    padding: 30px;
+    box-sizing: border-box;
+    flex-grow: 1;
+    flex-shrink: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    > * {
+        flex-shrink: 0;
+    }
+
+    mat-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 32px;
+        color: #424242;
+    }
+
+    .bug-info-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #ececec;
+        box-sizing: border-box;
+        padding: 20px 40px;
+        width: 60%;
+        margin: 20px auto;
+        text-align: left;
+        .important {
+            font-weight: bold;
+            margin-top: 1.4em;
+            width: 100%;
+        }
+    }
+
+    mat-form-field {
+        width: 80%;
+        align-self: center;
+    }
+}

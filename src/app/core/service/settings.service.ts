@@ -472,6 +472,7 @@ export module Option {
                 this._open_menu = open_menu;
             }
 
+
             get go_up(): string {
                 return this._go_up;
             }
@@ -533,6 +534,7 @@ export module Option {
         private _local_content: boolean;
         private _sound_focus: boolean;
         private _user_agent: string;
+        private _early: boolean;
 
         get hidden_shop(): boolean {
             return this._hidden_shop;
@@ -588,6 +590,15 @@ export module Option {
             this._sound_focus = sound_focus;
         }
 
+        get early(): boolean {
+            return this._early;
+        }
+
+        set early(early: boolean) {
+            this.settingsProvider.write('option.general.early', early);
+            this._early = early;
+        }
+
         constructor(private settingsProvider: SettingsProvider) {
             this.user_agent = this.settingsProvider.read('option.general.user_agent');
             this.hidden_shop = this.settingsProvider.read('option.general.hidden_shop');
@@ -595,6 +606,7 @@ export module Option {
             this.resolution = this.settingsProvider.read('option.general.resolution');
             this.local_content = this.settingsProvider.read('option.general.local_content');
             this.sound_focus = this.settingsProvider.read('option.general.sound_focus');
+            this.early = this.settingsProvider.read('option.general.early');
         }
     }
 
@@ -699,6 +711,7 @@ export module Option {
             private _health_bar: boolean;
             private _health_bar_shortcut: string;
             private _jobsxp: boolean;
+            private _fightchronometer: boolean;
             private _estimator: boolean;
             private _hidden_mount: boolean;
             private _party_info_pp:boolean;
@@ -752,7 +765,7 @@ export module Option {
             get health_bar(): boolean {
                 return this._health_bar;
             }
-            
+
             get jobsxp(): boolean {
                 return this._jobsxp;
             }
@@ -760,6 +773,15 @@ export module Option {
             set jobsxp(jobsxp: boolean) {
                 this.settingsProvider.write('option.vip.general.jobsxp', jobsxp);
                 this._jobsxp = jobsxp;
+            }
+
+            get fightchronometer(): boolean {
+              return this._fightchronometer;
+            }
+
+            set fightchronometer(fightchronometer: boolean) {
+              this.settingsProvider.write('option.vip.general.fightchronometer', fightchronometer);
+              this._fightchronometer = fightchronometer;
             }
 
             set health_bar(health_bar: boolean) {
@@ -780,6 +802,7 @@ export module Option {
                 this.disable_inactivity = this.settingsProvider.read('option.vip.general.disable_inactivity');
                 this.health_bar = this.settingsProvider.read('option.vip.general.health_bar');
                 this.jobsxp = this.settingsProvider.read('option.vip.general.jobsxp');
+                this.fightchronometer = this.settingsProvider.read('option.vip.general.fightchronometer');
                 this.health_bar_shortcut = this.settingsProvider.read('option.vip.general.health_bar_shortcut');
                 this.estimator = this.settingsProvider.read('option.vip.general.estimator');
                 this.hidden_mount = this.settingsProvider.read('option.vip.general.hidden_mount');

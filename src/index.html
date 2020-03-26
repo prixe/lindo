@@ -22,6 +22,7 @@
         const httpsLib = isElectron ? require('https') : undefined;
         const fsExtraLib = isElectron ? require('fs-extra') : undefined;
         const fsLib = isElectron ? require('fs') : undefined;
+        const osLib = isElectron ? require('os') : undefined;
         const pathLib = isElectron ? require('path') : undefined;
         const requestLib = isElectron ? require('request') : undefined;
         const requestProgressLib = isElectron ? require('request-progress') : undefined;
@@ -34,6 +35,7 @@
         } = isElectron ? require('electron').remote.require('./settings/settings') : {Settings: undefined};
         const LoggerLib = isElectron ? require('electron').remote.require('./core/logger/logger-app').Logger : undefined;
         window.FileLoggerLib = isElectron ? require('electron').remote.require('./core/logger/file-logger-app').logger : undefined;
+        window.platform = electron.remote.process.platform;
     </script>
 </head>
 
