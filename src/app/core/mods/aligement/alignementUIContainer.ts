@@ -26,7 +26,7 @@ export class alignementUIContainer {
                 let theplayer =  player[index];
                     this.bars[theplayer.data.playerId] = new alignementUIBar(theplayer, this.wGame);
             }
-            this.updateInterval = setInterval(()=>{
+            this.updateInterval = setInterval(() => {
                 this.update();
             }, 400);
     }
@@ -43,8 +43,9 @@ export class alignementUIContainer {
 
     private update() {
         for (let index = 0; index < Object.keys(this.bars).length; index++) {
-            if(this.bars[Object.keys(this.bars)[index]].update())
-            this.destroyBar(Object.keys(this.bars)[index]);
+            if (this.bars[Object.keys(this.bars)[index]].update()) {
+                this.destroyBar(Object.keys(this.bars)[index]);
+            }
         }
 
     }
@@ -58,6 +59,8 @@ export class alignementUIContainer {
 
     public destroy() {
         this.hide();
-        if (this.container && this.container.parentElement) this.container.parentElement.removeChild(this.container);
+        if (this.container && this.container.parentElement) {
+            this.container.parentElement.removeChild(this.container);
+        }
     }
 }
