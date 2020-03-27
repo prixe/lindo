@@ -95,7 +95,7 @@ export module Option {
             private _alliance: string;
             private _mount: string;
             private _directory: string;
-            private _alignement: string;
+            private _alignment: string;
             private _bestiary: string;
             private _title: string;
             private _achievement: string;
@@ -221,13 +221,13 @@ export module Option {
                 this._directory = directory;
             }
 
-            get alignement(): string {
-                return this._alignement;
+            get alignment(): string {
+                return this._alignment;
             }
 
-            set alignement(alignement: string) {
-                this.settingsProvider.write('option.shortcuts.interface.alignement', alignement);
-                this._alignement = alignement;
+            set alignment(alignment: string) {
+                this.settingsProvider.write('option.shortcuts.interface.alignment', alignment);
+                this._alignment = alignment;
             }
 
             get bestiary(): string {
@@ -323,7 +323,7 @@ export module Option {
                 this._alliance = this.settingsProvider.read('option.shortcuts.interface.alliance');
                 this._mount = this.settingsProvider.read('option.shortcuts.interface.mount');
                 this._directory = this.settingsProvider.read('option.shortcuts.interface.directory');
-                this._alignement = this.settingsProvider.read('option.shortcuts.interface.alignement');
+                this._alignment = this.settingsProvider.read('option.shortcuts.interface.alignment');
                 this._bestiary = this.settingsProvider.read('option.shortcuts.interface.bestiary');
                 this._title = this.settingsProvider.read('option.shortcuts.interface.title');
                 this._achievement = this.settingsProvider.read('option.shortcuts.interface.achievement');
@@ -419,7 +419,7 @@ export module Option {
         export class Diver {
             private _end_turn: string;
             private _open_chat: string;
-            private _alignement_scan: string;
+            private _alignment_scan: string;
             private _active_open_menu: boolean;
             private _open_menu: string;
             private _go_up: string;
@@ -445,13 +445,13 @@ export module Option {
                 this._open_chat = open_chat;
             }
 
-            set alignement_scan(active_open_menu: string) {
+            set alignment_scan(active_open_menu: string) {
                 this.settingsProvider.write('option.shortcuts.diver.active_open_menu', active_open_menu);
-                this._alignement_scan = active_open_menu;
+                this._alignment_scan = active_open_menu;
             }
 
-            get alignement_scan(): string {
-                return this._alignement_scan;
+            get alignment_scan(): string {
+                return this._alignment_scan;
             }
 
             set active_open_menu(active_open_menu: boolean) {
@@ -512,7 +512,7 @@ export module Option {
             constructor(private settingsProvider: SettingsProvider) {
                 this.end_turn = this.settingsProvider.read('option.shortcuts.diver.end_turn');
                 this.open_chat = this.settingsProvider.read('option.shortcuts.diver.open_chat');
-                this.alignement_scan = this.settingsProvider.read('option.shortcuts.diver.alignement_scan');
+                this.alignment_scan = this.settingsProvider.read('option.shortcuts.diver.alignment_scan');
                 this.active_open_menu = this.settingsProvider.read('option.shortcuts.diver.active_open_menu');
                 this.open_menu = this.settingsProvider.read('option.shortcuts.diver.open_menu');
                 this.go_up = this.settingsProvider.read('option.shortcuts.diver.go_up');

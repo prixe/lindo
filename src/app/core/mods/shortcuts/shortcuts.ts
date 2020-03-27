@@ -5,14 +5,14 @@ import { ShortcutsHelper } from "app/core/helpers/shortcuts.helper";
 import { Option } from "app/core/service/settings.service";
 import { Logger } from "app/core/electron/logger.helper";
 import { Mover } from "app/core/mods/mover/mover";
-import { Alignement } from '../aligement/alignement';
+import { Alignment } from '../alignment/alignment';
 
 export class Shortcuts extends Mods {
 
     private params: Option.Shortcuts;
     private shortcutsHelper: ShortcutsHelper;
     private mover: Mover;
-    private alignement : Alignement
+    private alignment : Alignment
     constructor(wGame: any, params: Option.Shortcuts) {
         super(wGame);
         this.params = params;
@@ -22,7 +22,7 @@ export class Shortcuts extends Mods {
             Logger.info(' - enable open_menu');
         }
         this.mover = new Mover(this.wGame);
-        this.alignement = new Alignement(this.wGame);
+        this.alignment = new Alignment(this.wGame);
         this.bindAll();
     }
 
@@ -81,12 +81,12 @@ export class Shortcuts extends Mods {
             }
         });
 
-        // Scan alignement
-        this.shortcutsHelper.bind(this.params.diver.alignement_scan, (e:any) => {
-            this.alignement.scan();
+        // Scan alignment
+        this.shortcutsHelper.bind(this.params.diver.alignment_scan, (e:any) => {
+            this.alignment.scan();
         });
-        this.shortcutsHelper.bindVanillaKeyUp(this.params.diver.alignement_scan, (e:any) => {
-            this.alignement.destroy();
+        this.shortcutsHelper.bindVanillaKeyUp(this.params.diver.alignment_scan, (e:any) => {
+            this.alignment.destroy();
         });
         // Open menu
         this.shortcutsHelper.bind(this.params.diver.open_menu, () => {
@@ -108,9 +108,9 @@ export class Shortcuts extends Mods {
                 if (this.wGame.gui.fightManager.fightState === 0) {
                     return;
                 }
-              
+
                 selectedSpell.tap();
-                
+
                 setTimeout(() => {
                     this.wGame.isoEngine._castSpellImmediately(this.wGame.isoEngine.actorManager.userActor.cellId);
                 }, 150);
@@ -173,7 +173,7 @@ export class Shortcuts extends Mods {
     public reset() {
         super.reset();
         if (this.mover) this.mover.reset();
-        if (this.alignement) this.alignement.reset();
+        if (this.alignment) this.alignment.reset();
         this.shortcutsHelper.unBindAll();
     }
 }

@@ -12,6 +12,7 @@ import { Logger } from 'app/core/electron/logger.helper';
 import { BugReportService } from 'app/core/service/bug-report.service';
 import { HttpClient } from '@angular/common/http';
 
+import { Alignment } from "app/core/mods/alignment/alignment";
 import { AutoGroup } from "app/core/mods/auto-group/autogroup";
 import { CssOverload } from "app/core/mods/cssOverload/cssOverload";
 import { DamageEstimator } from "app/core/mods/damage-estimator/damageestimator";
@@ -22,7 +23,6 @@ import { HideShop } from "app/core/mods/hide-shop/hide-shop";
 import { Inactivity } from "app/core/mods/general/inactivity";
 import { Jobsxp } from "app/core/mods/jobsxp/jobsxp";
 import { JsFixes } from "app/core/mods/jsFixes/jsFixes";
-import { RapidExchange } from "app/core/mods/rapid-exchange/rapid-exchange";
 import { KeyboardInput } from "app/core/mods/keyboard-input/keyboard-input";
 import { Mover } from "app/core/mods/mover/mover";
 import { Notifications } from "app/core/mods/notifications/notifications";
@@ -62,7 +62,7 @@ export class GameComponent implements AfterViewInit {
     private hideMount: HideMount;
 	private partyInfo:PartyInfo;
     private mover: Mover;
-    private alignement: Alignement;
+    private alignment: Alignment;
     constructor(
         private windowService: WindowService,
         private ipcRendererService: IpcRendererService,

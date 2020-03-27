@@ -1,21 +1,21 @@
 import { Mods } from "../mods";
 import { Logger } from "app/core/electron/logger.helper";
-import { alignementUIContainer } from "./alignementUIContainer";
+import { alignmentUIContainer } from "./alignmentUIContainer";
 
 /**
- * This mod add the possibility to show alignement
+ * This mod add the possibility to show alignment
  */
-export class Alignement extends Mods {
+export class Alignment extends Mods {
 
-    private container : alignementUIContainer;
+    private container : alignmentUIContainer;
 
     constructor (wGame: any | Window) {
         super(wGame);
         /* Add <style>*/
-        let alignementbarCss = document.createElement('style');
-        alignementbarCss.id = 'AlignementBarCss';
-        alignementbarCss.innerHTML = `
-        .AlignementBarsContainer {
+        let alignmentbarCss = document.createElement('style');
+        alignmentbarCss.id = 'alignmentBarCss';
+        alignmentbarCss.innerHTML = `
+        .alignmentBarsContainer {
             position: absolute;
             top: 0;
             left: 0;
@@ -24,7 +24,7 @@ export class Alignement extends Mods {
             visibility: hidden;
         }
 
-        .AlignementBarContainer {
+        .alignmentBarContainer {
             box-sizing: border-box;
             border: 1px gray solid;
             background-color: #222;
@@ -37,14 +37,14 @@ export class Alignement extends Mods {
             margin-top: 10px;
         }
 
-        .AlignementBar {
+        .alignmentBar {
             transition-duration: 300ms;
             height: 100%;
             width: 0%;
             background-color: #333;
         }
         `;
-        this.wGame.document.getElementsByTagName('head')[0].appendChild(alignementbarCss);
+        this.wGame.document.getElementsByTagName('head')[0].appendChild(alignmentbarCss);
     }
 
     public scan() {
@@ -52,7 +52,7 @@ export class Alignement extends Mods {
         if (this.container != null) {
             this.container.destroy();
         }
-        this.container = new alignementUIContainer(this.wGame);
+        this.container = new alignmentUIContainer(this.wGame);
         this.container.show(); // Scan
     }
 
@@ -66,9 +66,9 @@ export class Alignement extends Mods {
         if (this.container) {
             this.container.destroy();
         }
-        let alignementbarCss = this.wGame.document.getElementById('AlignementBarCss');
-        if (alignementbarCss && alignementbarCss.parentElement) {
-            alignementbarCss.parentElement.removeChild(alignementbarCss);
+        let alignmentbarCss = this.wGame.document.getElementById('alignmentBarCss');
+        if (alignmentbarCss && alignmentbarCss.parentElement) {
+            alignmentbarCss.parentElement.removeChild(alignmentbarCss);
         }
     }
 
