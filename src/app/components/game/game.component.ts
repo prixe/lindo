@@ -23,8 +23,6 @@ import { Inactivity } from "app/core/mods/general/inactivity";
 import { Jobsxp } from "app/core/mods/jobsxp/jobsxp";
 import { JsFixes } from "app/core/mods/jsFixes/jsFixes";
 import { RapidExchange } from "app/core/mods/rapid-exchange/rapid-exchange";
-import { HideShop } from "app/core/mods/hide-shop/hide-shop";
-import { Alignement } from "app/core/mods/aligement/alignement";
 import { KeyboardInput } from "app/core/mods/keyboard-input/keyboard-input";
 import { Mover } from "app/core/mods/mover/mover";
 import { Notifications } from "app/core/mods/notifications/notifications";
