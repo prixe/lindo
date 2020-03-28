@@ -22,6 +22,7 @@ export class ToolbarComponent implements OnInit {
         private applicationService: ApplicationService
     ) {
         this.appName = applicationService.appName;
+        this.isAudioMuted = this.soundService.isAudioMuted();
     }
 
     ngOnInit() {

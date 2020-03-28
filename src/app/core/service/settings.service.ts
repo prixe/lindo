@@ -524,6 +524,7 @@ export module Option {
         private _sound_focus: boolean;
         private _user_agent: string;
         private _early: boolean;
+        private _audio_muted: boolean;
 
         get hidden_shop(): boolean {
             return this._hidden_shop;
@@ -588,6 +589,15 @@ export module Option {
             this._early = early;
         }
 
+        get audio_muted(): boolean {
+            return this._audio_muted;
+        }
+
+        set audio_muted(audio_muted: boolean) {
+            this.settingsProvider.write('option.general.audio_muted', audio_muted);
+            this._audio_muted = audio_muted;
+        }
+
         constructor(private settingsProvider: SettingsProvider) {
             this.user_agent = this.settingsProvider.read('option.general.user_agent');
             this.hidden_shop = this.settingsProvider.read('option.general.hidden_shop');
@@ -596,6 +606,7 @@ export module Option {
             this.local_content = this.settingsProvider.read('option.general.local_content');
             this.sound_focus = this.settingsProvider.read('option.general.sound_focus');
             this.early = this.settingsProvider.read('option.general.early');
+            this.audio_muted = this.settingsProvider.read('option.general.audio_muted');
         }
     }
 

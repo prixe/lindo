@@ -20,6 +20,7 @@ export interface SettingsInterface {
             local_content: boolean;
             sound_focus: boolean;
             early: boolean;
+            audio_muted: boolean;
         }
         shortcuts: {
             no_emu: {
