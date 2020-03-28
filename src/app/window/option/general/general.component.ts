@@ -6,6 +6,7 @@ import { PromptService } from 'app/core/service/prompt.service';
 import { SettingsService } from 'app/core/service/settings.service';
 import { WindowService } from 'app/core/service/window.service';
 import { OptionWindowService } from '../option.window';
+import { ElectronService } from 'app/core/electron/electron.service';
 import { app, ipcMain } from 'electron';
 
 interface select {
@@ -43,6 +44,8 @@ export class GeneralComponent implements OnInit {
         { name: 'Italiano', value: "it" }
     ];
 
+    public restartForEarlyDisplayed: boolean = false;
+
     public windowService: WindowService;
 
     constructor(
@@ -51,6 +54,7 @@ export class GeneralComponent implements OnInit {
         private ipcRendererService: IpcRendererService,
         public settingsService: SettingsService,
         private promptService: PromptService,
+        private electronService: ElectronService,
         private injector: Injector
     ) {
         this.windowService = this.injector.get(WindowService)
@@ -72,6 +76,8 @@ export class GeneralComponent implements OnInit {
             y: parseInt(aValue[1])
         };
 
+        console.log(resolution);
+
         if (this.settingsService.option.general.resolution != resolution) {
 
             electron.getCurrentWindow().setSize(parseInt(aValue[0]), parseInt(aValue[1]), true);
@@ -92,6 +98,11 @@ export class GeneralComponent implements OnInit {
                 electron.getCurrentWindow().setSize(parseInt(this.settingsService.option.general.resolution.x), parseInt(this.settingsService.option.general.resolution.y), true);
             });
         }
+    }
+
+    public setServerName($event: any): void {
+        console.log($event.value);
+        this.restartForEarlyDisplayed = true;
     }
 
     public resetGameFile() {

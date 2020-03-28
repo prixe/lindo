@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ElectronService as electron } from 'app/core/electron/electron.service';
 import { IpcRendererService } from 'app/core/electron/ipcrenderer.service';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { Logger } from "app/core/electron/logger.helper";
 
 const progress = requestProgressLib;

@@ -134,32 +134,19 @@ export class MultiAccountComponent {
         self.promptService.custom({
 
             type: "warning",
-            input: 'password',
             title: this.translate.instant("app.option.vip.multi-account.prompt.delete-master.title"),
             html: this.translate.instant("app.option.vip.multi-account.prompt.delete-master.text"),
             confirmButtonText: this.translate.instant("app.option.vip.multi-account.prompt.delete-master.confirm"),
             showLoaderOnConfirm: true,
 
             showCancelButton: true,
-            cancelButtonText: this.translate.instant("app.option.vip.multi-account.prompt.delete-master.cancel"),
+            cancelButtonText: this.translate.instant("app.option.vip.multi-account.prompt.delete-master.cancel")
 
-            preConfirm: function (masterPassword) {
-
-                return new Promise(function (resolve, reject) {
-
-                    if (self.settingsService.option.vip.multiaccount.master_password != self.crypt.createHash(masterPassword)) {
-                        reject(self.translate.instant("app.option.vip.multi-account.prompt.delete-master.incorrect-old"));
-                        return false;
-                    }
-
-                    self.deleteMasterPassword();
-
-                    resolve();
-                })
-            },
-
-        }).then(function (vipId) {
-            self.promptService.success({ html: self.translate.instant("app.option.vip.multi-account.prompt.delete-master.success-text") })
+        }).then(function (result) {
+            if (result.value) {
+                self.deleteMasterPassword();
+                self.promptService.success({ html: self.translate.instant("app.option.vip.multi-account.prompt.delete-master.success-text") })
+            }
         }, (dismiss) => { });
     }
 

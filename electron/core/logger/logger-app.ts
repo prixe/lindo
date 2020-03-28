@@ -1,13 +1,15 @@
 import * as winston from 'winston';
 
-export const Logger = new (winston.Logger)({
-    exitOnError: false,
-    transports: [
-        new (winston.transports.Console)({
+export const Logger = winston.createLogger({
+  transports: [
+    new (winston.transports.Console)({
             handleExceptions: true,
-            colorize: true,
             level: 'silly'
         }),
-        //new (winston.transports.File)({ filename: 'somefile.log' })
-    ]
+  ],
+  format: winston.format.combine(
+    winston.format.colorize({message: false}),
+    winston.format.simple()
+  ),
+  exitOnError: false, // do not exit on handled exceptions
 });

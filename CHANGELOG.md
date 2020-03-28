@@ -1,3 +1,38 @@
+## [2.4.0] - 2020-02-15
+
+### Modifications
+
+- Il n'est plus nécessaire de renseigner le mot de passe maître pour supprimer les comptes enregistrés
+- Désactivation du rapport d'erreur automatique
+- Il est désormais possible de jouer sur la version Early de Dofus Touch avec Lindo
+- Mise à jour de la disposition des options générales
+- Les échanges peuvent être refusés avec Echap
+- Une nouvelle fonctionnalité activable permet d'afficher dans la timeline le temps passé en combat
+- Double-cliquer sur un sort permet de l'utiliser instantanément sur soi-même
+
+## [2.3.2] - 2019-10-02
+
+### Modifications
+
+- Forçage du rendu des onglets en arrière plan (corrige le mauvais affichage des résultats de combat)
+- Envoi des erreurs automatisés, et anonymisation de l'adresse IP
+
+## [2.3.1] - 2019-09-29
+
+### Ajouts
+
+- Possibilité d'effectuer un rapport de bug auquel sont attachées les précédentes erreurs survenue au cours de l'exécution de Lindo
+- Les ajouts des version 2.2.1, 2.2.2 et 2.2.3 n'étaient pas présentent dans la 2.3.0. Ils le sont dans la 2.3.1.
+
+## [2.3.0] - 2019-03-30
+
+### Améliorations
+
+- La prévisualisation du niveau et de la prospection peuvent être activées ou désactivées séparément
+- Appuyer sur Echap lorsqu'aucune fenêtre n'est ouverte ouvrira le menu
+- Un raccourci clavier supplémentaire pour ouvrir ce menu a été ajouté
+- Mise à jour des dépendances, dont Electron
+
 ## [2.2.3] - 2019-09-29
 
 ### Ajouts
@@ -30,14 +65,14 @@
 - Mise à jour de la section "À propos"
 - Support de l'italien
 
-## [2.1.3] - 2018-05-20
+## [2.1.3] - 2018-09-16
 
 ### Bugs
 
 - L'estimation des dégâts est désormais fonctionnelle et compatible avec la version 1.35 de DofusTouch
 - Annulation des mises à jours de librairies effectuées pour Lindo v2.1.2, provoquant une non-compatibilité sur Mac. Solution temporaire qui nous donnera le temps de trouver ce qui posait problème.
 
-## [2.1.2] - 2018-05-20
+## [2.1.2] - 2018-08-28
 
 ### Améliorations
 

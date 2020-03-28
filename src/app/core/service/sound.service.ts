@@ -9,18 +9,22 @@ export class SoundService {
 
     private window: any;
     private events: Array<any> = [];
-    private isAudioMuted: boolean = false;
+    private audioMuted: boolean = false;
 
-    constructor(private ipcRendererService: IpcRendererService,
-                private settingsService: SettingsService,
-                private windowService: WindowService) {
-        if(isElectron){
+    constructor(
+        private ipcRendererService: IpcRendererService,
+        private settingsService: SettingsService,
+        private windowService: WindowService
+    ) {
+        console.log('sound service')
+        console.log(this.settingsService.option.general.audio_muted)
+        if (isElectron) {
             this.ipcRendererService.on('reload-settings', () => {
                 this.listenFocusAndBlur()
             });
 
             this.window = electron.getCurrentWindow();
-            this.isAudioMuted = this.window.webContents.isAudioMuted();
+            this.audioMuted = this.settingsService.option.general.audio_muted;
 
             window.onbeforeunload = () => {
                 this.window.removeAllListeners();
@@ -30,23 +34,20 @@ export class SoundService {
         }
     }
 
-
     private listenFocusAndBlur() {
-
         this.events.forEach(event => {
             event();
         });
 
         if (this.settingsService.option.general.sound_focus) {
-
-            this.window.webContents.setAudioMuted(false);
+            this.window.webContents.setAudioMuted(this.audioMuted);
 
             let onFocus = () => {
-                (!this.isAudioMuted) ? this.window.webContents.setAudioMuted(false) : false;
+                (!this.audioMuted) ? this.window.webContents.setAudioMuted(false) : false;
             };
 
             let onBlur = () => {
-                (!this.isAudioMuted) ? this.window.webContents.setAudioMuted(true) : false;
+                (!this.audioMuted) ? this.window.webContents.setAudioMuted(true) : false;
             };
 
             this.window.on("focus", onFocus);
@@ -56,13 +57,17 @@ export class SoundService {
                 this.window.removeListener("focus", onFocus);
                 this.window.removeListener("blur", onBlur);
             });
-
         }
+    }
+
+    public isAudioMuted(): boolean {
+        return this.audioMuted;
     }
 
     public toggleSound(state: boolean) {
         this.window.webContents.setAudioMuted(state);
-        this.isAudioMuted = this.window.webContents.isAudioMuted();
+        this.audioMuted = this.window.webContents.isAudioMuted();
+        this.settingsService.option.general.audio_muted = this.audioMuted;
     }
 
 }

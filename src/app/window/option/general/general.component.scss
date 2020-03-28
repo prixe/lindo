@@ -1,8 +1,32 @@
-.option-content{
+.option-content {
     padding: 20px;
     overflow: auto !important;
+
+    > .row {
+        margin-top: 14px;
+    }
+
+    button {
+        margin-bottom: 6px;
+    }
 }
 
 .mat-option {
     color: black;
+}
+
+table {
+    td:first-child {
+        font-weight: bold;
+        padding: 0;
+    }
+
+    td:not(:first-child) {
+        padding-left: 20px;
+        width: 150px;
+    }
+}
+
+.inline-button {
+    margin-left: 20px;
 }

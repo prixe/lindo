@@ -39,9 +39,9 @@
 
     <form>
         <div class="row">
-            <mat-input-container class="col-xs-3">
+            <mat-form-field class="col-xs-3">
                 <input matInput autofocus type="password" [(ngModel)]="inputCheckMasterPassword" name="inputCheckMasterPassword" [placeholder]="'app.option.vip.multi-account.request-master-password.label'| translate">
-            </mat-input-container>
+            </mat-form-field>
             <div class="col-xs-6 col-xs-offset-1">
                 <button mat-raised-button (click)="checkMasterPassword($event)">
                     {{'app.option.vip.multi-account.request-master-password.confirm' | translate}}

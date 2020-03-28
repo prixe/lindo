@@ -1,0 +1,30 @@
+<div class="toolbar-child-window">
+
+    <div class="title">{{'app.window.bug-report.title' | translate}}</div>
+
+    <div class="close">
+        <mat-icon class="pointer window-close mat-22" (click)="closeWindow()">close</mat-icon>
+    </div>
+</div>
+
+<div class="main-content light-theme text-center">
+    <mat-icon class="mat-32">bug_report</mat-icon>
+    <div class="bug-info-container">
+        <div>{{'app.window.bug-report.description' | translate}}</div>
+        <div class="important">
+            <div>{{'app.window.bug-report.instructions' | translate}}</div>
+            <div>
+                <ul role="list">
+                  <li role="listitem">{{'app.window.bug-report.list.1' | translate}}</li>
+                  <li role="listitem">{{'app.window.bug-report.list.2' | translate}}</li>
+                  <li role="listitem">{{'app.window.bug-report.list.3' | translate}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <mat-form-field>
+        <textarea matInput matTextareaAutosize id="bug-description" rows="4" required placeholder="{{'app.window.bug-report.placeholder' | translate}}"></textarea>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="send()">{{ 'app.window.bug-report.send' | translate }}</button>
+
+</div>

@@ -16,6 +16,7 @@ import { ShortcutsSpellComponent } from "app/window/shortcuts/spell/spell.compon
 import { GameUpdateComponent } from "app/window/game-update/game-update.component";
 import { OfficialGameUpdateComponent } from "app/window/official-game-update/official-game-update.component";
 import { AboutComponent } from "app/window/option/about/about.component";
+import { BugReportComponent } from "app/window/bug-report/bug-report.component";
 
 const appRoutes: Routes = [
     {
@@ -58,6 +59,12 @@ const appRoutes: Routes = [
         path: 'official-game-update',
         children: [
             { path: ':destinationPath', component: OfficialGameUpdateComponent }
+        ]
+    },
+    {
+        path: 'bug-report',
+        children: [
+            { path: ':destinationPath', component: BugReportComponent }
         ]
     }
 ];

@@ -43,27 +43,28 @@
       "options": {
         "title": "Opciones",
         "button": {
-          "close": "Terminado"
+          "close": "Terminar"
         },
         "general": {
           "reset-game": "Volver a descargar los datos",
           "reset-all": "Reiniciar",
-          "shortcuts": "Configurar atajos",
+          "shortcuts": "Configurar",
           "clear-cache": "Vaciar la caché",
           "resolution": {
-            "confirm-body": "Está de acuerdo con la resolución actual ?<br/>La recuperación automática en 10 segundos.."
+            "confirm-body": "¿Está de acuerdo con la resolución actual?<br/>La recuperación automática en 10 segundos..."
           }
         },
         "features": {
           "title": "Funciones",
           "general": {
-            "header": "Général",
+            "header": "General",
             "disable-inactivity": "Extender el período de inactividad",
-            "health-bar": "Visualización de barras de vida por debajo de los combatientes",
+            "health-bar": "Visualización de barras de vida debajo de los combatientes",
             "health-bar-shortcut": "Atajos para mostrar las barras de salud",
             "jobsxp": "Activate the display of the job xp need for leveling",
-            "estimator": "Hechizos de daño estimado durante el combate",
-            "hide-mount": "Ocultar monturas durante las peleas (beta)"
+            "fightchronometer" : "Mostrar peleas cronómetro",
+            "estimator": "Daño estimado de hechizo durante el combate",
+            "hide-mount": "Ocultar monturas durante las peleas"
           },
           "groups": {
             "header": "Grupo"
@@ -79,21 +80,33 @@
             "changelog": "Actualizar notas"
           },
           "text0": "Lindo es un software de código abierto que te permite jugar DOFUS Touch desde tu computadora.",
-          "text1": "A diferencia de un emulador de Android, el código es interpretado directamente por su computadora, lo que lo hace más rápido para jugar, ¡así que puede jugar DOFUS Touch mientras disfruta del rendimiento completo de su computadora !",
+          "text1": "A diferencia de un emulador de Android, el código es interpretado directamente por su computadora, lo que lo hace más rápido para jugar, ¡así que puede jugar DOFUS Touch mientras disfruta del rendimiento completo de su computadora!",
           "text2": "Originalmente conocido como DOFUS Touch No-Emu, este software desarrollado por Daniel y Thomas se vio obligado a cerrar debido a una advertencia de Ankama."
         }
       },
       "shortcuts": {
         "title": "Atajos",
-        "description1": "Puede utilizar teclas CTRL, SHIFT, SPACE, ALT (CTRL = cmd en Mac OS X)",
+        "description1": "Puede utilizar teclas CTRL, SHIFT, SPACE, ALT (CTRL = cmd en MacOS X)",
         "description2": "Para entrar en los accesos directos sólo tiene que pulsar la combinación de teclas que desee en el campo.",
         "tab": {
           "application": "Programa",
           "interface": "Interfaz",
-          "spell": "Conjuros",
+          "spell": "Hechizos",
           "inventory": "Inventario",
           "other": "Diverso"
         }
+      },
+      "bug-report": {
+        "title": "Reportar un bug",
+        "description": "Si ha observado un comportamiento inesperado en Lindo, puede informarlo describiéndolo a continuación.",
+        "instructions": "Proporcione al menos esta información:",
+        "list": {
+          "1": "La descripción del comportamiento inesperado",
+          "2": "Cómo reproducirlo",
+          "3": "¿Cuál sería el comportamiento esperado habitual?"
+        },
+        "placeholder": "Descripción",
+        "send": "Enviar"
       }
     },
     "option": {
@@ -107,7 +120,7 @@
           "leader": "Nombre del jefe",
           "members": "Nombres de los personajes",
           "members-add": "Añadir un personaje",
-          "follow-leader": "Siga el líder del grupo",
+          "follow-leader": "Seguir el líder del grupo",
           "ready": "Skip \"listo\" de forma automática",
           "fight": "La entrada automática en la lucha contra",
           "delay": "Tiempo antes de seguir (en segundos)",
@@ -155,10 +168,9 @@
             },
             "delete-master": {
               "title": "Eliminación de la contraseña",
-              "text": "Para eliminar la contraseña, confírmela..<br/>Esto eliminará las cuentas grabadas.",
+              "text": "¿Está usted seguro?<br/>Esto eliminará las cuentas grabadas.",
               "confirm": "Quitar",
               "cancel": "Anular",
-              "incorrect-old": "La contraseña introducida no es correcta.",
               "success-text": "La contraseña ha sido borrada."
             },
             "maximum-account": {
@@ -193,19 +205,22 @@
           "level":"Niv."
         },
         "jobsxp": {
-            "text": " XP faltante<br>antes nivel "
-        },
-        "status": {
-          "header": "Estatus VIP"
+          "text": " XP faltante<br>antes nivel "
         }
       },
       "general": {
         "title": "General",
+        "interface": "Interfaz",
+        "sound": "Sonido",
+        "shortcuts": "Atajos de teclado",
+        "game-data": "Datos del juego",
         "language": "Idioma",
         "resolution": "Resolución",
         "hide-shop": "Ocultar el botón Shop",
         "hide-tab": "Ocultar la barra de tareas multicuentas",
-        "local-content": "Habilitar descargar mapas locales (beta)"
+        "local-content": "Habilitar descargar mapas locales (beta)",
+        "early": "Juega en Dofus Touch Early",
+        "restart": "Aplicar y reiniciar"
       },
       "shortcuts": {
         "title": "Atajos",
@@ -213,10 +228,10 @@
           "header": "Diverso",
           "end-turn": "Saltar su torno / Listo (combate)",
           "open-chat": "Abrir el chat",
-          "active-open-menu": "Apri menu quando nessuna finestra è aperta (ECHAP)",
+          "active-open-menu": "Abrir menú cuando no hay ventana abierta (ECHAP)",
           "open-menu": "Abre el menu",
           "go_up": "Ir a Mapa Superior",
-          "go_bottom": "Ir a Lower Map",
+          "go_bottom": "Ir a Mapa Inferior",
           "go_left": "Ir al Mapa de la Izquierda",
           "go_right": "Ir al mapa de la derecha"
         },
@@ -238,7 +253,7 @@
           "directory": "Repertorio de gremio y alianza",
           "alignement": "Alineamiento",
           "bestiary": "Bestiario",
-          "title": "Titulo y ornamentos",
+          "title": "Título y ornamentos",
           "achievement": "Logros",
           "almanax": "Almanax",
           "spouse": "Cónyuge",
@@ -262,7 +277,7 @@
         }
       },
       "notifications": {
-        "title": "Notificacións",
+        "title": "Notificaciones",
         "description": "Puede recibir las notificaciones del juego Dofus cuando esta en otra applicación. Puede ser notificado :",
         "fight-turn": "Al inicio del torno (combate)",
         "private-message": "A la llegada de un mensaje privado",
