@@ -6,11 +6,13 @@ import { alignmentUIContainer } from "./alignmentUIContainer";
  * This mod add the possibility to show alignment
  */
 export class Alignment extends Mods {
-
+    private lastScan;
     private container : alignmentUIContainer;
 
     constructor (wGame: any | Window) {
         super(wGame);
+        this.lastScan = 0;
+
         /* Add <style>*/
         let alignmentbarCss = document.createElement('style');
         alignmentbarCss.id = 'alignmentBarCss';
@@ -49,16 +51,23 @@ export class Alignment extends Mods {
 
     public scan() {
         // When you active the mod
-        if (this.container != null) {
-            this.container.destroy();
+        let currentTime = Math.floor(Date.now() / 1000);
+        if (currentTime > this.lastScan + 1) {
+            // Is last scan was more than 1 second
+            this.lastScan = currentTime;
+            if (this.container != null) {
+                this.container.destroy();
+            }
+            this.container = new alignmentUIContainer(this.wGame);
+            this.container.show(); // Scan
         }
-        this.container = new alignmentUIContainer(this.wGame);
-        this.container.show(); // Scan
     }
 
     public destroy() {
-        this.container.destroy();
-        this.container = null;
+        if (this.container) {
+            this.container.destroy();
+            this.container = null;
+        }
     }
 
     public reset() {
