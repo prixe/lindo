@@ -445,9 +445,9 @@ export module Option {
                 this._open_chat = open_chat;
             }
 
-            set alignment_scan(active_open_menu: string) {
-                this.settingsProvider.write('option.shortcuts.diver.active_open_menu', active_open_menu);
-                this._alignment_scan = active_open_menu;
+            set alignment_scan(alignment_scan: string) {
+                this.settingsProvider.write('option.shortcuts.diver.alignment_scan', alignment_scan);
+                this._alignment_scan = alignment_scan;
             }
 
             get alignment_scan(): string {
