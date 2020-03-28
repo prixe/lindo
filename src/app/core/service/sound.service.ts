@@ -11,10 +11,12 @@ export class SoundService {
     private events: Array<any> = [];
     private isAudioMuted: boolean = false;
 
-    constructor(private ipcRendererService: IpcRendererService,
-                private settingsService: SettingsService,
-                private windowService: WindowService) {
-        if(isElectron){
+    constructor(
+        private ipcRendererService: IpcRendererService,
+        private settingsService: SettingsService,
+        private windowService: WindowService
+    ) {
+        if (isElectron) {
             this.ipcRendererService.on('reload-settings', () => {
                 this.listenFocusAndBlur()
             });
@@ -30,16 +32,13 @@ export class SoundService {
         }
     }
 
-
     private listenFocusAndBlur() {
-
         this.events.forEach(event => {
             event();
         });
 
         if (this.settingsService.option.general.sound_focus) {
-
-            this.window.webContents.setAudioMuted(false);
+            this.window.webContents.setAudioMuted(this.isAudioMuted);
 
             let onFocus = () => {
                 (!this.isAudioMuted) ? this.window.webContents.setAudioMuted(false) : false;
