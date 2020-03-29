@@ -2,14 +2,14 @@
 
 
 import { EventEmitter } from 'eventemitter3';
-import { Mods } from "../mods";
+import { Mod } from "../mod";
 import { Option } from "app/core/service/settings.service";
 import { IpcRendererService } from "app/core/electron/ipcrenderer.service";
 import { Logger } from "app/core/electron/logger.helper";
 import { TranslateService } from "@ngx-translate/core";
 type Direction = "top" | "bottom" | "left" | "right" | false;
 
-export class AutoGroup extends Mods {
+export class AutoGroup extends Mod {
 
     private params: Option.VIP.AutoGroup;
     private lock: boolean = false;

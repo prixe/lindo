@@ -160,7 +160,6 @@ export class GameComponent implements AfterViewInit {
     }
 
     private setEventListener(): void {
-
         // event -> resize window game
         this.game.window.onresize = () => {
             //if(this.game.window.gui.isConnected){
@@ -233,7 +232,6 @@ export class GameComponent implements AfterViewInit {
             this.bugReportService.writeLog(anonymousIdentity, report);
             return consoleError.apply(this.game.window.console, arguments)
         }.bind(this);
-
     }
 
     private getAnonymousIdentity(): string {

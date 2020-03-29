@@ -1,7 +1,7 @@
-import {Mods} from "../mods";
+import { Mod } from "../mod";
 import { Logger } from "app/core/electron/logger.helper";
 
-export class Mover extends Mods {
+export class Mover extends Mod {
 
     constructor(wGame: any) {
         super(wGame);

@@ -1,12 +1,12 @@
 import { NgZone } from '@angular/core';
 import * as async from 'async';
-import { Mods } from "../mods";
+import { Mod } from "../mod";
 import { ShortcutsHelper } from "app/core/helpers/shortcuts.helper";
 import { Option } from "app/core/service/settings.service";
 import { Logger } from "app/core/electron/logger.helper";
 import { Mover } from "app/core/mods/mover/mover";
 
-export class Shortcuts extends Mods {
+export class Shortcuts extends Mod {
 
     private params: Option.Shortcuts;
     private shortcutsHelper: ShortcutsHelper;

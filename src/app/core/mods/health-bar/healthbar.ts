@@ -1,10 +1,10 @@
 import {BarContainer} from "./barcontainer";
-import { Mods } from "../mods";
+import { Mod } from "../mod";
 import { ShortcutsHelper } from "app/core/helpers/shortcuts.helper";
 import { Option } from "app/core/service/settings.service";
 import { Logger } from "app/core/electron/logger.helper";
 
-export class HealthBar extends Mods{
+export class HealthBar extends Mod{
 
     private params: Option.VIP.General
     private shortcutsHelper: ShortcutsHelper;

@@ -1,11 +1,11 @@
-import { Mods } from "../mods";
+import { Mod } from "../mod";
 import { Option } from "app/core/service/settings.service";
 import { Logger } from "app/core/electron/logger.helper";
 
 /**
 * This mod add the possibility to hide mount and pet durring fight
 */
-export class HideMount extends Mods
+export class HideMount extends Mod
 {
     constructor (
         wGame: any,

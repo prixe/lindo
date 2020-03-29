@@ -1,10 +1,10 @@
 import {DamageContainer} from "./damagecontainer";
-import { Mods } from "../mods";
+import { Mod } from "../mod";
 import { ShortcutsHelper } from "app/core/helpers/shortcuts.helper";
 import { Option } from "app/core/service/settings.service";
 import { Logger } from "app/core/electron/logger.helper";
 
-export class DamageEstimator extends Mods{
+export class DamageEstimator extends Mod{
 
     private params: Option.VIP.General
     private shortcutsHelper: ShortcutsHelper;

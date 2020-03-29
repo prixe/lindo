@@ -1,9 +1,9 @@
-import {Mods} from "../mods";
+import { Mod } from "../mod";
 /**
  * Allow the user to hold "control" key and double click
  * items slots in the bank to quickly move items
  */
-export class RapidExchange extends Mods{
+export class RapidExchange extends Mod{
 
     // Character's inventory in bank exchange view
     private exchangeInventory: any;

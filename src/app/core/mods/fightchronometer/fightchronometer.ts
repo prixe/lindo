@@ -1,4 +1,4 @@
-import { Mods } from "../mods";
+import { Mod } from "../mod";
 import { Option } from "app/core/service/settings.service";
 import { Logger } from "app/core/electron/logger.helper";
 
@@ -7,7 +7,7 @@ import { Logger } from "app/core/electron/logger.helper";
 * usefull for PVE to always know if the combat is still decent in time for xp
 */
 
-export class FightChronometer extends Mods {
+export class FightChronometer extends Mod {
     private container              : any;
     private chronometerInitialized : boolean;
     private chronometerInterval    : any;

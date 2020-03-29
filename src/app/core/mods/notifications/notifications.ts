@@ -1,12 +1,13 @@
-import {NgZone} from '@angular/core';
+import { NgZone } from '@angular/core';
 import { TranslateService } from "@ngx-translate/core";
 import {Observable, BehaviorSubject} from 'rxjs';
 import * as EventEmitter from 'eventemitter3';
-import { Mods, IMods } from "../mods";
-import { Option } from "app/core/service/settings.service";
 import { ElectronService as electron } from "app/core/electron/electron.service";
 
-export class Notifications extends Mods {
+import { Mod } from "../mod";
+import { Option } from "app/core/service/settings.service";
+
+export class Notifications extends Mod {
 
     wGame: any | Window;
     public eventEmitter: EventEmitter;
@@ -121,7 +122,7 @@ export class Notifications extends Mods {
 
     private sendPartyInvitationNotif(e: any) {
         if (!this.wGame.document.hasFocus() && this.params.party_invitation) {
-            
+
             this.eventEmitter.emit('newNotification');
 
             let fromName: string = e.fromName;
@@ -139,7 +140,7 @@ export class Notifications extends Mods {
         if (!this.wGame.document.hasFocus()
             && this.params.aggression
             && e.defenderId == this.wGame.gui.playerData.characterBaseInformations.id) {
-            
+
             this.eventEmitter.emit('newNotification');
 
             let aggressionNotif = new Notification(this.translate.instant('app.notifications.aggression'));

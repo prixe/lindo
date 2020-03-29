@@ -1,4 +1,4 @@
-import { Mods } from "../mods";
+import { Mod } from "../mod";
 import { TranslateService } from "@ngx-translate/core";
 import { Option } from "app/core/service/settings.service";
 import { Logger } from "app/core/electron/logger.helper";
@@ -6,7 +6,7 @@ import { Logger } from "app/core/electron/logger.helper";
 /**
 * This mod add the possibility to show party level and prospection count
 */
-export class PartyInfo extends Mods {
+export class PartyInfo extends Mod {
     private partyInitialized:boolean;
     private container: any;
     private info_pp: boolean;

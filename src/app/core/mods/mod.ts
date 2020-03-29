@@ -1,21 +1,16 @@
-export interface IMods {
-    reset(): void;
-    wGame: any|Window;
-}
-
-export abstract class Mods implements IMods {
-
+export abstract class Mod {
     private events: any[] = [];
     private onReset: any[] = [];
-    wGame: any|Window;
 
-    constructor(wGame: any|Window) {
+    constructor(
+        public wGame: any|Window
+    ) {
         this.wGame = wGame;
         this.events = [];
         this.onReset = [];
     }
 
-    protected addOnResetListener(fct: any) {
+    protected addOnResetListener(fct: any): void {
         this.onReset.push(fct);
     }
 
@@ -23,7 +18,7 @@ export abstract class Mods implements IMods {
         return (Math.random() * (max * 1000 - min * 1000) + min * 1000);
     }
 
-    protected on(manager: any, eventHandler: string, fct: any) {
+    protected on(manager: any, eventHandler: string, fct: any): void {
         manager.on(eventHandler, fct);
         this.events.push({
             manager: manager,
@@ -32,7 +27,7 @@ export abstract class Mods implements IMods {
         });
     }
 
-    protected once(manager: any, eventHandler: string, fct: any) {
+    protected once(manager: any, eventHandler: string, fct: any): void {
         manager.once(eventHandler, fct);
         this.events.push({
             manager: manager,
@@ -41,11 +36,11 @@ export abstract class Mods implements IMods {
         });
     }
 
-    protected removeListener(manager: any, eventHandler: string, fct: any) {
+    protected removeListener(manager: any, eventHandler: string, fct: any): void {
         manager.removeListener(eventHandler, fct);
     }
 
-    public reset() {
+    public reset():void {
         this.onReset.forEach((fct) => {
             fct();
         });

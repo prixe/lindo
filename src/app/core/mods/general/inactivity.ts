@@ -1,6 +1,6 @@
-import { Mods } from "../mods";
+import { Mod } from "../mod";
 
-export class Inactivity extends Mods {
+export class Inactivity extends Mod {
     private disable_inactivity: boolean;
     private idInt: any;
 

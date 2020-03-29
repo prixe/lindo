@@ -1,9 +1,9 @@
-import { Mods } from "../mods";
+import { Mod } from "../mod";
 
 /**
  * This mod add the possibility to hide the floating shop button
  */
-export class HideShop extends Mods{
+export class HideShop extends Mod{
     private hidden_shop: boolean;
 
     constructor (

@@ -1,9 +1,9 @@
-import { Mods } from "../mods";
+import { Mod } from "../mod";
 import { TranslateService } from "@ngx-translate/core";
 import { Option } from "app/core/service/settings.service";
 import { Logger } from "app/core/electron/logger.helper";
 
-export class Jobsxp extends Mods{
+export class Jobsxp extends Mod{
     private xpRestanteText : HTMLDivElement;
 
     constructor(

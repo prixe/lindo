@@ -1,8 +1,8 @@
 import { Logger } from "app/core/electron/logger.helper";
 
-import { Mods } from "../mods";
+import { Mod } from "../mod";
 
-export class JsFixes extends Mods {
+export class JsFixes extends Mod {
 
     constructor(wGame:any|Window) {
         super(wGame)

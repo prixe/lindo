@@ -1,4 +1,6 @@
-import { Mods } from "../mods";
+import { Mod } from "../mod";
+
+// import * as Mod from ".";
 
 import { CssOverload } from "./cssOverload"
 import { HideShop } from "./hideShop"
@@ -6,7 +8,7 @@ import { Inactivity } from "./inactivity"
 import { JsFixes } from "./jsFixes"
 import { KeyboardInput } from "./keyboardInput"
 
-export class General extends Mods {
+export class General extends Mod {
     private mods;
 
     constructor(
