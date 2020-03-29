@@ -6,7 +6,6 @@ import { SettingsService } from 'app/core/service/settings.service';
 
 @Injectable()
 export class AuthService {
-
     public authRequired: boolean = false;
 
     constructor(
@@ -40,16 +39,14 @@ export class AuthService {
     }
 
     public requireAuthentification(): boolean {
-
-        if(!isElectron)
+        if (!isElectron) {
             return false;
+        }
 
         if (Application.isAuthentified == false && Application.skipAuthentification == false) {
-
             if (this.settingsService.option.vip.multiaccount.active && Application.masterPassword == "") {
                 return true;
             }
-
             //TODO if je suis pas connecté sur l'application via le service
         }
 

@@ -1,7 +1,6 @@
 import { Game } from 'app/core/classes/game';
 
 export class GameService {
-
     private _games:Game[] = [];
 
     get games(){
@@ -9,7 +8,6 @@ export class GameService {
     }
 
     getGame(id: number): Game {
-        
         return this._games.filter((game:Game) => {
             return game.id === id;
         })[0];
@@ -20,7 +18,6 @@ export class GameService {
     }
 
     removeGame(game: Game): void {
-        
         let index = this._games.indexOf(game);
 
         if(index !== -1){
