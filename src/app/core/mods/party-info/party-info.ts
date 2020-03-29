@@ -14,8 +14,8 @@ export class PartyInfo extends Mod {
 
     constructor(
         wGame: any,
-        options: any,
-        private translate: TranslateService
+        protected options: any,
+        protected translate: TranslateService
     ) {
         super(wGame);
         this.info_pp = options.party_info_pp;

@@ -26,7 +26,7 @@ export class AutoGroup extends Mod {
         wGame: any,
         params: Option.VIP.AutoGroup,
         private ipcRendererService: IpcRendererService,
-        private translate: TranslateService
+        protected translate: TranslateService
     ) {
         super(wGame);
         this.params = params;

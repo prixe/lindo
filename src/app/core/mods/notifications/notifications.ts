@@ -12,7 +12,7 @@ export class Notifications extends Mod {
     wGame: any | Window;
     public eventEmitter: EventEmitter;
 
-    constructor(wGame: any, private params: Option.Notification, private translate: TranslateService){
+    constructor(wGame: any, private params: Option.Notification, translate: TranslateService){
         super(wGame);
         this.eventEmitter = new EventEmitter();
         this.wGame = wGame;

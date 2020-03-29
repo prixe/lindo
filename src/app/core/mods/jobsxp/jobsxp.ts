@@ -9,7 +9,7 @@ export class Jobsxp extends Mod{
     constructor(
         wGame: any,
         private params: Option.VIP.General,
-        private translate: TranslateService
+        protected translate: TranslateService
     ) {
         super(wGame);
 

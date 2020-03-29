@@ -60,7 +60,7 @@ export class GameComponent implements AfterViewInit {
         private zone: NgZone,
         private settingsService: SettingsService,
         private bugReportService: BugReportService,
-        private translate: TranslateService,
+        private translateService: TranslateService,
         private applicationService: ApplicationService,
         private http: HttpClient
     ) {
@@ -134,9 +134,9 @@ export class GameComponent implements AfterViewInit {
     }
 
     public setMods(): void {
-        this.autogroup = new AutoGroup(this.game.window, this.settingsService.option.vip.autogroup, this.ipcRendererService, this.translate);
+        this.autogroup = new AutoGroup(this.game.window, this.settingsService.option.vip.autogroup, this.ipcRendererService, this.translateService);
         this.damageEstimator = new DamageEstimator(this.game.window, this.settingsService.option.vip.general);
-        this.notifications = new Notifications(this.game.window, this.settingsService.option.notification, this.translate);
+        this.notifications = new Notifications(this.game.window, this.settingsService.option.notification, this.translateService);
         this.notifications.eventEmitter.on('newNotification', () => {
             this.zone.run(() => {
                 this.game.emit('notification');
@@ -148,12 +148,12 @@ export class GameComponent implements AfterViewInit {
             });
         });
         this.fightchronometer = new FightChronometer(this.game.window, this.settingsService.option.vip.general);
-        this.general = new General(this.game.window, this.settingsService);
+        this.general = new General(this.game.window, this.settingsService, this.translateService);
         this.healthbar = new HealthBar(this.game.window, this.settingsService.option.vip.general);
         this.hideMount = new HideMount(this.game.window, this.settingsService.option.vip.general);
-        this.jobsxp = new Jobsxp(this.game.window, this.settingsService.option.vip.general, this.translate);
+        this.jobsxp = new Jobsxp(this.game.window, this.settingsService.option.vip.general, this.translateService);
         this.mover = new Mover(this.game.window);
-        this.partyInfo = new PartyInfo(this.game.window, this.settingsService.option.vip.general, this.translate);
+        this.partyInfo = new PartyInfo(this.game.window, this.settingsService.option.vip.general, this.translateService);
         this.rapidExchange = new RapidExchange(this.game.window);
         this.shortcuts = new Shortcuts(this.game.window, this.settingsService.option.shortcuts);
         //this.wizAssets = new WizAssetsContainer(this.game.window, this.applicationService, this.http, this.settingsService.option.general);

@@ -1,14 +1,32 @@
+import { SettingsService } from "app/core/service/settings.service";
+import { TranslateService } from "@ngx-translate/core";
+
 export abstract class Mod {
     private events: any[] = [];
     private onReset: any[] = [];
 
+    public wGame: any|Window;
+    protected settings: SettingsService;
+    protected translate: TranslateService;
+
     constructor(
-        public wGame: any|Window
+        wGame: any|Window
     ) {
         this.wGame = wGame;
-        this.events = [];
-        this.onReset = [];
     }
+
+    // TODO
+    // constructor(
+    //     wGame: any|Window,
+    //     settings: settingsService,
+    //     translate: TranslateService
+    // ) {
+    //     this.wGame = wGame;
+    //     this.settings = settings;
+    //     this.translate = translate;
+    //
+    //     this.run();
+    // }
 
     protected addOnResetListener(fct: any): void {
         this.onReset.push(fct);
@@ -39,6 +57,9 @@ export abstract class Mod {
     protected removeListener(manager: any, eventHandler: string, fct: any): void {
         manager.removeListener(eventHandler, fct);
     }
+
+    // TODO
+    // abstract run():void;
 
     public reset():void {
         this.onReset.forEach((fct) => {

@@ -1,12 +1,22 @@
 import { Logger } from "app/core/electron/logger.helper";
+import { SettingsService } from "app/core/service/settings.service";
+import { TranslateService } from "@ngx-translate/core";
 
 import { Mod } from "../mod";
 
 export class JsFixes extends Mod {
+    constructor(
+        wGame: any|Window,
+        settings: SettingsService,
+        translate: TranslateService
+    ) {
+        super(wGame);
+        this.settings = settings;
+        this.translate = translate;
 
-    constructor(wGame:any|Window) {
-        super(wGame)
-
+        this.run();
+    }
+    private run(): void {
         this.contextLost();
         this.spritesOutOfScreen();
     }

@@ -1,12 +1,23 @@
 import { Mod } from "../mod";
+import { SettingsService } from "app/core/service/settings.service";
+import { TranslateService } from "@ngx-translate/core";
 
-export class CssOverload extends Mod{
-
+export class CssOverload extends Mod {
     private styleTag: HTMLDivElement;
 
-    constructor(wGame:any|Window) {
-        super(wGame)
+    constructor(
+        wGame: any|Window,
+        settings: SettingsService,
+        translate: TranslateService
+    ) {
+        super(wGame);
+        this.settings = settings;
+        this.translate = translate;
 
+        this.run();
+    }
+
+    private run(): void {
         this.styleTag = this.wGame.document.createElement('style');
         this.wGame.document.getElementsByTagName('head')[0].appendChild(this.styleTag);
 

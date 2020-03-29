@@ -1,28 +1,28 @@
 import { Mod } from "../mod";
+import { SettingsService } from "app/core/service/settings.service";
+import { TranslateService } from "@ngx-translate/core";
 
-// import * as Mod from ".";
-
-import { CssOverload } from "./cssOverload"
-import { HideShop } from "./hideShop"
-import { Inactivity } from "./inactivity"
-import { JsFixes } from "./jsFixes"
-import { KeyboardInput } from "./keyboardInput"
+import * as Mods from ".";
 
 export class General extends Mod {
-    private mods;
-
+    private mods: Mod[] = [];
     constructor(
-        wGame:any|Window,
-        private settingsService
+        wGame: any|Window,
+        settings: SettingsService,
+        translate: TranslateService
     ) {
         super(wGame);
-        this.mods = [
-            new CssOverload(wGame),
-            new HideShop(wGame, this.settingsService),
-            new Inactivity(wGame, this.settingsService),
-            new JsFixes(wGame),
-            new KeyboardInput(wGame)
-        ];
+        this.settings = settings;
+        this.translate = translate;
+
+        this.run();
+    }
+
+    private run(): void {
+        // Init mods
+        for (let mod in Mods) {
+            this.mods.push(new Mods[mod](this.wGame, this.settings, this.translate))
+        }
     }
 
     public reset() {
