@@ -1,4 +1,5 @@
-import {Mods} from "../mods";
+import { Mods } from "../mods";
+
 export class KeyboardInput extends Mods{
 
     // Referece of the number input pad
@@ -11,18 +12,15 @@ export class KeyboardInput extends Mods{
         super(wGame);
 
         this.numberInputPad = this.wGame.gui.numberInputPad;
-
         this.setKeyListenner();
     }
 
-
     private setKeyListenner() {
-
         let doInput = (event: KeyboardEvent) => {
-
             // If The number input pad is not visble or the key pressed is not allowed, don't continue
-            if (!this.numberInputPad.isVisible() || !this.allowedKeys.includes(event.key))
+            if (!this.numberInputPad.isVisible() || !this.allowedKeys.includes(event.key)) {
                 return;
+            }
 
             // Call built-in functions
             switch (event.key) {

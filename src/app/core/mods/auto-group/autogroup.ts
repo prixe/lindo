@@ -40,21 +40,19 @@ export class AutoGroup extends Mods {
             // le leader invite les membres
             this.autoMasterParty();
 
-
             // acceptation de l'invitation automatiquement
             this.autoAcceptPartyInvitation();
         }
 
-
         // suit le leader automatiquement
-        if (this.params.follow_leader)
+        if (this.params.follow_leader) {
             this.followLeader(this.wGame.gui.isConnected);
-
+        }
 
         // entre en combat automatiquement
-        if (this.params.fight)
+        if (this.params.fight) {
             this.autoEnterFight(this.wGame.gui.isConnected);
-
+        }
     }
 
     public autoMasterParty(skipLogin: boolean = false) {

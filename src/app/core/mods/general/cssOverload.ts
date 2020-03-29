@@ -1,5 +1,5 @@
+import { Mods } from "../mods";
 
-import {Mods} from "../mods";
 export class CssOverload extends Mods{
 
     private styleTag: HTMLDivElement;
@@ -37,6 +37,8 @@ export class CssOverload extends Mods{
 
     public reset() {
         super.reset();
-        if (this.styleTag.parentElement) this.styleTag.parentElement.removeChild(this.styleTag)
+        if (this.styleTag.parentElement) {
+            this.styleTag.parentElement.removeChild(this.styleTag)
+        }
     }
 }

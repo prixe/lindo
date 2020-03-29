@@ -13,16 +13,12 @@ import { BugReportService } from 'app/core/service/bug-report.service';
 import { HttpClient } from '@angular/common/http';
 
 import { AutoGroup } from "app/core/mods/auto-group/autogroup";
-import { CssOverload } from "app/core/mods/cssOverload/cssOverload";
 import { DamageEstimator } from "app/core/mods/damage-estimator/damageestimator";
 import { FightChronometer } from "app/core/mods/fightchronometer/fightchronometer";
+import { General } from "app/core/mods/general/general";
 import { HealthBar } from "app/core/mods/health-bar/healthbar";
 import { HideMount } from "app/core/mods/hide-mount/hide-mount";
-import { HideShop } from "app/core/mods/hide-shop/hide-shop";
-import { Inactivity } from "app/core/mods/general/inactivity";
 import { Jobsxp } from "app/core/mods/jobsxp/jobsxp";
-import { JsFixes } from "app/core/mods/jsFixes/jsFixes";
-import { KeyboardInput } from "app/core/mods/keyboard-input/keyboard-input";
 import { Mover } from "app/core/mods/mover/mover";
 import { Notifications } from "app/core/mods/notifications/notifications";
 import { PartyInfo } from "app/core/mods/party-info/party-info";
@@ -45,22 +41,18 @@ export class GameComponent implements AfterViewInit {
 
     // Mods
     private autogroup: AutoGroup;
-    private inactivity: Inactivity;
-    private healthbar: HealthBar;
-    private jobsxp: Jobsxp;
-    private fightchronometer: FightChronometer;
     private damageEstimator: DamageEstimator;
+    private fightchronometer: FightChronometer;
+    private general: General;
+    private healthbar: HealthBar;
+    private hideMount: HideMount;
+    private jobsxp: Jobsxp;
+    private mover: Mover;
     private notifications: Notifications;
-    private cssOverload: CssOverload;
-    private jsFixes: JsFixes;
+    private partyInfo:PartyInfo;
+    private plugins: PluginsContainer;
     private rapidExchange: RapidExchange;
     private wizAssets: WizAssetsContainer;
-    private plugins: PluginsContainer;
-    private hideShop: HideShop;
-    private keyboardInput: KeyboardInput;
-    private hideMount: HideMount;
-	private partyInfo:PartyInfo;
-    private mover: Mover;
 
     constructor(
         private windowService: WindowService,
@@ -122,16 +114,12 @@ export class GameComponent implements AfterViewInit {
 
     public removeMods(): void {
         if (this.autogroup) this.autogroup.reset();
-        if (this.cssOverload) this.cssOverload.reset();
         if (this.damageEstimator) this.damageEstimator.reset();
         if (this.fightchronometer) this.fightchronometer.reset();
+        if (this.general) this.general.reset();
         if (this.healthbar) this.healthbar.reset();
         if (this.hideMount) this.hideMount.reset();
-        if (this.hideShop) this.hideShop.reset();
-        if (this.inactivity) this.inactivity.reset();
         if (this.jobsxp) this.jobsxp.reset();
-        if (this.jsFixes) this.jsFixes.reset();
-        if (this.keyboardInput) this.keyboardInput.reset();
         if (this.mover) this.mover.reset();
         if (this.notifications) this.notifications.reset();
         if (this.partyInfo) this.partyInfo.reset();
@@ -140,13 +128,13 @@ export class GameComponent implements AfterViewInit {
 
     public reloadMods(start: boolean = true): void {
         this.removeMods();
-        if (start)
+        if (start) {
             this.setMods();
+        }
     }
 
     public setMods(): void {
         this.autogroup = new AutoGroup(this.game.window, this.settingsService.option.vip.autogroup, this.ipcRendererService, this.translate);
-        this.cssOverload = new CssOverload(this.game.window);
         this.damageEstimator = new DamageEstimator(this.game.window, this.settingsService.option.vip.general);
         this.notifications = new Notifications(this.game.window, this.settingsService.option.notification, this.translate);
         this.notifications.eventEmitter.on('newNotification', () => {
@@ -160,13 +148,10 @@ export class GameComponent implements AfterViewInit {
             });
         });
         this.fightchronometer = new FightChronometer(this.game.window, this.settingsService.option.vip.general);
+        this.general = new General(this.game.window, this.settingsService);
         this.healthbar = new HealthBar(this.game.window, this.settingsService.option.vip.general);
         this.hideMount = new HideMount(this.game.window, this.settingsService.option.vip.general);
-        this.hideShop = new HideShop(this.game.window, this.settingsService.option.general);
-        this.inactivity = new Inactivity(this.game.window, this.settingsService.option.vip.general);
         this.jobsxp = new Jobsxp(this.game.window, this.settingsService.option.vip.general, this.translate);
-        this.jsFixes = new JsFixes(this.game.window);
-        this.keyboardInput = new KeyboardInput(this.game.window);
         this.mover = new Mover(this.game.window);
         this.partyInfo = new PartyInfo(this.game.window, this.settingsService.option.vip.general, this.translate);
         this.rapidExchange = new RapidExchange(this.game.window);

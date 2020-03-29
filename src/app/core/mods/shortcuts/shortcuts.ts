@@ -18,7 +18,7 @@ export class Shortcuts extends Mods {
         this.shortcutsHelper = new ShortcutsHelper(this.wGame);
 
         if (this.params.diver.active_open_menu) {
-            Logger.info(' - enable open_menu');
+            Logger.info('- enable Open_menu');
         }
         this.mover = new Mover(this.wGame);
         this.bindAll();
@@ -99,9 +99,9 @@ export class Shortcuts extends Mods {
                 if (this.wGame.gui.fightManager.fightState === 0) {
                     return;
                 }
-              
+
                 selectedSpell.tap();
-                
+
                 setTimeout(() => {
                     this.wGame.isoEngine._castSpellImmediately(this.wGame.isoEngine.actorManager.userActor.cellId);
                 }, 150);

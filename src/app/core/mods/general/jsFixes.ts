@@ -1,9 +1,8 @@
+import { Logger } from "app/core/electron/logger.helper";
 
 import { Mods } from "../mods";
-import { Logger } from "app/core/electron/logger.helper";
-export class JsFixes extends Mods{
 
-    private
+export class JsFixes extends Mods {
 
     constructor(wGame:any|Window) {
         super(wGame)
@@ -46,9 +45,5 @@ export class JsFixes extends Mods{
             this.wGame.isoEngine.mapScene._refreshAreas = this.wGame.isoEngine.mapScene._refreshAreasBackup;
             delete this.wGame.isoEngine.mapScene._refreshAreasBackup;
         });
-    }
-
-    public reset() {
-        super.reset();
     }
 }

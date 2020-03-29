@@ -1,4 +1,5 @@
-import {Mods} from "../mods";
+import { Mods } from "../mods";
+
 /**
  * This mod add the possibility to hide the floating shop button
  */
@@ -7,10 +8,10 @@ export class HideShop extends Mods{
 
     constructor (
         wGame: any | Window,
-        options: any
+        private settingsService
     ) {
         super(wGame);
-        this.hidden_shop = options.hidden_shop;
+        this.hidden_shop = settingsService.option.general.hidden_shop;
 
         // That function shows or hides the shop button
         // depending on the variable "hidden_shop"

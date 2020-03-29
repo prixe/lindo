@@ -22,7 +22,7 @@ export class PartyInfo extends Mods {
         this.info_lvl = options.party_info_lvl;
         this.translate = translate;
         if (this.info_pp || this.info_lvl) {
-            Logger.info(' - enable PartyInfo');
+            Logger.info('- enable PartyInfo');
 
             this.partyInitialized = (this.wGame.document.querySelector("#party-info-container") === null ? false : true);
             setTimeout(() => {
@@ -36,8 +36,6 @@ export class PartyInfo extends Mods {
             this.on(this.wGame.dofus.connectionManager, 'PartyUpdateMessage', this.updatePartyInfo.bind(this));
             this.on(this.wGame.dofus.connectionManager, 'PartyNewGuestMessage', this.updatePartyInfo.bind(this));
             this.on(this.wGame.dofus.connectionManager, 'PartyLeaderUpdateMessage', this.updatePartyInfo.bind(this));
-        } else {
-            Logger.info(' - disable PartyInfo');
         }
     }
 
