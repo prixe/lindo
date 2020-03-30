@@ -1,11 +1,10 @@
-import { Mod } from "../mod";
 import { Logger } from "app/core/electron/logger.helper";
+
+import { Mod } from "../mod";
 
 export class Mover extends Mod {
 
-    constructor(wGame: any) {
-        super(wGame);
-    }
+    startMod(): void {}
 
     public move(direction: string, success: any, fail: any): void {
         if (this.wGame.gui.fightManager.fightState < 0) {
@@ -90,9 +89,9 @@ export class Mover extends Mod {
 
     private getRandomAvailableCell(cells: Array<number>, direction: string): number {
         let occupiedCells = this.getMonsterGroupBossCells();
-        let availableCells = cells.filter( cell => !occupiedCells.includes(cell) 
-        	&& this.isCellOnMap(cell) 
-        	&& this.isCellWalkable(cell) 
+        let availableCells = cells.filter( cell => !occupiedCells.includes(cell)
+        	&& this.isCellOnMap(cell)
+        	&& this.isCellWalkable(cell)
         	&& this.isCellChangesMapToDirection(cell, direction)).sort(() => Math.random() - 0.5);
 
         if (availableCells.length > 0) {

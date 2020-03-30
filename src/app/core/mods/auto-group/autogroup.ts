@@ -1,17 +1,17 @@
 //background.toggleDebugMode()
 
+import { IpcRendererService } from "app/core/electron/ipcrenderer.service";
+import { SettingsService } from "app/core/service/settings.service";
+import { TranslateService } from "@ngx-translate/core";
 
 import { EventEmitter } from 'eventemitter3';
-import { Mod } from "../mod";
-import { Option } from "app/core/service/settings.service";
-import { IpcRendererService } from "app/core/electron/ipcrenderer.service";
 import { Logger } from "app/core/electron/logger.helper";
-import { TranslateService } from "@ngx-translate/core";
+
+import { Mod } from "../mod";
+
 type Direction = "top" | "bottom" | "left" | "right" | false;
 
 export class AutoGroup extends Mod {
-
-    private params: Option.VIP.AutoGroup;
     private lock: boolean = false;
     private followProgress: number = 0;
     private idle: boolean = true;
@@ -21,20 +21,20 @@ export class AutoGroup extends Mod {
     private lastType: string = null;
     private movedOnRandomCell: boolean = true;
 
-
     constructor(
         wGame: any,
-        params: Option.VIP.AutoGroup,
-        private ipcRendererService: IpcRendererService,
-        protected translate: TranslateService
+        settings: SettingsService,
+        translate: TranslateService,
+        private ipcRendererService: IpcRendererService
     ) {
-        super(wGame);
-        this.params = params;
+        super(wGame, settings, translate);
         this.ipcRendererService = ipcRendererService;
-        this.translate = translate;
+    }
+
+    startMod(): void {
+        this.params = this.settings.option.vip.autogroup;
 
         if (this.params.active) {
-
             Logger.info('- Auto-Group enable');
 
             // le leader invite les membres

@@ -1,7 +1,6 @@
-import { Mod } from "../mod";
-import { TranslateService } from "@ngx-translate/core";
-import { Option } from "app/core/service/settings.service";
 import { Logger } from "app/core/electron/logger.helper";
+
+import { Mod } from "../mod";
 
 /**
 * This mod add the possibility to show party level and prospection count
@@ -12,15 +11,9 @@ export class PartyInfo extends Mod {
     private info_pp: boolean;
     private info_lvl: boolean;
 
-    constructor(
-        wGame: any,
-        protected options: any,
-        protected translate: TranslateService
-    ) {
-        super(wGame);
-        this.info_pp = options.party_info_pp;
-        this.info_lvl = options.party_info_lvl;
-        this.translate = translate;
+    startMod(): void {
+        this.info_pp = this.settings.option.vip.general.party_info_pp;
+        this.info_lvl = this.settings.option.vip.general.party_info_lvl;
         if (this.info_pp || this.info_lvl) {
             Logger.info('- enable PartyInfo');
 

@@ -9,24 +9,21 @@ export abstract class Mod {
     protected settings: SettingsService;
     protected translate: TranslateService;
 
+    protected params: any;
+
     constructor(
-        wGame: any|Window
+        wGame: any|Window,
+        settings: SettingsService,
+        translate: TranslateService
     ) {
         this.wGame = wGame;
+        this.settings = settings;
+        this.translate = translate;
+
+        this.startMod();
     }
 
-    // TODO
-    // constructor(
-    //     wGame: any|Window,
-    //     settings: settingsService,
-    //     translate: TranslateService
-    // ) {
-    //     this.wGame = wGame;
-    //     this.settings = settings;
-    //     this.translate = translate;
-    //
-    //     this.run();
-    // }
+    abstract startMod(): void;
 
     protected addOnResetListener(fct: any): void {
         this.onReset.push(fct);
@@ -57,9 +54,6 @@ export abstract class Mod {
     protected removeListener(manager: any, eventHandler: string, fct: any): void {
         manager.removeListener(eventHandler, fct);
     }
-
-    // TODO
-    // abstract run():void;
 
     public reset():void {
         this.onReset.forEach((fct) => {

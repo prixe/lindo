@@ -1,6 +1,4 @@
 import { Mod } from "../mod";
-import { SettingsService } from "app/core/service/settings.service";
-import { TranslateService } from "@ngx-translate/core";
 
 export class KeyboardInput extends Mod {
     // Referece of the number input pad
@@ -8,19 +6,8 @@ export class KeyboardInput extends Mod {
 
     // All allowed keys for the number input pad
     private allowedKeys: Array<String> = ["0", "1", "2", "3" ,"4", "5", "6", "7", "8", "9", "Enter", "Backspace"];
-    constructor(
-        wGame: any|Window,
-        settings: SettingsService,
-        translate: TranslateService
-    ) {
-        super(wGame);
-        this.settings = settings;
-        this.translate = translate;
 
-        this.run();
-    }
-
-    private run(): void {
+    startMod(): void {
         this.numberInputPad = this.wGame.gui.numberInputPad;
         this.setKeyListenner();
     }

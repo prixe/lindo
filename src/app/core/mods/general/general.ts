@@ -1,29 +1,28 @@
-import { Mod } from "../mod";
 import { SettingsService } from "app/core/service/settings.service";
 import { TranslateService } from "@ngx-translate/core";
+
+import { Mod } from "../mod";
 
 import * as Mods from ".";
 
 export class General extends Mod {
     private mods: Mod[] = [];
+
     constructor(
         wGame: any|Window,
         settings: SettingsService,
         translate: TranslateService
     ) {
-        super(wGame);
-        this.settings = settings;
-        this.translate = translate;
+        super(wGame, settings, translate)
 
-        this.run();
-    }
-
-    private run(): void {
         // Init mods
+        this.mods = [];
         for (let mod in Mods) {
             this.mods.push(new Mods[mod](this.wGame, this.settings, this.translate))
         }
     }
+
+    startMod(): void {}
 
     public reset() {
         super.reset();

@@ -1,20 +1,15 @@
-import { Mod } from "../mod";
-import { TranslateService } from "@ngx-translate/core";
-import { Option } from "app/core/service/settings.service";
 import { Logger } from "app/core/electron/logger.helper";
+
+import { Mod } from "../mod";
 
 export class Jobsxp extends Mod{
     private xpRestanteText : HTMLDivElement;
 
-    constructor(
-        wGame: any,
-        private params: Option.VIP.General,
-        protected translate: TranslateService
-    ) {
-        super(wGame);
+    startMod(): void {
+        this.params = this.settings.option.vip.general.jobsxp;
 
-        if (this.params.jobsxp) {
-            Logger.info('- enable jobsxp');
+        if (this.params) {
+            Logger.info('- enable Jobsxp');
             let jobsxpbarCssverif = this.wGame.document.getElementById('jobsxpbarCss');
             let xpRestanteIdverif = this.wGame.document.getElementById('xpRestanteId');
             if (jobsxpbarCssverif && jobsxpbarCssverif.parentElement) {
@@ -197,7 +192,7 @@ export class Jobsxp extends Mod{
 
     public reset() {
         super.reset();
-        if (!this.params.jobsxp) {
+        if (!this.params) {
             let jobsxpbarCss = this.wGame.document.getElementById('jobsxpbarCss');
             if (jobsxpbarCss && jobsxpbarCss.parentElement) {
                 jobsxpbarCss.parentElement.removeChild(jobsxpbarCss);

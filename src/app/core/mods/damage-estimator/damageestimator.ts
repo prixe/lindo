@@ -1,21 +1,17 @@
-import {DamageContainer} from "./damagecontainer";
-import { Mod } from "../mod";
 import { ShortcutsHelper } from "app/core/helpers/shortcuts.helper";
-import { Option } from "app/core/service/settings.service";
 import { Logger } from "app/core/electron/logger.helper";
 
-export class DamageEstimator extends Mod{
+import { Mod } from "../mod";
+import { DamageContainer } from "./damagecontainer";
 
-    private params: Option.VIP.General
+export class DamageEstimator extends Mod {
     private shortcutsHelper: ShortcutsHelper;
     private damageContainer: DamageContainer;
 
-    constructor(wGame: any, params: Option.VIP.General) {
-        super(wGame);
-        this.params = params;
+    startMod(): void {
+        this.params = this.settings.option.vip.general;
 
-        if (this.params.estimator) {
-
+        if (this.params) {
             Logger.info('- enable Damage-Estimator');
 
             this.shortcutsHelper = new ShortcutsHelper(this.wGame);
@@ -77,7 +73,7 @@ export class DamageEstimator extends Mod{
 
     public reset() {
         super.reset();
-        if (this.params.estimator) {
+        if (this.params) {
             this.shortcutsHelper.unBindAll();
             this.damageContainer.destroy();
         }

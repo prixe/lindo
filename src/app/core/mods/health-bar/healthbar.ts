@@ -1,19 +1,16 @@
-import {BarContainer} from "./barcontainer";
-import { Mod } from "../mod";
 import { ShortcutsHelper } from "app/core/helpers/shortcuts.helper";
-import { Option } from "app/core/service/settings.service";
 import { Logger } from "app/core/electron/logger.helper";
 
-export class HealthBar extends Mod{
+import { Mod } from "../mod";
+import { BarContainer } from "./barcontainer";
 
-    private params: Option.VIP.General
+export class HealthBar extends Mod {
     private shortcutsHelper: ShortcutsHelper;
     private barContainer: BarContainer;
     private fightJustStarted: boolean = false;
 
-    constructor(wGame: any, params: Option.VIP.General) {
-        super(wGame);
-        this.params = params;
+    startMod(): void {
+        this.params = this.settings.option.vip.general;
 
         if (this.params.health_bar) {
 

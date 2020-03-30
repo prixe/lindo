@@ -1,10 +1,10 @@
 import { Mod } from "../mod";
+
 /**
  * Allow the user to hold "control" key and double click
  * items slots in the bank to quickly move items
  */
-export class RapidExchange extends Mod{
-
+export class RapidExchange extends Mod {
     // Character's inventory in bank exchange view
     private exchangeInventory: any;
 
@@ -13,15 +13,15 @@ export class RapidExchange extends Mod{
 
     // Character's inventory in trade view
     private tradeWithPlayerAndNPCInventory: any;
-    
+
     // Does the "ctrl" key is pressed ?
     private keyPressed: boolean = false;
 
     // All ids of the windows we need
     private supportedWindows: Array<string> = ["exchangeInventory", "exchangeStorage", "tradeWithPlayerAndNPCInventory"];
 
-    constructor (wGame: any) {
-        super(wGame);
+    startMod(): void {
+        this.supportedWindows = ["exchangeInventory", "exchangeStorage", "tradeWithPlayerAndNPCInventory"];
 
         // Retrieve windows from the gui
         let windows = this.wGame.gui.windowsContainer.getChildren();
@@ -32,19 +32,20 @@ export class RapidExchange extends Mod{
         });
 
         this.setKeyListenner();
-
         this.setInventoryEventListener();
     }
 
     // Listen to the "ctrl" key, and remember it's state
     private setKeyListenner() {
         let keydown = (event: KeyboardEvent) => {
-            if (event.keyCode == 17)
+            if (event.keyCode == 17) {
                 this.keyPressed = true;
+            }
         };
         let keyup = (event: KeyboardEvent) => {
-            if (event.keyCode == 17)
+            if (event.keyCode == 17) {
                 this.keyPressed = false;
+            }
         };
 
         this.wGame.addEventListener("keydown", keydown, true);
@@ -58,15 +59,17 @@ export class RapidExchange extends Mod{
 
     // Listen "slot-doubletap" events on windows and when it occurs, call the moveItem function
     private setInventoryEventListener() {
-        if (this.exchangeInventory)
+        if (this.exchangeInventory) {
             this.exchangeInventory.on('slot-doubletap', (slot: any, x: any, y: any, storage: any) => {
                     this.moveItem(slot.itemInstance, "exchangeInventory", false);
             });
+        }
 
-        if (this.exchangeStorage)
+        if (this.exchangeStorage) {
             this.exchangeStorage.on('slot-doubletap', (slot: any, x: any, y: any, storage: any) => {
                     this.moveItem(slot.itemInstance, "exchangeStorage", true);
             });
+        }
 
         if (this.tradeWithPlayerAndNPCInventory) {
             this.tradeWithPlayerAndNPCInventory.on('slot-doubletap', (slot: any) => {
@@ -136,7 +139,7 @@ export class RapidExchange extends Mod{
         // in the case of the common trade window
         if (window._myTradeSpace)
             return window._myTradeSpace
-        
+
         // If everithing is ok, return the matching window
         return window;
 
@@ -144,11 +147,11 @@ export class RapidExchange extends Mod{
 
     // Hide the Minmax selector
     private hideMinMaxSelector(id: string) {
-
         let window = this.getWindow(id);
 
-        if (!window)
+        if (!window) {
             return;
+        }
 
         switch (id) {
             // Simplest case, that get the function in their prototype
@@ -156,7 +159,7 @@ export class RapidExchange extends Mod{
             case "exchangeStorage":
                 window.closeMinMaxSelector();
                 break;
-            
+
             // For these, fond the MinMax selector in children of the window and call the hide function
             case "tradeWithPlayerAndNPCInventory":
             case "tradeWithPlayer":

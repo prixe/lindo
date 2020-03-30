@@ -1,22 +1,20 @@
-import { Mod } from "../mod";
-import { Option } from "app/core/service/settings.service";
 import { Logger } from "app/core/electron/logger.helper";
+
+import { Mod } from "../mod";
 
 /**
 * This mod add the possibility to display a chronometer while fighting,
 * usefull for PVE to always know if the combat is still decent in time for xp
 */
-
 export class FightChronometer extends Mod {
     private container              : any;
     private chronometerInitialized : boolean;
     private chronometerInterval    : any;
     private chronometerContainer   : any;
 
-    constructor(wGame: any | Window, private params: Option.VIP.General) {
-        super(wGame);
-
-        if (this.params.fightchronometer) {
+    startMod(): void {
+        this.params = this.settings.option.vip.general.fightchronometer;
+        if (this.params) {
             Logger.info('- enable Fight-Chronometer');
 
             this.chronometerInitialized = (this.wGame.document.querySelector("#chronometerContainer") === null ? false : true);
@@ -73,7 +71,7 @@ export class FightChronometer extends Mod {
                 if (this.wGame.gui.fightManager.fightState != 1) {
                     return clearInterval(this.chronometerInterval);
                 }
-                
+
                 this.chronometerContainer.innerHTML = new Date(chronometerTime++ * 1000).toISOString().substr(11, 8);
             }, 1000);
         } catch (ex) {

@@ -1,25 +1,12 @@
 import { Mod } from "../mod";
-import { SettingsService } from "app/core/service/settings.service";
-import { TranslateService } from "@ngx-translate/core";
 
 /**
  * This mod add the possibility to hide the floating shop button
  */
 export class HideShop extends Mod {
     private hidden_shop: boolean;
-    constructor(
-        wGame: any|Window,
-        settings: SettingsService,
-        translate: TranslateService
-    ) {
-        super(wGame);
-        this.settings = settings;
-        this.translate = translate;
 
-        this.run();
-    }
-
-    private run(): void {
+    startMod(): void {
         this.hidden_shop = this.settings.option.general.hidden_shop;
 
         // That function shows or hides the shop button

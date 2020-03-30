@@ -1,23 +1,16 @@
 import { NgZone } from '@angular/core';
-import { TranslateService } from "@ngx-translate/core";
-import {Observable, BehaviorSubject} from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import * as EventEmitter from 'eventemitter3';
 import { ElectronService as electron } from "app/core/electron/electron.service";
 
 import { Mod } from "../mod";
-import { Option } from "app/core/service/settings.service";
 
 export class Notifications extends Mod {
-
-    wGame: any | Window;
     public eventEmitter: EventEmitter;
 
-    constructor(wGame: any, private params: Option.Notification, translate: TranslateService){
-        super(wGame);
+    startMod(): void {
         this.eventEmitter = new EventEmitter();
-        this.wGame = wGame;
-        this.params = params;
-        this.translate = translate;
+        this.params = this.settings.option.notification;
 
         this.on(this.wGame.dofus.connectionManager, 'ChatServerMessage', (msg: any) => {
             this.sendMPNotif(msg);
@@ -37,9 +30,7 @@ export class Notifications extends Mod {
         this.on(this.wGame.dofus.connectionManager, 'GameRolePlayAggressionMessage', (e: any) => {
             this.sendAggressionNotif(e);
         });
-
     }
-
 
     private sendMPNotif(msg: any) {
         if (!this.wGame.document.hasFocus() && this.params.private_message) {

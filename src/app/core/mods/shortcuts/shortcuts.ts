@@ -1,26 +1,23 @@
 import { NgZone } from '@angular/core';
 import * as async from 'async';
-import { Mod } from "../mod";
 import { ShortcutsHelper } from "app/core/helpers/shortcuts.helper";
-import { Option } from "app/core/service/settings.service";
 import { Logger } from "app/core/electron/logger.helper";
+
+import { Mod } from "../mod";
 import { Mover } from "app/core/mods/mover/mover";
 
 export class Shortcuts extends Mod {
-
-    private params: Option.Shortcuts;
     private shortcutsHelper: ShortcutsHelper;
     private mover: Mover;
 
-    constructor(wGame: any, params: Option.Shortcuts) {
-        super(wGame);
-        this.params = params;
+    startMod(): void {
+        this.params = this.settings.option.shortcuts;
         this.shortcutsHelper = new ShortcutsHelper(this.wGame);
 
         if (this.params.diver.active_open_menu) {
             Logger.info('- enable Open_menu');
         }
-        this.mover = new Mover(this.wGame);
+        this.mover = new Mover(this.wGame, this.settings, this.translate);
         this.bindAll();
     }
 

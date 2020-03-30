@@ -1,22 +1,9 @@
 import { Logger } from "app/core/electron/logger.helper";
-import { SettingsService } from "app/core/service/settings.service";
-import { TranslateService } from "@ngx-translate/core";
 
 import { Mod } from "../mod";
 
 export class JsFixes extends Mod {
-    constructor(
-        wGame: any|Window,
-        settings: SettingsService,
-        translate: TranslateService
-    ) {
-        super(wGame);
-        this.settings = settings;
-        this.translate = translate;
-
-        this.run();
-    }
-    private run(): void {
+    startMod(): void {
         this.contextLost();
         this.spritesOutOfScreen();
     }
@@ -38,6 +25,7 @@ export class JsFixes extends Mod {
     private spritesOutOfScreen() {
         this.wGame.isoEngine.mapScene._refreshAreasBackup = this.wGame.isoEngine.mapScene._refreshAreas;
         this.wGame.isoEngine.mapScene._refreshAreas = function () {
+            Logger.info('_refreshAreas');
             for (var id in this.areasToRefresh) {
                 if (this.areasToRefresh[id][3] < this.t) {
                     this.areasToRefresh[id][2] = this.t;
@@ -55,5 +43,8 @@ export class JsFixes extends Mod {
             this.wGame.isoEngine.mapScene._refreshAreas = this.wGame.isoEngine.mapScene._refreshAreasBackup;
             delete this.wGame.isoEngine.mapScene._refreshAreasBackup;
         });
+    }
+    public reset() {
+        super.reset();
     }
 }

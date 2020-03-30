@@ -1,19 +1,14 @@
-import { Mod } from "../mod";
-import { Option } from "app/core/service/settings.service";
 import { Logger } from "app/core/electron/logger.helper";
+import { Mod } from "../mod";
 
 /**
 * This mod add the possibility to hide mount and pet durring fight
 */
 export class HideMount extends Mod
 {
-    constructor (
-        wGame: any,
-        private params: Option.VIP.General
-    ) {
-        super(wGame);
-
-        if (this.params.hidden_mount) {
+    startMod(): void {
+        this.params = this.settings.option.vip.general.hidden_mount;
+        if (this.params) {
             Logger.info('- enable Hide-Mount');
             let hideMount = () => {
                 try {
