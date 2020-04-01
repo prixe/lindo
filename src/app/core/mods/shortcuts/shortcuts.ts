@@ -1,5 +1,5 @@
 import { NgZone } from '@angular/core';
-import * as async from 'async';
+import { forEachOf } from 'async';
 import { ShortcutsHelper } from "app/core/helpers/shortcuts.helper";
 import { Logger } from "app/core/electron/logger.helper";
 
@@ -82,7 +82,7 @@ export class Shortcuts extends Mod {
         });
 
         // Spell
-        async.forEachOf(this.params.spell, (shortcut: string, index: number) => {
+        forEachOf(this.params.spell, (shortcut: string, index: number) => {
             const selectedSpell = this.wGame.gui.shortcutBar._panels.spell.slotList[index];
 
             this.shortcutsHelper.bind(shortcut, () => {
@@ -106,7 +106,7 @@ export class Shortcuts extends Mod {
         });
 
         // Item
-        async.forEachOf(this.params.item, (shortcut: string, index: number) => {
+        forEachOf(this.params.item, (shortcut: string, index: number) => {
             this.shortcutsHelper.bind(shortcut, () => {
                 //this.tab.window.gui.shortcutBar.panels.item.slotList[index].tap();
                 this.wGame.gui.shortcutBar._panels.item.slotList[index].tap();
@@ -114,7 +114,7 @@ export class Shortcuts extends Mod {
         });
 
         // Interfaces
-        async.forEachOf(this.params.interface.getAll(), (inter: any) => {
+        forEachOf(this.params.interface.getAll(), (inter: any) => {
             this.wGame.gui.menuBar._icons._childrenList.forEach((element: any, index: number) => {
                 if (element.id.toUpperCase() == inter.key.toUpperCase()) {
                     this.shortcutsHelper.bind(inter.value, () => {
