@@ -1,12 +1,12 @@
 export { General } from "app/core/mods/general/general";
 
-export { AutoGroup } from "app/core/mods/auto-group/autogroup";
-export { DamageEstimator } from "app/core/mods/damage-estimator/damageestimator";
-export { FightChronometer } from "app/core/mods/fightchronometer/fightchronometer";
-export { HealthBar } from "app/core/mods/health-bar/healthbar";
-export { HideMount } from "app/core/mods/hide-mount/hide-mount";
+export { AutoGroup } from "app/core/mods/autoGroup/autoGroup";
+export { DamageEstimator } from "app/core/mods/damageEstimator/damageEstimator";
+export { FightChronometer } from "app/core/mods/fightChronometer/fightChronometer";
+export { HealthBar } from "app/core/mods/healthBar/healthBar";
+export { HideMount } from "app/core/mods/hideMount/hideMount";
 export { Jobsxp } from "app/core/mods/jobsxp/jobsxp";
 export { Notifications } from "app/core/mods/notifications/notifications";
-export { PartyInfo } from "app/core/mods/party-info/party-info";
-export { RapidExchange } from "app/core/mods/rapid-exchange/rapid-exchange";
+export { PartyInfo } from "app/core/mods/partyInfo/partyInfo";
+export { RapidExchange } from "app/core/mods/rapidExchange/rapidExchange";
 export { Shortcuts } from "app/core/mods/shortcuts/shortcuts";

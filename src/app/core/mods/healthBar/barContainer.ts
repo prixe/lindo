@@ -1,7 +1,7 @@
 import { Bar } from "./bar";
 import { Logger } from "app/core/electron/logger.helper";
-export class BarContainer {
 
+export class BarContainer {
     private wGame: any | Window;
     private container: HTMLDivElement;
     private displayed: boolean = false;

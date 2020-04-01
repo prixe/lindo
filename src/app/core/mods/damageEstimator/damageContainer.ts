@@ -1,6 +1,6 @@
-import {Estimator} from "./estimator";
-export class DamageContainer {
+import { Estimator } from "./estimator";
 
+export class DamageContainer {
     private wGame: any | Window;
     private container: HTMLDivElement;
     private displayed: boolean = false;
@@ -24,7 +24,6 @@ export class DamageContainer {
         this.container.style.visibility = 'hidden';
 
         this.wGame.foreground.rootElement.appendChild(this.container);
-
     }
 
     public toggle() {
