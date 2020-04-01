@@ -1,5 +1,3 @@
-import { Logger } from "app/core/electron/logger.helper";
-
 import { Mod } from "../mod";
 
 export class Mover extends Mod {
@@ -40,10 +38,12 @@ export class Mover extends Mod {
                     this.wGame.isoEngine.gotoNeighbourMap(direction, cell, Math.floor(pos.x), Math.floor(pos.y));
                 };
                 this.onMapChange(success, fail);
-                if (this.wGame.isoEngine.actorManager.userActor.moving) this.wGame.isoEngine.actorManager.userActor.cancelMovement(doMove);
-                else doMove();
-        }
-        else {
+                if (this.wGame.isoEngine.actorManager.userActor.moving) {
+                    this.wGame.isoEngine.actorManager.userActor.cancelMovement(doMove);
+                } else {
+                    doMove();
+                }
+        } else {
             fail('character in fight');
         }
     }
@@ -89,15 +89,15 @@ export class Mover extends Mod {
 
     private getRandomAvailableCell(cells: Array<number>, direction: string): number {
         let occupiedCells = this.getMonsterGroupBossCells();
-        let availableCells = cells.filter( cell => !occupiedCells.includes(cell)
-        	&& this.isCellOnMap(cell)
-        	&& this.isCellWalkable(cell)
-        	&& this.isCellChangesMapToDirection(cell, direction)).sort(() => Math.random() - 0.5);
+        let availableCells = cells.filter(cell => !occupiedCells.includes(cell)
+            && this.isCellOnMap(cell)
+            && this.isCellWalkable(cell)
+            && this.isCellChangesMapToDirection(cell, direction)).sort(() => Math.random() - 0.5);
 
         if (availableCells.length > 0) {
-        	return availableCells[0];
+            return availableCells[0];
         } else {
-        	return -1;
+            return -1;
         }
     }
 

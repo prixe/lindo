@@ -4,7 +4,7 @@ import { ShortcutsHelper } from "app/core/helpers/shortcuts.helper";
 import { Logger } from "app/core/electron/logger.helper";
 
 import { Mod } from "../mod";
-import { Mover } from "app/core/mods/mover/mover";
+import { Mover } from "./mover";
 
 export class Shortcuts extends Mod {
     private shortcutsHelper: ShortcutsHelper;

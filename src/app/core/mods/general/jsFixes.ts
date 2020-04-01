@@ -25,7 +25,6 @@ export class JsFixes extends Mod {
     private spritesOutOfScreen() {
         this.wGame.isoEngine.mapScene._refreshAreasBackup = this.wGame.isoEngine.mapScene._refreshAreas;
         this.wGame.isoEngine.mapScene._refreshAreas = function () {
-            Logger.info('_refreshAreas');
             for (var id in this.areasToRefresh) {
                 if (this.areasToRefresh[id][3] < this.t) {
                     this.areasToRefresh[id][2] = this.t;
