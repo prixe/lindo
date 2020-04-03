@@ -4,9 +4,10 @@
 [![node](https://img.shields.io/badge/node-%3E%3D%2010.0.0-green.svg)]()
 [![Github All Releases](https://img.shields.io/github/downloads/prixe/lindo/total.svg)]()
 
-
 http://lindo.no-emu.co
+
 🇬🇧 Lindo allows you to play Dofus Touch on your computer (Windows / Mac OS / Linux) without android emulator, it is based on crossplatform technologies.
+
 🇫🇷 Lindo vous permet de jouer à Dofus Touch sur votre ordinateur (Windows / Mac OS / Linux) sans utiliser d'émulateur, il est basé sur des technologies crossplateformes.
 
 **⚠️ Dofus Touch is the entire property of Ankama Games, and we are not affiliated with Ankama. None of the files hosted in this repository are under copyright: They come from Open Source projects, libraries, the original DofusTouch No-Emu created by Daniel & Thomas and the work of direct contributors. We do not intend to cause any harm to Ankama Games and will never take any revenue from this project.**
