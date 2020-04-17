@@ -959,7 +959,6 @@ export class SettingsService {
     private _macAddress: string;
     private _alertCounter: number;
     private _language: string;
-    private _vip_id: string;
     private _last_news: number;
 
     get last_news(): number {
@@ -969,15 +968,6 @@ export class SettingsService {
     set last_news(last_news: number) {
         this.settingsProvider.write('last_news', last_news);
         this._last_news = last_news;
-    }
-
-    get vip_id(): string {
-        return this._vip_id;
-    }
-
-    set vip_id(vip_id: string) {
-        this.settingsProvider.write('vip_id', vip_id);
-        this._vip_id = vip_id;
     }
 
     get alertCounter(): number {
@@ -1044,7 +1034,6 @@ export class SettingsService {
             this._buildVersion = this.settingsProvider.read('buildVersion');
             this._alertCounter = this.settingsProvider.read('alertCounter');
             this._language = this.settingsProvider.read('language');
-            this._vip_id = this.settingsProvider.read('vip_id');
             this._last_news = this.settingsProvider.read('last_news');
         };
         init();

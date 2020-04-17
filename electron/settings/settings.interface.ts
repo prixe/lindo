@@ -4,7 +4,6 @@ export interface SettingsInterface {
     appVersion: string;
     macAddress: string;
     alertCounter: number;
-    vip_id: string;
     last_news: number;
     appPreferences: any;
     option: {

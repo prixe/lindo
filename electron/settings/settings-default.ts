@@ -6,7 +6,6 @@ export const SettingsDefault: SettingsInterface = {
     appVersion: null,
     macAddress: null,
     alertCounter: 0,
-    vip_id: null,
     last_news: null,
     appPreferences: null,
     option: {
