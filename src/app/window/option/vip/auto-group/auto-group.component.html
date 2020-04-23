@@ -9,6 +9,10 @@
             <div class="col-xs-12" *ngIf="settingsService.option.vip.autogroup.fight">
                 <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.autogroup.ready">{{'app.option.vip.auto-group.ready' | translate }}</mat-checkbox>
             </div>
+
+            <div class="col-xs-12" *ngIf="settingsService.option.vip.autogroup.fight">
+                <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.autogroup.clean_window">{{'app.option.vip.auto-group.clean-window' | translate }}</mat-checkbox>
+            </div>
         </div>
     </div>
 

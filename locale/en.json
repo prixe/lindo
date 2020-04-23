@@ -126,6 +126,7 @@
           "ready": "Skip \"ready\" automatically",
           "fight": "Enter combat automatically",
           "delay": "Time to follow (in seconds)",
+          "clean-window": "Clear popups when fight ends",
           "follow-on-map": "Follow the leader on a map",
           "strict-move": "Move on the same cell the leader moves",
           "pvp-warning": "You can't join a PvP fight automatically"

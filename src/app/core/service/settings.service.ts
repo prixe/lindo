@@ -818,6 +818,7 @@ export module Option {
             private _follow_leader: boolean;
             private _ready: boolean;
             private _fight: boolean;
+            private _clean_window: boolean;
             private _follow_on_map: boolean;
             private _strict_move: boolean;
 
@@ -875,6 +876,15 @@ export module Option {
                 this._fight = fight;
             }
 
+            get clean_window(): boolean {
+                return this._clean_window;
+            }
+
+            set clean_window(clean_window: boolean) {
+                this.settingsProvider.write('option.vip.auto_group.clean_window', clean_window);
+                this._clean_window = clean_window;
+            }
+
             get follow_on_map(): boolean {
                 return this._follow_on_map;
             }
@@ -901,6 +911,7 @@ export module Option {
                 this.leader = this.settingsProvider.read('option.vip.auto_group.leader');
                 this.ready = this.settingsProvider.read('option.vip.auto_group.ready');
                 this.fight = this.settingsProvider.read('option.vip.auto_group.fight');
+                this.clean_window = this.settingsProvider.read('option.vip.auto_group.clean_window');
                 this.follow_on_map = this.settingsProvider.read('option.vip.auto_group.follow_on_map');
                 this.strict_move = this.settingsProvider.read('option.vip.auto_group.strict_move');
             }
