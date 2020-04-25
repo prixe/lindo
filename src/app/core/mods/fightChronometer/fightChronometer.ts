@@ -98,7 +98,7 @@ export class FightChronometer extends Mod {
 
     public reset() {
         super.reset();
-        if (!this.params.fightchronometer) {
+        if (!this.params) {
             this.destroy();
         }
     }
