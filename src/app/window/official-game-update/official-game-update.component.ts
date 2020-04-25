@@ -81,11 +81,14 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
                 promises.push(this.downloadKeymaster());
 
                 // Downloading manifests
+                this.log("Downloading manifests");
 
                 await Promise.all([
                     this.loadCurrentLindoManifest(), this.loadCurrentManifest(), this.loadCurrentAssetMap(), this.loadVersions(), this.loadCurrentRegex(),
                     this.downloadLindoManifest(), this.downloadManifest(), this.downloadAssetMap()
                 ]);
+
+                this.log("Manifests downloaded");
 
 
                 // Checking differences
@@ -275,7 +278,10 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
     download(url, json = false, weight = 1) {
         let currentProgress = 0;
         return new Promise((resolve, reject) => {
-            progress(request(url, (err, response, body) => {
+            progress(request({
+                url: url,
+                timeout: 15000
+            }, (err, response, body) => {
                 if (err) {
                     reject(err);
                 }
@@ -299,22 +305,30 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
 
     async downloadLindoManifest() {
         try {
-            return this.lindoManifest = await this.download(this.remoteLindoManifest, true);
+            this.lindoManifest = await this.download(this.remoteLindoManifest, true);
+            this.log("Lindo manifest downloaded");
+            return this.lindoManifest
         } catch (e) {
             return await this.downloadLindoManifestAlt();
         }
     }
 
     async downloadLindoManifestAlt() {
-        return this.lindoManifest = await this.download(this.remoteLindoManifestAlt, true);
+        this.lindoManifest = await this.download(this.remoteLindoManifestAlt, true);
+        this.log("Lindo manifest downloaded from alternative server");
+        return this.lindoManifest;
     }
 
     async downloadManifest() {
-        return this.manifest = await this.download(this.remoteOrigin + this.remoteManifestPath, true);
+        this.manifest = await this.download(this.remoteOrigin + this.remoteManifestPath, true);
+        this.log("Dofus Touch manifest downloaded");
+        return this.manifest;
     }
 
     async downloadAssetMap() {
-        return this.assetMap = await this.download(this.remoteOrigin + this.remoteAssetMapPath, true);
+        this.assetMap = await this.download(this.remoteOrigin + this.remoteAssetMapPath, true);
+        this.log("Assets map downloaded");
+        return this.assetMap;
     }
 
     downloadKeymaster() {
