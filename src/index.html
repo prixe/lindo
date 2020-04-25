@@ -24,8 +24,8 @@
         const fsLib = isElectron ? require('fs') : undefined;
         const osLib = isElectron ? require('os') : undefined;
         const pathLib = isElectron ? require('path') : undefined;
-        const requestLib = isElectron ? require('request') : undefined;
-        const requestProgressLib = isElectron ? require('request-progress') : undefined;
+        const axiosLib = isElectron ? require('axios') : undefined;
+        const httpAdapterLib = isElectron ? require('axios/lib/adapters/http') : undefined;
         const nodeProcess = window.process;
         const {
             Application

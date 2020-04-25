@@ -35,7 +35,6 @@ import { MultiAccountComponent } from "app/window/option/vip/multi-account/multi
 import { NotificationComponent } from "app/window/option/notification/notification.component";
 import { AuthComponent } from "app/components/auth/auth.component";
 import { AboutComponent } from "app/window/option/about/about.component";
-import { GameUpdateComponent } from "app/window/game-update/game-update.component";
 import { OfficialGameUpdateComponent } from "app/window/official-game-update/official-game-update.component";
 import { BugReportComponent } from "app/window/bug-report/bug-report.component";
 
@@ -95,7 +94,6 @@ registerLocaleData(localeIt);
         AutoGroupComponent,
         VipGeneralComponent,
         MultiAccountComponent,
-        GameUpdateComponent,
         OfficialGameUpdateComponent,
         BugReportComponent,
 

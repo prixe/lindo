@@ -17,3 +17,6 @@
     }
 }
 
+.main-content ::ng-deep .mat-progress-bar .mat-progress-bar-fill {
+    transition: transform 450ms cubic-bezier(.25,0,.59,1);
+}
