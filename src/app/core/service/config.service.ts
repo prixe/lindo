@@ -6,13 +6,11 @@ type Param = 'language'
     | 'buildVersion'
     | 'appVersion'
     | 'alertCounter'
-    | 'vip_id'
     | 'last_news'
     | 'appPreferences'
     | 'option'
     /* GENERAL */
     | 'option.general'
-    | 'option.general.hidden_shop'
     | 'option.general.hidden_shop'
     | 'option.general.stay_connected'
     | 'option.general.resolution'
@@ -24,7 +22,6 @@ type Param = 'language'
 
 @Injectable()
 export class ConfigService extends EventEmitter {
-
     public get(param: Param): any {
         return this.ipcRendererService.sendSync('read-settings', param);
     }

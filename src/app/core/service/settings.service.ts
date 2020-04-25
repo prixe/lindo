@@ -535,6 +535,7 @@ export module Option {
         private _sound_focus: boolean;
         private _user_agent: string;
         private _early: boolean;
+        private _audio_muted: boolean;
 
         get hidden_shop(): boolean {
             return this._hidden_shop;
@@ -599,6 +600,15 @@ export module Option {
             this._early = early;
         }
 
+        get audio_muted(): boolean {
+            return this._audio_muted;
+        }
+
+        set audio_muted(audio_muted: boolean) {
+            this.settingsProvider.write('option.general.audio_muted', audio_muted);
+            this._audio_muted = audio_muted;
+        }
+
         constructor(private settingsProvider: SettingsProvider) {
             this.user_agent = this.settingsProvider.read('option.general.user_agent');
             this.hidden_shop = this.settingsProvider.read('option.general.hidden_shop');
@@ -607,6 +617,7 @@ export module Option {
             this.local_content = this.settingsProvider.read('option.general.local_content');
             this.sound_focus = this.settingsProvider.read('option.general.sound_focus');
             this.early = this.settingsProvider.read('option.general.early');
+            this.audio_muted = this.settingsProvider.read('option.general.audio_muted');
         }
     }
 
@@ -959,7 +970,6 @@ export class SettingsService {
     private _macAddress: string;
     private _alertCounter: number;
     private _language: string;
-    private _vip_id: string;
     private _last_news: number;
 
     get last_news(): number {
@@ -969,15 +979,6 @@ export class SettingsService {
     set last_news(last_news: number) {
         this.settingsProvider.write('last_news', last_news);
         this._last_news = last_news;
-    }
-
-    get vip_id(): string {
-        return this._vip_id;
-    }
-
-    set vip_id(vip_id: string) {
-        this.settingsProvider.write('vip_id', vip_id);
-        this._vip_id = vip_id;
     }
 
     get alertCounter(): number {
@@ -1044,7 +1045,6 @@ export class SettingsService {
             this._buildVersion = this.settingsProvider.read('buildVersion');
             this._alertCounter = this.settingsProvider.read('alertCounter');
             this._language = this.settingsProvider.read('language');
-            this._vip_id = this.settingsProvider.read('vip_id');
             this._last_news = this.settingsProvider.read('last_news');
         };
         init();

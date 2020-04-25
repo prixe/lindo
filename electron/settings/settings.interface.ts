@@ -4,7 +4,6 @@ export interface SettingsInterface {
     appVersion: string;
     macAddress: string;
     alertCounter: number;
-    vip_id: string;
     last_news: number;
     appPreferences: any;
     option: {
@@ -20,6 +19,7 @@ export interface SettingsInterface {
             local_content: boolean;
             sound_focus: boolean;
             early: boolean;
+            audio_muted: boolean;
         }
         shortcuts: {
             no_emu: {

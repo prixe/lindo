@@ -61,7 +61,7 @@
           "general": {
             "header": "Général",
             "disable-inactivity": "Prolonger le délai maximum d'inactivité",
-            "estimator": "Estimation de dégats des sorts en combat",
+            "estimator": "Estimation des dégats des sorts en combat",
             "health-bar": "Barres de vie en-dessous des combatants",
             "health-bar-shortcut": "Raccourcis pour les barres de vie",
             "jobsxp": "Activer l'affichage de l'xp a obtenir pour monter de niveau (métier)",
@@ -284,7 +284,7 @@
         "title": "Notifications",
         "description": "Vous pouvez recevoir des notifications de votre jeu dofus lorsque vous êtes sur une autre application avec dofus en arrière plan. Vous pouvez être notifié :",
         "fight-turn": "En début du tour (combat)",
-        "private-message": "À l'arrivé d'un message privé",
+        "private-message": "À l'arrivée d'un message privé",
         "tax-collector": "Quand un percepteur est attaqué",
         "kolizeum": "Quand un combat de kolizéum est trouvé",
         "party-invitation": "Quand un joueur vous invite dans un groupe",

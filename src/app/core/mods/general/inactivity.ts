@@ -1,15 +1,11 @@
-import {Mods} from "../mods";
+import { Mod } from "../mod";
 
-export class Inactivity extends Mods {
+export class Inactivity extends Mod {
     private disable_inactivity: boolean;
     private idInt: any;
 
-    constructor(
-        wGame:any|Window,
-        options:any
-    ) {
-        super(wGame);
-        this.disable_inactivity = options.disable_inactivity;
+    startMod(): void {
+        this.disable_inactivity = this.settings.option.vip.general.disable_inactivity;
 
         if (this.disable_inactivity) {
             this.idInt = setInterval(() => {
