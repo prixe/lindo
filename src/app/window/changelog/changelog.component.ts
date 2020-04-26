@@ -64,7 +64,9 @@ export class ChangeLogComponent implements OnInit {
         let nodeVersion: any;
         let versionArray: Array<string> = [];
         for (nodeVersion of filteredContent) {
-            versionArray.push(nodeVersion.text);
+            if (!nodeVersion.text.startsWith('⚠')) {
+                versionArray.push(nodeVersion.text);
+            }
         }
 
         this.versions = versionArray.slice(0, 9);
