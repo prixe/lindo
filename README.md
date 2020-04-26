@@ -37,6 +37,8 @@ Lindo No-Emu works on :
   - [macOS](#macos)
 - [Development](#development)
   - [Introduction](#introduction)
+  - [Commands explanation](#commands-explanation)
+    - [Subcommands](#subcommands)
   - [How to help ?](#how-to-help-)
   - [Generate the TOC](#generate-the-toc)
   - [Structure of the application](#structure-of-the-application)
