@@ -113,11 +113,11 @@ Navigator context is in the ```src/```folder and Electron context is in the ```e
 The idea is to simulate the environment Dofus Touch to run it on PC, because Dofus Touch is based on [Apache Cordova](https://cordova.apache.org/).
 
 ### Commands explanation
-- `$ npm install`: installs the packages in package.json and their dependencies
-- `$ npm run build:dev`: executes multiple subcommands to build for development
-- `$ npm start`: executes `electron ./` and since `"main": "/dist/electron/main.js"` (in package.json) it becomes executing `electron ./dist/electron/main.js` which in turn eventually loads `/dist/app/index.html` (which is the angular context) once it gets to `main-window.js`
-- `$ npm run build:prod`: executes multiple subcommands to build for production
-- `$ npm run release:win (or release:mac or release:linux)`: executes in the case of release:win `build --win --x64 --ia32` to compile and build the final binaries using electron-builder that in turn is using `loaded configuration file=package.json ("build" field)`, and `writing effective config file=releases\builder-effective-config.yaml` resulting in usable files in releases folder
+-  `$ npm install`: installs the packages in package.json and their dependencies
+-  `$ npm run build:dev`: executes multiple subcommands to build for development
+-  `$ npm start`: executes `electron ./` and since `"main": "/dist/electron/main.js"` (in package.json) it becomes executing `electron ./dist/electron/main.js` which in turn eventually loads `/dist/app/index.html` (which is the angular context) once it gets to `main-window.js`
+-  `$ npm run build:prod`: executes multiple subcommands to build for production
+-  `$ npm run release:win (or release:mac or release:linux)`: executes in the case of release:win `build --win --x64 --ia32` to compile and build the final binaries using electron-builder that in turn is using `loaded configuration file=package.json ("build" field)`, and `writing effective config file=releases\builder-effective-config.yaml` resulting in usable files in releases folder
 
 #### Subcommands:
 - `npm run build:dev`:
