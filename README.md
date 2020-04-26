@@ -134,9 +134,11 @@ The idea is to simulate the environment Dofus Touch to run it on PC, because Dof
   2. `npm run lint`: executes `ng lint` to start lint verification of the files
   3. `ng build --configuration=production`: builds angular context into dist/app
 
-**In the case of errors during building use an older version of node temporarily until the project gets updated and uses a more recent version. I personally use nvm to use the version 8.17.0 of Nodejs when building Lindo.**
+*The config used by angular in ng build (--configuration=production) is at angular.json and particularly projects => lindo => architect => build => configurations => production. There is also stuff like file replacements inside.
 
-**The config used by angular in ng build (--configuration=production) is at angular.json and particularly projects => lindo => architect => build => configurations => production. There is also stuff like file replacements inside.**
+*In the case of errors during building use an older version of node temporarily until the project gets updated and uses a more recent version. I personally use nvm to use the version 8.17.0 of Nodejs when building Lindo.
+
+
 
 
 ### How to help ?
