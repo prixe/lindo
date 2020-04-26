@@ -19,7 +19,6 @@
             "sourceMap": true,
             "assets": [
               "src/assets",
-              "src/favicon.ico",
               "src/game",
               "src/locale"
             ],
