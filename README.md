@@ -143,19 +143,18 @@ $ npm run release:win
 (or release:mac or release:linux): executes in the case of release:win for example `build --win --x64 --ia32` to compile and build the final binaries using electron-builder that in turn is using `loaded configuration file=package.json ("build" field)`, and `writing effective config file=releases\builder-effective-config.yaml` resulting in usable files in releases folder
 
 #### Subcommands
-  - `$ npm run build:dev`
-  - `$ npm run build:electron:dev`
-  - `$ tsc -p electron/`: transpiles electron context files from TS to JS and puts them in `dist/electron`
-  - `$ ncp electron/i18n dist/electron/i18n`: copies i18n files from `electron/i18n` to `dist/electron/i18n`
-  - `$ npm run lint`: executes `ng lint` to start lint verification of the files
-  - `$ ng build --watch`: builds angular context into dist/app, watches the source files for changes then builds them without the need to re-run this command
-
-  - `$ npm run build:prod`
-  - `$ npm run build:electron:prod`
-  - `$ tsc -p electron/tsconfig.prod.json`: transpiles electron context files from TS to JS and puts them in `dist/electron`
-  - `$ ncp electron/i18n dist/electron/i18n`: copies i18n files from `electron/i18n` to `dist/electron/i18n`
-  - `$ npm run lint`: executes `$ ng lint` to start lint verification of the files
-  - `$ ng build --configuration=production`: builds angular context into dist/app
+- `$ npm run build:dev`
+- `$ npm run build:electron:dev`
+- `$ tsc -p electron/`: transpiles electron context files from TS to JS and puts them in `dist/electron`
+- `$ ncp electron/i18n dist/electron/i18n`: copies i18n files from `electron/i18n` to `dist/electron/i18n`
+- `$ npm run lint`: executes `ng lint` to start lint verification of the files
+- `$ ng build --watch`: builds angular context into dist/app, watches the source files for changes then builds them without the need to re-run this command
+- `$ npm run build:prod`
+- `$ npm run build:electron:prod`
+- `$ tsc -p electron/tsconfig.prod.json`: transpiles electron context files from TS to JS and puts them in `dist/electron`
+- `$ ncp electron/i18n dist/electron/i18n`: copies i18n files from `electron/i18n` to `dist/electron/i18n`
+- `$ npm run lint`: executes `$ ng lint` to start lint verification of the files
+- `$ ng build --configuration=production`: builds angular context into dist/app
 
 The config used by angular in `$ ng build (--configuration=production)` is at angular.json and particularly projects => lindo => architect => build => configurations => production. There is also stuff like file replacements inside.
 
