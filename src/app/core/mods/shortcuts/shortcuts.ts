@@ -3,11 +3,15 @@ import { forEachOf } from 'async';
 import { ShortcutsHelper } from "app/core/helpers/shortcuts.helper";
 import { Logger } from "app/core/electron/logger.helper";
 
-import { Alignment, Mod } from "../mod";
+import { Mod } from "../mod";
+
+import { Alignment } from "../alignment/alignment";
 import { Mover } from "./mover";
 
 export class Shortcuts extends Mod {
     private shortcutsHelper: ShortcutsHelper;
+
+    private alignment: Alignment;
     private mover: Mover;
 
     startMod(): void {

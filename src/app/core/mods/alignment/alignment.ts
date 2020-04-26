@@ -1,16 +1,16 @@
-import { Mods } from "../mods";
 import { Logger } from "app/core/electron/logger.helper";
 import { alignmentUIContainer } from "./alignmentUIContainer";
+
+import { Mod } from "../mod";
 
 /**
  * This mod add the possibility to show alignment
  */
-export class Alignment extends Mods {
+export class Alignment extends Mod {
     private lastScan;
     private container : alignmentUIContainer;
 
-    constructor (wGame: any | Window) {
-        super(wGame);
+    startMod() {
         this.lastScan = 0;
 
         /* Add <style>*/
