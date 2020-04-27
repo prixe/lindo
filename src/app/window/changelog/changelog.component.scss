@@ -1,11 +1,26 @@
-.option-content{
+.option-content {
     padding: 20px;
     padding-top: 0px;
     overflow: auto !important;
     flex: 1;
 }
 
-.version-date{
+.settings-left {
+    overflow: auto !important;
+}
+
+// .tab-bar-header {
+//     margin-top: -62px;
+//     position: fixed !important;
+//     background-color: #262626;
+//     opacity: 1;
+// }
+//
+// .settings-list-versions {
+//     margin-top: 62px
+// }
+
+.version-date {
     font-size: 14px;
     font-weight: normal;
     float: right;
