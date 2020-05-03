@@ -44,10 +44,10 @@ export class ZaapSearchFilter extends Mod {
                     This case appear where the current value is not a zaap ( ex: Destination, cord, cout )
                 */
                 if (!destination.length) continue;
-
+                
                 currentZaap.style.display = "none";
 
-                if( currentZaap.innerHTML.toLowerCase().includes( zaapWanted ) ){
+                if( currentZaap.innerText.toLowerCase().includes( zaapWanted ) ){
                     currentZaap.style.display = "block";
                 } 
                 
