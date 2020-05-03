@@ -22,7 +22,7 @@ export class ZaapSearchFilter extends Mod {
                 this.createSearchFilter();
             });
     
-            this.on(this.wGame.connectionManager, 'LeaveDialogMessage', () => {
+            this.on(this.wGame.dofus.connectionManager, 'LeaveDialogMessage', () => {
                 this.resetSearchFilter();
             });
         }
@@ -44,7 +44,7 @@ export class ZaapSearchFilter extends Mod {
                     This case appear where the current value is not a zaap ( ex: Destination, cord, cout )
                 */
                 if (!destination.length) continue;
-                
+
                 currentZaap.style.display = "none";
 
                 if( currentZaap.innerText.toLowerCase().includes( zaapWanted ) ){
