@@ -1,4 +1,4 @@
-import { ZaapSearchFilter } from './zaapSearchFilter/zaapSearchFilter';
+
 export { General } from "app/core/mods/general/general";
 
 export { AutoGroup } from "app/core/mods/autoGroup/autoGroup";
