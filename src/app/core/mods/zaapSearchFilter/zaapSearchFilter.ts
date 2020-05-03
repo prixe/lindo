@@ -5,7 +5,7 @@ import { Mod } from "../mod";
 
 export class ZaapSearchFilter extends Mod {
 
-    private styleTag: HTMLDivElement;
+    private styleTag: HTMLStyleElement;
     private zaapSearchContainer: HTMLDivElement;
     private zaapSearchInput : HTMLInputElement;
     private inputPlaceholder: string;
@@ -39,15 +39,18 @@ export class ZaapSearchFilter extends Mod {
 
             for(const currentZaap of zaapList){
                 let destination = currentZaap.getElementsByClassName('destinationName')
-				
-				if(destination.length > 0){
+                
+                /*
+                    This case appear where the current value is not a zaap ( ex: Destination, cord, cout )
+                */
+                if (!destination.length) continue;
 
-                    currentZaap.style.display = "none";
+                currentZaap.style.display = "none";
 
-					if( currentZaap.innerHTML.toLowerCase().includes( zaapWanted ) ){
-                        currentZaap.style.display = "block";
-                    } 
-                }
+                if( currentZaap.innerHTML.toLowerCase().includes( zaapWanted ) ){
+                    currentZaap.style.display = "block";
+                } 
+                
             }
         });
     }
