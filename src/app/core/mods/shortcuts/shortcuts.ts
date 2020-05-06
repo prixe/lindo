@@ -127,14 +127,14 @@ export class Shortcuts extends Mod {
         });
 
         // Close interfaces
-        this.shortcutsHelper.bindVanilla('escape', () => {
+        this.shortcutsHelper.bindVanilla("escape", () => {
             if (this.wGame.gui.chat.active) {
                 this.wGame.gui.chat.deactivate();
             } else {
                 let winClosed = 0;
                 for (let i = this.wGame.gui.windowsContainer._childrenList.length - 1; i >= 0; i--) {
                     let win = this.wGame.gui.windowsContainer._childrenList[i];
-                    if (win.isVisible()) {
+                    if (win.isVisible() && win.id !== "recaptcha") {
                         win.close();
                         winClosed++;
                         break;
@@ -153,7 +153,7 @@ export class Shortcuts extends Mod {
             }
         });
         // Prevent using tab key
-        this.shortcutsHelper.bindVanilla('tab', (e: KeyboardEvent) => {
+        this.shortcutsHelper.bindVanilla("tab", (e: KeyboardEvent) => {
             e.preventDefault();
         });
     }
