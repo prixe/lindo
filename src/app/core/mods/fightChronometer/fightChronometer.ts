@@ -72,6 +72,10 @@ export class FightChronometer extends Mod {
                     return clearInterval(this.chronometerInterval);
                 }
 
+                if(this.chronometerContainer == null){
+                    this.chronometerContainer = this.wGame.document.querySelector("#chronometerContainer");
+                }
+        
                 this.chronometerContainer.innerHTML = new Date(chronometerTime++ * 1000).toISOString().substr(11, 8);
             }, 1000);
         } catch (ex) {
