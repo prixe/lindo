@@ -160,7 +160,9 @@ export class Shortcuts extends Mod {
 
     public reset() {
         super.reset();
-        if (this.mover) this.mover.reset();
+        if (this.mover) {
+            this.mover.reset();
+        }
         this.shortcutsHelper.unBindAll();
     }
 }
