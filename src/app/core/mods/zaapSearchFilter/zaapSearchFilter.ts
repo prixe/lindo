@@ -31,8 +31,9 @@ export class ZaapSearchFilter extends Mod {
 
     private createSearchFilter(): void{
         this.injectInputInDom();
+        this.zaapSearchInput.focus();
 
-        this.zaapSearchInput.addEventListener("change", () => {
+        this.zaapSearchInput.addEventListener("input", () => {
             let zaapWanted = this.zaapSearchInput.value.toLowerCase();
             let zaapList = this.wGame.document.getElementsByClassName('lindo_zaapBodyHeight__custom')[0]
                             .getElementsByClassName('row');
@@ -49,7 +50,7 @@ export class ZaapSearchFilter extends Mod {
 
                 if( currentZaap.innerText.toLowerCase().includes( zaapWanted ) ){
                     currentZaap.style.display = "block";
-                } 
+                }
                 
             }
         });
@@ -61,44 +62,48 @@ export class ZaapSearchFilter extends Mod {
         this.wGame.document.getElementsByTagName('head')[0].appendChild(this.styleTag);
  
         this.styleTag.innerHTML += `
-             .lindo_zaapBodyHeight__custom{
-                 height: 70% !important;
-             }
+            .lindo_zaapBodyHeight__custom{
+                height: 76% !important;
+            }
  
-             .lindo_zaapSearch__container{
-                 padding: 10px;
-                 width: 100%;
-             }
- 
-             .lindo_zaapSearch__input{
-                 width: 96%;
-                 margin-right: 10px;
-                 background-color: black;
-                 border-radius: 5px;
-                 color: white;
-                 border-color: black;
-                 height: 34px;
-                 font-size: 1em;
-             }
+            .lindo_zaapSearch__container{
+                padding: 0 10px 10px 10px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .lindo_zaapSearch__input{
+                width: 100%;
+                box-sizing: border-box;
+                background-color: black;
+                border-radius: 5px;
+                color: white;
+                border-color: black;
+                padding: 6px;
+            }
+
+            .lindo_zaapSearch__input::placeholder{
+                color: #555;
+            }
          `;
  
          
-         let zaapPanels = this.wGame.document.getElementsByClassName('zaapBody')[0]
-                             .getElementsByClassName('panels')[0];
+        let zaapPanels = this.wGame.document.getElementsByClassName('zaapBody')[0]
+                            .getElementsByClassName('panels')[0];
      
-         zaapPanels.classList.add('lindo_zaapBodyHeight__custom');
-         
-         this.zaapSearchContainer = this.wGame.document.createElement('div');
-         this.zaapSearchInput     = this.wGame.document.createElement('input');
-             
-         this.zaapSearchInput.setAttribute('placeholder', this.inputPlaceholder);
-         this.zaapSearchInput.setAttribute('id', 'zaapName');
-         
-         this.zaapSearchContainer.classList.add('lindo_zaapSearch__container');
-         this.zaapSearchInput.classList.add('lindo_zaapSearch__input');
+        zaapPanels.classList.add('lindo_zaapBodyHeight__custom');
+        
+        this.zaapSearchContainer = this.wGame.document.createElement('div');
+        this.zaapSearchInput     = this.wGame.document.createElement('input');
+            
+        this.zaapSearchInput.setAttribute('placeholder', this.inputPlaceholder);
+        this.zaapSearchInput.setAttribute('id', 'zaapName');
+        
+        this.zaapSearchContainer.classList.add('lindo_zaapSearch__container');
+        this.zaapSearchInput.classList.add('lindo_zaapSearch__input');
  
-         this.zaapSearchContainer.append(this.zaapSearchInput);
-         this.wGame.document.getElementsByClassName('zaapBody')[0].prepend(this.zaapSearchContainer);
+        this.zaapSearchContainer.append(this.zaapSearchInput);
+        this.wGame.document.getElementsByClassName('zaapBody')[0].prepend(this.zaapSearchContainer);
     }
 
 

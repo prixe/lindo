@@ -203,7 +203,7 @@
           }
         },
         "zaapsearchfilter":{
-          "placeholder": "Nome dello zaap."
+          "placeholder": "Cerca uno zaap"
         },
         "party-info": {
           "header-lvl": "Mostra livello di gruppo",
