@@ -149,7 +149,7 @@
             "explanation": "Aby uzyskać dostęp do swojego zarządzania kontami, najpierw musisz podać główne hasło. Hasło to było ustawiane podczas pierwszej aktywacji funkcji wielu kont.",
             "label": "Wprowadź hasło",
             "bad": "Podane hasło jest błędne",
-            "confirm": Kontynuuj",
+            "confirm": "Kontynuuj",
             "ignore-step": "Pomiń ten krok"
           },
           "prompt": {
@@ -181,7 +181,7 @@
               "title": "Uups!",
               "text": "Nie możesz zapisać więcej niż 4 konta z rangą Wabbit'a.",
               "confirm": "Zwiększ moją VIP rangę",
-              "cancel": "Rozumiem"y
+              "cancel": "Rozumiem"
             },
             "add-account": {
               "title": "Dodawanie konta",
