@@ -53,7 +53,7 @@
           "shortcuts": "Konfiguruj",
           "clear-cache": "Wyczyść pamięć podręczną",
           "resolution": {
-            "confirm-body": "Czy odpowiada Ci obecna rozdzielczość?<br/>Automatyczny reset za 10 sekund.."
+            "confirm-body": "Czy odpowiada Ci obecna rozdzielczość?<br/>Automatyczny reset za 10 sekund..."
           }
         },
         "features": {
