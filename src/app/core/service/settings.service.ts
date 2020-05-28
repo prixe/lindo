@@ -712,6 +712,7 @@ export module Option {
             private _health_bar_shortcut: string;
             private _jobsxp: boolean;
             private _fightchronometer: boolean;
+            private _zaapsearchfilter: boolean;
             private _estimator: boolean;
             private _hidden_mount: boolean;
             private _party_info_pp:boolean;
@@ -784,6 +785,15 @@ export module Option {
               this._fightchronometer = fightchronometer;
             }
 
+            get zaapsearchfilter(): boolean{
+                return this._zaapsearchfilter;
+            }
+
+            set zaapsearchfilter(zaapsearchfilter: boolean){
+                this.settingsProvider.write('option.vip.general.zaapsearchfilter', zaapsearchfilter);
+                this._zaapsearchfilter = zaapsearchfilter;
+            }
+
             set health_bar(health_bar: boolean) {
                 this.settingsProvider.write('option.vip.general.health_bar', health_bar);
                 this._health_bar = health_bar;
@@ -803,6 +813,7 @@ export module Option {
                 this.health_bar = this.settingsProvider.read('option.vip.general.health_bar');
                 this.jobsxp = this.settingsProvider.read('option.vip.general.jobsxp');
                 this.fightchronometer = this.settingsProvider.read('option.vip.general.fightchronometer');
+                this.zaapsearchfilter = this.settingsProvider.read('option.vip.general.zaapsearchfilter');
                 this.health_bar_shortcut = this.settingsProvider.read('option.vip.general.health_bar_shortcut');
                 this.estimator = this.settingsProvider.read('option.vip.general.estimator');
                 this.hidden_mount = this.settingsProvider.read('option.vip.general.hidden_mount');
@@ -959,7 +970,6 @@ export class SettingsService {
     private _macAddress: string;
     private _alertCounter: number;
     private _language: string;
-    private _vip_id: string;
     private _last_news: number;
 
     get last_news(): number {
@@ -969,15 +979,6 @@ export class SettingsService {
     set last_news(last_news: number) {
         this.settingsProvider.write('last_news', last_news);
         this._last_news = last_news;
-    }
-
-    get vip_id(): string {
-        return this._vip_id;
-    }
-
-    set vip_id(vip_id: string) {
-        this.settingsProvider.write('vip_id', vip_id);
-        this._vip_id = vip_id;
     }
 
     get alertCounter(): number {
@@ -1044,7 +1045,6 @@ export class SettingsService {
             this._buildVersion = this.settingsProvider.read('buildVersion');
             this._alertCounter = this.settingsProvider.read('alertCounter');
             this._language = this.settingsProvider.read('language');
-            this._vip_id = this.settingsProvider.read('vip_id');
             this._last_news = this.settingsProvider.read('last_news');
         };
         init();

@@ -63,6 +63,7 @@
             "health-bar-shortcut": "Atajos para mostrar las barras de salud",
             "jobsxp": "Activate the display of the job xp need for leveling",
             "fightchronometer" : "Mostrar peleas cronómetro",
+            "zaapsearchfilter" : "Mostra filtro di ricerca zaap",
             "estimator": "Daño estimado de hechizo durante el combate",
             "hide-mount": "Ocultar monturas durante las peleas"
           },
@@ -198,6 +199,9 @@
               "min-lenght-password": "El contraseña debe contener al menos 1 carácter"
             }
           }
+        },
+        "zaapsearchfilter":{
+          "placeholder": "Busca un zaap"
         },
         "party-info": {
           "header-lvl": "Mostrar nivel del grupo",

@@ -6,7 +6,6 @@ import { WindowService } from 'app/core/service/window.service';
 
 @Injectable()
 export class SoundService {
-
     private window: any;
     private events: Array<any> = [];
     private audioMuted: boolean = false;
@@ -16,8 +15,6 @@ export class SoundService {
         private settingsService: SettingsService,
         private windowService: WindowService
     ) {
-        console.log('sound service')
-        console.log(this.settingsService.option.general.audio_muted)
         if (isElectron) {
             this.ipcRendererService.on('reload-settings', () => {
                 this.listenFocusAndBlur()

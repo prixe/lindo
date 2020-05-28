@@ -16,6 +16,8 @@ import localeFr from '@angular/common/locales/fr';
 import localeEn from '@angular/common/locales/en';
 import localeEs from '@angular/common/locales/es';
 import localeIt from '@angular/common/locales/it';
+import localePl from '@angular/common/locales/pl';
+import localeTr from '@angular/common/locales/tr';
 
 
 import { AppRoutingModule } from './app.routing';
@@ -35,7 +37,6 @@ import { MultiAccountComponent } from "app/window/option/vip/multi-account/multi
 import { NotificationComponent } from "app/window/option/notification/notification.component";
 import { AuthComponent } from "app/components/auth/auth.component";
 import { AboutComponent } from "app/window/option/about/about.component";
-import { GameUpdateComponent } from "app/window/game-update/game-update.component";
 import { OfficialGameUpdateComponent } from "app/window/official-game-update/official-game-update.component";
 import { BugReportComponent } from "app/window/bug-report/bug-report.component";
 
@@ -57,6 +58,8 @@ registerLocaleData(localeFr);
 registerLocaleData(localeEn);
 registerLocaleData(localeEs);
 registerLocaleData(localeIt);
+registerLocaleData(localePl);
+registerLocaleData(localeTr);
 
 @NgModule({
     imports: [
@@ -95,7 +98,6 @@ registerLocaleData(localeIt);
         AutoGroupComponent,
         VipGeneralComponent,
         MultiAccountComponent,
-        GameUpdateComponent,
         OfficialGameUpdateComponent,
         BugReportComponent,
 

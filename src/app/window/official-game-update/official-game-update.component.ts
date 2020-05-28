@@ -7,10 +7,10 @@ import { Subscription } from 'rxjs';
 import { Logger } from "app/core/electron/logger.helper";
 import { SettingsService } from 'app/core/service/settings.service';
 import { js as BeautifyJs, css as BeautifyCss } from 'js-beautify';
-const progress = requestProgressLib;
-const request = requestLib;
 const fs = fsLib;
 const path = pathLib;
+const axios = axiosLib;
+const httpAdapter = httpAdapterLib;
 
 @Component({
     selector: 'component-official-game-update',
@@ -19,13 +19,14 @@ const path = pathLib;
 })
 export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
 
-    public progressMode: string = "indeterminate";
+    public progressMode: string = "buffer";
     public progressValue: number = 0;
+    public displayedProgress: number = 0;
     private saveFile: any;
     public informations: string;
     private sub: Subscription;
 
-    private promiseQueueProcessingMax: number = 6;
+    private promiseQueueProcessingMax: number = 12;
     private promiseQueueProcessing: number = 0;
     private promiseQueue: any = [];
 
@@ -73,6 +74,9 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
             // Defaults to 0 if no query param provided.
             this.destinationPath = decodeURIComponent(params['destinationPath']) + "/";
 
+            let refreshProgressInterval = setInterval(() => {
+                this.refreshDisplayedProgress();
+            }, 500);
 
             try {
 
@@ -81,11 +85,14 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
                 promises.push(this.downloadKeymaster());
 
                 // Downloading manifests
+                this.log("Downloading manifests");
 
                 await Promise.all([
                     this.loadCurrentLindoManifest(), this.loadCurrentManifest(), this.loadCurrentAssetMap(), this.loadVersions(), this.loadCurrentRegex(),
                     this.downloadLindoManifest(), this.downloadManifest(), this.downloadAssetMap()
                 ]);
+
+                this.log("Manifests downloaded");
 
 
                 // Checking differences
@@ -109,8 +116,6 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
                 this.log("Updating required files");
 
                 this.computeProgressTotal(manifestDifferences, assetMapDifferences);
-
-                this.progressMode = "determinate";
 
 
                 // Downloading & saving assets
@@ -143,14 +148,11 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
                             this.versions = {};
                         this.versions.buildVersion = manifestMissingFiles["build/script.js"].match(/window\.buildVersion\s?=\s?"(\d+\.\d+\.\d+(?:\-\d+)?)"/)[1];
                         this.versions.appVersion = await new Promise((resolve, reject) => {
-                            request(this.remoteITunesAppVersion, (err, response, body) => {
-                                try {
-                                    if (err) reject(err);
-                                    else resolve(JSON.parse(body).results[0].version)
-                                } catch (e) {
-                                    this.log(JSON.stringify(response, null, 2));
-                                    reject(e);
-                                }
+                            axios.get(this.remoteITunesAppVersion).then(response => {
+                                resolve(response.data.results[0].version)
+                            }).catch(error => {
+                                this.log(JSON.stringify(error, null, 2));
+                                reject(error);
                             });
                         });
                     }
@@ -165,7 +167,7 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
                     this.log("Applying regex...");
 
                     this.applyRegex(lindoManifestDifferences['regex.json'] == 1
-                        ? JSON.parse(lindoMissingFiles['regex.json'])
+                        ? lindoMissingFiles['regex.json']
                         : this.currentRegex,
                         manifestMissingFiles);
 
@@ -202,8 +204,11 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
                 this.translate.get('app.window.update-dofus.information.error').subscribe((res: string) => {
                     this.informations = res + " (" + e.message + ")";
                 });
+                Logger.error(e);
                 Logger.error(e.message);
             }
+
+            clearInterval(refreshProgressInterval);
 
         });
     }
@@ -275,46 +280,57 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
     download(url, json = false, weight = 1) {
         let currentProgress = 0;
         return new Promise((resolve, reject) => {
-            progress(request(url, (err, response, body) => {
-                if (err) {
-                    reject(err);
+            axios.get(url, {
+                onDownloadProgress: (progressEvent) => {
+                    if (progressEvent.total) {
+                        let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
+                        let progress = percentCompleted * weight;
+                        this.addProgress(progress - currentProgress);
+                        currentProgress = progress;
+                    }
                 }
-                else if (response.statusCode >= 300) {
-                    reject(response.statusCode);
-                }
-                else {
-                    this.addProgress(weight - currentProgress);
-                    if (json)
-                        resolve(JSON.parse(body));
-                    else
-                        resolve(body);
-                }
-            })).on("progress", (state) => {
-                let progress = state.percent * weight;
-                this.addProgress(progress - currentProgress);
-                currentProgress = progress;
-            });
+            }).then(response => {
+                this.addProgress(weight - currentProgress);
+                resolve(response.data);
+            }).catch(error => {
+                Logger.info(error);
+                reject(error);
+            })
         });
     }
 
     async downloadLindoManifest() {
         try {
-            return this.lindoManifest = await this.download(this.remoteLindoManifest, true);
+            this.lindoManifest = await this.download(this.remoteLindoManifest, true);
+            this.log("Lindo manifest downloaded");
+            return this.lindoManifest
         } catch (e) {
             return await this.downloadLindoManifestAlt();
         }
     }
 
     async downloadLindoManifestAlt() {
-        return this.lindoManifest = await this.download(this.remoteLindoManifestAlt, true);
+        this.lindoManifest = await this.download(this.remoteLindoManifestAlt, true);
+        this.log("Lindo manifest downloaded from alternative server");
+        return this.lindoManifest;
     }
 
     async downloadManifest() {
-        return this.manifest = await this.download(this.remoteOrigin + this.remoteManifestPath, true);
+        try {
+            this.manifest = await this.download(this.remoteOrigin + this.remoteManifestPath, true);
+        } catch (e) {
+            this.log(e);
+            this.log("Can't download Dofus Touch manifest");
+            throw e;
+        }
+        this.log("Dofus Touch manifest downloaded");
+        return this.manifest;
     }
 
     async downloadAssetMap() {
-        return this.assetMap = await this.download(this.remoteOrigin + this.remoteAssetMapPath, true);
+        this.assetMap = await this.download(this.remoteOrigin + this.remoteAssetMapPath, true);
+        this.log("Assets map downloaded");
+        return this.assetMap;
     }
 
     downloadKeymaster() {
@@ -377,11 +393,17 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
     addProgress(progress) {
         if (this.totalProgress > 0) {
             this.zone.run(() => {
-                if (progress > 60) debugger;
+                this.progressMode = "determinate";
                 this.currentProgress += progress;
                 this.progressValue = this.currentProgress / this.totalProgress * 100;
             });
         }
+    }
+
+    refreshDisplayedProgress() {
+        this.zone.run(() => {
+            this.displayedProgress = this.progressValue;
+        });
     }
 
     getFileEstimatedWeight(filename) {
@@ -427,7 +449,9 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
         let promises = [];
         try {
             for (var filename in files) {
-                promises.push(this.saveOneFile(this.destinationPath + filename, files[filename]));
+                let fileContent = files[filename];
+                if (typeof fileContent == 'object') fileContent = JSON.stringify(fileContent);
+                promises.push(this.saveOneFile(this.destinationPath + filename, fileContent));
             }
         } catch (e) { Logger.error(e.message); }
         return await Promise.all(promises);
@@ -448,7 +472,7 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
         try {
             for (var i in differences) {
                 if (differences[i] == 1) {
-                    await new Promise(resolve => setTimeout(resolve, 50));
+                    await new Promise(resolve => setTimeout(resolve, 1));
                     promises.push(this.queueNextFile(
                         basePath + manifest.files[i].filename,
                         this.destinationPath + manifest.files[i].filename));
@@ -506,15 +530,20 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
             try {
                 this.ensureDirectoryExists(filePath);
                 let fileStream = fs.createWriteStream(filePath);
-                progress(request(url))
-                    .on('error', err => {
-                        reject(err);
-                    })
-                    .on('end', () => {
+                axios.get(url, {
+                    responseType: 'stream',
+                    adapter: httpAdapter
+                }).then((response) => {
+                    const stream = response.data;
+                    stream.on('data', (chunk /* chunk is an ArrayBuffer */) => {
+                        fileStream.write(Buffer.from(chunk));
+                    });
+                    stream.on('end', () => {
                         this.addProgress(1);
+                        fileStream.end();
                         resolve();
-                    })
-                    .pipe(fileStream);
+                    });
+                });
             } catch (e) { Logger.error(e.message); reject(e.message); }
         });
     }

@@ -1,22 +1,16 @@
-import {NgZone} from '@angular/core';
-import { TranslateService } from "@ngx-translate/core";
-import {Observable, BehaviorSubject} from 'rxjs';
+import { NgZone } from '@angular/core';
+import { Observable, BehaviorSubject } from 'rxjs';
 import * as EventEmitter from 'eventemitter3';
-import { Mods, IMods } from "../mods";
-import { Option } from "app/core/service/settings.service";
 import { ElectronService as electron } from "app/core/electron/electron.service";
 
-export class Notifications extends Mods {
+import { Mod } from "../mod";
 
-    wGame: any | Window;
+export class Notifications extends Mod {
     public eventEmitter: EventEmitter;
 
-    constructor(wGame: any, private params: Option.Notification, private translate: TranslateService){
-        super(wGame);
+    startMod(): void {
         this.eventEmitter = new EventEmitter();
-        this.wGame = wGame;
-        this.params = params;
-        this.translate = translate;
+        this.params = this.settings.option.notification;
 
         this.on(this.wGame.dofus.connectionManager, 'ChatServerMessage', (msg: any) => {
             this.sendMPNotif(msg);
@@ -36,9 +30,7 @@ export class Notifications extends Mods {
         this.on(this.wGame.dofus.connectionManager, 'GameRolePlayAggressionMessage', (e: any) => {
             this.sendAggressionNotif(e);
         });
-
     }
-
 
     private sendMPNotif(msg: any) {
         if (!this.wGame.document.hasFocus() && this.params.private_message) {
@@ -121,7 +113,7 @@ export class Notifications extends Mods {
 
     private sendPartyInvitationNotif(e: any) {
         if (!this.wGame.document.hasFocus() && this.params.party_invitation) {
-            
+
             this.eventEmitter.emit('newNotification');
 
             let fromName: string = e.fromName;
@@ -139,7 +131,7 @@ export class Notifications extends Mods {
         if (!this.wGame.document.hasFocus()
             && this.params.aggression
             && e.defenderId == this.wGame.gui.playerData.characterBaseInformations.id) {
-            
+
             this.eventEmitter.emit('newNotification');
 
             let aggressionNotif = new Notification(this.translate.instant('app.notifications.aggression'));

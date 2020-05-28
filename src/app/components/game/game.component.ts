@@ -12,22 +12,8 @@ import { Logger } from 'app/core/electron/logger.helper';
 import { BugReportService } from 'app/core/service/bug-report.service';
 import { HttpClient } from '@angular/common/http';
 
-import { AutoGroup } from "app/core/mods/auto-group/autogroup";
-import { CssOverload } from "app/core/mods/cssOverload/cssOverload";
-import { DamageEstimator } from "app/core/mods/damage-estimator/damageestimator";
-import { FightChronometer } from "app/core/mods/fightchronometer/fightchronometer";
-import { HealthBar } from "app/core/mods/health-bar/healthbar";
-import { HideMount } from "app/core/mods/hide-mount/hide-mount";
-import { HideShop } from "app/core/mods/hide-shop/hide-shop";
-import { Inactivity } from "app/core/mods/general/inactivity";
-import { Jobsxp } from "app/core/mods/jobsxp/jobsxp";
-import { JsFixes } from "app/core/mods/jsFixes/jsFixes";
-import { KeyboardInput } from "app/core/mods/keyboard-input/keyboard-input";
-import { Mover } from "app/core/mods/mover/mover";
-import { Notifications } from "app/core/mods/notifications/notifications";
-import { PartyInfo } from "app/core/mods/party-info/party-info";
-import { RapidExchange } from "app/core/mods/rapid-exchange/rapid-exchange";
-import { Shortcuts } from "app/core/mods/shortcuts/shortcuts";
+import * as Mods from "app/core/mods";
+import { Mod } from "app/core/mods/mod";
 
 @Component({
     selector: 'component-game',
@@ -38,29 +24,11 @@ export class GameComponent implements AfterViewInit {
 
     @Input() public game: Game;
     @Output() selected = new EventEmitter();
-    private shortcuts: Shortcuts;
     public gamePath: string;
     private gameLoaded: boolean = false;
     private backupMaxZoom: number;
 
-    // Mods
-    private autogroup: AutoGroup;
-    private inactivity: Inactivity;
-    private healthbar: HealthBar;
-    private jobsxp: Jobsxp;
-    private fightchronometer: FightChronometer;
-    private damageEstimator: DamageEstimator;
-    private notifications: Notifications;
-    private cssOverload: CssOverload;
-    private jsFixes: JsFixes;
-    private rapidExchange: RapidExchange;
-    private wizAssets: WizAssetsContainer;
-    private plugins: PluginsContainer;
-    private hideShop: HideShop;
-    private keyboardInput: KeyboardInput;
-    private hideMount: HideMount;
-	private partyInfo:PartyInfo;
-    private mover: Mover;
+    private mods: Mod[] = [];
 
     constructor(
         private windowService: WindowService,
@@ -68,14 +36,15 @@ export class GameComponent implements AfterViewInit {
         private zone: NgZone,
         private settingsService: SettingsService,
         private bugReportService: BugReportService,
-        private translate: TranslateService,
+        private translateService: TranslateService,
         private applicationService: ApplicationService,
         private http: HttpClient
     ) {
-        if(isElectron)
+        if (isElectron) {
             this.gamePath = this.applicationService.gamePath + '/index.html?delayed=true';
-        else
+        } else {
             this.gamePath = "game/index.html?delayed=true";
+        }
     }
 
     ngAfterViewInit() {
@@ -84,9 +53,7 @@ export class GameComponent implements AfterViewInit {
     }
 
     public gameReady(): void {
-
         if (this.gameLoaded) {
-
             this.game.window.initDofus(() => {
                 /* Hide the game loading overlay */
                 let loading = document.getElementById("LoadingGame_" + this.game.id);
@@ -121,61 +88,49 @@ export class GameComponent implements AfterViewInit {
     }
 
     public removeMods(): void {
-        if (this.autogroup) this.autogroup.reset();
-        if (this.cssOverload) this.cssOverload.reset();
-        if (this.damageEstimator) this.damageEstimator.reset();
-        if (this.fightchronometer) this.fightchronometer.reset();
-        if (this.healthbar) this.healthbar.reset();
-        if (this.hideMount) this.hideMount.reset();
-        if (this.hideShop) this.hideShop.reset();
-        if (this.inactivity) this.inactivity.reset();
-        if (this.jobsxp) this.jobsxp.reset();
-        if (this.jsFixes) this.jsFixes.reset();
-        if (this.keyboardInput) this.keyboardInput.reset();
-        if (this.mover) this.mover.reset();
-        if (this.notifications) this.notifications.reset();
-        if (this.partyInfo) this.partyInfo.reset();
-        if (this.shortcuts) this.shortcuts.reset();
+        for (let i in this.mods) {
+            this.mods[i].reset();
+        }
     }
 
     public reloadMods(start: boolean = true): void {
         this.removeMods();
-        if (start)
+        if (start) {
             this.setMods();
+        }
     }
 
     public setMods(): void {
-        this.autogroup = new AutoGroup(this.game.window, this.settingsService.option.vip.autogroup, this.ipcRendererService, this.translate);
-        this.cssOverload = new CssOverload(this.game.window);
-        this.damageEstimator = new DamageEstimator(this.game.window, this.settingsService.option.vip.general);
-        this.notifications = new Notifications(this.game.window, this.settingsService.option.notification, this.translate);
-        this.notifications.eventEmitter.on('newNotification', () => {
-            this.zone.run(() => {
-                this.game.emit('notification');
-            });
-        });
-        this.notifications.eventEmitter.on('focusTab', () => {
-            this.zone.run(() => {
-                this.selected.emit(this.game);
-            });
-        });
-        this.fightchronometer = new FightChronometer(this.game.window, this.settingsService.option.vip.general);
-        this.healthbar = new HealthBar(this.game.window, this.settingsService.option.vip.general);
-        this.hideMount = new HideMount(this.game.window, this.settingsService.option.vip.general);
-        this.hideShop = new HideShop(this.game.window, this.settingsService.option.general);
-        this.inactivity = new Inactivity(this.game.window, this.settingsService.option.vip.general);
-        this.jobsxp = new Jobsxp(this.game.window, this.settingsService.option.vip.general, this.translate);
-        this.jsFixes = new JsFixes(this.game.window);
-        this.keyboardInput = new KeyboardInput(this.game.window);
-        this.mover = new Mover(this.game.window);
-        this.partyInfo = new PartyInfo(this.game.window, this.settingsService.option.vip.general, this.translate);
-        this.rapidExchange = new RapidExchange(this.game.window);
-        this.shortcuts = new Shortcuts(this.game.window, this.settingsService.option.shortcuts);
+        for (let mod in Mods) {
+            switch (mod) {
+                case 'AutoGroup':
+                    Logger.info('Case autogroup');
+                    let autogroup = new Mods[mod](this.game.window, this.settingsService, this.translateService, this.ipcRendererService);
+                    this.mods.push(autogroup)
+                    break;
+                case 'Notifications':
+                    Logger.info('Case Notifications');
+                    let notifications = new Mods[mod](this.game.window, this.settingsService, this.translateService);
+                    notifications.eventEmitter.on('newNotification', () => {
+                        this.zone.run(() => {
+                            this.game.emit('notification');
+                        });
+                    });
+                    notifications.eventEmitter.on('focusTab', () => {
+                        this.zone.run(() => {
+                            this.selected.emit(this.game);
+                        });
+                    });
+                    this.mods.push(notifications)
+                    break;
+                default:
+                    this.mods.push(new Mods[mod](this.game.window, this.settingsService, this.translateService))
+            }
+        }
         //this.wizAssets = new WizAssetsContainer(this.game.window, this.applicationService, this.http, this.settingsService.option.general);
     }
 
     private setEventListener(): void {
-
         // event -> resize window game
         this.game.window.onresize = () => {
             //if(this.game.window.gui.isConnected){
@@ -248,7 +203,6 @@ export class GameComponent implements AfterViewInit {
             this.bugReportService.writeLog(anonymousIdentity, report);
             return consoleError.apply(this.game.window.console, arguments)
         }.bind(this);
-
     }
 
     private getAnonymousIdentity(): string {

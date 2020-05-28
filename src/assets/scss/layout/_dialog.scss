@@ -1,5 +1,5 @@
 /** Override the dialog modal material2 */
-.cdk-overlay-backdrop.cdk-overlay-backdrop-showing{
+.cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
     opacity: 0.85 !important;
 }
 
@@ -7,13 +7,12 @@
     background: black !important;
 }
 
-.cdk-overlay-pane{
+.cdk-overlay-pane {
     z-index: 3000;
     max-height: 100%;
 }
 
-mat-dialog-container{
-
+mat-dialog-container {
     position: relative !important;
     padding: 0px !important;
     border-radius: 3px !important;
@@ -23,13 +22,13 @@ mat-dialog-container{
     padding-top: 36px !important;
 }
 
-.dialog-settings{
-
+.dialog-settings {
     flex: 1 1 auto;
     display: flex;
 
-    .settings-left{
-        
+    .settings-left {
+        display: flex;
+        flex-direction: column;
         background-color: #262626;
         color: #fff;
         width: 190px;
@@ -37,7 +36,7 @@ mat-dialog-container{
         z-index: 1;
 
         .tab-bar-header,
-        .tab-bar-item{
+        .tab-bar-item {
             display: inline-block;
             font-size: 14px;
             line-height: 1.25em;
@@ -48,7 +47,7 @@ mat-dialog-container{
             flex-shrink: 0;
         }
 
-        .tab-bar-header{
+        .tab-bar-header {
             color: #fff;
             cursor: default;
             padding-top: 20px;
@@ -59,7 +58,7 @@ mat-dialog-container{
             font-size: 18px;
         }
 
-        .tab-bar-item{
+        .tab-bar-item {
             flex-direction: row;
             display: flex;
             text-decoration: none;
@@ -68,7 +67,7 @@ mat-dialog-container{
             color: hsla(0,0%,100%,.3);
             cursor:pointer;
 
-            &:hover{
+            &:hover {
                 color: #fff;
             }
 
@@ -82,22 +81,21 @@ mat-dialog-container{
                 opacity: 0;
             }
 
-            &.selected{
+            &.selected {
                 color: #fff;
-                &:before{
+                &:before {
                     opacity: 1;
                 }
             }
         }
     }
 
-    .settings-right{
-
+    .settings-right {
         flex: 1;
         display: flex;
         flex-direction: column;
 
-        .settings-header{
+        .settings-header {
             background-color: #f9f9f9;
             border-bottom: 1px solid #f0f0f0;
             width: 100%;
@@ -106,14 +104,14 @@ mat-dialog-container{
             flex-shrink: 0;
         }
 
-        .settings-inner{
+        .settings-inner {
             background: #fff;
             overflow: hidden;
             display: flex;
             flex: 1;
         }
 
-        .settings-actions{
+        .settings-actions {
             background-color: #f9f9f9;
             border-top: 1px solid #f0f0f0;
             width: 100%;

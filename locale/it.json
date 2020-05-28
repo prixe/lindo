@@ -65,6 +65,7 @@
             "health-bar-shortcut": "Tasto rapido per mostrare/nascondere le barre della vita",
             "jobsxp": "Attiva il display dell'esperienza del lavoro necessaria ad aumentarne il livello",
             "fightchronometer": "Mostra combattimenti di cronometri",
+            "zaapsearchfilter" : "Mostra filtro di ricerca zaap",
             "estimator": "Fai una stima dei danni da incantesimi in battaglia",
             "hide-mount": "Nascondi le cavalcature durante i combattimenti"
           },
@@ -200,6 +201,9 @@
               "min-lenght-password": "La password deve contenere almeno 1 carattere"
             }
           }
+        },
+        "zaapsearchfilter":{
+          "placeholder": "Cerca uno zaap"
         },
         "party-info": {
           "header-lvl": "Mostra livello di gruppo",

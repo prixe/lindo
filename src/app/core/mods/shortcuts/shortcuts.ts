@@ -1,26 +1,23 @@
 import { NgZone } from '@angular/core';
-import * as async from 'async';
-import { Mods } from "../mods";
+import { forEachOf } from 'async';
 import { ShortcutsHelper } from "app/core/helpers/shortcuts.helper";
-import { Option } from "app/core/service/settings.service";
 import { Logger } from "app/core/electron/logger.helper";
-import { Mover } from "app/core/mods/mover/mover";
 
-export class Shortcuts extends Mods {
+import { Mod } from "../mod";
+import { Mover } from "./mover";
 
-    private params: Option.Shortcuts;
+export class Shortcuts extends Mod {
     private shortcutsHelper: ShortcutsHelper;
     private mover: Mover;
 
-    constructor(wGame: any, params: Option.Shortcuts) {
-        super(wGame);
-        this.params = params;
+    startMod(): void {
+        this.params = this.settings.option.shortcuts;
         this.shortcutsHelper = new ShortcutsHelper(this.wGame);
 
         if (this.params.diver.active_open_menu) {
-            Logger.info(' - enable open_menu');
+            Logger.info('- enable Open_menu');
         }
-        this.mover = new Mover(this.wGame);
+        this.mover = new Mover(this.wGame, this.settings, this.translate);
         this.bindAll();
     }
 
@@ -85,7 +82,7 @@ export class Shortcuts extends Mods {
         });
 
         // Spell
-        async.forEachOf(this.params.spell, (shortcut: string, index: number) => {
+        forEachOf(this.params.spell, (shortcut: string, index: number) => {
             const selectedSpell = this.wGame.gui.shortcutBar._panels.spell.slotList[index];
 
             this.shortcutsHelper.bind(shortcut, () => {
@@ -99,9 +96,9 @@ export class Shortcuts extends Mods {
                 if (this.wGame.gui.fightManager.fightState === 0) {
                     return;
                 }
-              
+
                 selectedSpell.tap();
-                
+
                 setTimeout(() => {
                     this.wGame.isoEngine._castSpellImmediately(this.wGame.isoEngine.actorManager.userActor.cellId);
                 }, 150);
@@ -109,7 +106,7 @@ export class Shortcuts extends Mods {
         });
 
         // Item
-        async.forEachOf(this.params.item, (shortcut: string, index: number) => {
+        forEachOf(this.params.item, (shortcut: string, index: number) => {
             this.shortcutsHelper.bind(shortcut, () => {
                 //this.tab.window.gui.shortcutBar.panels.item.slotList[index].tap();
                 this.wGame.gui.shortcutBar._panels.item.slotList[index].tap();
@@ -117,7 +114,7 @@ export class Shortcuts extends Mods {
         });
 
         // Interfaces
-        async.forEachOf(this.params.interface.getAll(), (inter: any) => {
+        forEachOf(this.params.interface.getAll(), (inter: any) => {
             this.wGame.gui.menuBar._icons._childrenList.forEach((element: any, index: number) => {
                 if (element.id.toUpperCase() == inter.key.toUpperCase()) {
                     this.shortcutsHelper.bind(inter.value, () => {
@@ -130,14 +127,14 @@ export class Shortcuts extends Mods {
         });
 
         // Close interfaces
-        this.shortcutsHelper.bindVanilla('escape', () => {
+        this.shortcutsHelper.bindVanilla("escape", () => {
             if (this.wGame.gui.chat.active) {
                 this.wGame.gui.chat.deactivate();
             } else {
                 let winClosed = 0;
                 for (let i = this.wGame.gui.windowsContainer._childrenList.length - 1; i >= 0; i--) {
                     let win = this.wGame.gui.windowsContainer._childrenList[i];
-                    if (win.isVisible()) {
+                    if (win.isVisible() && win.id !== "recaptcha") {
                         win.close();
                         winClosed++;
                         break;
@@ -156,14 +153,16 @@ export class Shortcuts extends Mods {
             }
         });
         // Prevent using tab key
-        this.shortcutsHelper.bindVanilla('tab', (e: KeyboardEvent) => {
+        this.shortcutsHelper.bindVanilla("tab", (e: KeyboardEvent) => {
             e.preventDefault();
         });
     }
 
     public reset() {
         super.reset();
-        if (this.mover) this.mover.reset();
+        if (this.mover) {
+            this.mover.reset();
+        }
         this.shortcutsHelper.unBindAll();
     }
 }

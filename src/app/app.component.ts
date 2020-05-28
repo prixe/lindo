@@ -7,8 +7,7 @@ import { SoundService } from 'app/core/service/sound.service';
 
 @Component({
   selector: 'component-app',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit, AfterViewInit {
 
@@ -21,7 +20,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
 
-    this.translate.addLangs(["en", "fr", "es", "it"]);
+    this.translate.addLangs(["en", "fr", "es", "it", "pl", "tr"]);
     this.translate.setDefaultLang(this.settingsService.language);
 
     if(isElectron) {
