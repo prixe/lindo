@@ -16,6 +16,7 @@ import localeFr from '@angular/common/locales/fr';
 import localeEn from '@angular/common/locales/en';
 import localeEs from '@angular/common/locales/es';
 import localeIt from '@angular/common/locales/it';
+import localePl from '@angular/common/locales/pl';
 
 
 import { AppRoutingModule } from './app.routing';
@@ -56,6 +57,7 @@ registerLocaleData(localeFr);
 registerLocaleData(localeEn);
 registerLocaleData(localeEs);
 registerLocaleData(localeIt);
+registerLocaleData(localePl);
 
 @NgModule({
     imports: [

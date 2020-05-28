@@ -12,11 +12,9 @@ const i18n = require('node-translate');
 export class Settings {
 
     public static init(): void {
-
         (checkSettings()) ? null : this.resetSettings();
 
         if (!settings.get('language')) {
-
             let local = app.getLocale();
             let shortLocal = local.slice(0, 1);
 
@@ -25,6 +23,7 @@ export class Settings {
                 case "fr":
                 case "es":
                 case "it":
+                case "pl":
                     settings.set('language', shortLocal);
                     break;
                 default:
@@ -38,7 +37,8 @@ export class Settings {
             'en': require(Application.appPath + `/dist/electron/i18n/en`),
             'fr': require(Application.appPath + `/dist/electron/i18n/fr`),
             'es': require(Application.appPath + `/dist/electron/i18n/es`),
-            'it': require(Application.appPath + `/dist/electron/i18n/it`)
+            'it': require(Application.appPath + `/dist/electron/i18n/it`),
+            'pl': require(Application.appPath + `/dist/electron/i18n/pl`)
         }).setLocale(settings.get('language'));
 
         settings.watch('language', (newValue, oldValue) => {

@@ -20,7 +20,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
 
-    this.translate.addLangs(["en", "fr", "es", "it"]);
+    this.translate.addLangs(["en", "fr", "es", "it", "pl"]);
     this.translate.setDefaultLang(this.settingsService.language);
 
     if(isElectron) {
