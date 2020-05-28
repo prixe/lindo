@@ -29,9 +29,7 @@ export class AutoGroup extends Mod {
     ) {
         super(wGame, settings, translate);
         this.ipcRendererService = ipcRendererService;
-    }
 
-    startMod(): void {
         this.params = this.settings.option.vip.autogroup;
 
         if (this.params.active) {
@@ -53,6 +51,10 @@ export class AutoGroup extends Mod {
         if (this.params.fight) {
             this.autoEnterFight(this.wGame.gui.isConnected);
         }
+    }
+
+    startMod(): void {
+        return;
     }
 
     public autoMasterParty(skipLogin: boolean = false) {
