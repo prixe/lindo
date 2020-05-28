@@ -19,13 +19,14 @@ export class Settings {
             let shortLocal = local.slice(0, 1);
 
             switch (shortLocal) {
-                case "en":
                 case "fr":
                 case "es":
                 case "it":
-                case "pl":
                     settings.set('language', shortLocal);
                     break;
+                case "en":
+                case "pl":
+                case "tr":
                 default:
                     settings.set('language', 'en');
                     break;
@@ -38,7 +39,8 @@ export class Settings {
             'fr': require(Application.appPath + `/dist/electron/i18n/fr`),
             'es': require(Application.appPath + `/dist/electron/i18n/es`),
             'it': require(Application.appPath + `/dist/electron/i18n/it`),
-            'pl': require(Application.appPath + `/dist/electron/i18n/pl`)
+            'pl': require(Application.appPath + `/dist/electron/i18n/pl`),
+            'tr': require(Application.appPath + `/dist/electron/i18n/tr`)
         }).setLocale(settings.get('language'));
 
         settings.watch('language', (newValue, oldValue) => {

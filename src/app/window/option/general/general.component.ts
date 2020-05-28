@@ -42,7 +42,8 @@ export class GeneralComponent implements OnInit {
         { name: 'English', value: "en" },
         { name: 'Español', value: "es" },
         { name: 'Italiano', value: "it" },
-        { name: 'Polish', value: "pl" }
+        { name: 'Polskie', value: "pl" },
+        { name: 'Türkçe', value: "tr" }
     ];
 
     public restartForEarlyDisplayed: boolean = false;
