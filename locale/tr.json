@@ -1,0 +1,319 @@
+{
+  "app": {
+    "main": {
+      "tab": {
+        "add": "Oyun ekle"
+      },
+      "head": {
+        "toggle-audio-on": "Sesi etkinleştir",
+        "toggle-audio-off": "Sesi kapat",
+        "new-window": "Yeni bir pencere aç"
+      },
+      "prompt": {
+        "tabs-overflow": {
+          "text": "Lindo, pencere başına 6'dan fazla sekmeyi desteklemez,gecikme veya hatalar olabilir. Yeni bir pencere açabilir ve daha iyi çalıştırabilirsiniz."
+        }
+      }
+    },
+    "notifications": {
+      "fight-turn": "{{character}} Turu geldi",
+      "private-message": "{{character}} 'a mesaj geldi",
+      "tax-collector": "Atınıza bir saldırı düzenlendi",
+      "kolizeum": "Kolizeum bulundu",
+      "party-invitation": "{{character}} grup'a katılmaya davet edildi",
+      "aggression": "Saldırıya uğradın !"
+    },
+    "window": {
+      "changelog": {
+        "title": "Sürüm notları",
+        "prefixe": "Sürüm"
+      },
+      "master-password": {
+        "continue": "Devam et",
+        "skip": "Bu adımı atla",
+        "password-label": "Lindo şifrenizi girin",
+        "password-bad": "Şifre yanlış"
+      },
+      "update-dofus": {
+        "title": "Dofus Touch güncellemesi",
+        "information": {
+          "search": "Güncellemeler aranıyor...",
+          "downloading": "Yükleniyor...",
+          "error": "Güncelleme indirilemiyor! Lütfen daha sonra tekrar deneyiniz"
+        }
+      },
+      "options": {
+        "title": "Seçenekler",
+        "button": {
+          "close": "Tamamlandı"
+        },
+        "general": {
+          "reset-game": "Oyun verilerini yeniden indir",
+          "reset-all": "Sıfırla",
+          "shortcuts": "Yapılandır",
+          "clear-cache": "Önbelleği temizle",
+          "resolution": {
+            "confirm-body": "Mevcut çözünürlük size uygun mu?<br/>10 saniye içinde otomatik sıfırlanıcaktır.."
+          }
+        },
+        "features": {
+          "title": "Özellikler",
+          "general": {
+            "header": "Genel",
+            "disable-inactivity": "Bağlantı kesilmeden önce hareketsizlik nedeniyle gecikmeyi uzatın",
+            "health-bar": "Avcıların altındaki yaşam çubuklarının görüntülenmesini etkinleştirin",
+            "health-bar-shortcut": "Yaşam çubuklarını göster / gizle kısayolları",
+            "jobsxp": "Seviye atlamak için iş xp ihtiyacının görüntülenmesini etkinleştirin",
+            "estimator": "Savaşta büyü hasarını tahmin etme",
+            "hide-mount": "Savaş sırasında binekleri gizle",
+            "fightchronometer" : "Savaş kronometresini göster"
+          },
+          "groups": {
+            "header": "Gruplar"
+          },
+          "accounts": {
+            "header": "Hesaplar"
+          }
+        },
+        "about": {
+          "title": "Hakkında",
+          "links": {
+            "website": "İnternet sitesi",
+            "changelog": "Sürüm notları"
+          },
+          "text0": "Lindo, DOFUS Touch'ı bilgisayarınızdan oynamanıza izin veren açık kaynaklı bir yazılımdır.",
+          "text1": "Bir Android emülatörünün aksine, kod doğrudan bilgisayarınız tarafından yorumlanır, bu da bilgisayarınızın tam performansıyla DOFUS Touch'ı oynamanızı hızlandırır!",
+          "text2": "Başlangıçta DOFUS Touch No-Emu olarak bilinen Daniel ve Thomas tarafından geliştirilen bu yazılım, Ankama'dan gelen bir uyarı nedeniniyle kapatmak zorunda kaldı."
+        }
+      },
+      "shortcuts": {
+        "title": "Kısayollar",
+        "description1": "CTRL, SHIFT, SPACE, ALT özel tuşlarını kullanabilirsiniz (Mac OS X'te CTRL = cmd)",
+        "description2": "Girişi seçtikten sonra istediğiniz tuşlara aynı anda basarak kısayolunuzu belirleyebilirsiniz",
+        "tab": {
+          "application": "Uygulama",
+          "interface": "Arayüz",
+          "spell": "Büyüler",
+          "inventory": "Envanter",
+          "other": "Diğer"
+        }
+      },
+      "bug-report": {
+        "title": "Hata bildirin",
+        "description": "Lindo'da beklenmedik bir davranış gözlemlediyseniz, bunu aşağıda açıklayarak bildirebilirsiniz.",
+        "instructions": "Lütfen en azından şu bilgileri sağlayın:",
+        "list": {
+          "1": "Beklenmedik davranış açıklaması",
+          "2": "Nasıl tetiklenir",
+          "3": "Beklenen dışında olağan davranış ne oldu?"
+        },
+        "placeholder": "Açıklama",
+        "send": "Gönder"
+      }
+    },
+    "option": {
+      "vip": {
+        "auto-group": {
+          "header": "Grup",
+          "active": "Otomatik gruplandırmayı etkinleştir",
+          "warning": "Dikkat, grup liderini takip etmek diğer oyuncular için bir oylama olarak kabul edilebilir, dikkatle ve tenha alanlarda kullanın.",
+          "explanation-1": "Davetin otomatik olması için gruptaki karakterlerin liderle arkadaş olması gerekir.",
+          "explanation-2": "Üyeler aynı haritada aynı karede lideri takip eder.",
+          "leader": "Liderin adı",
+          "members": "Karakterlerin isimleri",
+          "members-add": "Bir karakter ekle",
+          "follow-leader": "Grup liderini takip edin",
+          "ready": "Atla \"Hazır\" otomatikleştir",
+          "fight": "Savaşa otomatik olarak girişi sağla",
+          "delay": "Takip süresi (saniye olarak)",
+          "follow-on-map": "Lideri bir harita üzerinde takip edin",
+          "strict-move": "Liderin hareket ettiği hücre üzerinde hareket et",
+          "pvp-warning": "PvP savaşına otomatik olarak katılamazsınız"
+        },
+        "multi-account": {
+          "home-no-master": "Bu özelliği kullanmak için bir parola yapılandırılmalıdır. Lindo'yu çok hesaplı otomasyonla başlatmak için kullanılacak.",
+          "header": "Çoklu hesaplar",
+          "active": "Çoklu hesapları etkinleştir",
+          "window": "Pencere",
+          "delete-window": "Sil",
+          "add-window": "Pencere ekle",
+          "add": "Bir hesap ekle",
+          "account-name": "Kullanıcı adı",
+          "password": "Parola",
+          "modify_password": "Şifreyi değiştir",
+          "configure_password": "Şifre ayarları",
+          "delete_password": "Şifreyi kaldır",
+          "request-master-password": {
+            "explanation": "Hesap yönetiminize erişmek için önce ana şifrenizi girmeniz gerekir. Bu şifre çoklu hesabın ilk etkinleştirilmesinde ayarlanmıştır.",
+            "label": "Şifrenizi girin",
+            "bad": "Şifre yanlış",
+            "confirm": "Onayla",
+            "ignore-step": "Bu adımı atla"
+          },
+          "prompt": {
+            "add-master": {
+              "title": "Parola Belirleme",
+              "confirm": "Kaydet",
+              "cancel": "İptal Et",
+              "min-lenght": "Şifre en az {{length}} karakter içermelidir",
+              "success-text": "Şifre şimdi uygulamayı başlatmak için kullanılacaktır."
+            },
+            "edit-master": {
+              "title": "Şifreyi değiştir",
+              "input-old-placeholder": "Eski şifre",
+              "input-new-placeholder": "Yeni şifre",
+              "confirm": "Kaydet",
+              "cancel": "İptal Et",
+              "min-lenght": "Yeni şifre en az {{length}} karakter içermelidir",
+              "incorrect-old": "Eski şifre yanlış",
+              "success-text": "Şifre değiştirildi."
+            },
+            "delete-master": {
+              "title": "Şifreyi kaldır",
+              "text": "Emin misiniz?<br/>Bu kaydedilen hesapları silecektir.(Lindo)",
+              "confirm": "Kaldır",
+              "cancel": "İptal Et",
+              "success-text": "Şifre silindi."
+            },
+            "maximum-account": {
+              "title": "Oops!",
+              "text": "Wabbit donör sıralaması ile 4'ten fazla hesap kaydedemezsiniz.",
+              "confirm": "VIP rütbemi arttır",
+              "cancel": "Anladım"
+            },
+            "add-account": {
+              "title": "Hesap ekle",
+              "input-login-placeholder": "Kullanıcı Adı",
+              "input-password-placeholder": "Şifre",
+              "confirm": "Kaydet",
+              "cancel": "İptal Et",
+              "min-lenght-login": "Kullanıcı adı en az 1 karakter içermelidir",
+              "min-lenght-password": "Şifre en az 1 karakter içermelidir"
+            },
+            "edit-account": {
+              "title": "Hesap değiştir",
+              "input-login-placeholder": "Kullanıcı Adı",
+              "input-password-placeholder": "Şifre",
+              "confirm": "Kaydet",
+              "cancel": "İptal Et",
+              "min-lenght-login": "Kullanıcı adı en az 1 karakter içermelidir",
+              "min-lenght-password": "Şifre en az 1 karakter içermelidir"
+            }
+          }
+        },
+        "party-info": {
+          "header-lvl":"Partinin seviyesini göster",
+          "header-pp":"Partinin olasılığını göster",
+          "level":"Svy."
+        },
+        "jobsxp": {
+          "text": " XP eksik<br>seviye için "
+        },
+        "status": {
+          "header": "VIP Durumu"
+        }
+      },
+      "general": {
+        "title": "Genel",
+        "interface": "Arayüz",
+        "sound": "Ses",
+        "shortcuts": "Klavye kısayolları",
+        "game-data": "Oyun verisi",
+        "language": "Dil",
+        "resolution": "Çözünürlük",
+        "hide-shop": "Mağaza düğmesini gizle",
+        "hide-tab": "Çok hesaplı sekme çubuğunu gizle",
+        "focus-fight-turn": "Sıra başladığında otomatik olarak bir hesaba geç",
+        "local-content": "Yerel harita indirmeyi etkinleştir (beta)",
+        "sound-focus": "Oyun sesi yalnızca ön plan penceresinde",
+        "early": "Dofus Touch Early'de oyna",
+        "restart": "Uygula ve yeniden başlat"
+      },
+      "shortcuts": {
+        "title": "Kısayollar",
+        "diver": {
+          "header": "Diğer",
+          "end-turn": "Sıranızı bitirin / Hazır (savaş)",
+          "open-chat": "Sohbeti aç",
+          "active-open-menu": "Hiçbir pencere açık değilken menüyü aç (ECHAP)",
+          "open-menu": "Menüyü aç",
+          "go_up": "Üst haritaya geç",
+          "go_bottom": "Alt haritaya geç",
+          "go_left": "Sol haritaya geç",
+          "go_right": "Sağ haritaya geç"
+        },
+        "interfaces": {
+          "header": "Arayüzler",
+          "carac": "Karakter",
+          "spell": "Büyüler",
+          "bag": "Envanter",
+          "bidhouse": "Pazaryeri",
+          "map": "Harita",
+          "friend": "Arkadaşlar",
+          "book": "Görevler",
+          "guild": "Lonca",
+          "conquest": "Kolizeum",
+          "goultine": "Dükkan",
+          "job": "Meslekler",
+          "alliance": "İttifak",
+          "mount": "Binek",
+          "directory": "Loncalar ve İttifaklar Listesi",
+          "alignement": "Sıralama",
+          "bestiary": "Yaratık Ansiklopedisi",
+          "title": "Başlıklar ve Süsler",
+          "achievement": "Başarılar",
+          "almanax": "Almanax",
+          "spouse": "Eş",
+          "shop": "Dükkâncı"
+        },
+        "items": {
+          "header": "Öğeler",
+          "slot": "Sıra {{x}}"
+        },
+        "no-emu": {
+          "header": "Lindo",
+          "new-window": "Yeni Pencere",
+          "new-tab": "Yeni sekme",
+          "tab": "Sekme {{x}}",
+          "next-tab": "Sonraki sekme",
+          "prev-tab": "Önceki sekme"
+        },
+        "spells": {
+          "header": "Büyüler",
+          "slot": "Sıra {{x}}"
+        }
+      },
+      "notifications": {
+        "title": "Bildirimler",
+        "description": "Uygulama arka plandayken oyundan bildirim alabilirsiniz. Size bildirilecek:",
+        "fight-turn": "Sıranız başladığında (savaş)",
+        "private-message": "Gelen özel mesajlarda",
+        "tax-collector": "Atınıza bir saldırı düzenlendiğinde",
+        "kolizeum": "Kolizeum bulunduğunda",
+        "party-invitation": "Birisi sizi bir gruba katılmaya davet ettiğinde",
+        "aggression": "Birisi sana saldırdığında"
+      },
+      "reset": "Sıfırla",
+      "save": "Uygula",
+      "prompt": {
+        "reset-option": {
+          "text": "Devam ettiğinizde, tüm parametreler sıfırlanacaktır. <br/> Bu işlem geri alınamaz."
+        }
+      }
+    },
+    "prompt": {
+      "title": {
+        "confirm": "Onay Gerekli",
+        "warning": "Uyarı !",
+        "success": "Operasyon başarılı !",
+        "error": "Operasyon başarısız !",
+        "info": "Bilgi"
+      },
+      "button": {
+        "cancel": "İptal",
+        "confirm": "Onaylıyorum",
+        "close": "Kapat"
+      }
+    }
+  }
+}
