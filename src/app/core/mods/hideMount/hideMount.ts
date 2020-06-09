@@ -46,22 +46,22 @@ export class HideMount extends Mod
     }
 
     private removeMountToPlayer(player): void {
-        this.wGame.actorManager.userActor.actorManager.userActor.look.bonesId = 1;
+        player.look.bonesId = 1;
 
         // Character size
-        this.wGame.actorManager.userActor.actorManager.userActor.look.scales = [140];
+        player.look.scales = [140];
 
         // Colors
-        if (this.wGame.actorManager.userActor.look.subentities["0"].subEntityLook.indexedColors.length > 0) {
-            this.wGame.actorManager.userActor.actorManager.userActor.look.indexedColors = this.wGame.actorManager.userActor.look.subentities["0"].subEntityLook.indexedColors;
+        if (player.look.subentities["0"].subEntityLook.indexedColors.length > 0) {
+            player.look.indexedColors = player.look.subentities["0"].subEntityLook.indexedColors;
         }
 
         // Remove mount
-        if (this.wGame.actorManager.userActor.actorManager.userActor.look.subentities["0"].subEntityLook.skins.length > 0) {
-            this.wGame.actorManager.userActor.actorManager.userActor.look.skins = this.wGame.actorManager.userActor.actorManager.userActor.look.subentities["0"].subEntityLook.skins;
+        if (player.look.subentities["0"].subEntityLook.skins.length > 0) {
+            player.look.skins = player.look.subentities["0"].subEntityLook.skins;
         }
 
         // Remove pet and mount
-        this.wGame.actorManager.userActor.actorManager.userActor.look.subentities = null;
+        player.look.subentities = null;
     }
 }

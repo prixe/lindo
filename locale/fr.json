@@ -66,7 +66,8 @@
             "health-bar-shortcut": "Raccourcis pour les barres de vie",
             "jobsxp": "Activer l'affichage de l'xp a obtenir pour monter de niveau (métier)",
             "hide-mount": "Cacher les montures pendant les combats",
-            "fightchronometer": "Afficher le chronomètre de combats"
+            "fightchronometer": "Afficher le chronomètre de combats",
+            "zaapsearchfilter" : "Afficher le filtre de recherche de zaap"
           },
           "groups": {
             "header": "Groupe"
@@ -199,6 +200,9 @@
               "min-lenght-password": "Le mot de passe doit contenir au moins 1 caractère"
             }
           }
+        },
+        "zaapsearchfilter":{
+          "placeholder": "Rechercher un zaap"
         },
         "party-info": {
           "header-lvl": "Afficher le niveau du groupe",

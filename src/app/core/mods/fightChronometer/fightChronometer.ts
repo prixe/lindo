@@ -7,7 +7,6 @@ import { Mod } from "../mod";
 * usefull for PVE to always know if the combat is still decent in time for xp
 */
 export class FightChronometer extends Mod {
-    private container              : any;
     private chronometerInitialized : boolean;
     private chronometerInterval    : any;
     private chronometerContainer   : any;
@@ -18,9 +17,7 @@ export class FightChronometer extends Mod {
             Logger.info('- enable Fight-Chronometer');
 
             this.chronometerInitialized = (this.wGame.document.querySelector("#chronometerContainer") === null ? false : true);
-            if (!this.chronometerInitialized) {
-                this.create();
-            }
+            this.create();
 
             this.on(this.wGame.dofus.connectionManager, 'GameFightStartMessage', this.update.bind(this));
             this.on(this.wGame.dofus.connectionManager, 'GameFightEndMessage', this.clear.bind(this));
@@ -34,8 +31,10 @@ export class FightChronometer extends Mod {
                 return;
             }
 
-            this.container = this.wGame.document.querySelector('.infoContainer');
-            if (!this.container) return;
+            let container = this.wGame.document.querySelector('.infoContainer');
+            if (!container) {
+                return;
+            }
 
             // Makes some room for the chronometer
             const turnsContainer = this.wGame.document.querySelector('.turnCountLabel');
@@ -50,7 +49,7 @@ export class FightChronometer extends Mod {
             `;
             this.chronometerContainer.innerHTML = `00:00:00`;
 
-            this.container.insertBefore(this.chronometerContainer,
+            container.insertBefore(this.chronometerContainer,
                 this.wGame.document.querySelector('.fightControlButtons'));
                 this.chronometerInitialized = true;
         } catch (ex) {
@@ -90,15 +89,15 @@ export class FightChronometer extends Mod {
 
     private destroy() {
         this.chronometerInitialized = false;
-        if (this.chronometerContainer && this.container) {
-            this.container.removeChild(this.chronometerContainer);
+        if (this.chronometerContainer) {
+            this.chronometerContainer.remove()
             clearInterval(this.chronometerInterval);
         }
     }
 
     public reset() {
         super.reset();
-        if (!this.params) {
+        if (this.params) {
             this.destroy();
         }
     }

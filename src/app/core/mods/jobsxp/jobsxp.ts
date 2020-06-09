@@ -192,7 +192,7 @@ export class Jobsxp extends Mod{
 
     public reset() {
         super.reset();
-        if (!this.params) {
+        if (this.params) {
             let jobsxpbarCss = this.wGame.document.getElementById('jobsxpbarCss');
             if (jobsxpbarCss && jobsxpbarCss.parentElement) {
                 jobsxpbarCss.parentElement.removeChild(jobsxpbarCss);

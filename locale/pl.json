@@ -1,0 +1,321 @@
+{
+  "app": {
+    "main": {
+      "tab": {
+        "add": "Dodaj grę"
+      },
+      "head": {
+        "toggle-audio-on": "Włącz dźwięki",
+        "toggle-audio-off": "Wycisz",
+        "new-window": "Otwórz nowe okno"
+      },
+      "prompt": {
+        "tabs-overflow": {
+          "text": "Lindo nie wspiera więcej niż 6 kart na okno. Powyżej tej liczby mogą występować duże opóźnienia oraz liczne błędy. Możesz natomiast uruchomić nowe okno, jeśli chcesz używać większej liczby kont."
+        }
+      }
+    },
+    "notifications": {
+      "fight-turn": "Rozpoczęła się tura {{character}}",
+      "private-message": "Przychodząca wiadomość od {{character}}",
+      "tax-collector": "Twój Perceptor został zaatakowany!",
+      "kolizeum": "Koloseum zostało znalezione!",
+      "party-invitation": "Dostałeś zaproszenie do dołączenia do grupy {{character}} .",
+      "aggression": "Zostałeś zaatakowany!"
+    },
+    "window": {
+      "changelog": {
+        "title": "Informacje o wydaniu",
+        "prefixe": "Wydanie"
+      },
+      "master-password": {
+        "continue": "Kontynuuj",
+        "skip": "Pomiń ten krok",
+        "password-label": "Podaj główne hasło",
+        "password-bad": "Podane hasło jest nieprawidłowe"
+      },
+      "update-dofus": {
+        "title": "Aktualizacja Dofus Touch",
+        "information": {
+          "search": "Szukanie aktualizacji...",
+          "downloading": "Pobieranie...",
+          "error": "Nie można pobrać aktualizacji! Proszę spróbować później"
+        }
+      },
+      "options": {
+        "title": "Opcje",
+        "button": {
+          "close": "Zakończone"
+        },
+        "general": {
+          "reset-game": "Pobierz ponownie pliki gry",
+          "reset-all": "Resetuj",
+          "shortcuts": "Konfiguruj",
+          "clear-cache": "Wyczyść pamięć podręczną",
+          "resolution": {
+            "confirm-body": "Czy odpowiada Ci obecna rozdzielczość?<br/>Automatyczny reset za 10 sekund..."
+          }
+        },
+        "features": {
+          "title": "Funkcje",
+          "general": {
+            "header": "Główne",
+            "disable-inactivity": "Pozostań ciągle zalogowany",
+            "health-bar": "Aktywuj wyświetlanie paska życia poniżej postaci",
+            "health-bar-shortcut": "Skrót klawiszowy do pokazywania/chowania pasków życia",
+            "jobsxp": "Wyświetl niezbędną liczbę doświadczenia wymaganego do następnego poziomu",
+            "estimator": "Włącz przewidywanie obrażeń podczas walki",
+            "hide-mount": "Nie pokazuj wierzchowców podczas walki",
+            "fightchronometer" : "Pokaż czas trwania walki",
+            "zaapsearchfilter" : "Pokaż filtr wyszukiwania zaap'ów"
+          },
+          "groups": {
+            "header": "Grupy"
+          },
+          "accounts": {
+            "header": "Konta"
+          }
+        },
+        "about": {
+          "title": "O nas",
+          "links": {
+            "website": "Strona internetowa",
+            "changelog": "Informacje o wydaniu"
+          },
+          "text0": "Lindo jest open-sourcowym oprogramowaiem, które pozwala ci na grę w DOFUS Touch z poziomu swojego komputera.",
+          "text1": "W przeciwieństwie do emulatorów Androida, kod źródłowy jest bezpośrednio interpretowany przez Twój komputer, co sprawia, że granie w DOFUS Touch jest szybsze oraz wykorzystuje pełen potencjał Twojego komputera!",
+          "text2": "Oprogramowanie oryginalnie znane jako DOFUS Touch No-Emu, zostało stworzone przez Daniela i Thomas'a, którzy byli zmuszeni zamknąć projekt przez awersję ze strony Ankamy."
+        
+        }
+      },
+      "shortcuts": {
+        "title": "Skróty klawiszowe",
+        "description1": "Możesz przypisać specjalne klawisze, takie jak CTRL, SHIFT, SPACE, ALT (CTRL = cmd na Mac OS X)",
+        "description2": "Możesz przypisać dowolny klawisz poprzez wybranie odpowiedniego pola, a następnie wciśnięcie interesującej Cię kombinacji klawiszy",
+        "tab": {
+          "application": "Aplikacja",
+          "interface": "Interfejs",
+          "spell": "Czary",
+          "inventory": "Ekwipunek",
+          "other": "Inne"
+        }
+      },
+      "bug-report": {
+        "title": "Zgłoś błąd",
+        "description": "Jeśli doświadczyłeś nieoczekiwanego zachowania Lindo, możesz zgłosić nam to opisując problem poniżej",
+        "instructions": "Proszę udziel nam co najmniej tych informacji:",
+        "list": {
+          "1": "Opis nieoczekiwanego zachowania",
+          "2": "W jaki sposób można je wywołać raz jeszcze",
+          "3": "Jakie powinno być standardowe zachowanie w tym momencie?"
+        },
+        "placeholder": "Opis",
+        "send": "Wyślij"
+      }
+    },
+    "option": {
+      "vip": {
+        "auto-group": {
+          "header": "Grupa",
+          "active": "Włącz automatyczne grupowanie",
+          "warning": "Uważaj, automatyczne śledzenie lidera grupy może być postrzegane przez innych graczy jako maraton botów, więc używaj tego z rozwagą i w miejscach z niewielką populacją.",
+          "explanation-1": "Postacie w grupie muszą znajdować się na liście znajomych, aby działało automatyczne grupowanie.",
+          "explanation-2": "Postacie w grupie będa podążać za liderem, jeśli znajduje się on na tej samej mapie.",
+          "leader": "Nazwa lidera grupy",
+          "members": "Nazwa postaci",
+          "members-add": "Dodaj postać",
+          "follow-leader": "Podążaj za liderem grupy",
+          "ready": "Pomijaj \"ready\" automatycznie",
+          "fight": "Wchodź do walki automatycznie",
+          "delay": "Opóźnienie w śledzeniu (w sekundach)",
+          "follow-on-map": "Podążaj za liderem grupy na mapie",
+          "strict-move": "Poruszaj się po tych samych kratkach, po których przechodził lider",
+          "pvp-warning": "Nie możesz dołączyć automatycznie do walk PVP"
+        },
+        "multi-account": {
+          "home-no-master": "Aby użyć tej funkcji musisz ustawić hasło. Lindo zostanie uruchomione wraz ze wszystkimi kontami automatycznie.",
+          "header": "Wiele kont",
+          "active": "Włącz funkcję wielu kont",
+          "window": "Okno",
+          "delete-window": "Usuń",
+          "add-window": "Dodaj okno",
+          "add": "Dodaj konto",
+          "account-name": "Nazwa użytkownika",
+          "password": "Hasło",
+          "modify_password": "Zmień hasło",
+          "configure_password": "Ustaw hasło",
+          "delete_password": "Usuń hasło",
+          "request-master-password": {
+            "explanation": "Aby uzyskać dostęp do swojego zarządzania kontami, najpierw musisz podać główne hasło. Hasło to było ustawiane podczas pierwszej aktywacji funkcji wielu kont.",
+            "label": "Wprowadź hasło",
+            "bad": "Podane hasło jest błędne",
+            "confirm": "Kontynuuj",
+            "ignore-step": "Pomiń ten krok"
+          },
+          "prompt": {
+            "add-master": {
+              "title": "Ustawianie hasła",
+              "confirm": "Zapisz",
+              "cancel": "Anuluj",
+              "min-lenght": "Hasło musi zawierać co najmniej {{lenght}} znaków",
+              "success-text": "Hasło będzie używane podczas startu aplikacji."
+            },
+            "edit-master": {
+              "title": "Zmiana hasła",
+              "input-old-placeholder": "Poprzednie hasło",
+              "input-new-placeholder": "Nowe hasło",
+              "confirm": "Zapisz",
+              "cancel": "Anuluj",
+              "min-lenght": "Nowe hasło musi zawierać co najmniej {{lenght}} znaków",
+              "incorrect-old": "Poprzednie hasło jest nieprawidłowe",
+              "success-text": "Hasło zostało zmienione."
+            },
+            "delete-master": {
+              "title": "Usuwanie hasła",
+              "text": "Czy jesteś pewny?<br/>Ta operacja usunie wszystkie zapisane konta.",
+              "confirm": "Usuń",
+              "cancel": "Anuluj",
+              "success-text": "Hasło zostało usunięte"
+            },
+            "maximum-account": {
+              "title": "Uups!",
+              "text": "Nie możesz zapisać więcej niż 4 konta z rangą Wabbit'a.",
+              "confirm": "Zwiększ moją VIP rangę",
+              "cancel": "Rozumiem"
+            },
+            "add-account": {
+              "title": "Dodawanie konta",
+              "input-login-placeholder": "Użytkownik",
+              "input-password-placeholder": "Hasło",
+              "confirm": "Zapisz",
+              "cancel": "Anuluj",
+              "min-lenght-login": "Nazwa użytkownika musi zawierać co najmniej 1 znak",
+              "min-lenght-password": "Hasło musi zawierać co najmniej 1 znak"
+            },
+            "edit-account": {
+              "title": "Edycja konta",
+              "input-login-placeholder": "Nazwa użytkownika",
+              "input-password-placeholder": "hasło",
+              "confirm": "Zapisz",
+              "cancel": "Anuluj",
+              "min-lenght-login": "Nazwa użytkownika musi zawierać co najmniej 1 znak",
+              "min-lenght-password": "Hasło musi zawierać co najmniej 1 znak"
+            }
+          }
+        },
+        "zaapsearchfilter":{
+          "placeholder": "Szukaj zaap'a"
+        },
+        "party-info": {
+          "header-lvl":"Pokaż poziom grupy",
+          "header-pp":"Pokaż Prospecting grupy",
+          "level":"Poziom:"
+        },
+        "jobsxp": {
+          "text": " XP brakuje<br>do poziomu "
+        }
+      },
+      "general": {
+        "title": "Główne ustawienia",
+        "interface": "Interfejs",
+        "sound": "Dźwięk",
+        "shortcuts": "Skróty klawiszowe",
+        "game-data": "Dane gry",
+        "language": "Język",
+        "resolution": "Rozdzielczość ekranu",
+        "hide-shop": "Ukryj przycisk sklepu",
+        "hide-tab": "Ukryj pasek wielu kont",
+        "focus-fight-turn": "Automatycznie przełączaj konto kiedy jego tura się rozpocznie",
+        "local-content": "Aktywuj usługę pobrania mapy(beta)",
+        "sound-focus": "Dźwięk z gry włączony jest tylko podczas aktywnego okna Lindo",
+        "early": " Graj w Dofus Touch we wczesnym dostępie",
+        "restart": "Zatwierdź i zrestartuj"
+      },
+      "shortcuts": {
+        "title": "Skróty klawiszowe",
+        "diver": {
+          "header": "Różne",
+          "end-turn": "Zakończ turę/ Daj gotowość (w walce)",
+          "open-chat": "Otwórz czat",
+          "active-open-menu": "Otwórz menu w momencie kiedy żadne okno nie jest otwarte(ECHAP)",
+          "open-menu": "Otwórz menu",
+          "go_up": "Idź do góry",
+          "go_bottom": "Idź na dół",
+          "go_left": "Idź w lewo",
+          "go_right": "Idź w prawo"
+        },
+        "interfaces": {
+          "header": "Interfejs",
+          "carac": "Postacie",
+          "spell": "Czary",
+          "bag": "Ekwipunek",
+          "bidhouse": "Sklep z przedmiotami",
+          "map": "Mapa",
+          "friend": "Znajomi",
+          "book": "Zadania",
+          "guild": "Gildia",
+          "conquest": "Koloseum",
+          "goultine": "Sklep premium",
+          "job": "Profesje",
+          "alliance": "Sojusz",
+          "mount": "Wierzchowiec",
+          "directory": "Lista Gildii i sojuszy",
+          "alignement": "Alignment (równowaga Brakmarian i Bontarian)",
+          "bestiary": "Bestiariusz",
+          "title": "Tytuły i ornamenty",
+          "achievement": "Osiągnięcia",
+          "almanax": "Almanax",
+          "spouse": "Spouse(druga połówka)",
+          "shop": "Własny sklep"
+        },
+        "items": {
+          "header": "Przedmioty",
+          "slot": "Miejsce {{x}}"
+        },
+        "no-emu": {
+          "header": "Lindo",
+          "new-window": "Nowe okno",
+          "new-tab": "Nowa karta",
+          "tab": "Karta {{x}}",
+          "next-tab": "Następna karta",
+          "prev-tab": "Poprzednia karta"
+        },
+        "spells": {
+          "header": "Czary",
+          "slot": "Miejsce {{x}}"
+        }
+      },
+      "notifications": {
+        "title": "Powiadomienia",
+        "description": "Możesz otrzymywać powiadomienia z gry w momencie, gdy jest ona w tle. Będziesz powiadomiony, gdy:",
+        "fight-turn": "Twoja tura właśnie się rozpoczęła (w walce)",
+        "private-message": "Otrzymasz wiadomość prywatną",
+        "tax-collector": "Perceptor będzie zaatakowany",
+        "kolizeum": "Walka w Koloseum została znaleziona",
+        "party-invitation": "Ktoś wysłał Ci zaproszenie do grupy",
+        "aggression": "Zostaniesz zaatakowany"
+      },
+      "reset": "Resetuj",
+      "save": "Zatwierdź",
+      "prompt": {
+        "reset-option": {
+          "text": "Zatwierdzając, wszystkie parametry zostaną zresetowane.<br/>operacja ta jest nieodwracalna."
+        }
+      }
+    },
+    "prompt": {
+      "title": {
+        "confirm": "Wymagane potwierdzenie",
+        "warning": "Ostrzeżenie!",
+        "success": "Operacja zakończona sukcesem!",
+        "error": "Operacja zakończona niepowodzeniem!",
+        "info": "Informacja"
+      },
+      "button": {
+        "cancel": "Anuluj",
+        "confirm": "Potwierdź",
+        "close": "Zamknij"
+      }
+    }
+  }
+}

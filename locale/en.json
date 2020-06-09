@@ -66,7 +66,8 @@
             "jobsxp": "Activate the display of the job xp need for leveling",
             "estimator": "Estimating spell damage in battle",
             "hide-mount": "Hide mounts during fights",
-            "fightchronometer" : "Show combats chronometer"
+            "fightchronometer" : "Show combats chronometer",
+            "zaapsearchfilter" : "Show zaap search filter"
           },
           "groups": {
             "header": "Groups"
@@ -200,6 +201,9 @@
               "min-lenght-password": "The password must contain at least 1 character"
             }
           }
+        },
+        "zaapsearchfilter":{
+          "placeholder": "Search a zaap"
         },
         "party-info": {
           "header-lvl":"Show party's level",

@@ -6,8 +6,7 @@ import { Logger } from "app/core/electron/logger.helper";
 
 @Component({
     selector: 'component-toolbar',
-    templateUrl: './toolbar.component.html',
-    styleUrls: ['./toolbar.component.scss']
+    templateUrl: './toolbar.component.html'
 })
 export class ToolbarComponent implements OnInit {
 

@@ -4,7 +4,7 @@ import { Logger } from 'app/core/electron/logger.helper';
 import { BugReportComponent } from 'app/window/bug-report/bug-report.component';
 import { ApplicationService } from 'app/core/electron/application.service';
 const os = osLib;
-const request = requestLib;
+const axios = axiosLib;
 
 @Injectable()
 export class BugReportService {
@@ -16,7 +16,6 @@ export class BugReportService {
         private applicationService: ApplicationService,
     ) {}
 
-
     public writeLog(from, msg) {
         this.logs += (new Date()).toISOString() + "\n" + from + "\n" + msg + "\n\n";
         // this.send("Auto send");
@@ -24,18 +23,13 @@ export class BugReportService {
 
     public send(description) {
         let body = this.getOs() + "\n" + description + "\n\n" + this.logs;
-        request.post({
-            url: 'http://api.no-emu.co/report.php',
-            form: {
-                logs: body,
-                version: this.applicationService.version
-            }
-        }, (err, httpResponse, body) => {
-            if (err) {
-                Logger.error(JSON.stringify(err));
-            } else {
-                this.logs = "";
-            }
+        axios.post('http://api.no-emu.co/report.php', {
+            logs: body,
+            version: this.applicationService.version
+        }).then(response => {
+            this.logs = "";
+        }).catch(error => {
+            Logger.error(JSON.stringify(error));
         });
     }
 

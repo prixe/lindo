@@ -723,6 +723,7 @@ export module Option {
             private _health_bar_shortcut: string;
             private _jobsxp: boolean;
             private _fightchronometer: boolean;
+            private _zaapsearchfilter: boolean;
             private _estimator: boolean;
             private _hidden_mount: boolean;
             private _party_info_pp:boolean;
@@ -795,6 +796,15 @@ export module Option {
               this._fightchronometer = fightchronometer;
             }
 
+            get zaapsearchfilter(): boolean{
+                return this._zaapsearchfilter;
+            }
+
+            set zaapsearchfilter(zaapsearchfilter: boolean){
+                this.settingsProvider.write('option.vip.general.zaapsearchfilter', zaapsearchfilter);
+                this._zaapsearchfilter = zaapsearchfilter;
+            }
+
             set health_bar(health_bar: boolean) {
                 this.settingsProvider.write('option.vip.general.health_bar', health_bar);
                 this._health_bar = health_bar;
@@ -814,6 +824,7 @@ export module Option {
                 this.health_bar = this.settingsProvider.read('option.vip.general.health_bar');
                 this.jobsxp = this.settingsProvider.read('option.vip.general.jobsxp');
                 this.fightchronometer = this.settingsProvider.read('option.vip.general.fightchronometer');
+                this.zaapsearchfilter = this.settingsProvider.read('option.vip.general.zaapsearchfilter');
                 this.health_bar_shortcut = this.settingsProvider.read('option.vip.general.health_bar_shortcut');
                 this.estimator = this.settingsProvider.read('option.vip.general.estimator');
                 this.hidden_mount = this.settingsProvider.read('option.vip.general.hidden_mount');

@@ -161,7 +161,8 @@ export const SettingsDefault: SettingsInterface = {
                 fightchronometer: true,
                 hidden_mount: false,
                 party_info_pp: false,
-                party_info_lvl: false
+                party_info_lvl: false,
+                zaapsearchfilter: true
             },
             auto_group: {
                 active: false,

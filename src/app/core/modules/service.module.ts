@@ -10,7 +10,6 @@ import { SettingsService } from 'app/core/service/settings.service';
 import { SoundService } from 'app/core/service/sound.service';
 import { TabGameService } from 'app/core/service/tab-game.service';
 import { TabService } from 'app/core/service/tab.service';
-import { VipService } from 'app/core/service/vip.service';
 import { WindowService } from 'app/core/service/window.service';
 import { ChangelogWindowService } from 'app/window/changelog/changelog.window';
 import { OptionWindowService } from 'app/window/option/option.window';
@@ -45,7 +44,6 @@ export function settingModuleFactory(setting: SettingsService) {
         IpcRendererService,
         CryptService,
         ApplicationService,
-        VipService,
         SoundService,
         BugReportService,
         {

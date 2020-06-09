@@ -13,7 +13,6 @@ import { ShortcutsApplicationComponent } from "app/window/shortcuts/application/
 import { ShortcutsInventoryComponent } from "app/window/shortcuts/inventory/inventory.component";
 import { ShortcutsInterfaceComponent } from "app/window/shortcuts/interface/interface.component";
 import { ShortcutsSpellComponent } from "app/window/shortcuts/spell/spell.component";
-import { GameUpdateComponent } from "app/window/game-update/game-update.component";
 import { OfficialGameUpdateComponent } from "app/window/official-game-update/official-game-update.component";
 import { AboutComponent } from "app/window/option/about/about.component";
 import { BugReportComponent } from "app/window/bug-report/bug-report.component";
@@ -47,12 +46,6 @@ const appRoutes: Routes = [
             { path: 'spell', component: ShortcutsSpellComponent },
             { path: 'inventory', component: ShortcutsInventoryComponent },
             { path: 'other', component: ShortcutsOtherComponent }
-        ]
-    },
-    {
-        path: 'game-update',
-        children: [
-            { path: ':savePath/:remoteUrl', component: GameUpdateComponent }
         ]
     },
     {

@@ -35,6 +35,17 @@ export class RapidExchange extends Mod {
         this.setInventoryEventListener();
     }
 
+    // events
+    private exchangeInventoryEvent(slot: any, x: any, y: any, storage: any) {
+        this.moveItem(slot.itemInstance, "exchangeInventory", false);
+    }
+    private exchangeStorageEvent(slot: any, x: any, y: any, storage: any) {
+        this.moveItem(slot.itemInstance, "exchangeStorage", false);
+    }
+    private tradeWithPlayerAndNPCInventoryEvent(slot: any, x: any, y: any, storage: any) {
+        this.moveItem(slot.itemInstance, "tradeWithPlayerAndNPCInventory", false);
+    }
+
     // Listen to the "ctrl" key, and remember it's state
     private setKeyListenner() {
         let keydown = (event: KeyboardEvent) => {
@@ -60,21 +71,15 @@ export class RapidExchange extends Mod {
     // Listen "slot-doubletap" events on windows and when it occurs, call the moveItem function
     private setInventoryEventListener() {
         if (this.exchangeInventory) {
-            this.exchangeInventory.on('slot-doubletap', (slot: any, x: any, y: any, storage: any) => {
-                    this.moveItem(slot.itemInstance, "exchangeInventory", false);
-            });
+            this.exchangeInventory.on('slot-doubletap', this.exchangeInventoryEvent);
         }
 
         if (this.exchangeStorage) {
-            this.exchangeStorage.on('slot-doubletap', (slot: any, x: any, y: any, storage: any) => {
-                    this.moveItem(slot.itemInstance, "exchangeStorage", true);
-            });
+            this.exchangeStorage.on('slot-doubletap', this.exchangeStorageEvent);
         }
 
         if (this.tradeWithPlayerAndNPCInventory) {
-            this.tradeWithPlayerAndNPCInventory.on('slot-doubletap', (slot: any) => {
-                    this.moveItem(slot.itemInstance, "tradeWithPlayerAndNPCInventory", false);
-            });
+            this.tradeWithPlayerAndNPCInventory.on('slot-doubletap', this.tradeWithPlayerAndNPCInventoryEvent);
         }
 
         // Special Event for the "common" trade window
@@ -169,6 +174,12 @@ export class RapidExchange extends Mod {
                     }
                 }
         }
+    }
 
+    public reset() {
+        super.reset();
+        this.exchangeInventory.removeListener('slot-doubletap', this.exchangeInventoryEvent);
+        this.exchangeStorage.removeListener('slot-doubletap', this.exchangeStorageEvent);
+        this.tradeWithPlayerAndNPCInventory.removeListener('slot-doubletap', this.tradeWithPlayerAndNPCInventoryEvent);
     }
 }

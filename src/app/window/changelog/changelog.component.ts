@@ -11,7 +11,6 @@ const fs = fsLib;
     styleUrls: ['./changelog.component.scss']
 })
 export class ChangeLogComponent implements OnInit {
-
     public versions: Array<string>;
 
     public versionList: Array<Object>;
@@ -29,7 +28,6 @@ export class ChangeLogComponent implements OnInit {
     }
 
     ngOnInit() {
-
         marked.setOptions({
             gfm: true,
             tables: true,
@@ -41,22 +39,20 @@ export class ChangeLogComponent implements OnInit {
 
         fs.readFile(this.applicationService.appPath + '/CHANGELOG.md', { encoding: 'utf-8' }, (err: any, data: any) => {
             this.zone.run(() => {
-
-                //On parse le fichier
+                // On parse le fichier
                 this.lexedContent = marked.lexer(data);
 
-                //On remplie les variables
+                // On remplie les variables
                 this.populateVersion();
                 this.populateList();
 
-                //On choisi la première version (TODO pouvoir passer la version ciblé dans l'URL)
+                // On choisi la première version (TODO pouvoir passer la version ciblé dans l'URL)
                 this.changeVersion(this.versions[0]);
             });
         });
     }
 
     private populateVersion(): void {
-
         let filteredContent = this.lexedContent.filter((node: any) => {
             return (node.depth == 2 && node.type == "heading") ? true : false;
         });
@@ -64,19 +60,19 @@ export class ChangeLogComponent implements OnInit {
         let nodeVersion: any;
         let versionArray: Array<string> = [];
         for (nodeVersion of filteredContent) {
-            versionArray.push(nodeVersion.text);
+            if (!nodeVersion.text.startsWith('⚠')) {
+                versionArray.push(nodeVersion.text);
+            }
         }
 
-        this.versions = versionArray.slice(0, 9);
+        this.versions = versionArray
     }
 
     private populateList() {
-
         let version: any;
         let versionArray: { number: string, date: Date }[] = [];
 
         for (version of this.versions) {
-
             let splitedVersion: Array<string> = version.split(" - ");
             let versionNumber = splitedVersion[0].replace(/^[\[]+|[\]]+$/g, "");
             let versionDate = new Date(splitedVersion[1]);
@@ -88,7 +84,6 @@ export class ChangeLogComponent implements OnInit {
     }
 
     public selectVersion($event, version: string) {
-
         this.changeVersion(version);
 
         let old = document.querySelector(".tab-bar-item.selected");
@@ -99,17 +94,14 @@ export class ChangeLogComponent implements OnInit {
     }
 
     private changeVersion(version: string): void {
-
         let node: any;
         let record: boolean = false;
         let result: Array<Object> = [];
 
         for (node of this.lexedContent) {
-
-            //Lors de la rencontre du titre recherché, on commence l'enregistrement pour stocker toute les lignes qui suivents
-            //On stock au passage la version et la date que l'on va afficher au dessus du contenu.
+            // Lors de la rencontre du titre recherché, on commence l'enregistrement pour stocker toute les lignes qui suivents
+            // On stock au passage la version et la date que l'on va afficher au dessus du contenu.
             if (node["depth"] == 2 && node["type"] == "heading" && node["text"].indexOf(version) >= 0) {
-
                 let splitedVersion: Array<string> = node["text"].split(" - ");
                 this.versionNumber = splitedVersion[0].replace(/^[\[]+|[\]]+$/g, "");
                 this.versionDate = new Date(splitedVersion[1]);
@@ -117,14 +109,13 @@ export class ChangeLogComponent implements OnInit {
                 record = true;
             }
 
-            //On arrête l'enregistrement des lignes si on rencontre un deuxième titre
+            // On arrête l'enregistrement des lignes si on rencontre un deuxième titre
             if (node["depth"] == 2 && node["type"] == "heading" && node["text"].indexOf(version) == -1) {
                 record = false;
             }
 
-            //Si l'enregistrement est actif, alors on stock la ligne dans un tableau
+            // Si l'enregistrement est actif, alors on stock la ligne dans un tableau
             if (record == true) {
-
                 //Exclusion du titre car c'est fait manuellement
                 if (node["depth"] != 2 || node["type"] != "heading") {
                     result.push(node);
@@ -136,5 +127,4 @@ export class ChangeLogComponent implements OnInit {
 
         this.versionContent = marked.parser(result);
     }
-
 }

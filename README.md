@@ -29,7 +29,6 @@ Lindo No-Emu works on :
 - [Installation](#installation)
   - [Prerequisites](#prerequisites)
     - [Node.js](#nodejs)
-    - [Gulp](#gulp)
   - [Build Lindo](#build-lindo)
 - [Start project in dev mode](#start-project-in-dev-mode)
 - [Distribution building](#distribution-building)
@@ -38,6 +37,8 @@ Lindo No-Emu works on :
   - [macOS](#macos)
 - [Development](#development)
   - [Introduction](#introduction)
+  - [Commands explanation](#commands-explanation)
+    - [Subcommands](#subcommands)
   - [How to help ?](#how-to-help-)
   - [Generate the TOC](#generate-the-toc)
   - [Structure of the application](#structure-of-the-application)
@@ -62,10 +63,6 @@ $ apt-get install nodejs
 ```sh
 $ brew install nodejs
 ```
-#### Gulp
-```sh
-$ npm install -g gulp
-```
 ### Build Lindo
 ```sh
 $ git clone https://github.com/prixe/lindo.git
@@ -83,7 +80,12 @@ Start the project in electron :
 $ npm start
 ```
 ## Distribution building
-If you want to make a release for a specific system you can use this command :
+If you want to make a release for a specific system, make sure build the project in production mode first:
+```sh
+$ npm run build:prod
+```
+Then you can use this command :
+
 ### Windows
 On a windows environment :
 ```sh
@@ -115,6 +117,52 @@ Navigator context is in the ```src/```folder and Electron context is in the ```e
 
 
 The idea is to simulate the environment Dofus Touch to run it on PC, because Dofus Touch is based on [Apache Cordova](https://cordova.apache.org/).
+
+### Commands explanation
+```sh
+$ npm install
+```
+Installs the packages in package.json and their dependencies
+
+```sh
+$ npm run build:dev
+```
+Executes multiple subcommands to build for development
+
+```sh
+$ npm start
+```
+Executes `electron ./` and since `"main": "/dist/electron/main.js"` (in package.json) it becomes executing `electron ./dist/electron/main.js` which in turn eventually loads `/dist/app/index.html` (which is the angular context) once it gets to `main-window.js`
+
+```sh
+$ npm run build:prod
+```
+Executes multiple subcommands to build for production
+
+```sh
+$ npm run release:win
+```
+(or release:mac or release:linux): executes in the case of release:win for example `build --win --x64 --ia32` to compile and build the final binaries using electron-builder that in turn is using `loaded configuration file=package.json ("build" field)`, and `writing effective config file=releases\builder-effective-config.yaml` resulting in usable files in releases folder
+
+#### Subcommands
+- `$ npm run build:dev`
+  - `$ npm run build:electron:dev`
+    - `$ tsc -p electron/`: transpiles electron context files from TS to JS and puts them in `dist/electron`
+    - `$ ncp electron/i18n dist/electron/i18n`: copies i18n files from `electron/i18n` to `dist/electron/i18n`
+  - `$ npm run lint`: executes `ng lint` to start lint verification of the files
+  - `$ ng build --watch`: builds angular context into dist/app, watches the source files for changes then builds them without the need to re-run this command
+
+- `$ npm run build:prod`
+  - `$ npm run build:electron:prod`
+    - `$ tsc -p electron/tsconfig.prod.json`: transpiles electron context files from TS to JS and puts them in `dist/electron`
+    - `$ ncp electron/i18n dist/electron/i18n`: copies i18n files from `electron/i18n` to `dist/electron/i18n`
+  - `$ npm run lint`: executes `$ ng lint` to start lint verification of the files
+  - `$ ng build --configuration=production`: builds angular context into dist/app
+
+The config used by angular in `$ ng build (--configuration=production)` is at angular.json and particularly projects => lindo => architect => build => configurations => production. There is also stuff like file replacements inside.
+
+**In the case of errors during building use an older version of node temporarily until the project gets updated and uses a more recent version. I personally use nvm to use the version 8.17.0 of Nodejs when building Lindo.**
+
 
 ### How to help ?
 You can contact a senior developer of the project as [Clover](https://github.com/Clover-Lindo) or [Prixe](https://github.com/prixe). Or you can eventually join our [Discord](https://discord.gg/wcCgtsv).
