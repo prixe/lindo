@@ -17,11 +17,11 @@
     },
     "notifications": {
       "fight-turn": "{{character}} Turu geldi",
-      "private-message": "{{character}} 'a mesaj geldi",
+      "private-message": "{{character}} kullanıcısından mesaj geldi",
       "tax-collector": "Atınıza bir saldırı düzenlendi",
-      "kolizeum": "Kolizeum bulundu",
-      "party-invitation": "{{character}} grup'a katılmaya davet edildi",
-      "aggression": "Saldırıya uğradın !"
+      "kolizeum": "Kolizeum bulundu!",
+      "party-invitation": "{{character}} seni grubuna katılmaya davet etti.",
+      "aggression": "Saldırıya uğradın!"
     },
     "window": {
       "changelog": {
@@ -53,7 +53,7 @@
           "shortcuts": "Yapılandır",
           "clear-cache": "Önbelleği temizle",
           "resolution": {
-            "confirm-body": "Mevcut çözünürlük size uygun mu?<br/>10 saniye içinde otomatik sıfırlanıcaktır.."
+            "confirm-body": "Mevcut çözünürlük size uygun mu?<br/>10 saniye içinde otomatik sıfırlanacaktır.."
           }
         },
         "features": {
@@ -61,7 +61,7 @@
           "general": {
             "header": "Genel",
             "disable-inactivity": "Bağlantı kesilmeden önce hareketsizlik nedeniyle gecikmeyi uzatın",
-            "health-bar": "Avcıların altındaki yaşam çubuklarının görüntülenmesini etkinleştirin",
+            "health-bar": "Savaşçıların altındaki yaşam çubuklarının görüntülenmesini etkinleştirin",
             "health-bar-shortcut": "Yaşam çubuklarını göster / gizle kısayolları",
             "jobsxp": "Seviye atlamak için iş xp ihtiyacının görüntülenmesini etkinleştirin",
             "estimator": "Savaşta büyü hasarını tahmin etme",
@@ -78,12 +78,12 @@
         "about": {
           "title": "Hakkında",
           "links": {
-            "website": "İnternet sitesi",
+            "website": "Web sitesi",
             "changelog": "Sürüm notları"
           },
           "text0": "Lindo, DOFUS Touch'ı bilgisayarınızdan oynamanıza izin veren açık kaynaklı bir yazılımdır.",
           "text1": "Bir Android emülatörünün aksine, kod doğrudan bilgisayarınız tarafından yorumlanır, bu da bilgisayarınızın tam performansıyla DOFUS Touch'ı oynamanızı hızlandırır!",
-          "text2": "Başlangıçta DOFUS Touch No-Emu olarak bilinen Daniel ve Thomas tarafından geliştirilen bu yazılım, Ankama'dan gelen bir uyarı nedeniniyle kapatmak zorunda kaldı."
+          "text2": "Başlangıçta DOFUS Touch No-Emu olarak bilinen Daniel ve Thomas tarafından geliştirilen bu yazılım, Ankama'dan gelen bir uyarı nedeniniyle kapatılmak zorunda kaldı."
         }
       },
       "shortcuts": {
@@ -105,7 +105,7 @@
         "list": {
           "1": "Beklenmedik davranış açıklaması",
           "2": "Nasıl tetiklenir",
-          "3": "Beklenen dışında olağan davranış ne oldu?"
+          "3": "Olması gereken davranış nedir"
         },
         "placeholder": "Açıklama",
         "send": "Gönder"
@@ -116,7 +116,7 @@
         "auto-group": {
           "header": "Grup",
           "active": "Otomatik gruplandırmayı etkinleştir",
-          "warning": "Dikkat, grup liderini takip etmek diğer oyuncular için bir oylama olarak kabul edilebilir, dikkatle ve tenha alanlarda kullanın.",
+          "warning": "Dikkat, grup liderini takip etmek diğer oyuncular tarafından bir bot kullanımı olarak anlaşılabilir, dikkatle ve tenha alanlarda kullanın.",
           "explanation-1": "Davetin otomatik olması için gruptaki karakterlerin liderle arkadaş olması gerekir.",
           "explanation-2": "Üyeler aynı haritada aynı karede lideri takip eder.",
           "leader": "Liderin adı",
@@ -176,7 +176,7 @@
               "success-text": "Şifre silindi."
             },
             "maximum-account": {
-              "title": "Oops!",
+              "title": "Hayda!",
               "text": "Wabbit donör sıralaması ile 4'ten fazla hesap kaydedemezsiniz.",
               "confirm": "VIP rütbemi arttır",
               "cancel": "Anladım"
@@ -203,7 +203,7 @@
         },
         "party-info": {
           "header-lvl":"Partinin seviyesini göster",
-          "header-pp":"Partinin olasılığını göster",
+          "header-pp":"Partinin prospectingini göster",
           "level":"Svy."
         },
         "jobsxp": {
@@ -304,9 +304,9 @@
     "prompt": {
       "title": {
         "confirm": "Onay Gerekli",
-        "warning": "Uyarı !",
-        "success": "Operasyon başarılı !",
-        "error": "Operasyon başarısız !",
+        "warning": "Uyarı!",
+        "success": "Operasyon başarılı!",
+        "error": "Operasyon başarısız!",
         "info": "Bilgi"
       },
       "button": {
