@@ -81,9 +81,9 @@
     "babel-preset-es2015": "~6.24.1",
     "babel-register": "~6.26.0",
     "doctoc": "~1.4.0",
-    "electron": "4.1.3",
-    "electron-builder": "~20.38.4",
-    "electron-packager": "~13.0.1",
+    "electron": "4.2.12",
+    "electron-builder": "~20.44.4",
+    "electron-packager": "~13.1.1",
     "ncp": "~2.0.0",
     "node-sass": "~4.13.0",
     "replace": "~1.0.1",
@@ -109,7 +109,8 @@
       "node_modules/**/*",
       "locale/**/*",
       "package.json",
-      "CHANGELOG.md"
+      "CHANGELOG.md",
+      "LICENCE"
     ],
     "extraFiles": [],
     "mac": {
@@ -120,15 +121,26 @@
     },
     "linux": {
       "executableName": "Lindo",
+      "description": "Lindo Client for Linux",
       "target": [
-        "tar.gz"
+        "tar.gz",
+        "deb"
+      ],
+      "icon": "build/icon.png",
+      "mimeTypes": [
+        "application/x-binary"
       ],
       "maintainer": "Prixe"
+    },
+    "deb": {
+        "desktop": "build/lindo.desktop",
+        "icon": "build/icon.png"
     },
     "win": {
       "target": [
         "zip",
-        "nsis"
+        "nsis",
+        "portable"
       ]
     },
     "nsis": {
