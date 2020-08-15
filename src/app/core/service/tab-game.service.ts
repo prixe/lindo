@@ -30,9 +30,7 @@ export class TabGameService extends EventEmitter {
      * @param cb
      */
     public addTabGame(credentials: { account_name: string, password: string } = undefined, cb: any = undefined): void {
-
         let add = () => {
-
             let tab: Tab = new Tab(this.lastTabGameIndex++);
 
             this.tabService.addTab(tab);
@@ -64,8 +62,7 @@ export class TabGameService extends EventEmitter {
             if (cb) cb();
         };
 
-        if (this.gameService.games.length > 5) {
-
+        if (this.gameService.games.length > 4) {
             this.promptService.confirm({
                 title: this.translate.instant("app.prompt.title.confirm"),
                 html: this.translate.instant("app.main.prompt.tabs-overflow.text"),
