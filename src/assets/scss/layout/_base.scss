@@ -1,4 +1,3 @@
-
 body,
 html,
 application {
@@ -37,7 +36,7 @@ component-auth{
     display: flex !important;
     flex-direction: column !important;
     background: url("../images/auth-bg.jpg") bottom center no-repeat;
-    background-size: 100%;
+    background-size: cover;
 }
 
 component-options, component-bug-report {
