@@ -1,12 +1,12 @@
 //Structure
 @import '~@angular/material/theming';
- 
- @include mat-core();
- $default-dark-app-primary: mat-palette($mat-blue-grey);
- $default-dark-app-accent: mat-palette($mat-deep-orange);
- $default-dark-app-warn: mat-palette($mat-red);
- $default-dark-app-theme: mat-dark-theme($default-dark-app-primary, $default-dark-app-accent, $default-dark-app-warn);
- @include angular-material-theme($default-dark-app-theme);
+
+@include mat-core();
+$default-dark-app-primary: mat-palette($mat-blue-grey);
+$default-dark-app-accent: mat-palette($mat-deep-orange);
+$default-dark-app-warn: mat-palette($mat-red);
+$default-dark-app-theme: mat-dark-theme($default-dark-app-primary, $default-dark-app-accent, $default-dark-app-warn);
+@include angular-material-theme($default-dark-app-theme);
 
 $default-light-app-primary: mat-palette($mat-blue-grey);
 $default-light-app-accent: mat-palette($mat-deep-orange);
@@ -17,24 +17,24 @@ $default-light-app-theme: mat-light-theme($default-light-app-primary, $default-l
 @include mat-menu-theme($default-light-app-theme);
 @include mat-select-theme($default-light-app-theme);
 
- $success-color: #388E3C;
- $success-color-hover: #4CAF50;
- $warning-color: #F57C00;
- $warning-color-hover: #FF9800;
- $danger-color: #D32F2F;
- $danger-color-hover: #F44336;
+$success-color: #388E3C;
+$success-color-hover: #4CAF50;
+$warning-color: #F57C00;
+$warning-color-hover: #FF9800;
+$danger-color: #D32F2F;
+$danger-color-hover: #F44336;
 
- .light-theme {
-     color: black !important;
-     @include angular-material-theme($default-light-app-theme);
- }
- 
- @import "components/all";
- @import "layout/base";
- @import "layout/toolbar";
- @import "layout/dialog";
- @import "vendors/material_design";
- @import "vendors/roboto";
- @import "vendors/miscellaneous";
- @import "vendors/markdown";
- @import "vendors/sweetalert2";
+.light-theme {
+  color: black !important;
+  @include angular-material-theme($default-light-app-theme);
+}
+
+@import "components/all";
+@import "layout/base";
+@import "layout/toolbar";
+@import "layout/dialog";
+@import "vendors/material_design";
+@import "vendors/roboto";
+@import "vendors/miscellaneous";
+@import "vendors/markdown";
+@import "vendors/sweetalert2";

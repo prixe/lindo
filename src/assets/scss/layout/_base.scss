@@ -1,86 +1,87 @@
 body,
 html,
 application {
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-    padding: 0;
-    margin: 0;
-    height: 100%;
-    width: 100%;
-    font-size: 14px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  font-size: 14px;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    color: white !important;
+  display: flex;
+  flex-direction: column;
+  color: white !important;
 }
 
 a:focus {
-    outline: 0px !important;
+  outline: 0px !important;
 }
 
 component-app {
-    flex: 1;
-    display: flex;
+  flex: 1;
+  display: flex;
 }
 
 component-main {
-    flex: 1;
-    display: flex !important;
-    flex-direction: column !important;
-    background: #424242;
+  flex: 1;
+  display: flex !important;
+  flex-direction: column !important;
+  background: #424242;
 }
 
-component-auth{
-    flex: 1;
-    display: flex !important;
-    flex-direction: column !important;
-    background: url("../images/auth-bg.jpg") bottom center no-repeat;
-    background-size: cover;
+component-auth {
+  flex: 1;
+  display: flex !important;
+  flex-direction: column !important;
+  background: url("../images/auth-bg.jpg") bottom center no-repeat;
+  background-size: cover;
 }
 
-component-options, component-bug-report {
-    width: 100%;
-    flex: 1;
-    display: flex !important;
-    flex-direction: column !important;
+component-options,
+component-bug-report {
+  width: 100%;
+  flex: 1;
+  display: flex !important;
+  flex-direction: column !important;
 }
 
 component-option-general {
-    overflow: auto;
+  overflow: auto;
 }
 
 component-option-general,
 component-game-update,
 component-official-game-update,
 ng-component {
-    flex: 1;
+  flex: 1;
 }
 
 .mat-card-header-text {
-    height: 20px !important;
-    margin: auto 10px !important;
+  height: 20px !important;
+  margin: auto 10px !important;
 }
 
 .ng2-tag-input__text-input {
-    background: transparent !important;
+  background: transparent !important;
 }
 
-mat-dialog-container{
-    display: flex !important;
+mat-dialog-container {
+  display: flex !important;
 }
 
-cdk-focus-trap{
-    display: flex !important;
-    flex:1 !important;
+cdk-focus-trap {
+  display: flex !important;
+  flex: 1 !important;
 }
 
-div.cdk-focus-trap-content{
-    display: flex;
-    flex: 1;
+div.cdk-focus-trap-content {
+  display: flex;
+  flex: 1;
 }
 
-ng-component{
-    display: flex;
-    flex-direction: column;
+ng-component {
+  display: flex;
+  flex-direction: column;
 }
