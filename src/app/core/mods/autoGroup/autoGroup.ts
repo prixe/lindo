@@ -271,7 +271,7 @@ export class AutoGroup extends Mod {
             y = Math.floor(Math.random() * (height - 20)) + 10;
             cellId = this.wGame.isoEngine.mapRenderer.grid.grid[x][y].cellId || null;
             flags = this.wGame.isoEngine.mapRenderer.getChangeMapFlags(cellId);
-            if (this.wGame.isoEngine.actorManager.occupiedCells[cellId]
+            if (this.wGame.isoEngine.actorManager.getOccupiedCells(cellId)
                 || flags["bottom"] || flags["top"] || flags["right"] || flags["left"]
                 || !this.wGame.isoEngine.mapRenderer.isWalkable(cellId)) cellId = null;
         }
