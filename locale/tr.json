@@ -66,7 +66,8 @@
             "jobsxp": "Seviye atlamak için iş xp ihtiyacının görüntülenmesini etkinleştirin",
             "estimator": "Savaşta büyü hasarını tahmin etme",
             "hide-mount": "Savaş sırasında binekleri gizle",
-            "fightchronometer" : "Savaş kronometresini göster"
+            "fightchronometer" : "Savaş kronometresini göster",
+            "zaapsearchfilter" : "Zaap arama filtresini göster"
           },
           "groups": {
             "header": "Gruplar"
@@ -200,6 +201,10 @@
               "min-lenght-password": "Şifre en az 1 karakter içermelidir"
             }
           }
+        },
+        "zaapsearchfilter":{
+          "placeholder": "Bir zaap ara"
+          "placeholderZaapi": "Bir zaapi ara"
         },
         "party-info": {
           "header-lvl":"Partinin seviyesini göster",
