@@ -203,7 +203,7 @@
           }
         },
         "zaapsearchfilter":{
-          "placeholder": "Bir zaap ara"
+          "placeholder": "Bir zaap ara",
           "placeholderZaapi": "Bir zaapi ara"
         },
         "party-info": {
