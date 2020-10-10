@@ -35,6 +35,8 @@ export class AutoGroup extends Mod {
 
         this.params = this.settings.option.vip.autogroup;
 
+        this.pathFinder = new PathFinder(wGame);
+
         if (this.params.active) {
             Logger.info('- Auto-Group enable');
 
