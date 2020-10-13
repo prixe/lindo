@@ -1,10 +1,10 @@
 export class CellPathCandidate {
 
-    public i
-    public j
-    public w
-    public d
-    public path
+    public i;
+    public j;
+    public w;
+    public d;
+    public path;
 
     constructor(i, j, w, d, path) {
         this.i = i; // position i in the grid

@@ -1,56 +1,56 @@
 import {
     CellPathCandidate
-} from "./cellPathCandidate"
+} from "./cellPathCandidate";
 import {
     CellPathData
-} from "./cellPathData"
+} from "./cellPathData";
 
 export class PathFinder {
-    private mapPoints
-    private grid
-    private useOldMovementSystem
-    private firstCellZone
-    private OCCUPIED_CELL_WEIGHT
-    private ELEVATION_TOLERANCE
-    private WIDTH
-    private HEIGHT
-    private CELL_NUMBER
+    private mapPoints;
+    private grid;
+    private useOldMovementSystem;
+    private firstCellZone;
+    private OCCUPIED_CELL_WEIGHT;
+    private ELEVATION_TOLERANCE;
+    private WIDTH;
+    private HEIGHT;
+    private CELL_NUMBER;
 
     constructor(wGame: any) {
-        this.mapPoints = {}
-        this.grid = []
-        this.useOldMovementSystem = false
-        this.firstCellZone
-        this.OCCUPIED_CELL_WEIGHT = 10
-        this.ELEVATION_TOLERANCE = 11.825
-        this.WIDTH = 33 + 2
-        this.HEIGHT = 34 + 2
-        this.CELL_NUMBER = 560
+        this.mapPoints = {};
+        this.grid = [];
+        this.useOldMovementSystem = false;
+        this.firstCellZone;
+        this.OCCUPIED_CELL_WEIGHT = 10;
+        this.ELEVATION_TOLERANCE = 11.825;
+        this.WIDTH = 33 + 2;
+        this.HEIGHT = 34 + 2;
+        this.CELL_NUMBER = 560;
 
-        this._generateMapPoints()
-        this._generateGrid()
+        this._generateMapPoints();
+        this._generateGrid();
     }
 
     resetPath() {
-        this.mapPoints = {}
-        this.grid = []
-        this.useOldMovementSystem = false
+        this.mapPoints = {};
+        this.grid = [];
+        this.useOldMovementSystem = false;
 
-        this._generateMapPoints()
-        this._generateGrid()
+        this._generateMapPoints();
+        this._generateGrid();
     }
 
     fillPathGrid(map) {
-        this.firstCellZone = map.cells[0].z || 0
-        this.useOldMovementSystem = true
+        this.firstCellZone = map.cells[0].z || 0;
+        this.useOldMovementSystem = true;
 
         for (let i = 0; i < this.WIDTH; i += 1) {
-            const row = this.grid[i]
+            const row = this.grid[i];
             for (let j = 0; j < this.HEIGHT; j += 1) {
-                const cellId = this.getCellId(i - 1, j - 1)
-                const cellPath = row[j]
-                const cell = map.cells[cellId]
-                this.updateCellPath(cell, cellPath)
+                const cellId = this.getCellId(i - 1, j - 1);
+                const cellPath = row[j];
+                const cell = map.cells[cellId];
+                this.updateCellPath(cell, cellPath);
             }
         }
     }
@@ -106,7 +106,7 @@ export class PathFinder {
                 return [source, this.getCellId(bestFit.i - 1, bestFit.j - 1)];
             }
 
-            console.error(new Error('[pathFinder.getPath] Player is stuck in ' + si + '/' + sj));
+            console.error(new Error("[pathFinder.getPath] Player is stuck in " + si + "/" + sj));
             return [source];
         }
 
@@ -309,35 +309,35 @@ export class PathFinder {
     }
 
     getCellId(x, y) {
-        return this.mapPoints[x + '_' + y]
+        return this.mapPoints[x + "_" + y];
     }
 
     _generateMapPoints() {
-        this.mapPoints = {}
+        this.mapPoints = {};
         for (let cellId = 0; cellId < this.CELL_NUMBER; cellId++) {
             const {
                 x,
                 y
-            } = this.getMapPoint(cellId)
-            this.mapPoints[x + '_' + y] = cellId
+            } = this.getMapPoint(cellId);
+            this.mapPoints[x + "_" + y] = cellId;
         }
     }
 
     _generateGrid() {
         this.grid = []
         for (let i = 0; i < this.WIDTH; i += 1) {
-            const row = []
+            const row = [];
             for (let j = 0; j < this.HEIGHT; j += 1) {
-                row[j] = new CellPathData(i, j)
+                row[j] = new CellPathData(i, j);
             }
-            this.grid[i] = row
+            this.grid[i] = row;
         }
     }
 
     getMapPoint(cellId) {
-        const row = cellId % 14 - ~~(cellId / 28)
-        const x = row + 19
-        const y = row + ~~(cellId / 14)
+        const row = cellId % 14 - ~~(cellId / 28);
+        const x = row + 19;
+        const y = row + ~~(cellId / 14);
         return {
             x,
             y
@@ -345,11 +345,11 @@ export class PathFinder {
     }
 
     areCommunicating(c1, c2, oldMovementSystem = false) {
-        const sameFloor = c1.floor === c2.floor
-        const sameZone = c1.zone === c2.zone
-        let ELEVATION_TOLERANCE = 11.825
-        if (sameFloor) return true
-        if (!sameZone) return false
+        const sameFloor = c1.floor === c2.floor;
+        const sameZone = c1.zone === c2.zone;
+        let ELEVATION_TOLERANCE = 11.825;
+        if (sameFloor) return true;
+        if (!sameZone) return false;
 
         return oldMovementSystem || c1.zone !== 0 || (Math.abs(c1.floor - c2.floor) <= ELEVATION_TOLERANCE)
     }

@@ -66,7 +66,7 @@ export class Mover extends Mod {
         // a quoi sert réellement cellIdFollowInstruction ????
         var occupiedCells = this.wGame.isoEngine.actorManager._occupiedCells;
         var currentCellId = this.wGame.isoEngine.actorManager.userActor.cellId;
-        if (occupiedCells == {} || currentCellId == null) {
+        if (occupiedCells == {} || currentCellId === null) {
             return {
                 cellId: null,
                 direction: null
@@ -74,7 +74,7 @@ export class Mover extends Mod {
         }
         var canMoveDiagonally = this.wGame.isoEngine.actorManager.userActor.canMoveDiagonally;
 
-        let tableau = []
+        let tableau = [];
 
         for (var i = 0; i < cells.length; i++) {
             var cellId = cells[i];
@@ -84,22 +84,22 @@ export class Mover extends Mod {
             if (this.isMobOnCell(cellId) || !this.isCellOnMap(cellId) || !this.isCellWalkable(cellId)) {
                 continue;
             }
-            this.pathFinder.resetPath()
-            this.pathFinder.fillPathGrid(this.wGame.isoEngine.mapRenderer.map)
+            this.pathFinder.resetPath();
+            this.pathFinder.fillPathGrid(this.wGame.isoEngine.mapRenderer.map);
             var path = this.pathFinder.getPath(currentCellId, cellId, occupiedCells, canMoveDiagonally, false);
 
             if (path[path.length - 1] == cellId) {
-                tableau.push([path,path[path.length - 1]])
+                tableau.push([path,path[path.length - 1]]);
             }
         }
         if (tableau.length==0) {
-            console.error("No way, I can't go there");
-            return null
+            Logger.error("No way, I can't go there");
+            return null;
         }
         tableau.sort(function(a,b) {
-            let aa = a[0].length
-            let bb = b[0].length
-            return(aa-bb)
+            let aa = a[0].length;
+            let bb = b[0].length;
+            return(aa-bb);
         })
         if(tableau.length>5){
             return tableau[this.getRandomInt(0, 5)][1];
