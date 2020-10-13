@@ -304,7 +304,7 @@ export class AutoGroup extends Mod {
         return true;
     }
 
-    public getClosestCellToChangeMapRandomised(cells: any, cellIdFollowInstruction: number, direc) {
+    private getClosestCellToChangeMapRandomised(cells: any, cellIdFollowInstruction: number, direc) {
         // a quoi sert réellement cellIdFollowInstruction ????
         var occupiedCells = this.wGame.isoEngine.actorManager._occupiedCells;
         var currentCellId = this.wGame.isoEngine.actorManager.userActor.cellId;
@@ -323,7 +323,7 @@ export class AutoGroup extends Mod {
             if (!this.wGame.isoEngine.mapRenderer.getChangeMapFlags(cellId)[direc]) {
                 continue;
             }
-            if (this.isMobOnCell(cellId)) {
+            if (this.isMobOnCell(cellId) || !this.isCellOnMap(cellId) || !this.isCellWalkable(cellId)) {
                 continue;
             }
             this.pathFinder.resetPath()
@@ -335,11 +335,8 @@ export class AutoGroup extends Mod {
             }
         }
         if (tableau.length==0) {
-            console.log("No way, I can't go there");
-            return {
-                cellId: null,
-                direction: null
-            }
+            console.error("No way, I can't go there");
+            return null
         }
         tableau.sort(function(a,b) {
             let aa = a[0].length
@@ -437,6 +434,14 @@ export class AutoGroup extends Mod {
         }
     }
 
+    private isCellOnMap(cell: number): boolean {
+    	return this.wGame.isoEngine.mapRenderer.map.cells[cell];
+    }
+
+    private isCellWalkable(cell: number): boolean {
+    	return this.wGame.isoEngine.mapRenderer.isWalkable(cell);
+    }
+    
     private isMobOnCell(cellId) {
         var occupiedCells = this.wGame.isoEngine.actorManager._occupiedCells;
         if (occupiedCells[cellId]) {
