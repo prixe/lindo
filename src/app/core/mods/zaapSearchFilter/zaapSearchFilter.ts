@@ -36,7 +36,7 @@ export class ZaapSearchFilter extends Mod {
     private createSearchFilter(): void {
         this.injectInputInDom();
 
-        this.zaapSearchInput.addEventListener("change", () => {
+        this.zaapSearchInput.addEventListener("keyup", () => {
             let zaapWanted = this.zaapSearchInput.value.toLowerCase();
 
             let zaapList = this.wGame.document.getElementsByClassName("lindo_zaapBodyHeight__custom")[0].getElementsByClassName("row");
@@ -95,6 +95,7 @@ export class ZaapSearchFilter extends Mod {
         this.zaapSearchInput     = this.wGame.document.createElement("input");
 
         this.zaapSearchInput.setAttribute("placeholder", this.inputPlaceholder);
+        this.zaapSearchInput.setAttribute("autofocus", "true");
         this.zaapSearchInput.setAttribute("id", "zaapName");
 
         this.zaapSearchContainer.classList.add("lindo_zaapSearch__container");
@@ -109,7 +110,7 @@ export class ZaapSearchFilter extends Mod {
     private createSearchFilterZaapi(): void {
         this.injectInputInDomZaapi();
 
-        this.zaapSearchInput.addEventListener("change", () => {
+        this.zaapSearchInput.addEventListener("keyup", () => {
             let zaapWanted = this.zaapSearchInput.value.toLowerCase();
 
             let zaapList = this.wGame.document.getElementsByClassName("lindo_subwayBodyHeight__custom")[0]
@@ -169,6 +170,7 @@ export class ZaapSearchFilter extends Mod {
         this.zaapSearchInput     = this.wGame.document.createElement("input");
 
         this.zaapSearchInput.setAttribute("placeholder", this.placeholderZaapi);
+        this.zaapSearchInput.setAttribute("autofocus", "true");
         this.zaapSearchInput.setAttribute("id", "zaapName");
 
         this.zaapSearchContainer.classList.add("lindo_zaapSearch__container");
