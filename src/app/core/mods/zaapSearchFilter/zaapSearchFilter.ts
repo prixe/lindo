@@ -42,7 +42,7 @@ export class ZaapSearchFilter extends Mod {
             let zaapList = this.wGame.document.getElementsByClassName("lindo_zaapBodyHeight__custom")[0].getElementsByClassName("row");
 
             for (const currentZaap of zaapList) {
-                let destination = currentZaap.getElementsByClassName("destinationName")
+                let destination = currentZaap.getElementsByClassName("destinationName");
 
                 if (!destination.length) {
                     continue;
@@ -56,7 +56,6 @@ export class ZaapSearchFilter extends Mod {
             }
         });
     }
-
 
     private injectInputInDom(): void {
         this.styleTag = this.wGame.document.createElement("style");
@@ -85,7 +84,6 @@ export class ZaapSearchFilter extends Mod {
         }
         `;
 
-
         let zaapPanels = this.wGame.document.getElementsByClassName("zaapBody")[0]
         .getElementsByClassName("panels")[0];
 
@@ -105,8 +103,6 @@ export class ZaapSearchFilter extends Mod {
         this.wGame.document.getElementsByClassName("zaapBody")[0].prepend(this.zaapSearchContainer);
     }
 
-
-
     private createSearchFilterZaapi(): void {
         this.injectInputInDomZaapi();
 
@@ -117,21 +113,19 @@ export class ZaapSearchFilter extends Mod {
             .getElementsByClassName("row");
 
             for (const currentZaap of zaapList) {
-                let destination = currentZaap.getElementsByClassName("destinationName")
+                let destination = currentZaap.getElementsByClassName("destinationName");
 
                 if (!destination.length) {
                     continue;
                 }
 
                 currentZaap.style.display = "none";
-
-                if (currentZaap.innerText.toLowerCase().includes(zaapWanted)){
+                if (currentZaap.innerText.toLowerCase().includes(zaapWanted)) {
                     currentZaap.style.display = "block";
                 }
             }
         });
     }
-
 
     private injectInputInDomZaapi(): void {
         this.styleTag = this.wGame.document.createElement("style");
@@ -160,7 +154,6 @@ export class ZaapSearchFilter extends Mod {
         }
         `;
 
-
         let zaapPanels = this.wGame.document.getElementsByClassName("subwayBody")[0]
         .getElementsByClassName("panels")[0];
 
@@ -180,7 +173,6 @@ export class ZaapSearchFilter extends Mod {
         this.wGame.document.getElementsByClassName("subwayBody")[0].prepend(this.zaapSearchContainer);
     }
 
-
     private resetSearchFilter(): void {
         if (this.styleTag) {
             this.styleTag.remove();
@@ -188,7 +180,6 @@ export class ZaapSearchFilter extends Mod {
             this.zaapSearchContainer.remove();
         }
     }
-
 
     public reset() {
         this.resetSearchFilter()
