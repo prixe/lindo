@@ -133,8 +133,8 @@
       "maintainer": "Prixe"
     },
     "deb": {
-        "desktop": "build/lindo.desktop",
-        "icon": "build/icon.png"
+      "desktop": "build/lindo.desktop",
+      "icon": "build/icon.png"
     },
     "win": {
       "target": [
