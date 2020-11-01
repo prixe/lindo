@@ -1,6 +1,13 @@
 ## ⚠ ATTENTION, VÉRIFIEZ QUE VOUS TÉLÉCHARGEZ LINDO DEPUIS LINDO.NO-EMU.CO
 ## ⚠ CERTAINS SITES MALVEILLANTS INSTALLERONT UN VIRUS SUR VOTRE ORDINATEUR
 
+## [2.5.1] - 2020-11-01
+
+### Correctifs
+
+- Correction du mod d'échange rapide qui ne fonctionnait plus
+- Il est de nouveau possible de désactiver la prévisualisation des dégâts
+
 ## [2.5.0] - 2020-11-01
 
 ### Ajouts
