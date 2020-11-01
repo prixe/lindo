@@ -1,5 +1,33 @@
 ## ⚠ ATTENTION, VÉRIFIEZ QUE VOUS TÉLÉCHARGEZ LINDO DEPUIS LINDO.NO-EMU.CO
-## ⚠ CERTAINS SITES MALVEILLANTS COMME LINDO-EMU.COM INSTALLERONT UN VIRUS SUR VOTRE ORDINATEUR
+## ⚠ CERTAINS SITES MALVEILLANTS INSTALLERONT UN VIRUS SUR VOTRE ORDINATEUR
+
+## [2.5.0] - 2020-11-01
+
+### Ajouts
+
+- Ajout d'un champ de recherche pour filtrer les Zaaps et Zaapis
+- Ajout des traductions polonaises et turques
+
+### Améliorations
+
+- Toutes les versions sont affichées dans le changelog inclus dans Lindo
+- Amélioration de la stabilité du téléchargement des mises à jour de Dofus Touch
+- Il n'est plus possible de fermer la fenêtre de ReCaptcha avec la touche Echap
+- Amélioration de l'exécutable compilé pour Linux
+- Mise à jour des User Agents utilisés
+
+### Correctifs
+
+- Amélioration des traductions espagnole et italienne
+- Lorsque l'audio est désactivé, il ne se réactive plus en sauvegardant les paramètres ou en relançant Lindo
+- Corrections de bugs sur les mods suivants :
+  - Chronomètre en combat
+  - Affichage de l'expérience métier
+  - Échange rapide
+  - Invitation auto
+  - Auto follow
+- L'avertissement quand on tente d'ouvrir un 7e onglet s'affiche maintenant à l'ouverture du 6e onglet
+- Correction de l'alignement de certains éléments sur l'interface
 
 ## [2.4.0] - 2020-02-15
 
