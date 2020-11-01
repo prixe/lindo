@@ -40,7 +40,7 @@ export class RapidExchange extends Mod {
         this.moveItem(slot.itemInstance, "exchangeInventory", false);
     }
     private exchangeStorageEvent(slot: any, x: any, y: any, storage: any) {
-        this.moveItem(slot.itemInstance, "exchangeStorage", false);
+        this.moveItem(slot.itemInstance, "exchangeStorage", true);
     }
     private tradeWithPlayerAndNPCInventoryEvent(slot: any, x: any, y: any, storage: any) {
         this.moveItem(slot.itemInstance, "tradeWithPlayerAndNPCInventory", false);
@@ -174,9 +174,5 @@ export class RapidExchange extends Mod {
                     }
                 }
         }
-    }
-
-    public reset() {
-        super.reset();
     }
 }
