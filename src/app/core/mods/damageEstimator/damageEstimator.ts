@@ -9,8 +9,7 @@ export class DamageEstimator extends Mod {
     private damageContainer: DamageContainer;
 
     startMod(): void {
-        this.params = this.settings.option.vip.general;
-
+        this.params = this.settings.option.vip.general.estimator;
         if (this.params) {
             Logger.info('- enable Damage-Estimator');
 
