@@ -54,7 +54,7 @@ deploy:
     - releases/Lindo-*.zip
     - releases/lindo-*.tar.gz
     - releases/Lindo*.exe
-    - releases/Lindo*.deb
+    - releases/lindo*.deb
   on:
     tags: true
     repo: prixe/lindo
