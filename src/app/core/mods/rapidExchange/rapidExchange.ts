@@ -71,15 +71,15 @@ export class RapidExchange extends Mod {
     // Listen "slot-doubletap" events on windows and when it occurs, call the moveItem function
     private setInventoryEventListener() {
         if (this.exchangeInventory) {
-            this.exchangeInventory.on('slot-doubletap', this.exchangeInventoryEvent);
+            this.on(this.exchangeInventory, 'slot-doubletap', this.exchangeInventoryEvent.bind(this));
         }
 
         if (this.exchangeStorage) {
-            this.exchangeStorage.on('slot-doubletap', this.exchangeStorageEvent);
+            this.on(this.exchangeStorage, 'slot-doubletap', this.exchangeStorageEvent.bind(this));
         }
 
         if (this.tradeWithPlayerAndNPCInventory) {
-            this.tradeWithPlayerAndNPCInventory.on('slot-doubletap', this.tradeWithPlayerAndNPCInventoryEvent);
+            this.on(this.tradeWithPlayerAndNPCInventory, 'slot-doubletap', this.tradeWithPlayerAndNPCInventoryEvent.bind(this));
         }
 
         // Special Event for the "common" trade window
@@ -178,8 +178,5 @@ export class RapidExchange extends Mod {
 
     public reset() {
         super.reset();
-        this.exchangeInventory.removeListener('slot-doubletap', this.exchangeInventoryEvent);
-        this.exchangeStorage.removeListener('slot-doubletap', this.exchangeStorageEvent);
-        this.tradeWithPlayerAndNPCInventory.removeListener('slot-doubletap', this.tradeWithPlayerAndNPCInventoryEvent);
     }
 }
