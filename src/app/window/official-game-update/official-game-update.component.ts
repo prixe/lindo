@@ -543,6 +543,8 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
                         fileStream.end();
                         resolve();
                     });
+                }).catch((error) => {
+                    reject(error);
                 });
             } catch (e) { Logger.error(e.message); reject(e.message); }
         });
