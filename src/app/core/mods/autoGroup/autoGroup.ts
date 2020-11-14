@@ -8,6 +8,7 @@ import { EventEmitter } from 'eventemitter3';
 import { Logger } from "app/core/electron/logger.helper";
 
 import { Mod } from "../mod";
+import { PathFinder } from "./pathfinder";
 
 type Direction = "top" | "bottom" | "left" | "right" | false;
 
@@ -21,6 +22,8 @@ export class AutoGroup extends Mod {
     private lastType: string = null;
     private movedOnRandomCell: boolean = true;
 
+    private pathFinder: PathFinder
+
     constructor(
         wGame: any,
         settings: SettingsService,
@@ -31,6 +34,8 @@ export class AutoGroup extends Mod {
         this.ipcRendererService = ipcRendererService;
 
         this.params = this.settings.option.vip.autogroup;
+
+        this.pathFinder = new PathFinder(wGame);
 
         if (this.params.active) {
             Logger.info('- Auto-Group enable');
@@ -299,6 +304,52 @@ export class AutoGroup extends Mod {
         return true;
     }
 
+    private getClosestCellToChangeMapRandomised(cells: any, cellIdFollowInstruction: number, direc) {
+        // a quoi sert réellement cellIdFollowInstruction ????
+        var occupiedCells = this.wGame.isoEngine.actorManager._occupiedCells;
+        var currentCellId = this.wGame.isoEngine.actorManager.userActor.cellId;
+        if (occupiedCells == {} || currentCellId == null) {
+            return {
+                cellId: null,
+                direction: null
+            }
+        }
+        var canMoveDiagonally = this.wGame.isoEngine.actorManager.userActor.canMoveDiagonally;
+
+        let tableau = []
+
+        for (var i = 0; i < cells.length; i++) {
+            var cellId = cells[i];
+            if (!this.wGame.isoEngine.mapRenderer.getChangeMapFlags(cellId)[direc]) {
+                continue;
+            }
+            if (this.isMobOnCell(cellId) || !this.isCellOnMap(cellId) || !this.isCellWalkable(cellId)) {
+                continue;
+            }
+            this.pathFinder.resetPath()
+            this.pathFinder.fillPathGrid(this.wGame.isoEngine.mapRenderer.map)
+            var path = this.pathFinder.getPath(currentCellId, cellId, occupiedCells, canMoveDiagonally, false);
+
+            if (path[path.length - 1] == cellId /*&& (!finalPath || (path.length < finalPath.length && path.length > 1))*/) {
+                tableau.push([path,path[path.length - 1]])
+            }
+        }
+        if (tableau.length==0) {
+            console.error("No way, I can't go there");
+            return null
+        }
+        tableau.sort(function(a,b) {
+            let aa = a[0].length
+            let bb = b[0].length
+            return(aa-bb)
+        })
+        if(tableau.length>5){
+            return tableau[this.getRandomInt(0, 5)][1];
+        }else{
+            return tableau[this.getRandomInt(0, tableau.length-1)][1];
+        }
+    }
+
     private processFollow(followInstruction: any, success: any, fail: any): void {
         this.idle = false;
         if (followInstruction.mapId == this.wGame.isoEngine.mapRenderer.mapId && this.wGame.gui.fightManager.fightState < 0) {
@@ -325,7 +376,8 @@ export class AutoGroup extends Mod {
                         Logger.info('Failed to change map with cellId ' + followInstruction.cellId);
                         return;
                     }
-                    cell = this.pickNeighbourBorderCell(cells, followInstruction.cellId);
+                    cell = this.getClosestCellToChangeMapRandomised(cells, followInstruction.cellId,dir);
+                    //cell = this.pickNeighbourBorderCell(cells, followInstruction.cellId);
                 }
                 let move = () => {
                     let scenePos = this.wGame.isoEngine.mapRenderer.getCellSceneCoordinate(cell);
@@ -380,6 +432,26 @@ export class AutoGroup extends Mod {
             this.log(followInstruction.mapId + ' != ' + this.wGame.isoEngine.mapRenderer.mapId);
             fail('Mapid not matching or character in fight');
         }
+    }
+
+    private isCellOnMap(cell: number): boolean {
+    	return this.wGame.isoEngine.mapRenderer.map.cells[cell];
+    }
+
+    private isCellWalkable(cell: number): boolean {
+    	return this.wGame.isoEngine.mapRenderer.isWalkable(cell);
+    }
+    
+    private isMobOnCell(cellId) {
+        var occupiedCells = this.wGame.isoEngine.actorManager._occupiedCells;
+        if (occupiedCells[cellId]) {
+            for (var j = 0; j < occupiedCells[cellId].length; j++) {
+                if (occupiedCells[cellId][j].actorId < 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     private pickNeighbourCell(cellId: number): number {
