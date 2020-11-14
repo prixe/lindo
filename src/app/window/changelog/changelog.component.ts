@@ -2,8 +2,8 @@ import { Component, NgZone, OnInit } from '@angular/core';
 import { ApplicationService } from 'app/core/electron/application.service';
 import { ChangelogWindowService } from './changelog.window';
 import { MatDialogRef } from '@angular/material';
+import * as marked from 'marked';
 
-const marked = markedLib;
 const fs = fsLib;
 
 @Component({
