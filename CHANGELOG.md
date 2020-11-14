@@ -1,6 +1,14 @@
 ## ⚠ ATTENTION, VÉRIFIEZ QUE VOUS TÉLÉCHARGEZ LINDO DEPUIS LINDO.NO-EMU.CO
 ## ⚠ CERTAINS SITES MALVEILLANTS INSTALLERONT UN VIRUS SUR VOTRE ORDINATEUR
 
+## [2.5.2] - 2020-11-14
+
+### Améliorations
+
+- Améliorations de l'auto follow
+- Améliorations du déplacement rapide entre les maps
+- Ajout de logs lors du téléchargement des mises à jour de Dofus Touch
+
 ## [2.5.1] - 2020-11-01
 
 ### Correctifs
