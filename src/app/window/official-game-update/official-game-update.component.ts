@@ -548,7 +548,6 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
                 let fileStream = fs.createWriteStream(filePath);
                 fileStream.on('finish', () => {
                     this.addProgress(1);
-                    fileStream.end();
                     resolve();
                 });
                 fileStream.on('error', (error: Error) => {
