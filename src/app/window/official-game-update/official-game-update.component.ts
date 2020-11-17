@@ -57,11 +57,10 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
     public progressMode: string = "buffer";
     public progressValue: number = 0;
     public displayedProgress: number = 0;
-    private saveFile: any;
     public informations: string;
     private sub: Subscription;
 
-    private promiseQueueProcessingMax: number = 12;
+    private promiseQueueProcessingMax: number = 30;
     private promiseQueueProcessing: number = 0;
     private promiseQueue: any = [];
 
@@ -319,7 +318,7 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
             }).catch((error: any) => {
                 Logger.info(error);
                 reject(error);
-            })
+            });
         });
     }
 
@@ -547,19 +546,19 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
             try {
                 this.ensureDirectoryExists(filePath);
                 let fileStream = fs.createWriteStream(filePath);
+                fileStream.on('finish', () => {
+                    this.addProgress(1);
+                    fileStream.end();
+                    resolve();
+                });
+                fileStream.on('error', (error: Error) => {
+                    reject(error.message);
+                });
                 axios.get(url, {
                     responseType: 'stream',
                     adapter: httpAdapter
                 }).then((response: any) => {
-                    const stream = response.data;
-                    stream.on('data', (chunk: ArrayBuffer) => {
-                        fileStream.write(Buffer.from(chunk));
-                    });
-                    stream.on('end', () => {
-                        this.addProgress(1);
-                        fileStream.end();
-                        resolve();
-                    });
+                    response.data.pipe(fileStream);
                 }).catch((error: any) => {
                     reject(error);
                 });
