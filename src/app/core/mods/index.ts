@@ -12,3 +12,4 @@ export { Notifications } from "app/core/mods/notifications/notifications";
 export { PartyInfo } from "app/core/mods/partyInfo/partyInfo";
 export { RapidExchange } from "app/core/mods/rapidExchange/rapidExchange";
 export { Shortcuts } from "app/core/mods/shortcuts/shortcuts";
+export { Harvest } from "app/core/mods/harvestBar/harvest";

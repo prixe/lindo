@@ -67,7 +67,8 @@
             "estimator": "Włącz przewidywanie obrażeń podczas walki",
             "hide-mount": "Nie pokazuj wierzchowców podczas walki",
             "fightchronometer" : "Pokaż czas trwania walki",
-            "zaapsearchfilter" : "Pokaż filtr wyszukiwania zaap'ów"
+            "zaapsearchfilter" : "Pokaż filtr wyszukiwania zaap'ów",
+            "harvest-indicator" : "Aktywuj wyświetlanie pozostałego czasu poniżej zasobów"
           },
           "groups": {
             "header": "Grupy"
