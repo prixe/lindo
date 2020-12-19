@@ -39,5 +39,17 @@
             </ng-container>
         </div>
 
+        <div class="col-xs-12" style="margin-bottom: 10px;"> 
+            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.show_resources">{{ 'app.window.options.features.general.show-resources' | translate }}</mat-checkbox>
+        </div>
+
+        <div class="col-xs-12">
+            <ng-container *ngIf="settingsService.option.vip.general.show_resources">
+                <component-option-input-shortcuts id="show_resources_shortcut" name="{{ 'app.window.options.features.general.show-resources-shortcut' | translate }}"
+                    [(model)]="settingsService.option.vip.general.show_resources_shortcut">
+                </component-option-input-shortcuts>
+            </ng-container>
+        </div>
+
     </div>
 </div>

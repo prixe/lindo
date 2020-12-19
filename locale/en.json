@@ -67,7 +67,9 @@
             "estimator": "Estimating spell damage in battle",
             "hide-mount": "Hide mounts during fights",
             "fightchronometer" : "Show combats chronometer",
-            "zaapsearchfilter" : "Show zaap search filter"
+            "zaapsearchfilter" : "Show zaap search filter",
+            "show-resources" : "Show map resources",
+            "show-resources-shortcut" : "Shortcut for show/hide map resources"
           },
           "groups": {
             "header": "Groups"
