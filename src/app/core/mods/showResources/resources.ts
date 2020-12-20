@@ -1,5 +1,5 @@
 export class Resources {
-    private name: string;
+    public readonly name: string;
     private typeId: number;
     private resources: {elemId: number, state: State}[] = [];
 
@@ -10,15 +10,9 @@ export class Resources {
     }
 
     public addOrUpdateResource(resource: Resource) {
-        if (this.resources.length > 0 && this.resources.find(r => r.elemId == resource.elementId) != undefined) {
-            this.resources.find(r => r.elemId == resource.elementId).state = resource.elementState;
-        } else {
-            this.resources.push({elemId: resource.elementId, state: resource.elementState});
-        }
-    }
-
-    public getName(): string {
-        return this.name;
+        const ref = this.resources.find(r => r.elemId == resource.elementId);
+        if (ref) ref.state = resource.elementState;
+        else this.resources.push({elemId: resource.elementId, state: resource.elementState});
     }
 
     public getCount(): string {
@@ -103,3 +97,31 @@ export const iconIdByTypeId: any = {
     114: '39111',   // silicate
     135: '39112',   // obsidienne
 }
+
+export const ressourcesToSkip: number[] = [
+    -1,     // undefined
+    2,      // Scie
+    11,     // Table de confection
+    12,     // Atelier
+    13,     // Etabli
+    16,     // Zaap
+    22,     // Four
+    27,     // Moule
+    41,     // Meule
+    50,     // Concasseur
+    57,     // Enclume
+    86,     // Machine à Coudre
+    90,     // Alambic
+    96,     // Plan de Travail
+    97,     // Plan de Travail
+    105,    // Poubelle
+    106,    // Zaapi
+    117,    // Atelier Magique
+    119,    // Liste des artisans
+    120,    // Enclos
+    122,    // Atelier de bricolage
+    128,    // Statue de classe
+    138,    // Fabrique de Trophées
+    145,    // Atelier d'Emballage
+    208,    // Krosmaster
+]

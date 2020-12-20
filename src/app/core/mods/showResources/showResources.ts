@@ -1,7 +1,7 @@
 import { Logger } from "app/core/electron/logger.helper";
 import { ShortcutsHelper } from "app/core/helpers/shortcuts.helper";
 import { Mod } from "../mod";
-import { Resources, Resource, iconIdByTypeId } from "./resources";
+import { Resources, Resource, iconIdByTypeId, ressourcesToSkip } from "./resources";
 
 export class ShowResources extends Mod {
     private shortcutsHelper: ShortcutsHelper;
@@ -9,7 +9,6 @@ export class ShowResources extends Mod {
     private data: Map<number, Resources> = new Map();
     private elemIdToTypeid: Map<number, number> = new Map();
     private resourceTotal: number = 0;
-    private ressourcesToSkip: number[] = [-1, 2, 11, 12, 13, 16, 22, 27, 41, 50, 57, 86, 90, 96, 97, 105, 106, 117, 119, 120, 122, 128, 138, 145, 168, 208];
 
     private resourcesBox: HTMLDivElement;
     private enabled: boolean = true;
@@ -52,7 +51,7 @@ export class ShowResources extends Mod {
                 }
             `;
 
-            this.wGame.document.getElementsByTagName('head')[0].appendChild(resourcesBoxCss);
+            this.wGame.document.querySelector('head').appendChild(resourcesBoxCss);
 
             this.shortcutsHelper = new ShortcutsHelper(this.wGame);
             this.shortcutsHelper.bind(this.params.show_resources_shortcut, () => this.toggle() );
@@ -70,15 +69,17 @@ export class ShowResources extends Mod {
         statedElements.forEach((s) => statedMap.set(s.elementId, s.elementState));
         this.resourceTotal = interactiveElements.length;
 
+        // create all resources and add state
         interactiveElements.forEach((i) => {
             const r: Resource = {elementId: i.elementId,
                                  elementTypeId: i.elementTypeId,
                                  name: i._name,
                                  elementState: statedMap.get(i.elementId)};
 
+            // update resource if exist else create new
             if (this.data.has(r.elementTypeId)) {
                 this.data.get(r.elementTypeId).addOrUpdateResource(r);
-            } else if (!this.ressourcesToSkip.includes(r.elementTypeId)) {
+            } else if (!ressourcesToSkip.includes(r.elementTypeId)) {
                 this.data.set(r.elementTypeId, new Resources(r));
                 if (iconIdByTypeId[r.elementTypeId] == undefined) console.log('Unknow ressource "' + r.name + '" with typeId = ' + r.elementTypeId);
             }
@@ -89,10 +90,15 @@ export class ShowResources extends Mod {
         if (this.enabled) this.create();
     }
 
+    /**
+     * Update the target element and recreate the html
+     * @param statedElement Element to update
+     */
     private onStatedElementUpdated(statedElement: any) {
         setTimeout(() => {
             this.clearHtml();
             const typeId: number = this.elemIdToTypeid.get(statedElement.elementId);
+
             try {
                 this.data.get(typeId).addOrUpdateResource({elementId: statedElement.elementId,
                     elementTypeId: typeId,
@@ -101,6 +107,7 @@ export class ShowResources extends Mod {
             } catch {
                 console.error('Unabled to update resource with typeId = ' + typeId);
             }
+
             if (this.enabled) this.create();
         }, 500);
     }
@@ -113,13 +120,14 @@ export class ShowResources extends Mod {
             let item = `
                 <div class="resource-item">
                     <img src="${resource.getIcon()}"/>
-                    <p>${resource.getName()}</p>
+                    <p>${resource.name}</p>
                     <p>${resource.getCount()}</p>
                 </div>
             `;
             this.resourcesBox.insertAdjacentHTML('beforeend', item);
         });
 
+        // Insert element in DOM & center
         if (this.resourcesBox.innerHTML != '') {
             this.wGame.foreground.rootElement.appendChild(this.resourcesBox);
             let boxWidth: number = this.resourcesBox.offsetWidth / 2;
