@@ -9,7 +9,7 @@ export class ShowResources extends Mod {
     private data: Map<number, Resources> = new Map();
     private elemIdToTypeid: Map<number, number> = new Map();
     private resourceTotal: number = 0;
-    private ressourcesToSkip: number[] = [-1, 16, 105, 106, 120, 128, 168, 208];
+    private ressourcesToSkip: number[] = [-1, 2, 11, 12, 13, 16, 22, 27, 41, 50, 57, 86, 90, 96, 97, 105, 106, 117, 119, 120, 122, 128, 138, 145, 168, 208];
 
     private resourcesBox: HTMLDivElement;
     private enabled: boolean = true;
