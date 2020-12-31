@@ -96,6 +96,25 @@ export const iconIdByTypeId: any = {
     113: '39110',   // dolomite
     114: '39111',   // silicate
     135: '39112',   // obsidienne
+    // Pecheur
+    /*: '41273', // crabe sourimi
+    : '41294', // goujon
+    : '41292', // greu-vette
+    : '41405', // pichon Eud'Compet
+    : '41271', // poisson igloo
+    : '41269', // poisson pané
+    : '41277', // poisson-Chaton
+    : '41394', // truite
+    : '41400', // brochet
+    : '41309', // kralamoure
+    : '41317', // sardine brillante
+    : '41290', // bar rikain
+    : '41305', // carpe d'iem
+    : '41296', // raie bleue
+    : '170877', // piraniak
+    : '41313', // perche
+    : '41322', // requin marteau-faucille
+    : '41403', // poisskaille */
 }
 
 export const ressourcesToSkip: number[] = [
