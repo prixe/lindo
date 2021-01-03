@@ -67,7 +67,9 @@
             "jobsxp": "Activer l'affichage de l'xp a obtenir pour monter de niveau (métier)",
             "hide-mount": "Cacher les montures pendant les combats",
             "fightchronometer": "Afficher le chronomètre de combats",
-            "zaapsearchfilter" : "Afficher le filtre de recherche de zaap"
+            "zaapsearchfilter" : "Afficher le filtre de recherche de zaap",
+            "monster-tooltip": "Affiche les informations des groupes de monstres sur la carte",
+            "monster-tooltip-shortcut": "Raccourci pour les informations des groupes de monstres"
           },
           "groups": {
             "header": "Groupe"
@@ -212,6 +214,10 @@
         },
         "jobsxp": {
           "text": " XP manquant<br>avant le niveau "
+        },
+        "monstertooltip": {
+          "level": "Rang",
+          "group": "Groupe"
         }
       },
       "general": {

@@ -717,6 +717,8 @@ export module Option {
             private _hidden_mount: boolean;
             private _party_info_pp:boolean;
             private _party_info_lvl:boolean;
+            private _monster_tooltip: boolean;
+            private _monster_tooltip_shortcut: string;
 
             get party_info_pp():boolean{
                 return this._party_info_pp;
@@ -808,6 +810,24 @@ export module Option {
                 this._health_bar_shortcut = health_bar_shortcut;
             }
 
+            get monster_tooltip(): boolean {
+                return this._monster_tooltip;
+            }
+
+            set monster_tooltip(monster_tooltip: boolean) {
+                this.settingsProvider.write('option.vip.general.monster_tooltip', monster_tooltip);
+                this._monster_tooltip = monster_tooltip;
+            }
+
+            get monster_tooltip_shortcut(): string {
+                return this._monster_tooltip_shortcut;
+            }
+
+            set monster_tooltip_shortcut(monster_tooltip_shortcut: string) {
+                this.settingsProvider.write('option.vip.general.monster_tooltip_shortcut', monster_tooltip_shortcut);
+                this._monster_tooltip_shortcut = monster_tooltip_shortcut;
+            }
+
             constructor(private settingsProvider: SettingsProvider) {
                 this.disable_inactivity = this.settingsProvider.read('option.vip.general.disable_inactivity');
                 this.health_bar = this.settingsProvider.read('option.vip.general.health_bar');
@@ -819,6 +839,8 @@ export module Option {
                 this.hidden_mount = this.settingsProvider.read('option.vip.general.hidden_mount');
                 this.party_info_pp = this.settingsProvider.read('option.vip.general.party_info_pp');
                 this.party_info_lvl = this.settingsProvider.read('option.vip.general.party_info_lvl');
+                this._monster_tooltip = this.settingsProvider.read('option.vip.general.monster_tooltip');
+                this._monster_tooltip_shortcut = this.settingsProvider.read('option.vip.general.monster_tooltip_shortcut');
             }
         }
 
