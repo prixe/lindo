@@ -45,6 +45,7 @@ export enum State { canUse, cantUse, inUse }
 export const iconIdByTypeId: any = {
     // General
     84: '15026',    // eau
+    146: '89002',   // paquet cadeau
     // Paysan
     38: '34009',    // blé
     39: '34080',    // houblon
@@ -141,6 +142,9 @@ export const ressourcesToSkip: number[] = [
     122,    // Atelier de bricolage
     128,    // Statue de classe
     138,    // Fabrique de Trophées
+    143,    // Machine à jouets
+    144,    // Pressoir à poisson
     145,    // Atelier d'Emballage
+    168,    // Banque
     208,    // Krosmaster
 ]
