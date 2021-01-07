@@ -72,12 +72,16 @@ export class PartyMember extends Mod{
 
     // Use for update members list
     private updatePartyMembers() {
+        const oldMembers: Map<number, boolean> = this.members;
         this.members.clear();
+
         if (this.wGame.gui.party.currentParty && this.wGame.gui.party.currentParty._childrenList.length > 0) {
             const mapId: number = this.wGame.isoEngine.mapRenderer.mapId;
 
             this.wGame.gui.party.currentParty._childrenList.forEach((m) => {
-                const isOnMap: boolean = mapId == m.memberData.mapId;
+                let isOnMap: boolean = mapId == m.memberData.mapId;
+                if (oldMembers.has(m.memberData.id)) isOnMap = oldMembers.get(m.memberData.id);
+
                 this.members.set(m.memberData.id, isOnMap);
             });
         }
