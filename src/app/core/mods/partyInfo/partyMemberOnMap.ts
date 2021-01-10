@@ -9,7 +9,7 @@ export class PartyMember extends Mod{
         this.params = this.settings.option.vip.general;
 
         if (this.params.party_member_on_map) {
-            Logger.info('- Enabled PartyMember');
+            Logger.info('- enabled PartyMember');
 
             const pmomCss = document.createElement('style');
             pmomCss.id = 'pmomCss';
@@ -45,11 +45,10 @@ export class PartyMember extends Mod{
             this.on(this.wGame.dofus.connectionManager, 'GameContextRemoveElementMessage', (e: any) => this.updateMember(e, false));
             // Receive when your game map change
             this.on(this.wGame.dofus.connectionManager, 'MapComplementaryInformationsDataMessage', (e: any) => this.updateMemberOnMapChange(e));
-        }  
+        }
     }
 
     private updateDOM() {
-        this.destroy();
         let i = 0;
         this.members.forEach((status, memberId) => {
             if (memberId != this.wGame.isoEngine.actorManager.userId) {
@@ -62,11 +61,19 @@ export class PartyMember extends Mod{
 
     private addStatusToMember(divMember: Element, memberStatus: boolean) {
         if (divMember != null) {
-            const status: HTMLDivElement = document.createElement('div');
-            status.className = 'pmomStatus';
-            status.classList.add(memberStatus ? 'pmomOnMap' : 'pmomNotInMap');
-            this.divElement.push(status);
-            divMember.appendChild(status);
+            const className = memberStatus ? 'pmomOnMap' : 'pmomNotInMap';
+
+            let divStatus = divMember.lastElementChild;
+            if (divStatus.classList.contains('pmomStatus')) {
+                // div already exist
+                divStatus.classList.replace(divStatus.classList.item(1), className);
+            } else {
+                divStatus = document.createElement('div');
+                divStatus.className = 'pmomStatus';
+                divStatus.classList.add(className);
+                this.divElement.push(divStatus);
+                divMember.appendChild(divStatus);
+            }
         }
     }
 
