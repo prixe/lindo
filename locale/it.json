@@ -67,7 +67,8 @@
             "fightchronometer": "Mostra combattimenti di cronometri",
             "zaapsearchfilter" : "Mostra filtro di ricerca zaap",
             "estimator": "Fai una stima dei danni da incantesimi in battaglia",
-            "hide-mount": "Nascondi le cavalcature durante i combattimenti"
+            "hide-mount": "Nascondi le cavalcature durante i combattimenti",
+            "harvest-indicator" : "Attiva la visualizzazione del tempo rimanente sotto le risorse"
           },
           "groups": {
             "header": "Gruppi"

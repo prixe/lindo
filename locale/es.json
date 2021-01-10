@@ -65,7 +65,8 @@
             "fightchronometer" : "Mostrar peleas cronómetro",
             "zaapsearchfilter" : "Mostra filtro di ricerca zaap",
             "estimator": "Daño estimado de hechizo durante el combate",
-            "hide-mount": "Ocultar monturas durante las peleas"
+            "hide-mount": "Ocultar monturas durante las peleas",
+            "harvest-indicator" : "Activar la visualización del tiempo restante debajo de los recursos"
           },
           "groups": {
             "header": "Grupo"
