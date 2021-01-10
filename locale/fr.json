@@ -67,7 +67,8 @@
             "jobsxp": "Activer l'affichage de l'xp a obtenir pour monter de niveau (métier)",
             "hide-mount": "Cacher les montures pendant les combats",
             "fightchronometer": "Afficher le chronomètre de combats",
-            "zaapsearchfilter" : "Afficher le filtre de recherche de zaap"
+            "zaapsearchfilter" : "Afficher le filtre de recherche de zaap",
+            "harvest-indicator" : "Barres de temps sous les récoltes"
           },
           "groups": {
             "header": "Groupe"

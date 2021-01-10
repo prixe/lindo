@@ -717,6 +717,7 @@ export module Option {
             private _hidden_mount: boolean;
             private _party_info_pp:boolean;
             private _party_info_lvl:boolean;
+            private _harvest_indicator: boolean;
 
             get party_info_pp():boolean{
                 return this._party_info_pp;
@@ -808,6 +809,15 @@ export module Option {
                 this._health_bar_shortcut = health_bar_shortcut;
             }
 
+            get harvest_indicator(): boolean {
+                return this._harvest_indicator;
+            }
+
+            set harvest_indicator(harvest_indicator: boolean) {
+                this.settingsProvider.write('option.vip.general.harvest_indicator', harvest_indicator);
+                this._harvest_indicator = harvest_indicator;
+            }
+
             constructor(private settingsProvider: SettingsProvider) {
                 this.disable_inactivity = this.settingsProvider.read('option.vip.general.disable_inactivity');
                 this.health_bar = this.settingsProvider.read('option.vip.general.health_bar');
@@ -819,6 +829,7 @@ export module Option {
                 this.hidden_mount = this.settingsProvider.read('option.vip.general.hidden_mount');
                 this.party_info_pp = this.settingsProvider.read('option.vip.general.party_info_pp');
                 this.party_info_lvl = this.settingsProvider.read('option.vip.general.party_info_lvl');
+                this.harvest_indicator = this.settingsProvider.read('option.vip.general.harvest_indicator');
             }
         }
 
