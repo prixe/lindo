@@ -14,7 +14,7 @@
     "build:prod": "npm run build:electron:prod && npm run lint && ng build --configuration=production",
     "start": "electron ./",
     "release:win": "build --win --x64 --ia32",
-    "release:mac": "build --mac --config.electronVersion=4.1.3",
+    "release:mac": "build --mac",
     "release:linux": "build --linux --x64",
     "toc": "doctoc README.md",
     "update": "ng update @angular/cli --migrate-only --from=1.7.4"
@@ -77,9 +77,6 @@
     "@types/hammerjs": "~2.0.36",
     "@types/node": "~10.12.18",
     "@types/socket.io-client": "~1.4.32",
-    "babel-core": "~6.26.3",
-    "babel-preset-es2015": "~6.24.1",
-    "babel-register": "~6.26.0",
     "doctoc": "~1.4.0",
     "electron": "4.2.12",
     "electron-builder": "~20.44.4",
@@ -89,14 +86,9 @@
     "replace": "~1.0.1",
     "typescript": "~3.1.6"
   },
-  "babel": {
-    "presets": [
-      "es2015"
-    ]
-  },
   "main": "dist/electron/main.js",
   "build": {
-    "electronVersion": "4.1.3",
+    "electronVersion": "4.2.12",
     "copyright": "Prixe",
     "productName": "Lindo",
     "asar": true,
