@@ -8,10 +8,10 @@ export class ShowResources extends Mod {
     
     private data: Map<number, Resources> = new Map();
     private elemIdToTypeid: Map<number, number> = new Map();
-    private resourceTotal: number = 0;
 
     private resourcesBox: HTMLDivElement;
     private enabled: boolean = true;
+    private isHide: boolean = false;
 
     startMod(): void {
         this.params = this.settings.option.vip.general;
@@ -58,7 +58,12 @@ export class ShowResources extends Mod {
 
             this.on(this.wGame.dofus.connectionManager, 'MapComplementaryInformationsDataMessage', (e: any) => this.onMapComplementaryInfos(e.interactiveElements, e.statedElements));
             this.on(this.wGame.dofus.connectionManager, 'StatedElementUpdatedMessage', ({statedElement}) => this.onStatedElementUpdated(statedElement));
-            this.on(this.wGame.dofus.connectionManager, 'GameFightStartingMessage', () => this.clearHtml());
+            this.on(this.wGame.dofus.connectionManager, 'GameFightStartingMessage', () => {
+                if (this.enabled) {
+                    this.isHide = true;
+                    this.toggle();
+                }
+            });
         }
     }
 
@@ -67,7 +72,6 @@ export class ShowResources extends Mod {
 
         const statedMap: Map<number, number> = new Map();
         statedElements.forEach((s) => statedMap.set(s.elementId, s.elementState));
-        this.resourceTotal = interactiveElements.length;
 
         // create all resources and add state
         interactiveElements.forEach((i) => {
@@ -87,16 +91,15 @@ export class ShowResources extends Mod {
             this.elemIdToTypeid.set(i.elementId, i.elementTypeId);
         });
 
-        if (this.enabled) this.create();
+        if (this.enabled || this.isHide) this.create();
     }
 
     /**
-     * Update the target element and recreate the html
+     * Update the target element
      * @param statedElement Element to update
      */
     private onStatedElementUpdated(statedElement: any) {
         setTimeout(() => {
-            this.clearHtml();
             const typeId: number = this.elemIdToTypeid.get(statedElement.elementId);
 
             try {
@@ -108,11 +111,18 @@ export class ShowResources extends Mod {
                 console.error('Unabled to update resource with typeId = ' + typeId);
             }
 
-            if (this.enabled) this.create();
+            if (this.enabled) this.updateResourceInDom(typeId);
         }, 500);
     }
 
+    private updateResourceInDom(typeId: number) {
+        const r: HTMLElement = this.wGame.document.getElementById('sr_' + typeId + '_count');
+        r.innerText = this.data.get(typeId).getCount();
+    }
+
     private create() {
+        if (this.isHide) this.isHide = false;
+
         this.resourcesBox = this.wGame.document.createElement('div');
         this.resourcesBox.id = 'resourcesBox';
 
@@ -121,7 +131,7 @@ export class ShowResources extends Mod {
                 <div class="resource-item">
                     <img src="${resource.getIcon()}"/>
                     <p>${resource.name}</p>
-                    <p>${resource.getCount()}</p>
+                    <p id="sr_${resource.typeId}_count">${resource.getCount()}</p>
                 </div>
             `;
             this.resourcesBox.insertAdjacentHTML('beforeend', item);
@@ -146,7 +156,6 @@ export class ShowResources extends Mod {
     }
 
     private clear() {
-        this.resourceTotal = 0;
         this.data.clear();
         this.clearHtml();
     }

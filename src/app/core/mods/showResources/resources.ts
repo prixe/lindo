@@ -1,6 +1,6 @@
 export class Resources {
     public readonly name: string;
-    private typeId: number;
+    public readonly typeId: number;
     private resources: {elemId: number, state: State}[] = [];
 
     constructor(resource: Resource) {
