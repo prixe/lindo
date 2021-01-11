@@ -1,6 +1,14 @@
 ## ⚠ ATTENTION, VÉRIFIEZ QUE VOUS TÉLÉCHARGEZ LINDO DEPUIS LINDO.NO-EMU.CO
 ## ⚠ CERTAINS SITES MALVEILLANTS INSTALLERONT UN VIRUS SUR VOTRE ORDINATEUR
 
+## [2.6.0]
+
+### Ajouts
+- Ajout d'une barre sous chaque ressource utilisée permettant de visualiser le temps restant
+
+### Améliorations
+- Ajout de l'icone dans le build .deb
+
 ## [2.5.2] - 2020-11-14
 
 ### Améliorations
