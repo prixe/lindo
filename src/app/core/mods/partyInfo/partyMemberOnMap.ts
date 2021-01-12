@@ -1,15 +1,20 @@
+import { EMPTY_MAP } from "@angular/core/src/view";
 import { Logger } from "app/core/electron/logger.helper";
 import { Mod } from "../mod";
 
 export class PartyMember extends Mod{
-    private members: Map<number, boolean> = new Map();
-    private divElement: Array<HTMLDivElement> = [];
+    private members: Map<number, boolean>;
+    private divElement: Array<HTMLDivElement>;
 
     startMod(): void {
         this.params = this.settings.option.vip.general;
 
         if (this.params.party_member_on_map) {
             Logger.info('- enabled PartyMember');
+
+            // Init var
+            this.members = new Map();
+            this.divElement = [];
 
             const pmomCss = document.createElement('style');
             pmomCss.id = 'pmomCss';
@@ -45,6 +50,9 @@ export class PartyMember extends Mod{
             this.on(this.wGame.dofus.connectionManager, 'GameContextRemoveElementMessage', (e: any) => this.updateMember(e, false));
             // Receive when your game map change
             this.on(this.wGame.dofus.connectionManager, 'MapComplementaryInformationsDataMessage', (e: any) => this.updateMemberOnMapChange(e));
+
+            // Use here init mod if player already have grp when mod start
+            this.updatePartyMembers();
         }
     }
 
@@ -52,19 +60,19 @@ export class PartyMember extends Mod{
         let i = 0;
         this.members.forEach((status, memberId) => {
             if (memberId != this.wGame.isoEngine.actorManager.userId) {
-                const divMember: Element = this.wGame.document.getElementsByClassName('member')[i];
+                const divMember: HTMLDivElement = this.wGame.document.getElementsByClassName('member')[i];
                 this.addStatusToMember(divMember,status);
             }
             i++;
         });
     }
 
-    private addStatusToMember(divMember: Element, memberStatus: boolean) {
+    private addStatusToMember(divMember: HTMLDivElement, memberStatus: boolean) {
         if (divMember != null) {
             const className = memberStatus ? 'pmomOnMap' : 'pmomNotInMap';
 
-            let divStatus = divMember.lastElementChild;
-            if (divStatus.classList.contains('pmomStatus')) {
+            let divStatus: HTMLDivElement = divMember.lastElementChild as any;
+            if (divStatus && divStatus.classList.contains('pmomStatus')) {
                 // div already exist
                 divStatus.classList.replace(divStatus.classList.item(1), className);
             } else {
@@ -91,8 +99,8 @@ export class PartyMember extends Mod{
 
                 this.members.set(m.memberData.id, isOnMap);
             });
+            this.updateDOM();
         }
-        this.updateDOM();
     }
 
     // Use for update member if join/leave map
@@ -100,8 +108,9 @@ export class PartyMember extends Mod{
         if (this.wGame.gui.party.currentParty && this.wGame.gui.party.currentParty._childrenList.length > 0) {
             const playerId: number = isOnMap ? data.informations.contextualId : data.id;
             if (this.members.has(playerId)) this.members.set(playerId, isOnMap);
+
+            this.updateDOM();
         }
-        this.updateDOM();
     }
 
     // Use for update member when your map change
@@ -112,8 +121,9 @@ export class PartyMember extends Mod{
             // Get all playerId in map
             data.actors.forEach((actor) => { if (actor.contextualId > 0) actorsId.push(actor.contextualId); });
             this.members.forEach((status, member) => this.members.set(member, actorsId.includes(member)) );
+
+            this.updateDOM();
         }
-        this.updateDOM();
     }
 
     private destroy() {
