@@ -1,7 +1,7 @@
 # Lindo
 [![Build Status](https://travis-ci.org/prixe/lindo.svg?branch=master)](https://travis-ci.org/prixe/lindo)
 [![npm](https://img.shields.io/badge/npm-%3E%3D%205.6.0-blue.svg)]()
-[![node](https://img.shields.io/badge/node-%3E%3D%2010.0.0-green.svg)]()
+[![node](https://img.shields.io/badge/node-%3E%3D%2014.0.0-green.svg)]()
 [![Github All Releases](https://img.shields.io/github/downloads/prixe/lindo/total.svg)]()
 
 http://lindo.no-emu.co
