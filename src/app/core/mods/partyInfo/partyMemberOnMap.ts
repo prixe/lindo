@@ -127,7 +127,7 @@ export class PartyMember extends Mod{
     }
 
     private destroy() {
-        if (this.divElement != null || this.divElement.length > 0) {
+        if (this.divElement != null && this.divElement.length > 0) {
             this.divElement.forEach((e) => {
                 if (e != null && e.parentElement) e.remove();
             });
