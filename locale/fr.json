@@ -68,7 +68,8 @@
             "hide-mount": "Cacher les montures pendant les combats",
             "fightchronometer": "Afficher le chronomètre de combats",
             "zaapsearchfilter" : "Afficher le filtre de recherche de zaap",
-            "harvest-indicator" : "Barres de temps sous les récoltes"
+            "harvest-indicator" : "Barres de temps sous les récoltes",
+            "party-member-on-map" : "Ajoute un indicateur pour savoir si les membres d'un groupe sont sur la même carte"
           },
           "groups": {
             "header": "Groupe"
