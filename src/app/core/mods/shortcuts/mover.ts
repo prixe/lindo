@@ -8,7 +8,7 @@ export class Mover extends Mod {
 
     startMod(): void {}
     private pathFinder: PathFinder
-    
+
     constructor(
         wGame: any,
         settings: SettingsService,
@@ -41,7 +41,7 @@ export class Mover extends Mod {
 
                 let cell = this.getClosestCellToChangeMapRandomised(cells, null, direction);
 
-                if (cell == -1) {
+                if (cell == null) {
                 	console.log("No Cell Found.");
                 	return;
                 }

@@ -68,7 +68,8 @@
             "hide-mount": "Hide mounts during fights",
             "fightchronometer" : "Show combats chronometer",
             "zaapsearchfilter" : "Show zaap search filter",
-            "harvest-indicator" : "Activate the display of the remaining time below the ressources"
+            "harvest-indicator" : "Activate the display of the remaining time below the ressources",
+            "party-member-on-map" : "Add an indicator to know if the members of a group are on the same map"
           },
           "groups": {
             "header": "Groups"
