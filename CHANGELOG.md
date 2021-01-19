@@ -5,9 +5,13 @@
 
 ### Ajouts
 - Ajout d'une barre sous chaque ressource utilisée permettant de visualiser le temps restant
+- Ajout d'une icone sur les membres de groupes pour savoir s'il sont sur la meme map
 
 ### Améliorations
 - Ajout de l'icone dans le build .deb
+
+### Correctifs
+- Crash de Lindo avec le déplacement rapide lorsque la case est inaccessible
 
 ## [2.5.2] - 2020-11-14
 
