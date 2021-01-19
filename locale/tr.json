@@ -68,6 +68,8 @@
             "hide-mount": "Savaş sırasında binekleri gizle",
             "fightchronometer" : "Savaş kronometresini göster",
             "zaapsearchfilter" : "Zaap arama filtresini göster",
+            "show-resources" : "Harita kaynaklarını göster",
+            "show-resources-shortcut" : "Harita kaynaklarını göstermek/gizlemek için kısayol",
             "harvest-indicator" : "Kaynakların altında kalan sürenin gösterimini etkinleştirin",
             "party-member-on-map" : "Bir grubun üyelerinin aynı haritada olup olmadığını öğrenmek için bir gösterge ekleyin"
           },
