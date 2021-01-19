@@ -828,6 +828,7 @@ export module Option {
             set show_resources_shortcut(show_resources_shortcut: string) {
                 this.settingsProvider.write('option.vip.general.show_resources_shortcut', show_resources_shortcut);
                 this._show_resources_shortcut = show_resources_shortcut;
+            }
 
             get party_member_on_map():boolean {
                 return this._party_member_on_map;
