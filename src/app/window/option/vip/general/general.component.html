@@ -25,6 +25,14 @@
         </div>
 
         <div class="col-xs-12">
+            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.party_member_on_map">{{ 'app.window.options.features.general.party-member-on-map' | translate }}</mat-checkbox>
+        </div>
+
+       <div class="col-xs-12">
+            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.harvest_indicator">{{ 'app.window.options.features.general.harvest-indicator' | translate }}</mat-checkbox>
+        </div>
+
+        <div class="col-xs-12">
             <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.jobsxp">{{ 'app.window.options.features.general.jobsxp' | translate }}</mat-checkbox>
         </div>
         <div class="col-xs-12" style="margin-bottom: 10px;"> <!-- En attendant de savoir ce qu'on fait avec ce input en dessous -->

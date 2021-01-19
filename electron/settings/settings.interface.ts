@@ -87,6 +87,8 @@ export interface SettingsInterface {
                 party_info_pp: boolean;
                 party_info_lvl: boolean;
                 zaapsearchfilter: boolean;
+                harvest_indicator: boolean;
+                party_member_on_map: boolean;
             },
             auto_group: {
                 active: boolean;

@@ -67,7 +67,9 @@
             "estimator": "Włącz przewidywanie obrażeń podczas walki",
             "hide-mount": "Nie pokazuj wierzchowców podczas walki",
             "fightchronometer" : "Pokaż czas trwania walki",
-            "zaapsearchfilter" : "Pokaż filtr wyszukiwania zaap'ów"
+            "zaapsearchfilter" : "Pokaż filtr wyszukiwania zaap'ów",
+            "harvest-indicator" : "Aktywuj wyświetlanie pozostałego czasu poniżej zasobów",
+            "party-member-on-map" : "Dodaj wskaźnik, aby wiedzieć, czy członkowie grupy znajdują się na tej samej mapie"
           },
           "groups": {
             "header": "Grupy"
@@ -85,7 +87,7 @@
           "text0": "Lindo jest open-sourcowym oprogramowaiem, które pozwala ci na grę w DOFUS Touch z poziomu swojego komputera.",
           "text1": "W przeciwieństwie do emulatorów Androida, kod źródłowy jest bezpośrednio interpretowany przez Twój komputer, co sprawia, że granie w DOFUS Touch jest szybsze oraz wykorzystuje pełen potencjał Twojego komputera!",
           "text2": "Oprogramowanie oryginalnie znane jako DOFUS Touch No-Emu, zostało stworzone przez Daniela i Thomas'a, którzy byli zmuszeni zamknąć projekt przez awersję ze strony Ankamy."
-        
+
         }
       },
       "shortcuts": {

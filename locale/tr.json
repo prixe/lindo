@@ -67,7 +67,9 @@
             "estimator": "Savaşta büyü hasarını tahmin etme",
             "hide-mount": "Savaş sırasında binekleri gizle",
             "fightchronometer" : "Savaş kronometresini göster",
-            "zaapsearchfilter" : "Zaap arama filtresini göster"
+            "zaapsearchfilter" : "Zaap arama filtresini göster",
+            "harvest-indicator" : "Kaynakların altında kalan sürenin gösterimini etkinleştirin",
+            "party-member-on-map" : "Bir grubun üyelerinin aynı haritada olup olmadığını öğrenmek için bir gösterge ekleyin"
           },
           "groups": {
             "header": "Gruplar"

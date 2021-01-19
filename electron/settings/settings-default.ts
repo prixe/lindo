@@ -161,7 +161,9 @@ export const SettingsDefault: SettingsInterface = {
                 hidden_mount: false,
                 party_info_pp: false,
                 party_info_lvl: false,
-                zaapsearchfilter: true
+                zaapsearchfilter: true,
+                harvest_indicator: true,
+                party_member_on_map: true
             },
             auto_group: {
                 active: false,
