@@ -163,6 +163,8 @@ export const SettingsDefault: SettingsInterface = {
                 party_info_lvl: false,
                 zaapsearchfilter: true,
                 harvest_indicator: true,
+                show_resources: false,
+                show_resources_shortcut: '',
                 party_member_on_map: true
             },
             auto_group: {
