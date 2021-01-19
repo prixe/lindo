@@ -104,12 +104,10 @@ export class GameComponent implements AfterViewInit {
         for (let mod in Mods) {
             switch (mod) {
                 case 'AutoGroup':
-                    Logger.info('Case autogroup');
                     let autogroup = new Mods[mod](this.game.window, this.settingsService, this.translateService, this.ipcRendererService);
                     this.mods.push(autogroup)
                     break;
                 case 'Notifications':
-                    Logger.info('Case Notifications');
                     let notifications = new Mods[mod](this.game.window, this.settingsService, this.translateService);
                     notifications.eventEmitter.on('newNotification', () => {
                         this.zone.run(() => {
