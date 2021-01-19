@@ -10,7 +10,6 @@ import { SettingsService } from 'app/core/service/settings.service';
     styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent {
-
     public inputMasterPassword: string = "";
     public badMasterPassword: boolean = false;
     public loadingMultiAccount: boolean = false;
@@ -20,10 +19,9 @@ export class AuthComponent {
         public applicationService: ApplicationService,
         private ipcRenderer: IpcRendererService,
         private settingsService: SettingsService
-    ) { }
+    ) {}
 
     public authByMasterPassword() {
-
         this.authService.loginWithMasterPassword(this.inputMasterPassword).then((inputMasterPassword) => {
 
             this.badMasterPassword = false;
@@ -45,33 +43,25 @@ export class AuthComponent {
     }
 
     public skipAuth() {
-
         Application.skipAuthentification = true;
         this.authService.updateAuthState();
     }
 
     private processMultiAccount() {
-
         let multiAccountsParam = this.settingsService.option.vip.multiaccount.windows;
         if (multiAccountsParam.length > 0) {
-
             if ((multiAccountsParam.length - 1) == 0) {
-
                 this.authService.updateAuthState();
                 Application.mainWindows[0].win.webContents.send('accounts', multiAccountsParam[0]);
-
             } else {
-
                 this.loadingMultiAccount = true;
 
                 let windowsCount = 1;
 
                 this.ipcRenderer.on('window-ready', (event, arg) => {
-
                     windowsCount += 1;
 
                     if (windowsCount == multiAccountsParam.length) {
-
                         this.loadingMultiAccount = false;
                         this.authService.updateAuthState();
 
@@ -80,7 +70,6 @@ export class AuthComponent {
                         }
                     }
                 });
-
 
                 for (var i = 0; i < (multiAccountsParam.length - 1); i++) {
                     Application.addWindow();
