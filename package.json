@@ -40,7 +40,7 @@
     "ajv": "~6.6.2",
     "angular-sortablejs": "~2.6.0",
     "async": "~2.6.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "codelyzer": "~4.5.0",
     "compare-versions": "~3.4.0",
     "core-js": "~2.6.1",
