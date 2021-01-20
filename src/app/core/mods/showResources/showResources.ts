@@ -64,7 +64,29 @@ export class ShowResources extends Mod {
                     this.toggle();
                 }
             });
+
+            this.loadMapInfoOnStart();
         }
+    }
+
+    /**
+     * Use to load map informations when player activate mod in game
+     */
+    private loadMapInfoOnStart() {
+        setTimeout(() => {
+            const interactiveElements = [];
+            const statedElements = [];
+            
+            // Get data from isoEngine
+            const interactives = this.wGame.isoEngine.mapRenderer.interactiveElements;
+            const stated = this.wGame.isoEngine.mapRenderer.statedElements;
+
+            // Push data in Array
+            for(const i in interactives) { interactiveElements.push(interactives[i]); }
+            for(const s in stated) { statedElements.push(stated[s]); }
+
+            this.onMapComplementaryInfos(interactiveElements, statedElements);
+        }, 1500);
     }
 
     private onMapComplementaryInfos(interactiveElements: any[], statedElements: any []) {
