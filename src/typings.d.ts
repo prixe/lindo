@@ -18,7 +18,6 @@ declare let NodeJSLib: any;
 declare let Application: any;
 declare let Settings: any;
 declare let LoggerLib: any;
-declare let isElectron: boolean;
 
 interface NodeModule {
   id: string;

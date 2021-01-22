@@ -3,7 +3,6 @@ import { IpcRendererService } from 'app/core/electron/ipcrenderer.service';
 import { Logger } from 'app/core/electron/logger.helper';
 import { SettingsProvider } from '../classes/settings.provider';
 import { SettingsProviderIpc } from '../classes/settings.provider.ipc';
-import { SettingsProviderLocal } from '../classes/settings.provider.local';
 import { WindowService } from './window.service';
 import { SettingsInterface } from '../../../../electron/settings/settings.interface';
 import { SettingsDefault } from '../../../../electron/settings/settings-default';
@@ -1054,11 +1053,7 @@ export class SettingsService {
         private windowService: WindowService
     ) {
 
-        if (isElectron) {
-            this.settingsProvider = new SettingsProviderIpc(ipcRendererService);
-        } else {
-            this.settingsProvider = new SettingsProviderLocal(windowService);
-        }
+        this.settingsProvider = new SettingsProviderIpc(ipcRendererService);
 
         let init = () => {
             this.option = new Option(this.settingsProvider);
@@ -1072,13 +1067,11 @@ export class SettingsService {
         };
         init();
 
-        if (isElectron) {
-            this.ipcRendererService.on('reload-settings', () => {
-                Logger.verbose('receive->reload-settings');
-                init();
-                Logger.verbose('emit->reload-settings-done');
-                this.ipcRendererService.send('reload-settings-done');
-            });
-        }
+        this.ipcRendererService.on('reload-settings', () => {
+            Logger.verbose('receive->reload-settings');
+            init();
+            Logger.verbose('emit->reload-settings-done');
+            this.ipcRendererService.send('reload-settings-done');
+        });
     }
 }
