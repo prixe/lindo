@@ -5,6 +5,7 @@ import { Resources, Resource, iconIdByTypeId, ressourcesToSkip } from "./resourc
 
 export class ShowResources extends Mod {
     private shortcutsHelper: ShortcutsHelper;
+    private loadDataTry: number = 0;
     
     private data: Map<number, Resources> = new Map();
     private elemIdToTypeid: Map<number, number> = new Map();
@@ -65,7 +66,7 @@ export class ShowResources extends Mod {
                 }
             });
 
-            this.loadMapInfoOnStart();
+            setTimeout(() => this.loadMapInfoOnStart(), 100);
         }
     }
 
@@ -73,20 +74,26 @@ export class ShowResources extends Mod {
      * Use to load map informations when player activate mod in game
      */
     private loadMapInfoOnStart() {
-        setTimeout(() => {
+        // Get data from isoEngine
+        const interactives = this.wGame.isoEngine.mapRenderer.interactiveElements;
+        const stated = this.wGame.isoEngine.mapRenderer.statedElements;
+
+        if (interactives != null && stated != null) {
             const interactiveElements = [];
             const statedElements = [];
-            
-            // Get data from isoEngine
-            const interactives = this.wGame.isoEngine.mapRenderer.interactiveElements;
-            const stated = this.wGame.isoEngine.mapRenderer.statedElements;
 
             // Push data in Array
             for(const i in interactives) { interactiveElements.push(interactives[i]); }
             for(const s in stated) { statedElements.push(stated[s]); }
 
+            this.loadDataTry = 0;
             this.onMapComplementaryInfos(interactiveElements, statedElements);
-        }, 1500);
+        } else if (this.loadDataTry < 15) {
+            this.loadDataTry++;
+            setTimeout(() => this.loadMapInfoOnStart(), 100);
+        } else {
+            this.loadDataTry = 0;
+        }
     }
 
     private onMapComplementaryInfos(interactiveElements: any[], statedElements: any []) {
@@ -178,7 +185,7 @@ export class ShowResources extends Mod {
     }
 
     private clear() {
-        this.data.clear();
+        if (this.data) this.data.clear();
         this.clearHtml();
     }
 
