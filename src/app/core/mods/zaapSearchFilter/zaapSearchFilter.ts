@@ -205,6 +205,7 @@ export class ZaapSearchFilter extends Mod {
 
     private createSearchFilterZaapi(): void {
         this.injectInputInDomZaapi();
+        this.addFavInDomZaapi(); // Fav Zaapi
 
         this.zaapSearchInput.addEventListener("keyup", () => {
             let zaapWanted = this.zaapSearchInput.value.toLowerCase();
@@ -272,6 +273,103 @@ export class ZaapSearchFilter extends Mod {
         this.zaapSearchContainer.append(this.zaapSearchInput);
         this.wGame.document.getElementsByClassName("subwayBody")[0].prepend(this.zaapSearchContainer);
     }
+
+    // Zaapi Favoris
+    private addFavInDomZaapi() {
+        let zaapList = this.wGame.document.getElementsByClassName("lindo_subwayBodyHeight__custom")[0].getElementsByClassName("row");
+            
+        //ajout de l'étoile fovori (rempli ou non)
+        for (let index = 1; index < zaapList.length-1; index++) {
+            const currentZaap = zaapList[index];
+            
+            let divVide = currentZaap.getElementsByClassName("col")[0]
+            if(divVide.innerHTML == ''){
+                let idzaap = currentZaap.getElementsByClassName("col")[1].getElementsByClassName("destinationName")[0]
+                if(idzaap != undefined){
+                    let actionButton = (divButton, zaap) => {
+                        let favori = localStorage.getItem('zaapFav')
+                        let favoriArray = favori.split(',')
+                        let unfav = 0
+                        for (let index = 0; index < favoriArray.length; index++) {
+                            if(favoriArray[index] == zaap){
+                                unfav = index
+                            }
+                        }
+                        if(unfav != 0){
+                            favoriArray.splice(unfav,1)
+                            divButton.innerHTML = `
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 51 48">
+                                    <path fill="none" stroke="#000" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                                </svg>
+                                `
+                        }else{
+                            divButton.innerHTML = `
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 51 48">
+                                    <path fill="yellow" stroke="#000" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                                </svg>
+                                `
+                            favoriArray.push(zaap)
+                        }
+                        localStorage.setItem('zaapFav', favoriArray.toString())
+                    }
+    
+                    let divButton = document.createElement('div')
+                    divButton.onclick = () => {
+                        actionButton(divButton, idzaap.innerHTML)
+                    }
+    
+                    let favorii = localStorage.getItem('zaapFav')
+                    let favoriArrayy = favorii.split(',')
+                    let trouver = false
+                    for (let index = 0; index < favoriArrayy.length; index++) {
+                        if(favoriArrayy[index] == idzaap.innerHTML){
+                            trouver = true
+                        }
+                    }
+                    
+                    if(trouver){
+                        divButton.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 51 48">
+                            <path fill="yellow" stroke="#000" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                        </svg>
+                        `
+                    }else{
+                        divButton.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 51 48">
+                            <path fill="none" stroke="#000" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                        </svg>
+                        `
+                    }
+                    
+                    divVide.appendChild(divButton)
+                }
+            }
+        }
+        
+        //on met les favori "en haut"
+        zaapList = this.wGame.document.getElementsByClassName("lindo_subwayBodyHeight__custom")[0].getElementsByClassName("row");
+        let saveIndex = 1
+        for (let index = 1; index < zaapList.length-1; index++) {
+            let currentZaap = zaapList[index];
+            let divVide = currentZaap.getElementsByClassName("col")[0];
+            let idzaap = currentZaap.getElementsByClassName("col")[1].getElementsByClassName("destinationName")[0];
+            let favorii = localStorage.getItem('zaapFav');
+            let favoriArrayy = favorii.split(',');
+            let trouver = false
+            for (let index = 0; index < favoriArrayy.length; index++) {
+                if(idzaap != undefined)
+                    if(favoriArrayy[index] == idzaap.innerHTML){
+                        trouver = true
+                    }
+            }
+            if(trouver){
+                currentZaap.parentNode.prepend(currentZaap);
+                saveIndex++
+                index = saveIndex
+            }
+        }
+    }
+
 
     private resetSearchFilter(): void {
         if (this.styleTag) {
