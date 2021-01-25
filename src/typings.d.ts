@@ -9,8 +9,6 @@ declare let fsLib: any;
 declare let osLib: any;
 declare let pathLib: any;
 declare let httpsLib: any;
-declare let fsExtraLib: any;
-declare let markedLib: any;
 declare let axiosLib: any;
 declare let httpAdapterLib: any;
 declare let nodeProcess: any;
