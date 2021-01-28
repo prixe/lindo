@@ -207,7 +207,8 @@
         },
         "zaapsearchfilter":{
           "placeholder": "Szukaj zaap'a",
-           "placeholderZaapi": "Szukaj zaapi'a"
+           "placeholderZaapi": "Szukaj zaapi'a",
+           "placeholderPrisme": "Szukaj prisme"
         },
         "party-info": {
           "header-lvl":"Pokaż poziom grupy",
