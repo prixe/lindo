@@ -68,6 +68,8 @@
             "hide-mount": "Nie pokazuj wierzchowców podczas walki",
             "fightchronometer" : "Pokaż czas trwania walki",
             "zaapsearchfilter" : "Pokaż filtr wyszukiwania zaap'ów",
+            "show-resources" : "Pokaż zasoby mapy",
+            "show-resources-shortcut" : "Skrót do pokazywania/ukrywania zasobów mapy",
             "harvest-indicator" : "Aktywuj wyświetlanie pozostałego czasu poniżej zasobów",
             "party-member-on-map" : "Dodaj wskaźnik, aby wiedzieć, czy członkowie grupy znajdują się na tej samej mapie"
           },

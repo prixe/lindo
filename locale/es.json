@@ -66,6 +66,8 @@
             "zaapsearchfilter" : "Mostra filtro di ricerca zaap",
             "estimator": "Daño estimado de hechizo durante el combate",
             "hide-mount": "Ocultar monturas durante las peleas",
+            "show-resources" : "Mostrar recursos del mapa",
+            "show-resources-shortcut" : "Atajo para mostrar/ocultar recursos del mapa",
             "harvest-indicator" : "Activar la visualización del tiempo restante debajo de los recursos",
             "party-member-on-map" : "Agregar un indicador para saber si los miembros de un grupo están en el mismo mapa"
           },
