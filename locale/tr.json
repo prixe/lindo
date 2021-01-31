@@ -208,7 +208,8 @@
         },
         "zaapsearchfilter":{
           "placeholder": "Bir zaap ara",
-          "placeholderZaapi": "Bir zaapi ara"
+          "placeholderZaapi": "Bir zaapi ara",
+          "placeholderPrisme": "Bir prisme ara"
         },
         "party-info": {
           "header-lvl":"Partinin seviyesini göster",
