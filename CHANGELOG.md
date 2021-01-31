@@ -7,6 +7,7 @@
 - Ajout d'une barre sous chaque ressource utilisée permettant de visualiser le temps restant
 - Ajout d'une icone sur les membres de groupes pour savoir s'il sont sur la meme map
 - Ajout de favoris pour les zaaps
+- Ajout d'un affichage des ressourses presentes sur la carte
 
 ### Améliorations
 - Ajout de l'icone dans le build .deb
