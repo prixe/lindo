@@ -55,7 +55,7 @@ export class AuthComponent {
         let multiAccountsParam = this.settingsService.option.vip.multiaccount.windows;
         if (multiAccountsParam.length > 0) {
 
-            if ((multiAccountsParam.length - 1) == 0) {
+            if (!(multiAccountsParam.length - 1)) {
 
                 this.authService.updateAuthState();
                 Application.mainWindows[0].win.webContents.send('accounts', multiAccountsParam[0]);
@@ -82,7 +82,7 @@ export class AuthComponent {
                 });
 
 
-                for (var i = 0; i < (multiAccountsParam.length - 1); i++) {
+                for (var i = 0; i < (multiAccountsParam.length - 1); ++i) {
                     Application.addWindow();
                 }
             }
