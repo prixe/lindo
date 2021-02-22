@@ -292,7 +292,19 @@ export class Estimator {
         let damageMultiplicator = 1;
         let baseDamageModifier = 0;
 
-        for (var buff of fighter.buffs) {
+        for (const buff of this.wGame.gui.fightManager.getFighter(this.wGame.gui.playerData.id).buffs) {
+            if (this.spell.id == buff.castingSpell.spell.id) {
+                switch (buff.castingSpell.spell.id) {
+                    case 159: // Colère de Iop
+                    case 146: // Epée du destin
+                    case 167: // Flèche d'Expiation
+                    case 171: // Flèche Punitive
+                        baseDamageModifier += buff.effect.value;
+                        break;
+                }
+            }
+        }
+        for (const buff of fighter.buffs) {
             if (buff.effect.effect.characteristic != 16) {
                 continue;
             }
@@ -303,12 +315,6 @@ export class Estimator {
                 break;
             }
             switch (buff.castingSpell.spell.id) {
-                case 159: // Colère de Iop
-                case 146: // Epée du destin
-                case 167: // Flèche d'Expiation
-                case 171: // Flèche Punitive
-                    baseDamageModifier += buff.effect.value;
-                    break;
                 case 7: // Bouclier Féca
                 case 4696: // Glyphe Agressif
                 case 4684: // Flèche Analgésique
@@ -338,7 +344,7 @@ export class Estimator {
                     break;
             }
         }
-        return [baseDamageModifier, Math.trunc(fixedDamageModifier), Math.trunc(damageMultiplicator)] as [number, number, number];
+        return [baseDamageModifier, fixedDamageModifier, damageMultiplicator] as [number, number, number];
     }
 
     // TODO: Might not work when controlling a summon
