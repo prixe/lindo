@@ -245,14 +245,14 @@ export class Estimator {
         isCritical: boolean,
         baseStat: number,
         fixDamages: number,
-        spellDamageModifier: [number, number],
+        spellDamageModifier: [number, number, number],
         fixResistances: number,
         criticalDamageFixedResist: number,
         percentResistances: number
     ) {
-        const [fixedDamageModifier, damageMultiplicator] = spellDamageModifier;
+        const [baseDamageModifier, fixedDamageModifier, damageMultiplicator] = spellDamageModifier;
         const power = this.getCharacterStat("damagesBonusPercent");
-        let possibleDamages = (((power * 0.8) + baseStat + 100) / 100) * baseSpellDamage + this.getCharacterStat('allDamagesBonus') + fixDamages;
+        let possibleDamages = (((power * 0.8) + baseStat + 100) / 100) * (baseSpellDamage + baseDamageModifier) + this.getCharacterStat('allDamagesBonus') + fixDamages;
 
         if (isCritical) {
             possibleDamages += this.getCharacterStat("criticalDamageBonus") - criticalDamageFixedResist;
@@ -290,6 +290,7 @@ export class Estimator {
     private getSpellDamageModifier(fighter: any) {
         let fixedDamageModifier = 0;
         let damageMultiplicator = 1;
+        let baseDamageModifier = 0;
 
         for (var buff of fighter.buffs) {
             if (buff.effect.effect.characteristic != 16) {
@@ -302,6 +303,12 @@ export class Estimator {
                 break;
             }
             switch (buff.castingSpell.spell.id) {
+                case 159: // Colère de Iop
+                case 146: // Epée du destin
+                case 167: // Flèche d'Expiation
+                case 171: // Flèche Punitive
+                    baseDamageModifier += buff.effect.value;
+                    break;
                 case 7: // Bouclier Féca
                 case 4696: // Glyphe Agressif
                 case 4684: // Flèche Analgésique
@@ -331,7 +338,7 @@ export class Estimator {
                     break;
             }
         }
-        return [Math.trunc(fixedDamageModifier), Math.trunc(damageMultiplicator)] as [number, number];
+        return [baseDamageModifier, Math.trunc(fixedDamageModifier), Math.trunc(damageMultiplicator)] as [number, number, number];
     }
 
     // TODO: Might not work when controlling a summon
