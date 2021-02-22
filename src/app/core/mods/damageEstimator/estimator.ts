@@ -17,7 +17,8 @@ const SpellColor = {
     98: '#00e68a', // Dommages Air
     93: '#00e68a', // Vol de vie air
     99: '#ff5c33', // Dommages Feu
-    94: '#ff5c33' // Vol de vie feu Soins
+    94: '#ff5c33', // Vol de vie feu
+    108: '#cc0080' // Soins
 };
 
 export class Estimator {
@@ -165,7 +166,7 @@ export class Estimator {
                     isCritical,
                     this.getCharacterBaseStat("chance"),
                     this.getCharacterStat("waterDamageBonus"),
-                    this.getSpellDamageReduction(fighter),
+                    this.getSpellDamageModifier(fighter),
                     fighter.data.stats.waterElementReduction,
                     fighter.data.stats.criticalDamageFixedResist,
                     this.getElementResistPercent(fighter, "waterElementResistPercent")
@@ -176,7 +177,7 @@ export class Estimator {
                     isCritical,
                     this.getCharacterBaseStat("strength"),
                     this.getCharacterStat("neutralDamageBonus"),
-                    this.getSpellDamageReduction(fighter),
+                    this.getSpellDamageModifier(fighter),
                     fighter.data.stats.neutralElementReduction,
                     fighter.data.stats.criticalDamageFixedResist,
                     this.getElementResistPercent(fighter, "neutralElementResistPercent")
@@ -188,7 +189,7 @@ export class Estimator {
                     isCritical,
                     this.getCharacterBaseStat("strength"),
                     this.getCharacterStat("earthDamageBonus"),
-                    this.getSpellDamageReduction(fighter),
+                    this.getSpellDamageModifier(fighter),
                     fighter.data.stats.earthElementReduction,
                     fighter.data.stats.criticalDamageFixedResist,
                     this.getElementResistPercent(fighter, "earthElementResistPercent")
@@ -200,7 +201,7 @@ export class Estimator {
                     isCritical,
                     this.getCharacterBaseStat("agility"),
                     this.getCharacterStat("airDamageBonus"),
-                    this.getSpellDamageReduction(fighter),
+                    this.getSpellDamageModifier(fighter),
                     fighter.data.stats.airElementReduction,
                     fighter.data.stats.criticalDamageFixedResist,
                     this.getElementResistPercent(fighter, "airElementResistPercent")
@@ -212,7 +213,7 @@ export class Estimator {
                     isCritical,
                     this.getCharacterBaseStat("intelligence"),
                     this.getCharacterStat("fireDamageBonus"),
-                    this.getSpellDamageReduction(fighter),
+                    this.getSpellDamageModifier(fighter),
                     fighter.data.stats.fireElementReduction,
                     fighter.data.stats.criticalDamageFixedResist,
                     this.getElementResistPercent(fighter, "fireElementResistPercent")
@@ -244,18 +245,19 @@ export class Estimator {
         isCritical: boolean,
         baseStat: number,
         fixDamages: number,
-        spellResistances: number,
+        spellDamageModifier: [number, number],
         fixResistances: number,
         criticalDamageFixedResist: number,
         percentResistances: number
     ) {
+        const [fixedDamageModifier, damageMultiplicator] = spellDamageModifier;
         const power = this.getCharacterStat("damagesBonusPercent");
         let possibleDamages = (((power * 0.8) + baseStat + 100) / 100) * baseSpellDamage + this.getCharacterStat('allDamagesBonus') + fixDamages;
 
         if (isCritical) {
             possibleDamages += this.getCharacterStat("criticalDamageBonus") - criticalDamageFixedResist;
         }
-        return Math.trunc((possibleDamages - fixResistances + spellResistances) * (100 - percentResistances) / 100);
+        return Math.trunc((possibleDamages - fixResistances + fixedDamageModifier) * damageMultiplicator * (100 - percentResistances) / 100);
     }
 
     private getCharacterBaseStat(key: string) {
@@ -285,28 +287,74 @@ export class Estimator {
     }
 
     // TODO: Incomplete spell list
-    private getSpellDamageReduction(fighter: any) {
-        let res = 0;
+    private getSpellDamageModifier(fighter: any) {
+        let fixedDamageModifier = 0;
+        let damageMultiplicator = 1;
 
         for (var buff of fighter.buffs) {
             if (buff.effect.effect.characteristic != 16) {
                 continue;
             }
-            const fighterLevel = this.wGame.gui.fightManager.getFighter(buff.source).level;
-            // const levelMultiplicator = (100 + 5 * fighterLevel) / 100;
-
+            const caster = this.wGame.gui.fightManager.getFighter(buff.source);
+            // 444 = Dérobade
+            if (buff.castingSpell.spell.id == 444) {
+                damageMultiplicator = 0; // This will turn the formula to zero
+                break;
+            }
             switch (buff.castingSpell.spell.id) {
+                case 7: // Bouclier Féca
+                case 4696: // Glyphe Agressif
+                case 4684: // Flèche Analgésique
+                    damageMultiplicator *= buff.effect.diceNum / 100;
+                    break;
+                case 4: // Barricade
+                    if (this.isFighterNextToMe(fighter)) {
+                        fixedDamageModifier += buff.effect.diceNum;
+                    }
+                    break;
+                case 20: // Bastion
+                    if (!this.isFighterNextToMe(fighter)) {
+                        fixedDamageModifier += buff.effect.diceNum;
+                    }
+                    break;
+                case 4690: // Chance d'Ecaflip
+                    damageMultiplicator *= buff.duration == 1 ? 1.5 : 0.5;
+                    break;
+                case 4698: // Rempart
                 case 5: // Trêve
                 case 127: // Mot de prévention
-                    res += buff.effect.value * (100 + 5 * fighterLevel) / 100;
+                    fixedDamageModifier += buff.effect.diceNum * (100 + 5 * caster.level) / 100;
                     break;
                 default:
                     Logger.info(`Quel est ce buff: ${buff.effect.effectId} - ${buff.effect.description}`)
                     Logger.info("catégorie: " + buff.effect.effect.category);
                     break;
             }
-            // res += buff.effect.value * levelMultiplicator;
         }
-        return Math.trunc(res);
+        return [Math.trunc(fixedDamageModifier), Math.trunc(damageMultiplicator)] as [number, number];
+    }
+
+    // TODO: Might not work when controlling a summon
+    private isFighterNextToMe(fighter: any) {
+        const currentCellId = this.wGame.gui.fightManager.getFighter(this.wGame.gui.playerData.id).data.disposition.cellId;
+        const fighterCellId = fighter.data.disposition.cellId;
+        const fighterPos = this.wGame.isoEngine.mapRenderer.grid.getCoordinateGridFromCellId(fighterCellId);
+        const currentPos = this.wGame.isoEngine.mapRenderer.grid.getCoordinateGridFromCellId(currentCellId);
+        const neighbours = [
+            [currentPos.i, currentPos.j + 1],
+            [currentPos.i, currentPos.j - 1],
+            [currentPos.i + 1, currentPos.j],
+            [currentPos.i - 1, currentPos.j],
+            [currentPos.i + 1, currentPos.j + 1],
+            [currentPos.i - 1, currentPos.j - 1],
+            [currentPos.i + 1, currentPos.j - 1],
+            [currentPos.i - 1, currentPos.j + 1]
+        ];
+        for (const [x, y] of neighbours) {
+            if (fighterPos.i == x && fighterPos.j == y) {
+                return true;
+            }
+        }
+        return false;
     }
 }
