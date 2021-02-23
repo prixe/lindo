@@ -18,7 +18,8 @@ const SpellColor = {
     93: '#00e68a', // Vol de vie air
     99: '#ff5c33', // Dommages Feu
     94: '#ff5c33', // Vol de vie feu
-    108: '#cc0080' // Soins
+    108: '#cc0080', // Soins
+    5: '#ba87dd' // Do Pou
 };
 
 export class Estimator {
@@ -90,21 +91,31 @@ export class Estimator {
             this.getWeaponEstimations(this.spell, this.fighter) :
             this.getEstimations(this.spell, this.fighter);
 
-        for (const [effectId, min, max, criticalMin, criticalMax] of estimations) {
+        for (const [effectId, min, criticalMin, max, criticalMax] of estimations) {
             const damage = document.createElement('div');
-            const p1 = document.createElement('span');
-            p1.textContent = "(";
-            p1.style.color = "white";
-            const p2 = document.createElement('span');
-            p2.textContent = ")";
-            p2.style.color = "white";
-            const criticalDamage = document.createElement('span');
-            criticalDamage.textContent = `${criticalMin} - ${criticalMax}`;
-            damage.textContent = `${min} - ${max} `;
+            damage.textContent = (min || max) + '';
             damage.style.color = SpellColor[effectId] || '';
-            damage.appendChild(p1);
-            damage.appendChild(criticalDamage);
-            damage.appendChild(p2);
+
+            if (min > 0 && max > 0) {
+                damage.textContent += ` - ${max}`;
+            }
+            if (criticalMin > 0 || criticalMax > 0) {
+                const criticalDamage = document.createElement('span');
+                const p1 = document.createElement('span');
+                const p2 = document.createElement('span');
+                p1.textContent = " (";
+                p1.style.color = "white";
+                p2.textContent = ")";
+                p2.style.color = "white";
+                criticalDamage.textContent = (criticalMin || criticalMax) + '';
+
+                if (criticalMin > 0 && criticalMax > 0) {
+                    criticalDamage.textContent += ` - ${criticalMax}`;
+                }
+                damage.appendChild(p1);
+                damage.appendChild(criticalDamage);
+                damage.appendChild(p2);
+            }
             this.estimatorContainer.appendChild(damage);
         }
         this.wGame.document.getElementById('damage-estimator').appendChild(this.estimatorContainer);
@@ -117,42 +128,64 @@ export class Estimator {
     //-------------------------------------------------------------------------------------------------
 
     private getWeaponEstimations(spell: any, fighter: any) {
-        const estimations: [number, number, number, number, number][] = [];
+        const estimations = [];
 
         for (const key in spell.effectInstances) {
             const { effect, effectId, min, max } = spell.effectInstances[key];
             const criticalHitBonus = spell._item.item.criticalHitBonus;
 
             if (this.isValidEffectId(effectId) && effect.category == EffectCategory.damage) {
-                estimations.push([
-                    effectId,
-                    Math.max(0, this.getSpellEstimation(effectId, fighter, min)),
-                    Math.max(0, this.getSpellEstimation(effectId, fighter, max)),
-                    Math.max(0, this.getSpellEstimation(effectId, fighter, min + criticalHitBonus, true)),
-                    Math.max(0, this.getSpellEstimation(effectId, fighter, max + criticalHitBonus, true))
-                ]);
+                const estimation = [effectId, 0, 0, 0, 0] as [number, number, number, number, number];
+
+                if (!this.fighterHasSpellId(fighter, 410)) {
+                    estimation[1] = Math.max(0, this.getSpellEstimation(effectId, fighter, min));
+                    estimation[2] = Math.max(0, this.getSpellEstimation(effectId, fighter, min + criticalHitBonus, true));
+                }
+                if (!this.fighterHasSpellId(fighter, 416)) {
+                    estimation[3] = Math.max(0, this.getSpellEstimation(effectId, fighter, max));
+                    estimation[4] = Math.max(0, this.getSpellEstimation(effectId, fighter, max + criticalHitBonus, true));
+                }
+                estimations.push(estimation);
             }
         }
         return estimations;
     }
 
     private getEstimations(spell: any, fighter: any) {
-        const estimations: [number, number, number, number, number][] = [];
+        const estimations = [];
 
         for (let i = 0; i < spell.spellLevel.effects.length; i++) {
             const { effectId, diceNum, diceSide } = spell.spellLevel.effects[i];
             const criticalEffect = spell.spellLevel.criticalEffect[i];
+            const estimation = [effectId, 0, 0, 0, 0] as [number, number, number, number, number];
 
+            if (effectId == 5) {
+                /*
+                    NOTE: Push damage effects on critical doesn't seem to push more further
+                    Formula: (8 + (random * level) / 50) * diceNum + totalPushDamage
+
+                    Push damages doesn't have damage variations like spells so we
+                    have a magic number between 0 and 8 to do that
+                */
+                const self = this.wGame.gui.fightManager.getFighter(this.wGame.gui.playerData.id);
+                const bonus = this.getCharacterStat("pushDamageBonus") - fighter.data.stats.pushDamageFixedResist;
+                estimation[1] = Math.max(0, ((8 + (0 * self.level) / 50) * diceNum) + bonus);
+                estimation[3] = Math.max(0, ((8 + (8 * self.level) / 50) * diceNum) + bonus);
+                estimations.push(estimation);
+                continue;
+            }
             if (!this.isValidEffectId(effectId)) {
                 continue;
             }
-            estimations.push([
-                effectId,
-                Math.max(0, this.getSpellEstimation(effectId, fighter, diceNum)),
-                Math.max(0, this.getSpellEstimation(effectId, fighter, diceSide)),
-                Math.max(0, this.getSpellEstimation(effectId, fighter, criticalEffect.diceNum, true)),
-                Math.max(0, this.getSpellEstimation(effectId, fighter, criticalEffect.diceSide, true))
-            ]);
+            if (!this.fighterHasSpellId(fighter, 410)) {
+                estimation[1] = Math.max(0, this.getSpellEstimation(effectId, fighter, diceNum));
+                estimation[2] = Math.max(0, this.getSpellEstimation(effectId, fighter, criticalEffect.diceNum, true));
+            }
+            if (!this.fighterHasSpellId(fighter, 416)) {
+                estimation[3] = Math.max(0, this.getSpellEstimation(effectId, fighter, diceSide));
+                estimation[4] = Math.max(0, this.getSpellEstimation(effectId, fighter, criticalEffect.diceSide, true));
+            }
+            estimations.push(estimation);
         }
         return estimations;
     }
@@ -219,7 +252,12 @@ export class Estimator {
                     this.getElementResistPercent(fighter, "fireElementResistPercent")
                 );
             case 108: // Soins
-                return Math.trunc(spellDice * (100 + this.getCharacterBaseStat('intelligence')) / 100 + this.getCharacterStat("healBonus"));
+                return Math.trunc(spellDice * (100 + this.getCharacterBaseStat("intelligence")) / 100 + this.getCharacterStat("healBonus"));
+            case 672: // Punition du Sacrieur
+                const self = this.wGame.gui.fightManager.getFighter(this.wGame.gui.playerData.id);
+                const maxHealth = this.getCharacterStat("vitality") + (50 + self.level * 5);
+                const percentMax = (self.lifePoints / self.maxLifePoints);
+                return ((spellDice / 100) * Math.pow(Math.cos(2 * Math.PI * (percentMax - 0.5)) + 1, 2)) / 4 * maxHealth;
             case 101: // Retrait PA
             case 116: // Retrait PO
             default:
@@ -229,7 +267,7 @@ export class Estimator {
     }
 
     private isValidEffectId(id: number) {
-        return [96, 91, 100, 97, 92, 98, 93, 99, 94, 108].includes(id);
+        return [96, 91, 100, 97, 92, 98, 93, 99, 94, 108, 672].includes(id);
     }
 
     private getElementResistPercent(fighter: any, key: string) {
@@ -237,7 +275,7 @@ export class Estimator {
     }
 
     /**
-     *
+     * TODO: prévisu dégâts sort de zone éloigné
      * Dégâts subis = (((Puissance + Caractéristique + 100) / 100) - Résistances fixes) * (100 - % Résistances) / 100
      */
     private computeSpellEstimation(
@@ -245,14 +283,14 @@ export class Estimator {
         isCritical: boolean,
         baseStat: number,
         fixDamages: number,
-        spellDamageModifier: [number, number, number],
+        spellDamageModifier: [number, number, number, number],
         fixResistances: number,
         criticalDamageFixedResist: number,
         percentResistances: number
     ) {
-        const [baseDamageModifier, fixedDamageModifier, damageMultiplicator] = spellDamageModifier;
+        const [baseStatModifier, baseSpellDamageModifier, fixedDamageModifier, damageMultiplicator] = spellDamageModifier;
         const power = this.getCharacterStat("damagesBonusPercent");
-        let possibleDamages = (((power * 0.8) + baseStat + 100) / 100) * (baseSpellDamage + baseDamageModifier) + this.getCharacterStat('allDamagesBonus') + fixDamages;
+        let possibleDamages = (((power * 0.8) + baseStatModifier + baseStat + 100) / 100) * (baseSpellDamage + baseSpellDamageModifier) + this.getCharacterStat('allDamagesBonus') + fixDamages;
 
         if (isCritical) {
             possibleDamages += this.getCharacterStat("criticalDamageBonus") - criticalDamageFixedResist;
@@ -268,40 +306,31 @@ export class Estimator {
     }
 
     private getCharacterStat(key: string) {
-        const characteristic = this.wGame.gui.playerData.characters.mainCharacter.characteristics[key];
-        let sum = 0;
-
-        if (typeof characteristic.getBasePts === 'function') {
-            sum += characteristic.getBasePts();
-        }
-        if (typeof characteristic.getContextModif === 'function') {
-            sum += characteristic.getContextModif();
-        }
-        if (typeof characteristic.getEquipmentPts === 'function') {
-            sum += characteristic.getEquipmentPts();
-        }
-        if (typeof characteristic.getAlignGiftPts === 'function') {
-            sum += characteristic.getAlignGiftPts();
-        }
-        return sum;
+        return this.wGame.gui.playerData.characters.mainCharacter.characteristics[key].getTotalStat();
     }
 
     // TODO: Incomplete spell list
     private getSpellDamageModifier(fighter: any) {
         let fixedDamageModifier = 0;
         let damageMultiplicator = 1;
-        let baseDamageModifier = 0;
+        let baseSpellDamageModifier = 0;
+        let baseStatModifier = 0;
 
         for (const buff of this.wGame.gui.fightManager.getFighter(this.wGame.gui.playerData.id).buffs) {
-            if (this.spell.id == buff.castingSpell.spell.id) {
-                switch (buff.castingSpell.spell.id) {
-                    case 159: // Colère de Iop
-                    case 146: // Epée du destin
-                    case 167: // Flèche d'Expiation
-                    case 171: // Flèche Punitive
-                        baseDamageModifier += buff.effect.value;
-                        break;
-                }
+            switch (buff.castingSpell.spell.id) {
+                case 159: // Colère de Iop
+                case 146: // Epée du destin
+                case 167: // Flèche d'Expiation
+                case 171: // Flèche Punitive
+                    if (this.spell.id == buff.castingSpell.spell.id) {
+                        baseSpellDamageModifier += buff.effect.value;
+                    }
+                    break;
+                case 3506: // Maîtrise d'Arme
+                    if (this.spell.isItem) {
+                        baseStatModifier += buff.effect.diceNum;
+                    }
+                    break;
             }
         }
         for (const buff of fighter.buffs) {
@@ -309,8 +338,10 @@ export class Estimator {
                 continue;
             }
             const caster = this.wGame.gui.fightManager.getFighter(buff.source);
-            // 444 = Dérobade
-            if (buff.castingSpell.spell.id == 444) {
+            if (
+                buff.castingSpell.spell.id == 444 || // Dérobade
+                buff.castingSpell.spell.id == 4694 // Corruption
+            ) {
                 damageMultiplicator = 0; // This will turn the formula to zero
                 break;
             }
@@ -344,7 +375,12 @@ export class Estimator {
                     break;
             }
         }
-        return [baseDamageModifier, fixedDamageModifier, damageMultiplicator] as [number, number, number];
+        return [
+            baseStatModifier,
+            baseSpellDamageModifier,
+            fixedDamageModifier,
+            damageMultiplicator
+        ] as [number, number, number, number];
     }
 
     // TODO: Might not work when controlling a summon
@@ -365,6 +401,15 @@ export class Estimator {
         ];
         for (const [x, y] of neighbours) {
             if (fighterPos.i == x && fighterPos.j == y) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private fighterHasSpellId(fighter: any, spellId: number) {
+        for (const buff of fighter.buffs) {
+            if (buff.castingSpell.spell.id == spellId) {
                 return true;
             }
         }
