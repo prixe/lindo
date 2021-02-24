@@ -40,7 +40,10 @@ export class ShowResources extends Mod {
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-                    padding: 0 10px;
+                    padding: 0 5px;
+                    margin: 0 5px;
+                    border-radius: 4px;
+                    background-color: #00000033;
                 }
 
                 .resource-item p {
@@ -156,9 +159,13 @@ export class ShowResources extends Mod {
         this.resourcesBox.id = 'resourcesBox';
 
         this.data.forEach(resource => {
-            let item = `
-                <div class="resource-item">
-                    <img src="${resource.getIcon()}"/>
+            let item = `<div class="resource-item"> <div>`;
+
+            resource.getIcon().forEach((icon) => {
+                item += `<img src="${icon}"/>`;
+            });
+
+            item += `</div>
                     <p>${resource.name}</p>
                     <p id="sr_${resource.typeId}_count">${resource.getCount()}</p>
                 </div>
