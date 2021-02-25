@@ -109,7 +109,6 @@ export class ZaapSearchFilter extends Mod {
         this.zaapSearchInput     = this.wGame.document.createElement("input");
 
         this.zaapSearchInput.setAttribute("placeholder", this.inputPlaceholder);
-        this.zaapSearchInput.setAttribute("autofocus", "true");
         this.zaapSearchInput.setAttribute("id", "zaapName");
 
         this.zaapSearchContainer.classList.add("lindo_zaapSearch__container");
@@ -117,6 +116,10 @@ export class ZaapSearchFilter extends Mod {
 
         this.zaapSearchContainer.append(this.zaapSearchInput);
         this.wGame.document.getElementsByClassName("zaapBody")[0].prepend(this.zaapSearchContainer);
+        setTimeout(() => {
+            this.zaapSearchInput.focus()
+            this.zaapSearchInput.select()
+          }, 300);
     }
 
     private addFavInDom() {
@@ -276,7 +279,6 @@ export class ZaapSearchFilter extends Mod {
         this.zaapSearchInput     = this.wGame.document.createElement("input");
 
         this.zaapSearchInput.setAttribute("placeholder", this.placeholderPrisme);
-        this.zaapSearchInput.setAttribute("autofocus", "true");
         this.zaapSearchInput.setAttribute("id", "zaapName");
 
         this.zaapSearchContainer.classList.add("lindo_zaapSearch__container");
@@ -284,6 +286,10 @@ export class ZaapSearchFilter extends Mod {
 
         this.zaapSearchContainer.append(this.zaapSearchInput);
         this.wGame.document.getElementsByClassName("zaapBody")[0].prepend(this.zaapSearchContainer);
+        setTimeout(() => {
+            this.zaapSearchInput.focus()
+            this.zaapSearchInput.select()
+          }, 300);
     }
 
     private addFavInDomPrism() {
@@ -446,7 +452,6 @@ export class ZaapSearchFilter extends Mod {
         this.zaapSearchInput     = this.wGame.document.createElement("input");
 
         this.zaapSearchInput.setAttribute("placeholder", this.placeholderZaapi);
-        this.zaapSearchInput.setAttribute("autofocus", "true");
         this.zaapSearchInput.setAttribute("id", "zaapName");
 
         this.zaapSearchContainer.classList.add("lindo_zaapSearch__container");
@@ -454,6 +459,10 @@ export class ZaapSearchFilter extends Mod {
 
         this.zaapSearchContainer.append(this.zaapSearchInput);
         this.wGame.document.getElementsByClassName("subwayBody")[0].prepend(this.zaapSearchContainer);
+        setTimeout(() => {
+            this.zaapSearchInput.focus()
+            this.zaapSearchInput.select()
+          }, 300);
     }
 
      // Zaapi Favoris
