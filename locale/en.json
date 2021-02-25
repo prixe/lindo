@@ -59,17 +59,21 @@
         "features": {
           "title": "Features",
           "general": {
+            "menu": {
+              "general": "General",
+              "fight": "Fight",
+              "group": "Group",
+              "job": "Job"
+            },
             "header": "General",
             "disable-inactivity": "Extend the delay before disconnection for inactivity",
             "health-bar": "Activate the display of the life bars below the fighters",
-            "health-bar-shortcut": "Shortcuts for show/hide life bars",
             "jobsxp": "Activate the display of the job xp need for leveling",
             "estimator": "Estimating spell damage in battle",
             "hide-mount": "Hide mounts during fights",
             "fightchronometer" : "Show combats chronometer",
             "zaapsearchfilter" : "Show zaap search filter",
             "show-resources" : "Show map resources",
-            "show-resources-shortcut" : "Shortcut to show/hide map resources",
             "harvest-indicator" : "Activate the display of the remaining time below the ressources",
             "party-member-on-map" : "Add an indicator to know if the members of a group are on the same map"
           },
@@ -100,7 +104,8 @@
           "interface": "Interface",
           "spell": "Spells",
           "inventory": "Inventory",
-          "other": "Various"
+          "other": "Various",
+          "mod": "Mods"
         }
       },
       "bug-report": {
@@ -288,6 +293,10 @@
         "spells": {
           "header": "Spells",
           "slot": "Slot {{x}}"
+        },
+        "mods": {
+          "show-resources" : "Show/hide map resources",
+          "health-bar": "Show/hide life bars"
         }
       },
       "notifications": {
