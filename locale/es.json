@@ -57,6 +57,12 @@
         "features": {
           "title": "Funciones",
           "general": {
+            "menu": {
+              "general": "General",
+              "fight": "Combate",
+              "group": "Grupo",
+              "job": "Trabajo"
+            },
             "header": "General",
             "disable-inactivity": "Extender el período de inactividad",
             "health-bar": "Visualización de barras de vida debajo de los combatientes",
@@ -94,7 +100,8 @@
           "interface": "Interfaz",
           "spell": "Hechizos",
           "inventory": "Inventario",
-          "other": "Diverso"
+          "other": "Diverso",
+          "mod": "Mods"
         }
       },
       "bug-report": {

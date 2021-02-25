@@ -59,6 +59,12 @@
         "features": {
           "title": "Fonctionnalités",
           "general": {
+            "menu": {
+              "general": "Général",
+              "fight": "Combat",
+              "group": "Groupe",
+              "job": "Métier"
+            },
             "header": "Général",
             "disable-inactivity": "Prolonger le délai maximum d'inactivité",
             "estimator": "Estimation des dégats des sorts en combat",
@@ -96,7 +102,8 @@
           "interface": "Interface",
           "spell": "Sorts",
           "inventory": "Inventaire",
-          "other": "Divers"
+          "other": "Divers",
+          "mod": "Mods"
         }
       },
       "bug-report": {

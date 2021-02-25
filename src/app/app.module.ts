@@ -3,6 +3,7 @@ import { ShortcutsOtherComponent } from './window/shortcuts/other/other.componen
 import { ShortcutsInventoryComponent } from './window/shortcuts/inventory/inventory.component';
 import { ShortcutsInterfaceComponent } from './window/shortcuts/interface/interface.component';
 import { ShortcutsApplicationComponent } from './window/shortcuts/application/application.component';
+import { ShortcutsModComponent } from './window/shortcuts/mod/mod.component';
 import { Http, HttpModule } from "@angular/http";
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -107,6 +108,7 @@ registerLocaleData(localeTr);
         ShortcutsInventoryComponent,
         ShortcutsOtherComponent,
         ShortcutsSpellComponent,
+        ShortcutsModComponent,
         InputComponent
     ],
     entryComponents: [

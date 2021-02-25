@@ -59,6 +59,12 @@
         "features": {
           "title": "Contenuti",
           "general": {
+            "menu": {
+              "general": "Generale",
+              "fight": "Combattimento",
+              "group": "Gruppo",
+              "job": "Lavaro"
+            },
             "header": "Generali",
             "disable-inactivity": "Aumenta il tempo per disconessione da inattività",
             "health-bar": "Visualizza le barre della vita sotto i combattenti",
@@ -96,7 +102,8 @@
           "interface": "Interfaccia",
           "spell": "Incantesimi",
           "inventory": "Inventario",
-          "other": "Varie"
+          "other": "Varie",
+          "mod": "Mod"
         }
       },
       "bug-report": {

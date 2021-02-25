@@ -59,6 +59,12 @@
         "features": {
           "title": "Özellikler",
           "general": {
+            "menu": {
+              "general": "Genel",
+              "fight": "Kavga",
+              "group": "Grup",
+              "job": "Iş"
+            },
             "header": "Genel",
             "disable-inactivity": "Bağlantı kesilmeden önce hareketsizlik nedeniyle gecikmeyi uzatın",
             "health-bar": "Savaşçıların altındaki yaşam çubuklarının görüntülenmesini etkinleştirin",
@@ -96,7 +102,8 @@
           "interface": "Arayüz",
           "spell": "Büyüler",
           "inventory": "Envanter",
-          "other": "Diğer"
+          "other": "Diğer",
+          "mod": "Modlar"
         }
       },
       "bug-report": {

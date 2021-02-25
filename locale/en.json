@@ -59,6 +59,12 @@
         "features": {
           "title": "Features",
           "general": {
+            "menu": {
+              "general": "General",
+              "fight": "Fight",
+              "group": "Group",
+              "job": "Job"
+            },
             "header": "General",
             "disable-inactivity": "Extend the delay before disconnection for inactivity",
             "health-bar": "Activate the display of the life bars below the fighters",
@@ -96,7 +102,8 @@
           "interface": "Interface",
           "spell": "Spells",
           "inventory": "Inventory",
-          "other": "Various"
+          "other": "Various",
+          "mod": "Mods"
         }
       },
       "bug-report": {

@@ -59,6 +59,12 @@
         "features": {
           "title": "Funkcje",
           "general": {
+            "menu": {
+              "general": "Generał",
+              "fight": "Walka",
+              "group": "Grupa",
+              "job": "Praca"
+            },
             "header": "Główne",
             "disable-inactivity": "Pozostań ciągle zalogowany",
             "health-bar": "Aktywuj wyświetlanie paska życia poniżej postaci",
@@ -97,7 +103,8 @@
           "interface": "Interfejs",
           "spell": "Czary",
           "inventory": "Ekwipunek",
-          "other": "Inne"
+          "other": "Inne",
+          "mod": "Mody"
         }
       },
       "bug-report": {
