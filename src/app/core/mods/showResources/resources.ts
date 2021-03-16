@@ -172,11 +172,12 @@ export const iconIdByTypeId: any = {
     ],
     225: '170877'   // piraniak
     /*
-    ??:'41405',     // pichon Eud'Compet 
+    ??:'41405',     // pichon Eud'Compet
      */
 }
 
 export const ressourcesToSkip: number[] = [
+    -1,     // undefined
     2,      // Scie
     11,     // Table de confection
     12,     // Atelier
