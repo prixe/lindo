@@ -17,7 +17,7 @@ export class ZaapSearchFilter extends Mod {
         this.inputPlaceholder = this.translate.instant("app.option.vip.zaapsearchfilter.placeholder");
         this.placeholderZaapi = this.translate.instant("app.option.vip.zaapsearchfilter.placeholderZaapi");
         this.placeholderPrisme = this.translate.instant("app.option.vip.zaapsearchfilter.placeholderPrisme");
-        
+
         if (this.params) {
             Logger.info("- enable ZaapSearchFilter");
 
@@ -26,28 +26,28 @@ export class ZaapSearchFilter extends Mod {
             });
 
             this.on(this.wGame.dofus.connectionManager, "TeleportDestinationsListMessage", (arg) => {
-                if ( arg.teleporterType === 1) {
-                this.createSearchFilterZaapi();
-            } 
+                if (arg.teleporterType === 1) {
+                    this.createSearchFilterZaapi();
+                }
             });
 
             this.on(this.wGame.dofus.connectionManager, "TeleportDestinationsListMessage", (arg) => {
-                if ( arg.teleporterType === 2) { // Merci TonTonJS
+                if (arg.teleporterType === 2) { // Merci TonTonJS
                     this.createSearchFilterPrisme();
-                }      
+                }
             });
 
             this.on(this.wGame.connectionManager, "LeaveDialogMessage", () => {
                 this.resetSearchFilter();
             });
             let favori = localStorage.getItem('zaapFav')
-            if(favori == null || favori == undefined || favori == ''){
+            if (favori == null || favori == undefined || favori == '') {
                 localStorage.setItem('zaapFav', '')
             }
         }
     }
 
-// Zaap
+    // Zaap
     private createSearchFilter(): void {
         this.injectInputInDom();
         this.addFavInDom();
@@ -121,32 +121,32 @@ export class ZaapSearchFilter extends Mod {
 
     private addFavInDom() {
         let zaapList = this.wGame.document.getElementsByClassName("lindo_zaapBodyHeight__custom")[0].getElementsByClassName("row");
-            
-        //ajout de l'étoile fovori (rempli ou non)
+
+        // Ajout de l'étoile fovori (rempli ou non)
         for (let index = 1; index < zaapList.length-1; index++) {
             const currentZaap = zaapList[index];
-            
+
             let divVide = currentZaap.getElementsByClassName("col")[0]
-            if(divVide.innerHTML == ''){
+            if (divVide.innerHTML == '') {
                 let idzaap = currentZaap.getElementsByClassName("col")[1].getElementsByClassName("destinationName")[0]
-                if(idzaap != undefined){
+                if (idzaap != undefined) {
                     let actionButton = (divButton, zaap) => {
                         let favori = localStorage.getItem('zaapFav')
                         let favoriArray = favori.split(',')
                         let unfav = 0
                         for (let index = 0; index < favoriArray.length; index++) {
-                            if(favoriArray[index] == zaap){
+                            if (favoriArray[index] == zaap) {
                                 unfav = index
                             }
                         }
-                        if(unfav != 0){
+                        if (unfav != 0) {
                             favoriArray.splice(unfav,1)
                             divButton.innerHTML = `
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 51 48">
                                     <path fill="none" stroke="#000" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
                                 </svg>
                                 `
-                        }else{
+                        } else {
                             divButton.innerHTML = `
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 51 48">
                                     <path fill="yellow" stroke="#000" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
@@ -156,40 +156,40 @@ export class ZaapSearchFilter extends Mod {
                         }
                         localStorage.setItem('zaapFav', favoriArray.toString())
                     }
-    
+
                     let divButton = document.createElement('div')
                     divButton.onclick = () => {
                         actionButton(divButton, idzaap.innerHTML)
                     }
-    
+
                     let favorii = localStorage.getItem('zaapFav')
                     let favoriArrayy = favorii.split(',')
                     let trouver = false
                     for (let index = 0; index < favoriArrayy.length; index++) {
-                        if(favoriArrayy[index] == idzaap.innerHTML){
+                        if (favoriArrayy[index] == idzaap.innerHTML) {
                             trouver = true
                         }
                     }
-                    
-                    if(trouver){
+
+                    if (trouver) {
                         divButton.innerHTML = `
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 51 48">
                             <path fill="yellow" stroke="#000" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
                         </svg>
                         `
-                    }else{
+                    } else {
                         divButton.innerHTML = `
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 51 48">
                             <path fill="none" stroke="#000" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
                         </svg>
                         `
                     }
-                    
+
                     divVide.appendChild(divButton)
                 }
             }
         }
-        
+
         //on met les favori "en haut"
         zaapList = this.wGame.document.getElementsByClassName("lindo_zaapBodyHeight__custom")[0].getElementsByClassName("row");
         let saveIndex = 1
@@ -201,12 +201,12 @@ export class ZaapSearchFilter extends Mod {
             let favoriArrayy = favorii.split(',');
             let trouver = false
             for (let index = 0; index < favoriArrayy.length; index++) {
-                if(idzaap != undefined)
-                    if(favoriArrayy[index] == idzaap.innerHTML){
+                if (idzaap != undefined)
+                    if (favoriArrayy[index] == idzaap.innerHTML) {
                         trouver = true
                     }
             }
-            if(trouver){
+            if (trouver) {
                 currentZaap.parentNode.prepend(currentZaap);
                 saveIndex++
                 index = saveIndex
@@ -288,32 +288,32 @@ export class ZaapSearchFilter extends Mod {
 
     private addFavInDomPrism() {
         let zaapList = this.wGame.document.getElementsByClassName("lindo_prismeBodyHeight__custom")[0].getElementsByClassName("row");
-            
-        //ajout de l'étoile fovori (rempli ou non)
+
+        // Ajout de l'étoile fovori (rempli ou non)
         for (let index = 1; index < zaapList.length-1; index++) {
             const currentZaap = zaapList[index];
-            
+
             let divVide = currentZaap.getElementsByClassName("col")[0]
-            if(divVide.innerHTML == ''){
+            if (divVide.innerHTML == '') {
                 let idzaap = currentZaap.getElementsByClassName("col")[1].getElementsByClassName("destinationName")[0]
-                if(idzaap != undefined){
+                if (idzaap != undefined) {
                     let actionButton = (divButton, zaap) => {
                         let favori = localStorage.getItem('zaapFav')
                         let favoriArray = favori.split(',')
                         let unfav = 0
                         for (let index = 0; index < favoriArray.length; index++) {
-                            if(favoriArray[index] == zaap){
+                            if (favoriArray[index] == zaap) {
                                 unfav = index
                             }
                         }
-                        if(unfav != 0){
+                        if (unfav != 0) {
                             favoriArray.splice(unfav,1)
                             divButton.innerHTML = `
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 51 48">
                                     <path fill="none" stroke="#000" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
                                 </svg>
                                 `
-                        }else{
+                        } else {
                             divButton.innerHTML = `
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 51 48">
                                     <path fill="yellow" stroke="#000" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
@@ -323,40 +323,40 @@ export class ZaapSearchFilter extends Mod {
                         }
                         localStorage.setItem('zaapFav', favoriArray.toString())
                     }
-    
+
                     let divButton = document.createElement('div')
                     divButton.onclick = () => {
                         actionButton(divButton, idzaap.innerHTML)
                     }
-    
+
                     let favorii = localStorage.getItem('zaapFav')
                     let favoriArrayy = favorii.split(',')
                     let trouver = false
                     for (let index = 0; index < favoriArrayy.length; index++) {
-                        if(favoriArrayy[index] == idzaap.innerHTML){
+                        if (favoriArrayy[index] == idzaap.innerHTML) {
                             trouver = true
                         }
                     }
-                    
-                    if(trouver){
+
+                    if (trouver) {
                         divButton.innerHTML = `
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 51 48">
                             <path fill="yellow" stroke="#000" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
                         </svg>
                         `
-                    }else{
+                    } else {
                         divButton.innerHTML = `
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 51 48">
                             <path fill="none" stroke="#000" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
                         </svg>
                         `
                     }
-                    
+
                     divVide.appendChild(divButton)
                 }
             }
         }
-        
+
         //on met les favori "en haut"
         zaapList = this.wGame.document.getElementsByClassName("lindo_prismeBodyHeight__custom")[0].getElementsByClassName("row");
         let saveIndex = 1
@@ -368,21 +368,18 @@ export class ZaapSearchFilter extends Mod {
             let favoriArrayy = favorii.split(',');
             let trouver = false
             for (let index = 0; index < favoriArrayy.length; index++) {
-                if(idzaap != undefined)
-                    if(favoriArrayy[index] == idzaap.innerHTML){
+                if (idzaap != undefined)
+                    if (favoriArrayy[index] == idzaap.innerHTML) {
                         trouver = true
                     }
             }
-            if(trouver){
+            if (trouver) {
                 currentZaap.parentNode.prepend(currentZaap);
                 saveIndex++
                 index = saveIndex
             }
         }
     }
-
-
-
 
     // Zaapi
     private createSearchFilterZaapi(): void {
@@ -460,31 +457,31 @@ export class ZaapSearchFilter extends Mod {
      private addFavInDomZaapi() {
         let zaapList = this.wGame.document.getElementsByClassName("lindo_subwayBodyHeight__custom")[0].getElementsByClassName("row");
 
-        //ajout de l'étoile fovori (rempli ou non)
+        // Ajout de l'étoile fovori (rempli ou non)
         for (let index = 1; index < zaapList.length-1; index++) {
             const currentZaap = zaapList[index];
 
             let divVide = currentZaap.getElementsByClassName("col")[0]
-            if(divVide.innerHTML == ''){
+            if (divVide.innerHTML == '') {
                 let idzaap = currentZaap.getElementsByClassName("col")[1].getElementsByClassName("destinationName")[0]
-                if(idzaap != undefined){
+                if (idzaap != undefined) {
                     let actionButton = (divButton, zaap) => {
                         let favori = localStorage.getItem('zaapFav')
                         let favoriArray = favori.split(',')
                         let unfav = 0
                         for (let index = 0; index < favoriArray.length; index++) {
-                            if(favoriArray[index] == zaap){
+                            if (favoriArray[index] == zaap) {
                                 unfav = index
                             }
                         }
-                        if(unfav != 0){
+                        if (unfav != 0) {
                             favoriArray.splice(unfav,1)
                             divButton.innerHTML = `
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 51 48">
                                     <path fill="none" stroke="#000" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
                                 </svg>
                                 `
-                        }else{
+                        } else {
                             divButton.innerHTML = `
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 51 48">
                                     <path fill="yellow" stroke="#000" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
@@ -504,18 +501,18 @@ export class ZaapSearchFilter extends Mod {
                     let favoriArrayy = favorii.split(',')
                     let trouver = false
                     for (let index = 0; index < favoriArrayy.length; index++) {
-                        if(favoriArrayy[index] == idzaap.innerHTML){
+                        if (favoriArrayy[index] == idzaap.innerHTML) {
                             trouver = true
                         }
                     }
 
-                    if(trouver){
+                    if (trouver) {
                         divButton.innerHTML = `
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 51 48">
                             <path fill="yellow" stroke="#000" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
                         </svg>
                         `
-                    }else{
+                    } else {
                         divButton.innerHTML = `
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 51 48">
                             <path fill="none" stroke="#000" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
@@ -528,7 +525,7 @@ export class ZaapSearchFilter extends Mod {
             }
         }
 
-        //on met les favori "en haut"
+        // On met les favori "en haut"
         zaapList = this.wGame.document.getElementsByClassName("lindo_subwayBodyHeight__custom")[0].getElementsByClassName("row");
         let saveIndex = 1
         for (let index = 1; index < zaapList.length-1; index++) {
@@ -539,19 +536,19 @@ export class ZaapSearchFilter extends Mod {
             let favoriArrayy = favorii.split(',');
             let trouver = false
             for (let index = 0; index < favoriArrayy.length; index++) {
-                if(idzaap != undefined)
-                    if(favoriArrayy[index] == idzaap.innerHTML){
+                if (idzaap != undefined)
+                    if (favoriArrayy[index] == idzaap.innerHTML) {
                         trouver = true
                     }
             }
-            if(trouver){
+            if (trouver) {
                 currentZaap.parentNode.prepend(currentZaap);
                 saveIndex++
                 index = saveIndex
             }
         }
     }
-    
+
     private resetSearchFilter(): void {
         if (this.styleTag) {
             this.styleTag.remove();
@@ -565,4 +562,3 @@ export class ZaapSearchFilter extends Mod {
         super.reset();
     }
 }
-
