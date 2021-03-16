@@ -66,6 +66,7 @@ div.tab {
     &.focus {
       opacity: 1;
       color: white;
+      border-width: 2px;
       border-color: #607d8b;
     }
   }

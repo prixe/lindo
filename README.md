@@ -71,14 +71,16 @@ $ npm install
 ```
 
 ## Start project in dev mode
-Compile electron typescript source and angular source in developpement mode with a watcher :
+Compile electron typescript source and angular source in developpement mode with a watcher (don't stop this command until you stop developing) :
 ```sh
 $ npm run build:dev
 ```
-Start the project in electron :
+Start the project in electron (open a new terminal) : 
 ```sh
 $ npm start
 ```
+Each time you change something in your code, you must restart lindo (restart 'npm start')
+
 ## Distribution building
 If you want to make a release for a specific system, make sure build the project in production mode first:
 ```sh
