@@ -11,6 +11,7 @@
 
 ### Améliorations
 - Ajout de l'icone dans le build .deb
+- Agrandissement du rond focus
 
 ### Correctifs
 - Crash de Lindo avec le déplacement rapide lorsque la case est inaccessible
