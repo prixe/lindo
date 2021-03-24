@@ -617,6 +617,7 @@ export module Option {
         private _party_invitation: boolean;
         private _aggression: boolean;
         private _focus_fight_turn: boolean;
+        private _sale_message: boolean;
 
         get private_message() {
             return this._private_message;
@@ -681,6 +682,15 @@ export module Option {
             this._focus_fight_turn = focus_fight_turn;
         }
 
+        get sale_message() {
+            return this._sale_message;
+        }
+
+        set sale_message(sale_message: any) {
+            this.settingsProvider.write('option.notification.sale_message', sale_message);
+            this._sale_message = sale_message;
+        }
+
         constructor(private settingsProvider: SettingsProvider) {
             this.fight_turn = this.settingsProvider.read('option.notification.fight_turn');
             this.private_message = this.settingsProvider.read('option.notification.private_message');
@@ -689,6 +699,7 @@ export module Option {
             this.party_invitation = this.settingsProvider.read('option.notification.party_invitation');
             this.aggression = this.settingsProvider.read('option.notification.aggression');
             this.focus_fight_turn = this.settingsProvider.read('option.notification.focus_fight_turn');
+            this.sale_message = this.settingsProvider.read('option.notification.sale_message');
         }
     }
 

@@ -21,7 +21,8 @@
       "tax-collector": "A tax collector is being attacked !",
       "kolizeum": "A Kolizeum has been found !",
       "party-invitation": "You are invited to join {{character}}'s group.",
-      "aggression": "You have been aggressed !"
+      "aggression": "You have been aggressed !",
+      "sale-message": "Bank"
     },
     "window": {
       "changelog": {
@@ -298,7 +299,8 @@
         "tax-collector": "When a tax collector is attacked",
         "kolizeum": "When a kolizeum fight is found",
         "party-invitation": "When someone invites you to join a group",
-        "aggression": "When someone aggresses you"
+        "aggression": "When someone aggresses you",
+        "sale-message": "When an item is sold"
       },
       "reset": "Reset",
       "save": "Apply",

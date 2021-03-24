@@ -21,7 +21,8 @@
       "tax-collector": "Atınıza bir saldırı düzenlendi",
       "kolizeum": "Kolizeum bulundu!",
       "party-invitation": "{{character}} seni grubuna katılmaya davet etti.",
-      "aggression": "Saldırıya uğradın!"
+      "aggression": "Saldırıya uğradın!",
+      "sale-message": "Banka"
     },
     "window": {
       "changelog": {
@@ -301,7 +302,8 @@
         "tax-collector": "Atınıza bir saldırı düzenlendiğinde",
         "kolizeum": "Kolizeum bulunduğunda",
         "party-invitation": "Birisi sizi bir gruba katılmaya davet ettiğinde",
-        "aggression": "Birisi sana saldırdığında"
+        "aggression": "Birisi sana saldırdığında",
+        "sale-message": "Bir ürün satıldığında"
       },
       "reset": "Sıfırla",
       "save": "Uygula",

@@ -19,7 +19,8 @@
       "fight-turn": "Inicio del torno de {{character}}",
       "private-message": "Message de {{character}}",
       "tax-collector": "A tax collector is attacked!",
-      "kolizeum": "A Kolizeum has been find !"
+      "kolizeum": "A Kolizeum has been find !",
+      "sale-message": "Banco"
     },
     "window": {
       "changelog": {
@@ -292,7 +293,8 @@
         "fight-turn": "Al inicio del torno (combate)",
         "private-message": "A la llegada de un mensaje privado",
         "tax-collector": "When a tax collector is attacked",
-        "kolizeum": "When kolizeum fight is find"
+        "kolizeum": "When kolizeum fight is find",
+        "sale-message": "Cuando se vende un artículo"
       },
       "reset": "Reiniciar",
       "save": "Validar",

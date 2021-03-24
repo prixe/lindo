@@ -21,7 +21,8 @@
       "tax-collector": "Un percepteur est attaqué !",
       "kolizeum": "Un Kolizéum a été trouvé !",
       "party-invitation": "{{character}} vous invite à rejoindre son groupe.",
-      "aggression": "Vous avez été aggressé !"
+      "aggression": "Vous avez été aggressé !",
+      "sale-message": "Banque"
     },
     "window": {
       "changelog": {
@@ -297,7 +298,8 @@
         "tax-collector": "Quand un percepteur est attaqué",
         "kolizeum": "Quand un combat de kolizéum est trouvé",
         "party-invitation": "Quand un joueur vous invite dans un groupe",
-        "aggression": "Quand un joueur vous aggresse"
+        "aggression": "Quand un joueur vous aggresse",
+        "sale-message": "Quand un item est vendu"
       },
       "save": "Valider",
       "prompt": {
