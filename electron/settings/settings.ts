@@ -4,7 +4,7 @@ import { checkSettings } from './settings-checker';
 import { SettingsDefault } from './settings-default';
 import * as macAddress from 'macaddress';
 import { app, ipcMain, session, dialog, BrowserWindow } from 'electron';
-import del from 'del';
+import * as del from 'del';
 
 const settings = require('electron-settings');
 const i18n = require('node-translate');
