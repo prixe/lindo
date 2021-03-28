@@ -1,5 +1,7 @@
 import { Tab } from 'app/core/classes/tab';
+import { Injectable } from "@angular/core";
 
+@Injectable()
 export class TabService {
 
     private _tabs: Tab[] = [];

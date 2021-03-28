@@ -1,6 +1,8 @@
+import { Injectable } from "@angular/core";
 const crypto = cryptoLib;
 const algorithm = 'aes-256-ctr';
 
+@Injectable()
 export class CryptService {
     public encrypt(text: string, password: string) {
         let cipher = crypto.createCipher(algorithm, password);
