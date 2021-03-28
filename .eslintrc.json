@@ -3,6 +3,9 @@
   "ignorePatterns": [
     "projects/**/*"
   ],
+  "plugins": [
+    "only-warn"
+  ],
   "overrides": [
     {
       "files": [
@@ -16,20 +19,14 @@
         "createDefaultProgram": true
       },
       "extends": [
-        "plugin:@angular-eslint/ng-cli-compat",
-        "plugin:@angular-eslint/ng-cli-compat--formatting-add-on",
-        "plugin:@angular-eslint/template/process-inline-templates",
-        "prettier"
+        "plugin:@angular-eslint/recommended"
       ],
       "rules": {
         "@angular-eslint/component-selector": [
           "error",
           {
             "type": "element",
-            "prefix": [
-              "cmp",
-              "component"
-            ],
+            "prefix": "app",
             "style": "kebab-case"
           }
         ],
@@ -37,15 +34,10 @@
           "error",
           {
             "type": "attribute",
-            "prefix": [
-              "dir",
-              "directive"
-            ],
+            "prefix": "app",
             "style": "camelCase"
           }
-        ],
-        "@angular-eslint/no-attribute-decorator": "error",
-        "@angular-eslint/no-forward-ref": "error"
+        ]
       }
     },
     {
