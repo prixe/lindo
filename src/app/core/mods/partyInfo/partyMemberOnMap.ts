@@ -1,4 +1,3 @@
-import { EMPTY_MAP } from "@angular/core/src/view";
 import { Logger } from "app/core/electron/logger.helper";
 import { Mod } from "../mod";
 

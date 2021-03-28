@@ -1,8 +1,7 @@
-import { getPlatform } from '@angular/core/src/application_ref';
 import { Injectable } from '@angular/core';
 
 const {shell, remote} = electron;
-const {ipcMain, app} = electron.remote;
+const {app} = electron.remote;
 const process = nodeProcess;
 
 @Injectable()
