@@ -40,7 +40,7 @@
     "async": "~3.2.0",
     "axios": "^0.21.1",
     "compare-versions": "~3.6.0",
-    "del": "~4.0.0",
+    "del": "~6.0.0",
     "electron-localshortcut": "~3.2.1",
     "electron-settings": "~3.2.0",
     "enhanced-resolve": "~4.1.0",
