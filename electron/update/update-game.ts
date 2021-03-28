@@ -24,7 +24,7 @@ export class UpdateGame {
             ipcMain.on('update-finished', (event, args) => {
                 Logger.info("[UPDATE] Game update finished.");
 
-                settings.set('buildVersion', args[0].buildVersion);
+                settings.setSync('buildVersion', args[0].buildVersion);
                 this.updateWindow.close();
                 resolve(args[0]);
             });

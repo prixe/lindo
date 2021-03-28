@@ -25,7 +25,7 @@ export class Api {
 
         return new Promise((resolve, reject) => {
 
-            let queries = 'version=' + settings.get('buildVersion') + '&os=' + process.platform + '&time=' + new Date().getTime() + '&lindo=1';
+            let queries = 'version=' + settings.getSync('buildVersion') + '&os=' + process.platform + '&time=' + new Date().getTime() + '&lindo=1';
             let uri = `${this.apiUrl}/update.php?${queries}`;
 
             request.get({ url: uri, forever: true, gzip: true }, (error, response, body) => {

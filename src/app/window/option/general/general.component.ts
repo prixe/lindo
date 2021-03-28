@@ -1,13 +1,13 @@
-import { Component, Injector, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { ElectronService as electron } from 'app/core/electron/electron.service';
-import { IpcRendererService } from 'app/core/electron/ipcrenderer.service';
-import { PromptService } from 'app/core/service/prompt.service';
-import { SettingsService } from 'app/core/service/settings.service';
-import { WindowService } from 'app/core/service/window.service';
-import { OptionWindowService } from '../option.window';
-import { ElectronService } from 'app/core/electron/electron.service';
-import { app, ipcMain } from 'electron';
+import {Component, Injector, OnInit} from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
+import {ElectronService as electron} from 'app/core/electron/electron.service';
+import {IpcRendererService} from 'app/core/electron/ipcrenderer.service';
+import {PromptService} from 'app/core/service/prompt.service';
+import {SettingsService} from 'app/core/service/settings.service';
+import {WindowService} from 'app/core/service/window.service';
+import {OptionWindowService} from '../option.window';
+import {ElectronService} from 'app/core/electron/electron.service';
+import {app, ipcMain} from 'electron';
 
 interface select {
     name: string;
@@ -24,26 +24,26 @@ export class GeneralComponent implements OnInit {
     public _resolution: string;
     public _language: string;
     public resolutions: select[] = [
-        { name: '800x600', value: "800;600" },
-        { name: '960x600', value: "960;600" },
-        { name: '1280x720', value: "1280;720" },
-        { name: '1024x768', value: "1024;768" },
-        { name: '1366x768', value: "1366;768" },
-        { name: '1440x900', value: "1440;900" },
-        { name: '1600x900', value: "1600;900" },
-        { name: '1280x1024', value: "1280;1024" },
-        { name: '1680x1050', value: "1680;1050" },
-        { name: '1920x1080', value: "1920;1080" },
-        { name: '2560x1440', value: "2560;1440" }
+        {name: '800x600', value: "800;600"},
+        {name: '960x600', value: "960;600"},
+        {name: '1280x720', value: "1280;720"},
+        {name: '1024x768', value: "1024;768"},
+        {name: '1366x768', value: "1366;768"},
+        {name: '1440x900', value: "1440;900"},
+        {name: '1600x900', value: "1600;900"},
+        {name: '1280x1024', value: "1280;1024"},
+        {name: '1680x1050', value: "1680;1050"},
+        {name: '1920x1080', value: "1920;1080"},
+        {name: '2560x1440', value: "2560;1440"}
     ];
 
     public languages: select[] = [
-        { name: 'Français', value: "fr" },
-        { name: 'English', value: "en" },
-        { name: 'Español', value: "es" },
-        { name: 'Italiano', value: "it" },
-        { name: 'Polskie', value: "pl" },
-        { name: 'Türkçe', value: "tr" }
+        {name: 'Français', value: "fr"},
+        {name: 'English', value: "en"},
+        {name: 'Español', value: "es"},
+        {name: 'Italiano', value: "it"},
+        {name: 'Polskie', value: "pl"},
+        {name: 'Türkçe', value: "tr"}
     ];
 
     public restartForEarlyDisplayed: boolean = false;
@@ -57,7 +57,7 @@ export class GeneralComponent implements OnInit {
         public settingsService: SettingsService,
         private promptService: PromptService,
         private electronService: ElectronService,
-        private injector: Injector
+        private injector: Injector,
     ) {
         this.windowService = this.injector.get(WindowService)
     }
@@ -113,5 +113,9 @@ export class GeneralComponent implements OnInit {
 
     public clearCache() {
         this.ipcRendererService.send('clear-cache');
+    }
+
+    public onLanguageChange($event) {
+        this.ipcRendererService.send('change-language', $event.value);
     }
 }

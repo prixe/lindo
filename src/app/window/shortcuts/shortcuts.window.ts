@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { ShortcutsComponent } from 'app/window/shortcuts/shortcuts.component';
+import {Injectable} from '@angular/core';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {ShortcutsComponent} from 'app/window/shortcuts/shortcuts.component';
+import {IpcRendererService} from "../../core/electron/ipcrenderer.service";
 
 @Injectable()
 export class ShortcutsWindowService {
@@ -10,8 +10,9 @@ export class ShortcutsWindowService {
 
     constructor(
         private dialog: MatDialog,
-        private router: Router
-    ) { }
+        private ipcRendererService: IpcRendererService
+    ) {
+    }
 
     public open() {
 
@@ -28,6 +29,7 @@ export class ShortcutsWindowService {
     }
 
     public close() {
+        this.ipcRendererService.send("change-shortcuts");
         this.dialogRef.close();
     }
 }

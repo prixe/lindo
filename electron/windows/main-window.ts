@@ -31,8 +31,8 @@ export class MainWindow {
         let displayWidth = display.size.width;
         let displayHeight = display.size.height;
 
-        let applicationWidth = parseInt(settings.get('option.general.resolution').x);
-        let applicationHeight = parseInt(settings.get('option.general.resolution').y);
+        let applicationWidth = parseInt(settings.getSync('option.general.resolution').x);
+        let applicationHeight = parseInt(settings.getSync('option.general.resolution').y);
 
         let applicationPositionX = display.bounds.x + ((displayWidth / 2) - (applicationWidth / 2));
         let applicationPositionY = display.bounds.y + ((displayHeight / 2) - (applicationHeight / 2));

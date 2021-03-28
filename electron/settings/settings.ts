@@ -14,7 +14,7 @@ export class Settings {
     public static init(): void {
         (checkSettings()) ? null : this.resetSettings();
 
-        if (!settings.get('language')) {
+        if (!settings.getSync('language')) {
             let local = app.getLocale();
             let shortLocal = local.slice(0, 1);
 
@@ -22,13 +22,13 @@ export class Settings {
                 case "fr":
                 case "es":
                 case "it":
-                    settings.set('language', shortLocal);
+                    settings.setSync('language', shortLocal);
                     break;
                 case "en":
                 case "pl":
                 case "tr":
                 default:
-                    settings.set('language', 'en');
+                    settings.setSync('language', 'en');
                     break;
             }
         }
@@ -41,24 +41,15 @@ export class Settings {
             'it': require(Application.appPath + `/dist/electron/i18n/it`),
             'pl': require(Application.appPath + `/dist/electron/i18n/pl`),
             'tr': require(Application.appPath + `/dist/electron/i18n/tr`)
-        }).setLocale(settings.get('language'));
-
-        settings.watch('language', (newValue, oldValue) => {
-            i18n.setLocale(newValue);
-            this.reloadSettings();
-        });
-
-        settings.watch('option.shortcuts.no_emu.tabs', (newValue, oldValue) => {
-            this.reloadShortcut();
-        });
+        }).setLocale(settings.getSync('language'));
 
         ipcMain.on('read-settings', (event, args) => {
-            let value = settings.get(args[0]);
+            let value = settings.getSync(args[0]);
             event.returnValue = value;
         });
 
         ipcMain.on('write-settings', (event, args) => {
-            event.returnValue = settings.set(args[0], args[1]);
+            event.returnValue = settings.setSync(args[0], args[1]);
         });
 
         ipcMain.on('reset-game', (event, args) => {
@@ -68,20 +59,29 @@ export class Settings {
         ipcMain.on('clear-cache', (event, args) => {
             this.clearCache();
         });
+
+        ipcMain.on('change-shortcuts', (event, args) => {
+            this.reloadShortcut();
+        });
+
+        ipcMain.on('change-language', (event, args) => {
+            i18n.setLocale(args[0]);
+            this.reloadSettings();
+        });
     };
 
     public static resetSettings(): void {
 
         Logger.info("[SETTING] Restoring the settings..")
 
-        settings.setAll(SettingsDefault);
+        settings.setSync(SettingsDefault);
 
         macAddress.one((err, addr) => {
             if(err || !addr){
-                settings.set('macAddress',  Math.random().toString());
+                settings.setSync('macAddress',  Math.random().toString());
                 Logger.warn("[SETTING] Unable to retrieve the mac address");
             }else{
-                settings.set('macAddress', Buffer.from(addr).toString('base64'));
+                settings.setSync('macAddress', Buffer.from(addr).toString('base64'));
             }
 
             Logger.info("[SETTING] All settings are restored.");
@@ -106,7 +106,7 @@ export class Settings {
             gamePath: app.getPath('userData') + '/game',
             appPath: Application.appPath,
             platform: process.platform,
-            language: settings.get('language')
+            language: settings.getSync('language')
         };
     };
 

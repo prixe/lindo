@@ -30,7 +30,7 @@ export class Application {
 
         UpdateAll.run().then((versions) => {
 
-            settings.set('appVersion', versions.appVersion);
+            settings.setSync('appVersion', versions.appVersion);
 
             this.remoteBuildVersion = versions.buildVersion;
             this.remoteAppVersion = versions.appVersion;

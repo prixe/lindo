@@ -8,7 +8,7 @@
                 <tr>
                     <td>{{ 'app.option.general.language' | translate }}</td>
                     <td>
-                        <mat-select placeholder="{{ 'app.option.general.language' | translate }}" [(ngModel)]="settingsService.language">
+                        <mat-select (selectionChange)="onLanguageChange($event)" placeholder="{{ 'app.option.general.language' | translate }}" [(ngModel)]="settingsService.language">
                             <mat-option *ngFor="let l of languages" [value]="l.value">{{ l.name }}</mat-option>
                         </mat-select>
                     </td>
