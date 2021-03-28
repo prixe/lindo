@@ -1,9 +1,9 @@
-import { Application } from '../application';
-import { Logger } from '../core/logger/logger-electron';
-import { checkSettings } from './settings-checker';
-import { SettingsDefault } from './settings-default';
+import {Application} from '../application';
+import {Logger} from '../core/logger/logger-electron';
+import {checkSettings} from './settings-checker';
+import {SettingsDefault} from './settings-default';
 import * as macAddress from 'macaddress';
-import { app, ipcMain, session, dialog, BrowserWindow } from 'electron';
+import {app, ipcMain, session, dialog, BrowserWindow} from 'electron';
 import * as del from 'del';
 
 const settings = require('electron-settings');
@@ -77,10 +77,10 @@ export class Settings {
         settings.setSync(SettingsDefault);
 
         macAddress.one((err, addr) => {
-            if(err || !addr){
-                settings.setSync('macAddress',  Math.random().toString());
+            if (err || !addr) {
+                settings.setSync('macAddress', Math.random().toString());
                 Logger.warn("[SETTING] Unable to retrieve the mac address");
-            }else{
+            } else {
                 settings.setSync('macAddress', Buffer.from(addr).toString('base64'));
             }
 
@@ -123,8 +123,8 @@ export class Settings {
         let promises = [];
         promises.push(new Promise((resolve, reject) => {
             Application.mainWindows.forEach((mainWindow) => {
-                mainWindow.win.webContents.session.clearCache(() => {
-                    resolve(true);
+                mainWindow.win.webContents.session.clearCache().then(() => {
+                    resolve();
                 });
             });
         }));
