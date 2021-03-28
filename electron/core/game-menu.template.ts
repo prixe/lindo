@@ -74,7 +74,7 @@ export class GameMenuTemplate {
                     },
                     {
                         label: i18n.t('game-menu.edit.selectall'),
-                        role: 'selectall'
+                        role: 'selectAll'
                     }
                 ]
             },
@@ -119,15 +119,15 @@ export class GameMenuTemplate {
                     },
                     {
                         label: i18n.t('game-menu.window.zoomin'),
-                        role: 'zoomin'
+                        role: 'zoomIn'
                     },
                     {
                         label: i18n.t('game-menu.window.zoomout'),
-                        role: 'zoomout'
+                        role: 'zoomOut'
                     },
                     {
                         label: i18n.t('game-menu.window.resetzoom'),
-                        role: 'resetzoom'
+                        role: 'resetZoom'
                     },
                     {
                         type: 'separator'

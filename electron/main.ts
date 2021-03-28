@@ -29,12 +29,10 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
         title: 'Error',
         message: 'An error occured in your settings, they will be reseted :' + error.toString(),
         buttons: ['Close']
-    }, () => {
-
+    }).then(function (){
         Settings.resetSettings();
         app.exit();
     });
-
 });
 
 const gotTheLock = app.requestSingleInstanceLock()

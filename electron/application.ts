@@ -1,8 +1,8 @@
-import { Logger } from './core/logger/logger-electron';
-import { Api } from './core/api';
-import { UpdateAll } from './update/update-all';
-import { MainWindow } from './windows/main-window';
-import { app, BrowserWindow, dialog, ipcMain } from 'electron';
+import {Logger} from './core/logger/logger-electron';
+import {Api} from './core/api';
+import {UpdateAll} from './update/update-all';
+import {MainWindow} from './windows/main-window';
+import {app, BrowserWindow, dialog, ipcMain} from 'electron';
 
 const settings = require('electron-settings');
 const i18n = require('node-translate');
@@ -19,7 +19,7 @@ export class Application {
     public static remoteBuildVersion: string;
     public static remoteAppVersion: string;
     public static canAddWindow: boolean = false;
-    
+
     public static skipAuthentification: boolean = false;
     public static isAuthentified: boolean = false;
     public static masterPassword: string = "";
@@ -38,7 +38,7 @@ export class Application {
             Logger.info("[APPLICATION] Starting..");
             this.canAddWindow = true;
             this.addWindow();
-            
+
         }).catch((error: any) => {
 
             Logger.error('Error occured on update process : ');
@@ -49,7 +49,7 @@ export class Application {
                 title: 'Error',
                 message: "Error occured on update process.",
                 buttons: ['Close']
-            }, () => {
+            }).then(() => {
                 app.exit();
             });
         });

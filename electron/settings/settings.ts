@@ -134,7 +134,8 @@ export class Settings {
                 title: i18n.t('options.clear-cache.title'),
                 message: i18n.t('options.clear-cache.message'),
                 buttons: ['OK']
-            }, () => {
+            }).then(() => {
+                app.exit();
             });
         });
     }

@@ -1,7 +1,7 @@
-import { Application } from '../application';
-import { Logger } from '../core/logger/logger-electron';
-import { UpdateInformations } from './update-informations.interface';
-import { app, BrowserWindow, dialog, shell } from 'electron';
+import {Application} from '../application';
+import {Logger} from '../core/logger/logger-electron';
+import {UpdateInformations} from './update-informations.interface';
+import {app, BrowserWindow, dialog, shell} from 'electron';
 
 const compareVersions = require('compare-versions');
 const pkg = require('../../../package.json');
@@ -49,20 +49,21 @@ export class UpdateApp {
 
             dialog.showMessageBox(BrowserWindow.getFocusedWindow(), {
                 type: 'info',
-                title: i18n.t('updater.new-update.title', { version: response.noemu.version }),
+                title: i18n.t('updater.new-update.title', {version: response.noemu.version}),
                 message: message,
                 buttons: buttons,
-            }, (buttonIndex: number) => {
-                if (buttonIndex == 0) {
+            }).then((returnValue) => {
+
+                if (returnValue.response == 0) {
 
                     Logger.info("[UPDATE] Redirected to app download page.");
 
                     shell.openExternal("http://lindo.no-emu.co/#download");
                     app.exit();
-                } else {
 
+                } else {
                     Logger.warn("[UPDATE] App update ingored.");
-                    resolve(response);
+                    resolve();
                 }
             });
         });
