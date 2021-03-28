@@ -46,7 +46,7 @@
     "enhanced-resolve": "~5.7.0",
     "eventemitter3": "~4.0.7",
     "flexboxgrid": "~6.3.1",
-    "fs-extra": "~7.0.1",
+    "fs-extra": "~9.1.0",
     "js-beautify": "~1.8.9",
     "macaddress": "~0.2.9",
     "marked": "~1.2.3",
