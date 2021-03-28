@@ -2,7 +2,7 @@ import { AfterViewInit, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { SettingsService } from 'app/core/service/settings.service';
 import { ShortcutsWindowService } from './shortcuts.window';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
     templateUrl: './shortcuts.component.html',
