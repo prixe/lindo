@@ -54,7 +54,7 @@
     "js-beautify": "~1.8.9",
     "macaddress": "~0.2.9",
     "marked": "~1.2.3",
-    "ngx-chips": "~1.9.8",
+    "ngx-chips": "~2.0.2",
     "node-translate": "~0.0.4",
     "request": "~2.88.2",
     "request-progress": "~3.0.0",
