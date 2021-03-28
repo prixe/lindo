@@ -15,6 +15,9 @@
             "outputPath": "dist/app",
             "index": "src/index.html",
             "main": "src/main.ts",
+            "allowedCommonJsDependencies": [
+              "js-beautify"
+            ],
             "tsConfig": "src/tsconfig.json",
             "polyfills": "src/polyfills.ts",
             "sourceMap": true,
