@@ -1,14 +1,14 @@
-import { Injectable } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { Game } from 'app/core/classes/game';
-import { Tab } from 'app/core/classes/tab';
-import { ApplicationService } from 'app/core/electron/application.service';
-import { CryptService } from 'app/core/service/crypt.service';
-import { GameService } from 'app/core/service/game.service';
-import { PromptService } from 'app/core/service/prompt.service';
-import { TabService } from 'app/core/service/tab.service';
+import {Injectable} from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
+import {Game} from 'app/core/classes/game';
+import {Tab} from 'app/core/classes/tab';
+import {ApplicationService} from 'app/core/electron/application.service';
+import {CryptService} from 'app/core/service/crypt.service';
+import {GameService} from 'app/core/service/game.service';
+import {PromptService} from 'app/core/service/prompt.service';
+import {TabService} from 'app/core/service/tab.service';
 import * as async from 'async';
-import { EventEmitter } from 'eventemitter3';
+import {EventEmitter} from 'eventemitter3';
 
 @Injectable()
 export class TabGameService extends EventEmitter {
@@ -16,11 +16,11 @@ export class TabGameService extends EventEmitter {
     private lastTabGameIndex: number = 1;
 
     constructor(private gameService: GameService,
-        private tabService: TabService,
-        private promptService: PromptService,
-        private translate: TranslateService,
-        private applicationService: ApplicationService,
-        private crypt: CryptService) {
+                private tabService: TabService,
+                private promptService: PromptService,
+                private translate: TranslateService,
+                private applicationService: ApplicationService,
+                private crypt: CryptService) {
         super();
     }
 
@@ -67,10 +67,10 @@ export class TabGameService extends EventEmitter {
                 title: this.translate.instant("app.prompt.title.confirm"),
                 html: this.translate.instant("app.main.prompt.tabs-overflow.text"),
                 icon: "warning"
-            }).then(() => {
-                add();
-            }, (dismiss) => {
+            }).then((result) => {
+                if (result.isConfirmed) add();
             });
+
         } else {
             add();
         }

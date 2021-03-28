@@ -21,7 +21,7 @@ export class PromptService {
             allowOutsideClick: false,
             customClass: {
                 confirmButton: 'mat-primary mat-raised-button',
-                cancelButton: 'mat-warn mat-raised-button'
+                denyButton: 'mat-warn mat-raised-button'
             },
             target: "body",
             icon: undefined
@@ -45,10 +45,10 @@ export class PromptService {
             confirmButtonText: this.translate.instant("app.prompt.button.confirm"),
             customClass: {
                 confirmButton: 'mat-primary mat-raised-button',
-                cancelButton: 'mat-warn mat-raised-button'
+                denyButton: 'mat-warn mat-raised-button'
             },
-            showCancelButton: true,
-            cancelButtonText: this.translate.instant("app.prompt.button.cancel")
+            showDenyButton: true,
+            denyButtonText: this.translate.instant("app.prompt.button.cancel")
         })
 
         return Toast.fire(options);
@@ -63,7 +63,7 @@ export class PromptService {
             allowOutsideClick: false,
             customClass: {
                 confirmButton: 'mat-primary mat-raised-button',
-                cancelButton: 'mat-warn mat-raised-button'
+                denyButton: 'mat-warn mat-raised-button'
             },
             target: "body",
 
@@ -72,7 +72,7 @@ export class PromptService {
 
             confirmButtonText: this.translate.instant("app.prompt.button.close"),
 
-            showCancelButton: false
+            showDenyButton: false
         })
 
         return Toast.fire(options);
@@ -88,7 +88,7 @@ export class PromptService {
             allowOutsideClick: false,
             customClass: {
                 confirmButton: 'mat-primary mat-raised-button',
-                cancelButton: 'mat-warn mat-raised-button'
+                denyButton: 'mat-warn mat-raised-button'
             },
             target: "body",
 
@@ -97,7 +97,7 @@ export class PromptService {
 
             confirmButtonText: this.translate.instant("app.prompt.button.close"),
 
-            showCancelButton: false
+            showDenyButton: false
         })
 
         return Toast.fire(options);
@@ -112,7 +112,7 @@ export class PromptService {
             allowOutsideClick: false,
             customClass: {
                 confirmButton: 'mat-primary mat-raised-button',
-                cancelButton: 'mat-warn mat-raised-button'
+                denyButton: 'mat-warn mat-raised-button'
             },
             target: "body",
 
@@ -121,7 +121,7 @@ export class PromptService {
 
             confirmButtonText: this.translate.instant("app.prompt.button.close"),
 
-            showCancelButton: false
+            showDenyButton: false
         })
 
         return Toast.fire(options);

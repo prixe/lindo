@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
-import { ApplicationService } from 'app/core/electron/application.service';
-import { IpcRendererService } from 'app/core/electron/ipcrenderer.service';
-import { Logger } from 'app/core/electron/logger.helper';
-import { PromptService } from 'app/core/service/prompt.service';
-import { ChangelogWindowService } from '../changelog/changelog.window';
-import { MatDialogRef } from '@angular/material/dialog';
-import { SettingsService } from 'app/core/service/settings.service';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {TranslateService} from '@ngx-translate/core';
+import {ApplicationService} from 'app/core/electron/application.service';
+import {IpcRendererService} from 'app/core/electron/ipcrenderer.service';
+import {Logger} from 'app/core/electron/logger.helper';
+import {PromptService} from 'app/core/service/prompt.service';
+import {ChangelogWindowService} from '../changelog/changelog.window';
+import {MatDialogRef} from '@angular/material/dialog';
+import {SettingsService} from 'app/core/service/settings.service';
 
 @Component({
     selector: 'component-options',
@@ -40,9 +40,9 @@ export class OptionComponent {
             html: this.translateService.instant('app.option.prompt.reset-option.text'),
             icon: 'warning',
             target: 'component-options'
-        }).then(() => {
-            Settings.resetSettings();
-        }, (dismiss) => {});
+        }).then((result) => {
+            if (result.isConfirmed) Settings.resetSettings();
+        });
     }
 
     public navigateTo($event: any, route: string) {

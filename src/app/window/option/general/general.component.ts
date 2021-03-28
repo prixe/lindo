@@ -87,17 +87,20 @@ export class GeneralComponent implements OnInit {
             this.promptService.confirm({
                 html: this.translateService.instant("app.window.options.general.resolution.confirm-body"),
                 timer: 10000
-            }).then(() => {
+            }).then((result) => {
 
-                this.settingsService.option.general.resolution = resolution;
+                if (result.isConfirmed) {
 
-            }, (dismiss) => {
+                    this.settingsService.option.general.resolution = resolution;
 
-                let oldX = this.settingsService.option.general.resolution.x;
-                let oldY = this.settingsService.option.general.resolution.y;
-                this._resolution = oldX + ';' + oldY;
+                } else if (result.isDenied) {
 
-                electron.getCurrentWindow().setSize(parseInt(this.settingsService.option.general.resolution.x), parseInt(this.settingsService.option.general.resolution.y), true);
+                    let oldX = this.settingsService.option.general.resolution.x;
+                    let oldY = this.settingsService.option.general.resolution.y;
+                    this._resolution = oldX + ';' + oldY;
+
+                    electron.getCurrentWindow().setSize(parseInt(this.settingsService.option.general.resolution.x), parseInt(this.settingsService.option.general.resolution.y), true);
+                }
             });
         }
     }

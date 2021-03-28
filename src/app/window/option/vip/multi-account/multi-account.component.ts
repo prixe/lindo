@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { ApplicationService } from 'app/core/electron/application.service';
-import { CryptService } from 'app/core/service/crypt.service';
-import { PromptService } from 'app/core/service/prompt.service';
-import { SettingsService } from 'app/core/service/settings.service';
+import {Component} from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
+import {ApplicationService} from 'app/core/electron/application.service';
+import {CryptService} from 'app/core/service/crypt.service';
+import {PromptService} from 'app/core/service/prompt.service';
+import {SettingsService} from 'app/core/service/settings.service';
+import Swal from "sweetalert2";
 
 @Component({
     templateUrl: './multi-account.component.html',
@@ -16,11 +17,12 @@ export class MultiAccountComponent {
     public inputCheckMasterPasswordError: boolean = false;
 
     constructor(public settingsService: SettingsService,
-        public applicationService: ApplicationService,
-        public crypt: CryptService,
-        private translate: TranslateService,
-        private promptService: PromptService
-    ) { }
+                public applicationService: ApplicationService,
+                public crypt: CryptService,
+                private translate: TranslateService,
+                private promptService: PromptService
+    ) {
+    }
 
     public hasPassword() {
         return this.settingsService.option.vip.multiaccount.master_password != "";
@@ -37,16 +39,16 @@ export class MultiAccountComponent {
             confirmButtonText: this.translate.instant("app.option.vip.multi-account.prompt.add-master.confirm"),
             showLoaderOnConfirm: true,
 
-            showCancelButton: true,
-            cancelButtonText: this.translate.instant("app.option.vip.multi-account.prompt.add-master.cancel"),
+            showDenyButton: true,
+            denyButtonText: this.translate.instant("app.option.vip.multi-account.prompt.add-master.cancel"),
 
             preConfirm: function (masterPassword) {
 
                 return new Promise(function (resolve, reject) {
 
                     if (masterPassword.length < 8) {
-                        reject(self.translate.instant("app.option.vip.multi-account.prompt.add-master.min-lenght", { "lenght": 8 }));
-                        return false;
+                        Swal.hideLoading();
+                        return Swal.showValidationMessage(self.translate.instant("app.option.vip.multi-account.prompt.add-master.min-lenght", {"lenght": 8}))
                     }
 
                     self.applicationService.masterpassword = masterPassword;
@@ -58,9 +60,12 @@ export class MultiAccountComponent {
                 })
             },
 
-        }).then(function (vipId) {
-            self.promptService.success({ html: self.translate.instant("app.option.vip.multi-account.prompt.add-master.success-text") })
-        }, (dismiss) => { });
+        }).then(function (result) {
+
+            if (result.isConfirmed) {
+                self.promptService.success({html: self.translate.instant("app.option.vip.multi-account.prompt.add-master.success-text")})
+            }
+        });
     }
 
     public updateMasterPassword() {
@@ -71,14 +76,14 @@ export class MultiAccountComponent {
 
             title: this.translate.instant("app.option.vip.multi-account.prompt.edit-master.title"),
             html:
-            '<input type="password" id="input-old-password" class="swal2-input" placeholder="' + this.translate.instant("app.option.vip.multi-account.prompt.edit-master.input-old-placeholder") + '">' +
-            '<input type="password" id="input-new-password" class="swal2-input" placeholder="' + this.translate.instant("app.option.vip.multi-account.prompt.edit-master.input-new-placeholder") + '">',
+                '<input type="password" id="input-old-password" class="swal2-input" placeholder="' + this.translate.instant("app.option.vip.multi-account.prompt.edit-master.input-old-placeholder") + '">' +
+                '<input type="password" id="input-new-password" class="swal2-input" placeholder="' + this.translate.instant("app.option.vip.multi-account.prompt.edit-master.input-new-placeholder") + '">',
 
             confirmButtonText: this.translate.instant("app.option.vip.multi-account.prompt.edit-master.confirm"),
             showLoaderOnConfirm: true,
 
-            showCancelButton: true,
-            cancelButtonText: this.translate.instant("app.option.vip.multi-account.prompt.edit-master.cancel"),
+            showDenyButton: true,
+            denyButtonText: this.translate.instant("app.option.vip.multi-account.prompt.edit-master.cancel"),
 
             preConfirm: function () {
 
@@ -88,7 +93,7 @@ export class MultiAccountComponent {
                     let newPassword = (<HTMLInputElement>document.getElementById("input-new-password")).value;
 
                     if (newPassword.length < 8) {
-                        reject(self.translate.instant("app.option.vip.multi-account.prompt.edit-master.min-lenght", { "lenght": 8 }));
+                        reject(self.translate.instant("app.option.vip.multi-account.prompt.edit-master.min-lenght", {"lenght": 8}));
                         return false;
                     }
 
@@ -121,9 +126,12 @@ export class MultiAccountComponent {
                 })
             },
 
-        }).then(function (vipId) {
-            self.promptService.success({ html: self.translate.instant("app.option.vip.multi-account.prompt.edit-master.success-text") })
-        }, (dismiss) => { });
+        }).then(function (result) {
+
+            if (result.isConfirmed) {
+                self.promptService.success({html: self.translate.instant("app.option.vip.multi-account.prompt.edit-master.success-text")})
+            }
+        });
 
     }
 
@@ -139,18 +147,18 @@ export class MultiAccountComponent {
             confirmButtonText: this.translate.instant("app.option.vip.multi-account.prompt.delete-master.confirm"),
             showLoaderOnConfirm: true,
 
-            showCancelButton: true,
-            cancelButtonText: this.translate.instant("app.option.vip.multi-account.prompt.delete-master.cancel")
+            showDenyButton: true,
+            denyButtonText: this.translate.instant("app.option.vip.multi-account.prompt.delete-master.cancel")
 
         }).then(function (result) {
-            if (result.value) {
+            if (result.isConfirmed) {
                 self.deleteMasterPassword();
-                self.promptService.success({ html: self.translate.instant("app.option.vip.multi-account.prompt.delete-master.success-text") })
+                self.promptService.success({html: self.translate.instant("app.option.vip.multi-account.prompt.delete-master.success-text")})
             }
-        }, (dismiss) => { });
+        });
     }
 
-    public checkMasterPassword($event : any) {
+    public checkMasterPassword($event: any) {
 
         $event.preventDefault();
 
@@ -171,14 +179,14 @@ export class MultiAccountComponent {
 
             title: this.translate.instant("app.option.vip.multi-account.prompt.add-account.title"),
             html:
-            '<input type="text" id="input-account-login" class="swal2-input" placeholder="' + this.translate.instant("app.option.vip.multi-account.prompt.add-account.input-login-placeholder") + '">' +
-            '<input type="password" id="input-account-password" class="swal2-input" placeholder="' + this.translate.instant("app.option.vip.multi-account.prompt.add-account.input-password-placeholder") + '">',
+                '<input type="text" id="input-account-login" class="swal2-input" placeholder="' + this.translate.instant("app.option.vip.multi-account.prompt.add-account.input-login-placeholder") + '">' +
+                '<input type="password" id="input-account-password" class="swal2-input" placeholder="' + this.translate.instant("app.option.vip.multi-account.prompt.add-account.input-password-placeholder") + '">',
 
             confirmButtonText: this.translate.instant("app.option.vip.multi-account.prompt.add-account.confirm"),
             showLoaderOnConfirm: true,
 
-            showCancelButton: true,
-            cancelButtonText: this.translate.instant("app.option.vip.multi-account.prompt.add-account.cancel"),
+            showDenyButton: true,
+            denyButtonText: this.translate.instant("app.option.vip.multi-account.prompt.add-account.cancel"),
 
             preConfirm: function () {
 
@@ -187,8 +195,14 @@ export class MultiAccountComponent {
                     let accountLogin = (<HTMLInputElement>document.getElementById("input-account-login")).value;
                     let accountPassword = (<HTMLInputElement>document.getElementById("input-account-password")).value;
 
-                    if (accountLogin == "") { reject(self.translate.instant("app.option.vip.multi-account.prompt.add-account.min-lenght-login")); return false; }
-                    if (accountPassword == "") { reject(self.translate.instant("app.option.vip.multi-account.prompt.add-account.min-lenght-password")); return false; }
+                    if (accountLogin == "") {
+                        reject(self.translate.instant("app.option.vip.multi-account.prompt.add-account.min-lenght-login"));
+                        return false;
+                    }
+                    if (accountPassword == "") {
+                        reject(self.translate.instant("app.option.vip.multi-account.prompt.add-account.min-lenght-password"));
+                        return false;
+                    }
 
                     windows[windowIndex].push({
                         account_name_encrypted: self.crypt.encrypt(accountLogin, self.applicationService.masterpassword),
@@ -201,7 +215,8 @@ export class MultiAccountComponent {
                 })
             },
 
-        }).then(function () { }, (dismiss) => { });
+        }).then(function () {
+        });
     }
 
     // Delete the account from settings
@@ -225,14 +240,14 @@ export class MultiAccountComponent {
 
             title: this.translate.instant("app.option.vip.multi-account.prompt.edit-account.title"),
             html:
-            '<input type="text" id="input-account-login" value="' + login + '" class="swal2-input" placeholder="' + this.translate.instant("app.option.vip.multi-account.prompt.edit-account.input-login-placeholder") + '"  >' +
-            '<input type="password" id="input-account-password" class="swal2-input" placeholder="' + this.translate.instant("app.option.vip.multi-account.prompt.edit-account.input-password-placeholder") + '">',
+                '<input type="text" id="input-account-login" value="' + login + '" class="swal2-input" placeholder="' + this.translate.instant("app.option.vip.multi-account.prompt.edit-account.input-login-placeholder") + '"  >' +
+                '<input type="password" id="input-account-password" class="swal2-input" placeholder="' + this.translate.instant("app.option.vip.multi-account.prompt.edit-account.input-password-placeholder") + '">',
 
             confirmButtonText: this.translate.instant("app.option.vip.multi-account.prompt.edit-account.confirm"),
             showLoaderOnConfirm: true,
 
-            showCancelButton: true,
-            cancelButtonText: this.translate.instant("app.option.vip.multi-account.prompt.edit-account.cancel"),
+            showDenyButton: true,
+            denyButtonText: this.translate.instant("app.option.vip.multi-account.prompt.edit-account.cancel"),
 
             preConfirm: function () {
 
@@ -241,8 +256,14 @@ export class MultiAccountComponent {
                     let accountLogin = (<HTMLInputElement>document.getElementById("input-account-login")).value;
                     let accountPassword = (<HTMLInputElement>document.getElementById("input-account-password")).value;
 
-                    if (accountLogin == "") { reject(self.translate.instant("app.option.vip.multi-account.prompt.edit-account.min-lenght-login")); return false; }
-                    if (accountPassword == "") { reject(self.translate.instant("app.option.vip.multi-account.prompt.edit-account.min-lenght-password")); return false; }
+                    if (accountLogin == "") {
+                        reject(self.translate.instant("app.option.vip.multi-account.prompt.edit-account.min-lenght-login"));
+                        return false;
+                    }
+                    if (accountPassword == "") {
+                        reject(self.translate.instant("app.option.vip.multi-account.prompt.edit-account.min-lenght-password"));
+                        return false;
+                    }
 
                     windows[windowIndex][accountIndex].account_name_encrypted = self.crypt.encrypt(accountLogin, self.applicationService.masterpassword);
                     windows[windowIndex][accountIndex].password_encrypted = self.crypt.encrypt(accountPassword, self.applicationService.masterpassword);
@@ -253,7 +274,9 @@ export class MultiAccountComponent {
                 })
             },
 
-        }).then(function () { }, (dismiss) => { });
+        }).then(function () {
+        }, (dismiss) => {
+        });
 
     }
 
