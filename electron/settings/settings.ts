@@ -124,7 +124,7 @@ export class Settings {
         promises.push(new Promise((resolve, reject) => {
             Application.mainWindows.forEach((mainWindow) => {
                 mainWindow.win.webContents.session.clearCache(() => {
-                    resolve();
+                    resolve(true);
                 });
             });
         }));
