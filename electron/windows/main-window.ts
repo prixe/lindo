@@ -53,7 +53,9 @@ export class MainWindow {
                 backgroundThrottling: false,
                 allowRunningInsecureContent: true,
                 webSecurity: false,
-                partition: 'persist:' + windowId
+                partition: 'persist:' + windowId,
+                nodeIntegration: true,
+                contextIsolation: false
             }
         });
 

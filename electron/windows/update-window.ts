@@ -24,7 +24,11 @@ export class UpdateWindow {
             resizable: false,
             show: false,
             backgroundColor: '#e6e6e6',
-            frame: false
+            frame: false,
+            webPreferences: {
+                nodeIntegration: true,
+                contextIsolation: false,
+            }
         });
 
         window.once('ready-to-show', () => { window.show() })

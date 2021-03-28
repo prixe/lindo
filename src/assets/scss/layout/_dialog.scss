@@ -23,8 +23,10 @@ mat-dialog-container {
 }
 
 .dialog-settings {
+
     flex: 1 1 auto;
     display: flex;
+    overflow: auto;
 
     .settings-left {
         display: flex;
