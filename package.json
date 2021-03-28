@@ -60,7 +60,7 @@
     "sweetalert2": "~7.33.1",
     "tslib": "^2.0.0",
     "winston": "~3.3.3",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1102.6",
@@ -70,25 +70,23 @@
     "@angular-eslint/schematics": "2.0.2",
     "@angular-eslint/template-parser": "2.0.2",
     "@angular/cli": "~11.2.6",
-    "@types/async": "~2.0.50",
-    "@types/core-js": "~2.5.0",
-    "@types/hammerjs": "~2.0.36",
-    "@types/node": "^12.11.1",
+    "@types/async": "^3.2.5",
+    "@types/node": "^14.14.37",
     "@types/sortablejs": "^1.10.6",
-    "@typescript-eslint/eslint-plugin": "4.16.1",
-    "@typescript-eslint/parser": "4.16.1",
+    "@typescript-eslint/eslint-plugin": "^4.19.0",
+    "@typescript-eslint/parser": "^4.19.0",
     "doctoc": "~2.0.0",
     "electron": "4.2.12",
     "electron-builder": "~20.44.4",
     "electron-packager": "~15.2.0",
     "eslint": "^7.23.0",
     "eslint-plugin-import": "2.22.1",
-    "eslint-plugin-jsdoc": "30.7.6",
+    "eslint-plugin-jsdoc": "^32.3.0",
     "eslint-plugin-only-warn": "^1.0.2",
     "eslint-plugin-prefer-arrow": "1.2.2",
     "ncp": "~2.0.0",
     "replace": "^1.2.0",
-    "typescript": "~4.0.7"
+    "typescript": "^4.2.3"
   },
   "browser": {
     "crypto": false
