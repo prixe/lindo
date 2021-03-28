@@ -55,7 +55,8 @@ export class MainWindow {
                 webSecurity: false,
                 partition: 'persist:' + windowId,
                 nodeIntegration: true,
-                contextIsolation: false
+                contextIsolation: false,
+                enableRemoteModule: true
             }
         });
 
