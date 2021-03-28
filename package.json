@@ -48,7 +48,7 @@
     "flexboxgrid": "~6.3.1",
     "fs-extra": "~9.1.0",
     "js-beautify": "~1.13.5",
-    "macaddress": "~0.2.9",
+    "macaddress": "~0.5.1",
     "marked": "~1.2.3",
     "ngx-chips": "~2.2.2",
     "ngx-sortablejs": "^11.1.0",
