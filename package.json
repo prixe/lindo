@@ -43,7 +43,6 @@
     "codelyzer": "^5.1.2",
     "compare-versions": "~3.6.0",
     "core-js": "~2.6.12",
-    "crypto": "~1.0.1",
     "del": "~4.0.0",
     "electron-localshortcut": "~3.2.1",
     "electron-settings": "~3.2.0",
