@@ -133,7 +133,7 @@ export class MultiAccountComponent {
 
         self.promptService.custom({
 
-            type: "warning",
+            icon: "warning",
             title: this.translate.instant("app.option.vip.multi-account.prompt.delete-master.title"),
             html: this.translate.instant("app.option.vip.multi-account.prompt.delete-master.text"),
             confirmButtonText: this.translate.instant("app.option.vip.multi-account.prompt.delete-master.confirm"),

@@ -66,7 +66,7 @@ export class TabGameService extends EventEmitter {
             this.promptService.confirm({
                 title: this.translate.instant("app.prompt.title.confirm"),
                 html: this.translate.instant("app.main.prompt.tabs-overflow.text"),
-                type: "warning"
+                icon: "warning"
             }).then(() => {
                 add();
             }, (dismiss) => {

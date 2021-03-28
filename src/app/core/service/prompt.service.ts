@@ -19,10 +19,12 @@ export class PromptService {
             buttonsStyling: false,
             reverseButtons: true,
             allowOutsideClick: false,
-            confirmButtonClass: 'mat-primary mat-raised-button',
-            cancelButtonClass: 'mat-warn mat-raised-button',
+            customClass: {
+                confirmButton: 'mat-primary mat-raised-button',
+                cancelButton: 'mat-warn mat-raised-button'
+            },
             target: "body",
-            type: undefined
+            icon: undefined
         })
 
         return Toast.fire(options);
@@ -37,15 +39,16 @@ export class PromptService {
             allowOutsideClick: false,
             target: "body",
 
-            type: "question",
+            icon: "question",
             title: this.translate.instant("app.prompt.title.confirm"),
 
             confirmButtonText: this.translate.instant("app.prompt.button.confirm"),
-            confirmButtonClass: 'mat-primary mat-raised-button spacing-left',
-
+            customClass: {
+                confirmButton: 'mat-primary mat-raised-button',
+                cancelButton: 'mat-warn mat-raised-button'
+            },
             showCancelButton: true,
-            cancelButtonText: this.translate.instant("app.prompt.button.cancel"),
-            cancelButtonClass: 'mat-warn mat-raised-button',
+            cancelButtonText: this.translate.instant("app.prompt.button.cancel")
         })
 
         return Toast.fire(options);
@@ -58,11 +61,13 @@ export class PromptService {
             buttonsStyling: false,
             reverseButtons: true,
             allowOutsideClick: false,
-            confirmButtonClass: 'mat-primary mat-raised-button',
-            cancelButtonClass: 'mat-warn mat-raised-button',
+            customClass: {
+                confirmButton: 'mat-primary mat-raised-button',
+                cancelButton: 'mat-warn mat-raised-button'
+            },
             target: "body",
 
-            type: "info",
+            icon: "info",
             title: this.translate.instant("app.prompt.title.info"),
 
             confirmButtonText: this.translate.instant("app.prompt.button.close"),
@@ -81,11 +86,13 @@ export class PromptService {
             buttonsStyling: false,
             reverseButtons: true,
             allowOutsideClick: false,
-            confirmButtonClass: 'mat-primary mat-raised-button',
-            cancelButtonClass: 'mat-warn mat-raised-button',
+            customClass: {
+                confirmButton: 'mat-primary mat-raised-button',
+                cancelButton: 'mat-warn mat-raised-button'
+            },
             target: "body",
 
-            type: "success",
+            icon: "success",
             title: this.translate.instant("app.prompt.title.success"),
 
             confirmButtonText: this.translate.instant("app.prompt.button.close"),
@@ -103,11 +110,13 @@ export class PromptService {
             buttonsStyling: false,
             reverseButtons: true,
             allowOutsideClick: false,
-            confirmButtonClass: 'mat-primary mat-raised-button',
-            cancelButtonClass: 'mat-warn mat-raised-button',
+            customClass: {
+                confirmButton: 'mat-primary mat-raised-button',
+                cancelButton: 'mat-warn mat-raised-button'
+            },
             target: "body",
 
-            type: "error",
+            icon: "error",
             title: this.translate.instant("app.prompt.title.error"),
 
             confirmButtonText: this.translate.instant("app.prompt.button.close"),

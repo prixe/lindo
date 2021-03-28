@@ -38,7 +38,7 @@ export class OptionComponent {
         this.promptService.confirm({
             title: this.translateService.instant('app.prompt.title.confirm'),
             html: this.translateService.instant('app.option.prompt.reset-option.text'),
-            type: 'warning',
+            icon: 'warning',
             target: 'component-options'
         }).then(() => {
             Settings.resetSettings();
