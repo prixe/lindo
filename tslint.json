@@ -4,7 +4,18 @@
   ],
     "rules":{
     "directive-selector": [true, "attribute", ["dir", "directive"], "camelCase"],
-    "component-selector": [true, "element", ["cmp", "component"], "kebab-case"],
+    "component-selector": [
+      true,
+      "element",
+      [
+        "cmp",
+        "component"
+      ],
+      "kebab-case"
+    ],
+    "deprecation": {
+      "severity": "warning"
+    },
     "no-inputs-metadata-property": true,
     "no-outputs-metadata-property": true,
     "no-host-metadata-property": true,
