@@ -23,9 +23,10 @@
 
         const { BrowserWindow } = require('@electron/remote');
 
-        const Application = require('@electron/remote').app;
+        const Application = require('@electron/remote').require('./application').Application;
         const Settings = require('@electron/remote').require('./settings/settings').Settings;
         const LoggerLib = require('@electron/remote').require('./core/logger/logger-app').Logger;
+
         window.FileLoggerLib = require('@electron/remote').require('./core/logger/file-logger-app').logger;
         window.platform = require('@electron/remote').process.platform;
     </script>

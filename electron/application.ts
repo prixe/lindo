@@ -1,11 +1,9 @@
 import {Logger} from './core/logger/logger-electron';
-import {Api} from './core/api';
 import {UpdateAll} from './update/update-all';
 import {MainWindow} from './windows/main-window';
 import {app, BrowserWindow, dialog, ipcMain} from 'electron';
 
 const settings = require('electron-settings');
-const i18n = require('node-translate');
 const pkg = require(`${app.getAppPath()}/package.json`);
 
 export class Application {
