@@ -1,7 +1,6 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 const {shell, remote} = electron;
-const {app} = electron.remote;
 const process = nodeProcess;
 
 @Injectable()
@@ -27,11 +26,11 @@ export class ElectronService {
     }
 
     public static close() {
-        app.quit();
+        Application.quit();
     }
 
     public static restart() {
-        app.relaunch();
-        app.quit();
+        Application.relaunch();
+        Application.quit();
     }
 }

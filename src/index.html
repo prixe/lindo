@@ -19,15 +19,14 @@
         const axiosLib = require('axios');
         const httpAdapterLib = require('axios/lib/adapters/http');
         const nodeProcess = window.process;
-        const {
-            Application
-        } = require('electron').remote.require('./application');
-        const {
-            Settings
-        } = require('electron').remote.require('./settings/settings');
-        const LoggerLib = require('electron').remote.require('./core/logger/logger-app').Logger;
-        window.FileLoggerLib = require('electron').remote.require('./core/logger/file-logger-app').logger;
-        window.platform = electron.remote.process.platform;
+
+        const { BrowserWindow } = require('@electron/remote');
+
+        const Application = require('@electron/remote').app;
+        const Settings = require('@electron/remote').require('./settings/settings').Settings;
+        const LoggerLib = require('@electron/remote').require('./core/logger/logger-app').Logger;
+        window.FileLoggerLib = require('@electron/remote').require('./core/logger/file-logger-app').logger;
+        window.platform = require('@electron/remote').process.platform;
     </script>
 </head>
 

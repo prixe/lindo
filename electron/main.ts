@@ -1,9 +1,9 @@
 import { Logger } from './core/logger/logger-electron';
 import { Application } from './application';
 import { Settings } from './settings/settings';
-import { app, BrowserWindow, dialog, session } from 'electron';
+import { app, BrowserWindow, dialog } from 'electron';
 
-const settings = require('electron-settings');
+require('@electron/remote/main').initialize()
 
 // Ignore black list GPU for WebGL
 app.commandLine.appendSwitch('ignore-gpu-blacklist', 'true');

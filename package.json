@@ -34,6 +34,7 @@
     "@angular/platform-browser-dynamic": "~11.2.7",
     "@angular/platform-server": "~11.2.7",
     "@angular/router": "~11.2.7",
+    "@electron/remote": "^1.0.4",
     "@ngx-translate/core": "~11.0.1",
     "@ngx-translate/http-loader": "~5.0.0",
     "ajv": "~7.0.3",
