@@ -1,10 +1,9 @@
-import { NgZone } from '@angular/core';
-import { forEachOf } from 'async';
-import { ShortcutsHelper } from "app/core/helpers/shortcuts.helper";
-import { Logger } from "app/core/electron/logger.helper";
+import {forEachOf} from 'async';
+import {ShortcutsHelper} from "app/core/helpers/shortcuts.helper";
+import {Logger} from "app/core/electron/logger.helper";
 
-import { Mod } from "../mod";
-import { Mover } from "./mover";
+import {Mod} from "../mod";
+import {Mover} from "./mover";
 
 export class Shortcuts extends Mod {
     private shortcutsHelper: ShortcutsHelper;
@@ -118,8 +117,7 @@ export class Shortcuts extends Mod {
             this.wGame.gui.menuBar._icons._childrenList.forEach((element: any, index: number) => {
                 if (element.id.toUpperCase() == inter.key.toUpperCase()) {
                     this.shortcutsHelper.bind(inter.value, () => {
-                        let newIndex = index;
-                        this.wGame.gui.menuBar._icons._childrenList[newIndex].tap();
+                        this.wGame.gui.menuBar._icons._childrenList[index].tap();
                     });
                     return;
                 }

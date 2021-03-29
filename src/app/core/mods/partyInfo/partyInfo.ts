@@ -17,7 +17,7 @@ export class PartyInfo extends Mod {
         if (this.info_pp || this.info_lvl) {
             Logger.info('- enable PartyInfo');
 
-            this.partyInitialized = (this.wGame.document.querySelector("#party-info-container") === null ? false : true);
+            this.partyInitialized = (this.wGame.document.querySelector("#party-info-container") !== null);
             setTimeout(() => {
                 this.updatePartyInfo()
             }, 100);
@@ -98,8 +98,8 @@ export class PartyInfo extends Mod {
             this.initializePartyInfo();
         }
         try {
-            var partyLevel = 0;
-            var prospecting = 0;
+            let partyLevel = 0;
+            let prospecting = 0;
             if (this.wGame.gui.party.currentParty && this.wGame.gui.party.currentParty._childrenList.length > 0) {
                 this.wGame.gui.party.currentParty._childrenList.forEach((c) => {
                     partyLevel += c.memberData.level;

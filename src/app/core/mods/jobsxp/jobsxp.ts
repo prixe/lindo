@@ -105,7 +105,7 @@ export class Jobsxp extends Mod{
                     this.xpRestanteText.className = 'xpRestanteText';
                     this.xpRestanteText.style.visibility = 'visible';
                     this.xpRestanteText.innerHTML = '';
-                    for (var id in jobs) {
+                    for (let id in jobs) {
                         let job = jobs[id];
                         if (job.experience.jobXpNextLevelFloor) {
                             let xpToWin = job.experience.jobXpNextLevelFloor - job.experience.jobXP;

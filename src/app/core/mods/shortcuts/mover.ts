@@ -64,20 +64,20 @@ export class Mover extends Mod {
 
     private getClosestCellToChangeMapRandomised(cells: any, cellIdFollowInstruction: number, direc) {
         // a quoi sert réellement cellIdFollowInstruction ????
-        var occupiedCells = this.wGame.isoEngine.actorManager._occupiedCells;
-        var currentCellId = this.wGame.isoEngine.actorManager.userActor.cellId;
+        const occupiedCells = this.wGame.isoEngine.actorManager._occupiedCells;
+        const currentCellId = this.wGame.isoEngine.actorManager.userActor.cellId;
         if (occupiedCells == {} || currentCellId === null) {
             return {
                 cellId: null,
                 direction: null
             }
         }
-        var canMoveDiagonally = this.wGame.isoEngine.actorManager.userActor.canMoveDiagonally;
+        const canMoveDiagonally = this.wGame.isoEngine.actorManager.userActor.canMoveDiagonally;
 
         let tableau = [];
 
-        for (var i = 0; i < cells.length; i++) {
-            var cellId = cells[i];
+        for (let i = 0; i < cells.length; i++) {
+            const cellId = cells[i];
             if (!this.wGame.isoEngine.mapRenderer.getChangeMapFlags(cellId)[direc]) {
                 continue;
             }
@@ -86,7 +86,7 @@ export class Mover extends Mod {
             }
             this.pathFinder.resetPath();
             this.pathFinder.fillPathGrid(this.wGame.isoEngine.mapRenderer.map);
-            var path = this.pathFinder.getPath(currentCellId, cellId, occupiedCells, canMoveDiagonally, false);
+            const path = this.pathFinder.getPath(currentCellId, cellId, occupiedCells, canMoveDiagonally, false);
 
             if (path[path.length - 1] == cellId) {
                 tableau.push([path,path[path.length - 1]]);
@@ -113,9 +113,9 @@ export class Mover extends Mod {
     }
 
     private isMobOnCell(cellId) {
-        var occupiedCells = this.wGame.isoEngine.actorManager._occupiedCells;
+        const occupiedCells = this.wGame.isoEngine.actorManager._occupiedCells;
         if (occupiedCells[cellId]) {
-            for (var j = 0; j < occupiedCells[cellId].length; j++) {
+            for (let j = 0; j < occupiedCells[cellId].length; j++) {
                 if (occupiedCells[cellId][j].actorId < 0) {
                     return true;
                 }

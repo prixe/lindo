@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { Logger } from "app/core/electron/logger.helper";
 import { SettingsService } from 'app/core/service/settings.service';
 import { js as BeautifyJs, css as BeautifyCss } from 'js-beautify';
+import {ProgressBarMode} from "@angular/material/progress-bar";
 const fs = fsLib;
 const path = pathLib;
 const axios = axiosLib;
@@ -54,7 +55,7 @@ interface RegexPatches {
 })
 export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
 
-    public progressMode: string = "buffer";
+    public progressMode: ProgressBarMode = "buffer";
     public progressValue: number = 0;
     public displayedProgress: number = 0;
     public informations: string;
@@ -378,9 +379,9 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
 
     computeProgressTotal(manifestDifferences: Differences, assetMapDifferences: Differences) {
         let total = 0;
-        for (var i in manifestDifferences)
+        for (let i in manifestDifferences)
             if (manifestDifferences[i] == 1) total += this.getFileEstimatedWeight(i);
-        for (var i in assetMapDifferences)
+        for (let i in assetMapDifferences)
             if (assetMapDifferences[i] == 1) total += this.getFileEstimatedWeight(i);
         this.totalProgress = total;
     }
@@ -412,7 +413,7 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
 
     async downloadMissingFiles(manifest: Manifest, differences: Differences, basePath: string = ""): Promise<Files> {
         let files = {};
-        for (var i in differences) {
+        for (let i in differences) {
             if (differences[i] == 1) {
                 files[i] = await this.download(basePath + manifest.files[i].filename, false, this.getFileEstimatedWeight(manifest.files[i].filename));
             }
@@ -440,7 +441,7 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
     async saveFiles(files: Files): Promise<void[]> {
         let promises = [];
         try {
-            for (var filename in files) {
+            for (let filename in files) {
                 let fileContent: string;
                 if (typeof files[filename] == 'object') fileContent = JSON.stringify(files[filename]);
                 else fileContent = (files[filename] as string);
@@ -463,7 +464,7 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
     async downloadAndSaveMissingFiles(manifest, differences: Differences, basePath: string = ""): Promise<void> {
         let promises = [];
         try {
-            for (var i in differences) {
+            for (let i in differences) {
                 if (differences[i] == 1) {
                     await new Promise(resolve => setTimeout(resolve, 1));
                     promises.push(this.queueNextFile(
@@ -543,8 +544,8 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
     }
 
     deleteOldFiles(differences: Differences): Promise<void[]> {
-        var promises = [];
-        for (var i in differences) {
+        const promises = [];
+        for (let i in differences) {
             if (differences[i] == -1) {
                 ((filename) => {
                     promises.push(new Promise((resolve, reject) => {
@@ -581,7 +582,7 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
     }
 
     ensureDirectoryExists(filePath: string) {
-        var dirname = path.dirname(filePath);
+        const dirname = path.dirname(filePath);
         if (fs.existsSync(dirname)) {
             return true;
         }

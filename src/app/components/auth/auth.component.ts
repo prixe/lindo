@@ -65,13 +65,13 @@ export class AuthComponent {
                         this.loadingMultiAccount = false;
                         this.authService.updateAuthState();
 
-                        for (var i = 0; i < multiAccountsParam.length; i++) {
+                        for (let i = 0; i < multiAccountsParam.length; i++) {
                             Application.mainWindows[i].win.webContents.send('accounts', multiAccountsParam[i]);
                         }
                     }
                 });
 
-                for (var i = 0; i < (multiAccountsParam.length - 1); i++) {
+                for (let i = 0; i < (multiAccountsParam.length - 1); i++) {
                     Application.addWindow();
                 }
             }

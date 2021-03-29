@@ -2,7 +2,7 @@ export class KeyCode {
 
     static getKeyCodeValue (keyCode: number, shiftKey: boolean) {
         shiftKey = shiftKey || false;
-        var value = null;
+        let value = null;
         if(shiftKey === true) {
             value = this.modifiedByShift[keyCode];
         }else {

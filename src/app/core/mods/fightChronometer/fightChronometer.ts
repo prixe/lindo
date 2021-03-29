@@ -16,7 +16,7 @@ export class FightChronometer extends Mod {
         if (this.params) {
             Logger.info('- enable Fight-Chronometer');
 
-            this.chronometerInitialized = (this.wGame.document.querySelector("#chronometerContainer") === null ? false : true);
+            this.chronometerInitialized = (this.wGame.document.querySelector("#chronometerContainer") !== null);
             this.create();
 
             this.on(this.wGame.dofus.connectionManager, 'GameFightStartMessage', this.update.bind(this));

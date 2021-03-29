@@ -306,20 +306,20 @@ export class AutoGroup extends Mod {
 
     private getClosestCellToChangeMapRandomised(cells: any, cellIdFollowInstruction: number, direc) {
         // a quoi sert réellement cellIdFollowInstruction ????
-        var occupiedCells = this.wGame.isoEngine.actorManager._occupiedCells;
-        var currentCellId = this.wGame.isoEngine.actorManager.userActor.cellId;
+        const occupiedCells = this.wGame.isoEngine.actorManager._occupiedCells;
+        const currentCellId = this.wGame.isoEngine.actorManager.userActor.cellId;
         if (occupiedCells == {} || currentCellId == null) {
             return {
                 cellId: null,
                 direction: null
             }
         }
-        var canMoveDiagonally = this.wGame.isoEngine.actorManager.userActor.canMoveDiagonally;
+        const canMoveDiagonally = this.wGame.isoEngine.actorManager.userActor.canMoveDiagonally;
 
         let tableau = []
 
-        for (var i = 0; i < cells.length; i++) {
-            var cellId = cells[i];
+        for (let i = 0; i < cells.length; i++) {
+            const cellId = cells[i];
             if (!this.wGame.isoEngine.mapRenderer.getChangeMapFlags(cellId)[direc]) {
                 continue;
             }
@@ -328,7 +328,7 @@ export class AutoGroup extends Mod {
             }
             this.pathFinder.resetPath()
             this.pathFinder.fillPathGrid(this.wGame.isoEngine.mapRenderer.map)
-            var path = this.pathFinder.getPath(currentCellId, cellId, occupiedCells, canMoveDiagonally, false);
+            const path = this.pathFinder.getPath(currentCellId, cellId, occupiedCells, canMoveDiagonally, false);
 
             if (path[path.length - 1] == cellId /*&& (!finalPath || (path.length < finalPath.length && path.length > 1))*/) {
                 tableau.push([path,path[path.length - 1]])
@@ -443,9 +443,9 @@ export class AutoGroup extends Mod {
     }
     
     private isMobOnCell(cellId) {
-        var occupiedCells = this.wGame.isoEngine.actorManager._occupiedCells;
+        const occupiedCells = this.wGame.isoEngine.actorManager._occupiedCells;
         if (occupiedCells[cellId]) {
-            for (var j = 0; j < occupiedCells[cellId].length; j++) {
+            for (let j = 0; j < occupiedCells[cellId].length; j++) {
                 if (occupiedCells[cellId][j].actorId < 0) {
                     return true;
                 }
@@ -562,7 +562,7 @@ export class AutoGroup extends Mod {
     private getMonsterGroupBossCells(): any {
         let cells = [];
         let actors = this.wGame.isoEngine.actorManager.getIndexedVisibleActors();
-        for (var id in actors) {
+        for (let id in actors) {
             if (actors[id].data.type == "GameRolePlayGroupMonsterInformations" && actors[id].groupBoss == null) {
                 cells.push(actors[id].cellId);
             }
@@ -669,8 +669,8 @@ export class AutoGroup extends Mod {
 
             let onMapComplementaryInformationsDataMessage = (msg: any) => {
                 this.didLeaderChange();
-                for (var idF in msg.fights) {
-                    for (var idT in msg.fights[idF].fightTeams) {
+                for (let idF in msg.fights) {
+                    for (let idT in msg.fights[idF].fightTeams) {
                         if (msg.fights[idF].fightTeams[idT].leaderId == this.leaderId) {
                             this.turnIdle();
                             setTimeout(() => {
@@ -713,7 +713,7 @@ export class AutoGroup extends Mod {
 
     private objectToString(obj: any): string {
         let str = '{ ';
-        for (var id in obj) {
+        for (let id in obj) {
             str += id + ': ' + obj[id] + ', ';
         }
         str = str.substr(0, str.length - 2) + ' }';

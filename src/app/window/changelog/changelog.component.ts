@@ -54,7 +54,7 @@ export class ChangeLogComponent implements OnInit {
 
     private populateVersion(): void {
         let filteredContent = this.lexedContent.filter((node: any) => {
-            return (node.depth == 2 && node.type == "heading") ? true : false;
+            return (node.depth == 2 && node.type == "heading");
         });
 
         let nodeVersion: any;

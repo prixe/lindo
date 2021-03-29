@@ -41,7 +41,7 @@ export class ZaapSearchFilter extends Mod {
                 this.resetSearchFilter();
             });
             let favori = localStorage.getItem('zaapFav')
-            if (favori == null || favori == undefined || favori == '') {
+            if (favori == null || favori == '') {
                 localStorage.setItem('zaapFav', '')
             }
         }

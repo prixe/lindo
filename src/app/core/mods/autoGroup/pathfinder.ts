@@ -65,35 +65,35 @@ export class PathFinder {
      * 
      */
     getPath(source, target, occupiedCells, allowDiagonals, stopNextToTarget) {
-        var c, candidate;
+        let c, candidate;
 
         allowDiagonals = allowDiagonals === undefined ? true : !!allowDiagonals;
 
-        var srcPos = this.getMapPoint(source); // source index
-        var dstPos = this.getMapPoint(target); // destination index
+        const srcPos = this.getMapPoint(source); // source index
+        const dstPos = this.getMapPoint(target); // destination index
 
-        var si = srcPos.x + 1; // source i
-        var sj = srcPos.y + 1; // source j
+        const si = srcPos.x + 1; // source i
+        const sj = srcPos.y + 1; // source j
 
-        var srcCell = this.grid[si][sj];
+        const srcCell = this.grid[si][sj];
         if (srcCell.zone === -1) {
             // Searching for accessible cell around source
-            var bestFit = null;
-            var bestDist = Infinity;
-            var bestFloorDiff = Infinity;
-            for (var i = -1; i <= 1; i += 1) {
-                for (var j = -1; j <= 1; j += 1) {
+            let bestFit = null;
+            let bestDist = Infinity;
+            let bestFloorDiff = Infinity;
+            for (let i = -1; i <= 1; i += 1) {
+                for (let j = -1; j <= 1; j += 1) {
                     if (i === 0 && j === 0) {
                         continue;
                     }
 
-                    var cell = this.grid[si + i][sj + j];
+                    const cell = this.grid[si + i][sj + j];
                     if (cell.zone === -1) {
                         continue;
                     }
 
-                    var floorDiff = Math.abs(cell.f - srcCell.f);
-                    var dist = Math.abs(i) + Math.abs(j);
+                    const floorDiff = Math.abs(cell.f - srcCell.f);
+                    const dist = Math.abs(i) + Math.abs(j);
                     if (bestFit === null || floorDiff < bestFloorDiff || (floorDiff <= bestFloorDiff && dist < bestDist)) {
                         bestFit = cell;
                         bestDist = dist;
@@ -110,32 +110,32 @@ export class PathFinder {
             return [source];
         }
 
-        var di = dstPos.x + 1; // destination i
-        var dj = dstPos.y + 1; // destination j
+        const di = dstPos.x + 1; // destination i
+        const dj = dstPos.y + 1; // destination j
 
         // marking cells as occupied
-        var cellPos, cellId;
+        let cellPos, cellId;
         for (cellId in occupiedCells) {
             cellPos = this.getMapPoint(cellId);
             this.grid[cellPos.x + 1][cellPos.y + 1].weight += this.OCCUPIED_CELL_WEIGHT;
         }
 
-        var candidates = [];
-        var selections = [];
+        let candidates = [];
+        const selections = [];
 
         // First cell in the path
-        var distSrcDst = Math.sqrt((si - di) * (si - di) + (sj - dj) * (sj - dj));
-        var selection = new CellPathCandidate(si, sj, 0, distSrcDst, null);
+        const distSrcDst = Math.sqrt((si - di) * (si - di) + (sj - dj) * (sj - dj));
+        let selection = new CellPathCandidate(si, sj, 0, distSrcDst, null);
 
         // Adding cells to path until destination has been reached
-        var reachingPath = null;
-        var closestPath = selection;
+        let reachingPath = null;
+        let closestPath = selection;
         while (selection.i !== di || selection.j !== dj) {
             this.addCandidates(selection, di, dj, candidates, allowDiagonals);
 
             // Looking for candidate with the smallest additional length to path
             // in O(number of candidates)
-            var n = candidates.length;
+            const n = candidates.length;
             if (n === 0) {
                 // No possible path
                 // returning the closest path to destination
@@ -143,8 +143,8 @@ export class PathFinder {
                 break;
             }
 
-            var minPotentialWeight = Infinity;
-            var selectionIndex = 0;
+            let minPotentialWeight = Infinity;
+            let selectionIndex = 0;
             for (c = 0; c < n; c += 1) {
                 candidate = candidates[c];
                 if (candidate.w + candidate.d < minPotentialWeight) {
@@ -167,7 +167,7 @@ export class PathFinder {
                     closestPath = selection;
 
                     // Clearing candidates dominated by current solution to speed up the algorithm
-                    var trimmedCandidates = [];
+                    const trimmedCandidates = [];
                     for (c = 0; c < candidates.length; c += 1) {
                         candidate = candidates[c];
                         if (candidate.w + candidate.d < reachingPath.w) {
@@ -192,7 +192,7 @@ export class PathFinder {
             this.grid[candidate.i][candidate.j].candidateRef = null;
         }
 
-        for (var s = 0; s < selections.length; s += 1) {
+        for (let s = 0; s < selections.length; s += 1) {
             selection = selections[s];
             this.grid[selection.i][selection.j].candidateRef = null;
         }
@@ -203,7 +203,7 @@ export class PathFinder {
             this.grid[cellPos.x + 1][cellPos.y + 1].weight -= this.OCCUPIED_CELL_WEIGHT;
         }
 
-        var shortestPath = [];
+        const shortestPath = [];
         while (closestPath !== null) {
             shortestPath.unshift(this.getCellId(closestPath.i - 1, closestPath.j - 1));
             closestPath = closestPath.path;
@@ -228,21 +228,21 @@ export class PathFinder {
     }
 
     addCandidate(c, w, di, dj, candidates, path) {
-        var i = c.i;
-        var j = c.j;
+        const i = c.i;
+        const j = c.j;
 
         // The total weight of the candidate is the weight of previous path
         // plus its weight (calculated based on occupancy and speed factor)
-        var distanceToDestination = Math.sqrt((di - i) * (di - i) + (dj - j) * (dj - j));
+        const distanceToDestination = Math.sqrt((di - i) * (di - i) + (dj - j) * (dj - j));
         w = w / c.speed + c.weight;
 
         if (c.candidateRef === null) {
-            var candidateRef = new CellPathCandidate(i, j, path.w + w, distanceToDestination, path);
+            const candidateRef = new CellPathCandidate(i, j, path.w + w, distanceToDestination, path);
             candidates.push(candidateRef);
             c.candidateRef = candidateRef;
         } else {
-            var currentWeight = c.candidateRef.w;
-            var newWeight = path.w + w;
+            const currentWeight = c.candidateRef.w;
+            const newWeight = path.w + w;
             if (newWeight < currentWeight) {
                 c.candidateRef.w = newWeight;
                 c.candidateRef.path = path;
@@ -251,21 +251,21 @@ export class PathFinder {
     }
 
     addCandidates(path, di, dj, candidates, allowDiagonals) {
-        var i = path.i;
-        var j = path.j;
-        var c = this.grid[i][j];
+        const i = path.i;
+        const j = path.j;
+        const c = this.grid[i][j];
 
 
         // Searching whether adjacent cells can be candidates to lengthen the path
 
         // Adjacent cells
-        var c01 = this.grid[i - 1][j];
-        var c10 = this.grid[i][j - 1];
-        var c12 = this.grid[i][j + 1];
-        var c21 = this.grid[i + 1][j];
+        const c01 = this.grid[i - 1][j];
+        const c10 = this.grid[i][j - 1];
+        const c12 = this.grid[i][j + 1];
+        const c21 = this.grid[i + 1][j];
 
         // weight of path in straight line = 1
-        var weightStraight = 1;
+        const weightStraight = 1;
 
         if (this.areCommunicating(c, c01)) {
             this.addCandidate(c01, weightStraight, di, dj, candidates, path);
@@ -284,13 +284,13 @@ export class PathFinder {
         // Searching whether diagonally adjacent cells can be candidates to lengthen the path
 
         // Diagonally adjacent cells
-        var c00 = this.grid[i - 1][j - 1];
-        var c02 = this.grid[i - 1][j + 1];
-        var c20 = this.grid[i + 1][j - 1];
-        var c22 = this.grid[i + 1][j + 1];
+        const c00 = this.grid[i - 1][j - 1];
+        const c02 = this.grid[i - 1][j + 1];
+        const c20 = this.grid[i + 1][j - 1];
+        const c22 = this.grid[i + 1][j + 1];
 
         // weight of path in diagonal = Math.sqrt(2)
-        var weightDiagonal = Math.sqrt(2);
+        const weightDiagonal = Math.sqrt(2);
 
         if (allowDiagonals) {
             if (this.canMoveDiagonallyTo(c, c00, c01, c10)) {

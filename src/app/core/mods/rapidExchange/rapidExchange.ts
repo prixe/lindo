@@ -90,8 +90,8 @@ export class RapidExchange extends Mod {
             if (msg.remote)
                 return;
 
-            var UID = msg.object.objectUID;
-            var quantity = msg.object.quantity;
+            const UID = msg.object.objectUID;
+            const quantity = msg.object.quantity;
 
             let remove = () => {
                 this.moveItem({objectUID: UID, quantity: quantity}, "tradeWithPlayer", true);

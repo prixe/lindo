@@ -115,7 +115,7 @@ export class Estimator {
         let estimations : IEstimation[] = [];
 
         //pour chaque effet du sort
-        for (var effectId in spell.spellLevel.effects) {
+        for (let effectId in spell.spellLevel.effects) {
             let effect = spell.spellLevel.effects[effectId];
 
             //si effet direct
@@ -399,27 +399,27 @@ export class Estimator {
     private getResFixSpell(element: string, fighter: any) {
         let res = 0;
 
-        for (var buff of fighter.buffs) {
+        for (let buff of fighter.buffs) {
             //si reduction de dégats
             let caster = this.wGame.gui.fightManager.getFighter(buff.source);
             let lvl = caster.level;
             if (buff.effect.effect.characteristic == 16) {
                 switch (buff.castingSpell.spell.id){
                     case 1://armure incandescente
-                        if(element = 'fire')
+                        if(element === 'fire')
                             res += buff.effect.value * (100 + 5 * lvl) / 100;
                         break;
                     case 18://armure aqueuse
                         Logger.info("armure aqueuse: "+element);
-                        if(element = 'water')
+                        if(element === 'water')
                             res += buff.effect.value * (100 + 5 * lvl) / 100;
                         break;
                     case 6:// armure terrestre
-                        if(element = 'earth')
+                        if(element === 'earth')
                             res += buff.effect.value * (100 + 5 * lvl) / 100;
                         break;
                     case 14:// armure venteuse
-                        if(element = 'air')
+                        if(element === 'air')
                             res += buff.effect.value * (100 + 5 * lvl) / 100;
                         break;
                     case 5://trêve

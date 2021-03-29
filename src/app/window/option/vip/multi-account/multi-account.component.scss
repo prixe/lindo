@@ -1,6 +1,5 @@
 mat-card.window {
-    padding: 0;
-    padding-bottom: 19px;
+    padding: 0 0 19px;
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
@@ -20,8 +19,7 @@ mat-card.window {
         margin-bottom: 0px;
     }
     mat-card-actions {
-        padding: 0px 24px 24px;
-        padding-bottom: 5px;
+        padding: 0 24px 5px;
     }
     
     mat-card-title {
