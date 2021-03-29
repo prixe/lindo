@@ -8,9 +8,11 @@ import { Logger } from "app/core/electron/logger.helper";
 import { SettingsService } from 'app/core/service/settings.service';
 import { js as BeautifyJs, css as BeautifyCss } from 'js-beautify';
 import {ProgressBarMode} from "@angular/material/progress-bar";
+import axios from 'axios';
+
 const fs = fsLib;
 const path = pathLib;
-const axios = axiosLib;
+
 const httpAdapter = httpAdapterLib;
 
 /**
@@ -524,13 +526,16 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
             try {
                 this.ensureDirectoryExists(filePath);
                 let fileStream = fs.createWriteStream(filePath);
+
                 fileStream.on('finish', () => {
                     this.addProgress(1);
                     resolve();
                 });
+
                 fileStream.on('error', (error: Error) => {
                     reject(error.message);
                 });
+
                 axios.get(url, {
                     responseType: 'stream',
                     adapter: httpAdapter
@@ -539,6 +544,7 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
                 }).catch((error: any) => {
                     reject(error);
                 });
+
             } catch (e) { Logger.error(e.message); reject(e.message); }
         });
     }

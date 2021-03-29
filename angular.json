@@ -16,6 +16,7 @@
             "index": "src/index.html",
             "main": "src/main.ts",
             "allowedCommonJsDependencies": [
+              "axios",
               "js-beautify"
             ],
             "tsConfig": "src/tsconfig.json",

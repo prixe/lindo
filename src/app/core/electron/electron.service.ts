@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 
-const {shell, remote} = electron;
 const process = nodeProcess;
 
 @Injectable()
@@ -10,15 +9,15 @@ export class ElectronService {
     }
 
     public static getCurrentWindow() {
-        return remote.getCurrentWindow();
+        return Remote.getCurrentWindow();
     }
 
     public static openExternal(url: string) {
-        shell.openExternal(url);
+        electron.shell.openExternal(url);
     }
 
     public static getVersion() {
-        return Application.version;
+        return app.version;
     }
 
     public static getPlatform() {
@@ -26,11 +25,11 @@ export class ElectronService {
     }
 
     public static close() {
-        Application.quit();
+        app.quit();
     }
 
     public static restart() {
-        Application.relaunch();
-        Application.quit();
+        app.relaunch();
+        app.quit();
     }
 }

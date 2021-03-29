@@ -17,12 +17,11 @@
         const fsLib = require('fs');
         const osLib = require('os');
         const pathLib = require('path');
-        const axiosLib = require('axios');
         const httpAdapterLib = require('axios/lib/adapters/http');
         const nodeProcess = window.process;
 
-        const { BrowserWindow } = require('@electron/remote');
-
+        const Remote = require('@electron/remote');
+        const app = require('@electron/remote').app;
         const Application = require('@electron/remote').require('./application').Application;
         const Settings = require('@electron/remote').require('./settings/settings').Settings;
         const LoggerLib = require('@electron/remote').require('./core/logger/logger-app').Logger;

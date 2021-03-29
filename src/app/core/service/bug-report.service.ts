@@ -3,8 +3,9 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Logger } from 'app/core/electron/logger.helper';
 import { BugReportComponent } from 'app/window/bug-report/bug-report.component';
 import { ApplicationService } from 'app/core/electron/application.service';
+import axios from 'axios';
+
 const os = osLib;
-const axios = axiosLib;
 
 @Injectable()
 export class BugReportService {
