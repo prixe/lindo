@@ -26,6 +26,7 @@ export class UpdateWindow {
             backgroundColor: '#e6e6e6',
             frame: false,
             webPreferences: {
+                webSecurity: false,
                 nodeIntegration: true,
                 contextIsolation: false,
                 enableRemoteModule: true
