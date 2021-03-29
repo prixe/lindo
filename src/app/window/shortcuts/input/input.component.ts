@@ -19,12 +19,12 @@ export class InputComponent {
         event.preventDefault();
 
         this._keys.forEach((key: number, index) => {
-            if (key == event.keyCode) {
+            if (key == parseInt(event.code)) {
                 delete this._keys[index];
             }
         });
 
-        this._keys.push(event.keyCode);
+        this._keys.push(parseInt(event.code));
 
         let first = true;
         let shortcut = '';
@@ -45,7 +45,7 @@ export class InputComponent {
     }
 
     keyUp(event: KeyboardEvent) {
-        delete this._keys[this._keys.indexOf(event.keyCode)];
+        delete this._keys[this._keys.indexOf(parseInt(event.code))];
     }
 
     erase() {

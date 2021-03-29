@@ -31,7 +31,7 @@ export class MainComponent implements OnInit {
     }
 
     removeTabGameByMiddleClick($event: any, tabId: number) {
-        if ($event.which === 2) {
+        if ($event.key === 2) {
             this.tabGameService.removeTabGame(tabId);
             $event.preventDefault();
         }

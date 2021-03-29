@@ -93,13 +93,13 @@ export class MultiAccountComponent {
                     let newPassword = (<HTMLInputElement>document.getElementById("input-new-password")).value;
 
                     if (newPassword.length < 8) {
-                        reject(self.translate.instant("app.option.vip.multi-account.prompt.edit-master.min-lenght", {"lenght": 8}));
-                        return false;
+                        Swal.hideLoading();
+                        return Swal.showValidationMessage(self.translate.instant("app.option.vip.multi-account.prompt.edit-master.min-lenght", {"lenght": 8}))
                     }
 
                     if (self.settingsService.option.vip.multiaccount.master_password != self.crypt.createHash(oldPassword)) {
-                        reject(self.translate.instant("app.option.vip.multi-account.prompt.edit-master.incorrect-old"));
-                        return false;
+                        Swal.hideLoading();
+                        return Swal.showValidationMessage(self.translate.instant("app.option.vip.multi-account.prompt.edit-master.incorrect-old", {"lenght": 8}))
                     }
 
                     // For every windows and accounts in settings,
@@ -196,12 +196,13 @@ export class MultiAccountComponent {
                     let accountPassword = (<HTMLInputElement>document.getElementById("input-account-password")).value;
 
                     if (accountLogin == "") {
-                        reject(self.translate.instant("app.option.vip.multi-account.prompt.add-account.min-lenght-login"));
-                        return false;
+                        Swal.hideLoading();
+                        return Swal.showValidationMessage(self.translate.instant("app.option.vip.multi-account.prompt.add-account.min-lenght-login"))
                     }
+
                     if (accountPassword == "") {
-                        reject(self.translate.instant("app.option.vip.multi-account.prompt.add-account.min-lenght-password"));
-                        return false;
+                        Swal.hideLoading();
+                        return Swal.showValidationMessage(self.translate.instant("app.option.vip.multi-account.prompt.add-account.min-lenght-password"))
                     }
 
                     windows[windowIndex].push({
@@ -215,7 +216,6 @@ export class MultiAccountComponent {
                 })
             },
 
-        }).then(function () {
         });
     }
 
@@ -257,12 +257,13 @@ export class MultiAccountComponent {
                     let accountPassword = (<HTMLInputElement>document.getElementById("input-account-password")).value;
 
                     if (accountLogin == "") {
-                        reject(self.translate.instant("app.option.vip.multi-account.prompt.edit-account.min-lenght-login"));
-                        return false;
+                        Swal.hideLoading();
+                        return Swal.showValidationMessage(self.translate.instant("app.option.vip.multi-account.prompt.edit-account.min-lenght-login"))
                     }
+
                     if (accountPassword == "") {
-                        reject(self.translate.instant("app.option.vip.multi-account.prompt.edit-account.min-lenght-password"));
-                        return false;
+                        Swal.hideLoading();
+                        return Swal.showValidationMessage(self.translate.instant("app.option.vip.multi-account.prompt.edit-account.min-lenght-password"))
                     }
 
                     windows[windowIndex][accountIndex].account_name_encrypted = self.crypt.encrypt(accountLogin, self.applicationService.masterpassword);
@@ -274,8 +275,6 @@ export class MultiAccountComponent {
                 })
             },
 
-        }).then(function () {
-        }, (dismiss) => {
         });
 
     }
