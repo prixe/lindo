@@ -40,6 +40,7 @@
     "ajv": "~7.0.3",
     "async": "~3.2.0",
     "axios": "^0.21.1",
+    "axios-retry": "^3.1.9",
     "compare-versions": "~3.6.0",
     "del": "~6.0.0",
     "electron-localshortcut": "~3.2.1",
