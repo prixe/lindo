@@ -1,5 +1,5 @@
-import { Logger } from "app/core/electron/logger.helper";
-import { Mod } from "../mod";
+import {Logger} from "app/core/electron/logger.helper";
+import {Mod} from "../mod";
 
 /**
 * This mod add the possibility to hide mount and pet durring fight

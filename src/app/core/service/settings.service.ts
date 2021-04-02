@@ -1,11 +1,9 @@
-import { Injectable } from '@angular/core';
-import { IpcRendererService } from 'app/core/electron/ipcrenderer.service';
-import { Logger } from 'app/core/electron/logger.helper';
-import { SettingsProvider } from '../classes/settings.provider';
-import { SettingsProviderIpc } from '../classes/settings.provider.ipc';
-import { WindowService } from './window.service';
-import { SettingsInterface } from '../../../../electron/settings/settings.interface';
-import { SettingsDefault } from '../../../../electron/settings/settings-default';
+import {Injectable} from '@angular/core';
+import {IpcRendererService} from 'app/core/electron/ipcrenderer.service';
+import {Logger} from 'app/core/electron/logger.helper';
+import {SettingsProvider} from '../classes/settings.provider';
+import {SettingsProviderIpc} from '../classes/settings.provider.ipc';
+import {WindowService} from './window.service';
 
 export class Option {
     public general: Option.General;

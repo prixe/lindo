@@ -1,5 +1,5 @@
-
 import {AppPreferences} from "./appPreferences/appPreferences";
+
 export class Plugins {
     private wGame: Window | any;
     public appPreferences: AppPreferences;

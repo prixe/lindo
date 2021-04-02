@@ -1,6 +1,6 @@
-import { Logger } from "app/core/electron/logger.helper";
+import {Logger} from "app/core/electron/logger.helper";
 
-import { Mod } from "../mod";
+import {Mod} from "../mod";
 
 /**
 * This mod add the possibility to display a chronometer while fighting,

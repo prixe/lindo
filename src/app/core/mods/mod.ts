@@ -1,5 +1,5 @@
-import { SettingsService } from "app/core/service/settings.service";
-import { TranslateService } from "@ngx-translate/core";
+import {SettingsService} from "app/core/service/settings.service";
+import {TranslateService} from "@ngx-translate/core";
 
 export abstract class Mod {
     private events: any[] = [];

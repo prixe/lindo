@@ -1,4 +1,4 @@
-import { Mod } from "../mod";
+import {Mod} from "../mod";
 
 export class CssOverload extends Mod {
     private styleTag: HTMLDivElement;

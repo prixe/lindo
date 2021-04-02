@@ -1,5 +1,5 @@
-import { Bar } from "./bar";
-import { Logger } from "app/core/electron/logger.helper";
+import {Bar} from "./bar";
+import {Logger} from "app/core/electron/logger.helper";
 
 export class BarContainer {
     private wGame: any | Window;

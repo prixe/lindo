@@ -1,5 +1,5 @@
-import { Logger } from "app/core/electron/logger.helper";
-import { Mod } from "../mod";
+import {Logger} from "app/core/electron/logger.helper";
+import {Mod} from "../mod";
 
 export class PartyMember extends Mod{
     private members: Map<number, boolean>;

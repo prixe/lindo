@@ -1,5 +1,6 @@
-import { Logger } from "app/core/electron/logger.helper";
-import { HttpClient } from '@angular/common/http';
+import {Logger} from "app/core/electron/logger.helper";
+import {HttpClient} from '@angular/common/http';
+
 const fs = require('fs-extra');
 const https = require('https');
 

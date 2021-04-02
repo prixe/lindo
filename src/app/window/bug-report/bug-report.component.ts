@@ -1,9 +1,6 @@
-import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { ElectronService as electron } from 'app/core/electron/electron.service';
-import { Logger } from "app/core/electron/logger.helper";
-import { MatDialogRef } from '@angular/material/dialog';
-import { FormControl, Validators } from '@angular/forms';
+import {Component, NgZone} from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
+import {MatDialogRef} from '@angular/material/dialog';
 
 @Component({
     selector: 'component-bug-report',

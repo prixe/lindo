@@ -1,8 +1,8 @@
-import { IpcRendererService } from '../electron/ipcrenderer.service';
-import { Injectable } from '@angular/core';
-import { ApplicationService } from 'app/core/electron/application.service';
-import { CryptService } from 'app/core/service/crypt.service';
-import { SettingsService } from 'app/core/service/settings.service';
+import {IpcRendererService} from '../electron/ipcrenderer.service';
+import {Injectable} from '@angular/core';
+import {ApplicationService} from 'app/core/electron/application.service';
+import {CryptService} from 'app/core/service/crypt.service';
+import {SettingsService} from 'app/core/service/settings.service';
 
 @Injectable()
 export class AuthService {

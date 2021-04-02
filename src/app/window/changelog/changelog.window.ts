@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { ChangeLogComponent } from 'app/window/changelog/changelog.component';
+import {Injectable} from '@angular/core';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {ChangeLogComponent} from 'app/window/changelog/changelog.component';
 
 @Injectable()
 export class ChangelogWindowService {

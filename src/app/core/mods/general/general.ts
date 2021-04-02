@@ -1,7 +1,7 @@
-import { SettingsService } from "app/core/service/settings.service";
-import { TranslateService } from "@ngx-translate/core";
+import {SettingsService} from "app/core/service/settings.service";
+import {TranslateService} from "@ngx-translate/core";
 
-import { Mod } from "../mod";
+import {Mod} from "../mod";
 
 import * as Mods from ".";
 

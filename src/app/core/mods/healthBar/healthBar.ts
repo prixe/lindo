@@ -1,8 +1,8 @@
-import { ShortcutsHelper } from "app/core/helpers/shortcuts.helper";
-import { Logger } from "app/core/electron/logger.helper";
+import {ShortcutsHelper} from "app/core/helpers/shortcuts.helper";
+import {Logger} from "app/core/electron/logger.helper";
 
-import { Mod } from "../mod";
-import { BarContainer } from "./barContainer";
+import {Mod} from "../mod";
+import {BarContainer} from "./barContainer";
 
 export class HealthBar extends Mod {
     private shortcutsHelper: ShortcutsHelper;

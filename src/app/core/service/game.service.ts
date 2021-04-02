@@ -1,5 +1,5 @@
-import { Game } from 'app/core/classes/game';
-import { Injectable } from "@angular/core";
+import {Game} from 'app/core/classes/game';
+import {Injectable} from "@angular/core";
 
 @Injectable()
 export class GameService {

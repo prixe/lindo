@@ -1,8 +1,8 @@
-import { WizAssets } from './wizAssets';
-import { ApplicationService } from 'app/core/electron/application.service';
-import { Option } from 'app/core/service/settings.service';
-import { Logger } from "app/core/electron/logger.helper";
-import { HttpClient } from '@angular/common/http';
+import {WizAssets} from './wizAssets';
+import {ApplicationService} from 'app/core/electron/application.service';
+import {Option} from 'app/core/service/settings.service';
+import {Logger} from "app/core/electron/logger.helper";
+import {HttpClient} from '@angular/common/http';
 
 export class WizAssetsContainer {
 

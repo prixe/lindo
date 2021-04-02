@@ -16,6 +16,10 @@
     "module": "es2020",
     "moduleResolution": "node",
     "baseUrl": "",
+    "paths": {
+      "@env/*": ["environments/*"],
+      "@app/*": ["app/*"]
+    },
     "types": []
   }
 ,

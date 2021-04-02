@@ -1,7 +1,7 @@
-import { Logger } from "app/core/electron/logger.helper";
+import {Logger} from "app/core/electron/logger.helper";
 
-import { Mod } from "../mod";
-import { HarvestBar } from "./harvestBar";
+import {Mod} from "../mod";
+import {HarvestBar} from "./harvestBar";
 
 export class Harvest extends Mod {
     private harvestBar: HarvestBar;

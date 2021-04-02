@@ -1,4 +1,4 @@
-import { Mod } from "../mod";
+import {Mod} from "../mod";
 
 export class KeyboardInput extends Mod {
     // Referece of the number input pad

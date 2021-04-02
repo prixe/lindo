@@ -1,4 +1,4 @@
-import { Mod } from "../mod";
+import {Mod} from "../mod";
 
 export class Inactivity extends Mod {
     private disable_inactivity: boolean;

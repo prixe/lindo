@@ -1,14 +1,14 @@
-import { Component, Injector, OnInit } from '@angular/core';
+import {Component, Injector, OnInit} from '@angular/core';
 
-import { Tab } from 'app/core/classes/tab';
-import { ApplicationService } from 'app/core/electron/application.service';
-import { IpcRendererService } from 'app/core/electron/ipcrenderer.service';
-import { SettingsService } from 'app/core/service/settings.service';
-import { TabGameService } from 'app/core/service/tab-game.service';
-import { TabService } from 'app/core/service/tab.service';
-import { WindowService } from 'app/core/service/window.service';
-import { OptionWindowService } from '../../window/option/option.window';
-import { BugReportService } from 'app/core/service/bug-report.service';
+import {Tab} from 'app/core/classes/tab';
+import {ApplicationService} from 'app/core/electron/application.service';
+import {IpcRendererService} from 'app/core/electron/ipcrenderer.service';
+import {SettingsService} from 'app/core/service/settings.service';
+import {TabGameService} from 'app/core/service/tab-game.service';
+import {TabService} from 'app/core/service/tab.service';
+import {WindowService} from 'app/core/service/window.service';
+import {OptionWindowService} from '../../window/option/option.window';
+import {BugReportService} from 'app/core/service/bug-report.service';
 
 @Component({
     selector: 'component-tab-game',

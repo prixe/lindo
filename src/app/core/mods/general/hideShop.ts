@@ -1,4 +1,4 @@
-import { Mod } from "../mod";
+import {Mod} from "../mod";
 
 /**
  * This mod add the possibility to hide the floating shop button

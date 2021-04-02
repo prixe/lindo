@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { IpcRendererService } from 'app/core/electron/ipcrenderer.service';
-import { environment } from 'environments/environment';
-import { HttpClient } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {IpcRendererService} from 'app/core/electron/ipcrenderer.service';
+import {environment} from 'environments/environment';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class ApplicationService {

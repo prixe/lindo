@@ -1,9 +1,7 @@
-import { NgZone } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
 import * as EventEmitter from 'eventemitter3';
-import { ElectronService as electron } from "app/core/electron/electron.service";
+import {ElectronService as electron} from "app/core/electron/electron.service";
 
-import { Mod } from "../mod";
+import {Mod} from "../mod";
 
 export class Notifications extends Mod {
     public eventEmitter: EventEmitter;

@@ -1,9 +1,5 @@
-import {
-    CellPathCandidate
-} from "./cellPathCandidate";
-import {
-    CellPathData
-} from "./cellPathData";
+import {CellPathCandidate} from "./cellPathCandidate";
+import {CellPathData} from "./cellPathData";
 
 export class PathFinder {
     private mapPoints;

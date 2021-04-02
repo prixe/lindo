@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { ApplicationService } from 'app/core/electron/application.service';
-import { IpcRendererService } from 'app/core/electron/ipcrenderer.service';
-import { AuthService } from 'app/core/service/auth.service';
-import { SettingsService } from 'app/core/service/settings.service';
+import {Component} from '@angular/core';
+import {ApplicationService} from 'app/core/electron/application.service';
+import {IpcRendererService} from 'app/core/electron/ipcrenderer.service';
+import {AuthService} from 'app/core/service/auth.service';
+import {SettingsService} from 'app/core/service/settings.service';
 
 @Component({
     selector: 'component-auth',

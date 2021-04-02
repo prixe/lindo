@@ -6,7 +6,7 @@ import {IpcRendererService} from 'app/core/electron/ipcrenderer.service';
 import {Subscription} from 'rxjs';
 import {Logger} from "app/core/electron/logger.helper";
 import {SettingsService} from 'app/core/service/settings.service';
-import {js as BeautifyJs, css as BeautifyCss} from 'js-beautify';
+import {css as BeautifyCss, js as BeautifyJs} from 'js-beautify';
 import {ProgressBarMode} from "@angular/material/progress-bar";
 import axios from 'axios';
 import axiosRetry from 'axios-retry';
@@ -14,7 +14,7 @@ import {Differences} from "../../interfaces/update/differences";
 import {Manifest} from "../../interfaces/update/manifest";
 import {Files} from "../../interfaces/update/files";
 import {RegexPatches} from "../../interfaces/update/regex-patches";
-import { ConcurrencyManager } from 'axios-concurrency';
+import {ConcurrencyManager} from 'axios-concurrency';
 
 let axiosClient = axios.create();
 axiosRetry(axiosClient, {retries: 10, retryDelay: () => 1000});

@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { ApplicationService } from 'app/core/electron/application.service';
-import { ElectronService as electron } from 'app/core/electron/electron.service';
-import { IpcRendererService } from 'app/core/electron/ipcrenderer.service';
-import { AuthService } from 'app/core/service/auth.service';
-import { GameService } from 'app/core/service/game.service';
-import { SettingsService } from 'app/core/service/settings.service';
-import { TabGameService } from 'app/core/service/tab-game.service';
-import { WindowService } from 'app/core/service/window.service';
+import {Component, OnInit} from '@angular/core';
+import {ApplicationService} from 'app/core/electron/application.service';
+import {ElectronService as electron} from 'app/core/electron/electron.service';
+import {IpcRendererService} from 'app/core/electron/ipcrenderer.service';
+import {AuthService} from 'app/core/service/auth.service';
+import {GameService} from 'app/core/service/game.service';
+import {SettingsService} from 'app/core/service/settings.service';
+import {TabGameService} from 'app/core/service/tab-game.service';
+import {WindowService} from 'app/core/service/window.service';
 
 @Component({
     selector: 'component-main',

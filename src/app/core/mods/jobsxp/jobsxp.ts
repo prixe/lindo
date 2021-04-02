@@ -1,6 +1,6 @@
-import { Logger } from "app/core/electron/logger.helper";
+import {Logger} from "app/core/electron/logger.helper";
 
-import { Mod } from "../mod";
+import {Mod} from "../mod";
 
 export class Jobsxp extends Mod{
     private xpRestanteText : HTMLDivElement;

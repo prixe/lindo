@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { default as Swal, SweetAlertOptions } from 'sweetalert2';
+import {Injectable} from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
+import {default as Swal, SweetAlertOptions} from 'sweetalert2';
 
 @Injectable()
 export class PromptService {

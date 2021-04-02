@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { SafePipe } from 'app/core/pipes/safe.pipe';
+import {NgModule} from '@angular/core';
+import {SafePipe} from 'app/core/pipes/safe.pipe';
 
 @NgModule({
     imports: [ /* Shared modules */],

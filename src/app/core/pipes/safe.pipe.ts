@@ -1,6 +1,6 @@
-import { Pipe } from '@angular/core';
-import { PipeTransform } from '@angular/core/core';
-import { DomSanitizer, SafeHtml, SafeResourceUrl, SafeScript, SafeStyle, SafeUrl } from '@angular/platform-browser';
+import {Pipe} from '@angular/core';
+import {PipeTransform} from '@angular/core/core';
+import {DomSanitizer, SafeHtml, SafeResourceUrl, SafeScript, SafeStyle, SafeUrl} from '@angular/platform-browser';
 
 @Pipe({
     name: 'safe'

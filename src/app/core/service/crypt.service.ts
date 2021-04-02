@@ -1,4 +1,5 @@
-import { Injectable } from "@angular/core";
+import {Injectable} from "@angular/core";
+
 const algorithm = 'aes-256-ctr';
 const crypto = cryptoLib;
 

@@ -1,5 +1,6 @@
-import { BarContainer } from "./barContainer";
-import { Logger } from "app/core/electron/logger.helper";
+import {BarContainer} from "./barContainer";
+import {Logger} from "app/core/electron/logger.helper";
+
 export class Bar {
 
     private fighter: any;

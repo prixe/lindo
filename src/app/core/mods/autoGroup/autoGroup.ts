@@ -1,14 +1,13 @@
 //background.toggleDebugMode()
 
-import { IpcRendererService } from "app/core/electron/ipcrenderer.service";
-import { SettingsService } from "app/core/service/settings.service";
-import { TranslateService } from "@ngx-translate/core";
+import {IpcRendererService} from "app/core/electron/ipcrenderer.service";
+import {SettingsService} from "app/core/service/settings.service";
+import {TranslateService} from "@ngx-translate/core";
 
-import { EventEmitter } from 'eventemitter3';
-import { Logger } from "app/core/electron/logger.helper";
+import {Logger} from "app/core/electron/logger.helper";
 
-import { Mod } from "../mod";
-import { PathFinder } from "./pathfinder";
+import {Mod} from "../mod";
+import {PathFinder} from "./pathfinder";
 
 type Direction = "top" | "bottom" | "left" | "right" | false;
 

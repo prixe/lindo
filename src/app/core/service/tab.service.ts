@@ -1,5 +1,5 @@
-import { Tab } from 'app/core/classes/tab';
-import { Injectable } from "@angular/core";
+import {Tab} from 'app/core/classes/tab';
+import {Injectable} from "@angular/core";
 
 @Injectable()
 export class TabService {

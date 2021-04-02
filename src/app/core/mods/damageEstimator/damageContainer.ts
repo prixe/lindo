@@ -1,4 +1,4 @@
-import { Estimator } from "./estimator";
+import {Estimator} from "./estimator";
 
 export class DamageContainer {
     private wGame: any | Window;

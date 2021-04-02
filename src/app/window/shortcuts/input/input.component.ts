@@ -1,5 +1,5 @@
-import { KeyCode } from './keycode';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {KeyCode} from './keycode';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
     selector: 'component-option-input-shortcuts',

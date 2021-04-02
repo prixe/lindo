@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { SettingsService } from 'app/core/service/settings.service';
+import {Component} from '@angular/core';
+import {SettingsService} from 'app/core/service/settings.service';
 
 @Component({
     templateUrl: './other.component.html',

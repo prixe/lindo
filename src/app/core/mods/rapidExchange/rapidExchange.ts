@@ -1,4 +1,4 @@
-import { Mod } from "../mod";
+import {Mod} from "../mod";
 
 /**
  * Allow the user to hold "control" key and double click

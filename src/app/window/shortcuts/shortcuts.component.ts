@@ -1,8 +1,7 @@
-import { AfterViewInit, Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { SettingsService } from 'app/core/service/settings.service';
-import { ShortcutsWindowService } from './shortcuts.window';
-import { MatDialogRef } from '@angular/material/dialog';
+import {AfterViewInit, Component} from '@angular/core';
+import {Router} from '@angular/router';
+import {SettingsService} from 'app/core/service/settings.service';
+import {MatDialogRef} from '@angular/material/dialog';
 
 @Component({
     templateUrl: './shortcuts.component.html',

@@ -1,19 +1,16 @@
-import { Component, Input, NgZone, AfterViewInit, Output, EventEmitter } from '@angular/core';
-import * as async from 'async';
-import { TranslateService } from "@ngx-translate/core";
-import { WizAssetsContainer } from "./wizAssets/wizAssetsContainer";
-import { WindowService } from "app/core/service/window.service";
-import { SettingsService } from "app/core/service/settings.service";
-import { ApplicationService } from "app/core/electron/application.service";
-import { IpcRendererService } from "app/core/electron/ipcrenderer.service";
-import { Game } from "app/core/classes/game";
-import { PluginsContainer } from "./plugins/pluginsContainer";
-import { Logger } from 'app/core/electron/logger.helper';
-import { BugReportService } from 'app/core/service/bug-report.service';
-import { HttpClient } from '@angular/common/http';
+import {AfterViewInit, Component, EventEmitter, Input, NgZone, Output} from '@angular/core';
+import {TranslateService} from "@ngx-translate/core";
+import {WindowService} from "app/core/service/window.service";
+import {SettingsService} from "app/core/service/settings.service";
+import {ApplicationService} from "app/core/electron/application.service";
+import {IpcRendererService} from "app/core/electron/ipcrenderer.service";
+import {Game} from "app/core/classes/game";
+import {Logger} from 'app/core/electron/logger.helper';
+import {BugReportService} from 'app/core/service/bug-report.service';
+import {HttpClient} from '@angular/common/http';
 
 import * as Mods from "app/core/mods";
-import { Mod } from "app/core/mods/mod";
+import {Mod} from "app/core/mods/mod";
 
 @Component({
     selector: 'component-game',
