@@ -27,7 +27,7 @@ export class AuthComponent {
             this.badMasterPassword = false;
 
             Application.masterPassword = inputMasterPassword;
-            Application.isAuthentified = true;
+            Application.isAuthenticated = true;
 
             if (this.settingsService.option.vip.multiaccount.active) {
                 this.processMultiAccount();
@@ -43,7 +43,7 @@ export class AuthComponent {
     }
 
     public skipAuth() {
-        Application.skipAuthentification = true;
+        Application.skipAuthentication = true;
         this.authService.updateAuthState();
     }
 

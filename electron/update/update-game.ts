@@ -2,7 +2,7 @@ import {Logger} from '../core/logger/logger-lindo';
 import {Application} from '../application';
 import {UpdateWindow} from '../windows/update-window';
 import {Versions} from './versions.interface';
-import {app, ipcMain} from 'electron';
+import {ipcMain} from 'electron';
 
 const settings = require('electron-settings');
 
@@ -14,7 +14,7 @@ export class UpdateGame {
         return new Promise((resolve, reject) => {
             Logger.info("[UPDATE] Game update started..");
 
-            let destinationPath = app.getPath('userData') + '/game';
+            let destinationPath = Application.userDataPath + '/game';
 
             this.updateWindow = UpdateWindow.createWindow();
 

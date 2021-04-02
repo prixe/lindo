@@ -9,7 +9,6 @@ const pkg = require(`${app.getAppPath()}/package.json`);
 export class Application {
 
     public static mainWindows: MainWindow[] = [];
-    public static websiteUrl: string = "http://lindo.no-emu.co";
     public static appPath: string = __dirname + '/../..';
     public static userDataPath: string = app.getPath('userData');
 
@@ -18,8 +17,8 @@ export class Application {
     public static remoteAppVersion: string;
     public static canAddWindow: boolean = false;
 
-    public static skipAuthentification: boolean = false;
-    public static isAuthentified: boolean = false;
+    public static skipAuthentication: boolean = false;
+    public static isAuthenticated: boolean = false;
     public static masterPassword: string = "";
 
     public static run() {

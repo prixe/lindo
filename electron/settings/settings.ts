@@ -3,7 +3,7 @@ import {Logger} from '../core/logger/logger-lindo';
 import {checkSettings} from './settings-checker';
 import {SettingsDefault} from './settings-default';
 import * as macAddress from 'macaddress';
-import {app, ipcMain, session, dialog, BrowserWindow} from 'electron';
+import {app, ipcMain, dialog, BrowserWindow} from 'electron';
 import * as rimraf from "rimraf";
 
 const settings = require('electron-settings');
@@ -103,7 +103,7 @@ export class Settings {
 
     public static getAppConfig() {
         return {
-            gamePath: app.getPath('userData') + '/game',
+            gamePath: Application.userDataPath + '/game',
             appPath: Application.appPath,
             platform: process.platform,
             language: settings.getSync('language')
@@ -112,7 +112,7 @@ export class Settings {
 
     public static resetGame() {
 
-        let destinationPath = app.getPath('userData') + '/game';
+        let destinationPath = Application.userDataPath + '/game';
 
         rimraf(destinationPath, () => {
             app.relaunch();

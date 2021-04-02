@@ -1,8 +1,8 @@
 import * as winston from 'winston';
 import * as fs from 'fs';
 import 'winston-daily-rotate-file';
-import {app} from "electron";
 import {Logger as LoggerWinston} from "winston";
+import {Application} from "../../application";
 
 class LoggerLindo {
 
@@ -10,7 +10,7 @@ class LoggerLindo {
 
     constructor() {
 
-        let LOGS_PATH = app.getPath('userData') + '/logs/lindo';
+        let LOGS_PATH = Application.userDataPath + '/logs/lindo';
         fs.mkdirSync(LOGS_PATH, {recursive: true});
 
         this.winston = winston.createLogger({

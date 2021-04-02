@@ -40,7 +40,7 @@ export class AuthService {
 
     public requireAuthentification(): boolean {
 
-        if (Application.isAuthentified == false && Application.skipAuthentification == false) {
+        if (Application.isAuthenticated == false && Application.skipAuthentication == false) {
             if (this.settingsService.option.vip.multiaccount.active && Application.masterPassword == "") {
                 return true;
             }

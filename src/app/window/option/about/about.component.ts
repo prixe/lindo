@@ -1,7 +1,7 @@
-import { Component, Injector } from '@angular/core';
+import { Component } from '@angular/core';
 import { ApplicationService } from 'app/core/electron/application.service';
 import { ElectronService as electron } from 'app/core/electron/electron.service';
-import { IpcRendererService } from 'app/core/electron/ipcrenderer.service';
+import {environment} from "../../../../environments/environment";
 
 @Component({
     templateUrl: './about.component.html',
@@ -10,22 +10,19 @@ import { IpcRendererService } from 'app/core/electron/ipcrenderer.service';
 export class AboutComponent {
 
     public version: string;
+    public environment = environment;
 
-    constructor(
-        public applicationService: ApplicationService,
-        private ipcRendererService: IpcRendererService,
-        private injector: Injector
-    ) {
+    constructor(public applicationService: ApplicationService) {
         this.version = this.applicationService.version;
     }
 
     public goToWebsite($event: any) {
         $event.preventDefault();
-        electron.openExternal(this.applicationService.websiteUrl);
+        electron.openExternal(environment.websiteUrl);
     }
 
     public gotToProject($event: any) {
         $event.preventDefault();
-        electron.openExternal(this.applicationService.websiteUrl);
+        electron.openExternal(environment.websiteUrl);
     }
 }

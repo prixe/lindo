@@ -6,7 +6,6 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class ApplicationService {
 
-    public websiteUrl: string;
     public apiUrl: string;
     public appName: string;
     public appPath: string;
@@ -28,7 +27,6 @@ export class ApplicationService {
     public async load(): Promise<void> {
         // Chargement de la configuration distance
         this.appName = environment.appName;
-        this.websiteUrl = environment.websiteUrl;
         this.apiUrl = environment.apiUrl;
 
         return new Promise<void>((resolve, reject)=>{
