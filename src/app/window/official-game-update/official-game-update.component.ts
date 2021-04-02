@@ -10,48 +10,16 @@ import {js as BeautifyJs, css as BeautifyCss} from 'js-beautify';
 import {ProgressBarMode} from "@angular/material/progress-bar";
 import axios from 'axios';
 import axiosRetry from 'axios-retry';
+import {Differences} from "../../interfaces/update/differences";
+import {Manifest} from "../../interfaces/update/manifest";
+import {Files} from "../../interfaces/update/files";
+import {RegexPatches} from "../../interfaces/update/regex-patches";
 
-axiosRetry(axios, {retries: 3, retryDelay: () => 3000});
+axiosRetry(axios, {retries: 10, retryDelay: () => 1000});
 
 const fs = fsLib;
 const path = pathLib;
-
 const httpAdapter = httpAdapterLib;
-
-/**
- * { "filename": difference }
- * `difference` is equal to -1, 0 or 1 depending if the
- * file is removed, unchanged, or changed
- */
-interface Differences {
-    [key: string]: number;
-}
-
-/**
- * { "filename": "fileContent" }
- */
-interface Files {
-    [key: string]: (string | Object);
-}
-
-interface ManifestFile {
-    filename: string,
-    version: string
-}
-
-interface ManifestFiles {
-    [key: string]: ManifestFile;
-}
-
-interface Manifest {
-    files: ManifestFiles
-}
-
-type RegexPatch = [string, string]
-
-interface RegexPatches {
-    [key: string]: RegexPatch[]
-}
 
 @Component({
     selector: 'component-official-game-update',
@@ -97,17 +65,16 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
     private localRegexPath: string;
     private localRegex: RegexPatches;
 
-
+    /** Progress bar */
     public progressMode: ProgressBarMode = "buffer";
     public progressValue: number = 0;
-    public displayedProgress: number = 0;
-    public informations: string;
-    private sub: Subscription;
+    public progressText: string;
 
     private localGameFolder: string;
-
     private dofusOrigin: string = this.settingsService.option.general.early ? "https://earlyproxy.touch.dofus.com/" : "https://proxyconnection.touch.dofus.com/";
     private dofusOriginItuneVersion: string = (this.settingsService.option.general.early ? "https://itunes.apple.com/lookup?id=1245534439" : "https://itunes.apple.com/lookup?id=1041406978") + "&t=" + (new Date().getTime())
+
+    private sub: Subscription;
 
     constructor(
         private route: ActivatedRoute,
@@ -118,10 +85,14 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
     ) {
     }
 
+    log(message: any) {
+        Logger.info("[UPDATE] " + message);
+    }
+
     ngOnInit() {
 
         this.translate.get('app.window.update-dofus.information.search').subscribe((res: string) => {
-            this.informations = res;
+            this.progressText = res;
         });
 
         this.sub = this.route.params.subscribe(async params => {
@@ -190,7 +161,7 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
             } catch (e) {
 
                 this.translate.get('app.window.update-dofus.information.error').subscribe((res: string) => {
-                    this.informations = res + " (" + e.message + ")";
+                    this.progressText = res + " (" + e.message + ")";
                 });
 
                 Logger.error(e);
@@ -395,10 +366,6 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
                 }
             }
         }
-    }
-
-    log(msg: any) {
-        Logger.info("[UPDATE] " + msg);
     }
 
     ngOnDestroy() {
