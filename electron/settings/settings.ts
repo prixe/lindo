@@ -1,5 +1,5 @@
 import {Application} from '../application';
-import {Logger} from '../core/logger/logger-electron';
+import {Logger} from '../core/logger/logger-lindo';
 import {checkSettings} from './settings-checker';
 import {SettingsDefault} from './settings-default';
 import * as macAddress from 'macaddress';

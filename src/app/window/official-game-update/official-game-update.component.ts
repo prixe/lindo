@@ -177,7 +177,7 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
                 this.writingMissingLindoAndDofusFiles();
 
                 this.log("REMOVING OLDER ASSETS AND DOFUS FILES..");
-                this.removeOlderFiles();
+                this.removeOlderAssetsAndDofusFiles();
 
                 this.log("SAVING ALL JSON FILES TO DISK");
                 fs.writeFileSync(this.localAssetMapPath, JSON.stringify(this.remoteAssetMap));
@@ -294,7 +294,7 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
         }
     }
 
-    private removeOlderFiles() {
+    private removeOlderAssetsAndDofusFiles() {
 
         for (let i in this.assetMapDifferences) {
             if (this.assetMapDifferences[i] == -1) {
@@ -370,10 +370,6 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
         return differences;
     }
 
-    /**
-     * Replace certain dofusMissingFiles with regex of lindo
-     * If no lindo regex acquired from the lindo difference, using local regex
-     */
     private applyRegex() {
 
         let regex: RegexPatches;

@@ -1,4 +1,4 @@
-import { Logger } from './core/logger/logger-electron';
+import { Logger } from './core/logger/logger-lindo';
 import { Application } from './application';
 import { Settings } from './settings/settings';
 import { app, BrowserWindow, dialog } from 'electron';

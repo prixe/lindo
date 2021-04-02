@@ -1,5 +1,4 @@
 const settings = require('electron-settings');
-import { Logger } from '../core/logger/logger-electron';
 
 export class UserAgent {
 

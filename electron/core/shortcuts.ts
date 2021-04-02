@@ -1,4 +1,4 @@
-import { Logger } from './logger/logger-electron';
+import { Logger } from './logger/logger-lindo';
 
 const electronLocalshortcut = require('electron-localshortcut');
 const settings = require('electron-settings');

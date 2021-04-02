@@ -1,4 +1,4 @@
-import { Logger } from '../core/logger/logger-electron';
+import { Logger } from '../core/logger/logger-lindo';
 import { SettingsDefault } from './settings-default';
 import { SettingsInterface } from './settings.interface';
 import * as macAddress from 'macaddress';

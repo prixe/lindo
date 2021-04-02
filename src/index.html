@@ -13,7 +13,6 @@
         const electron = require('electron');
         const electronSettings = require('electron-settings');
         const cryptoLib = require('crypto');
-        const httpsLib = require('https');
         const fsLib = require('fs');
         const osLib = require('os');
         const pathLib = require('path');
@@ -24,10 +23,14 @@
         const app = require('@electron/remote').app;
         const Application = require('@electron/remote').require('./application').Application;
         const Settings = require('@electron/remote').require('./settings/settings').Settings;
-        const LoggerLib = require('@electron/remote').require('./core/logger/logger-app').Logger;
 
-        window.FileLoggerLib = require('@electron/remote').require('./core/logger/file-logger-app').logger;
+        let LoggerGame = require('@electron/remote').require('./core/logger/logger-game').Logger;
+        let LoggerLindo = require('@electron/remote').require('./core/logger/logger-lindo').Logger;
+
         window.platform = require('@electron/remote').process.platform;
+
+        /** Just for distant code compatiblity */
+        window.FileLoggerLib = LoggerGame;
     </script>
 </head>
 

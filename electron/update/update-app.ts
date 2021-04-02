@@ -1,5 +1,5 @@
 import {Application} from '../application';
-import {Logger} from '../core/logger/logger-electron';
+import {Logger} from '../core/logger/logger-lindo';
 import {UpdateInformations} from './update-informations.interface';
 import {app, BrowserWindow, dialog, shell} from 'electron';
 
