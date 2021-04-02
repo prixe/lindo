@@ -34,9 +34,17 @@
       },
       "update-dofus": {
         "title": "Actualizar Lindo",
+        "step0": "Preparándose para la actualización..",
+        "step1": "Etapa 1 : Descarga de archivos Dofus (~ 30 meses)",
+        "step2": "Etapa 2 : Descargar lindo parche",
+        "step3": "Etapa 3 : Resolución de versión",
+        "step4": "Etapa 4 : Aplicar los parches",
+        "step5": "Etapa 5 : Escribir archivos modificados",
+        "step6": "Etapa 6 : Eliminar archivos antiguos",
+        "step7": "Etapa 7 : Finalización",
+        "step8": "Etapa 8 : Lanzamiento de Lindo..",
         "information": {
           "search": "Buscando actualizaciones...",
-          "downloading": "Descargando...",
           "error": "No se puede descargar la actualización! Por favor, inténtelo de nuevo otra vez"
         }
       },

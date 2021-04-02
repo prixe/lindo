@@ -10,9 +10,8 @@ import { FormControl, Validators } from '@angular/forms';
     templateUrl: './bug-report.component.html',
     styleUrls: ['./bug-report.component.scss']
 })
-export class BugReportComponent implements OnInit, OnDestroy {
+export class BugReportComponent {
 
-    public informations: string;
     public descriptionEmpty: boolean = false;
 
     constructor(
@@ -20,15 +19,6 @@ export class BugReportComponent implements OnInit, OnDestroy {
         private translate: TranslateService,
         private zone: NgZone
     ) { }
-
-    ngOnInit() {
-        this.translate.get('app.window.update-dofus.information.search').subscribe((res: string) => {
-            this.informations = res;
-        });
-    }
-
-    ngOnDestroy() {
-    }
 
     public closeWindow() {
         this.dialogRef.close();

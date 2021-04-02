@@ -36,9 +36,17 @@
       },
       "update-dofus": {
         "title": "Lindo güncellemesi",
+        "step0": "Güncelleme için hazırlanıyor..",
+        "step1": "Aşama 1 : Dofus dosyalarını indirme (~ 30ay.)",
+        "step2": "Aşama 2 : Lindo yaması indir",
+        "step3": "Aşama 3 : Sürüm çözünürlüğü",
+        "step4": "Aşama 4 : Yamaların uygulanması",
+        "step5": "Aşama 5 : Değiştirilen dosyaları yazma",
+        "step6": "Aşama 6 : Eski dosyaları silin",
+        "step7": "Aşama 7 : Sonlandırma",
+        "step8": "Aşama 8 : Lindo'nun piyasaya sürülmesi..",
         "information": {
           "search": "Güncellemeler aranıyor...",
-          "downloading": "Yükleniyor...",
           "error": "Güncelleme indirilemiyor! Lütfen daha sonra tekrar deneyiniz"
         }
       },

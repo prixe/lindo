@@ -36,9 +36,17 @@
       },
       "update-dofus": {
         "title": "Lindo update",
+        "step0": "Preparing update..",
+        "step1": "Step 1 : Downloading Dofus files (~30mo)",
+        "step2": "Step 2 : Lindo patch download",
+        "step3": "Step 3 : Version resolution",
+        "step4": "Step 4 : Applying the patches",
+        "step5": "Step 5 : Writing modified files",
+        "step6": "Step 6 : Delete old files",
+        "step7": "Step 7 : Finalization",
+        "step8": "Step 8 : Launch of Lindo..",
         "information": {
           "search": "Looking for updates...",
-          "downloading": "Downloading...",
           "error": "Can't download the update ! Please try again later"
         }
       },

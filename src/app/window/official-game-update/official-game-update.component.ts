@@ -66,7 +66,7 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
     private localRegex: RegexPatches;
 
     /** Progress bar */
-    public progressMode: ProgressBarMode = "buffer";
+    public progressMode: ProgressBarMode = "indeterminate";
     public progressValue: number = 0;
     public progressText: string;
 
@@ -85,15 +85,13 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
     ) {
     }
 
-    log(message: any) {
+    private log(message: any) {
         Logger.info("[UPDATE] " + message);
     }
 
     ngOnInit() {
 
-        this.translate.get('app.window.update-dofus.information.search').subscribe((res: string) => {
-            this.progressText = res;
-        });
+        this.translate.get('app.window.update-dofus.information.search').subscribe((sentence: string) => this.progressText = sentence);
 
         this.sub = this.route.params.subscribe(async params => {
 
@@ -116,6 +114,7 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
             try {
 
                 this.log("DOWNLOADING ALL MANIFESTS");
+                this.translate.get('app.window.update-dofus.step0').subscribe((sentence: string) => this.progressText = sentence);
 
                 this.currentAssetMap = (fs.existsSync(this.localAssetMapPath)) ? JSON.parse(fs.readFileSync(this.localAssetMapPath)) : {};
                 this.remoteAssetMap = await this.downloadJson(this.remoteAssetMapPath);
@@ -133,39 +132,46 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
                 this.localRegex = (fs.existsSync(this.localRegexPath)) ? JSON.parse(fs.readFileSync(this.localRegexPath)) : {};
 
                 this.log("DOWNLOAD MISSING ASSETS FILES ON DISK..");
+                this.translate.get('app.window.update-dofus.step1').subscribe((sentence: string) => this.progressText = sentence);
                 await this.downloadAssetsFiles();
 
                 this.log("DOWNLOAD MISSING LINDO AND DOFUS FILES IN MEMORY..");
+                this.translate.get('app.window.update-dofus.step2').subscribe((sentence: string) => this.progressText = sentence);
                 await this.chargingMissingLindoAndDofusFiles();
 
                 this.log("FINDING VERSIONS..");
+                this.translate.get('app.window.update-dofus.step3').subscribe((sentence: string) => this.progressText = sentence);
                 await this.findingVersions();
 
                 this.log("APPLYING REGEX (LINDO OVERRIDE) ON DOFUS MISSING FILES");
+                this.translate.get('app.window.update-dofus.step4').subscribe((sentence: string) => this.progressText = sentence);
                 this.applyRegex();
 
                 this.log("WRITING LINDO AND DOFUS MISSING FILES TO DISK");
+                this.translate.get('app.window.update-dofus.step5').subscribe((sentence: string) => this.progressText = sentence);
                 this.writingMissingLindoAndDofusFiles();
 
                 this.log("REMOVING OLDER ASSETS AND DOFUS FILES..");
+                this.translate.get('app.window.update-dofus.step6').subscribe((sentence: string) => this.progressText = sentence);
                 this.removeOlderAssetsAndDofusFiles();
 
                 this.log("SAVING ALL JSON FILES TO DISK");
+                this.translate.get('app.window.update-dofus.step7').subscribe((sentence: string) => this.progressText = sentence);
+
                 fs.writeFileSync(this.localAssetMapPath, JSON.stringify(this.remoteAssetMap));
                 fs.writeFileSync(this.localLindoManifestPath, JSON.stringify(this.remoteLindoManifest));
                 fs.writeFileSync(this.localDofusManifestPath, JSON.stringify(this.remoteDofusManifest));
                 fs.writeFileSync(this.localVersionsPath, JSON.stringify(this.localVersions));
 
+                this.translate.get('app.window.update-dofus.step8').subscribe((sentence: string) => this.progressText = sentence);
                 this.ipcRendererService.send('update-finished', this.localVersions);
 
-            } catch (e) {
+            } catch (error) {
 
-                this.translate.get('app.window.update-dofus.information.error').subscribe((res: string) => {
-                    this.progressText = res + " (" + e.message + ")";
-                });
+                this.translate.get('app.window.update-dofus.information.error').subscribe((sentence: string) => this.progressText = sentence + " (" + error.message + ")");
 
-                Logger.error(e);
-                Logger.error(e.message);
+                LoggerLindo.error(error);
+                LoggerLindo.error(error.message);
             }
         });
     }
@@ -316,7 +322,7 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
         });
     }
 
-    differences(manifestA: Manifest, manifestB: Manifest): Differences {
+    private differences(manifestA: Manifest, manifestB: Manifest): Differences {
 
         let differences = {};
 
@@ -368,11 +374,12 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
         }
     }
 
+    public closeWindow() {
+        electron.close();
+    }
+
     ngOnDestroy() {
         this.sub.unsubscribe();
     }
 
-    public closeWindow() {
-        electron.close();
-    }
 }

@@ -36,10 +36,18 @@
       },
       "update-dofus": {
         "title": "Mise à jour de Lindo",
+        "step0": "Préparation de la mise à jours..",
+        "step1": "Étape 1 : Téléchargement des fichiers de Dofus (~30mo)",
+        "step2": "Étape 2 : Téléchargement des patch Lindo",
+        "step3": "Étape 3 : Résolution des versions",
+        "step4": "Étape 4 : Application des patchs",
+        "step5": "Étape 5 : Écriture des fichiers modifiés",
+        "step6": "Étape 6 : Suppression des anciens fichiers",
+        "step7": "Étape 7 : Finalisation",
+        "step8": "Étape 8 : Lancement de Lindo..",
         "information": {
           "search": "Recherche de mises à jour...",
-          "downloading": "Téléchargement en cours...",
-          "error": "Impossible de télécharger la mise à jour ! Veuillez réessayer ultérieurement"
+          "error": "Impossible d'effectuer la mise à jour ! Veuillez réessayer ultérieurement"
         }
       },
       "options": {
