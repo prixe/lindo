@@ -4,7 +4,7 @@ import {checkSettings} from './settings-checker';
 import {SettingsDefault} from './settings-default';
 import * as macAddress from 'macaddress';
 import {app, ipcMain, session, dialog, BrowserWindow} from 'electron';
-import * as del from 'del';
+import * as rimraf from "rimraf";
 
 const settings = require('electron-settings');
 const i18n = require('node-translate');
@@ -111,9 +111,10 @@ export class Settings {
     };
 
     public static resetGame() {
+
         let destinationPath = app.getPath('userData') + '/game';
 
-        del([destinationPath + "/*"], {force: true}).then((paths) => {
+        rimraf(destinationPath, () => {
             app.relaunch();
             app.quit();
         });
