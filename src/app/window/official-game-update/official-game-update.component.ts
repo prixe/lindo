@@ -15,7 +15,12 @@ import {Manifest} from "../../interfaces/update/manifest";
 import {Files} from "../../interfaces/update/files";
 import {RegexPatches} from "../../interfaces/update/regex-patches";
 
-axiosRetry(axios, {retries: 10, retryDelay: () => 1000});
+let axiosClient = axios.create();
+axiosRetry(axiosClient, {retries: 10, retryDelay: () => 1000});
+
+const { ConcurrencyManager } = require("axios-concurrency");
+const MAX_CONCURRENT_REQUESTS = 10;
+const manager = ConcurrencyManager(axiosClient, MAX_CONCURRENT_REQUESTS);
 
 const fs = fsLib;
 const path = pathLib;
@@ -118,15 +123,15 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
 
                 this.currentAssetMap = (fs.existsSync(this.localAssetMapPath)) ? JSON.parse(fs.readFileSync(this.localAssetMapPath)) : {};
                 this.remoteAssetMap = await this.downloadJson(this.remoteAssetMapPath);
-                this.assetMapDifferences = this.differences(this.currentAssetMap, this.remoteAssetMap);
+                this.assetMapDifferences = OfficialGameUpdateComponent.differences(this.currentAssetMap, this.remoteAssetMap);
 
                 this.currentLindoManifest = (fs.existsSync(this.localLindoManifestPath)) ? JSON.parse(fs.readFileSync(this.localLindoManifestPath)) : {};
                 this.remoteLindoManifest = await this.downloadJson(this.remoteLindoManifestPath);
-                this.lindoManifestDifferences = this.differences(this.currentLindoManifest, this.remoteLindoManifest);
+                this.lindoManifestDifferences = OfficialGameUpdateComponent.differences(this.currentLindoManifest, this.remoteLindoManifest);
 
                 this.currentDofusManifest = (fs.existsSync(this.localDofusManifestPath)) ? JSON.parse(fs.readFileSync(this.localDofusManifestPath)) : {};
                 this.remoteDofusManifest = await this.downloadJson(this.remoteDofusManifestPath);
-                this.dofusManifestDifferences = this.differences(this.currentDofusManifest, this.remoteDofusManifest);
+                this.dofusManifestDifferences = OfficialGameUpdateComponent.differences(this.currentDofusManifest, this.remoteDofusManifest);
 
                 this.localVersions = (fs.existsSync(this.localVersionsPath)) ? JSON.parse(fs.readFileSync(this.localVersionsPath)) : {};
                 this.localRegex = (fs.existsSync(this.localRegexPath)) ? JSON.parse(fs.readFileSync(this.localRegexPath)) : {};
@@ -178,29 +183,30 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
 
     private async downloadAssetsFiles() {
 
-        let countDifferences = 0;
-        for (let i in this.assetMapDifferences) if (this.assetMapDifferences[i] == 1) countDifferences++;
+        let promises = [];
 
-        let countDownload = 0;
         for (let i in this.assetMapDifferences) {
             if (this.assetMapDifferences[i] == 1) {
 
-                countDownload++;
+                promises.push(new Promise((resolve, reject) => {
 
-                let url = this.dofusOrigin + this.remoteAssetMap.files[i].filename;
-                let filePath = this.localGameFolder + this.remoteAssetMap.files[i].filename;
+                    let url = this.dofusOrigin + this.remoteAssetMap.files[i].filename;
+                    let filePath = this.localGameFolder + this.remoteAssetMap.files[i].filename;
 
-                this.log("Download FILE (" + countDownload + "/" + countDifferences + ") : " + url);
+                    let directoryPath = path.dirname(filePath);
+                    if (!fs.existsSync(directoryPath)) {
+                        fs.mkdirSync(directoryPath, {recursive: true});
+                    }
 
-                let directoryPath = path.dirname(filePath);
-                if (!fs.existsSync(directoryPath)) {
-                    fs.mkdirSync(directoryPath, {recursive: true});
-                }
-
-                let response = await axios({method: "GET", url: url, adapter: httpAdapter, responseType: "stream"});
-                await response.data.pipe(fs.createWriteStream(filePath));
+                    axiosClient.get(url, {adapter: httpAdapter, responseType: "stream"}).then((response) => {
+                        response.data.pipe(fs.createWriteStream(filePath));
+                        resolve(true);
+                    });
+                }));
             }
         }
+
+        await Promise.all(promises);
     }
 
     private async chargingMissingLindoAndDofusFiles() {
@@ -322,7 +328,7 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
         });
     }
 
-    private differences(manifestA: Manifest, manifestB: Manifest): Differences {
+    private static differences(manifestA: Manifest, manifestB: Manifest): Differences {
 
         let differences = {};
 
