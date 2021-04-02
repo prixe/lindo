@@ -19,7 +19,7 @@ a:focus {
   outline: 0 !important;
 }
 
-component-app {
+app-component {
   flex: 1;
   display: flex;
 }
@@ -35,7 +35,7 @@ component-auth {
   flex: 1;
   display: flex !important;
   flex-direction: column !important;
-  background: url("../../images/auth-bg.jpg") bottom center no-repeat;
+  background: url("../../images/authentication-background.webp") bottom center no-repeat;
   background-size: cover;
 }
 

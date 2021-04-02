@@ -14,11 +14,11 @@ import {Differences} from "../../interfaces/update/differences";
 import {Manifest} from "../../interfaces/update/manifest";
 import {Files} from "../../interfaces/update/files";
 import {RegexPatches} from "../../interfaces/update/regex-patches";
+import { ConcurrencyManager } from 'axios-concurrency';
 
 let axiosClient = axios.create();
 axiosRetry(axiosClient, {retries: 10, retryDelay: () => 1000});
 
-const { ConcurrencyManager } = require("axios-concurrency");
 const MAX_CONCURRENT_REQUESTS = 10;
 const manager = ConcurrencyManager(axiosClient, MAX_CONCURRENT_REQUESTS);
 

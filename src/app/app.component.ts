@@ -1,23 +1,21 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { IpcRendererService } from 'app/core/electron/ipcrenderer.service';
-import { Logger } from 'app/core/electron/logger.helper';
-import { SettingsService } from 'app/core/service/settings.service';
-import { SoundService } from 'app/core/service/sound.service';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
+import {IpcRendererService} from 'app/core/electron/ipcrenderer.service';
+import {Logger} from 'app/core/electron/logger.helper';
+import {SettingsService} from 'app/core/service/settings.service';
+import {SoundService} from 'app/core/service/sound.service';
 
 @Component({
-    selector: 'component-app',
+    selector: 'app-component',
     templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit, AfterViewInit {
-    constructor(
-        private translate: TranslateService,
-        private settingsService: SettingsService,
-        private ipcRendererService: IpcRendererService,
-        private soundService: SoundService,
-    ) { }
+
+    constructor(private translate: TranslateService, private settingsService: SettingsService, private ipcRendererService: IpcRendererService, private soundService: SoundService,) {
+    }
 
     ngOnInit() {
+
         this.translate.addLangs(["en", "fr", "es", "it", "pl", "tr"]);
         this.translate.setDefaultLang(this.settingsService.language);
 
