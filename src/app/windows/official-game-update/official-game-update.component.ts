@@ -5,7 +5,7 @@ import {ElectronService as electron} from 'app/services/electron/electron.servic
 import {IpcRendererService} from 'app/services/electron/ipcrenderer.service';
 import {Subscription} from 'rxjs';
 import {Logger} from "app/services/logger.helper";
-import {SettingsService} from 'app/core/service/settings.service';
+import {SettingsService} from '@services/settings.service';
 import {css as BeautifyCss, js as BeautifyJs} from 'js-beautify';
 import {ProgressBarMode} from "@angular/material/progress-bar";
 import axios from 'axios';

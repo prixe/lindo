@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {ElectronService as electron} from '@services/electron/electron.service';
-import {IpcRendererService} from '@services/electron/ipcrenderer.service';
+import {ElectronService as electron} from './electron/electron.service';
+import {IpcRendererService} from './electron/ipcrenderer.service';
 import {SettingsService} from './settings.service';
 import {WindowService} from './window.service';
 

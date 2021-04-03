@@ -1,4 +1,4 @@
-import {SettingsService} from "app/core/service/settings.service";
+import {SettingsService} from "@services/settings.service";
 import {TranslateService} from "@ngx-translate/core";
 
 export abstract class Mod {

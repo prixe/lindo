@@ -1,6 +1,6 @@
 import {WizAssets} from './wizAssets';
 import {ApplicationService} from '../../../services/electron/application.service';
-import {Option} from '../../../core/service/settings.service';
+import {Option} from '../../../services/settings.service';
 import {Logger} from "../../../services/logger.helper";
 import {HttpClient} from '@angular/common/http';
 import {Application} from "../../../../../electron/application";

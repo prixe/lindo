@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {ApplicationService} from 'app/services/electron/application.service';
-import {CryptService} from 'app/core/service/crypt.service';
-import {PromptService} from 'app/core/service/prompt.service';
-import {SettingsService} from 'app/core/service/settings.service';
+import {CryptService} from '@services/crypt.service';
+import {PromptService} from '@services/prompt.service';
+import {SettingsService} from '@services/settings.service';
 import Swal from "sweetalert2";
 
 @Component({

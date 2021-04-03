@@ -4,10 +4,10 @@ import {TranslateService} from "@ngx-translate/core";
 import * as Mods from "app/core/mods";
 import {Mod} from "../../core/mods/mod";
 import {Game} from "../../core/classes/game";
-import {WindowService} from "../../core/service/window.service";
+import {WindowService} from "@services/window.service";
 import {IpcRendererService} from "@services/electron/ipcrenderer.service";
-import {SettingsService} from "../../core/service/settings.service";
-import {BugReportService} from "../../core/service/bug-report.service";
+import {SettingsService} from "@services/settings.service";
+import {BugReportService} from "@services/bug-report.service";
 import {ApplicationService} from "@services/electron/application.service";
 
 @Component({

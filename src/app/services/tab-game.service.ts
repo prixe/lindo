@@ -1,14 +1,14 @@
 import {Injectable} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
-import {Game} from 'app/core/classes/game';
-import {Tab} from 'app/core/classes/tab';
-import {ApplicationService} from 'app/services/electron/application.service';
-import {CryptService} from 'app/core/service/crypt.service';
-import {GameService} from 'app/core/service/game.service';
-import {PromptService} from 'app/core/service/prompt.service';
-import {TabService} from 'app/core/service/tab.service';
 import * as async from 'async';
 import {EventEmitter} from 'eventemitter3';
+import {GameService} from "@services/game.service";
+import {TabService} from "@services/tab.service";
+import {PromptService} from "@services/prompt.service";
+import {ApplicationService} from "@services/electron/application.service";
+import {CryptService} from "@services/crypt.service";
+import {Tab} from "../core/classes/tab";
+import {Game} from "../core/classes/game";
 
 @Injectable()
 export class TabGameService extends EventEmitter {

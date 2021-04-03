@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {SettingsService} from "app/core/service/settings.service";
-import {AuthService} from "app/core/service/auth.service";
+import {SettingsService} from "@services/settings.service";
+import {AuthService} from "@services/auth.service";
 import {ApplicationService} from "app/services/electron/application.service";
 import {IpcRendererService} from "app/services/electron/ipcrenderer.service";
 

@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {IpcRendererService} from '@services/electron/ipcrenderer.service';
-import {Logger} from '@services/logger.helper';
-import {SettingsProvider} from '../classes/settings.provider';
-import {SettingsProviderIpc} from '../classes/settings.provider.ipc';
+import {IpcRendererService} from './electron/ipcrenderer.service';
+import {Logger} from './logger.helper';
+import {SettingsProvider} from '../core/classes/settings.provider';
+import {SettingsProviderIpc} from '../core/classes/settings.provider.ipc';
 import {WindowService} from './window.service';
 
 export class Option {

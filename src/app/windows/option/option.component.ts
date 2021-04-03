@@ -4,10 +4,10 @@ import {TranslateService} from '@ngx-translate/core';
 import {ApplicationService} from 'app/services/electron/application.service';
 import {IpcRendererService} from 'app/services/electron/ipcrenderer.service';
 import {Logger} from 'app/services/logger.helper';
-import {PromptService} from 'app/core/service/prompt.service';
+import {PromptService} from '@services/prompt.service';
 import {ChangelogWindowService} from '../changelog/changelog.window';
 import {MatDialogRef} from '@angular/material/dialog';
-import {SettingsService} from 'app/core/service/settings.service';
+import {SettingsService} from '@services/settings.service';
 
 @Component({
     selector: 'component-options',

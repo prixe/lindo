@@ -1,4 +1,4 @@
-import {Game} from '../classes/game';
+import {Game} from '../core/classes/game';
 import {Injectable} from "@angular/core";
 
 @Injectable()

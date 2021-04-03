@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {ApplicationService} from 'app/services/electron/application.service';
-import {SettingsService} from 'app/core/service/settings.service';
+import {SettingsService} from '@services/settings.service';
 
 @Component({
     templateUrl: './auto-group.component.html',

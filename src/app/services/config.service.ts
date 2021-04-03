@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {IpcRendererService} from '../../services/electron/ipcrenderer.service';
+import {IpcRendererService} from './electron/ipcrenderer.service';
 import {EventEmitter} from 'eventemitter3';
 
 type Param = 'language'

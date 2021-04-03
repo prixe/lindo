@@ -1,6 +1,6 @@
 import {TranslateService} from "@ngx-translate/core";
 import {Logger} from "app/services/logger.helper";
-import {SettingsService} from "app/core/service/settings.service";
+import {SettingsService} from "@services/settings.service";
 import {PathFinder} from "../autoGroup/pathfinder";
 import {Mod} from "../mod";
 
