@@ -7,7 +7,7 @@ import {SettingsService} from 'app/core/service/settings.service';
 import {TabGameService} from 'app/core/service/tab-game.service';
 import {TabService} from 'app/core/service/tab.service';
 import {WindowService} from 'app/core/service/window.service';
-import {OptionWindowService} from '../../window/option/option.window';
+import {OptionWindowService} from '../../windows/option/option.window';
 import {BugReportService} from 'app/core/service/bug-report.service';
 
 @Component({

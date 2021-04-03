@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {Logger} from '@services/logger.helper';
-import {BugReportComponent} from '../../window/bug-report/bug-report.component';
+import {BugReportComponent} from '../../windows/bug-report/bug-report.component';
 import {ApplicationService} from '@services/electron/application.service';
 import axios from 'axios';
 

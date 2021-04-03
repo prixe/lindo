@@ -2,8 +2,8 @@ import {ShortcutsWindowService} from '../shortcuts/shortcuts.window';
 import {Injectable} from '@angular/core';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {Router} from '@angular/router';
-import {OptionComponent} from 'app/window/option/option.component';
-import {ShortcutsComponent} from "app/window/shortcuts/shortcuts.component";
+import {OptionComponent} from 'app/windows/option/option.component';
+import {ShortcutsComponent} from "app/windows/shortcuts/shortcuts.component";
 
 @Injectable()
 export class OptionWindowService {

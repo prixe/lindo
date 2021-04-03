@@ -11,9 +11,9 @@ import {SoundService} from 'app/core/service/sound.service';
 import {TabGameService} from 'app/core/service/tab-game.service';
 import {TabService} from 'app/core/service/tab.service';
 import {WindowService} from 'app/core/service/window.service';
-import {ChangelogWindowService} from 'app/window/changelog/changelog.window';
-import {OptionWindowService} from 'app/window/option/option.window';
-import {ShortcutsWindowService} from 'app/window/shortcuts/shortcuts.window';
+import {ChangelogWindowService} from 'app/windows/changelog/changelog.window';
+import {OptionWindowService} from 'app/windows/option/option.window';
+import {ShortcutsWindowService} from 'app/windows/shortcuts/shortcuts.window';
 import {BugReportService} from 'app/core/service/bug-report.service';
 
 export function applicationServiceFactory(config: ApplicationService) {
