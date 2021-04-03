@@ -1,21 +1,21 @@
 import {Component, Injector, OnInit} from '@angular/core';
 
-import {Tab} from 'app/core/classes/tab';
-import {ApplicationService} from 'app/services/electron/application.service';
-import {IpcRendererService} from 'app/services/electron/ipcrenderer.service';
 import {SettingsService} from '@services/settings.service';
 import {TabGameService} from '@services/tab-game.service';
 import {TabService} from '@services/tab.service';
 import {WindowService} from '@services/window.service';
-import {OptionWindowService} from '../../windows/option/option.window';
+import {OptionWindowService} from '@windows/option/option.window';
 import {BugReportService} from '@services/bug-report.service';
+import {ApplicationService} from "@services/electron/application.service";
+import {IpcRendererService} from "@services/electron/ipcrenderer.service";
+import {Tab} from "../../../core/classes/tab";
 
 @Component({
-    selector: 'component-tab-game',
-    templateUrl: './tab-game.component.html',
-    styleUrls: ['./tab-game.component.scss']
+    selector: 'app-main-sidebar-component',
+    templateUrl: './sidebar.component.html',
+    styleUrls: ['./sidebar.component.scss']
 })
-export class TabGameComponent implements OnInit {
+export class SidebarComponent implements OnInit {
 
     public windowService: WindowService;
     public appName: string;

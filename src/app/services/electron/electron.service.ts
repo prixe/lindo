@@ -5,9 +5,6 @@ const process = nodeProcess;
 @Injectable()
 export class ElectronService {
 
-    constructor() {
-    }
-
     public static getCurrentWindow() {
         return Remote.getCurrentWindow();
     }

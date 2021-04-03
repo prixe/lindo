@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {ApplicationService} from 'app/services/electron/application.service';
-import {ElectronService as electron} from 'app/services/electron/electron.service';
 import {SoundService} from '@services/sound.service';
-import {Logger} from "app/services/logger.helper";
+import {ApplicationService} from "@services/electron/application.service";
+import {ElectronService as electron} from '@services/electron/electron.service';
 
 @Component({
-    selector: 'component-toolbar',
+    selector: 'app-main-toolbar-component',
     templateUrl: './toolbar.component.html'
 })
 export class ToolbarComponent implements OnInit {

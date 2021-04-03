@@ -27,8 +27,8 @@ import {GameComponent} from "app/components/main/game/game.component";
 import {ChangeLogComponent} from "app/windows/changelog/changelog.component";
 import {OptionComponent} from "app/windows/option/option.component";
 import {GeneralComponent} from "app/windows/option/general/general.component";
-import {TabGameComponent} from "app/main/tab-game/tab-game.component";
-import {ToolbarComponent} from "app/main/toolbar/toolbar.component";
+import {SidebarComponent} from "app/components/main/sidebar/sidebar.component";
+import {ToolbarComponent} from "app/components/main/toolbar/toolbar.component";
 import {VipComponent} from "app/windows/option/vip/vip.component";
 import {GeneralComponent as VipGeneralComponent} from "app/windows/option/vip/general/general.component";
 import {AutoGroupComponent} from "app/windows/option/vip/auto-group/auto-group.component";
@@ -85,7 +85,7 @@ registerLocaleData(localeTr);
         AppComponent,
         MainComponent,
         AuthenticationComponent,
-        TabGameComponent,
+        SidebarComponent,
         ToolbarComponent,
         GameComponent,
         AboutComponent,
