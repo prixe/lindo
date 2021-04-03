@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {MainComponent} from 'app/main/main.component';
+import {MainComponent} from 'app/components/main/main.component';
 import {GeneralComponent} from 'app/windows/option/general/general.component';
 import {NotificationComponent} from 'app/windows/option/notification/notification.component';
 import {AutoGroupComponent} from 'app/windows/option/vip/auto-group/auto-group.component';

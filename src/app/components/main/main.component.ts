@@ -1,12 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {ApplicationService} from 'app/services/electron/application.service';
-import {ElectronService as electron} from 'app/services/electron/electron.service';
-import {IpcRendererService} from 'app/services/electron/ipcrenderer.service';
 import {AuthService} from '@services/auth.service';
 import {GameService} from '@services/game.service';
 import {SettingsService} from '@services/settings.service';
 import {TabGameService} from '@services/tab-game.service';
 import {WindowService} from '@services/window.service';
+import {IpcRendererService} from "@services/electron/ipcrenderer.service";
+import {ApplicationService} from "@services/electron/application.service";
 
 @Component({
     selector: 'component-main',

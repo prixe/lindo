@@ -22,7 +22,7 @@ import localeTr from '@angular/common/locales/tr';
 import {AppRoutingModule} from './app.routing';
 
 import {AppComponent} from "app/app.component";
-import {MainComponent} from "app/main/main.component";
+import {MainComponent} from "app/components/main/main.component";
 import {GameComponent} from "app/components/main/game/game.component";
 import {ChangeLogComponent} from "app/windows/changelog/changelog.component";
 import {OptionComponent} from "app/windows/option/option.component";
