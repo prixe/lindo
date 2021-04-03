@@ -13,7 +13,7 @@ import {ShortcutsApplicationComponent} from "app/windows/shortcuts/application/a
 import {ShortcutsInventoryComponent} from "app/windows/shortcuts/inventory/inventory.component";
 import {ShortcutsInterfaceComponent} from "app/windows/shortcuts/interface/interface.component";
 import {ShortcutsSpellComponent} from "app/windows/shortcuts/spell/spell.component";
-import {OfficialGameUpdateComponent} from "app/windows/official-game-update/official-game-update.component";
+import {UpdateComponent} from "app/components/update/update.component";
 import {AboutComponent} from "app/windows/option/about/about.component";
 import {BugReportComponent} from "app/windows/bug-report/bug-report.component";
 
@@ -51,7 +51,7 @@ const appRoutes: Routes = [
     {
         path: 'official-game-update',
         children: [
-            { path: ':destinationPath', component: OfficialGameUpdateComponent }
+            { path: ':destinationPath', component: UpdateComponent }
         ]
     },
     {

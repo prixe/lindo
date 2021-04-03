@@ -24,7 +24,7 @@ app-component {
   display: flex;
 }
 
-component-main {
+app-main-component {
   flex: 1;
   display: flex !important;
   flex-direction: column !important;
@@ -53,7 +53,7 @@ component-option-general {
 
 component-option-general,
 component-game-update,
-component-official-game-update,
+app-update-component,
 ng-component {
   flex: 1;
 }

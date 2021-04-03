@@ -1,20 +1,19 @@
 import {Component, NgZone, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
-import {ElectronService as electron} from 'app/services/electron/electron.service';
-import {IpcRendererService} from 'app/services/electron/ipcrenderer.service';
+import {ElectronService as electron} from '@services/electron/electron.service';
 import {Subscription} from 'rxjs';
-import {Logger} from "app/services/logger.helper";
 import {SettingsService} from '@services/settings.service';
 import {css as BeautifyCss, js as BeautifyJs} from 'js-beautify';
 import {ProgressBarMode} from "@angular/material/progress-bar";
 import axios from 'axios';
 import axiosRetry from 'axios-retry';
-import {Differences} from "../../interfaces/update/differences";
-import {Manifest} from "../../interfaces/update/manifest";
-import {Files} from "../../interfaces/update/files";
-import {RegexPatches} from "../../interfaces/update/regex-patches";
+import {Differences} from "@interfaces/update/differences";
+import {Manifest} from "@interfaces/update/manifest";
+import {Files} from "@interfaces/update/files";
+import {RegexPatches} from "@interfaces/update/regex-patches";
 import {ConcurrencyManager} from 'axios-concurrency';
+import {IpcRendererService} from "@services/electron/ipcrenderer.service";
 
 let axiosClient = axios.create();
 axiosRetry(axiosClient, {retries: 10, retryDelay: () => 1000});
@@ -27,11 +26,11 @@ const path = pathLib;
 const httpAdapter = httpAdapterLib;
 
 @Component({
-    selector: 'component-official-game-update',
-    templateUrl: './official-game-update.component.html',
-    styleUrls: ['./official-game-update.component.scss']
+    selector: 'app-update-component',
+    templateUrl: './update.component.html',
+    styleUrls: ['./update.component.scss']
 })
-export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
+export class UpdateComponent implements OnInit, OnDestroy {
 
     /** Assets maps */
     private localAssetMapPath: string;
@@ -123,15 +122,15 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
 
                 this.currentAssetMap = (fs.existsSync(this.localAssetMapPath)) ? JSON.parse(fs.readFileSync(this.localAssetMapPath)) : {};
                 this.remoteAssetMap = await this.downloadJson(this.remoteAssetMapPath);
-                this.assetMapDifferences = OfficialGameUpdateComponent.differences(this.currentAssetMap, this.remoteAssetMap);
+                this.assetMapDifferences = UpdateComponent.differences(this.currentAssetMap, this.remoteAssetMap);
 
                 this.currentLindoManifest = (fs.existsSync(this.localLindoManifestPath)) ? JSON.parse(fs.readFileSync(this.localLindoManifestPath)) : {};
                 this.remoteLindoManifest = await this.downloadJson(this.remoteLindoManifestPath);
-                this.lindoManifestDifferences = OfficialGameUpdateComponent.differences(this.currentLindoManifest, this.remoteLindoManifest);
+                this.lindoManifestDifferences = UpdateComponent.differences(this.currentLindoManifest, this.remoteLindoManifest);
 
                 this.currentDofusManifest = (fs.existsSync(this.localDofusManifestPath)) ? JSON.parse(fs.readFileSync(this.localDofusManifestPath)) : {};
                 this.remoteDofusManifest = await this.downloadJson(this.remoteDofusManifestPath);
-                this.dofusManifestDifferences = OfficialGameUpdateComponent.differences(this.currentDofusManifest, this.remoteDofusManifest);
+                this.dofusManifestDifferences = UpdateComponent.differences(this.currentDofusManifest, this.remoteDofusManifest);
 
                 this.localVersions = (fs.existsSync(this.localVersionsPath)) ? JSON.parse(fs.readFileSync(this.localVersionsPath)) : {};
                 this.localRegex = (fs.existsSync(this.localRegexPath)) ? JSON.parse(fs.readFileSync(this.localRegexPath)) : {};

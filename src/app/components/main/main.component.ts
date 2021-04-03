@@ -8,7 +8,7 @@ import {IpcRendererService} from "@services/electron/ipcrenderer.service";
 import {ApplicationService} from "@services/electron/application.service";
 
 @Component({
-    selector: 'component-main',
+    selector: 'app-main-component',
     templateUrl: './main.component.html',
     styleUrls: ['./main.component.scss']
 })

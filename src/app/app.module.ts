@@ -36,7 +36,7 @@ import {MultiAccountComponent} from "app/windows/option/vip/multi-account/multi-
 import {NotificationComponent} from "app/windows/option/notification/notification.component";
 import {AuthenticationComponent} from "app/components/main/authentication/authentication.component";
 import {AboutComponent} from "app/windows/option/about/about.component";
-import {OfficialGameUpdateComponent} from "app/windows/official-game-update/official-game-update.component";
+import {UpdateComponent} from "app/components/update/update.component";
 import {BugReportComponent} from "app/windows/bug-report/bug-report.component";
 
 import {MaterialModule} from "app/modules/material.module";
@@ -97,7 +97,7 @@ registerLocaleData(localeTr);
         AutoGroupComponent,
         VipGeneralComponent,
         MultiAccountComponent,
-        OfficialGameUpdateComponent,
+        UpdateComponent,
         BugReportComponent,
 
         ShortcutsComponent,
