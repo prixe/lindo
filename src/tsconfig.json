@@ -20,6 +20,8 @@
       "@env/*": ["environments/*"],
       "@models/*": ["app/models/*"],
       "@services/*": ["app/services/*"],
+      "@helpers/*": ["app/helpers/*"],
+      "@mods/*": ["app/mods/*"],
       "@modules/*": ["app/modules/*"],
       "@interfaces/*": ["app/interfaces/*"]
     },
