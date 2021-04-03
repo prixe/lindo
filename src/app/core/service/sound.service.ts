@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {ElectronService as electron} from 'app/services/electron/electron.service';
-import {IpcRendererService} from 'app/services/electron/ipcrenderer.service';
-import {SettingsService} from 'app/core/service/settings.service';
-import {WindowService} from 'app/core/service/window.service';
+import {ElectronService as electron} from '@services/electron/electron.service';
+import {IpcRendererService} from '@services/electron/ipcrenderer.service';
+import {SettingsService} from './settings.service';
+import {WindowService} from './window.service';
 
 @Injectable()
 export class SoundService {

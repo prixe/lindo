@@ -1,4 +1,4 @@
-import {IpcRendererService} from '../../services/electron/ipcrenderer.service';
+import {IpcRendererService} from '@services/electron/ipcrenderer.service';
 import {Injectable} from '@angular/core';
 import {ApplicationService} from 'app/services/electron/application.service';
 import {CryptService} from 'app/core/service/crypt.service';

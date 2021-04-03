@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {Logger} from 'app/services/logger.helper';
-import {BugReportComponent} from 'app/window/bug-report/bug-report.component';
-import {ApplicationService} from 'app/services/electron/application.service';
+import {Logger} from '@services/logger.helper';
+import {BugReportComponent} from '../../window/bug-report/bug-report.component';
+import {ApplicationService} from '@services/electron/application.service';
 import axios from 'axios';
 
 const os = osLib;

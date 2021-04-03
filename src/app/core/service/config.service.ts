@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {IpcRendererService} from 'app/services/electron/ipcrenderer.service';
+import {IpcRendererService} from '../../services/electron/ipcrenderer.service';
 import {EventEmitter} from 'eventemitter3';
 
 type Param = 'language'
@@ -21,6 +21,7 @@ type Param = 'language'
     | 'option.general.early';
 
 @Injectable()
+// @ts-ignore
 export class ConfigService extends EventEmitter {
     public get(param: Param): any {
         return this.ipcRendererService.sendSync('read-settings', param);

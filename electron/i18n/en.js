@@ -50,7 +50,7 @@ module.exports = {
     "options": {
         "clear-cache": {
             "title": "Cache clared",
-            "message": "Cache has been cleared on currently opened windows"
+            "message": "Cache has been cleared on currently opened window"
         }
     }
 };

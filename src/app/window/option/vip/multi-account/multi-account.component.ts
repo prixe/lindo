@@ -102,7 +102,7 @@ export class MultiAccountComponent {
                         return Swal.showValidationMessage(self.translate.instant("app.option.vip.multi-account.prompt.edit-master.incorrect-old", {"lenght": 8}))
                     }
 
-                    // For every windows and accounts in settings,
+                    // For every window and accounts in settings,
                     // Re-encrypt account names and password with the new master password
                     let windows = self.settingsService.option.vip.multiaccount.windows;
                     for (let i in windows) {

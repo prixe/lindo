@@ -2,13 +2,13 @@ import {AfterViewInit, Component, EventEmitter, Input, NgZone, Output} from '@an
 import {TranslateService} from "@ngx-translate/core";
 
 import * as Mods from "app/core/mods";
-import {Mod} from "app/core/mods/mod";
-import {Game} from "app/core/classes/game";
-import {WindowService} from "app/core/service/window.service";
-import {IpcRendererService} from "app/services/electron/ipcrenderer.service";
-import {SettingsService} from "app/core/service/settings.service";
-import {BugReportService} from "app/core/service/bug-report.service";
-import {ApplicationService} from "app/services/electron/application.service";
+import {Mod} from "../../core/mods/mod";
+import {Game} from "../../core/classes/game";
+import {WindowService} from "../../core/service/window.service";
+import {IpcRendererService} from "@services/electron/ipcrenderer.service";
+import {SettingsService} from "../../core/service/settings.service";
+import {BugReportService} from "../../core/service/bug-report.service";
+import {ApplicationService} from "@services/electron/application.service";
 
 @Component({
     selector: 'component-game',

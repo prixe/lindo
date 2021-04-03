@@ -17,13 +17,13 @@ export class RapidExchange extends Mod {
     // Does the "ctrl" key is pressed ?
     private keyPressed: boolean = false;
 
-    // All ids of the windows we need
+    // All ids of the window we need
     private supportedWindows: Array<string> = ["exchangeInventory", "exchangeStorage", "tradeWithPlayerAndNPCInventory"];
 
     startMod(): void {
         this.supportedWindows = ["exchangeInventory", "exchangeStorage", "tradeWithPlayerAndNPCInventory"];
 
-        // Retrieve windows from the gui
+        // Retrieve window from the gui
         let windows = this.wGame.gui.windowsContainer.getChildren();
 
         windows.forEach((window: any) => {
@@ -68,7 +68,7 @@ export class RapidExchange extends Mod {
         });
     }
 
-    // Listen "slot-doubletap" events on windows and when it occurs, call the moveItem function
+    // Listen "slot-doubletap" events on window and when it occurs, call the moveItem function
     private setInventoryEventListener() {
         if (this.exchangeInventory) {
             this.on(this.exchangeInventory, 'slot-doubletap', this.exchangeInventoryEvent.bind(this));
@@ -123,7 +123,7 @@ export class RapidExchange extends Mod {
 
     // Return the window that match the id
     private getWindow(id: string) {
-        // Get all windows
+        // Get all window
         let windows = this.wGame.gui.windowsContainer.getChildren();
 
         let window = null;

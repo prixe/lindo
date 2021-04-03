@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {IpcRendererService} from 'app/services/electron/ipcrenderer.service';
-import {Logger} from 'app/services/logger.helper';
+import {IpcRendererService} from '@services/electron/ipcrenderer.service';
+import {Logger} from '@services/logger.helper';
 import {SettingsProvider} from '../classes/settings.provider';
 import {SettingsProviderIpc} from '../classes/settings.provider.ipc';
 import {WindowService} from './window.service';
@@ -986,14 +986,14 @@ export module Option {
             }
 
             set windows(windows: { account_name_encrypted: string, password_encrypted: string }[][]) {
-                this.settingsProvider.write('option.vip.multi_account.windows', windows);
+                this.settingsProvider.write('option.vip.multi_account.window', windows);
                 this._windows = windows;
             }
 
             constructor(private settingsProvider: SettingsProvider) {
                 this.active = this.settingsProvider.read('option.vip.multi_account.active');
                 this.master_password = this.settingsProvider.read('option.vip.multi_account.master_password');
-                this.windows = this.settingsProvider.read('option.vip.multi_account.windows');
+                this.windows = this.settingsProvider.read('option.vip.multi_account.window');
             }
         }
     }
