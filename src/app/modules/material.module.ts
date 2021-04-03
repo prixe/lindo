@@ -22,23 +22,16 @@ import {MatTooltipModule} from '@angular/material/tooltip';
         FlexLayoutModule,
         MatButtonModule,
         MatCheckboxModule,
-        //MdRadioModule,
         MatInputModule,
         MatCardModule,
         MatSidenavModule,
-        //MdToolbarModule,
         MatListModule,
-        //MdGridListModule,
         MatIconModule,
         MatProgressBarModule,
         MatTabsModule,
-        //MdSlideToggleModule,
-        //MdButtonToggleModule,
-        //MdSliderModule,
         MatMenuModule,
         MatTooltipModule,
         MatDialogModule,
-        //MdSnackBarModule,
         MatSelectModule
     ]
 })

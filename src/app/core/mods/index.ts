@@ -2,7 +2,7 @@
 export { General } from "app/core/mods/general/general";
 
 export { AutoGroup } from "app/core/mods/autoGroup/autoGroup";
-export { DamageEstimator } from "app/core/mods/damageEstimator/damageEstimator";
+export { DamageEstimator } from "app/core/mods/damage-estimator/damage-estimator";
 export { FightChronometer } from "app/core/mods/fightChronometer/fightChronometer";
 export { ZaapSearchFilter } from "app/core/mods/zaapSearchFilter/zaapSearchFilter";
 export { Harvest } from "app/core/mods/harvestBar/harvest";

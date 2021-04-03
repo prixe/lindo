@@ -1,14 +1,14 @@
-import {ShortcutsSpellComponent} from './windows/shortcuts/spell/spell.component';
-import {ShortcutsOtherComponent} from './windows/shortcuts/other/other.component';
-import {ShortcutsInventoryComponent} from './windows/shortcuts/inventory/inventory.component';
-import {ShortcutsInterfaceComponent} from './windows/shortcuts/interface/interface.component';
-import {ShortcutsApplicationComponent} from './windows/shortcuts/application/application.component';
+import {ShortcutsSpellComponent} from '@windows/shortcuts/spell/spell.component';
+import {ShortcutsOtherComponent} from '@windows/shortcuts/other/other.component';
+import {ShortcutsInventoryComponent} from '@windows/shortcuts/inventory/inventory.component';
+import {ShortcutsInterfaceComponent} from '@windows/shortcuts/interface/interface.component';
+import {ShortcutsApplicationComponent} from '@windows/shortcuts/application/application.component';
+
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
 import {TagInputModule} from 'ngx-chips';
-import {CoreModule} from "app/core/modules/core.module";
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import localeFr from '@angular/common/locales/fr';
@@ -39,12 +39,11 @@ import {AboutComponent} from "app/windows/option/about/about.component";
 import {OfficialGameUpdateComponent} from "app/windows/official-game-update/official-game-update.component";
 import {BugReportComponent} from "app/windows/bug-report/bug-report.component";
 
-import {MaterialModule} from "app/core/modules/material.module";
+import {MaterialModule} from "app/modules/material.module";
+import {ServiceModule} from "app/modules/service.module";
 
 import {ShortcutsComponent} from "app/windows/shortcuts/shortcuts.component";
 import {InputComponent} from 'app/windows/shortcuts/input/input.component';
-
-import {ServiceModule} from "app/core/modules/service.module";
 import {CommonModule, registerLocaleData} from "@angular/common";
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {SortablejsModule} from "ngx-sortablejs";
@@ -64,7 +63,6 @@ registerLocaleData(localeTr);
 @NgModule({
     imports: [
         CommonModule,
-        CoreModule,
         BrowserModule,
         BrowserAnimationsModule,
         AppRoutingModule,

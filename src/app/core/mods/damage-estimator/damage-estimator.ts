@@ -2,7 +2,7 @@ import {ShortcutsHelper} from "app/core/helpers/shortcuts.helper";
 import {Logger} from "app/services/logger.helper";
 
 import {Mod} from "../mod";
-import {DamageContainer} from "./damageContainer";
+import {DamageContainer} from "./damage-container";
 
 export class DamageEstimator extends Mod {
     private shortcutsHelper: ShortcutsHelper;

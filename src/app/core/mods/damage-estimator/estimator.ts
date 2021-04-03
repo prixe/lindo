@@ -1,11 +1,5 @@
 import {Logger} from "app/services/logger.helper";
-
-interface IEstimation {
-    element: string;
-    max: number;
-    min: number;
-    isHeal: boolean;
-}
+import {Estimation} from "@interfaces/mods/damage-estimator/estimation";
 
 export class Estimator {
 
@@ -111,8 +105,8 @@ export class Estimator {
     //-------------------------------------------------------------------------------------------------
 
     //obtient les estimations de dégats
-    private getEstimations(spell: any, fighter: any): IEstimation[] {
-        let estimations : IEstimation[] = [];
+    private getEstimations(spell: any, fighter: any): Estimation[] {
+        let estimations : Estimation[] = [];
 
         //pour chaque effet du sort
         for (let effectId in spell.spellLevel.effects) {

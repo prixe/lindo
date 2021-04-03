@@ -19,6 +19,8 @@
     "paths": {
       "@env/*": ["environments/*"],
       "@services/*": ["app/services/*"],
+      "@modules/*": ["app/modules/*"],
+      "@interfaces/*": ["app/interfaces/*"],
       "@windows/*": ["app/windows/*"]
     },
     "types": []

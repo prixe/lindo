@@ -1,7 +1,4 @@
 import {APP_INITIALIZER, LOCALE_ID, NgModule} from '@angular/core';
-import {ApplicationService} from 'app/services/electron/application.service';
-import {ElectronService} from 'app/services/electron/electron.service';
-import {IpcRendererService} from 'app/services/electron/ipcrenderer.service';
 import {AuthService} from '@services/auth.service';
 import {CryptService} from '@services/crypt.service';
 import {GameService} from '@services/game.service';
@@ -11,10 +8,13 @@ import {SoundService} from '@services/sound.service';
 import {TabGameService} from '@services/tab-game.service';
 import {TabService} from '@services/tab.service';
 import {WindowService} from '@services/window.service';
-import {ChangelogWindowService} from 'app/windows/changelog/changelog.window';
-import {OptionWindowService} from 'app/windows/option/option.window';
-import {ShortcutsWindowService} from 'app/windows/shortcuts/shortcuts.window';
 import {BugReportService} from '@services/bug-report.service';
+import {ApplicationService} from "@services/electron/application.service";
+import {ChangelogWindowService} from "@windows/changelog/changelog.window";
+import {OptionWindowService} from "@windows/option/option.window";
+import {ShortcutsWindowService} from "@windows/shortcuts/shortcuts.window";
+import {ElectronService} from "@services/electron/electron.service";
+import {IpcRendererService} from "@services/electron/ipcrenderer.service";
 
 export function applicationServiceFactory(config: ApplicationService) {
     return function () {
