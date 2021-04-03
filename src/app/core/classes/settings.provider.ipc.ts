@@ -1,11 +1,11 @@
-import {SettingsProvider} from './settings.provider';
 import {IpcRendererService} from '@services/electron/ipcrenderer.service';
+import {SettingsProvider} from "@interfaces/setting-provider";
 
-export class SettingsProviderIpc implements SettingsProvider{
+export class SettingsProviderIpc implements SettingsProvider {
 
     private ipcRendererService: IpcRendererService;
 
-    constructor(ipcRendererService: IpcRendererService){
+    constructor(ipcRendererService: IpcRendererService) {
         this.ipcRendererService = ipcRendererService;
     }
 

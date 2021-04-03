@@ -3,7 +3,7 @@ import {TranslateService} from "@ngx-translate/core";
 
 import * as Mods from "../../../core/mods";
 import {Mod} from "../../../core/mods/mod";
-import {Game} from "../../../core/classes/game";
+import {Game} from "@models/game";
 import {WindowService} from "@services/window.service";
 import {IpcRendererService} from "@services/electron/ipcrenderer.service";
 import {SettingsService} from "@services/settings.service";

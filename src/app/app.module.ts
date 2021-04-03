@@ -1,9 +1,3 @@
-import {ShortcutsSpellComponent} from '@windows/shortcuts/spell/spell.component';
-import {ShortcutsOtherComponent} from '@windows/shortcuts/other/other.component';
-import {ShortcutsInventoryComponent} from '@windows/shortcuts/inventory/inventory.component';
-import {ShortcutsInterfaceComponent} from '@windows/shortcuts/interface/interface.component';
-import {ShortcutsApplicationComponent} from '@windows/shortcuts/application/application.component';
-
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -25,29 +19,35 @@ import {AppComponent} from "app/app.component";
 import {MainComponent} from "app/components/main/main.component";
 import {GameComponent} from "app/components/main/game/game.component";
 import {ChangeLogComponent} from "app/components/main/changelog/changelog.component";
-import {OptionComponent} from "app/windows/option/option.component";
-import {GeneralComponent} from "app/windows/option/general/general.component";
+import {OptionComponent} from "app/components/main/option/option.component";
+import {GeneralComponent} from "app/components/main/option/general/general.component";
 import {SidebarComponent} from "app/components/main/sidebar/sidebar.component";
 import {ToolbarComponent} from "app/components/main/toolbar/toolbar.component";
-import {VipComponent} from "app/windows/option/vip/vip.component";
-import {GeneralComponent as VipGeneralComponent} from "app/windows/option/vip/general/general.component";
-import {AutoGroupComponent} from "app/windows/option/vip/auto-group/auto-group.component";
-import {MultiAccountComponent} from "app/windows/option/vip/multi-account/multi-account.component";
-import {NotificationComponent} from "app/windows/option/notification/notification.component";
+import {VipComponent} from "app/components/main/option/vip/vip.component";
+import {GeneralComponent as VipGeneralComponent} from "app/components/main/option/vip/general/general.component";
+import {AutoGroupComponent} from "app/components/main/option/vip/auto-group/auto-group.component";
+import {MultiAccountComponent} from "app/components/main/option/vip/multi-account/multi-account.component";
+import {NotificationComponent} from "app/components/main/option/notification/notification.component";
 import {AuthenticationComponent} from "app/components/main/authentication/authentication.component";
-import {AboutComponent} from "app/windows/option/about/about.component";
+import {AboutComponent} from "app/components/main/option/about/about.component";
 import {UpdateComponent} from "app/components/update/update.component";
 import {BugReportComponent} from "app/components/main/bug-report/bug-report.component";
 
 import {MaterialModule} from "app/modules/material.module";
 import {ServiceModule} from "app/modules/service.module";
 
-import {ShortcutsComponent} from "app/windows/shortcuts/shortcuts.component";
-import {InputComponent} from 'app/windows/shortcuts/input/input.component';
+import {ShortcutsComponent} from "app/components/main/shortcuts/shortcuts.component";
+import {InputComponent} from 'app/components/main/shortcuts/input/input.component';
 import {CommonModule, registerLocaleData} from "@angular/common";
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {SortablejsModule} from "ngx-sortablejs";
 import {SafePipeModule} from "safe-pipe";
+
+import {ShortcutsApplicationComponent} from "./components/main/shortcuts/application/application.component";
+import {ShortcutsInterfaceComponent} from "./components/main/shortcuts/interface/interface.component";
+import {ShortcutsInventoryComponent} from "./components/main/shortcuts/inventory/inventory.component";
+import {ShortcutsOtherComponent} from "./components/main/shortcuts/other/other.component";
+import {ShortcutsSpellComponent} from "./components/main/shortcuts/spell/spell.component";
 
 export function translateModuleFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, '../../locale/', '.json')

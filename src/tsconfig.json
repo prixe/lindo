@@ -18,10 +18,10 @@
     "baseUrl": "",
     "paths": {
       "@env/*": ["environments/*"],
+      "@models/*": ["app/models/*"],
       "@services/*": ["app/services/*"],
       "@modules/*": ["app/modules/*"],
-      "@interfaces/*": ["app/interfaces/*"],
-      "@windows/*": ["app/windows/*"]
+      "@interfaces/*": ["app/interfaces/*"]
     },
     "types": []
   }

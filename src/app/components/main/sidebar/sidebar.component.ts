@@ -4,11 +4,11 @@ import {SettingsService} from '@services/settings.service';
 import {TabGameService} from '@services/tab-game.service';
 import {TabService} from '@services/tab.service';
 import {WindowService} from '@services/window.service';
-import {OptionWindowService} from '@windows/option/option.window';
 import {BugReportService} from '@services/bug-report.service';
 import {ApplicationService} from "@services/electron/application.service";
 import {IpcRendererService} from "@services/electron/ipcrenderer.service";
-import {Tab} from "../../../core/classes/tab";
+import {Tab} from "@models/tab";
+import {OptionWindowService} from "../option/option.window";
 
 @Component({
     selector: 'app-main-sidebar-component',

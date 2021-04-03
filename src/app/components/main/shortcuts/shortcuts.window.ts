@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {ShortcutsComponent} from 'app/windows/shortcuts/shortcuts.component';
-import {IpcRendererService} from "../../services/electron/ipcrenderer.service";
+import {IpcRendererService} from "@services/electron/ipcrenderer.service";
+import {ShortcutsComponent} from "./shortcuts.component";
 
 @Injectable()
 export class ShortcutsWindowService {

@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {IpcRendererService} from './electron/ipcrenderer.service';
 import {Logger} from './logger.helper';
-import {SettingsProvider} from '../core/classes/settings.provider';
 import {SettingsProviderIpc} from '../core/classes/settings.provider.ipc';
 import {WindowService} from './window.service';
+import {SettingsProvider} from "@interfaces/setting-provider";
 
 export class Option {
     public general: Option.General;

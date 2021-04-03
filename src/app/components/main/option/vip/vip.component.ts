@@ -1,9 +1,9 @@
 import {AfterViewInit, Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
-import {ApplicationService} from 'app/services/electron/application.service';
 import {PromptService} from '@services/prompt.service';
 import {SettingsService} from '@services/settings.service';
+import {ApplicationService} from "@services/electron/application.service";
 
 @Component({
     templateUrl: './vip.component.html',

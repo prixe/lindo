@@ -1,20 +1,20 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {MainComponent} from 'app/components/main/main.component';
-import {GeneralComponent} from 'app/windows/option/general/general.component';
-import {NotificationComponent} from 'app/windows/option/notification/notification.component';
-import {AutoGroupComponent} from 'app/windows/option/vip/auto-group/auto-group.component';
-import {GeneralComponent as VipGeneralComponent} from 'app/windows/option/vip/general/general.component';
-import {MultiAccountComponent} from 'app/windows/option/vip/multi-account/multi-account.component';
-import {VipComponent} from 'app/windows/option/vip/vip.component';
+import {GeneralComponent} from 'app/components/main/option/general/general.component';
+import {NotificationComponent} from 'app/components/main/option/notification/notification.component';
+import {AutoGroupComponent} from 'app/components/main/option/vip/auto-group/auto-group.component';
+import {GeneralComponent as VipGeneralComponent} from 'app/components/main/option/vip/general/general.component';
+import {MultiAccountComponent} from 'app/components/main/option/vip/multi-account/multi-account.component';
+import {VipComponent} from 'app/components/main/option/vip/vip.component';
 
-import {ShortcutsOtherComponent} from "app/windows/shortcuts/other/other.component";
-import {ShortcutsApplicationComponent} from "app/windows/shortcuts/application/application.component";
-import {ShortcutsInventoryComponent} from "app/windows/shortcuts/inventory/inventory.component";
-import {ShortcutsInterfaceComponent} from "app/windows/shortcuts/interface/interface.component";
-import {ShortcutsSpellComponent} from "app/windows/shortcuts/spell/spell.component";
+import {ShortcutsOtherComponent} from "app/components/main/shortcuts/other/other.component";
+import {ShortcutsApplicationComponent} from "app/components/main/shortcuts/application/application.component";
+import {ShortcutsInventoryComponent} from "app/components/main/shortcuts/inventory/inventory.component";
+import {ShortcutsInterfaceComponent} from "app/components/main/shortcuts/interface/interface.component";
+import {ShortcutsSpellComponent} from "app/components/main/shortcuts/spell/spell.component";
 import {UpdateComponent} from "app/components/update/update.component";
-import {AboutComponent} from "app/windows/option/about/about.component";
+import {AboutComponent} from "app/components/main/option/about/about.component";
 import {BugReportComponent} from "app/components/main/bug-report/bug-report.component";
 
 const appRoutes: Routes = [

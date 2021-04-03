@@ -1,11 +1,11 @@
 import {Component, Injector, OnInit} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
-import {ElectronService as electron, ElectronService} from 'app/services/electron/electron.service';
-import {IpcRendererService} from 'app/services/electron/ipcrenderer.service';
+import {ElectronService as electron, ElectronService} from '@services/electron/electron.service';
 import {PromptService} from '@services/prompt.service';
 import {SettingsService} from '@services/settings.service';
 import {WindowService} from '@services/window.service';
 import {OptionWindowService} from '../option.window';
+import {IpcRendererService} from "@services/electron/ipcrenderer.service";
 
 interface select {
     name: string;
