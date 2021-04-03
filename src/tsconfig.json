@@ -18,7 +18,7 @@
     "baseUrl": "",
     "paths": {
       "@env/*": ["environments/*"],
-      "@app/*": ["app/*"]
+      "@services/*": ["app/services/*"]
     },
     "types": []
   }

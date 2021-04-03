@@ -20,6 +20,9 @@ declare let LoggerLib: any;
 declare let LoggerGame: any;
 declare let LoggerLindo: any;
 
+/** LoggerLindo */
+declare let Logger: any;
+
 interface NodeModule {
   id: string;
 }

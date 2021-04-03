@@ -1,5 +1,5 @@
 import {BarContainer} from "./barContainer";
-import {Logger} from "app/core/electron/logger.helper";
+import {Logger} from "app/services/logger.helper";
 
 export class Bar {
 

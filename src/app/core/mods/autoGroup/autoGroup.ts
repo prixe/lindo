@@ -1,10 +1,10 @@
 //background.toggleDebugMode()
 
-import {IpcRendererService} from "app/core/electron/ipcrenderer.service";
+import {IpcRendererService} from "app/services/electron/ipcrenderer.service";
 import {SettingsService} from "app/core/service/settings.service";
 import {TranslateService} from "@ngx-translate/core";
 
-import {Logger} from "app/core/electron/logger.helper";
+import {Logger} from "app/services/logger.helper";
 
 import {Mod} from "../mod";
 import {PathFinder} from "./pathfinder";

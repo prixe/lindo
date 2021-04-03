@@ -1,4 +1,4 @@
-import {Logger} from "app/core/electron/logger.helper";
+import {Logger} from "app/services/logger.helper";
 import {Mod} from "../mod";
 
 /**

@@ -1,4 +1,4 @@
-import {Logger} from "app/core/electron/logger.helper";
+import {Logger} from "app/services/logger.helper";
 import {ShortcutsHelper} from "app/core/helpers/shortcuts.helper";
 import {Mod} from "../mod";
 import {iconIdByTypeId, Resource, Resources, ressourcesToSkip} from "./resources";

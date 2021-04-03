@@ -1,5 +1,5 @@
 import * as EventEmitter from 'eventemitter3';
-import {ElectronService as electron} from "app/core/electron/electron.service";
+import {ElectronService as electron} from "app/services/electron/electron.service";
 
 import {Mod} from "../mod";
 

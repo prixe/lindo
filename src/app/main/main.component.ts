@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ApplicationService} from 'app/core/electron/application.service';
-import {ElectronService as electron} from 'app/core/electron/electron.service';
-import {IpcRendererService} from 'app/core/electron/ipcrenderer.service';
+import {ApplicationService} from 'app/services/electron/application.service';
+import {ElectronService as electron} from 'app/services/electron/electron.service';
+import {IpcRendererService} from 'app/services/electron/ipcrenderer.service';
 import {AuthService} from 'app/core/service/auth.service';
 import {GameService} from 'app/core/service/game.service';
 import {SettingsService} from 'app/core/service/settings.service';

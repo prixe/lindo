@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ApplicationService} from 'app/core/electron/application.service';
+import {ApplicationService} from 'app/services/electron/application.service';
 import {SettingsService} from 'app/core/service/settings.service';
 
 @Component({

@@ -1,5 +1,5 @@
 import {SettingsProvider} from './settings.provider';
-import {IpcRendererService} from '../electron/ipcrenderer.service';
+import {IpcRendererService} from '@services/electron/ipcrenderer.service';
 
 export class SettingsProviderIpc implements SettingsProvider{
 

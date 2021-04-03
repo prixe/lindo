@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {IpcRendererService} from 'app/core/electron/ipcrenderer.service';
-import {environment} from 'environments/environment';
 import {HttpClient} from '@angular/common/http';
+import {environment} from "@env/environment";
+import {IpcRendererService} from "@services/electron/ipcrenderer.service";
 
 @Injectable()
 export class ApplicationService {
@@ -18,10 +18,7 @@ export class ApplicationService {
     public remoteAppVersion: string;
     public version: string;
 
-    constructor(
-        private ipcRendererService: IpcRendererService,
-        private http: HttpClient
-    ) {
+    constructor(private ipcRendererService: IpcRendererService, private http: HttpClient) {
     }
 
     public async load(): Promise<void> {

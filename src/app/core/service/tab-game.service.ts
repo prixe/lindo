@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {Game} from 'app/core/classes/game';
 import {Tab} from 'app/core/classes/tab';
-import {ApplicationService} from 'app/core/electron/application.service';
+import {ApplicationService} from 'app/services/electron/application.service';
 import {CryptService} from 'app/core/service/crypt.service';
 import {GameService} from 'app/core/service/game.service';
 import {PromptService} from 'app/core/service/prompt.service';

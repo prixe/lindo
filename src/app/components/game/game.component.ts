@@ -1,16 +1,14 @@
 import {AfterViewInit, Component, EventEmitter, Input, NgZone, Output} from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
-import {WindowService} from "app/core/service/window.service";
-import {SettingsService} from "app/core/service/settings.service";
-import {ApplicationService} from "app/core/electron/application.service";
-import {IpcRendererService} from "app/core/electron/ipcrenderer.service";
-import {Game} from "app/core/classes/game";
-import {Logger} from 'app/core/electron/logger.helper';
-import {BugReportService} from 'app/core/service/bug-report.service';
-import {HttpClient} from '@angular/common/http';
 
 import * as Mods from "app/core/mods";
 import {Mod} from "app/core/mods/mod";
+import {Game} from "app/core/classes/game";
+import {WindowService} from "app/core/service/window.service";
+import {IpcRendererService} from "app/services/electron/ipcrenderer.service";
+import {SettingsService} from "app/core/service/settings.service";
+import {BugReportService} from "app/core/service/bug-report.service";
+import {ApplicationService} from "app/services/electron/application.service";
 
 @Component({
     selector: 'component-game',
@@ -34,8 +32,7 @@ export class GameComponent implements AfterViewInit {
         private settingsService: SettingsService,
         private bugReportService: BugReportService,
         private translateService: TranslateService,
-        private applicationService: ApplicationService,
-        private http: HttpClient
+        private applicationService: ApplicationService
     ) {
         this.gamePath = this.applicationService.gamePath + '/index.html?delayed=true';
     }
@@ -118,7 +115,6 @@ export class GameComponent implements AfterViewInit {
                     this.mods.push(new Mods[mod](this.game.window, this.settingsService, this.translateService))
             }
         }
-        //this.wizAssets = new WizAssetsContainer(this.game.window, this.applicationService, this.http, this.settingsService.option.general);
     }
 
     private setEventListener(): void {
@@ -141,7 +137,7 @@ export class GameComponent implements AfterViewInit {
                 this.game.emit('logged', true);
 
                 /* create icon */
-                let char = new this.game.window.CharacterDisplay({ scale: 'fitin' });
+                let char = new this.game.window.CharacterDisplay({scale: 'fitin'});
                 char.setLook(this.game.window.gui.playerData.characterBaseInformations.entityLook, {
                     riderOnly: true,
                     direction: 4,
@@ -184,10 +180,10 @@ export class GameComponent implements AfterViewInit {
         };
 
         let consoleError = this.game.window.console.error;
-        this.game.window.console.error = function() {
+        this.game.window.console.error = function () {
             let anonymousIdentity = this.getAnonymousIdentity();
             let report = "";
-            for (let i = 0 ; i < arguments.length ; i++) {
+            for (let i = 0; i < arguments.length; i++) {
                 report += JSON.stringify(arguments[i]) + "\n";
             }
             report = report.trim();
@@ -202,11 +198,13 @@ export class GameComponent implements AfterViewInit {
         if (identification.accountId && identification.nickname) {
             let accountId = identification.accountId;
             let nicknameSum = identification.nickname
-                                .split('')
-                                .map((char) => { return char.charCodeAt() })
-                                .reduce((accumulator, currentValue) => {
-                                    return accumulator + currentValue
-                                });
+                .split('')
+                .map((char) => {
+                    return char.charCodeAt()
+                })
+                .reduce((accumulator, currentValue) => {
+                    return accumulator + currentValue
+                });
             // This sum ensures privacy
             sum = (accountId + nicknameSum).toString();
         }

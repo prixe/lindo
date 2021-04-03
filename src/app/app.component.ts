@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
-import {IpcRendererService} from 'app/core/electron/ipcrenderer.service';
-import {Logger} from 'app/core/electron/logger.helper';
+import {IpcRendererService} from 'app/services/electron/ipcrenderer.service';
+import {Logger} from 'app/services/logger.helper';
 import {SettingsService} from 'app/core/service/settings.service';
 import {SoundService} from 'app/core/service/sound.service';
 

@@ -1,10 +1,10 @@
 import {Component, NgZone, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
-import {ElectronService as electron} from 'app/core/electron/electron.service';
-import {IpcRendererService} from 'app/core/electron/ipcrenderer.service';
+import {ElectronService as electron} from 'app/services/electron/electron.service';
+import {IpcRendererService} from 'app/services/electron/ipcrenderer.service';
 import {Subscription} from 'rxjs';
-import {Logger} from "app/core/electron/logger.helper";
+import {Logger} from "app/services/logger.helper";
 import {SettingsService} from 'app/core/service/settings.service';
 import {css as BeautifyCss, js as BeautifyJs} from 'js-beautify';
 import {ProgressBarMode} from "@angular/material/progress-bar";

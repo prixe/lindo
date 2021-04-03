@@ -1,7 +1,7 @@
 import {Component, Injector, OnInit} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
-import {ElectronService as electron, ElectronService} from 'app/core/electron/electron.service';
-import {IpcRendererService} from 'app/core/electron/ipcrenderer.service';
+import {ElectronService as electron, ElectronService} from 'app/services/electron/electron.service';
+import {IpcRendererService} from 'app/services/electron/ipcrenderer.service';
 import {PromptService} from 'app/core/service/prompt.service';
 import {SettingsService} from 'app/core/service/settings.service';
 import {WindowService} from 'app/core/service/window.service';

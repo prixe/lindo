@@ -1,4 +1,4 @@
-import {Logger} from "app/core/electron/logger.helper";
+import {Logger} from "src/app/services/logger.helper";
 import {HttpClient} from '@angular/common/http';
 
 const fs = require('fs-extra');

@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {ApplicationService} from 'app/core/electron/application.service';
-import {ElectronService as electron} from 'app/core/electron/electron.service';
+import {ApplicationService} from 'app/services/electron/application.service';
+import {ElectronService as electron} from 'app/services/electron/electron.service';
 import {environment} from "../../../../environments/environment";
 
 @Component({
