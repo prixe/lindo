@@ -1,15 +1,15 @@
 import {Component} from '@angular/core';
 import {SettingsService} from "@services/settings.service";
 import {AuthService} from "@services/auth.service";
-import {ApplicationService} from "app/services/electron/application.service";
-import {IpcRendererService} from "app/services/electron/ipcrenderer.service";
+import {ApplicationService} from "@services/electron/application.service";
+import {IpcRendererService} from "@services/electron/ipcrenderer.service";
 
 @Component({
-    selector: 'component-auth',
-    templateUrl: './auth.component.html',
-    styleUrls: ['./auth.component.scss']
+    selector: 'app-main-authentication-component',
+    templateUrl: './authentication.component.html',
+    styleUrls: ['./authentication.component.scss']
 })
-export class AuthComponent {
+export class AuthenticationComponent {
     public inputMasterPassword: string = "";
     public badMasterPassword: boolean = false;
     public loadingMultiAccount: boolean = false;

@@ -23,7 +23,7 @@ import {AppRoutingModule} from './app.routing';
 
 import {AppComponent} from "app/app.component";
 import {MainComponent} from "app/main/main.component";
-import {GameComponent} from "app/components/game/game.component";
+import {GameComponent} from "app/components/main/game/game.component";
 import {ChangeLogComponent} from "app/windows/changelog/changelog.component";
 import {OptionComponent} from "app/windows/option/option.component";
 import {GeneralComponent} from "app/windows/option/general/general.component";
@@ -34,7 +34,7 @@ import {GeneralComponent as VipGeneralComponent} from "app/windows/option/vip/ge
 import {AutoGroupComponent} from "app/windows/option/vip/auto-group/auto-group.component";
 import {MultiAccountComponent} from "app/windows/option/vip/multi-account/multi-account.component";
 import {NotificationComponent} from "app/windows/option/notification/notification.component";
-import {AuthComponent} from "app/components/auth/auth.component";
+import {AuthenticationComponent} from "app/components/main/authentication/authentication.component";
 import {AboutComponent} from "app/windows/option/about/about.component";
 import {OfficialGameUpdateComponent} from "app/windows/official-game-update/official-game-update.component";
 import {BugReportComponent} from "app/windows/bug-report/bug-report.component";
@@ -84,7 +84,7 @@ registerLocaleData(localeTr);
     declarations: [
         AppComponent,
         MainComponent,
-        AuthComponent,
+        AuthenticationComponent,
         TabGameComponent,
         ToolbarComponent,
         GameComponent,

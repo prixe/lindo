@@ -1,5 +1,5 @@
 import {HttpClient} from '@angular/common/http';
-import {Logger} from "../../../services/logger.helper";
+import {Logger} from "../../../../services/logger.helper";
 
 const fs = require('fs-extra');
 const https = require('https');

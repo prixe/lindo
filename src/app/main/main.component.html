@@ -3,7 +3,7 @@
 <div class="main-content">
 
     <ng-container *ngIf="authService.authRequired">
-        <component-auth></component-auth>
+        <app-main-authentication-component></app-main-authentication-component>
     </ng-container>
 
     <ng-container *ngIf="!authService.authRequired">
