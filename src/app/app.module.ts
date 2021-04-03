@@ -48,6 +48,7 @@ import {ServiceModule} from "app/core/modules/service.module";
 import {CommonModule, registerLocaleData} from "@angular/common";
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {SortablejsModule} from "ngx-sortablejs";
+import {SafePipeModule} from "safe-pipe";
 
 export function translateModuleFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, '../../locale/', '.json')
@@ -79,7 +80,8 @@ registerLocaleData(localeTr);
         TagInputModule,
         HttpClientModule,
         MaterialModule,
-        ServiceModule
+        ServiceModule,
+        SafePipeModule
     ],
     declarations: [
         AppComponent,

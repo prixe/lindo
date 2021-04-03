@@ -18,7 +18,8 @@
     "baseUrl": "",
     "paths": {
       "@env/*": ["environments/*"],
-      "@services/*": ["app/services/*"]
+      "@services/*": ["app/services/*"],
+      "@windows/*": ["app/windows/*"]
     },
     "types": []
   }
