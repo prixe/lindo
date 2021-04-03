@@ -19,6 +19,30 @@ export class SettingsService {
     private _language: string;
     private _last_news: number;
 
+    constructor(private ipcRendererService: IpcRendererService, private windowService: WindowService) {
+
+        this.settingsProvider = new SettingsProviderIpc(ipcRendererService);
+
+        let init = () => {
+            this.option = new ModelOption(this.settingsProvider);
+
+            this._appVersion = this.settingsProvider.read('appVersion');
+            this._macAddress = this.settingsProvider.read('macAddress');
+            this._buildVersion = this.settingsProvider.read('buildVersion');
+            this._alertCounter = this.settingsProvider.read('alertCounter');
+            this._language = this.settingsProvider.read('language');
+            this._last_news = this.settingsProvider.read('last_news');
+        };
+        init();
+
+        this.ipcRendererService.on('reload-settings', () => {
+            Logger.verbose('receive->reload-settings');
+            init();
+            Logger.verbose('emit->reload-settings-done');
+            this.ipcRendererService.send('reload-settings-done');
+        });
+    }
+
     get last_news(): number {
         return this._last_news;
     }
@@ -71,29 +95,5 @@ export class SettingsService {
     set language(language: string) {
         this.settingsProvider.write('language', language);
         this._language = language;
-    }
-
-    constructor(private ipcRendererService: IpcRendererService, private windowService: WindowService) {
-
-        this.settingsProvider = new SettingsProviderIpc(ipcRendererService);
-
-        let init = () => {
-            this.option = new ModelOption(this.settingsProvider);
-
-            this._appVersion = this.settingsProvider.read('appVersion');
-            this._macAddress = this.settingsProvider.read('macAddress');
-            this._buildVersion = this.settingsProvider.read('buildVersion');
-            this._alertCounter = this.settingsProvider.read('alertCounter');
-            this._language = this.settingsProvider.read('language');
-            this._last_news = this.settingsProvider.read('last_news');
-        };
-        init();
-
-        this.ipcRendererService.on('reload-settings', () => {
-            Logger.verbose('receive->reload-settings');
-            init();
-            Logger.verbose('emit->reload-settings-done');
-            this.ipcRendererService.send('reload-settings-done');
-        });
     }
 }
