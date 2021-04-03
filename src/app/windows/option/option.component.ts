@@ -5,7 +5,7 @@ import {ApplicationService} from 'app/services/electron/application.service';
 import {IpcRendererService} from 'app/services/electron/ipcrenderer.service';
 import {Logger} from 'app/services/logger.helper';
 import {PromptService} from '@services/prompt.service';
-import {ChangelogWindowService} from '../changelog/changelog.window';
+import {ChangelogWindowService} from '../../components/main/changelog/changelog.window';
 import {MatDialogRef} from '@angular/material/dialog';
 import {SettingsService} from '@services/settings.service';
 

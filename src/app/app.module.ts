@@ -24,7 +24,7 @@ import {AppRoutingModule} from './app.routing';
 import {AppComponent} from "app/app.component";
 import {MainComponent} from "app/components/main/main.component";
 import {GameComponent} from "app/components/main/game/game.component";
-import {ChangeLogComponent} from "app/windows/changelog/changelog.component";
+import {ChangeLogComponent} from "app/components/main/changelog/changelog.component";
 import {OptionComponent} from "app/windows/option/option.component";
 import {GeneralComponent} from "app/windows/option/general/general.component";
 import {SidebarComponent} from "app/components/main/sidebar/sidebar.component";
@@ -37,7 +37,7 @@ import {NotificationComponent} from "app/windows/option/notification/notificatio
 import {AuthenticationComponent} from "app/components/main/authentication/authentication.component";
 import {AboutComponent} from "app/windows/option/about/about.component";
 import {UpdateComponent} from "app/components/update/update.component";
-import {BugReportComponent} from "app/windows/bug-report/bug-report.component";
+import {BugReportComponent} from "app/components/main/bug-report/bug-report.component";
 
 import {MaterialModule} from "app/modules/material.module";
 import {ServiceModule} from "app/modules/service.module";

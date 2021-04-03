@@ -10,7 +10,7 @@ import {TabService} from '@services/tab.service';
 import {WindowService} from '@services/window.service';
 import {BugReportService} from '@services/bug-report.service';
 import {ApplicationService} from "@services/electron/application.service";
-import {ChangelogWindowService} from "@windows/changelog/changelog.window";
+import {ChangelogWindowService} from "@windows/../components/main/changelog/changelog.window";
 import {OptionWindowService} from "@windows/option/option.window";
 import {ShortcutsWindowService} from "@windows/shortcuts/shortcuts.window";
 import {ElectronService} from "@services/electron/electron.service";

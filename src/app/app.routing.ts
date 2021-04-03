@@ -15,7 +15,7 @@ import {ShortcutsInterfaceComponent} from "app/windows/shortcuts/interface/inter
 import {ShortcutsSpellComponent} from "app/windows/shortcuts/spell/spell.component";
 import {UpdateComponent} from "app/components/update/update.component";
 import {AboutComponent} from "app/windows/option/about/about.component";
-import {BugReportComponent} from "app/windows/bug-report/bug-report.component";
+import {BugReportComponent} from "app/components/main/bug-report/bug-report.component";
 
 const appRoutes: Routes = [
     {
