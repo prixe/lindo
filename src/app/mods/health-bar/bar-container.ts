@@ -1,5 +1,4 @@
 import {Bar} from "./bar";
-import {Logger} from "src/app/services/logger.helper";
 
 export class BarContainer {
     private wGame: any | Window;

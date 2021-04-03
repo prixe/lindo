@@ -1,4 +1,4 @@
-import {Game} from '@models/game';
+import {Game} from '@helpers/game';
 import {Injectable} from "@angular/core";
 
 @Injectable()

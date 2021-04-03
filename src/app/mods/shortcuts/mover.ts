@@ -1,6 +1,6 @@
 import {TranslateService} from "@ngx-translate/core";
 import {SettingsService} from "@services/settings.service";
-import {PathFinder} from "../autoGroup/pathfinder";
+import {PathFinder} from "../auto-group/path-finder";
 import {Mod} from "../mod";
 
 export class Mover extends Mod {

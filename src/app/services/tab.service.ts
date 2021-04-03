@@ -1,4 +1,4 @@
-import {Tab} from '@models/tab';
+import {Tab} from '@helpers/tab';
 import {Injectable} from "@angular/core";
 
 @Injectable()

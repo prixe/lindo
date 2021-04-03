@@ -1,5 +1,5 @@
-export { CssOverload } from "./cssOverload";
-export { HideShop } from "./hideShop";
+export { CssOverload } from "./css-overload";
+export { HideShop } from "./hide-shop";
 export { Inactivity } from "./inactivity";
-export { JsFixes } from "./jsFixes";
+export { JsFixes } from "./js-fixes";
 export { KeyboardInput } from "./keyboardInput";

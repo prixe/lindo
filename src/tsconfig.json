@@ -18,7 +18,6 @@
     "baseUrl": "",
     "paths": {
       "@env/*": ["environments/*"],
-      "@models/*": ["app/models/*"],
       "@services/*": ["app/services/*"],
       "@helpers/*": ["app/helpers/*"],
       "@mods/*": ["app/mods/*"],

@@ -1,16 +1,16 @@
 export { General } from "../mods/general/general";
 
-export { AutoGroup } from "../mods/autoGroup/autoGroup";
+export { AutoGroup } from "./auto-group/auto-group";
 export { DamageEstimator } from "../mods/damage-estimator/damage-estimator";
-export { FightChronometer } from "../mods/fightChronometer/fightChronometer";
-export { ZaapSearchFilter } from "../mods/zaapSearchFilter/zaapSearchFilter";
-export { Harvest } from "../mods/harvestBar/harvest";
-export { HealthBar } from "../mods/healthBar/healthBar";
-export { HideMount } from "../mods/hideMount/hideMount";
+export { FightChronometer } from "./fight-chronometer/fight-chronometer";
+export { ZaapSearchFilter } from "./zaap-search-filter/zaap-search-filter";
+export { Harvest } from "./harvest-bar/harvest";
+export { HealthBar } from "./health-bar/health-bar";
+export { HideMount } from "./hide-mount/hide-mount";
 export { Jobsxp } from "../mods/jobsxp/jobsxp";
 export { Notifications } from "../mods/notifications/notifications";
-export { PartyInfo } from "../mods/partyInfo/partyInfo";
-export { PartyMember } from "../mods/partyInfo/partyMemberOnMap";
-export { RapidExchange } from "../mods/rapidExchange/rapidExchange";
+export { PartyInfo } from "./party-info/party-info";
+export { PartyMember } from "./party-info/party-member-on-map";
+export { RapidExchange } from "./rapid-exchange/rapid-exchange";
 export { Shortcuts } from "../mods/shortcuts/shortcuts";
-export { ShowResources } from "../mods/showResources/showResources";
+export { ShowResources } from "./show-resources/show-resources";

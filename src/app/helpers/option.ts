@@ -1,5 +1,5 @@
-import {SettingsProvider} from "@interfaces/setting-provider";
-import {Option as OptionModule} from "@modules/option.module";
+import {SettingsProvider} from "../interfaces/setting-provider";
+import {Option as OptionModule} from "../modules/option.module";
 
 export class Option {
     public general: OptionModule.General;

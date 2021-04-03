@@ -7,8 +7,8 @@ import {TabService} from "@services/tab.service";
 import {PromptService} from "@services/prompt.service";
 import {ApplicationService} from "@services/electron/application.service";
 import {CryptService} from "@services/crypt.service";
-import {Tab} from "@models/tab";
-import {Game} from "@models/game";
+import {Tab} from "@helpers/tab";
+import {Game} from "@helpers/game";
 
 @Injectable()
 export class TabGameService extends EventEmitter {

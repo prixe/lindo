@@ -1,5 +1,4 @@
-import {BarContainer} from "./barContainer";
-import {Logger} from "src/app/services/logger.helper";
+import {BarContainer} from "./bar-container";
 
 export class Bar {
 

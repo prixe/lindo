@@ -1,8 +1,6 @@
-import {ShortcutsHelper} from "src/app/helpers/shortcuts.helper";
-import {Logger} from "src/app/services/logger.helper";
-
 import {Mod} from "../mod";
-import {BarContainer} from "./barContainer";
+import {BarContainer} from "./bar-container";
+import {ShortcutsHelper} from "@helpers/shortcuts.helper";
 
 export class HealthBar extends Mod {
     private shortcutsHelper: ShortcutsHelper;

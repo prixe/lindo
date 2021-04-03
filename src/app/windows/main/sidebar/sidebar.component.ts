@@ -7,7 +7,7 @@ import {WindowService} from '@services/window.service';
 import {BugReportService} from '@services/bug-report.service';
 import {ApplicationService} from "@services/electron/application.service";
 import {IpcRendererService} from "@services/electron/ipcrenderer.service";
-import {Tab} from "@models/tab";
+import {Tab} from "@helpers/tab";
 import {OptionWindowService} from "../option/option.window";
 
 @Component({

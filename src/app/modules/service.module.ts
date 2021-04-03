@@ -13,9 +13,9 @@ import {ApplicationService} from "@services/electron/application.service";
 import {ElectronService} from "@services/electron/electron.service";
 import {IpcRendererService} from "@services/electron/ipcrenderer.service";
 
-import {ChangelogWindowService} from "../components/main/changelog/changelog.window";
-import {OptionWindowService} from "../components/main/option/option.window";
-import {ShortcutsWindowService} from "../components/main/shortcuts/shortcuts.window";
+import {ChangelogWindowService} from "../windows/main/changelog/changelog.window";
+import {OptionWindowService} from "../windows/main/option/option.window";
+import {ShortcutsWindowService} from "../windows/main/shortcuts/shortcuts.window";
 
 export function applicationServiceFactory(config: ApplicationService) {
     return function () {

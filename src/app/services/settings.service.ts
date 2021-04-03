@@ -4,7 +4,7 @@ import {Logger} from './logger.helper';
 import {SettingsProviderIpc} from '../helpers/settings.provider.ipc';
 import {WindowService} from './window.service';
 import {SettingsProvider} from "@interfaces/setting-provider";
-import {Option as ModelOption} from "@models/option";
+import {Option as ModelOption} from "@helpers/option";
 
 @Injectable()
 export class SettingsService {

@@ -1,5 +1,5 @@
 import {Mod} from "../mod";
-import {HarvestBar} from "./harvestBar";
+import {HarvestBar} from "./harvest-bar";
 
 export class Harvest extends Mod {
     private harvestBar: HarvestBar;

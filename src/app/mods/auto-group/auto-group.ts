@@ -4,7 +4,7 @@ import {SettingsService} from "@services/settings.service";
 import {TranslateService} from "@ngx-translate/core";
 
 import {Mod} from "../mod";
-import {PathFinder} from "./pathfinder";
+import {PathFinder} from "./path-finder";
 import {IpcRendererService} from "@services/electron/ipcrenderer.service";
 
 type Direction = "top" | "bottom" | "left" | "right" | false;
