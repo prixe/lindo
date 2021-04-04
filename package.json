@@ -100,11 +100,10 @@
   },
   "main": "dist/electron/main.js",
   "build": {
-    "electronVersion": "5.0.13",
     "copyright": "Prixe",
     "productName": "Lindo",
     "asar": true,
-    "appId": "co.lindo.no-emu",
+    "appId": "com.lindo.app",
     "directories": {
       "output": "releases"
     },
