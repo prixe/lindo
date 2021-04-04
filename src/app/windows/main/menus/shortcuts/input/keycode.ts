@@ -34,4 +34,4 @@ export class KeyCode {
         }
     }
 
-};
+}

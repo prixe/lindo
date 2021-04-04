@@ -25,7 +25,7 @@ export class DamageEstimator extends Mod {
 
 
     private removeOnDeath(): void {
-        ;
+
         this.on(this.wGame.gui, 'GameActionFightDeathMessage', (e: any) => {
             try {
                 this.damageContainer.destroyEstimator(e.targetId);
