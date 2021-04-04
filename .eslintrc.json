@@ -4,7 +4,8 @@
     "projects/**/*"
   ],
   "plugins": [
-    "only-warn"
+    "only-warn",
+    "prefer-arrow"
   ],
   "overrides": [
     {
@@ -21,10 +22,22 @@
       "extends": [
         "plugin:@angular-eslint/recommended",
         "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/recommended-requiring-type-checking",
-        "plugin:@angular-eslint/template/process-inline-templates"
+        "plugin:@typescript-eslint/recommended-requiring-type-checking"
       ],
       "rules": {
+        "@typescript-eslint/no-unsafe-call": "off",             //any
+        "@typescript-eslint/no-unsafe-assignment": "off",       //any
+        "@typescript-eslint/no-explicit-any": "off",            //any
+        "@typescript-eslint/no-inferrable-types": "off",        //C'est quand même lieux de typer très fort
+        "@typescript-eslint/no-unsafe-member-access": "off",    //any
+        "prefer-arrow/prefer-arrow-functions": [
+            "warn",
+            {
+              "disallowPrototype": true,
+              "singleReturnOnly": false,
+              "classPropertiesAllowed": false
+            }
+        ],
         "@angular-eslint/component-selector": [
           "error",
           {

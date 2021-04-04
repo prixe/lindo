@@ -14,9 +14,10 @@ export class OptionWindowService {
         private dialog: MatDialog,
         private router: Router,
         private shortcutsWindowService: ShortcutsWindowService
-    ) { }
+    ) {
+    }
 
-    public open() {
+    public open(): void {
 
         this.dialogRef = this.dialog.open(OptionComponent, {
             width: '820px',
@@ -24,18 +25,20 @@ export class OptionWindowService {
         });
 
         this.dialogRef.afterClosed().subscribe(result => {
-            this.dialogRef = null;
-            this.router.navigate(['/option']);
+
             Settings.reloadSettings();
+
+            this.dialogRef = null;
+            void this.router.navigate(['/option']);
         });
 
     }
 
-    public close() {
+    public close(): void {
         this.dialogRef.close();
     }
 
-    public closeAndOpenShortcuts() {
+    public closeAndOpenShortcuts(): void {
 
         this.dialogRef.afterClosed().subscribe(result => {
             this.shortcutsWindowService.open();
@@ -44,7 +47,7 @@ export class OptionWindowService {
         this.dialogRef.close();
     }
 
-    public openShortcuts() {
+    public openShortcuts(): void {
         this.dialogRef.componentInstance = ShortcutsComponent;
     }
 }

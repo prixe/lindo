@@ -12,7 +12,8 @@ export class ShortcutsInterfaceComponent {
     ) { }
 
     public range(start: number, end: number): Array<number> {
-        let arr = [];
+
+        const arr = [];
 
         for (let i = start; i <= end; i++)
             arr.push(i);

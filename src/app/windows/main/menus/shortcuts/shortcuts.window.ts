@@ -21,7 +21,7 @@ export class ShortcutsWindowService {
             height: '630px'
         });
 
-        this.dialogRef.afterClosed().subscribe(result => {
+        this.dialogRef.afterClosed().subscribe(() => {
             this.dialogRef = null;
             Settings.reloadSettings();
         });

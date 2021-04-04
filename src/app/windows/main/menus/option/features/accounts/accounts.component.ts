@@ -42,9 +42,9 @@ export class AccountsComponent {
             showDenyButton: true,
             denyButtonText: this.translate.instant("app.option.vip.multi-account.prompt.add-master.cancel"),
 
-            preConfirm: function (masterPassword) {
+            preConfirm: (masterPassword) => {
 
-                return new Promise(function (resolve, reject) {
+                return new Promise((resolve, reject) => {
 
                     if (masterPassword.length < 8) {
                         Swal.hideLoading();
@@ -60,7 +60,7 @@ export class AccountsComponent {
                 })
             },
 
-        }).then(function (result) {
+        }).then((result) => {
 
             if (result.isConfirmed) {
                 self.promptService.success({html: self.translate.instant("app.option.vip.multi-account.prompt.add-master.success-text")})
@@ -70,9 +70,7 @@ export class AccountsComponent {
 
     public updateMasterPassword() {
 
-        let self = this;
-
-        self.promptService.custom({
+        this.promptService.custom({
 
             title: this.translate.instant("app.option.vip.multi-account.prompt.edit-master.title"),
             html:
@@ -85,51 +83,51 @@ export class AccountsComponent {
             showDenyButton: true,
             denyButtonText: this.translate.instant("app.option.vip.multi-account.prompt.edit-master.cancel"),
 
-            preConfirm: function () {
+            preConfirm: () => {
 
-                return new Promise(function (resolve, reject) {
+                return new Promise((resolve, reject) => {
 
                     let oldPassword = (<HTMLInputElement>document.getElementById("input-old-password")).value;
                     let newPassword = (<HTMLInputElement>document.getElementById("input-new-password")).value;
 
                     if (newPassword.length < 8) {
                         Swal.hideLoading();
-                        return Swal.showValidationMessage(self.translate.instant("app.option.vip.multi-account.prompt.edit-master.min-lenght", {"lenght": 8}))
+                        return Swal.showValidationMessage(this.translate.instant("app.option.vip.multi-account.prompt.edit-master.min-lenght", {"lenght": 8}))
                     }
 
-                    if (self.settingsService.option.vip.multiaccount.master_password != self.crypt.createHash(oldPassword)) {
+                    if (this.settingsService.option.vip.multiaccount.master_password != this.crypt.createHash(oldPassword)) {
                         Swal.hideLoading();
-                        return Swal.showValidationMessage(self.translate.instant("app.option.vip.multi-account.prompt.edit-master.incorrect-old", {"lenght": 8}))
+                        return Swal.showValidationMessage(this.translate.instant("app.option.vip.multi-account.prompt.edit-master.incorrect-old", {"lenght": 8}))
                     }
 
                     // For every window and accounts in settings,
                     // Re-encrypt account names and password with the new master password
-                    let windows = self.settingsService.option.vip.multiaccount.windows;
+                    let windows = this.settingsService.option.vip.multiaccount.windows;
                     for (let i in windows) {
                         for (let j in windows[i]) {
-                            let account_name = self.crypt.decrypt(windows[i][j].account_name_encrypted, oldPassword);
-                            let password = self.crypt.decrypt(windows[i][j].password_encrypted, oldPassword);
+                            let account_name = this.crypt.decrypt(windows[i][j].account_name_encrypted, oldPassword);
+                            let password = this.crypt.decrypt(windows[i][j].password_encrypted, oldPassword);
 
                             windows[i][j] = {
-                                account_name_encrypted: self.crypt.encrypt(account_name, newPassword),
-                                password_encrypted: self.crypt.encrypt(password, newPassword),
+                                account_name_encrypted: this.crypt.encrypt(account_name, newPassword),
+                                password_encrypted: this.crypt.encrypt(password, newPassword),
                             }
                         }
                     }
-                    self.settingsService.option.vip.multiaccount.windows = windows;
+                    this.settingsService.option.vip.multiaccount.windows = windows;
                     ////////////////////////////////////////////////////////////////
 
-                    self.settingsService.option.vip.multiaccount.master_password = self.crypt.createHash(newPassword);
-                    self.applicationService.masterpassword = newPassword;
+                    this.settingsService.option.vip.multiaccount.master_password = this.crypt.createHash(newPassword);
+                    this.applicationService.masterpassword = newPassword;
 
                     resolve();
                 })
             },
 
-        }).then(function (result) {
+        }).then((result) => {
 
             if (result.isConfirmed) {
-                self.promptService.success({html: self.translate.instant("app.option.vip.multi-account.prompt.edit-master.success-text")})
+                this.promptService.success({html: this.translate.instant("app.option.vip.multi-account.prompt.edit-master.success-text")})
             }
         });
 
@@ -137,9 +135,7 @@ export class AccountsComponent {
 
     public confirmDeleteMasterPassword() {
 
-        let self = this;
-
-        self.promptService.custom({
+        this.promptService.custom({
 
             icon: "warning",
             title: this.translate.instant("app.option.vip.multi-account.prompt.delete-master.title"),
@@ -150,10 +146,10 @@ export class AccountsComponent {
             showDenyButton: true,
             denyButtonText: this.translate.instant("app.option.vip.multi-account.prompt.delete-master.cancel")
 
-        }).then(function (result) {
+        }).then((result) => {
             if (result.isConfirmed) {
-                self.deleteMasterPassword();
-                self.promptService.success({html: self.translate.instant("app.option.vip.multi-account.prompt.delete-master.success-text")})
+                this.deleteMasterPassword();
+                this.promptService.success({html: this.translate.instant("app.option.vip.multi-account.prompt.delete-master.success-text")})
             }
         });
     }
@@ -172,10 +168,9 @@ export class AccountsComponent {
 
     public addAccount(windowIndex: number) {
 
-        let self = this;
         let windows = this.settingsService.option.vip.multiaccount.windows;
 
-        self.promptService.custom({
+        this.promptService.custom({
 
             title: this.translate.instant("app.option.vip.multi-account.prompt.add-account.title"),
             html:
@@ -188,29 +183,29 @@ export class AccountsComponent {
             showDenyButton: true,
             denyButtonText: this.translate.instant("app.option.vip.multi-account.prompt.add-account.cancel"),
 
-            preConfirm: function () {
+            preConfirm: () => {
 
-                return new Promise(function (resolve, reject) {
+                return new Promise((resolve, reject) => {
 
                     let accountLogin = (<HTMLInputElement>document.getElementById("input-account-login")).value;
                     let accountPassword = (<HTMLInputElement>document.getElementById("input-account-password")).value;
 
                     if (accountLogin == "") {
                         Swal.hideLoading();
-                        return Swal.showValidationMessage(self.translate.instant("app.option.vip.multi-account.prompt.add-account.min-lenght-login"))
+                        return Swal.showValidationMessage(this.translate.instant("app.option.vip.multi-account.prompt.add-account.min-lenght-login"))
                     }
 
                     if (accountPassword == "") {
                         Swal.hideLoading();
-                        return Swal.showValidationMessage(self.translate.instant("app.option.vip.multi-account.prompt.add-account.min-lenght-password"))
+                        return Swal.showValidationMessage(this.translate.instant("app.option.vip.multi-account.prompt.add-account.min-lenght-password"))
                     }
 
                     windows[windowIndex].push({
-                        account_name_encrypted: self.crypt.encrypt(accountLogin, self.applicationService.masterpassword),
-                        password_encrypted: self.crypt.encrypt(accountPassword, self.applicationService.masterpassword)
+                        account_name_encrypted: this.crypt.encrypt(accountLogin, this.applicationService.masterpassword),
+                        password_encrypted: this.crypt.encrypt(accountPassword, this.applicationService.masterpassword)
                     });
 
-                    self.settingsService.option.vip.multiaccount.windows = windows;
+                    this.settingsService.option.vip.multiaccount.windows = windows;
 
                     resolve();
                 })
@@ -232,11 +227,10 @@ export class AccountsComponent {
     // Modify an account
     public modifyAccount(windowIndex: number, accountIndex: number, account_name_encrypted: string) {
 
-        let self = this;
-        let login = self.crypt.decrypt(account_name_encrypted, self.applicationService.masterpassword);
-        let windows = self.settingsService.option.vip.multiaccount.windows;
+        let login = this.crypt.decrypt(account_name_encrypted, this.applicationService.masterpassword);
+        let windows = this.settingsService.option.vip.multiaccount.windows;
 
-        self.promptService.custom({
+        this.promptService.custom({
 
             title: this.translate.instant("app.option.vip.multi-account.prompt.edit-account.title"),
             html:
@@ -249,27 +243,27 @@ export class AccountsComponent {
             showDenyButton: true,
             denyButtonText: this.translate.instant("app.option.vip.multi-account.prompt.edit-account.cancel"),
 
-            preConfirm: function () {
+            preConfirm: () => {
 
-                return new Promise(function (resolve, reject) {
+                return new Promise((resolve, reject) => {
 
                     let accountLogin = (<HTMLInputElement>document.getElementById("input-account-login")).value;
                     let accountPassword = (<HTMLInputElement>document.getElementById("input-account-password")).value;
 
                     if (accountLogin == "") {
                         Swal.hideLoading();
-                        return Swal.showValidationMessage(self.translate.instant("app.option.vip.multi-account.prompt.edit-account.min-lenght-login"))
+                        return Swal.showValidationMessage(this.translate.instant("app.option.vip.multi-account.prompt.edit-account.min-lenght-login"))
                     }
 
                     if (accountPassword == "") {
                         Swal.hideLoading();
-                        return Swal.showValidationMessage(self.translate.instant("app.option.vip.multi-account.prompt.edit-account.min-lenght-password"))
+                        return Swal.showValidationMessage(this.translate.instant("app.option.vip.multi-account.prompt.edit-account.min-lenght-password"))
                     }
 
-                    windows[windowIndex][accountIndex].account_name_encrypted = self.crypt.encrypt(accountLogin, self.applicationService.masterpassword);
-                    windows[windowIndex][accountIndex].password_encrypted = self.crypt.encrypt(accountPassword, self.applicationService.masterpassword);
+                    windows[windowIndex][accountIndex].account_name_encrypted = this.crypt.encrypt(accountLogin, this.applicationService.masterpassword);
+                    windows[windowIndex][accountIndex].password_encrypted = this.crypt.encrypt(accountPassword, this.applicationService.masterpassword);
 
-                    self.settingsService.option.vip.multiaccount.windows = windows;
+                    this.settingsService.option.vip.multiaccount.windows = windows;
 
                     resolve();
                 })

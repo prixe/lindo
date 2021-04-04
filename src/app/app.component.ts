@@ -14,7 +14,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     constructor(private translate: TranslateService, private settingsService: SettingsService, private ipcRendererService: IpcRendererService, private soundService: SoundService,) {
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
 
         this.translate.addLangs(["en", "fr", "es", "it", "pl", "tr"]);
 
@@ -27,8 +27,8 @@ export class AppComponent implements OnInit, AfterViewInit {
         });
     }
 
-    ngAfterViewInit() {
-        let loading = window.document.getElementById("loading");
+    ngAfterViewInit(): void {
+        const loading = window.document.getElementById("loading");
         loading.style.opacity = '0';
         setTimeout(function () {
             loading.remove();
