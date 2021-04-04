@@ -1,6 +1,8 @@
 import {KeyCode} from './keycode';
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 
+/** TODO Remplacer l'utilisation de event.keyCode */
+
 @Component({
     selector: 'component-option-input-shortcuts',
     templateUrl: './input.component.html',
@@ -19,12 +21,12 @@ export class InputComponent {
         event.preventDefault();
 
         this._keys.forEach((key: number, index) => {
-            if (key == parseInt(event.code)) {
+            if (key == event.keyCode) {
                 delete this._keys[index];
             }
         });
 
-        this._keys.push(parseInt(event.code));
+        this._keys.push(event.keyCode);
 
         let first = true;
         let shortcut = '';
@@ -45,7 +47,7 @@ export class InputComponent {
     }
 
     keyUp(event: KeyboardEvent) {
-        delete this._keys[this._keys.indexOf(parseInt(event.code))];
+        delete this._keys[this._keys.indexOf(event.keyCode)];
     }
 
     erase() {

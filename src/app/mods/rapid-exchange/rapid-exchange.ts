@@ -49,12 +49,12 @@ export class RapidExchange extends Mod {
     // Listen to the "ctrl" key, and remember it's state
     private setKeyListenner() {
         let keydown = (event: KeyboardEvent) => {
-            if (parseInt(event.code) == 17) {
+            if (event.keyCode == 17) {
                 this.keyPressed = true;
             }
         };
         let keyup = (event: KeyboardEvent) => {
-            if (parseInt(event.code) == 17) {
+            if (event.keyCode == 17) {
                 this.keyPressed = false;
             }
         };
