@@ -122,7 +122,7 @@
 
 .markdown-body a {
   background-color: transparent;
-  -webkit-text-decoration-skip: objects;
+  text-decoration-skip: objects;
 }
 
 .markdown-body a:active,
@@ -594,7 +594,6 @@
 
 .markdown-body pre code {
   display: inline;
-  max-width: auto;
   padding: 0;
   margin: 0;
   overflow: visible;

@@ -8,7 +8,7 @@
 
     <span class="title">{{ appName }}</span>
 
-    <div _ngcontent-c3="" class="system-buttons all">
+    <div class="system-buttons all">
         <mat-icon class="pointer text-danger mat-22" *ngIf="isAudioMuted" (click)="toggleSound(false)" matTooltip="{{ 'app.main.head.toggle-audio-on' | translate }}">audiotrack</mat-icon>
         <mat-icon class="pointer text-success mat-22" *ngIf="!isAudioMuted" (click)="toggleSound(true)" matTooltip="{{ 'app.main.head.toggle-audio-off' | translate }}">audiotrack</mat-icon>
         <mat-icon class="pointer mat-22" (click)="newWindow()" matTooltip="{{ 'app.main.head.new-window' | translate }}">launch</mat-icon>

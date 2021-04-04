@@ -185,7 +185,7 @@ export class Jobsxp extends Mod{
 
     private getIconHTML(job): string {
         let src = this.wGame.Config.assetsUrl + "/gfx/jobs/" + job.info.iconId + ".png";
-        return '<img src="' + src + '" />';
+        return '<img src="' + src + '"  alt=""/>';
     }
 
     public reset() {

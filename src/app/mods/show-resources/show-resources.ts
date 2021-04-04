@@ -161,7 +161,7 @@ export class ShowResources extends Mod {
             let item = `<div class="resource-item"> <div>`;
 
             resource.getIcon().forEach((icon) => {
-                item += `<img src="${icon}"/>`;
+                item += `<img src="${icon}" alt=""/>`;
             });
 
             item += `</div>
