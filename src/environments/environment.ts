@@ -2,6 +2,6 @@ export const environment = {
   envName: 'dev',
   production: false,
   appName: "Lindo",
-  websiteUrl: "https://lindo.no-emu.co",
-  apiUrl: "https://api.no-emu.co"
+  websiteUrl: "https://lindo-app.com",
+  apiUrl: "https://api.lindo-app.com"
 };

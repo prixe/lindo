@@ -5,7 +5,7 @@ const settings = require('electron-settings');
 
 export class Api {
 
-    public static apiUrl: string = "http://api.no-emu.co";
+    public static apiUrl: string = "https://api.lindo-app.com";
 
     public static getRemoteVersion(): Promise<Object | any> {
 

@@ -24,7 +24,7 @@ export class BugReportService {
 
     public send(description) {
         let body = this.getOs() + "\n" + description + "\n\n" + this.logs;
-        axios.post('http://api.no-emu.co/report.php', {
+        axios.post('https://api.lindo-app.com/report.php', {
             logs: body,
             version: this.applicationService.version
         }).then(response => {

@@ -58,7 +58,7 @@ export class UpdateApp {
 
                     Logger.info("[UPDATE] Redirected to app download page.");
 
-                    shell.openExternal("http://lindo.no-emu.co/#download");
+                    shell.openExternal("https://lindo-app.com/#download");
                     app.exit();
 
                 } else {

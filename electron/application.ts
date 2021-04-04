@@ -75,7 +75,7 @@ export class Application {
             if (this.canAddWindow) this.addWindow();
         });
 
-        app.setAppUserModelId('co.lindo.no-emu');
+        app.setAppUserModelId('com.lindo.app');
 
     }
 
