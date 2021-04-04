@@ -7,10 +7,10 @@ import Swal from "sweetalert2";
 import {ApplicationService} from "@services/electron/application.service";
 
 @Component({
-    templateUrl: './multi-account.component.html',
-    styleUrls: ['./multi-account.component.scss']
+    templateUrl: './accounts.component.html',
+    styleUrls: ['./accounts.component.scss']
 })
-export class MultiAccountComponent {
+export class AccountsComponent {
 
     private windows: { account_name_encrypted: string, password_encrypted: string }[][];
     public inputCheckMasterPassword: string = "";

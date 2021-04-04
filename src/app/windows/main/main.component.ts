@@ -30,6 +30,13 @@ export class MainComponent implements OnInit {
         this.setEventListener();
     }
 
+    removeTabGameByMiddleClick($event: any, tabId: number) {
+        if ($event.which === 2) {
+            this.tabGameService.removeTabGame(tabId);
+            $event.preventDefault();
+        }
+    }
+
     setEventListener(): void {
         // On connecte les comptes dans des onglets de la fenêtre
         this.ipcRendererService.on('accounts', (event: Event, accounts: any) => {

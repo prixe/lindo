@@ -3,10 +3,10 @@ import {SettingsService} from '@services/settings.service';
 import {ApplicationService} from "@services/electron/application.service";
 
 @Component({
-    templateUrl: './auto-group.component.html',
-    styleUrls: ['./auto-group.component.scss']
+    templateUrl: './group.component.html',
+    styleUrls: ['./group.component.scss']
 })
-export class AutoGroupComponent {
+export class GroupComponent {
 
     public groupMembers: string[] = [];
 

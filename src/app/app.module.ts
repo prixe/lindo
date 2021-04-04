@@ -23,11 +23,11 @@ import {OptionComponent} from "app/windows/main/option/option.component";
 import {GeneralComponent} from "app/windows/main/option/general/general.component";
 import {SidebarComponent} from "app/windows/main/sidebar/sidebar.component";
 import {ToolbarComponent} from "app/windows/main/toolbar/toolbar.component";
-import {VipComponent} from "app/windows/main/option/vip/vip.component";
-import {GeneralComponent as VipGeneralComponent} from "app/windows/main/option/vip/general/general.component";
-import {AutoGroupComponent} from "app/windows/main/option/vip/auto-group/auto-group.component";
-import {MultiAccountComponent} from "app/windows/main/option/vip/multi-account/multi-account.component";
-import {NotificationComponent} from "app/windows/main/option/notification/notification.component";
+import {FeraturesComponent} from "app/windows/main/option/features/feratures.component";
+import {GeneralComponent as VipGeneralComponent} from "app/windows/main/option/features/general/general.component";
+import {GroupComponent} from "app/windows/main/option/features/group/group.component";
+import {AccountsComponent} from "app/windows/main/option/features/accounts/accounts.component";
+import {NotificationsComponent} from "app/windows/main/option/notifications/notifications.component";
 import {AuthenticationComponent} from "app/windows/main/authentication/authentication.component";
 import {AboutComponent} from "app/windows/main/option/about/about.component";
 import {UpdateComponent} from "app/windows/update/update.component";
@@ -93,11 +93,11 @@ registerLocaleData(localeTr);
         ChangeLogComponent,
         OptionComponent,
         GeneralComponent,
-        NotificationComponent,
-        VipComponent,
-        AutoGroupComponent,
+        NotificationsComponent,
+        FeraturesComponent,
+        GroupComponent,
         VipGeneralComponent,
-        MultiAccountComponent,
+        AccountsComponent,
         UpdateComponent,
         BugReportComponent,
 

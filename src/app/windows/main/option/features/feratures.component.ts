@@ -6,10 +6,10 @@ import {SettingsService} from '@services/settings.service';
 import {ApplicationService} from "@services/electron/application.service";
 
 @Component({
-    templateUrl: './vip.component.html',
-    styleUrls: ['./vip.component.scss']
+    templateUrl: './feratures.component.html',
+    styleUrls: ['./feratures.component.scss']
 })
-export class VipComponent implements AfterViewInit {
+export class FeraturesComponent implements AfterViewInit {
 
     public rlaSafe: boolean = false;
 

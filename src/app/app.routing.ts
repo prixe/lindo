@@ -2,11 +2,11 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {MainComponent} from 'app/windows/main/main.component';
 import {GeneralComponent} from 'app/windows/main/option/general/general.component';
-import {NotificationComponent} from 'app/windows/main/option/notification/notification.component';
-import {AutoGroupComponent} from 'app/windows/main/option/vip/auto-group/auto-group.component';
-import {GeneralComponent as VipGeneralComponent} from 'app/windows/main/option/vip/general/general.component';
-import {MultiAccountComponent} from 'app/windows/main/option/vip/multi-account/multi-account.component';
-import {VipComponent} from 'app/windows/main/option/vip/vip.component';
+import {NotificationsComponent} from 'app/windows/main/option/notifications/notifications.component';
+import {GroupComponent} from 'app/windows/main/option/features/group/group.component';
+import {GeneralComponent as VipGeneralComponent} from 'app/windows/main/option/features/general/general.component';
+import {AccountsComponent} from 'app/windows/main/option/features/accounts/accounts.component';
+import {FeraturesComponent} from 'app/windows/main/option/features/feratures.component';
 
 import {ShortcutsOtherComponent} from "app/windows/main/shortcuts/other/other.component";
 import {ShortcutsApplicationComponent} from "app/windows/main/shortcuts/application/application.component";
@@ -27,14 +27,14 @@ const appRoutes: Routes = [
             { path: 'general', component: GeneralComponent },
             {
                 path: 'features',
-                component: VipComponent,
+                component: FeraturesComponent,
                 children: [
                     { path: 'general', component: VipGeneralComponent, outlet: 'featuresOutlet' },
-                    { path: 'groups', component: AutoGroupComponent, outlet: 'featuresOutlet' },
-                    { path: 'accounts', component: MultiAccountComponent, outlet: 'featuresOutlet' }
+                    { path: 'groups', component: GroupComponent, outlet: 'featuresOutlet' },
+                    { path: 'accounts', component: AccountsComponent, outlet: 'featuresOutlet' }
                 ]
             },
-            { path: 'notification', component: NotificationComponent },
+            { path: 'notification', component: NotificationsComponent },
             { path: 'about', component: AboutComponent }
         ]
     },

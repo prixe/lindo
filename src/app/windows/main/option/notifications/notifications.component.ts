@@ -2,10 +2,10 @@ import {Component} from '@angular/core';
 import {SettingsService} from '@services/settings.service';
 
 @Component({
-    templateUrl: './notification.component.html',
-    styleUrls: ['./notification.component.scss']
+    templateUrl: './notifications.component.html',
+    styleUrls: ['./notifications.component.scss']
 })
-export class NotificationComponent {
+export class NotificationsComponent {
 
     constructor(
         public settingsService: SettingsService
