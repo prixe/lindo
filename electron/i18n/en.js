@@ -52,5 +52,10 @@ module.exports = {
             "title": "Cache clared",
             "message": "Cache has been cleared on currently opened window"
         }
+    },
+    "uncaught-exception":{
+        "title": "An error has occurred",
+        "message": "An unexpected error has occurred in the program. \nYour settings have been reset.",
+        "close": "Close the application"
     }
 };

@@ -52,5 +52,10 @@ module.exports = {
             "title": "Wyczyść pamięć podręczną",
             "message": "Pamięć podręczna została wyczyszczcona na obecnie otwartych oknach"
         }
+    },
+    "uncaught-exception":{
+        "title": "Wystąpił błąd",
+        "message": "Wystąpił nieoczekiwany błąd w programie. \nTwoje ustawienia zostały zresetowane.",
+        "close": "Zamknij aplikację"
     }
 };

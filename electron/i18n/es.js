@@ -52,5 +52,10 @@ module.exports = {
             "title": "Caché despejada",
             "message": "La memoria caché se borró en las ventanas actualmente abiertas"
         }
+    },
+    "uncaught-exception":{
+        "title": "Se ha producido un error",
+        "message": "Ha ocurrido un error inesperado en el programa. \nTu configuración ha sido restablecida.",
+        "close": "Cerrar la aplicación"
     }
 };
