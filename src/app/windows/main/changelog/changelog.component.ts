@@ -122,7 +122,7 @@ export class ChangeLogComponent implements OnInit {
             }
         }
 
-        result["links"] = new Object();
+        result["links"] = {};
 
         this.versionContent = marked.parser(result);
     }
