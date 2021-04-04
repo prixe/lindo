@@ -1,7 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
 import {environment} from "@env/environment";
-import {IpcRendererService} from "@services/electron/ipcrenderer.service";
 
 @Injectable()
 export class ApplicationService {
@@ -18,15 +16,14 @@ export class ApplicationService {
     public remoteAppVersion: string;
     public version: string;
 
-    constructor(private ipcRendererService: IpcRendererService, private http: HttpClient) {
-    }
-
     public async load(): Promise<void> {
+
         // Chargement de la configuration distance
         this.appName = environment.appName;
         this.apiUrl = environment.apiUrl;
 
         return new Promise<void>((resolve, reject)=>{
+
             //On récupère la version de DT distante
             this.remoteBuildVersion = Application.remoteBuildVersion;
             this.remoteAppVersion = Application.remoteAppVersion;

@@ -69,6 +69,10 @@ export class UpdateComponent implements OnInit, OnDestroy {
     private localRegexPath: string;
     private localRegex: RegexPatches;
 
+    /** Keymaster */
+    private localKeymasterPath: string;
+    private removeKeymasterPath: string = "https://raw.githubusercontent.com/madrobby/keymaster/master/keymaster.js";
+
     /** Progress bar */
     public progressMode: ProgressBarMode = "indeterminate";
     public progressValue: number = 0;
@@ -115,6 +119,8 @@ export class UpdateComponent implements OnInit, OnDestroy {
             this.localVersionsPath = this.localGameFolder + "versions.json";
             this.localRegexPath = this.localGameFolder + "regex.json";
 
+            this.localKeymasterPath = this.localGameFolder + "keymaster.js";
+
             try {
 
                 this.log("DOWNLOADING ALL MANIFESTS");
@@ -138,6 +144,8 @@ export class UpdateComponent implements OnInit, OnDestroy {
                 this.log("DOWNLOAD MISSING ASSETS FILES ON DISK..");
                 this.translate.get('app.window.update-dofus.step1').subscribe((sentence: string) => this.progressText = sentence);
                 await this.downloadAssetsFiles();
+
+                await this.downloadKeymaster();
 
                 this.log("DOWNLOAD MISSING LINDO AND DOFUS FILES IN MEMORY..");
                 this.translate.get('app.window.update-dofus.step2').subscribe((sentence: string) => this.progressText = sentence);
@@ -206,6 +214,12 @@ export class UpdateComponent implements OnInit, OnDestroy {
         }
 
         await Promise.all(promises);
+    }
+
+    private async downloadKeymaster() {
+
+        let response = await axios({method: "GET", url: this.removeKeymasterPath, adapter: httpAdapter, responseType: "stream"});
+        await response.data.pipe(fs.createWriteStream(this.localKeymasterPath));
     }
 
     private async chargingMissingLindoAndDofusFiles() {

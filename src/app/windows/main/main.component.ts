@@ -6,6 +6,7 @@ import {TabGameService} from '@services/tab-game.service';
 import {WindowService} from '@services/window.service';
 import {IpcRendererService} from "@services/electron/ipcrenderer.service";
 import {ApplicationService} from "@services/electron/application.service";
+import {ElectronService as electron} from '@services/electron/electron.service';
 
 @Component({
     selector: 'app-main-component',
