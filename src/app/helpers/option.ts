@@ -1,4 +1,4 @@
-import {SettingsProvider} from "../interfaces/setting-provider";
+import {SettingsProvider} from "@interfaces/setting-provider";
 import {Option as OptionModule} from "../modules/option.module";
 
 export class Option {

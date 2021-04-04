@@ -17,37 +17,37 @@ import {AppRoutingModule} from './app.routing';
 
 import {AppComponent} from "app/app.component";
 import {MainComponent} from "app/windows/main/main.component";
-import {GameComponent} from "app/windows/main/game/game.component";
-import {ChangeLogComponent} from "app/windows/main/changelog/changelog.component";
-import {OptionComponent} from "app/windows/main/option/option.component";
-import {GeneralComponent} from "app/windows/main/option/general/general.component";
-import {SidebarComponent} from "app/windows/main/sidebar/sidebar.component";
-import {ToolbarComponent} from "app/windows/main/toolbar/toolbar.component";
-import {FeraturesComponent} from "app/windows/main/option/features/feratures.component";
-import {GeneralComponent as VipGeneralComponent} from "app/windows/main/option/features/general/general.component";
-import {GroupComponent} from "app/windows/main/option/features/group/group.component";
-import {AccountsComponent} from "app/windows/main/option/features/accounts/accounts.component";
-import {NotificationsComponent} from "app/windows/main/option/notifications/notifications.component";
+import {GameComponent} from "app/windows/main/layout/game/game.component";
+import {ChangeLogComponent} from "app/windows/main/menus/changelog/changelog.component";
+import {OptionComponent} from "app/windows/main/menus/option/option.component";
+import {GeneralComponent} from "app/windows/main/menus/option/general/general.component";
+import {SidebarComponent} from "app/windows/main/layout/sidebar/sidebar.component";
+import {ToolbarComponent} from "app/windows/main/layout/toolbar/toolbar.component";
+import {FeraturesComponent} from "app/windows/main/menus/option/features/feratures.component";
+import {GeneralComponent as VipGeneralComponent} from "app/windows/main/menus/option/features/general/general.component";
+import {GroupComponent} from "app/windows/main/menus/option/features/group/group.component";
+import {AccountsComponent} from "app/windows/main/menus/option/features/accounts/accounts.component";
+import {NotificationsComponent} from "app/windows/main/menus/option/notifications/notifications.component";
 import {AuthenticationComponent} from "app/windows/main/authentication/authentication.component";
-import {AboutComponent} from "app/windows/main/option/about/about.component";
+import {AboutComponent} from "app/windows/main/menus/option/about/about.component";
 import {UpdateComponent} from "app/windows/update/update.component";
 import {BugReportComponent} from "app/windows/main/bug-report/bug-report.component";
 
 import {MaterialModule} from "app/modules/material.module";
 import {ServiceModule} from "app/modules/service.module";
 
-import {ShortcutsComponent} from "app/windows/main/shortcuts/shortcuts.component";
-import {InputComponent} from 'app/windows/main/shortcuts/input/input.component';
+import {ShortcutsComponent} from "app/windows/main/menus/shortcuts/shortcuts.component";
+import {InputComponent} from 'app/windows/main/menus/shortcuts/input/input.component';
 import {CommonModule, registerLocaleData} from "@angular/common";
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {SortablejsModule} from "ngx-sortablejs";
 import {SafePipeModule} from "safe-pipe";
 
-import {ShortcutsApplicationComponent} from "./windows/main/shortcuts/application/application.component";
-import {ShortcutsInterfaceComponent} from "./windows/main/shortcuts/interface/interface.component";
-import {ShortcutsInventoryComponent} from "./windows/main/shortcuts/inventory/inventory.component";
-import {ShortcutsOtherComponent} from "./windows/main/shortcuts/other/other.component";
-import {ShortcutsSpellComponent} from "./windows/main/shortcuts/spell/spell.component";
+import {ShortcutsApplicationComponent} from "./windows/main/menus/shortcuts/application/application.component";
+import {ShortcutsInterfaceComponent} from "./windows/main/menus/shortcuts/interface/interface.component";
+import {ShortcutsInventoryComponent} from "./windows/main/menus/shortcuts/inventory/inventory.component";
+import {ShortcutsOtherComponent} from "./windows/main/menus/shortcuts/other/other.component";
+import {ShortcutsSpellComponent} from "./windows/main/menus/shortcuts/spell/spell.component";
 
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, '../../locale/', '.json')
