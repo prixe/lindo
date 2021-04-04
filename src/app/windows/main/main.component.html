@@ -13,7 +13,7 @@
         </div>
 
         <div class="main-tabs-content">
-            <component-game *ngFor="let game of gameService.games" (selected)="tabGameService.selectTabGame(game.id)" [game]="game" [hidden]="!game.isFocus"></component-game>
+            <app-main-game-component *ngFor="let game of gameService.games" (selected)="tabGameService.selectTabGame(game.id)" [game]="game" [hidden]="!game.isFocus"></app-main-game-component>
 
             <!-- Permet de charger le styles des boutons matérial manuellement -->
             <button class="none" mat-raised-button></button>

@@ -37,19 +37,13 @@ export class OptionComponent {
         this.promptService.confirm({
             title: this.translateService.instant('app.prompt.title.confirm'),
             html: this.translateService.instant('app.option.prompt.reset-option.text'),
-            icon: 'warning',
-            target: 'component-options'
+            icon: 'warning'
         }).then((result) => {
             if (result.isConfirmed) Settings.resetSettings();
         });
     }
 
     public navigateTo($event: any, route: string) {
-
-        let old = document.querySelector('component-options .tab-bar-item.selected');
-        if (old !== null) {
-            old.classList.remove('selected');
-        }
 
         let target = $event.target.classList.add('selected');
 

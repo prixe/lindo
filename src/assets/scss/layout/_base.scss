@@ -40,7 +40,7 @@ app-main-authentication-component {
 }
 
 component-options,
-component-bug-report {
+app-main-bug-report-component {
   width: 100%;
   flex: 1;
   display: flex !important;
@@ -52,7 +52,6 @@ component-option-general {
 }
 
 component-option-general,
-component-game-update,
 app-update-component,
 ng-component {
   flex: 1;

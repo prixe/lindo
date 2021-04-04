@@ -35,7 +35,7 @@ module.exports = {
             "title": "?",
             "changelog": "Notes de mise à jour",
             "console": "Console développeur",
-            "about": "A propos..."
+            "about": "À propos..."
         }
     },
     "updater": {

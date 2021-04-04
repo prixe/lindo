@@ -2,7 +2,7 @@ import {AfterViewInit, Component, EventEmitter, Input, NgZone, Output} from '@an
 import {TranslateService} from "@ngx-translate/core";
 
 import * as Mods from "../../../mods";
-import {Mod} from "../../../mods/mod";
+import {Mod} from "@mods/mod";
 import {Game} from "@helpers/game";
 import {WindowService} from "@services/window.service";
 import {IpcRendererService} from "@services/electron/ipcrenderer.service";
@@ -11,7 +11,7 @@ import {BugReportService} from "@services/bug-report.service";
 import {ApplicationService} from "@services/electron/application.service";
 
 @Component({
-    selector: 'component-game',
+    selector: 'app-main-game-component',
     templateUrl: './game.component.html',
     styleUrls: ['./game.component.scss']
 })

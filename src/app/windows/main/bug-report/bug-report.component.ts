@@ -3,7 +3,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {MatDialogRef} from '@angular/material/dialog';
 
 @Component({
-    selector: 'component-bug-report',
+    selector: 'app-main-bug-report-component',
     templateUrl: './bug-report.component.html',
     styleUrls: ['./bug-report.component.scss']
 })
