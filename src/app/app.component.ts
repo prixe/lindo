@@ -17,7 +17,9 @@ export class AppComponent implements OnInit, AfterViewInit {
     ngOnInit() {
 
         this.translate.addLangs(["en", "fr", "es", "it", "pl", "tr"]);
+
         this.translate.setDefaultLang(this.settingsService.language);
+        this.translate.use(this.settingsService.language);
 
         this.ipcRendererService.on('reload-settings-done', () => {
             Logger.info('receive->reload-settings-done');

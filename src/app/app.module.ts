@@ -49,7 +49,7 @@ import {ShortcutsInventoryComponent} from "./windows/main/shortcuts/inventory/in
 import {ShortcutsOtherComponent} from "./windows/main/shortcuts/other/other.component";
 import {ShortcutsSpellComponent} from "./windows/main/shortcuts/spell/spell.component";
 
-export function translateModuleFactory(http: HttpClient) {
+export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, '../../locale/', '.json')
 }
 
@@ -69,9 +69,10 @@ registerLocaleData(localeTr);
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
-                useFactory: (translateModuleFactory),
+                useFactory: (createTranslateLoader),
                 deps: [HttpClient]
-            }
+            },
+            defaultLanguage: 'en'
         }),
         SortablejsModule,
         FormsModule,
