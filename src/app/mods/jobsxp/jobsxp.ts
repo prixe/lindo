@@ -28,7 +28,7 @@ export class Jobsxp extends Mod{
                 color: white;
                 margin-right: 10px;
                 margin-top: 10px;
-                text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.9);
+                text-shadow: 0 0 5px rgba(0, 0, 0, 0.9);
                 right: 10px;
                 pointer-events: none;
                 padding: 5px 16px;
@@ -76,7 +76,7 @@ export class Jobsxp extends Mod{
                 font-family: berlin_sans_fb_demibold;
                 font-size: 1.6em;
                 color: #ced0bb;
-                text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.9);
+                text-shadow: 0 0 3px rgba(0, 0, 0, 0.9);
             }
 
 
