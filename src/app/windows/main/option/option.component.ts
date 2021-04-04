@@ -42,12 +42,4 @@ export class OptionComponent {
             if (result.isConfirmed) Settings.resetSettings();
         });
     }
-
-    public navigateTo($event: any, route: string) {
-
-        let target = $event.target.classList.add('selected');
-
-        this.router.navigate([route]);
-    }
-
 }

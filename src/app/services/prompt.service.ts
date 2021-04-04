@@ -19,6 +19,7 @@ export class PromptService {
             buttonsStyling: false,
             reverseButtons: true,
             allowOutsideClick: false,
+            heightAuto: false,
             customClass: {
                 confirmButton: 'mat-primary mat-raised-button',
                 denyButton: 'mat-warn mat-raised-button'
@@ -38,6 +39,7 @@ export class PromptService {
             reverseButtons: true,
             allowOutsideClick: false,
             target: "body",
+            heightAuto: false,
 
             icon: "question",
             title: this.translate.instant("app.prompt.title.confirm"),
@@ -61,6 +63,7 @@ export class PromptService {
             buttonsStyling: false,
             reverseButtons: true,
             allowOutsideClick: false,
+            heightAuto: false,
             customClass: {
                 confirmButton: 'mat-primary mat-raised-button',
                 denyButton: 'mat-warn mat-raised-button'
@@ -86,6 +89,7 @@ export class PromptService {
             buttonsStyling: false,
             reverseButtons: true,
             allowOutsideClick: false,
+            heightAuto: false,
             customClass: {
                 confirmButton: 'mat-primary mat-raised-button',
                 denyButton: 'mat-warn mat-raised-button'
@@ -110,6 +114,7 @@ export class PromptService {
             buttonsStyling: false,
             reverseButtons: true,
             allowOutsideClick: false,
+            heightAuto: false,
             customClass: {
                 confirmButton: 'mat-primary mat-raised-button',
                 denyButton: 'mat-warn mat-raised-button'
