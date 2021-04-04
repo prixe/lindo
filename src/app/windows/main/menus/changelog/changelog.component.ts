@@ -1,7 +1,7 @@
 import {Component, NgZone, OnInit} from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
 import * as marked from 'marked';
-import {ApplicationService} from "../../../../services/electron/application.service";
+import {ApplicationService} from "@services/electron/application.service";
 
 const fs = fsLib;
 

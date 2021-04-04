@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {SettingsService} from '../../../../../../services/settings.service';
-import {ApplicationService} from "../../../../../../services/electron/application.service";
+import {SettingsService} from '@services/settings.service';
+import {ApplicationService} from "@services/electron/application.service";
 
 @Component({
     templateUrl: './general.component.html'

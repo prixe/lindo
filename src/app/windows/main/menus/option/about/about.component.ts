@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {ElectronService as electron} from '../../../../../services/electron/electron.service';
-import {environment} from "../../../../../../environments/environment";
-import {ApplicationService} from "../../../../../services/electron/application.service";
+import {ElectronService as electron} from '@services/electron/electron.service';
+import {environment} from "@env/environment";
+import {ApplicationService} from "@services/electron/application.service";
 
 @Component({
     templateUrl: './about.component.html',

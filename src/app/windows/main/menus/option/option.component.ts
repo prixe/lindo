@@ -1,12 +1,12 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
-import {PromptService} from '../../../../services/prompt.service';
+import {PromptService} from '@services/prompt.service';
 import {ChangelogWindowService} from '../changelog/changelog.window';
 import {MatDialogRef} from '@angular/material/dialog';
-import {SettingsService} from '../../../../services/settings.service';
-import {ApplicationService} from "../../../../services/electron/application.service";
-import {IpcRendererService} from "../../../../services/electron/ipcrenderer.service";
+import {SettingsService} from '@services/settings.service';
+import {ApplicationService} from "@services/electron/application.service";
+import {IpcRendererService} from "@services/electron/ipcrenderer.service";
 
 @Component({
     selector: 'component-options',

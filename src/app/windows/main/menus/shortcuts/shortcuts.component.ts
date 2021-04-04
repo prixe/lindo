@@ -1,6 +1,6 @@
 import {AfterViewInit, Component} from '@angular/core';
 import {Router} from '@angular/router';
-import {SettingsService} from '../../../../services/settings.service';
+import {SettingsService} from '@services/settings.service';
 import {MatDialogRef} from '@angular/material/dialog';
 
 @Component({

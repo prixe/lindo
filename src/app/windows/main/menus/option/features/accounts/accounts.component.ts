@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
-import {CryptService} from '../../../../../../services/crypt.service';
-import {PromptService} from '../../../../../../services/prompt.service';
-import {SettingsService} from '../../../../../../services/settings.service';
+import {CryptService} from '@services/crypt.service';
+import {PromptService} from '@services/prompt.service';
+import {SettingsService} from '@services/settings.service';
 import Swal from "sweetalert2";
-import {ApplicationService} from "../../../../../../services/electron/application.service";
+import {ApplicationService} from "@services/electron/application.service";
 
 @Component({
     templateUrl: './accounts.component.html',
