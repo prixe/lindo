@@ -52,9 +52,9 @@ export class BugReportService {
             case 'linux':
             return os.type() + " " + os.release();
             case 'win32':
-            return this.getWindowsRelease();
+            return BugReportService.getWindowsRelease();
             case 'darwin':
-            return this.getMacOsRelease();
+            return BugReportService.getMacOsRelease();
             default:
             return os.type() + " " + os.release();
         }
@@ -64,7 +64,7 @@ export class BugReportService {
     /**
     * https://github.com/sindresorhus/macos-release
     **/
-    private getMacOsRelease() {
+    private static getMacOsRelease() {
         const names = new Map([
             [19, 'Catalina'],
             [18, 'Mojave'],
@@ -91,7 +91,7 @@ export class BugReportService {
     /**
     * https://github.com/sindresorhus/windows-release
     **/
-    private getWindowsRelease() {
+    private static getWindowsRelease() {
         const names = new Map([
             ['10.0', '10'],
             ['6.3', '8.1'],

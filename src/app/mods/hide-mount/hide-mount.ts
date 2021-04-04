@@ -16,7 +16,7 @@ export class HideMount extends Mod
                     if (this.wGame.actorManager.userActor.actorManager.userActor.look.subentities != null) {
                         if (this.wGame.actorManager.userActor.actorManager.userActor.look.subentities.length > 0) {
                             actionNeeded = true;
-                            this.removeMountToPlayer(this.wGame.actorManager.userActor.actorManager.userActor);
+                            HideMount.removeMountToPlayer(this.wGame.actorManager.userActor.actorManager.userActor);
                         }
                     }
                     // Other characters
@@ -24,7 +24,7 @@ export class HideMount extends Mod
                         if (+key > 0) {
                             if (this.wGame.actorManager.actors[key].look.subentities != null) {
                                 actionNeeded = true;
-                                this.removeMountToPlayer(this.wGame.actorManager.actors[key]);
+                                HideMount.removeMountToPlayer(this.wGame.actorManager.actors[key]);
                             }
                         }
                     }
@@ -44,7 +44,7 @@ export class HideMount extends Mod
         }
     }
 
-    private removeMountToPlayer(player): void {
+    private static removeMountToPlayer(player): void {
         player.look.bonesId = 1;
 
         // Character size

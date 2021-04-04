@@ -22,16 +22,16 @@ export class Mover extends Mod {
                 let cells = null;
                 switch(direction) {
                 case "top":
-                    cells = this.getTopCells();
+                    cells = Mover.getTopCells();
                     break;
                 case "bottom":
-                    cells = this.getBottomCells();
+                    cells = Mover.getBottomCells();
                     break;
                 case "left":
-                    cells = this.getLeftCells();
+                    cells = Mover.getLeftCells();
                     break;
                 case "right":
-                    cells = this.getRightCells();
+                    cells = Mover.getRightCells();
                     break;
                 default:
                     fail('The given direction is wrong.');
@@ -101,13 +101,13 @@ export class Mover extends Mod {
             return(aa-bb);
         })
         if(tableau.length>5){
-            return tableau[this.getRandomInt(0, 5)][1];
+            return tableau[Mover.getRandomInt(0, 5)][1];
         }else{
-            return tableau[this.getRandomInt(0, tableau.length-1)][1];
+            return tableau[Mover.getRandomInt(0, tableau.length-1)][1];
         }
     }
 
-    private getRandomInt(min: number, max: number): number {
+    private static getRandomInt(min: number, max: number): number {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
@@ -146,19 +146,19 @@ export class Mover extends Mod {
         this.once(this.wGame.dofus.connectionManager, "MapComplementaryInformationsDataMessage", onChange);
     };
 
-    private getTopCells(): any {
+    private static getTopCells(): any {
         return [1, 15, 2, 16, 3, 17, 4, 18, 5, 19, 6, 20, 7, 21, 8, 22, 9, 23, 10, 24, 11, 25, 12, 26, 13];
     }
 
-    private getBottomCells(): any {
+    private static getBottomCells(): any {
         return [533, 547, 534, 548, 535, 549, 536, 550, 537, 551, 538, 552, 539, 553, 540, 554, 541, 555, 542, 556, 543, 557, 544, 558, 545, 559];
     }
 
-    private getLeftCells(): any {
+    private static getLeftCells(): any {
         return [0, 14, 28, 42, 56, 70, 84, 98, 112, 126, 140, 154, 168, 182, 196, 210, 224, 238, 252, 266, 280, 294, 308, 322, 336, 350, 364, 378, 392, 406, 420, 434, 448, 462, 476, 490, 504, 518, 532, 546];
     }
 
-    private getRightCells(): any {
+    private static getRightCells(): any {
         return [13, 27, 41, 55, 69, 83, 97, 111, 125, 139, 153, 167, 181, 195, 209, 223, 251, 279, 307, 321, 335, 349, 363, 377, 391, 405, 419, 433, 447, 475, 489, 503, 517, 531, 545, 559];
     }
 

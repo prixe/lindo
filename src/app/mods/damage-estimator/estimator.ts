@@ -113,7 +113,7 @@ export class Estimator {
 
             //si effet direct
             if (effect._type == "EffectInstanceDice") {
-                let element = this.effectIdToElement(effect.effectId);
+                let element = Estimator.effectIdToElement(effect.effectId);
                 if (element != "undefined") {
                     let min = this.getMinDamageDealed(element, fighter, effect);
                     let max = this.getMaxDamageDealed(element, fighter, effect);
@@ -192,7 +192,7 @@ export class Estimator {
             default:
                 break;
         }
-        return this.getFullCharaBonus(this.wGame.gui.playerData.characters.mainCharacter.characteristics.allDamagesBonus) + elementalDamages;
+        return Estimator.getFullCharaBonus(this.wGame.gui.playerData.characters.mainCharacter.characteristics.allDamagesBonus) + elementalDamages;
     }
 
     /**
@@ -210,7 +210,7 @@ export class Estimator {
         return Math.trunc(this.getFactor(element) * effect.diceSide + this.getFixDamages(element));
     }
 
-    private effectIdToElement(effectId: number) {
+    private static effectIdToElement(effectId: number) {
         switch (effectId) {
             case 96://dommages eau
             case 91://vol de vie eau
@@ -238,7 +238,7 @@ export class Estimator {
 
     private getMaxDamageDealed(element: string, fighter: any, effect: any) {
         if (element != "heal")
-            return Math.trunc((this.getMaxBrutDamages(element, effect) - this.getResFix(element, fighter)) * (100 - this.getPercentRes(element, fighter)) / 100);
+            return Math.trunc((this.getMaxBrutDamages(element, effect) - this.getResFix(element, fighter)) * (100 - Estimator.getPercentRes(element, fighter)) / 100);
         else
             return this.getMaxHeal(element, fighter, effect);
     }
@@ -249,7 +249,7 @@ export class Estimator {
      */
     private getMinDamageDealed(element: string, fighter: any, effect: any) {
         if (element != "heal")
-            return Math.trunc((this.getMinBrutDamages(element, effect) - this.getResFix(element, fighter)) * (100 - this.getPercentRes(element, fighter)) / 100);
+            return Math.trunc((this.getMinBrutDamages(element, effect) - this.getResFix(element, fighter)) * (100 - Estimator.getPercentRes(element, fighter)) / 100);
         else
             return this.getMinHeal(element, fighter, effect);
     }
@@ -266,11 +266,11 @@ export class Estimator {
 
     private getHealingBonus(){
         let h = this.wGame.gui.playerData.characters.mainCharacter.characteristics.healBonus;
-        return this.getFullCharaBonus(h);
+        return Estimator.getFullCharaBonus(h);
     }
 
 //retourne le montant total de la carac (bonus inclus)
-    private getFullCharaBonus(characteristic: any) {
+    private static getFullCharaBonus(characteristic: any) {
         let sum = 0;
         if (typeof characteristic.getBasePts() !== 'undefined') {
             sum += characteristic.getBasePts();
@@ -292,14 +292,14 @@ export class Estimator {
         let d = this.wGame.gui.playerData.characters.mainCharacter.characteristics.damagesBonusPercent;
         //dafuq is that: permanentDamagePercent
         //let p = this.wGame.gui.playerData.characters.mainCharacter.characteristics.permanentDamagePercent;
-        return this.getFullCharaBonus(d);// + this.getFullCharaBonus(p);
+        return Estimator.getFullCharaBonus(d);// + this.getFullCharaBonus(p);
     }
 
 // ---- éléments ----
 
     private getFullCharaBonusElement(characteristic:any){
         //si element < 0 alors = 0
-        let total = this.getFullCharaBonus(characteristic);
+        let total = Estimator.getFullCharaBonus(characteristic);
         if (total < 0)
             total = 0;
         return total;
@@ -328,27 +328,27 @@ export class Estimator {
 // ---- dommages élémentaires ---
     private getAirDamage() {
         let a = this.wGame.gui.playerData.characters.mainCharacter.characteristics.airDamageBonus;
-        return this.getFullCharaBonus(a);
+        return Estimator.getFullCharaBonus(a);
     }
 
     private getFireDamage() {
         let a = this.wGame.gui.playerData.characters.mainCharacter.characteristics.fireDamageBonus;
-        return this.getFullCharaBonus(a);
+        return Estimator.getFullCharaBonus(a);
     }
 
     private getEarthDamage() {
         let a = this.wGame.gui.playerData.characters.mainCharacter.characteristics.earthDamageBonus;
-        return this.getFullCharaBonus(a);
+        return Estimator.getFullCharaBonus(a);
     }
 
     private getWaterDamage() {
         let a = this.wGame.gui.playerData.characters.mainCharacter.characteristics.waterDamageBonus;
-        return this.getFullCharaBonus(a);
+        return Estimator.getFullCharaBonus(a);
     }
 
     private getNeutralDamage() {
         let a = this.wGame.gui.playerData.characters.mainCharacter.characteristics.neutralDamageBonus;
-        return this.getFullCharaBonus(a);
+        return Estimator.getFullCharaBonus(a);
     }
 
 // --- resistances / faiblesses ---
@@ -358,11 +358,11 @@ export class Estimator {
      */
     private getResFix(element: string, fighter: any) {
         //TODO crit
-        return this.getResFixElement(element, fighter) + this.getResFixSpell(element, fighter);
+        return Estimator.getResFixElement(element, fighter) + this.getResFixSpell(element, fighter);
     }
 
 //resistance élémentaire fixe
-    private getResFixElement(element: string, fighter: any) {
+    private static getResFixElement(element: string, fighter: any) {
         let stats = fighter.data.stats;
         let res = 0;
         switch (element) {
@@ -431,7 +431,7 @@ export class Estimator {
     }
 
 //res en pourcents
-    private getPercentRes(element: string, fighter: any) {
+    private static getPercentRes(element: string, fighter: any) {
         let stats = fighter.data.stats;
         let res = 0;
         switch (element) {

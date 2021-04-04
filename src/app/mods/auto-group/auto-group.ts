@@ -136,7 +136,7 @@ export class AutoGroup extends Mod {
         });
     }
 
-    private isBorder(cellId: number): Direction {
+    private static isBorder(cellId: number): Direction {
         if (1 <= cellId && cellId <= 13 ||
             15 <= cellId && cellId <= 26) {
             return "top";
@@ -159,19 +159,19 @@ export class AutoGroup extends Mod {
         return false;
     }
 
-    private getTopCells(): any {
+    private static getTopCells(): any {
         return [1, 15, 2, 16, 3, 17, 4, 18, 5, 19, 6, 20, 7, 21, 8, 22, 9, 23, 10, 24, 11, 25, 12, 26, 13];
     }
 
-    private getBottomCells(): any {
+    private static getBottomCells(): any {
         return [533, 547, 534, 548, 535, 549, 536, 550, 537, 551, 538, 552, 539, 553, 540, 554, 541, 555, 542, 556, 543, 557, 544, 558, 545, 559];
     }
 
-    private getLeftCells(): any {
+    private static getLeftCells(): any {
         return [0, 14, 28, 42, 56, 70, 84, 98, 112, 126, 140, 154, 168, 182, 196, 210, 224, 238, 252, 266, 280, 294, 308, 322, 336, 350, 364, 378, 392, 406, 420, 434, 448, 462, 476, 490, 504, 518, 532, 546];
     }
 
-    private getRightCells(): any {
+    private static getRightCells(): any {
         return [13, 27, 41, 55, 69, 83, 97, 111, 125, 139, 153, 167, 181, 195, 209, 223, 251, 279, 307, 321, 335, 349, 363, 377, 391, 405, 419, 433, 447, 475, 489, 503, 517, 531, 545, 559];
     }
 
@@ -207,7 +207,7 @@ export class AutoGroup extends Mod {
         return false;
     }
 
-    private getRandomInt(min: number, max: number): number {
+    private static getRandomInt(min: number, max: number): number {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
@@ -225,7 +225,7 @@ export class AutoGroup extends Mod {
                         if (!this.idle) {
                             this.log('OK');
                             this.lastType = this.path[0].type;
-                            this.log('CLEAR (success) ' + this.objectToString(this.path.shift()));
+                            this.log('CLEAR (success) ' + AutoGroup.objectToString(this.path.shift()));
                             if (this.lastType != 'cell') this.movedOnRandomCell = false;
                             if (this.path.length > 0) {
                                 setTimeout(() => {
@@ -341,9 +341,9 @@ export class AutoGroup extends Mod {
             return(aa-bb)
         })
         if(tableau.length>5){
-            return tableau[this.getRandomInt(0, 5)][1];
+            return tableau[AutoGroup.getRandomInt(0, 5)][1];
         }else{
-            return tableau[this.getRandomInt(0, tableau.length-1)][1];
+            return tableau[AutoGroup.getRandomInt(0, tableau.length-1)][1];
         }
     }
 
@@ -352,21 +352,21 @@ export class AutoGroup extends Mod {
         if (followInstruction.mapId == this.wGame.isoEngine.mapRenderer.mapId && this.wGame.gui.fightManager.fightState < 0) {
             if ('map' == followInstruction.type) {
                 let cell = followInstruction.cellId;
-                let dir = this.isBorder(followInstruction.cellId);
+                let dir = AutoGroup.isBorder(followInstruction.cellId);
                 if (!this.params.strict_move) {
                     let cells = null;
                     switch(dir) {
                     case "top":
-                        cells = this.getTopCells();
+                        cells = AutoGroup.getTopCells();
                         break;
                     case "bottom":
-                        cells = this.getBottomCells();
+                        cells = AutoGroup.getBottomCells();
                         break;
                     case "left":
-                        cells = this.getLeftCells();
+                        cells = AutoGroup.getLeftCells();
                         break;
                     case "right":
-                        cells = this.getRightCells();
+                        cells = AutoGroup.getRightCells();
                         break;
                     default:
                         fail('The given cellId is not a border cell');
@@ -458,8 +458,8 @@ export class AutoGroup extends Mod {
         let occupiedCells = this.getMonsterGroupBossCells();
         do {
             if (pickedCell && step) steps.splice(steps.indexOf(step), 1);
-            step = (steps.length > 0) ? steps[this.getRandomInt(0, steps.length - 1)] : null;
-            pickedCell = (steps.length > 0) ? cellId + steps[this.getRandomInt(0, steps.length - 1)] : null;
+            step = (steps.length > 0) ? steps[AutoGroup.getRandomInt(0, steps.length - 1)] : null;
+            pickedCell = (steps.length > 0) ? cellId + steps[AutoGroup.getRandomInt(0, steps.length - 1)] : null;
         } while(steps.length > 0 && (!this.wGame.isoEngine.mapRenderer.map.cells[pickedCell] || !this.wGame.isoEngine.mapRenderer.isWalkable(pickedCell) || occupiedCells.indexOf(pickedCell) !== -1))
         return (pickedCell !== null) ? pickedCell : cellId;
     }
@@ -472,7 +472,7 @@ export class AutoGroup extends Mod {
             let pickedCell = null;
             do {
                 if (pickedCell) slice.splice(slice.indexOf(pickedCell), 1);
-                pickedCell = (slice.length > 0) ? slice[this.getRandomInt(0, slice.length - 1)] : null;
+                pickedCell = (slice.length > 0) ? slice[AutoGroup.getRandomInt(0, slice.length - 1)] : null;
             } while(slice.length > 0 && (!this.wGame.isoEngine.mapRenderer.map.cells[pickedCell] || !this.wGame.isoEngine.mapRenderer.isWalkable(pickedCell) || occupiedCells.indexOf(pickedCell) !== -1))
             return (slice.length > 0) ? pickedCell : cellId;
         }
@@ -485,7 +485,7 @@ export class AutoGroup extends Mod {
                 this.skipNextMapChange = false;
             }
             else {
-                if (this.isBorder(this.wGame.isoEngine.actorManager.userActor.cellId)) {
+                if (AutoGroup.isBorder(this.wGame.isoEngine.actorManager.userActor.cellId)) {
                     this.addToPath({
                         type: 'map',
                         mapId: this.wGame.isoEngine.mapRenderer.mapId,
@@ -506,7 +506,7 @@ export class AutoGroup extends Mod {
     private pushCellPath(msg: any): void {
         if (this.isPartyLeader() && msg.actorId == this.wGame.gui.playerData.id) {
             let destinationCellId = msg.keyMovements[msg.keyMovements.length - 1];
-            let direction = this.isBorder(destinationCellId);
+            let direction = AutoGroup.isBorder(destinationCellId);
             if (!direction) {
                 this.addToPath({
                     type: 'cell',
@@ -543,7 +543,7 @@ export class AutoGroup extends Mod {
     }
 
     private addToPath(followInstruction: any): void {
-        this.log(this.objectToString(followInstruction));
+        this.log(AutoGroup.objectToString(followInstruction));
         this.ipcRendererService.send('auto-group-push-path', followInstruction);
     }
 
@@ -551,7 +551,7 @@ export class AutoGroup extends Mod {
         if (this.lastType !== 'cell') {
             // Skip every cellFollow
             while (this.path.length > 1 && this.path[0].type === 'cell') {
-                this.log('CLEAR (skip) ' + this.objectToString(this.path.shift()));
+                this.log('CLEAR (skip) ' + AutoGroup.objectToString(this.path.shift()));
             }
         }
     }
@@ -708,7 +708,7 @@ export class AutoGroup extends Mod {
         // Logger.info(this.wGame.gui.playerData.characterBaseInformations.name + ': ' + msg);
     }
 
-    private objectToString(obj: any): string {
+    private static objectToString(obj: any): string {
         let str = '{ ';
         for (let id in obj) {
             str += id + ': ' + obj[id] + ', ';
