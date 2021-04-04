@@ -79,7 +79,7 @@ export class Shortcuts extends Mod {
         });
 
         // Spell
-        forEachOf(this.params.spell, (shortcut: string, index: number) => {
+        void forEachOf(this.params.spell, (shortcut: string, index: number) => {
             const selectedSpell = this.wGame.gui.shortcutBar._panels.spell.slotList[index];
 
             this.shortcutsHelper.bind(shortcut, () => {
@@ -103,7 +103,7 @@ export class Shortcuts extends Mod {
         });
 
         // Item
-        forEachOf(this.params.item, (shortcut: string, index: number) => {
+        void forEachOf(this.params.item, (shortcut: string, index: number) => {
             this.shortcutsHelper.bind(shortcut, () => {
                 //this.tab.window.gui.shortcutBar.panels.item.slotList[index].tap();
                 this.wGame.gui.shortcutBar._panels.item.slotList[index].tap();
@@ -111,7 +111,7 @@ export class Shortcuts extends Mod {
         });
 
         // Interfaces
-        forEachOf(this.params.interface.getAll(), (inter: any) => {
+        void forEachOf(this.params.interface.getAll(), (inter: any) => {
             this.wGame.gui.menuBar._icons._childrenList.forEach((element: any, index: number) => {
                 if (element.id.toUpperCase() == inter.key.toUpperCase()) {
                     this.shortcutsHelper.bind(inter.value, () => {

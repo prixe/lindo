@@ -195,7 +195,7 @@ export class ShowResources extends Mod {
         this.clearHtml();
     }
 
-    public reset() {
+    public reset(): void {
         super.reset();
         this.clear();
     }  

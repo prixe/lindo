@@ -85,11 +85,6 @@ export class Bar {
     }
 
     private createBar(){
-        /* retrieve data */
-        const life = this.fighter.data.stats.lifePoints / this.fighter.data.stats.maxLifePoints;
-        const cellId = this.fighter.data.disposition.cellId;
-        const scenePos = this.wGame.isoEngine.mapRenderer.getCellSceneCoordinate(cellId);
-        const pos = this.wGame.isoEngine.mapScene.convertSceneToCanvasCoordinate(scenePos.x, scenePos.y);
 
         /* lifeBarContainer */
         this.lifeBarContainer = document.createElement('div');

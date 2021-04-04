@@ -14,7 +14,27 @@ export class Mover extends Mod {
         translate: TranslateService
     ){
         super(wGame,settings,translate);
-        this.pathFinder = new PathFinder(wGame);
+        this.pathFinder = new PathFinder();
+    }
+
+    private static getTopCells(): any {
+        return [1, 15, 2, 16, 3, 17, 4, 18, 5, 19, 6, 20, 7, 21, 8, 22, 9, 23, 10, 24, 11, 25, 12, 26, 13];
+    }
+
+    private static getBottomCells(): any {
+        return [533, 547, 534, 548, 535, 549, 536, 550, 537, 551, 538, 552, 539, 553, 540, 554, 541, 555, 542, 556, 543, 557, 544, 558, 545, 559];
+    }
+
+    private static getLeftCells(): any {
+        return [0, 14, 28, 42, 56, 70, 84, 98, 112, 126, 140, 154, 168, 182, 196, 210, 224, 238, 252, 266, 280, 294, 308, 322, 336, 350, 364, 378, 392, 406, 420, 434, 448, 462, 476, 490, 504, 518, 532, 546];
+    }
+
+    private static getRightCells(): any {
+        return [13, 27, 41, 55, 69, 83, 97, 111, 125, 139, 153, 167, 181, 195, 209, 223, 251, 279, 307, 321, 335, 349, 363, 377, 391, 405, 419, 433, 447, 475, 489, 503, 517, 531, 545, 559];
+    }
+
+    private static getRandomInt(min: number, max: number): number {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
     public move(direction: string, success: any, fail: any): void {
@@ -95,7 +115,7 @@ export class Mover extends Mod {
             Logger.error("No way, I can't go there");
             return null;
         }
-        tableau.sort(function(a,b) {
+        tableau.sort((a, b) => {
             const aa = a[0].length;
             const bb = b[0].length;
             return(aa-bb);
@@ -105,10 +125,6 @@ export class Mover extends Mod {
         }else{
             return tableau[Mover.getRandomInt(0, tableau.length-1)][1];
         }
-    }
-
-    private static getRandomInt(min: number, max: number): number {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
     private isMobOnCell(cellId) {
@@ -128,7 +144,7 @@ export class Mover extends Mod {
         const changeTimeout = setTimeout(() => {
             if (fail) fail('Map change timeout');
         }, 15000);
-        const onChange = (e: any) => {
+        const onChange = () => {
             this.wGame.dofus.connectionManager.removeListener("MapComplementaryInformationsWithCoordsMessage", onChange);
             this.wGame.dofus.connectionManager.removeListener("MapComplementaryInformationsDataMessage", onChange);
             clearTimeout(changeTimeout);
@@ -144,22 +160,6 @@ export class Mover extends Mod {
         };
         this.once(this.wGame.dofus.connectionManager, "MapComplementaryInformationsWithCoordsMessage", onChange);
         this.once(this.wGame.dofus.connectionManager, "MapComplementaryInformationsDataMessage", onChange);
-    }
-
-    private static getTopCells(): any {
-        return [1, 15, 2, 16, 3, 17, 4, 18, 5, 19, 6, 20, 7, 21, 8, 22, 9, 23, 10, 24, 11, 25, 12, 26, 13];
-    }
-
-    private static getBottomCells(): any {
-        return [533, 547, 534, 548, 535, 549, 536, 550, 537, 551, 538, 552, 539, 553, 540, 554, 541, 555, 542, 556, 543, 557, 544, 558, 545, 559];
-    }
-
-    private static getLeftCells(): any {
-        return [0, 14, 28, 42, 56, 70, 84, 98, 112, 126, 140, 154, 168, 182, 196, 210, 224, 238, 252, 266, 280, 294, 308, 322, 336, 350, 364, 378, 392, 406, 420, 434, 448, 462, 476, 490, 504, 518, 532, 546];
-    }
-
-    private static getRightCells(): any {
-        return [13, 27, 41, 55, 69, 83, 97, 111, 125, 139, 153, 167, 181, 195, 209, 223, 251, 279, 307, 321, 335, 349, 363, 377, 391, 405, 419, 433, 447, 475, 489, 503, 517, 531, 545, 559];
     }
 
     private isCellOnMap(cell: number): boolean {

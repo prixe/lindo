@@ -23,6 +23,6 @@ export class FeraturesComponent implements AfterViewInit {
 
     public ngAfterViewInit(): void {
         this.rlaSafe = true;
-        this.router.navigate(['/option/features', { outlets: { 'featuresOutlet': ["general"] } }]);
+        void this.router.navigate(['/option/features', { outlets: { 'featuresOutlet': ["general"] } }]);
     }
 }

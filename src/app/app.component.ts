@@ -30,7 +30,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     ngAfterViewInit(): void {
         const loading = window.document.getElementById("loading");
         loading.style.opacity = '0';
-        setTimeout(function () {
+        setTimeout(() => {
             loading.remove();
         }, 500);
     }

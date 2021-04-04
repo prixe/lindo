@@ -30,6 +30,10 @@
         "@typescript-eslint/no-explicit-any": "off",            //any
         "@typescript-eslint/no-inferrable-types": "off",        //C'est quand même lieux de typer très fort
         "@typescript-eslint/no-unsafe-member-access": "off",    //any
+        "@typescript-eslint/explicit-module-boundary-types": "off",    //any
+        "@typescript-eslint/restrict-plus-operands": "off",
+        "@typescript-eslint/no-unsafe-return": "off",
+        "@typescript-eslint/ban-ts-comment": "off",
         "prefer-arrow/prefer-arrow-functions": [
             "warn",
             {

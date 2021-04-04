@@ -50,7 +50,7 @@ export class GameComponent implements AfterViewInit {
 
                 if (loading) {
                     loading.style.opacity = '0';
-                    setTimeout(function () {
+                    setTimeout(() => {
                         loading.remove();
                     }, 500);
                 }

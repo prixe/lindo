@@ -59,7 +59,7 @@ export class DamageEstimator extends Mod {
     }
 
     private stopOnFightEnd(): void {
-        this.on(this.wGame.dofus.connectionManager, 'GameFightEndMessage', (e: any) => {
+        this.on(this.wGame.dofus.connectionManager, 'GameFightEndMessage', () => {
             try {
                 this.damageContainer.fightEnded();
             } catch (ex) {

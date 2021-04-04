@@ -32,7 +32,7 @@ export class AutoGroup extends Mod {
 
         this.params = this.settings.option.vip.autogroup;
 
-        this.pathFinder = new PathFinder(wGame);
+        this.pathFinder = new PathFinder();
 
         if (this.params.active) {
             Logger.info('- Auto-Group enable');
@@ -51,7 +51,7 @@ export class AutoGroup extends Mod {
 
         // entre en combat automatiquement
         if (this.params.fight) {
-            this.autoEnterFight(this.wGame.gui.isConnected);
+            this.autoEnterFight();
         }
     }
 
@@ -59,7 +59,7 @@ export class AutoGroup extends Mod {
         return;
     }
 
-    public autoMasterParty(skipLogin: boolean = false) {
+    public autoMasterParty() {
         try {
             setTimeout(() => {
                 if (this.params.leader == this.wGame.gui.playerData.characterBaseInformations.name && this.params.members) {
@@ -180,7 +180,7 @@ export class AutoGroup extends Mod {
         const changeTimeout = setTimeout(() => {
             if (fail) fail('Map change timeout');
         }, 15000);
-        const onChange = (e: any) => {
+        const onChange = () => {
             this.wGame.dofus.connectionManager.removeListener("MapComplementaryInformationsWithCoordsMessage", onChange);
             this.wGame.dofus.connectionManager.removeListener("MapComplementaryInformationsDataMessage", onChange);
             clearTimeout(changeTimeout);
@@ -288,7 +288,7 @@ export class AutoGroup extends Mod {
     }
 
     private didLeaderChange(): boolean {
-        const hasChanged = false;
+
         if (Object.keys(this.wGame.gui.playerData.partyData._partyFromId).length !== 0) {
             const party = this.wGame.gui.playerData.partyData._partyFromId[Object.keys(this.wGame.gui.playerData.partyData._partyFromId)[0]];
             if (party._leaderId !== this.leaderId) {
@@ -335,7 +335,7 @@ export class AutoGroup extends Mod {
             console.error("No way, I can't go there");
             return null
         }
-        tableau.sort(function(a,b) {
+        tableau.sort((a, b) => {
             const aa = a[0].length
             const bb = b[0].length
             return(aa-bb)
@@ -479,7 +479,7 @@ export class AutoGroup extends Mod {
         else return cellId;
     }
 
-    private pushMapPath(msg: any): void {
+    private pushMapPath(): void {
         if (this.isPartyLeader()) {
             if (this.skipNextMapChange) {
                 this.skipNextMapChange = false;
@@ -590,15 +590,15 @@ export class AutoGroup extends Mod {
                     this.pushInteractivePath(msg);
                 };
 
-                const onCurrentMapMessage = (msg: any) => {
-                    this.pushMapPath(msg);
+                const onCurrentMapMessage = () => {
+                    this.pushMapPath();
                 };
 
-                const onGameFightStartingMessage = (msg: any) => {
+                const onGameFightStartingMessage = () => {
                     this.turnIdle();
                 };
 
-                const onGameFightEndMessage = (msg: any) => {
+                const onGameFightEndMessage = () => {
                     this.skipNextMapChange = true;
                 };
 
@@ -621,12 +621,12 @@ export class AutoGroup extends Mod {
         this.on(this.wGame.gui.playerData, "characterSelectedSuccess", onCharacterSelectedSuccess);
     }
 
-    public autoEnterFight(skipLogin: boolean = false) {
+    public autoEnterFight() {
         try {
             const joinFight = (fightId: number, fighterId: number) => {
                 if (this.isPvMFight(fightId)) {
                     this.turnIdle();
-                    return new Promise((resolve, reject) => {
+                    return new Promise((resolve) => {
                         setTimeout(() => {
                             this.wGame.dofus.sendMessage("GameFightJoinRequestMessage", { fightId, fighterId });
                             setTimeout(() => {
@@ -640,7 +640,7 @@ export class AutoGroup extends Mod {
             };
 
             const ready = () => {
-                return new Promise((resolve, reject) => {
+                return new Promise((resolve) => {
                     if (this.wGame.gui.fightManager.fightState == 0) {
                         setTimeout(() => {
                             this.wGame.dofus.sendMessage("GameFightReadyMessage", { isReady: true });

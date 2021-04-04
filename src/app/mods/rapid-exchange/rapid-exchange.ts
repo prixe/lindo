@@ -36,13 +36,13 @@ export class RapidExchange extends Mod {
     }
 
     // events
-    private exchangeInventoryEvent(slot: any, x: any, y: any, storage: any) {
+    private exchangeInventoryEvent(slot: any) {
         this.moveItem(slot.itemInstance, "exchangeInventory", false);
     }
-    private exchangeStorageEvent(slot: any, x: any, y: any, storage: any) {
+    private exchangeStorageEvent(slot: any) {
         this.moveItem(slot.itemInstance, "exchangeStorage", true);
     }
-    private tradeWithPlayerAndNPCInventoryEvent(slot: any, x: any, y: any, storage: any) {
+    private tradeWithPlayerAndNPCInventoryEvent(slot: any) {
         this.moveItem(slot.itemInstance, "tradeWithPlayerAndNPCInventory", false);
     }
 

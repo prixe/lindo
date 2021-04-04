@@ -5,6 +5,26 @@ import {Mod} from "../mod";
 */
 export class HideMount extends Mod
 {
+    private static removeMountToPlayer(player): void {
+        player.look.bonesId = 1;
+
+        // Character size
+        player.look.scales = [140];
+
+        // Colors
+        if (player.look.subentities["0"].subEntityLook.indexedColors.length > 0) {
+            player.look.indexedColors = player.look.subentities["0"].subEntityLook.indexedColors;
+        }
+
+        // Remove mount
+        if (player.look.subentities["0"].subEntityLook.skins.length > 0) {
+            player.look.skins = player.look.subentities["0"].subEntityLook.skins;
+        }
+
+        // Remove pet and mount
+        player.look.subentities = null;
+    }
+
     startMod(): void {
         this.params = this.settings.option.vip.general.hidden_mount;
         if (this.params) {
@@ -42,25 +62,5 @@ export class HideMount extends Mod
             // Wait begin fight
             this.on(this.wGame.dofus.connectionManager, 'GameFightStartMessage', hideMount);
         }
-    }
-
-    private static removeMountToPlayer(player): void {
-        player.look.bonesId = 1;
-
-        // Character size
-        player.look.scales = [140];
-
-        // Colors
-        if (player.look.subentities["0"].subEntityLook.indexedColors.length > 0) {
-            player.look.indexedColors = player.look.subentities["0"].subEntityLook.indexedColors;
-        }
-
-        // Remove mount
-        if (player.look.subentities["0"].subEntityLook.skins.length > 0) {
-            player.look.skins = player.look.subentities["0"].subEntityLook.skins;
-        }
-
-        // Remove pet and mount
-        player.look.subentities = null;
     }
 }

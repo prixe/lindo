@@ -24,7 +24,7 @@ export class OptionWindowService {
             height: '600px'
         });
 
-        this.dialogRef.afterClosed().subscribe(result => {
+        this.dialogRef.afterClosed().subscribe(() => {
 
             Settings.reloadSettings();
 
@@ -40,7 +40,7 @@ export class OptionWindowService {
 
     public closeAndOpenShortcuts(): void {
 
-        this.dialogRef.afterClosed().subscribe(result => {
+        this.dialogRef.afterClosed().subscribe(() => {
             this.shortcutsWindowService.open();
         });
 

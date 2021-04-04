@@ -24,7 +24,7 @@ export class OptionComponent {
         private router: Router,
         public settingsService: SettingsService,
     ) {
-        this.router.navigate(['/option/general']);
+        void this.router.navigate(['/option/general']);
     }
 
 
@@ -34,7 +34,7 @@ export class OptionComponent {
     }
 
     public reset() {
-        this.promptService.confirm({
+        void this.promptService.confirm({
             title: this.translateService.instant('app.prompt.title.confirm'),
             html: this.translateService.instant('app.option.prompt.reset-option.text'),
             icon: 'warning'

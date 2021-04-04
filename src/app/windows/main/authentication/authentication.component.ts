@@ -58,7 +58,7 @@ export class AuthenticationComponent {
 
                 let windowsCount = 1;
 
-                this.ipcRenderer.on('window-ready', (event, arg) => {
+                this.ipcRenderer.on('window-ready', () => {
                     windowsCount += 1;
 
                     if (windowsCount == multiAccountsParam.length) {

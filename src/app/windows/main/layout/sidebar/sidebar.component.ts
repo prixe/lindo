@@ -55,15 +55,15 @@ export class SidebarComponent implements OnInit {
         }
 
         //Définition des événements
-        this.ipcRendererService.on('new-tab', (event: Event) => {
+        this.ipcRendererService.on('new-tab', () => {
             this.tabGameService.addTabGame();
         });
 
-        this.ipcRendererService.on('close-tab', (event: Event) => {
+        this.ipcRendererService.on('close-tab', () => {
             this.tabGameService.removeTabGame(this.tabService.active.id);
         });
 
-        this.ipcRendererService.on('previous-tab', (event: Event) => {
+        this.ipcRendererService.on('previous-tab', () => {
 
             const currentTab = this.tabService.active;
             const currentTabIndex = this.tabService.tabs.findIndex((element) => {
@@ -79,7 +79,7 @@ export class SidebarComponent implements OnInit {
             }
         });
 
-        this.ipcRendererService.on('next-tab', (event: Event) => {
+        this.ipcRendererService.on('next-tab', () => {
 
             const currentTab = this.tabService.active;
             const currentTabIndex = this.tabService.tabs.findIndex((element) => {

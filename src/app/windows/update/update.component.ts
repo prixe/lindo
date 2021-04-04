@@ -19,7 +19,7 @@ const axiosClient = axios.create();
 axiosRetry(axiosClient, {retries: 10, retryDelay: () => 1000});
 
 const MAX_CONCURRENT_REQUESTS = 10;
-const manager = ConcurrencyManager(axiosClient, MAX_CONCURRENT_REQUESTS);
+ConcurrencyManager(axiosClient, MAX_CONCURRENT_REQUESTS);
 
 const fs = fsLib;
 const path = pathLib;
@@ -195,7 +195,7 @@ export class UpdateComponent implements OnInit, OnDestroy {
         for (const i in this.assetMapDifferences) {
             if (this.assetMapDifferences[i] == 1) {
 
-                promises.push(new Promise((resolve, reject) => {
+                promises.push(new Promise((resolve) => {
 
                     const url = this.dofusOrigin + this.remoteAssetMap.files[i].filename;
                     const filePath = this.localGameFolder + this.remoteAssetMap.files[i].filename;
@@ -205,7 +205,7 @@ export class UpdateComponent implements OnInit, OnDestroy {
                         fs.mkdirSync(directoryPath, {recursive: true});
                     }
 
-                    axiosClient.get(url, {adapter: httpAdapter, responseType: "stream"}).then((response) => {
+                    void axiosClient.get(url, {adapter: httpAdapter, responseType: "stream"}).then((response) => {
                         response.data.pipe(fs.createWriteStream(filePath));
                         resolve(true);
                     });
@@ -254,7 +254,7 @@ export class UpdateComponent implements OnInit, OnDestroy {
 
             this.localVersions.buildVersion = (this.dofusMissingFiles["build/script.js"] as string).match(/window\.buildVersion\s?=\s?"(\d+\.\d+\.\d+(?:\-\d+)?)"/)[1];
             this.localVersions.appVersion = await new Promise((resolve) => {
-                axios.get(this.dofusOriginItuneVersion).then((response: any) => resolve(response.data.results[0].version));
+                void axios.get(this.dofusOriginItuneVersion).then((response: any) => resolve(response.data.results[0].version));
             });
         }
 
@@ -335,7 +335,7 @@ export class UpdateComponent implements OnInit, OnDestroy {
 
             axios.get(url).then((response: any) => {
                 resolve(response.data);
-            }).catch((error: any) => {
+            }).catch(() => {
                 reject({});
             });
         });

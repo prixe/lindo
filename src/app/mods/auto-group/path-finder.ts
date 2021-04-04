@@ -12,7 +12,7 @@ export class PathFinder {
     private HEIGHT;
     private CELL_NUMBER;
 
-    constructor(wGame: any) {
+    constructor() {
         this.mapPoints = {};
         this.grid = [];
         this.useOldMovementSystem = false;

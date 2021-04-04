@@ -22,7 +22,7 @@ export class ApplicationService {
         this.appName = environment.appName;
         this.apiUrl = environment.apiUrl;
 
-        return new Promise<void>((resolve, reject)=>{
+        return new Promise<void>((resolve)=>{
 
             //On récupère la version de DT distante
             this.remoteBuildVersion = Application.remoteBuildVersion;

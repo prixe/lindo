@@ -49,9 +49,7 @@ import {ShortcutsInventoryComponent} from "./windows/main/menus/shortcuts/invent
 import {ShortcutsOtherComponent} from "./windows/main/menus/shortcuts/other/other.component";
 import {ShortcutsSpellComponent} from "./windows/main/menus/shortcuts/spell/spell.component";
 
-export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
-    return new TranslateHttpLoader(http, '../../locale/', '.json')
-}
+export const createTranslateLoader = (http: HttpClient): TranslateHttpLoader => new TranslateHttpLoader(http, '../../locale/', '.json');
 
 registerLocaleData(localeFr);
 registerLocaleData(localeEn);

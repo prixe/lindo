@@ -27,7 +27,7 @@ export class BugReportService {
         axios.post('https://api.lindo-app.com/report.php', {
             logs: body,
             version: this.applicationService.version
-        }).then(response => {
+        }).then(() => {
             this.logs = "";
         }).catch(error => {
             Logger.error(JSON.stringify(error));

@@ -19,14 +19,11 @@ export namespace Option {
 
 
         get spell(): Array<string> {
-            const self = this;
             return new Proxy(this._spell, {
-                get: function (target: any, name: any) {
-                    return target[name];
-                },
+                get: (target: any, name: any) => target[name],
                 set(target: any, prop: string, value: any) {
                     target[prop] = value;
-                    self.settingsProvider.write('option.shortcuts.spell', target);
+                    this.settingsProvider.write('option.shortcuts.spell', target);
                     return true;
                 }
             });
@@ -38,14 +35,12 @@ export namespace Option {
         }
 
         get item(): Array<string> {
-            const self = this;
+
             return new Proxy(this._item, {
-                get: function (target, name) {
-                    return target[name];
-                },
+                get: (target, name) => target[name],
                 set(target, prop: string, value) {
                     target[prop] = value;
-                    self.settingsProvider.write('option.shortcuts.item', target);
+                    this.settingsProvider.write('option.shortcuts.item', target);
                     return true;
                 }
             });
@@ -366,14 +361,12 @@ export namespace Option {
             }
 
             get tabs(): Array<string> {
-                const self = this;
+
                 return new Proxy(this._tabs, {
-                    get: function (target: any, name: any) {
-                        return target[name];
-                    },
+                    get: (target: any, name: any) => target[name],
                     set(target: any, prop: string, value: any) {
                         target[prop] = value;
-                        self.settingsProvider.write('option.shortcuts.no_emu.tabs', target);
+                        this.settingsProvider.write('option.shortcuts.no_emu.tabs', target);
                         return true;
                     }
                 });

@@ -20,7 +20,7 @@ export class Notifications extends Mod {
             this.sendTaxCollectorNotif(tc);
         });
         this.on(this.wGame.dofus.connectionManager, 'GameRolePlayArenaFightPropositionMessage', (e: any) => {
-            this.sendKolizeumNotif(e);
+            this.sendKolizeumNotif();
         });
         this.on(this.wGame.dofus.connectionManager, 'PartyInvitationMessage', (e: any) => {
             this.sendPartyInvitationNotif(e);
@@ -71,7 +71,7 @@ export class Notifications extends Mod {
         }
     }
 
-    private sendKolizeumNotif(msg: any) {
+    private sendKolizeumNotif() {
         if (!this.wGame.document.hasFocus()
             && this.params.fight_turn) {
 

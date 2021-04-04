@@ -30,9 +30,7 @@ export class AccountsComponent {
 
     public setMasterPassword() {
 
-        const self = this;
-
-        self.promptService.custom({
+        void this.promptService.custom({
 
             input: 'password',
             title: this.translate.instant("app.option.vip.multi-account.prompt.add-master.title"),
@@ -48,13 +46,13 @@ export class AccountsComponent {
 
                     if (masterPassword.length < 8) {
                         Swal.hideLoading();
-                        return Swal.showValidationMessage(self.translate.instant("app.option.vip.multi-account.prompt.add-master.min-lenght", {"lenght": 8}))
+                        return Swal.showValidationMessage(this.translate.instant("app.option.vip.multi-account.prompt.add-master.min-lenght", {"lenght": 8}))
                     }
 
-                    self.applicationService.masterpassword = masterPassword;
-                    self.settingsService.option.vip.multiaccount.master_password = self.crypt.createHash(masterPassword);
+                    this.applicationService.masterpassword = masterPassword;
+                    this.settingsService.option.vip.multiaccount.master_password = this.crypt.createHash(masterPassword);
 
-                    self.settingsService.option.vip.multiaccount.active = true;
+                    this.settingsService.option.vip.multiaccount.active = true;
 
                     resolve();
                 })
@@ -63,14 +61,14 @@ export class AccountsComponent {
         }).then((result) => {
 
             if (result.isConfirmed) {
-                self.promptService.success({html: self.translate.instant("app.option.vip.multi-account.prompt.add-master.success-text")})
+                void this.promptService.success({html: this.translate.instant("app.option.vip.multi-account.prompt.add-master.success-text")})
             }
         });
     }
 
     public updateMasterPassword() {
 
-        this.promptService.custom({
+        void this.promptService.custom({
 
             title: this.translate.instant("app.option.vip.multi-account.prompt.edit-master.title"),
             html:
@@ -127,7 +125,7 @@ export class AccountsComponent {
         }).then((result) => {
 
             if (result.isConfirmed) {
-                this.promptService.success({html: this.translate.instant("app.option.vip.multi-account.prompt.edit-master.success-text")})
+                void this.promptService.success({html: this.translate.instant("app.option.vip.multi-account.prompt.edit-master.success-text")})
             }
         });
 
@@ -135,7 +133,7 @@ export class AccountsComponent {
 
     public confirmDeleteMasterPassword() {
 
-        this.promptService.custom({
+        void this.promptService.custom({
 
             icon: "warning",
             title: this.translate.instant("app.option.vip.multi-account.prompt.delete-master.title"),
@@ -149,7 +147,7 @@ export class AccountsComponent {
         }).then((result) => {
             if (result.isConfirmed) {
                 this.deleteMasterPassword();
-                this.promptService.success({html: this.translate.instant("app.option.vip.multi-account.prompt.delete-master.success-text")})
+                void this.promptService.success({html: this.translate.instant("app.option.vip.multi-account.prompt.delete-master.success-text")})
             }
         });
     }
@@ -170,7 +168,7 @@ export class AccountsComponent {
 
         const windows = this.settingsService.option.vip.multiaccount.windows;
 
-        this.promptService.custom({
+        void this.promptService.custom({
 
             title: this.translate.instant("app.option.vip.multi-account.prompt.add-account.title"),
             html:
@@ -230,7 +228,7 @@ export class AccountsComponent {
         const login = this.crypt.decrypt(account_name_encrypted, this.applicationService.masterpassword);
         const windows = this.settingsService.option.vip.multiaccount.windows;
 
-        this.promptService.custom({
+        void this.promptService.custom({
 
             title: this.translate.instant("app.option.vip.multi-account.prompt.edit-account.title"),
             html:

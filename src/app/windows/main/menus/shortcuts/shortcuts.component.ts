@@ -26,12 +26,13 @@ export class ShortcutsComponent implements AfterViewInit {
         if (old !== null) {
             old.classList.remove("selected");
         }
-        const target = $event.target.classList.add("selected");
+
+        $event.target.classList.add("selected");
 
         this.navigateTo(route);
     }
 
     public navigateTo(route: string) {
-        this.router.navigate(["/shortcuts/" + route]);
+        void this.router.navigate(["/shortcuts/" + route]);
     }
 }

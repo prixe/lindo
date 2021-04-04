@@ -63,7 +63,7 @@ export class TabGameService extends EventEmitter {
         };
 
         if (this.gameService.games.length > 4) {
-            this.promptService.confirm({
+            void this.promptService.confirm({
                 title: this.translate.instant("app.prompt.title.confirm"),
                 html: this.translate.instant("app.main.prompt.tabs-overflow.text"),
                 icon: "warning"

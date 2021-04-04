@@ -17,15 +17,8 @@ import {ChangelogWindowService} from "../windows/main/menus/changelog/changelog.
 import {OptionWindowService} from "../windows/main/menus/option/option.window";
 import {ShortcutsWindowService} from "../windows/main/menus/shortcuts/shortcuts.window";
 
-export function applicationServiceFactory(config: ApplicationService) {
-    return function () {
-        return config.load();
-    }
-}
-
-export function settingModuleFactory(setting: SettingsService) {
-    return setting.language;
-}
+export const applicationServiceFactory = (config: ApplicationService) => () => config.load();
+export const settingModuleFactory = (setting: SettingsService) => setting.language;
 
 @NgModule({
     imports: [],

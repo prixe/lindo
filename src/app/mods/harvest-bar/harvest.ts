@@ -80,7 +80,7 @@ export class Harvest extends Mod {
     }
 
     private removeOnFinish(): void {
-        this.on(this.wGame.dofus.connectionManager, 'InteractiveUseEndedMessage', (e: any) => {
+        this.on(this.wGame.dofus.connectionManager, 'InteractiveUseEndedMessage', () => {
             try {
                 this.isInHarvest = !(this.harvestBar.destroy());
             } catch (ex) {

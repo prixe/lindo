@@ -97,7 +97,7 @@ export class HealthBar extends Mod {
     }
 
     private setFightStart(): void {
-        this.on(this.wGame.dofus.connectionManager, 'GameFightStartingMessage', (e: any) => {
+        this.on(this.wGame.dofus.connectionManager, 'GameFightStartingMessage', () => {
             try {
                 this.fightJustStarted = true;
             } catch (ex) {
@@ -107,7 +107,7 @@ export class HealthBar extends Mod {
     }
 
     private displayOnStart(): void {
-        this.on(this.wGame.dofus.connectionManager, 'GameFightNewRoundMessage', (e: any) => {
+        this.on(this.wGame.dofus.connectionManager, 'GameFightNewRoundMessage', () => {
             try {
                 if (this.fightJustStarted) {
                     this.fightJustStarted = false;
@@ -120,7 +120,7 @@ export class HealthBar extends Mod {
     }
 
     private stopOnFightEnd(): void {
-        this.on(this.wGame.dofus.connectionManager, 'GameFightEndMessage', (e: any) => {
+        this.on(this.wGame.dofus.connectionManager, 'GameFightEndMessage', () => {
             try {
                 this.barContainer.fightEnded();
             } catch (ex) {
@@ -130,7 +130,7 @@ export class HealthBar extends Mod {
     }
 
     private stopOnFightStop(): void {
-        this.on(this.wGame.dofus.connectionManager, 'GameFightLeaveMessage', (e: any) => {
+        this.on(this.wGame.dofus.connectionManager, 'GameFightLeaveMessage', () => {
             try {
                 this.barContainer.fightEnded();
             } catch (ex) {

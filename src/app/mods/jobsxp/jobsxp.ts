@@ -134,7 +134,7 @@ export class Jobsxp extends Mod{
     }
 
     private setFightStart(): void {
-        this.on(this.wGame.dofus.connectionManager, 'GameFightStartingMessage', (e: any) => {
+        this.on(this.wGame.dofus.connectionManager, 'GameFightStartingMessage', () => {
             try {
                 this.clean();
             } catch (ex) {
@@ -144,7 +144,7 @@ export class Jobsxp extends Mod{
     }
 
     private stopOnFightEnd(): void {
-        this.on(this.wGame.dofus.connectionManager, 'GameFightEndMessage', (e: any) => {
+        this.on(this.wGame.dofus.connectionManager, 'GameFightEndMessage', () => {
             try {
                 this.create();
             } catch (ex) {
@@ -154,7 +154,7 @@ export class Jobsxp extends Mod{
     }
 
     private stopOnFightStop(): void {
-        this.on(this.wGame.dofus.connectionManager, 'GameFightLeaveMessage', (e: any) => {
+        this.on(this.wGame.dofus.connectionManager, 'GameFightLeaveMessage', () => {
             try {
                 this.create();
             } catch (ex) {
