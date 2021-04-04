@@ -6,6 +6,7 @@ import {ApplicationService} from "@services/electron/application.service";
 
 @Injectable()
 export class AuthService {
+
     public authRequired: boolean = false;
 
     constructor(

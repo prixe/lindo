@@ -285,7 +285,10 @@ export class AccountsComponent {
     }
 
     public addWindow() {
+
         let windows = this.settingsService.option.vip.multiaccount.windows;
+        if (typeof windows === "undefined") windows = [];
+
         windows.push([]);
         this.settingsService.option.vip.multiaccount.windows = windows;
     }

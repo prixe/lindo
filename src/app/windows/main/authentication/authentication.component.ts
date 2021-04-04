@@ -22,6 +22,7 @@ export class AuthenticationComponent {
     ) {}
 
     public authByMasterPassword() {
+
         this.authService.loginWithMasterPassword(this.inputMasterPassword).then((inputMasterPassword) => {
 
             this.badMasterPassword = false;
@@ -31,8 +32,6 @@ export class AuthenticationComponent {
 
             if (this.settingsService.option.vip.multiaccount.active) {
                 this.processMultiAccount();
-            } else {
-                this.authService.updateAuthState();
             }
 
         }).catch(() => {
@@ -48,6 +47,7 @@ export class AuthenticationComponent {
     }
 
     private processMultiAccount() {
+
         let multiAccountsParam = this.settingsService.option.vip.multiaccount.windows;
         if (multiAccountsParam.length > 0) {
             if ((multiAccountsParam.length - 1) == 0) {
