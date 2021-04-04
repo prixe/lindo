@@ -37,11 +37,11 @@ export class SoundService {
         if (this.settingsService.option.general.sound_focus) {
             this.window.webContents.setAudioMuted(this.audioMuted);
 
-            let onFocus = () => {
+            const onFocus = () => {
                 (!this.audioMuted) ? this.window.webContents.setAudioMuted(false) : false;
             };
 
-            let onBlur = () => {
+            const onBlur = () => {
                 (!this.audioMuted) ? this.window.webContents.setAudioMuted(true) : false;
             };
 

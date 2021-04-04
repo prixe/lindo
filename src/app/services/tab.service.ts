@@ -22,7 +22,7 @@ export class TabService {
     }
 
     removeTab(tab: Tab): void {
-        let index = this._tabs.indexOf(tab);
+        const index = this._tabs.indexOf(tab);
 
         if (index !== -1) {
             this._tabs.splice(index, 1);

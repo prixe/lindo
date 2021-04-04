@@ -23,7 +23,7 @@ export class BugReportComponent {
 
     public send() {
         this.zone.run(() => {
-            let description = (<HTMLTextAreaElement>document.getElementById("bug-description")).value;
+            const description = (<HTMLTextAreaElement>document.getElementById("bug-description")).value;
             if (description) {
                 this.descriptionEmpty = false;
                 this.dialogRef.close(description);

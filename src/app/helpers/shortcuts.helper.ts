@@ -17,7 +17,7 @@ export class ShortcutsHelper {
     }
 
     public bindVanilla(shortcut: string, action: (e?: KeyboardEvent) => void): void {
-        let listener = (e: KeyboardEvent) => {
+        const listener = (e: KeyboardEvent) => {
             if (e.key.toLowerCase() == shortcut) action(e);
         };
         (<any>this.window).addEventListener('keydown', listener);

@@ -8,8 +8,8 @@ export class Jobsxp extends Mod{
 
         if (this.params) {
             Logger.info('- enable Jobsxp');
-            let jobsxpbarCssverif = this.wGame.document.getElementById('jobsxpbarCss');
-            let xpRestanteIdverif = this.wGame.document.getElementById('xpRestanteId');
+            const jobsxpbarCssverif = this.wGame.document.getElementById('jobsxpbarCss');
+            const xpRestanteIdverif = this.wGame.document.getElementById('xpRestanteId');
             if (jobsxpbarCssverif && jobsxpbarCssverif.parentElement) {
                 jobsxpbarCssverif.parentElement.removeChild(jobsxpbarCssverif);
             }
@@ -17,7 +17,7 @@ export class Jobsxp extends Mod{
                 xpRestanteIdverif.parentElement.removeChild(xpRestanteIdverif);
             }
 
-            let jobsxpbarCss = document.createElement('style');
+            const jobsxpbarCss = document.createElement('style');
             jobsxpbarCss.id = 'jobsxpbarCss';
             jobsxpbarCss.innerHTML = `
             .xpRestanteText {
@@ -94,7 +94,7 @@ export class Jobsxp extends Mod{
     private create(): void {
         setTimeout(() => {
             if (this.wGame.gui.playerData && this.wGame.gui.playerData.jobs && this.wGame.gui.playerData.jobs.list) {
-                let jobs = this.wGame.gui.playerData.jobs.list;
+                const jobs = this.wGame.gui.playerData.jobs.list;
                 if (Object.keys(jobs).length > 0 && typeof jobs[Object.keys(jobs)[0]].experience == "undefined") this.create();
                 else {
                     this.clean();
@@ -103,11 +103,11 @@ export class Jobsxp extends Mod{
                     this.xpRestanteText.className = 'xpRestanteText';
                     this.xpRestanteText.style.visibility = 'visible';
                     this.xpRestanteText.innerHTML = '';
-                    for (let id in jobs) {
-                        let job = jobs[id];
+                    for (const id in jobs) {
+                        const job = jobs[id];
                         if (job.experience.jobXpNextLevelFloor) {
-                            let xpToWin = job.experience.jobXpNextLevelFloor - job.experience.jobXP;
-                            let html = `
+                            const xpToWin = job.experience.jobXpNextLevelFloor - job.experience.jobXP;
+                            const html = `
                                 <div class="job">
                                     <div class="description">
                                         <div class="name">${job.info.nameId}</div>
@@ -184,14 +184,14 @@ export class Jobsxp extends Mod{
     }
 
     private getIconHTML(job): string {
-        let src = this.wGame.Config.assetsUrl + "/gfx/jobs/" + job.info.iconId + ".png";
+        const src = this.wGame.Config.assetsUrl + "/gfx/jobs/" + job.info.iconId + ".png";
         return '<img src="' + src + '"  alt=""/>';
     }
 
     public reset() {
         super.reset();
         if (this.params) {
-            let jobsxpbarCss = this.wGame.document.getElementById('jobsxpbarCss');
+            const jobsxpbarCss = this.wGame.document.getElementById('jobsxpbarCss');
             if (jobsxpbarCss && jobsxpbarCss.parentElement) {
                 jobsxpbarCss.parentElement.removeChild(jobsxpbarCss);
             }

@@ -38,16 +38,16 @@ export class Mover extends Mod {
                     return;
                 }
 
-                let cell = this.getClosestCellToChangeMapRandomised(cells, null, direction);
+                const cell = this.getClosestCellToChangeMapRandomised(cells, null, direction);
 
                 if (cell == null) {
                 	console.log("No Cell Found.");
                 	return;
                 }
 
-                let doMove = () => {
-                    let scenePos = this.wGame.isoEngine.mapRenderer.getCellSceneCoordinate(cell);
-                    let pos = this.wGame.isoEngine.mapScene.convertSceneToCanvasCoordinate(scenePos.x, scenePos.y);
+                const doMove = () => {
+                    const scenePos = this.wGame.isoEngine.mapRenderer.getCellSceneCoordinate(cell);
+                    const pos = this.wGame.isoEngine.mapScene.convertSceneToCanvasCoordinate(scenePos.x, scenePos.y);
                     this.wGame.isoEngine.gotoNeighbourMap(direction, cell, Math.floor(pos.x), Math.floor(pos.y));
                 };
                 this.onMapChange(success, fail);
@@ -73,7 +73,7 @@ export class Mover extends Mod {
         }
         const canMoveDiagonally = this.wGame.isoEngine.actorManager.userActor.canMoveDiagonally;
 
-        let tableau = [];
+        const tableau = [];
 
         for (let i = 0; i < cells.length; i++) {
             const cellId = cells[i];
@@ -96,8 +96,8 @@ export class Mover extends Mod {
             return null;
         }
         tableau.sort(function(a,b) {
-            let aa = a[0].length;
-            let bb = b[0].length;
+            const aa = a[0].length;
+            const bb = b[0].length;
             return(aa-bb);
         })
         if(tableau.length>5){
@@ -124,15 +124,15 @@ export class Mover extends Mod {
     }
 
     private onMapChange(callback: any, fail: any = null): void {
-        let previousMap = this.wGame.isoEngine.mapRenderer.mapId;
-        let changeTimeout = setTimeout(() => {
+        const previousMap = this.wGame.isoEngine.mapRenderer.mapId;
+        const changeTimeout = setTimeout(() => {
             if (fail) fail('Map change timeout');
         }, 15000);
-        let onChange = (e: any) => {
+        const onChange = (e: any) => {
             this.wGame.dofus.connectionManager.removeListener("MapComplementaryInformationsWithCoordsMessage", onChange);
             this.wGame.dofus.connectionManager.removeListener("MapComplementaryInformationsDataMessage", onChange);
             clearTimeout(changeTimeout);
-            let changeMapRetry = () => {
+            const changeMapRetry = () => {
                 if (this.wGame.isoEngine.actorManager.getActor(this.wGame.isoEngine.actorManager.userId).moving || previousMap == this.wGame.isoEngine.mapRenderer.mapId) {
                     setTimeout(changeMapRetry, 300);
                 }
@@ -144,7 +144,7 @@ export class Mover extends Mod {
         };
         this.once(this.wGame.dofus.connectionManager, "MapComplementaryInformationsWithCoordsMessage", onChange);
         this.once(this.wGame.dofus.connectionManager, "MapComplementaryInformationsDataMessage", onChange);
-    };
+    }
 
     private static getTopCells(): any {
         return [1, 15, 2, 16, 3, 17, 4, 18, 5, 19, 6, 20, 7, 21, 8, 22, 9, 23, 10, 24, 11, 25, 12, 26, 13];

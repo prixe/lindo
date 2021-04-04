@@ -1,6 +1,6 @@
 import {SettingsProvider} from "@interfaces/setting-provider";
 
-export module Option {
+export namespace Option {
 
     export class Shortcuts {
         public no_emu: Shortcuts.NoEmu;
@@ -19,7 +19,7 @@ export module Option {
 
 
         get spell(): Array<string> {
-            let self = this;
+            const self = this;
             return new Proxy(this._spell, {
                 get: function (target: any, name: any) {
                     return target[name];
@@ -38,7 +38,7 @@ export module Option {
         }
 
         get item(): Array<string> {
-            let self = this;
+            const self = this;
             return new Proxy(this._item, {
                 get: function (target, name) {
                     return target[name];
@@ -57,7 +57,7 @@ export module Option {
         }
     }
 
-    export module Shortcuts {
+    export namespace Shortcuts {
 
         export class Interface {
             private _carac: string;
@@ -272,11 +272,11 @@ export module Option {
             }
 
             public getAll(): Array<any> {
-                let tab: Array<any> = [];
+                const tab: Array<any> = [];
 
-                for (let prop in this) {
+                for (const prop in this) {
                     if (prop.charAt(0) === '_') {
-                        let newProp = prop.replace('_', '');
+                        const newProp = prop.replace('_', '');
                         tab.push({
                             key: newProp,
                             value: this[prop]
@@ -366,7 +366,7 @@ export module Option {
             }
 
             get tabs(): Array<string> {
-                let self = this;
+                const self = this;
                 return new Proxy(this._tabs, {
                     get: function (target: any, name: any) {
                         return target[name];
@@ -683,7 +683,7 @@ export module Option {
         }
     }
 
-    export module VIP {
+    export namespace VIP {
         export class General {
             private _disable_inactivity: boolean;
             private _health_bar: boolean;

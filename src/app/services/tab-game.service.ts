@@ -30,12 +30,12 @@ export class TabGameService extends EventEmitter {
      * @param cb
      */
     public addTabGame(credentials: { account_name: string, password: string } = undefined, cb: any = undefined): void {
-        let add = () => {
-            let tab: Tab = new Tab(this.lastTabGameIndex++);
+        const add = () => {
+            const tab: Tab = new Tab(this.lastTabGameIndex++);
 
             this.tabService.addTab(tab);
 
-            let game = new Game(tab.id, credentials);
+            const game = new Game(tab.id, credentials);
 
             game.on('character', (name: string) => {
                 tab.character = name;
@@ -87,8 +87,8 @@ export class TabGameService extends EventEmitter {
             this.gameService.getGame(this.tabService.active.id).isFocus = false;
         }
 
-        let tab = this.tabService.getTab(id);
-        let game = this.gameService.getGame(id);
+        const tab = this.tabService.getTab(id);
+        const game = this.gameService.getGame(id);
 
         tab.isFocus = true;
         tab.notification = false;
@@ -108,15 +108,15 @@ export class TabGameService extends EventEmitter {
      */
     public removeTabGame(id: number): void {
 
-        let tab: Tab = this.tabService.getTab(id);
-        let game: Game = this.gameService.getGame(id);
+        const tab: Tab = this.tabService.getTab(id);
+        const game: Game = this.gameService.getGame(id);
 
         if (this.tabService.active !== null && this.tabService.active.id === id) {
             this.tabService.active = null;
         }
 
         //Recherche du prochain élement dans les tabs
-        let currentTabIndex = this.tabService.tabs.findIndex((element) => {
+        const currentTabIndex = this.tabService.tabs.findIndex((element) => {
             return element.id == tab.id;
         });
 
@@ -128,7 +128,7 @@ export class TabGameService extends EventEmitter {
         if (typeof (this.tabService.tabs[currentTabIndex]) != "undefined") {
             this.selectTabGame(this.tabService.tabs[currentTabIndex].id);
         } else {
-            let lastGame = this.tabService.tabs.slice(-1).pop();
+            const lastGame = this.tabService.tabs.slice(-1).pop();
             if ((lastGame !== undefined)) {
                 this.selectTabGame(lastGame.id);
             }
@@ -147,7 +147,7 @@ export class TabGameService extends EventEmitter {
         // Ouverture d'un onglet pour chaque comptes
         async.eachSeries(accounts, (account, cb) => {
 
-            let credentials = {
+            const credentials = {
                 account_name: this.crypt.decrypt(account.account_name_encrypted, Application.masterPassword),
                 password: this.crypt.decrypt(account.password_encrypted, Application.masterPassword),
             };

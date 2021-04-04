@@ -5,7 +5,7 @@ export class KeyboardInput extends Mod {
     private numberInputPad: any;
 
     // All allowed keys for the number input pad
-    private allowedKeys: Array<String> = ["0", "1", "2", "3" ,"4", "5", "6", "7", "8", "9", "Enter", "Backspace"];
+    private allowedKeys: Array<string> = ["0", "1", "2", "3" ,"4", "5", "6", "7", "8", "9", "Enter", "Backspace"];
 
     startMod(): void {
         this.numberInputPad = this.wGame.gui.numberInputPad;
@@ -13,7 +13,7 @@ export class KeyboardInput extends Mod {
     }
 
     private setKeyListenner() {
-        let doInput = (event: KeyboardEvent) => {
+        const doInput = (event: KeyboardEvent) => {
             // If The number input pad is not visble or the key pressed is not allowed, don't continue
             if (!this.numberInputPad.isVisible() || !this.allowedKeys.includes(event.key)) {
                 return;

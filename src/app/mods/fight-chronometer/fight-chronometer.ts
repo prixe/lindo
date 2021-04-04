@@ -29,7 +29,7 @@ export class FightChronometer extends Mod {
                 return;
             }
 
-            let container = this.wGame.document.querySelector('.infoContainer');
+            const container = this.wGame.document.querySelector('.infoContainer');
             if (!container) {
                 return;
             }

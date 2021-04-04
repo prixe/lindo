@@ -7,12 +7,12 @@ export class JsFixes extends Mod {
     }
 
     private contextLost() {
-        let onWebGLContextLost = (event: any) => {
+        const onWebGLContextLost = (event: any) => {
             Logger.info('reload webglcontext cause: webglcontextlost');
             this.wGame.isoEngine.background.render()
             event.preventDefault();
         };
-        let canvas = this.wGame.document.getElementById("mapScene-canvas");
+        const canvas = this.wGame.document.getElementById("mapScene-canvas");
         canvas.addEventListener("webglcontextlost", onWebGLContextLost, false);
 
         this.addOnResetListener(() => {
@@ -23,7 +23,7 @@ export class JsFixes extends Mod {
     private spritesOutOfScreen() {
         this.wGame.isoEngine.mapScene._refreshAreasBackup = this.wGame.isoEngine.mapScene._refreshAreas;
         this.wGame.isoEngine.mapScene._refreshAreas = function () {
-            for (let id in this.areasToRefresh) {
+            for (const id in this.areasToRefresh) {
                 if (this.areasToRefresh[id][3] < this.t) {
                     this.areasToRefresh[id][2] = this.t;
                     this.areasToRefresh[id][3] = this.t + 5;

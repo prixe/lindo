@@ -29,7 +29,7 @@ export class ApplicationService {
             this.remoteAppVersion = Application.remoteAppVersion;
             this.version = Application.version;
 
-            let appConfig = Settings.getAppConfig();
+            const appConfig = Settings.getAppConfig();
             this.appPath = appConfig.appPath;
             this.gamePath = appConfig.gamePath;
             this.appVersion = appConfig.appVersion;

@@ -19,7 +19,7 @@ export class ShowResources extends Mod {
         if(this.params.show_resources) {
             Logger.info('- Enabled ShowRessources');
 
-            let resourcesBoxCss = document.createElement('style');
+            const resourcesBoxCss = document.createElement('style');
             resourcesBoxCss.id = 'resourcesBoxCss';
             resourcesBoxCss.innerHTML = `
                 #resourcesBox {
@@ -175,7 +175,7 @@ export class ShowResources extends Mod {
         // Insert element in DOM & center
         if (this.resourcesBox.innerHTML != '') {
             this.wGame.foreground.rootElement.appendChild(this.resourcesBox);
-            let boxWidth: number = this.resourcesBox.offsetWidth / 2;
+            const boxWidth: number = this.resourcesBox.offsetWidth / 2;
             this.resourcesBox.style.left = `calc(50% - ${boxWidth}px)`;
         }
     }

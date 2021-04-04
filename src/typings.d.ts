@@ -1,6 +1,6 @@
 /* SystemJS module definition */
 
-declare var module: NodeModule;
+declare let module: NodeModule;
 
 declare let electron: any;
 declare let electronRemote: any;

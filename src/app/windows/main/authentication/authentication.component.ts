@@ -48,7 +48,7 @@ export class AuthenticationComponent {
 
     private processMultiAccount() {
 
-        let multiAccountsParam = this.settingsService.option.vip.multiaccount.windows;
+        const multiAccountsParam = this.settingsService.option.vip.multiaccount.windows;
         if (multiAccountsParam.length > 0) {
             if ((multiAccountsParam.length - 1) == 0) {
                 this.authService.updateAuthState();

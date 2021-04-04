@@ -20,7 +20,7 @@ export class GameService {
     }
 
     removeGame(game: Game): void {
-        let index = this._games.indexOf(game);
+        const index = this._games.indexOf(game);
 
         if(index !== -1){
             this._games.splice(index, 1);

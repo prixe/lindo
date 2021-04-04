@@ -16,7 +16,7 @@ export class General extends Mod {
 
         // Init mods
         this.mods = [];
-        for (let mod in Mods) {
+        for (const mod in Mods) {
             this.mods.push(new Mods[mod](this.wGame, this.settings, this.translate))
         }
     }
@@ -25,7 +25,7 @@ export class General extends Mod {
 
     public reset() {
         super.reset();
-        for (let i in this.mods) {
+        for (const i in this.mods) {
             this.mods[i].reset();
         }
     }

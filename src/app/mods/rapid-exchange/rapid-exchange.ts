@@ -24,7 +24,7 @@ export class RapidExchange extends Mod {
         this.supportedWindows = ["exchangeInventory", "exchangeStorage", "tradeWithPlayerAndNPCInventory"];
 
         // Retrieve window from the gui
-        let windows = this.wGame.gui.windowsContainer.getChildren();
+        const windows = this.wGame.gui.windowsContainer.getChildren();
 
         windows.forEach((window: any) => {
             if (this.supportedWindows.includes(window.id))
@@ -48,12 +48,12 @@ export class RapidExchange extends Mod {
 
     // Listen to the "ctrl" key, and remember it's state
     private setKeyListenner() {
-        let keydown = (event: KeyboardEvent) => {
+        const keydown = (event: KeyboardEvent) => {
             if (event.keyCode == 17) {
                 this.keyPressed = true;
             }
         };
-        let keyup = (event: KeyboardEvent) => {
+        const keyup = (event: KeyboardEvent) => {
             if (event.keyCode == 17) {
                 this.keyPressed = false;
             }
@@ -93,12 +93,12 @@ export class RapidExchange extends Mod {
             const UID = msg.object.objectUID;
             const quantity = msg.object.quantity;
 
-            let remove = () => {
+            const remove = () => {
                 this.moveItem({objectUID: UID, quantity: quantity}, "tradeWithPlayer", true);
             }
 
             // Retrieve the trade space window
-            let myTradeSpace = this.getWindow("tradeWithPlayer");
+            const myTradeSpace = this.getWindow("tradeWithPlayer");
 
             // Sometimes the slot is not added instantly
             // So wait to avoid error
@@ -124,12 +124,12 @@ export class RapidExchange extends Mod {
     // Return the window that match the id
     private getWindow(id: string) {
         // Get all window
-        let windows = this.wGame.gui.windowsContainer.getChildren();
+        const windows = this.wGame.gui.windowsContainer.getChildren();
 
         let window = null;
 
         // Loop through them
-        for (let i in windows) {
+        for (const i in windows) {
             // If we hit the matching window, save it and break the loop
             if (windows[i].id === id) {
                 window = windows[i];
@@ -152,7 +152,7 @@ export class RapidExchange extends Mod {
 
     // Hide the Minmax selector
     private hideMinMaxSelector(id: string) {
-        let window = this.getWindow(id);
+        const window = this.getWindow(id);
 
         if (!window) {
             return;
@@ -168,7 +168,7 @@ export class RapidExchange extends Mod {
             // For these, fond the MinMax selector in children of the window and call the hide function
             case "tradeWithPlayerAndNPCInventory":
             case "tradeWithPlayer":
-                for (let i in window._childrenList) {
+                for (const i in window._childrenList) {
                     if (window._childrenList[i].rootElement && window._childrenList[i].rootElement.className == "minMaxSelector") {
                         window._childrenList[i].hide();
                     }

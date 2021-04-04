@@ -52,12 +52,12 @@ export class ChangeLogComponent implements OnInit {
     }
 
     private populateVersion(): void {
-        let filteredContent = this.lexedContent.filter((node: any) => {
+        const filteredContent = this.lexedContent.filter((node: any) => {
             return (node.depth == 2 && node.type == "heading");
         });
 
         let nodeVersion: any;
-        let versionArray: Array<string> = [];
+        const versionArray: Array<string> = [];
         for (nodeVersion of filteredContent) {
             if (!nodeVersion.text.startsWith('⚠')) {
                 versionArray.push(nodeVersion.text);
@@ -69,12 +69,12 @@ export class ChangeLogComponent implements OnInit {
 
     private populateList() {
         let version: any;
-        let versionArray: { number: string, date: Date }[] = [];
+        const versionArray: { number: string, date: Date }[] = [];
 
         for (version of this.versions) {
-            let splitedVersion: Array<string> = version.split(" - ");
-            let versionNumber = splitedVersion[0].replace(/^[\[]+|[\]]+$/g, "");
-            let versionDate = new Date(splitedVersion[1]);
+            const splitedVersion: Array<string> = version.split(" - ");
+            const versionNumber = splitedVersion[0].replace(/^[\[]+|[\]]+$/g, "");
+            const versionDate = new Date(splitedVersion[1]);
 
             versionArray.push({ number: versionNumber, date: versionDate });
         }
@@ -85,23 +85,23 @@ export class ChangeLogComponent implements OnInit {
     public selectVersion($event, version: string) {
         this.changeVersion(version);
 
-        let old = document.querySelector(".tab-bar-item.selected");
+        const old = document.querySelector(".tab-bar-item.selected");
         if (old !== undefined) {
             old.classList.remove("selected");
         }
-        let target = $event.target.classList.add("selected");
+        const target = $event.target.classList.add("selected");
     }
 
     private changeVersion(version: string): void {
         let node: any;
         let record: boolean = false;
-        let result: Array<Object> = [];
+        const result: Array<Object> = [];
 
         for (node of this.lexedContent) {
             // Lors de la rencontre du titre recherché, on commence l'enregistrement pour stocker toute les lignes qui suivents
             // On stock au passage la version et la date que l'on va afficher au dessus du contenu.
             if (node["depth"] == 2 && node["type"] == "heading" && node["text"].indexOf(version) >= 0) {
-                let splitedVersion: Array<string> = node["text"].split(" - ");
+                const splitedVersion: Array<string> = node["text"].split(" - ");
                 this.versionNumber = splitedVersion[0].replace(/^[\[]+|[\]]+$/g, "");
                 this.versionDate = new Date(splitedVersion[1]);
 

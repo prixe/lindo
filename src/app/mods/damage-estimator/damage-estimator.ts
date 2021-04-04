@@ -50,7 +50,7 @@ export class DamageEstimator extends Mod {
         this.on(this.wGame.gui, 'spellSlotSelected', (spellId: number) => {
             try {
                 Logger.info('onSpellSelected');
-                let spell = this.wGame.gui.playerData.characters.mainCharacter.spellData.spells[spellId];
+                const spell = this.wGame.gui.playerData.characters.mainCharacter.spellData.spells[spellId];
                 this.damageContainer.display(spell);
             } catch (ex) {
                 Logger.info(ex);

@@ -32,7 +32,7 @@ export class GroupComponent {
 
     onRemoveMemberList(value: any) {
 
-        let index = this.groupMembers.findIndex((element) => {
+        const index = this.groupMembers.findIndex((element) => {
             return element = value;
         });
 

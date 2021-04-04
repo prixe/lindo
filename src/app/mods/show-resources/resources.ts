@@ -21,7 +21,7 @@ export class Resources {
 
     public getIcon(): Array<string> {
         const iconId = iconIdByTypeId[this.typeId];
-        let result: Array<string> = [];
+        const result: Array<string> = [];
 
         if (iconId == undefined) {
             result.push('./assets/ui/icons/fail.png');

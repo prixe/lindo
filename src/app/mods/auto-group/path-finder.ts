@@ -343,7 +343,7 @@ export class PathFinder {
     areCommunicating(c1, c2, oldMovementSystem = false) {
         const sameFloor = c1.floor === c2.floor;
         const sameZone = c1.zone === c2.zone;
-        let ELEVATION_TOLERANCE = 11.825;
+        const ELEVATION_TOLERANCE = 11.825;
         if (sameFloor) return true;
         if (!sameZone) return false;
 

@@ -36,7 +36,7 @@ export class Notifications extends Mod {
 
                 this.eventEmitter.emit('newNotification');
 
-                let mpNotif = new Notification(this.translate.instant('app.notifications.private-message', {character: msg.senderName}), {
+                const mpNotif = new Notification(this.translate.instant('app.notifications.private-message', {character: msg.senderName}), {
                     body: msg.content
                 });
 
@@ -56,7 +56,7 @@ export class Notifications extends Mod {
 
                 this.eventEmitter.emit('newNotification');
 
-                let turnNotif = new Notification(this.translate.instant('app.notifications.fight-turn', {character: this.wGame.gui.playerData.characterBaseInformations.name}));
+                const turnNotif = new Notification(this.translate.instant('app.notifications.fight-turn', {character: this.wGame.gui.playerData.characterBaseInformations.name}));
 
                 turnNotif.onclick = () => {
                     electron.getCurrentWindow().focus();
@@ -77,7 +77,7 @@ export class Notifications extends Mod {
 
             this.eventEmitter.emit('newNotification');
 
-            let kolizeumNotif = new Notification(this.translate.instant('app.notifications.kolizeum'));
+            const kolizeumNotif = new Notification(this.translate.instant('app.notifications.kolizeum'));
 
             kolizeumNotif.onclick = () => {
                 electron.getCurrentWindow().focus();
@@ -91,13 +91,13 @@ export class Notifications extends Mod {
 
             this.eventEmitter.emit('newNotification');
 
-            let guildName = tc.guild.guildName;
-            let x = tc.worldX;
-            let y = tc.worldY;
-            let zoneName = tc.enrichData.subAreaName;
-            let tcName = tc.enrichData.firstName + " " + tc.enrichData.lastName;
+            const guildName = tc.guild.guildName;
+            const x = tc.worldX;
+            const y = tc.worldY;
+            const zoneName = tc.enrichData.subAreaName;
+            const tcName = tc.enrichData.firstName + " " + tc.enrichData.lastName;
 
-            let taxCollectorNotif = new Notification(this.translate.instant('app.notifications.tax-collector'), {
+            const taxCollectorNotif = new Notification(this.translate.instant('app.notifications.tax-collector'), {
                 body: zoneName + ' [' + x + ', ' + y + '] : ' + guildName + ', ' + tcName
             });
 
@@ -114,9 +114,9 @@ export class Notifications extends Mod {
 
             this.eventEmitter.emit('newNotification');
 
-            let fromName: string = e.fromName;
+            const fromName: string = e.fromName;
 
-            let partyInvitationNotif = new Notification(this.translate.instant('app.notifications.party-invitation', {character: e.fromName}));
+            const partyInvitationNotif = new Notification(this.translate.instant('app.notifications.party-invitation', {character: e.fromName}));
 
             partyInvitationNotif.onclick = () => {
                 electron.getCurrentWindow().focus();
@@ -132,7 +132,7 @@ export class Notifications extends Mod {
 
             this.eventEmitter.emit('newNotification');
 
-            let aggressionNotif = new Notification(this.translate.instant('app.notifications.aggression'));
+            const aggressionNotif = new Notification(this.translate.instant('app.notifications.aggression'));
 
             aggressionNotif.onclick = () => {
                 electron.getCurrentWindow().focus();

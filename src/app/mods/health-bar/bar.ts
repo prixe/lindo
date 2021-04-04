@@ -25,7 +25,7 @@ export class Bar {
     }
 
     public update(){
-        let fighter = this.wGame.gui.fightManager.getFighter(this.fighter.id);
+        const fighter = this.wGame.gui.fightManager.getFighter(this.fighter.id);
 
         if (this.wGame.gui.fightManager.isInBattle()) {
 
@@ -34,8 +34,8 @@ export class Bar {
                     this.createBar();
                 }
 
-                let life = fighter.data.stats.lifePoints / fighter.data.stats.maxLifePoints;
-                let shield = fighter.data.stats.shieldPoints / fighter.data.stats.maxLifePoints;
+                const life = fighter.data.stats.lifePoints / fighter.data.stats.maxLifePoints;
+                const shield = fighter.data.stats.shieldPoints / fighter.data.stats.maxLifePoints;
                 this.lifeBar.style.width = Math.round(life * (shield > 0 ? 50 : 100)) + '%';
                 this.shieldBar.style.width = Math.round(shield * 50) + '%';
                 this.lifePointsText.innerHTML = fighter.data.stats.lifePoints + fighter.data.stats.shieldPoints;
@@ -48,16 +48,16 @@ export class Bar {
                 }
 
                 let invisible = false;
-                for (let idB in fighter.buffs) {
+                for (const idB in fighter.buffs) {
                   if (fighter.buffs[idB].effect.effectId == 150) invisible = true;
                 }
 
-                let cellId = fighter.data.disposition.cellId;
+                const cellId = fighter.data.disposition.cellId;
 
                 if (cellId && (!invisible || this.wGame.gui.fightManager.isFighterOnUsersTeam(fighter.id))) {
                     try {
-                        let scenePos = this.wGame.isoEngine.mapRenderer.getCellSceneCoordinate(cellId);
-                        let pos = this.wGame.isoEngine.mapScene.convertSceneToCanvasCoordinate(scenePos.x, scenePos.y);
+                        const scenePos = this.wGame.isoEngine.mapRenderer.getCellSceneCoordinate(cellId);
+                        const pos = this.wGame.isoEngine.mapScene.convertSceneToCanvasCoordinate(scenePos.x, scenePos.y);
                         this.lifeBarContainer.style.left = (pos.x - this.lifeBarContainer.offsetWidth / 2) + 'px';
                         this.lifeBarContainer.style.top = (pos.y) + 'px';
                         this.lifeBarContainer.style.opacity = '';
@@ -86,10 +86,10 @@ export class Bar {
 
     private createBar(){
         /* retrieve data */
-        let life = this.fighter.data.stats.lifePoints / this.fighter.data.stats.maxLifePoints;
-        let cellId = this.fighter.data.disposition.cellId;
-        let scenePos = this.wGame.isoEngine.mapRenderer.getCellSceneCoordinate(cellId);
-        let pos = this.wGame.isoEngine.mapScene.convertSceneToCanvasCoordinate(scenePos.x, scenePos.y);
+        const life = this.fighter.data.stats.lifePoints / this.fighter.data.stats.maxLifePoints;
+        const cellId = this.fighter.data.disposition.cellId;
+        const scenePos = this.wGame.isoEngine.mapRenderer.getCellSceneCoordinate(cellId);
+        const pos = this.wGame.isoEngine.mapScene.convertSceneToCanvasCoordinate(scenePos.x, scenePos.y);
 
         /* lifeBarContainer */
         this.lifeBarContainer = document.createElement('div');

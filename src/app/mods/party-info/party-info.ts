@@ -35,11 +35,11 @@ export class PartyInfo extends Mod {
         if (this.partyInitialized) {
             return;
         }
-        let partyBoxes = this.wGame.document.querySelector(".partyBoxes");
+        const partyBoxes = this.wGame.document.querySelector(".partyBoxes");
         if (!partyBoxes) {
             return;
         }
-        let parent = partyBoxes.parentElement;
+        const parent = partyBoxes.parentElement;
         this.container = this.wGame.document.createElement("div");
         this.container.id = "party-info-container";
         this.container.style = `background: rgba(0, 0, 0, 0.6);
@@ -53,7 +53,7 @@ export class PartyInfo extends Mod {
         box-shadow: 0 2px 10px rgba(0, 0, 0, 1) inset;`;
 
         if (this.info_lvl) {
-            let partyLevelElement = this.wGame.document.createElement("div");
+            const partyLevelElement = this.wGame.document.createElement("div");
 
             partyLevelElement.textContent = this.translate.instant('app.option.vip.party-info.level') + " ?";
             partyLevelElement.id = "party-level";
@@ -62,9 +62,9 @@ export class PartyInfo extends Mod {
         }
 
         if (this.info_pp) {
-            let prospectionContainerElement = this.wGame.document.createElement("div");
-            let prospectionImageElement = this.wGame.document.createElement("img");
-            let prospectionTextElement = this.wGame.document.createElement("span");
+            const prospectionContainerElement = this.wGame.document.createElement("div");
+            const prospectionImageElement = this.wGame.document.createElement("img");
+            const prospectionTextElement = this.wGame.document.createElement("span");
 
             prospectionImageElement.src = "./assets/ui/icons/prospecting.png";
             prospectionImageElement.style = "height: 1em; vertical-align: middle;"

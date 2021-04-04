@@ -19,7 +19,7 @@ export class Estimator {
     public update(spell: any) {
         this.spell = spell;
 
-        let fighter = this.wGame.gui.fightManager.getFighter(this.fighter.id);
+        const fighter = this.wGame.gui.fightManager.getFighter(this.fighter.id);
 
         if (this.wGame.isoEngine.mapRenderer.isFightMode) {
 
@@ -29,16 +29,16 @@ export class Estimator {
                 }
 
                 let invisible = false;
-                for (let idB in fighter.buffs) {
+                for (const idB in fighter.buffs) {
                     if (fighter.buffs[idB].effect.effectId == 150)
                         invisible = true;
                 }
 
-                let cellId = fighter.data.disposition.cellId;
+                const cellId = fighter.data.disposition.cellId;
 
                 if (cellId && !invisible) {
-                    let scenePos = this.wGame.isoEngine.mapRenderer.getCellSceneCoordinate(cellId);
-                    let pos = this.wGame.isoEngine.mapScene.convertSceneToCanvasCoordinate(scenePos.x, scenePos.y);
+                    const scenePos = this.wGame.isoEngine.mapRenderer.getCellSceneCoordinate(cellId);
+                    const pos = this.wGame.isoEngine.mapScene.convertSceneToCanvasCoordinate(scenePos.x, scenePos.y);
                     this.estimatorContainer.style.left = (pos.x - 40) + 'px';
                     this.estimatorContainer.style.top = (pos.y - 80) + 'px';
                 }
@@ -48,9 +48,9 @@ export class Estimator {
 
     private createEstimator() {
         /* retrieve data */
-        let cellId = this.fighter.data.disposition.cellId;
-        let scenePos = this.wGame.isoEngine.mapRenderer.getCellSceneCoordinate(cellId);
-        let pos = this.wGame.isoEngine.mapScene.convertSceneToCanvasCoordinate(scenePos.x, scenePos.y);
+        const cellId = this.fighter.data.disposition.cellId;
+        const scenePos = this.wGame.isoEngine.mapRenderer.getCellSceneCoordinate(cellId);
+        const pos = this.wGame.isoEngine.mapScene.convertSceneToCanvasCoordinate(scenePos.x, scenePos.y);
 
         /* estimatorContainer */
         if(this.wGame.document.getElementById('estimatorContainer' + this.fighter.id)){
@@ -65,10 +65,10 @@ export class Estimator {
         this.estimatorContainer.style.top = (pos.y - 80) + 'px';
         this.estimatorContainer.innerHTML = '';
 
-        let estimations = this.getEstimations(this.spell, this.fighter);
+        const estimations = this.getEstimations(this.spell, this.fighter);
 
         estimations.forEach((estimation)=>{
-            let displayDammage = document.createElement('div');
+            const displayDammage = document.createElement('div');
             displayDammage.innerHTML = `(${estimation.min} - ${estimation.max})`;
 
 
@@ -105,18 +105,18 @@ export class Estimator {
 
     //obtient les estimations de dégats
     private getEstimations(spell: any, fighter: any): Estimation[] {
-        let estimations : Estimation[] = [];
+        const estimations : Estimation[] = [];
 
         //pour chaque effet du sort
-        for (let effectId in spell.spellLevel.effects) {
-            let effect = spell.spellLevel.effects[effectId];
+        for (const effectId in spell.spellLevel.effects) {
+            const effect = spell.spellLevel.effects[effectId];
 
             //si effet direct
             if (effect._type == "EffectInstanceDice") {
-                let element = Estimator.effectIdToElement(effect.effectId);
+                const element = Estimator.effectIdToElement(effect.effectId);
                 if (element != "undefined") {
-                    let min = this.getMinDamageDealed(element, fighter, effect);
-                    let max = this.getMaxDamageDealed(element, fighter, effect);
+                    const min = this.getMinDamageDealed(element, fighter, effect);
+                    const max = this.getMaxDamageDealed(element, fighter, effect);
                     estimations.push({
                         element: element,
                         min: Math.max(0, min),
@@ -265,7 +265,7 @@ export class Estimator {
     }
 
     private getHealingBonus(){
-        let h = this.wGame.gui.playerData.characters.mainCharacter.characteristics.healBonus;
+        const h = this.wGame.gui.playerData.characters.mainCharacter.characteristics.healBonus;
         return Estimator.getFullCharaBonus(h);
     }
 
@@ -289,7 +289,7 @@ export class Estimator {
 
 //puissance
     private getPower() {
-        let d = this.wGame.gui.playerData.characters.mainCharacter.characteristics.damagesBonusPercent;
+        const d = this.wGame.gui.playerData.characters.mainCharacter.characteristics.damagesBonusPercent;
         //dafuq is that: permanentDamagePercent
         //let p = this.wGame.gui.playerData.characters.mainCharacter.characteristics.permanentDamagePercent;
         return Estimator.getFullCharaBonus(d);// + this.getFullCharaBonus(p);
@@ -306,48 +306,48 @@ export class Estimator {
     }
 
     private getAgility() {
-        let a = this.wGame.gui.playerData.characters.mainCharacter.characteristics.agility;
+        const a = this.wGame.gui.playerData.characters.mainCharacter.characteristics.agility;
         return this.getFullCharaBonusElement(a);
     }
 
     private getChance() {
-        let a = this.wGame.gui.playerData.characters.mainCharacter.characteristics.chance;
+        const a = this.wGame.gui.playerData.characters.mainCharacter.characteristics.chance;
         return this.getFullCharaBonusElement(a);
     }
 
     private getIntelligence() {
-        let a = this.wGame.gui.playerData.characters.mainCharacter.characteristics.intelligence;
+        const a = this.wGame.gui.playerData.characters.mainCharacter.characteristics.intelligence;
         return this.getFullCharaBonusElement(a);
     }
 
     private getStrength() {
-        let a = this.wGame.gui.playerData.characters.mainCharacter.characteristics.strength;
+        const a = this.wGame.gui.playerData.characters.mainCharacter.characteristics.strength;
         return this.getFullCharaBonusElement(a);
     }
 
 // ---- dommages élémentaires ---
     private getAirDamage() {
-        let a = this.wGame.gui.playerData.characters.mainCharacter.characteristics.airDamageBonus;
+        const a = this.wGame.gui.playerData.characters.mainCharacter.characteristics.airDamageBonus;
         return Estimator.getFullCharaBonus(a);
     }
 
     private getFireDamage() {
-        let a = this.wGame.gui.playerData.characters.mainCharacter.characteristics.fireDamageBonus;
+        const a = this.wGame.gui.playerData.characters.mainCharacter.characteristics.fireDamageBonus;
         return Estimator.getFullCharaBonus(a);
     }
 
     private getEarthDamage() {
-        let a = this.wGame.gui.playerData.characters.mainCharacter.characteristics.earthDamageBonus;
+        const a = this.wGame.gui.playerData.characters.mainCharacter.characteristics.earthDamageBonus;
         return Estimator.getFullCharaBonus(a);
     }
 
     private getWaterDamage() {
-        let a = this.wGame.gui.playerData.characters.mainCharacter.characteristics.waterDamageBonus;
+        const a = this.wGame.gui.playerData.characters.mainCharacter.characteristics.waterDamageBonus;
         return Estimator.getFullCharaBonus(a);
     }
 
     private getNeutralDamage() {
-        let a = this.wGame.gui.playerData.characters.mainCharacter.characteristics.neutralDamageBonus;
+        const a = this.wGame.gui.playerData.characters.mainCharacter.characteristics.neutralDamageBonus;
         return Estimator.getFullCharaBonus(a);
     }
 
@@ -363,7 +363,7 @@ export class Estimator {
 
 //resistance élémentaire fixe
     private static getResFixElement(element: string, fighter: any) {
-        let stats = fighter.data.stats;
+        const stats = fighter.data.stats;
         let res = 0;
         switch (element) {
             case 'air':
@@ -392,10 +392,10 @@ export class Estimator {
     private getResFixSpell(element: string, fighter: any) {
         let res = 0;
 
-        for (let buff of fighter.buffs) {
+        for (const buff of fighter.buffs) {
             //si reduction de dégats
-            let caster = this.wGame.gui.fightManager.getFighter(buff.source);
-            let lvl = caster.level;
+            const caster = this.wGame.gui.fightManager.getFighter(buff.source);
+            const lvl = caster.level;
             if (buff.effect.effect.characteristic == 16) {
                 switch (buff.castingSpell.spell.id){
                     case 1://armure incandescente
@@ -432,7 +432,7 @@ export class Estimator {
 
 //res en pourcents
     private static getPercentRes(element: string, fighter: any) {
-        let stats = fighter.data.stats;
+        const stats = fighter.data.stats;
         let res = 0;
         switch (element) {
             case 'air':

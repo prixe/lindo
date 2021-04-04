@@ -45,9 +45,9 @@ export class BarContainer {
             this.displayed = true;
             this.container.style.visibility = 'visible';
 
-            let fighters = this.wGame.gui.fightManager.getFighters();
-            for (let index in fighters) {
-                let fighter = this.wGame.gui.fightManager.getFighter(fighters[index]);
+            const fighters = this.wGame.gui.fightManager.getFighters();
+            for (const index in fighters) {
+                const fighter = this.wGame.gui.fightManager.getFighter(fighters[index]);
                 if (fighter.data.alive) {
                     this.bars[fighter.id] = new Bar(fighter, this, this.wGame);
                 }
@@ -62,7 +62,7 @@ export class BarContainer {
         if (this.displayed) {
             this.displayed = false;
             this.container.style.visibility = '';
-            for (let fighterId in this.bars) {
+            for (const fighterId in this.bars) {
                 this.destroyBar(fighterId);
             }
             this.bars = [];
@@ -73,9 +73,9 @@ export class BarContainer {
 
     private update() {
         if (this.isInFight) {
-            let fighters = this.wGame.gui.fightManager.getFighters();
-            for (let index in fighters) {
-                let fighter = this.wGame.gui.fightManager.getFighter(fighters[index]);
+            const fighters = this.wGame.gui.fightManager.getFighters();
+            for (const index in fighters) {
+                const fighter = this.wGame.gui.fightManager.getFighter(fighters[index]);
                 if (fighter.data.alive) {
                     if (this.bars[fighter.id]) this.bars[fighter.id].update();
                     else this.bars[fighter.id] = new Bar(fighter, this, this.wGame);

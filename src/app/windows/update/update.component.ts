@@ -15,7 +15,7 @@ import {RegexPatches} from "@interfaces/update/regex-patches";
 import {ConcurrencyManager} from 'axios-concurrency';
 import {IpcRendererService} from "@services/electron/ipcrenderer.service";
 
-let axiosClient = axios.create();
+const axiosClient = axios.create();
 axiosRetry(axiosClient, {retries: 10, retryDelay: () => 1000});
 
 const MAX_CONCURRENT_REQUESTS = 10;
@@ -190,17 +190,17 @@ export class UpdateComponent implements OnInit, OnDestroy {
 
     private async downloadAssetsFiles() {
 
-        let promises = [];
+        const promises = [];
 
-        for (let i in this.assetMapDifferences) {
+        for (const i in this.assetMapDifferences) {
             if (this.assetMapDifferences[i] == 1) {
 
                 promises.push(new Promise((resolve, reject) => {
 
-                    let url = this.dofusOrigin + this.remoteAssetMap.files[i].filename;
-                    let filePath = this.localGameFolder + this.remoteAssetMap.files[i].filename;
+                    const url = this.dofusOrigin + this.remoteAssetMap.files[i].filename;
+                    const filePath = this.localGameFolder + this.remoteAssetMap.files[i].filename;
 
-                    let directoryPath = path.dirname(filePath);
+                    const directoryPath = path.dirname(filePath);
                     if (!fs.existsSync(directoryPath)) {
                         fs.mkdirSync(directoryPath, {recursive: true});
                     }
@@ -218,14 +218,14 @@ export class UpdateComponent implements OnInit, OnDestroy {
 
     private async downloadKeymaster() {
 
-        let response = await axios({method: "GET", url: this.removeKeymasterPath, adapter: httpAdapter, responseType: "stream"});
+        const response = await axios({method: "GET", url: this.removeKeymasterPath, adapter: httpAdapter, responseType: "stream"});
         await response.data.pipe(fs.createWriteStream(this.localKeymasterPath));
     }
 
     private async chargingMissingLindoAndDofusFiles() {
 
-        let lindoFiles: Files | any = [];
-        for (let i in this.lindoManifestDifferences) {
+        const lindoFiles: Files | any = [];
+        for (const i in this.lindoManifestDifferences) {
             if (this.lindoManifestDifferences[i] == 1) {
                 lindoFiles[i] = await this.downloadJson(this.remoteLindoManifest.files[i].filename);
             }
@@ -236,11 +236,11 @@ export class UpdateComponent implements OnInit, OnDestroy {
 
         /** Redownload forced if regex has changed */
         if (this.lindoManifestDifferences['regex.json'] == 1) {
-            for (let i in this.dofusManifestDifferences) this.dofusManifestDifferences[i] = 1;
+            for (const i in this.dofusManifestDifferences) this.dofusManifestDifferences[i] = 1;
         }
 
-        let dofusFiles: Files | any = [];
-        for (let i in this.dofusManifestDifferences) {
+        const dofusFiles: Files | any = [];
+        for (const i in this.dofusManifestDifferences) {
             if (this.dofusManifestDifferences[i] == 1) {
                 dofusFiles[i] = await this.downloadJson(this.dofusOrigin + this.remoteDofusManifest.files[i].filename);
             }
@@ -263,7 +263,7 @@ export class UpdateComponent implements OnInit, OnDestroy {
 
     private writingMissingLindoAndDofusFiles() {
 
-        for (let filename in this.lindoMissingFiles) {
+        for (const filename in this.lindoMissingFiles) {
 
             let fileContent: string;
             if (typeof this.lindoMissingFiles[filename] == 'object') {
@@ -277,7 +277,7 @@ export class UpdateComponent implements OnInit, OnDestroy {
 
         /** ---------------------------------------------------- */
 
-        for (let filename in this.dofusMissingFiles) {
+        for (const filename in this.dofusMissingFiles) {
 
             let fileContent: string;
             if (typeof this.dofusMissingFiles[filename] == 'object') {
@@ -292,17 +292,17 @@ export class UpdateComponent implements OnInit, OnDestroy {
 
     private removeOlderAssetsAndDofusFiles() {
 
-        for (let i in this.assetMapDifferences) {
+        for (const i in this.assetMapDifferences) {
             if (this.assetMapDifferences[i] == -1) {
 
-                let filePath = this.localGameFolder + this.remoteAssetMap.files[i].filename;
-                let directoryPath = path.dirname(filePath);
+                const filePath = this.localGameFolder + this.remoteAssetMap.files[i].filename;
+                const directoryPath = path.dirname(filePath);
 
                 if (fs.existsSync(filePath)) {
 
                     fs.unlinkSync(filePath);
 
-                    let directory = fs.readdirSync(directoryPath);
+                    const directory = fs.readdirSync(directoryPath);
                     if (directory.length === 0) fs.rmdirSync(directoryPath);
                 }
             }
@@ -310,17 +310,17 @@ export class UpdateComponent implements OnInit, OnDestroy {
 
         /** ---------------------------------------------------- */
 
-        for (let i in this.lindoManifestDifferences) {
+        for (const i in this.lindoManifestDifferences) {
             if (this.lindoManifestDifferences[i] == -1) {
 
-                let filePath = this.localGameFolder + this.remoteDofusManifest.files[i].filename;
-                let directoryPath = path.dirname(filePath);
+                const filePath = this.localGameFolder + this.remoteDofusManifest.files[i].filename;
+                const directoryPath = path.dirname(filePath);
 
                 if (fs.existsSync(filePath)) {
 
                     fs.unlinkSync(filePath);
 
-                    let directory = fs.readdirSync(directoryPath);
+                    const directory = fs.readdirSync(directoryPath);
                     if (directory.length === 0) fs.rmdirSync(directoryPath);
                 }
             }
@@ -343,10 +343,10 @@ export class UpdateComponent implements OnInit, OnDestroy {
 
     private static differences(manifestA: Manifest, manifestB: Manifest): Differences {
 
-        let differences = {};
+        const differences = {};
 
         if (manifestB && manifestB.files) {
-            for (let i in manifestB.files) {
+            for (const i in manifestB.files) {
                 if (!manifestA || !manifestA.files || !manifestA.files[i] || manifestA.files[i].version != manifestB.files[i].version) {
                     differences[i] = 1;
                 } else {
@@ -356,7 +356,7 @@ export class UpdateComponent implements OnInit, OnDestroy {
         }
 
         if (manifestA && manifestA.files) {
-            for (let i in manifestA.files) {
+            for (const i in manifestA.files) {
                 if (!manifestB || !manifestB.files || !manifestB.files[i]) {
                     differences[i] = -1;
                 }
@@ -376,7 +376,7 @@ export class UpdateComponent implements OnInit, OnDestroy {
             regex = this.localRegex;
         }
 
-        for (let filename in regex) {
+        for (const filename in regex) {
 
             if (this.dofusMissingFiles[filename]) {
 
@@ -386,7 +386,7 @@ export class UpdateComponent implements OnInit, OnDestroy {
                     this.dofusMissingFiles[filename] = BeautifyCss(this.dofusMissingFiles[filename]);
                 }
 
-                for (let i in regex[filename]) {
+                for (const i in regex[filename]) {
                     this.dofusMissingFiles[filename] = (this.dofusMissingFiles[filename] as string).replace(new RegExp(regex[filename][i][0], 'g'), regex[filename][i][1]);
                 }
             }

@@ -17,16 +17,16 @@ export class ShortcutsComponent implements AfterViewInit {
     }
 
     public ngAfterViewInit(): void {
-        this.router.navigate(["/shortcuts/application"]);
+        void this.router.navigate(["/shortcuts/application"]);
     }
 
     public selectRoute($event: any, route: string): void {
 
-        let old = document.querySelector(".tab-bar-item.selected");
+        const old = document.querySelector(".tab-bar-item.selected");
         if (old !== null) {
             old.classList.remove("selected");
         }
-        let target = $event.target.classList.add("selected");
+        const target = $event.target.classList.add("selected");
 
         this.navigateTo(route);
     }

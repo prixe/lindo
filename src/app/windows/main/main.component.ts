@@ -45,7 +45,7 @@ export class MainComponent implements OnInit {
         });
 
         // On renvoie les ouvertures d'url vers le navigateur du pc
-        let window = electron.getCurrentWindow();
+        const window = electron.getCurrentWindow();
         window.webContents.on('new-window', ($event: any, url: string) => {
             $event.preventDefault();
             electron.openExternal(url);

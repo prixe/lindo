@@ -9,7 +9,7 @@ export class HideMount extends Mod
         this.params = this.settings.option.vip.general.hidden_mount;
         if (this.params) {
             Logger.info('- enable Hide-Mount');
-            let hideMount = () => {
+            const hideMount = () => {
                 try {
                     let actionNeeded = false;
                     // Main character
@@ -20,7 +20,7 @@ export class HideMount extends Mod
                         }
                     }
                     // Other characters
-                    for (let key in this.wGame.actorManager.actors) {
+                    for (const key in this.wGame.actorManager.actors) {
                         if (+key > 0) {
                             if (this.wGame.actorManager.actors[key].look.subentities != null) {
                                 actionNeeded = true;

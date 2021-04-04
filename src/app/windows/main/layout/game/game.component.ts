@@ -46,7 +46,7 @@ export class GameComponent implements AfterViewInit {
         if (this.gameLoaded) {
             this.game.window.initDofus(() => {
                 /* Hide the game loading overlay */
-                let loading = document.getElementById("LoadingGame_" + this.game.id);
+                const loading = document.getElementById("LoadingGame_" + this.game.id);
 
                 if (loading) {
                     loading.style.opacity = '0';
@@ -78,7 +78,7 @@ export class GameComponent implements AfterViewInit {
     }
 
     public removeMods(): void {
-        for (let i in this.mods) {
+        for (const i in this.mods) {
             this.mods[i].reset();
         }
     }
@@ -91,14 +91,14 @@ export class GameComponent implements AfterViewInit {
     }
 
     public setMods(): void {
-        for (let mod in Mods) {
+        for (const mod in Mods) {
             switch (mod) {
                 case 'AutoGroup':
-                    let autogroup = new Mods[mod](this.game.window, this.settingsService, this.translateService, this.ipcRendererService);
+                    const autogroup = new Mods[mod](this.game.window, this.settingsService, this.translateService, this.ipcRendererService);
                     this.mods.push(autogroup)
                     break;
                 case 'Notifications':
-                    let notifications = new Mods[mod](this.game.window, this.settingsService, this.translateService);
+                    const notifications = new Mods[mod](this.game.window, this.settingsService, this.translateService);
                     notifications.eventEmitter.on('newNotification', () => {
                         this.zone.run(() => {
                             this.game.emit('notification');
@@ -130,14 +130,14 @@ export class GameComponent implements AfterViewInit {
             //}
         };
 
-        let onCharacterSelectedSuccess = () => {
+        const onCharacterSelectedSuccess = () => {
             // retrieve character name and update zone.js
             this.zone.run(() => {
                 this.game.emit('character', this.game.window.gui.playerData.characterBaseInformations.name);
                 this.game.emit('logged', true);
 
                 /* create icon */
-                let char = new this.game.window.CharacterDisplay({scale: 'fitin'});
+                const char = new this.game.window.CharacterDisplay({scale: 'fitin'});
                 char.setLook(this.game.window.gui.playerData.characterBaseInformations.entityLook, {
                     riderOnly: true,
                     direction: 4,
@@ -155,7 +155,7 @@ export class GameComponent implements AfterViewInit {
             this.checkMaxZoom();
         };
 
-        let onDisconnect = () => {
+        const onDisconnect = () => {
             this.zone.run(() => {
                 this.game.emit('character', null);
                 this.game.emit('logged', false);
@@ -170,8 +170,8 @@ export class GameComponent implements AfterViewInit {
 
         this.game.window.onerror = (messageOrEvent, source, line, column, error) => {
             try {
-                let anonymousIdentity = this.getAnonymousIdentity();
-                let stack = error.stack.replace(/(\S+)(\/lindo\/)/g, '$2'); // Remove the full path to avoid sending OS account name
+                const anonymousIdentity = this.getAnonymousIdentity();
+                const stack = error.stack.replace(/(\S+)(\/lindo\/)/g, '$2'); // Remove the full path to avoid sending OS account name
 
                 this.bugReportService.writeLog(anonymousIdentity, stack);
             } catch (e) {
@@ -179,9 +179,9 @@ export class GameComponent implements AfterViewInit {
             }
         };
 
-        let consoleError = this.game.window.console.error;
+        const consoleError = this.game.window.console.error;
         this.game.window.console.error = function () {
-            let anonymousIdentity = this.getAnonymousIdentity();
+            const anonymousIdentity = this.getAnonymousIdentity();
             let report = "";
             for (let i = 0; i < arguments.length; i++) {
                 report += JSON.stringify(arguments[i]) + "\n";
@@ -193,11 +193,11 @@ export class GameComponent implements AfterViewInit {
     }
 
     private getAnonymousIdentity(): string {
-        let identification = this.game.window.gui.playerData.identification;
+        const identification = this.game.window.gui.playerData.identification;
         let sum = 'disconnected';
         if (identification.accountId && identification.nickname) {
-            let accountId = identification.accountId;
-            let nicknameSum = identification.nickname
+            const accountId = identification.accountId;
+            const nicknameSum = identification.nickname
                 .split('')
                 .map((char) => {
                     return char.charCodeAt()
@@ -223,7 +223,7 @@ export class GameComponent implements AfterViewInit {
     private connectAccount() {
         setTimeout(() => {
             this.selected.emit(this.game);
-            let credentials = this.game.credentials;
+            const credentials = this.game.credentials;
             delete (this.game.credentials);
             this.game.window.gui.loginScreen._connectMethod = "lastCharacter";
             this.game.window.gui.loginScreen._login(credentials.account_name, credentials.password, false);

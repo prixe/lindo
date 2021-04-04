@@ -129,7 +129,7 @@ export class Shortcuts extends Mod {
             } else {
                 let winClosed = 0;
                 for (let i = this.wGame.gui.windowsContainer._childrenList.length - 1; i >= 0; i--) {
-                    let win = this.wGame.gui.windowsContainer._childrenList[i];
+                    const win = this.wGame.gui.windowsContainer._childrenList[i];
                     if (win.isVisible() && win.id !== "recaptcha") {
                         win.close();
                         winClosed++;

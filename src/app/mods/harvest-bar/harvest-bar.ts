@@ -26,8 +26,8 @@ export class HarvestBar {
     private createBar() {
         this.createContainer();
 
-        let scenePos = this.wGame.isoEngine.mapRenderer.getCellSceneCoordinate(this.cellId);
-        let pos = this.wGame.isoEngine.mapScene.convertSceneToCanvasCoordinate(scenePos.x, scenePos.y);
+        const scenePos = this.wGame.isoEngine.mapRenderer.getCellSceneCoordinate(this.cellId);
+        const pos = this.wGame.isoEngine.mapScene.convertSceneToCanvasCoordinate(scenePos.x, scenePos.y);
 
         /* harvestBar */
         this.harvestBar = document.createElement('div');
@@ -62,7 +62,7 @@ export class HarvestBar {
 
     private update() {
         /* Harvest Bar */
-        let time: number = this.remainingTime / this.duration * 100;
+        const time: number = this.remainingTime / this.duration * 100;
         this.harvestBar.style.width = (time > 0 ? time : '0') + '%';
 
         /* Harvest Text */

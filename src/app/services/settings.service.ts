@@ -23,7 +23,7 @@ export class SettingsService {
 
         this.settingsProvider = new SettingsProviderIpc(ipcRendererService);
 
-        let init = () => {
+        const init = () => {
             this.option = new ModelOption(this.settingsProvider);
 
             this._appVersion = this.settingsProvider.read('appVersion');

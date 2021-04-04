@@ -11,7 +11,7 @@ export class HideShop extends Mod {
 
         // That function shows or hides the shop button
         // depending on the variable "hidden_shop"
-        let toggle = () => {
+        const toggle = () => {
             if (this.hidden_shop)
                 this.wGame.gui.shopFloatingToolbar.hide();
             else

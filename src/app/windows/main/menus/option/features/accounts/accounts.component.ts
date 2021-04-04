@@ -30,7 +30,7 @@ export class AccountsComponent {
 
     public setMasterPassword() {
 
-        let self = this;
+        const self = this;
 
         self.promptService.custom({
 
@@ -87,8 +87,8 @@ export class AccountsComponent {
 
                 return new Promise((resolve, reject) => {
 
-                    let oldPassword = (<HTMLInputElement>document.getElementById("input-old-password")).value;
-                    let newPassword = (<HTMLInputElement>document.getElementById("input-new-password")).value;
+                    const oldPassword = (<HTMLInputElement>document.getElementById("input-old-password")).value;
+                    const newPassword = (<HTMLInputElement>document.getElementById("input-new-password")).value;
 
                     if (newPassword.length < 8) {
                         Swal.hideLoading();
@@ -102,11 +102,11 @@ export class AccountsComponent {
 
                     // For every window and accounts in settings,
                     // Re-encrypt account names and password with the new master password
-                    let windows = this.settingsService.option.vip.multiaccount.windows;
-                    for (let i in windows) {
-                        for (let j in windows[i]) {
-                            let account_name = this.crypt.decrypt(windows[i][j].account_name_encrypted, oldPassword);
-                            let password = this.crypt.decrypt(windows[i][j].password_encrypted, oldPassword);
+                    const windows = this.settingsService.option.vip.multiaccount.windows;
+                    for (const i in windows) {
+                        for (const j in windows[i]) {
+                            const account_name = this.crypt.decrypt(windows[i][j].account_name_encrypted, oldPassword);
+                            const password = this.crypt.decrypt(windows[i][j].password_encrypted, oldPassword);
 
                             windows[i][j] = {
                                 account_name_encrypted: this.crypt.encrypt(account_name, newPassword),
@@ -168,7 +168,7 @@ export class AccountsComponent {
 
     public addAccount(windowIndex: number) {
 
-        let windows = this.settingsService.option.vip.multiaccount.windows;
+        const windows = this.settingsService.option.vip.multiaccount.windows;
 
         this.promptService.custom({
 
@@ -187,8 +187,8 @@ export class AccountsComponent {
 
                 return new Promise((resolve, reject) => {
 
-                    let accountLogin = (<HTMLInputElement>document.getElementById("input-account-login")).value;
-                    let accountPassword = (<HTMLInputElement>document.getElementById("input-account-password")).value;
+                    const accountLogin = (<HTMLInputElement>document.getElementById("input-account-login")).value;
+                    const accountPassword = (<HTMLInputElement>document.getElementById("input-account-password")).value;
 
                     if (accountLogin == "") {
                         Swal.hideLoading();
@@ -217,7 +217,7 @@ export class AccountsComponent {
     // Delete the account from settings
     public deleteAccount(windowIndex: number, accountIndex: number) {
 
-        let windows = this.settingsService.option.vip.multiaccount.windows;
+        const windows = this.settingsService.option.vip.multiaccount.windows;
 
         windows[windowIndex].splice(accountIndex, 1);
 
@@ -227,8 +227,8 @@ export class AccountsComponent {
     // Modify an account
     public modifyAccount(windowIndex: number, accountIndex: number, account_name_encrypted: string) {
 
-        let login = this.crypt.decrypt(account_name_encrypted, this.applicationService.masterpassword);
-        let windows = this.settingsService.option.vip.multiaccount.windows;
+        const login = this.crypt.decrypt(account_name_encrypted, this.applicationService.masterpassword);
+        const windows = this.settingsService.option.vip.multiaccount.windows;
 
         this.promptService.custom({
 
@@ -247,8 +247,8 @@ export class AccountsComponent {
 
                 return new Promise((resolve, reject) => {
 
-                    let accountLogin = (<HTMLInputElement>document.getElementById("input-account-login")).value;
-                    let accountPassword = (<HTMLInputElement>document.getElementById("input-account-password")).value;
+                    const accountLogin = (<HTMLInputElement>document.getElementById("input-account-login")).value;
+                    const accountPassword = (<HTMLInputElement>document.getElementById("input-account-password")).value;
 
                     if (accountLogin == "") {
                         Swal.hideLoading();
@@ -295,7 +295,7 @@ export class AccountsComponent {
 
     public deleteWindow(windowIndex: number) {
 
-        let windows = this.settingsService.option.vip.multiaccount.windows;
+        const windows = this.settingsService.option.vip.multiaccount.windows;
 
         windows.splice(windowIndex, 1);
 

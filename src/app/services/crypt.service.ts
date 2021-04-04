@@ -6,7 +6,7 @@ const crypto = cryptoLib;
 @Injectable()
 export class CryptService {
     public encrypt(text: string, password: string) {
-        let cipher = crypto.createCipher(algorithm, password, null);
+        const cipher = crypto.createCipher(algorithm, password, null);
         let crypted = cipher.update(text, 'utf8', 'hex');
         crypted += cipher.final('hex');
 
@@ -14,7 +14,7 @@ export class CryptService {
     }
 
     public decrypt(text: string, password: string) {
-        let decipher = crypto.createDecipher(algorithm, password, null);
+        const decipher = crypto.createDecipher(algorithm, password, null);
         let dec = decipher.update(text, 'hex', 'utf8');
 
         dec += decipher.final('utf8');

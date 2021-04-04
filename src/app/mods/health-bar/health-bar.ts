@@ -14,7 +14,7 @@ export class HealthBar extends Mod {
 
             Logger.info('- enable Health-Bar');
 
-            let healthbarCss = document.createElement('style');
+            const healthbarCss = document.createElement('style');
             healthbarCss.id = 'healthbarCss';
             healthbarCss.innerHTML = `
             .lifeBarsContainer {
@@ -145,7 +145,7 @@ export class HealthBar extends Mod {
         if (this.params.health_bar) {
             if (this.shortcutsHelper) this.shortcutsHelper.unBindAll();
             if (this.barContainer) this.barContainer.destroy();
-            let healthbarCss = this.wGame.document.getElementById('healthbarCss');
+            const healthbarCss = this.wGame.document.getElementById('healthbarCss');
             if (healthbarCss && healthbarCss.parentElement) healthbarCss.parentElement.removeChild(healthbarCss);
         }
     }

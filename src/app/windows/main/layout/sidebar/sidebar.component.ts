@@ -65,8 +65,8 @@ export class SidebarComponent implements OnInit {
 
         this.ipcRendererService.on('previous-tab', (event: Event) => {
 
-            let currentTab = this.tabService.active;
-            let currentTabIndex = this.tabService.tabs.findIndex((element) => {
+            const currentTab = this.tabService.active;
+            const currentTabIndex = this.tabService.tabs.findIndex((element) => {
                 return element.id == currentTab.id;
             });
 
@@ -81,8 +81,8 @@ export class SidebarComponent implements OnInit {
 
         this.ipcRendererService.on('next-tab', (event: Event) => {
 
-            let currentTab = this.tabService.active;
-            let currentTabIndex = this.tabService.tabs.findIndex((element) => {
+            const currentTab = this.tabService.active;
+            const currentTabIndex = this.tabService.tabs.findIndex((element) => {
                 return element.id == currentTab.id;
             });
 

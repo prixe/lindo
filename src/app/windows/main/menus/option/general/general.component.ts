@@ -69,9 +69,9 @@ export class GeneralComponent implements OnInit {
 
     public setResolution($event: any): void {
 
-        let aValue = $event.value.split(';');
+        const aValue = $event.value.split(';');
 
-        let resolution = {
+        const resolution = {
             x: parseInt(aValue[0]),
             y: parseInt(aValue[1])
         };
@@ -93,8 +93,8 @@ export class GeneralComponent implements OnInit {
 
                 } else if (result.isDenied) {
 
-                    let oldX = this.settingsService.option.general.resolution.x;
-                    let oldY = this.settingsService.option.general.resolution.y;
+                    const oldX = this.settingsService.option.general.resolution.x;
+                    const oldY = this.settingsService.option.general.resolution.y;
                     this._resolution = oldX + ';' + oldY;
 
                     electron.getCurrentWindow().setSize(parseInt(this.settingsService.option.general.resolution.x), parseInt(this.settingsService.option.general.resolution.y), true);

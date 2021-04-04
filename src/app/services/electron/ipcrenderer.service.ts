@@ -12,7 +12,7 @@ export class IpcRendererService {
     ) {}
 
 	public on(channel:string, callback: any) {
-    let ipcListener = (event: Event, args:any)=>{
+    const ipcListener = (event: Event, args:any)=>{
       // prevent that change is effectiv for zone.js because ipc run not under controll of zone.js
       this.zone.run(() => {
           callback(event, args);

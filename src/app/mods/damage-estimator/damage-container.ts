@@ -34,9 +34,9 @@ export class DamageContainer {
         this.displayed = true;
         this.container.style.visibility = 'visible';
 
-        let fighters = this.wGame.gui.fightManager.getFighters();
-        for (let index in fighters) {
-            let fighter = this.wGame.gui.fightManager.getFighter(fighters[index]);
+        const fighters = this.wGame.gui.fightManager.getFighters();
+        for (const index in fighters) {
+            const fighter = this.wGame.gui.fightManager.getFighter(fighters[index]);
             if (fighter.data.alive && fighter.id !== this.wGame.gui.playerData.characters.mainCharacterId) {
                 this.estimators[fighter.id] = new Estimator(fighter, spell, this.wGame);
             }
@@ -51,7 +51,7 @@ export class DamageContainer {
         if (this.displayed) {
             this.displayed = false;
             this.container.style.visibility = 'hidden';
-            for (let fighterId in this.estimators) {
+            for (const fighterId in this.estimators) {
                 this.destroyEstimator(fighterId);
             }
             this.estimators = [];
@@ -62,9 +62,9 @@ export class DamageContainer {
 
     private update(spell:any) {
         if (this.isInFight) {
-            let fighters = this.wGame.gui.fightManager.getFighters();
-            for (let index in fighters) {
-                let fighter = this.wGame.gui.fightManager.getFighter(fighters[index]);
+            const fighters = this.wGame.gui.fightManager.getFighters();
+            for (const index in fighters) {
+                const fighter = this.wGame.gui.fightManager.getFighter(fighters[index]);
                 if (fighter.data.alive && fighter.id !== this.wGame.gui.playerData.characters.mainCharacterId) {
                     if (this.estimators[fighter.id])
                         this.estimators[fighter.id].update(spell);

@@ -65,7 +65,7 @@ export class AutoGroup extends Mod {
                 if (this.params.leader == this.wGame.gui.playerData.characterBaseInformations.name && this.params.members) {
                     Logger.info('start master party');
 
-                    let idInt = setInterval(() => {
+                    const idInt = setInterval(() => {
                         this.masterParty(this.params.members.split(';'));
                     }, this.getRandomTime(5, 7));
 
@@ -103,13 +103,13 @@ export class AutoGroup extends Mod {
     }
 
     public getPartyMembers(): Array<string> {
-        let party = [];
+        const party = [];
         //si dans un groupe
         if (Object.keys(this.wGame.gui.playerData.partyData._partyFromId).length !== 0) {
             //recup des membres du grp
-            let partyMembers = this.wGame.gui.playerData.partyData._partyFromId[Object.keys(this.wGame.gui.playerData.partyData._partyFromId)[0]]._members;
+            const partyMembers = this.wGame.gui.playerData.partyData._partyFromId[Object.keys(this.wGame.gui.playerData.partyData._partyFromId)[0]]._members;
             //mise en forme
-            for (let player in partyMembers) {
+            for (const player in partyMembers) {
                 party.push(partyMembers[player].name);
             }
         }
@@ -118,7 +118,7 @@ export class AutoGroup extends Mod {
     }
 
     private masterParty(nameList: Array<string>) {
-        let partyMembers = this.getPartyMembers();
+        const partyMembers = this.getPartyMembers();
         nameList.forEach((name) => {
             if (!partyMembers.includes(name)) {
                 this.wGame.dofus.sendMessage('BasicWhoIsRequestMessage', {
@@ -176,15 +176,15 @@ export class AutoGroup extends Mod {
     }
 
     private onMapChange(callback: any, fail: any = null): void {
-        let previousMap = this.wGame.isoEngine.mapRenderer.mapId;
-        let changeTimeout = setTimeout(() => {
+        const previousMap = this.wGame.isoEngine.mapRenderer.mapId;
+        const changeTimeout = setTimeout(() => {
             if (fail) fail('Map change timeout');
         }, 15000);
-        let onChange = (e: any) => {
+        const onChange = (e: any) => {
             this.wGame.dofus.connectionManager.removeListener("MapComplementaryInformationsWithCoordsMessage", onChange);
             this.wGame.dofus.connectionManager.removeListener("MapComplementaryInformationsDataMessage", onChange);
             clearTimeout(changeTimeout);
-            let changeMapRetry = () => {
+            const changeMapRetry = () => {
                 if (this.wGame.isoEngine.actorManager.getActor(this.wGame.isoEngine.actorManager.userId).moving || previousMap == this.wGame.isoEngine.mapRenderer.mapId) {
                     setTimeout(changeMapRetry, 300);
                 } else {
@@ -195,11 +195,11 @@ export class AutoGroup extends Mod {
         };
         this.once(this.wGame.dofus.connectionManager, "MapComplementaryInformationsWithCoordsMessage", onChange);
         this.once(this.wGame.dofus.connectionManager, "MapComplementaryInformationsDataMessage", onChange);
-    };
+    }
 
     private isPartyLeader(): boolean {
         if (Object.keys(this.wGame.gui.playerData.partyData._partyFromId).length !== 0) {
-            let party = this.wGame.gui.playerData.partyData._partyFromId[Object.keys(this.wGame.gui.playerData.partyData._partyFromId)[0]];
+            const party = this.wGame.gui.playerData.partyData._partyFromId[Object.keys(this.wGame.gui.playerData.partyData._partyFromId)[0]];
             if (party._leaderId === this.wGame.gui.playerData.id) {
                 return true;
             }
@@ -260,8 +260,8 @@ export class AutoGroup extends Mod {
     }
 
     private moveToRandomCellOnMap(): void {
-        let width = this.wGame.isoEngine.mapRenderer.grid.grid.length;
-        let height = this.wGame.isoEngine.mapRenderer.grid.grid[0].length;
+        const width = this.wGame.isoEngine.mapRenderer.grid.grid.length;
+        const height = this.wGame.isoEngine.mapRenderer.grid.grid[0].length;
         let x = null;
         let y = null;
         let flags = null;
@@ -288,9 +288,9 @@ export class AutoGroup extends Mod {
     }
 
     private didLeaderChange(): boolean {
-        let hasChanged = false;
+        const hasChanged = false;
         if (Object.keys(this.wGame.gui.playerData.partyData._partyFromId).length !== 0) {
-            let party = this.wGame.gui.playerData.partyData._partyFromId[Object.keys(this.wGame.gui.playerData.partyData._partyFromId)[0]];
+            const party = this.wGame.gui.playerData.partyData._partyFromId[Object.keys(this.wGame.gui.playerData.partyData._partyFromId)[0]];
             if (party._leaderId !== this.leaderId) {
                 this.leaderId = party._leaderId;
                 return true;
@@ -313,7 +313,7 @@ export class AutoGroup extends Mod {
         }
         const canMoveDiagonally = this.wGame.isoEngine.actorManager.userActor.canMoveDiagonally;
 
-        let tableau = []
+        const tableau = []
 
         for (let i = 0; i < cells.length; i++) {
             const cellId = cells[i];
@@ -336,8 +336,8 @@ export class AutoGroup extends Mod {
             return null
         }
         tableau.sort(function(a,b) {
-            let aa = a[0].length
-            let bb = b[0].length
+            const aa = a[0].length
+            const bb = b[0].length
             return(aa-bb)
         })
         if(tableau.length>5){
@@ -352,7 +352,7 @@ export class AutoGroup extends Mod {
         if (followInstruction.mapId == this.wGame.isoEngine.mapRenderer.mapId && this.wGame.gui.fightManager.fightState < 0) {
             if ('map' == followInstruction.type) {
                 let cell = followInstruction.cellId;
-                let dir = AutoGroup.isBorder(followInstruction.cellId);
+                const dir = AutoGroup.isBorder(followInstruction.cellId);
                 if (!this.params.strict_move) {
                     let cells = null;
                     switch(dir) {
@@ -376,25 +376,25 @@ export class AutoGroup extends Mod {
                     cell = this.getClosestCellToChangeMapRandomised(cells, followInstruction.cellId,dir);
                     //cell = this.pickNeighbourBorderCell(cells, followInstruction.cellId);
                 }
-                let move = () => {
-                    let scenePos = this.wGame.isoEngine.mapRenderer.getCellSceneCoordinate(cell);
-                    let pos = this.wGame.isoEngine.mapScene.convertSceneToCanvasCoordinate(scenePos.x, scenePos.y);
+                const move = () => {
+                    const scenePos = this.wGame.isoEngine.mapRenderer.getCellSceneCoordinate(cell);
+                    const pos = this.wGame.isoEngine.mapScene.convertSceneToCanvasCoordinate(scenePos.x, scenePos.y);
                     this.wGame.isoEngine.gotoNeighbourMap(dir, cell, Math.floor(pos.x), Math.floor(pos.y));
                 };
                 this.onMapChange(success, fail);
                 if (this.wGame.isoEngine.actorManager.userActor.moving) this.wGame.isoEngine.actorManager.userActor.cancelMovement(move);
                 else move();
             } else if ('cell' == followInstruction.type || 'sun' == followInstruction.type) {
-                let cell = (!this.params.strict_move && followInstruction.type != 'sun') ? this.pickNeighbourCell(followInstruction.cellId) : followInstruction.cellId;
+                const cell = (!this.params.strict_move && followInstruction.type != 'sun') ? this.pickNeighbourCell(followInstruction.cellId) : followInstruction.cellId;
                 let moveSuccess = false;
-                let checkMovement = () => {
+                const checkMovement = () => {
                     if (this.wGame.isoEngine.actorManager.userActor.moving) {
                         setTimeout(checkMovement, 1000);
                     }
                     else if (!moveSuccess) fail('Move to cell timeout');
                 };
                 setTimeout(checkMovement, 3000);
-                let move = () => {
+                const move = () => {
                     this.wGame.isoEngine._movePlayerOnMap(cell, false, () => {
                         moveSuccess = true;
                         if (followInstruction.type == 'sun') {
@@ -407,7 +407,7 @@ export class AutoGroup extends Mod {
                 else move();
             } else if ('interactive' == followInstruction.type) {
                 let moveSuccess = false;
-                let checkMovement = () => {
+                const checkMovement = () => {
                     if (this.wGame.isoEngine.actorManager.userActor.moving) {
                         setTimeout(checkMovement, 1000);
                     }
@@ -453,9 +453,9 @@ export class AutoGroup extends Mod {
 
     private pickNeighbourCell(cellId: number): number {
         let pickedCell = null;
-        let steps = [-15, -1, 13, 28, 14, 1, -14, -28];
+        const steps = [-15, -1, 13, 28, 14, 1, -14, -28];
         let step = null;
-        let occupiedCells = this.getMonsterGroupBossCells();
+        const occupiedCells = this.getMonsterGroupBossCells();
         do {
             if (pickedCell && step) steps.splice(steps.indexOf(step), 1);
             step = (steps.length > 0) ? steps[AutoGroup.getRandomInt(0, steps.length - 1)] : null;
@@ -465,10 +465,10 @@ export class AutoGroup extends Mod {
     }
 
     private pickNeighbourBorderCell(cells: any, cellId: number): number {
-        let ind = cells.indexOf(cellId);
-        let occupiedCells = this.getMonsterGroupBossCells();
+        const ind = cells.indexOf(cellId);
+        const occupiedCells = this.getMonsterGroupBossCells();
         if (ind) {
-            let slice = cells.slice(Math.max(0, ind - 4), Math.min(ind + 5, cells.length));
+            const slice = cells.slice(Math.max(0, ind - 4), Math.min(ind + 5, cells.length));
             let pickedCell = null;
             do {
                 if (pickedCell) slice.splice(slice.indexOf(pickedCell), 1);
@@ -505,8 +505,8 @@ export class AutoGroup extends Mod {
 
     private pushCellPath(msg: any): void {
         if (this.isPartyLeader() && msg.actorId == this.wGame.gui.playerData.id) {
-            let destinationCellId = msg.keyMovements[msg.keyMovements.length - 1];
-            let direction = AutoGroup.isBorder(destinationCellId);
+            const destinationCellId = msg.keyMovements[msg.keyMovements.length - 1];
+            const direction = AutoGroup.isBorder(destinationCellId);
             if (!direction) {
                 this.addToPath({
                     type: 'cell',
@@ -519,11 +519,11 @@ export class AutoGroup extends Mod {
 
     private pushInteractivePath(msg: any): void {
         if (this.isPartyLeader() && msg.entityId == this.wGame.gui.playerData.id) {
-            let interactive = this.wGame.isoEngine.mapRenderer.interactiveElements[msg.elemId];
-            let skillId = msg.skillId;
+            const interactive = this.wGame.isoEngine.mapRenderer.interactiveElements[msg.elemId];
+            const skillId = msg.skillId;
             if (skillId == 184) {
                 let skillInstanceUid: any = null;
-                for (let id in interactive.enabledSkills) {
+                for (const id in interactive.enabledSkills) {
                     if (interactive.enabledSkills[id].skillId == skillId) {
                         skillInstanceUid = interactive.enabledSkills[id].skillInstanceUid;
                         break;
@@ -557,9 +557,9 @@ export class AutoGroup extends Mod {
     }
 
     private getMonsterGroupBossCells(): any {
-        let cells = [];
-        let actors = this.wGame.isoEngine.actorManager.getIndexedVisibleActors();
-        for (let id in actors) {
+        const cells = [];
+        const actors = this.wGame.isoEngine.actorManager.getIndexedVisibleActors();
+        for (const id in actors) {
             if (actors[id].data.type == "GameRolePlayGroupMonsterInformations" && actors[id].groupBoss == null) {
                 cells.push(actors[id].cellId);
             }
@@ -568,7 +568,7 @@ export class AutoGroup extends Mod {
     }
 
     public followLeader(skipLogin: boolean = false): void {
-        let onCharacterSelectedSuccess = () => {
+        const onCharacterSelectedSuccess = () => {
             try {
                 this.turnIdle();
                 this.on(this.ipcRendererService, 'auto-group-push-path', (event: Event, followInstruction: any) => {
@@ -582,23 +582,23 @@ export class AutoGroup extends Mod {
                     }
                 });
 
-                let onGameMapMovementMessage = (msg: any) => {
+                const onGameMapMovementMessage = (msg: any) => {
                     this.pushCellPath(msg);
                 };
 
-                let onInteractiveUsedMessage = (msg: any) => {
+                const onInteractiveUsedMessage = (msg: any) => {
                     this.pushInteractivePath(msg);
                 };
 
-                let onCurrentMapMessage = (msg: any) => {
+                const onCurrentMapMessage = (msg: any) => {
                     this.pushMapPath(msg);
                 };
 
-                let onGameFightStartingMessage = (msg: any) => {
+                const onGameFightStartingMessage = (msg: any) => {
                     this.turnIdle();
                 };
 
-                let onGameFightEndMessage = (msg: any) => {
+                const onGameFightEndMessage = (msg: any) => {
                     this.skipNextMapChange = true;
                 };
 
@@ -623,7 +623,7 @@ export class AutoGroup extends Mod {
 
     public autoEnterFight(skipLogin: boolean = false) {
         try {
-            let joinFight = (fightId: number, fighterId: number) => {
+            const joinFight = (fightId: number, fighterId: number) => {
                 if (this.isPvMFight(fightId)) {
                     this.turnIdle();
                     return new Promise((resolve, reject) => {
@@ -639,7 +639,7 @@ export class AutoGroup extends Mod {
                 }
             };
 
-            let ready = () => {
+            const ready = () => {
                 return new Promise((resolve, reject) => {
                     if (this.wGame.gui.fightManager.fightState == 0) {
                         setTimeout(() => {
@@ -652,7 +652,7 @@ export class AutoGroup extends Mod {
                 });
             };
 
-            let onPartyMemberInFightMessage = (msg: any) => {
+            const onPartyMemberInFightMessage = (msg: any) => {
                 if (this.wGame.isoEngine.mapRenderer.mapId === msg.fightMap.mapId) {
                     joinFight(msg.fightId, msg.memberId)
                         .then(() => {
@@ -664,10 +664,10 @@ export class AutoGroup extends Mod {
                 }
             };
 
-            let onMapComplementaryInformationsDataMessage = (msg: any) => {
+            const onMapComplementaryInformationsDataMessage = (msg: any) => {
                 this.didLeaderChange();
-                for (let idF in msg.fights) {
-                    for (let idT in msg.fights[idF].fightTeams) {
+                for (const idF in msg.fights) {
+                    for (const idT in msg.fights[idF].fightTeams) {
                         if (msg.fights[idF].fightTeams[idT].leaderId == this.leaderId) {
                             this.turnIdle();
                             setTimeout(() => {
@@ -696,8 +696,8 @@ export class AutoGroup extends Mod {
     }
 
     private isPvMFight(fightId: number): boolean {
-        let fight0 = this.wGame.isoEngine.actorManager.actors['fight:' + fightId + ':0'];
-        let fight1 = this.wGame.isoEngine.actorManager.actors['fight:' + fightId + ':1'];
+        const fight0 = this.wGame.isoEngine.actorManager.actors['fight:' + fightId + ':0'];
+        const fight1 = this.wGame.isoEngine.actorManager.actors['fight:' + fightId + ':1'];
         if (fight0 && fight1) {
             return fight0.data.teamTypeId == 1 || fight1.data.teamTypeId == 1;
         }
@@ -710,7 +710,7 @@ export class AutoGroup extends Mod {
 
     private static objectToString(obj: any): string {
         let str = '{ ';
-        for (let id in obj) {
+        for (const id in obj) {
             str += id + ': ' + obj[id] + ', ';
         }
         str = str.substr(0, str.length - 2) + ' }';
