@@ -5,7 +5,7 @@
 
 ### Correctifs
 
-- Mise à jour les liens du site de Lindo pour qu'ils pointent vers la nouvelle adresse: https://lindo-app.com
+- Mise à jour des liens du site de Lindo pour qu'ils pointent vers la nouvelle adresse: https://lindo-app.com
 
 ## [2.5.2] - 2020-11-14
 
