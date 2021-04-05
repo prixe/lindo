@@ -4,7 +4,6 @@ import {UpdateInformations} from './update-informations.interface';
 import {app, BrowserWindow, dialog, shell} from 'electron';
 
 const compareVersions = require('compare-versions');
-const pkg = require('../../../package.json');
 const i18n = require('node-translate');
 
 export class UpdateApp {
