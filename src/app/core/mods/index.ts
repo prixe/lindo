@@ -1,6 +1,6 @@
 
 export { General } from "app/core/mods/general/general";
-export { Marchand } from "app/core/mods/marchand/marchand";
+
 export { AutoGroup } from "app/core/mods/autoGroup/autoGroup";
 export { DamageEstimator } from "app/core/mods/damageEstimator/damageEstimator";
 export { FightChronometer } from "app/core/mods/fightChronometer/fightChronometer";
