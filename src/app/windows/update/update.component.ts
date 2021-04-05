@@ -194,16 +194,12 @@ export class UpdateComponent implements OnInit, OnDestroy {
 
     private async downloadAssetsFiles(async: boolean) {
 
-        let initialStatus = this.progressText;
-        let downloadCount = 0;
+        const initialStatus = this.progressText;
 
-        for (const i in this.assetMapDifferences) {
-            if (this.assetMapDifferences[i] == 1) {
-                downloadCount++;
-            }
-        }
+        let totalDownload = 0;
+        let currentDownload = 0;
 
-        let currentDownload = 1;
+        for (const i in this.assetMapDifferences) if (this.assetMapDifferences[i] == 1) totalDownload++;
 
         if (async) {
 
@@ -213,13 +209,16 @@ export class UpdateComponent implements OnInit, OnDestroy {
             let interval = setInterval(() => {
 
                 if (intervalLastValue === currentDownload) {
+
                     clearInterval(interval);
+                    this.log("FAILED TO DOWNLOAD IN ASYNC. RESTARTING IN SYNCHRONOUS MODE")
+
                     this.startingUpdate(false);
                 }
 
                 intervalLastValue = currentDownload;
 
-            }, 10000);
+            }, 30000);
 
             for (const i in this.assetMapDifferences) {
                 if (this.assetMapDifferences[i] == 1) {
@@ -237,8 +236,9 @@ export class UpdateComponent implements OnInit, OnDestroy {
                         void axiosClient.get(url, {adapter: httpAdapter, responseType: "stream"}).then((response) => {
 
                             response.data.pipe(fs.createWriteStream(filePath));
-                            this.progressText = initialStatus + " (" + currentDownload + "/" + downloadCount + ")";
                             currentDownload++;
+
+                            this.progressText = initialStatus + " (" + currentDownload + "/" + totalDownload + ")";
                             resolve(true);
                         });
                     }));
@@ -266,7 +266,7 @@ export class UpdateComponent implements OnInit, OnDestroy {
                     response.data.pipe(fileWriteStream);
 
                     fileWriteStream.on("finish", () => {
-                        this.progressText = initialStatus + " (" + currentDownload + "/" + downloadCount + ")";
+                        this.progressText = initialStatus + " (" + currentDownload + "/" + totalDownload + ")";
                         currentDownload++;
                     });
                 }
