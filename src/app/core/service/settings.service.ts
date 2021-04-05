@@ -871,6 +871,7 @@ export module Option {
             private _leader: string;
             private _members: string;
             private _follow_leader: boolean;
+            private _disable_timer: boolean;
             private _ready: boolean;
             private _fight: boolean;
             private _follow_on_map: boolean;
@@ -907,10 +908,22 @@ export module Option {
                 return this._follow_leader;
             }
 
+            
             set follow_leader(follow_leader: boolean) {
                 this.settingsProvider.write('option.vip.auto_group.follow_leader', follow_leader);
                 this._follow_leader = follow_leader;
             }
+
+            get disable_timer(): boolean {
+                return this._disable_timer;
+            }
+
+            set disable_timer(disable_timer: boolean) {
+                this.settingsProvider.write('option.vip.auto_group.disable_timer', disable_timer);
+                this._disable_timer = disable_timer;
+            }
+
+           
 
             get ready(): boolean {
                 return this._ready;
@@ -953,6 +966,7 @@ export module Option {
                 this.leader = this.settingsProvider.read('option.vip.auto_group.leader');
                 this.members = this.settingsProvider.read('option.vip.auto_group.members');
                 this.follow_leader = this.settingsProvider.read('option.vip.auto_group.follow_leader');
+                this.disable_timer = this.settingsProvider.read('option.vip.auto_group.disable_timer');
                 this.leader = this.settingsProvider.read('option.vip.auto_group.leader');
                 this.ready = this.settingsProvider.read('option.vip.auto_group.ready');
                 this.fight = this.settingsProvider.read('option.vip.auto_group.fight');
