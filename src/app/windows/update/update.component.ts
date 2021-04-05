@@ -122,7 +122,7 @@ export class UpdateComponent implements OnInit, OnDestroy {
         });
     }
 
-    private async startingUpdate(){
+    private async startingUpdate(async: boolean = true) {
 
         try {
 
@@ -148,7 +148,7 @@ export class UpdateComponent implements OnInit, OnDestroy {
 
             this.log("DOWNLOAD MISSING ASSETS FILES ON DISK..");
             this.translate.get('app.window.update-dofus.step1').subscribe((sentence: string) => this.progressText = sentence);
-            await this.downloadAssetsFiles();
+            await this.downloadAssetsFiles(async);
 
             await this.downloadKeymaster();
 
@@ -192,10 +192,9 @@ export class UpdateComponent implements OnInit, OnDestroy {
         }
     }
 
-    private async downloadAssetsFiles() {
+    private async downloadAssetsFiles(async: boolean) {
 
-        const initialStatus = this.progressText;
-
+        let initialStatus = this.progressText;
         let downloadCount = 0;
 
         for (const i in this.assetMapDifferences) {
@@ -206,26 +205,71 @@ export class UpdateComponent implements OnInit, OnDestroy {
 
         let currentDownload = 1;
 
-        for (const i in this.assetMapDifferences) {
-            if (this.assetMapDifferences[i] == 1) {
+        if (async) {
 
-                const url = this.dofusOrigin + this.remoteAssetMap.files[i].filename;
-                const filePath = this.localGameFolder + this.remoteAssetMap.files[i].filename;
+            const promises = [];
 
-                const directoryPath = path.dirname(filePath);
-                if (!fs.existsSync(directoryPath)) {
-                    fs.mkdirSync(directoryPath, {recursive: true});
+            let intervalLastValue = 0;
+            let interval = setInterval(() => {
+
+                if (intervalLastValue === currentDownload) {
+                    clearInterval(interval);
+                    this.startingUpdate(false);
                 }
 
-                let fileWriteStream = fs.createWriteStream(filePath);
+                intervalLastValue = currentDownload;
 
-                let response = await axiosClient.get(url, {adapter: httpAdapter, responseType: "stream"});
-                response.data.pipe(fileWriteStream);
+            }, 10000);
 
-                fileWriteStream.on("finish", () => {
-                    this.progressText = initialStatus + " (" + currentDownload + "/" + downloadCount + ")";
-                    currentDownload++;
-                });
+            for (const i in this.assetMapDifferences) {
+                if (this.assetMapDifferences[i] == 1) {
+
+                    promises.push(new Promise((resolve) => {
+
+                        const url = this.dofusOrigin + this.remoteAssetMap.files[i].filename;
+                        const filePath = this.localGameFolder + this.remoteAssetMap.files[i].filename;
+
+                        const directoryPath = path.dirname(filePath);
+                        if (!fs.existsSync(directoryPath)) {
+                            fs.mkdirSync(directoryPath, {recursive: true});
+                        }
+
+                        void axiosClient.get(url, {adapter: httpAdapter, responseType: "stream"}).then((response) => {
+
+                            response.data.pipe(fs.createWriteStream(filePath));
+                            this.progressText = initialStatus + " (" + currentDownload + "/" + downloadCount + ")";
+                            currentDownload++;
+                            resolve(true);
+                        });
+                    }));
+                }
+            }
+
+            await Promise.all(promises);
+
+        } else {
+
+            for (const i in this.assetMapDifferences) {
+                if (this.assetMapDifferences[i] == 1) {
+
+                    const url = this.dofusOrigin + this.remoteAssetMap.files[i].filename;
+                    const filePath = this.localGameFolder + this.remoteAssetMap.files[i].filename;
+
+                    const directoryPath = path.dirname(filePath);
+                    if (!fs.existsSync(directoryPath)) {
+                        fs.mkdirSync(directoryPath, {recursive: true});
+                    }
+
+                    let fileWriteStream = fs.createWriteStream(filePath);
+
+                    let response = await axiosClient.get(url, {adapter: httpAdapter, responseType: "stream"});
+                    response.data.pipe(fileWriteStream);
+
+                    fileWriteStream.on("finish", () => {
+                        this.progressText = initialStatus + " (" + currentDownload + "/" + downloadCount + ")";
+                        currentDownload++;
+                    });
+                }
             }
         }
     }
