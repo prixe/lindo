@@ -15,6 +15,8 @@ export class UpdateAll {
 
             Api.getUpdateInformations().then((response: UpdateInformations) => {
 
+                Logger.info(JSON.stringify(response));
+
                 let doAppUpdate = UpdateApp.check(response);
                 if (doAppUpdate) {
                     Logger.info("[UPDATE] Application update required.");
