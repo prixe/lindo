@@ -37,7 +37,7 @@
       "update-dofus": {
         "title": "Aggiornamento Lindo",
         "step0": "Preparazione per l'aggiornamento..",
-        "step1": "Passo 1 : Download di file Dofus (~ 30 mesi)",
+        "step1": "Passo 1 : Download di file Dofus",
         "step2": "Passo 2 : Download della patch Lindo",
         "step3": "Passo 3 : Risoluzione della versione",
         "step4": "Passo 4 : Applicare le patch",
@@ -47,7 +47,8 @@
         "step8": "Passo 8 : Lancio di Lindo..",
         "information": {
           "search": "In cerca di aggiornamenti...",
-          "error": "Impossibile scaricare l'aggiornamento ! Riprova più tardi"
+          "error": "Impossibile scaricare l'aggiornamento ! Riprova più tardi",
+          "retry": "Riprova"
         }
       },
       "options": {

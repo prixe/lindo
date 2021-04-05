@@ -12,14 +12,10 @@ import {Differences} from "@interfaces/update/differences";
 import {Manifest} from "@interfaces/update/manifest";
 import {Files} from "@interfaces/update/files";
 import {RegexPatches} from "@interfaces/update/regex-patches";
-import {ConcurrencyManager} from 'axios-concurrency';
 import {IpcRendererService} from "@services/electron/ipcrenderer.service";
 
 const axiosClient = axios.create();
-axiosRetry(axiosClient, {retries: 10, retryDelay: () => 1000});
-
-const MAX_CONCURRENT_REQUESTS = 10;
-ConcurrencyManager(axiosClient, MAX_CONCURRENT_REQUESTS);
+axiosRetry(axiosClient, {retries: 10, retryDelay: () => 2000});
 
 const fs = fsLib;
 const path = pathLib;
@@ -77,6 +73,7 @@ export class UpdateComponent implements OnInit, OnDestroy {
     public progressMode: ProgressBarMode = "indeterminate";
     public progressValue: number = 0;
     public progressText: string;
+    public progressError: boolean = false;
 
     private localGameFolder: string;
     private dofusOrigin: string = this.settingsService.option.general.early ? "https://earlyproxy.touch.dofus.com/" : "https://proxyconnection.touch.dofus.com/";
@@ -121,104 +118,126 @@ export class UpdateComponent implements OnInit, OnDestroy {
 
             this.localKeymasterPath = this.localGameFolder + "keymaster.js";
 
-            try {
-
-                this.log("DOWNLOADING ALL MANIFESTS");
-                this.translate.get('app.window.update-dofus.step0').subscribe((sentence: string) => this.progressText = sentence);
-
-                this.currentAssetMap = (fs.existsSync(this.localAssetMapPath)) ? JSON.parse(fs.readFileSync(this.localAssetMapPath)) : {};
-                this.remoteAssetMap = await this.downloadJson(this.remoteAssetMapPath);
-                this.assetMapDifferences = UpdateComponent.differences(this.currentAssetMap, this.remoteAssetMap);
-
-                this.currentLindoManifest = (fs.existsSync(this.localLindoManifestPath)) ? JSON.parse(fs.readFileSync(this.localLindoManifestPath)) : {};
-                this.remoteLindoManifest = await this.downloadJson(this.remoteLindoManifestPath);
-                this.lindoManifestDifferences = UpdateComponent.differences(this.currentLindoManifest, this.remoteLindoManifest);
-
-                this.currentDofusManifest = (fs.existsSync(this.localDofusManifestPath)) ? JSON.parse(fs.readFileSync(this.localDofusManifestPath)) : {};
-                this.remoteDofusManifest = await this.downloadJson(this.remoteDofusManifestPath);
-                this.dofusManifestDifferences = UpdateComponent.differences(this.currentDofusManifest, this.remoteDofusManifest);
-
-                this.localVersions = (fs.existsSync(this.localVersionsPath)) ? JSON.parse(fs.readFileSync(this.localVersionsPath)) : {};
-                this.localRegex = (fs.existsSync(this.localRegexPath)) ? JSON.parse(fs.readFileSync(this.localRegexPath)) : {};
-
-                this.log("DOWNLOAD MISSING ASSETS FILES ON DISK..");
-                this.translate.get('app.window.update-dofus.step1').subscribe((sentence: string) => this.progressText = sentence);
-                await this.downloadAssetsFiles();
-
-                await this.downloadKeymaster();
-
-                this.log("DOWNLOAD MISSING LINDO AND DOFUS FILES IN MEMORY..");
-                this.translate.get('app.window.update-dofus.step2').subscribe((sentence: string) => this.progressText = sentence);
-                await this.chargingMissingLindoAndDofusFiles();
-
-                this.log("FINDING VERSIONS..");
-                this.translate.get('app.window.update-dofus.step3').subscribe((sentence: string) => this.progressText = sentence);
-                await this.findingVersions();
-
-                this.log("APPLYING REGEX (LINDO OVERRIDE) ON DOFUS MISSING FILES");
-                this.translate.get('app.window.update-dofus.step4').subscribe((sentence: string) => this.progressText = sentence);
-                this.applyRegex();
-
-                this.log("WRITING LINDO AND DOFUS MISSING FILES TO DISK");
-                this.translate.get('app.window.update-dofus.step5').subscribe((sentence: string) => this.progressText = sentence);
-                this.writingMissingLindoAndDofusFiles();
-
-                this.log("REMOVING OLDER ASSETS AND DOFUS FILES..");
-                this.translate.get('app.window.update-dofus.step6').subscribe((sentence: string) => this.progressText = sentence);
-                this.removeOlderAssetsAndDofusFiles();
-
-                this.log("SAVING ALL JSON FILES TO DISK");
-                this.translate.get('app.window.update-dofus.step7').subscribe((sentence: string) => this.progressText = sentence);
-
-                fs.writeFileSync(this.localAssetMapPath, JSON.stringify(this.remoteAssetMap));
-                fs.writeFileSync(this.localLindoManifestPath, JSON.stringify(this.remoteLindoManifest));
-                fs.writeFileSync(this.localDofusManifestPath, JSON.stringify(this.remoteDofusManifest));
-                fs.writeFileSync(this.localVersionsPath, JSON.stringify(this.localVersions));
-
-                this.translate.get('app.window.update-dofus.step8').subscribe((sentence: string) => this.progressText = sentence);
-                this.ipcRendererService.send('update-finished', this.localVersions);
-
-            } catch (error) {
-
-                this.translate.get('app.window.update-dofus.information.error').subscribe((sentence: string) => this.progressText = sentence + " (" + error.message + ")");
-
-                LoggerLindo.error(error);
-                LoggerLindo.error(error.message);
-            }
+            await this.startingUpdate();
         });
+    }
+
+    private async startingUpdate(){
+
+        try {
+
+            this.progressError = false;
+
+            this.log("DOWNLOADING ALL MANIFESTS");
+            this.translate.get('app.window.update-dofus.step0').subscribe((sentence: string) => this.progressText = sentence);
+
+            this.currentAssetMap = (fs.existsSync(this.localAssetMapPath)) ? JSON.parse(fs.readFileSync(this.localAssetMapPath)) : {};
+            this.remoteAssetMap = await this.downloadJson(this.remoteAssetMapPath);
+            this.assetMapDifferences = UpdateComponent.differences(this.currentAssetMap, this.remoteAssetMap);
+
+            this.currentLindoManifest = (fs.existsSync(this.localLindoManifestPath)) ? JSON.parse(fs.readFileSync(this.localLindoManifestPath)) : {};
+            this.remoteLindoManifest = await this.downloadJson(this.remoteLindoManifestPath);
+            this.lindoManifestDifferences = UpdateComponent.differences(this.currentLindoManifest, this.remoteLindoManifest);
+
+            this.currentDofusManifest = (fs.existsSync(this.localDofusManifestPath)) ? JSON.parse(fs.readFileSync(this.localDofusManifestPath)) : {};
+            this.remoteDofusManifest = await this.downloadJson(this.remoteDofusManifestPath);
+            this.dofusManifestDifferences = UpdateComponent.differences(this.currentDofusManifest, this.remoteDofusManifest);
+
+            this.localVersions = (fs.existsSync(this.localVersionsPath)) ? JSON.parse(fs.readFileSync(this.localVersionsPath)) : {};
+            this.localRegex = (fs.existsSync(this.localRegexPath)) ? JSON.parse(fs.readFileSync(this.localRegexPath)) : {};
+
+            this.log("DOWNLOAD MISSING ASSETS FILES ON DISK..");
+            this.translate.get('app.window.update-dofus.step1').subscribe((sentence: string) => this.progressText = sentence);
+            await this.downloadAssetsFiles();
+
+            await this.downloadKeymaster();
+
+            this.log("DOWNLOAD MISSING LINDO AND DOFUS FILES IN MEMORY..");
+            this.translate.get('app.window.update-dofus.step2').subscribe((sentence: string) => this.progressText = sentence);
+            await this.chargingMissingLindoAndDofusFiles();
+
+            this.log("FINDING VERSIONS..");
+            this.translate.get('app.window.update-dofus.step3').subscribe((sentence: string) => this.progressText = sentence);
+            await this.findingVersions();
+
+            this.log("APPLYING REGEX (LINDO OVERRIDE) ON DOFUS MISSING FILES");
+            this.translate.get('app.window.update-dofus.step4').subscribe((sentence: string) => this.progressText = sentence);
+            this.applyRegex();
+
+            this.log("WRITING LINDO AND DOFUS MISSING FILES TO DISK");
+            this.translate.get('app.window.update-dofus.step5').subscribe((sentence: string) => this.progressText = sentence);
+            this.writingMissingLindoAndDofusFiles();
+
+            this.log("REMOVING OLDER ASSETS AND DOFUS FILES..");
+            this.translate.get('app.window.update-dofus.step6').subscribe((sentence: string) => this.progressText = sentence);
+            this.removeOlderAssetsAndDofusFiles();
+
+            this.log("SAVING ALL JSON FILES TO DISK");
+            this.translate.get('app.window.update-dofus.step7').subscribe((sentence: string) => this.progressText = sentence);
+
+            fs.writeFileSync(this.localAssetMapPath, JSON.stringify(this.remoteAssetMap));
+            fs.writeFileSync(this.localLindoManifestPath, JSON.stringify(this.remoteLindoManifest));
+            fs.writeFileSync(this.localDofusManifestPath, JSON.stringify(this.remoteDofusManifest));
+            fs.writeFileSync(this.localVersionsPath, JSON.stringify(this.localVersions));
+
+            this.translate.get('app.window.update-dofus.step8').subscribe((sentence: string) => this.progressText = sentence);
+            this.ipcRendererService.send('update-finished', this.localVersions);
+
+        } catch (error) {
+
+            let reason = (typeof error.message !== "undefined") ? "(" + error.message + ")" : "";
+            this.translate.get('app.window.update-dofus.information.error').subscribe((sentence: string) => this.progressText = sentence + reason);
+
+            this.progressError = true;
+        }
     }
 
     private async downloadAssetsFiles() {
 
-        const promises = [];
+        const initialStatus = this.progressText;
+
+        let downloadCount = 0;
+
+        for (const i in this.assetMapDifferences) {
+            if (this.assetMapDifferences[i] == 1) {
+                downloadCount++;
+            }
+        }
+
+        let currentDownload = 1;
 
         for (const i in this.assetMapDifferences) {
             if (this.assetMapDifferences[i] == 1) {
 
-                promises.push(new Promise((resolve) => {
+                const url = this.dofusOrigin + this.remoteAssetMap.files[i].filename;
+                const filePath = this.localGameFolder + this.remoteAssetMap.files[i].filename;
 
-                    const url = this.dofusOrigin + this.remoteAssetMap.files[i].filename;
-                    const filePath = this.localGameFolder + this.remoteAssetMap.files[i].filename;
+                const directoryPath = path.dirname(filePath);
+                if (!fs.existsSync(directoryPath)) {
+                    fs.mkdirSync(directoryPath, {recursive: true});
+                }
 
-                    const directoryPath = path.dirname(filePath);
-                    if (!fs.existsSync(directoryPath)) {
-                        fs.mkdirSync(directoryPath, {recursive: true});
-                    }
+                let fileWriteStream = fs.createWriteStream(filePath);
 
-                    void axiosClient.get(url, {adapter: httpAdapter, responseType: "stream"}).then((response) => {
-                        response.data.pipe(fs.createWriteStream(filePath));
-                        resolve(true);
-                    });
-                }));
+                let response = await axiosClient.get(url, {adapter: httpAdapter, responseType: "stream"});
+                response.data.pipe(fileWriteStream);
+
+                fileWriteStream.on("finish", () => {
+                    this.progressText = initialStatus + " (" + currentDownload + "/" + downloadCount + ")";
+                    currentDownload++;
+                });
             }
         }
-
-        await Promise.all(promises);
     }
 
     private async downloadKeymaster() {
 
-        const response = await axios({method: "GET", url: this.removeKeymasterPath, adapter: httpAdapter, responseType: "stream"});
+        const response = await axios({
+            method: "GET",
+            url: this.removeKeymasterPath,
+            adapter: httpAdapter,
+            responseType: "stream"
+        });
         await response.data.pipe(fs.createWriteStream(this.localKeymasterPath));
     }
 
@@ -393,12 +412,15 @@ export class UpdateComponent implements OnInit, OnDestroy {
         }
     }
 
-    public closeWindow() {
+    public close() {
         electron.close();
+    }
+
+    public restart() {
+        void this.startingUpdate();
     }
 
     ngOnDestroy() {
         this.sub.unsubscribe();
     }
-
 }

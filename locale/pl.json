@@ -37,7 +37,7 @@
       "update-dofus": {
         "title": "Aktualizacja Lindo",
         "step0": "Przygotowanie do aktualizacji..",
-        "step1": "Krok 1 : Pobieranie plików Dofus (~ 30mo)",
+        "step1": "Krok 1 : Pobieranie plików Dofus",
         "step2": "Krok 2 : Pobieranie łatki Lindo",
         "step3": "Krok 3 : Rozdzielczość wersji",
         "step4": "Krok 4 : Nakładanie plastrów",
@@ -47,7 +47,8 @@
         "step8": "Krok 8 : Uruchomienie Lindo..",
         "information": {
           "search": "Szukanie aktualizacji...",
-          "error": "Nie można pobrać aktualizacji! Proszę spróbować później"
+          "error": "Nie można pobrać aktualizacji! Proszę spróbować później",
+          "retry": "Spróbuj ponownie"
         }
       },
       "options": {
