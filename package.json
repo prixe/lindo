@@ -54,7 +54,7 @@
     "fs-extra": "~7.0.1",
     "js-beautify": "~1.8.9",
     "macaddress": "~0.2.9",
-    "marked": "~1.2.3",
+    "marked": "~2.0.0",
     "ngx-chips": "~1.9.8",
     "node-translate": "~0.0.4",
     "request": "~2.88.2",
