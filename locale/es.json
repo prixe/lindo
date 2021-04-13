@@ -59,6 +59,7 @@
           "general": {
             "header": "General",
             "disable-inactivity": "Extender el período de inactividad",
+            "chat-input-bottom": "Coloque el campo de texto del chat en la parte inferior",
             "health-bar": "Visualización de barras de vida debajo de los combatientes",
             "health-bar-shortcut": "Atajos para mostrar las barras de salud",
             "jobsxp": "Activate the display of the job xp need for leveling",

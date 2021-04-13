@@ -24,6 +24,7 @@ export class MainComponent implements OnInit {
                 public authService: AuthService) {
         this.windowService.window.appVersion = applicationService.remoteAppVersion;
         this.windowService.window.buildVersion = applicationService.remoteBuildVersion;
+        this.windowService.window.lindoVersion = applicationService.version;
     }
 
     ngOnInit(): void {
