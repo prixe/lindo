@@ -1,6 +1,11 @@
 ## ⚠ ATTENTION, VÉRIFIEZ QUE VOUS TÉLÉCHARGEZ LINDO DEPUIS LINDO-APP.COM
 ## ⚠ CERTAINS SITES MALVEILLANTS INSTALLERONT UN VIRUS SUR VOTRE ORDINATEUR
 
+## [2.5.4] - 2021-04-13
+
+### Ajouts
+- Possibilité de choisir la position du champ texte du chat
+
 ## [2.5.3] - 2021-04-04
 
 ### Correctifs
