@@ -4,7 +4,7 @@
 [![node](https://img.shields.io/badge/node-%3E%3D%2014.0.0-green.svg)]()
 [![Github All Releases](https://img.shields.io/github/downloads/prixe/lindo/total.svg)]()
 
-http://lindo.no-emu.co
+https://lindo-app.com
 
 🇬🇧 Lindo allows you to play Dofus Touch on your computer (Windows / Mac OS / Linux) without android emulator, it is based on crossplatform technologies.
 

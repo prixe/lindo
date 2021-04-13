@@ -16,6 +16,12 @@
 ### Correctifs
 - Crash de Lindo avec le déplacement rapide lorsque la case est inaccessible
 
+## [2.5.3] - 2021-04-04
+
+### Correctifs
+
+- Mise à jour des liens du site de Lindo pour qu'ils pointent vers la nouvelle adresse: https://lindo-app.com
+
 ## [2.5.2] - 2020-11-14
 
 ### Améliorations
