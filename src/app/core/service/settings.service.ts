@@ -10,12 +10,14 @@ import { SettingsDefault } from '../../../../electron/settings/settings-default'
 
 export class Option {
     public general: Option.General;
+    public chat: Option.Chat;
     public shortcuts: Option.Shortcuts;
     public notification: Option.Notification;
     public vip: Option.VIP;
 
     constructor(private settingsProvider: SettingsProvider) {
         this.general = new Option.General(settingsProvider);
+        this.chat = new Option.Chat(settingsProvider);
         this.shortcuts = new Option.Shortcuts(settingsProvider);
         this.notification = new Option.Notification(settingsProvider);
         this.vip = new Option.VIP(settingsProvider);
@@ -23,6 +25,22 @@ export class Option {
 }
 
 export module Option {
+    export class Chat {
+        public _inputBottom: boolean;
+
+        constructor(private settingsProvider: SettingsProvider) {
+            this._inputBottom = this.settingsProvider.read('option.chat.inputBottom');
+        }
+
+        get inputBottom(): boolean {
+            return this._inputBottom;
+        }
+
+        set inputBottom(inputBottom: boolean) {
+            this.settingsProvider.write('option.chat.inputBottom', inputBottom);
+            this._inputBottom = inputBottom;
+        }
+    }
 
     export class Shortcuts {
         public no_emu: Shortcuts.NoEmu;

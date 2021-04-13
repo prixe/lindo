@@ -61,6 +61,7 @@
           "general": {
             "header": "Główne",
             "disable-inactivity": "Pozostań ciągle zalogowany",
+            "chat-input-bottom": "Umieść pole tekstowe czatu na dole",
             "health-bar": "Aktywuj wyświetlanie paska życia poniżej postaci",
             "health-bar-shortcut": "Skrót klawiszowy do pokazywania/chowania pasków życia",
             "jobsxp": "Wyświetl niezbędną liczbę doświadczenia wymaganego do następnego poziomu",
@@ -85,7 +86,7 @@
           "text0": "Lindo jest open-sourcowym oprogramowaiem, które pozwala ci na grę w DOFUS Touch z poziomu swojego komputera.",
           "text1": "W przeciwieństwie do emulatorów Androida, kod źródłowy jest bezpośrednio interpretowany przez Twój komputer, co sprawia, że granie w DOFUS Touch jest szybsze oraz wykorzystuje pełen potencjał Twojego komputera!",
           "text2": "Oprogramowanie oryginalnie znane jako DOFUS Touch No-Emu, zostało stworzone przez Daniela i Thomas'a, którzy byli zmuszeni zamknąć projekt przez awersję ze strony Ankamy."
-        
+
         }
       },
       "shortcuts": {

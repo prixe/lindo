@@ -20,7 +20,10 @@ export interface SettingsInterface {
             sound_focus: boolean;
             early: boolean;
             audio_muted: boolean;
-        }
+        },
+        chat: {
+            inputBottom: boolean;
+        },
         shortcuts: {
             no_emu: {
                 new_tab: string;
