@@ -1,10 +1,10 @@
 # Lindo
 [![Build Status](https://travis-ci.org/prixe/lindo.svg?branch=master)](https://travis-ci.org/prixe/lindo)
 [![npm](https://img.shields.io/badge/npm-%3E%3D%205.6.0-blue.svg)]()
-[![node](https://img.shields.io/badge/node-%3E%3D%2010.0.0-green.svg)]()
+[![node](https://img.shields.io/badge/node-%3E%3D%2014.0.0-green.svg)]()
 [![Github All Releases](https://img.shields.io/github/downloads/prixe/lindo/total.svg)]()
 
-http://lindo.no-emu.co
+https://lindo-app.com
 
 🇬🇧 Lindo allows you to play Dofus Touch on your computer (Windows / Mac OS / Linux) without android emulator, it is based on crossplatform technologies.
 
@@ -71,14 +71,16 @@ $ npm install
 ```
 
 ## Start project in dev mode
-Compile electron typescript source and angular source in developpement mode with a watcher :
+Compile electron typescript source and angular source in developpement mode with a watcher (don't stop this command until you stop developing) :
 ```sh
 $ npm run build:dev
 ```
-Start the project in electron :
+Start the project in electron (open a new terminal) : 
 ```sh
 $ npm start
 ```
+Each time you change something in your code, you must restart lindo (restart 'npm start')
+
 ## Distribution building
 If you want to make a release for a specific system, make sure build the project in production mode first:
 ```sh

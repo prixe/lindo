@@ -61,6 +61,7 @@
           "general": {
             "header": "Genel",
             "disable-inactivity": "Bağlantı kesilmeden önce hareketsizlik nedeniyle gecikmeyi uzatın",
+            "chat-input-bottom": "Sohbet metin alanını en alta yerleştirin",
             "health-bar": "Savaşçıların altındaki yaşam çubuklarının görüntülenmesini etkinleştirin",
             "health-bar-shortcut": "Yaşam çubuklarını göster / gizle kısayolları",
             "jobsxp": "Seviye atlamak için iş xp ihtiyacının görüntülenmesini etkinleştirin",
@@ -68,6 +69,8 @@
             "hide-mount": "Savaş sırasında binekleri gizle",
             "fightchronometer" : "Savaş kronometresini göster",
             "zaapsearchfilter" : "Zaap arama filtresini göster",
+            "show-resources" : "Harita kaynaklarını göster",
+            "show-resources-shortcut" : "Harita kaynaklarını göstermek/gizlemek için kısayol",
             "harvest-indicator" : "Kaynakların altında kalan sürenin gösterimini etkinleştirin",
             "party-member-on-map" : "Bir grubun üyelerinin aynı haritada olup olmadığını öğrenmek için bir gösterge ekleyin"
           },
@@ -206,7 +209,8 @@
         },
         "zaapsearchfilter":{
           "placeholder": "Bir zaap ara",
-          "placeholderZaapi": "Bir zaapi ara"
+          "placeholderZaapi": "Bir zaapi ara",
+          "placeholderPrisme": "Bir prisme ara"
         },
         "party-info": {
           "header-lvl":"Partinin seviyesini göster",

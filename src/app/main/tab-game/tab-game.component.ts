@@ -33,7 +33,6 @@ export class TabGameComponent implements OnInit {
     }
 
     ngOnInit() {
-
         this.tabGameService.on('icon-change', (tab: Tab) => {
             this.windowService.window.document.getElementById(`tab-icon-${tab.id}`).innerHTML = '';
             this.windowService.window.document.getElementById(`tab-icon-${tab.id}`).style.display = 'none';
@@ -43,11 +42,6 @@ export class TabGameComponent implements OnInit {
             }
 
         });
-
-        if (!isElectron) {
-            this.tabGameService.addTabGame();
-            return;
-        }
 
         //Ouverture du premier onglet
         if (this.settingsService.option.vip.multiaccount.active && Application.masterPassword != '')

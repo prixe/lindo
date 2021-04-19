@@ -15,8 +15,6 @@ import { WindowService } from 'app/core/service/window.service';
 })
 export class MainComponent implements OnInit {
 
-    public isElectron = isElectron;
-
     constructor(private windowService: WindowService,
                 public tabGameService: TabGameService,
                 public gameService: GameService,
@@ -26,6 +24,7 @@ export class MainComponent implements OnInit {
                 public authService: AuthService) {
         this.windowService.window.appVersion = applicationService.remoteAppVersion;
         this.windowService.window.buildVersion = applicationService.remoteBuildVersion;
+        this.windowService.window.lindoVersion = applicationService.version;
     }
 
     ngOnInit(): void {
@@ -40,18 +39,16 @@ export class MainComponent implements OnInit {
     }
 
     setEventListener(): void {
-        if (isElectron) {
-            //On connecte les comptes dans des onglets de la fenêtre
-            this.ipcRendererService.on('accounts', (event: Event, accounts: any) => {
-                this.tabGameService.addMultiAccountGames(accounts);
-            });
+        // On connecte les comptes dans des onglets de la fenêtre
+        this.ipcRendererService.on('accounts', (event: Event, accounts: any) => {
+            this.tabGameService.addMultiAccountGames(accounts);
+        });
 
-            //On renvoie les ouvertures d'url vers le navigateur du pc
-            let window = electron.getCurrentWindow();
-            window.webContents.on('new-window', ($event: any, url: string) => {
-                $event.preventDefault();
-                electron.openExternal(url);
-            });
-        }
+        // On renvoie les ouvertures d'url vers le navigateur du pc
+        let window = electron.getCurrentWindow();
+        window.webContents.on('new-window', ($event: any, url: string) => {
+            $event.preventDefault();
+            electron.openExternal(url);
+        });
     }
 }

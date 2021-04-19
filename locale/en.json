@@ -61,6 +61,7 @@
           "general": {
             "header": "General",
             "disable-inactivity": "Extend the delay before disconnection for inactivity",
+            "chat-input-bottom": "Put the chat text field at the bottom",
             "health-bar": "Activate the display of the life bars below the fighters",
             "health-bar-shortcut": "Shortcuts for show/hide life bars",
             "jobsxp": "Activate the display of the job xp need for leveling",
@@ -68,6 +69,8 @@
             "hide-mount": "Hide mounts during fights",
             "fightchronometer" : "Show combats chronometer",
             "zaapsearchfilter" : "Show zaap search filter",
+            "show-resources" : "Show map resources",
+            "show-resources-shortcut" : "Shortcut to show/hide map resources",
             "harvest-indicator" : "Activate the display of the remaining time below the ressources",
             "party-member-on-map" : "Add an indicator to know if the members of a group are on the same map"
           },
@@ -206,7 +209,8 @@
         },
         "zaapsearchfilter":{
           "placeholder": "Search a zaap",
-          "placeholderZaapi": "Search a zaapi"
+          "placeholderZaapi": "Search a zaapi",
+          "placeholderPrisme": "Search a prisme"
         },
         "party-info": {
           "header-lvl":"Show party's level",

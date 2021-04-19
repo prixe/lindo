@@ -1,7 +1,7 @@
 import { Logger } from "app/core/electron/logger.helper";
 import { HttpClient } from '@angular/common/http';
-const fs = fsExtraLib;
-const https = httpsLib;
+const fs = require('fs-extra');
+const https = require('https');
 
 export class WizAssets {
 

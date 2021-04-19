@@ -15,20 +15,18 @@ export class SoundService {
         private settingsService: SettingsService,
         private windowService: WindowService
     ) {
-        if (isElectron) {
-            this.ipcRendererService.on('reload-settings', () => {
-                this.listenFocusAndBlur()
-            });
-
-            this.window = electron.getCurrentWindow();
-            this.audioMuted = this.settingsService.option.general.audio_muted;
-
-            window.onbeforeunload = () => {
-                this.window.removeAllListeners();
-            };
-
+        this.ipcRendererService.on('reload-settings', () => {
             this.listenFocusAndBlur()
-        }
+        });
+        
+        this.window = electron.getCurrentWindow();
+        this.audioMuted = this.settingsService.option.general.audio_muted;
+
+        window.onbeforeunload = () => {
+            this.window.removeAllListeners();
+        };
+
+        this.listenFocusAndBlur()
     }
 
     private listenFocusAndBlur() {

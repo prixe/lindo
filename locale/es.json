@@ -59,6 +59,7 @@
           "general": {
             "header": "General",
             "disable-inactivity": "Extender el período de inactividad",
+            "chat-input-bottom": "Coloque el campo de texto del chat en la parte inferior",
             "health-bar": "Visualización de barras de vida debajo de los combatientes",
             "health-bar-shortcut": "Atajos para mostrar las barras de salud",
             "jobsxp": "Activate the display of the job xp need for leveling",
@@ -66,6 +67,8 @@
             "zaapsearchfilter" : "Mostra filtro di ricerca zaap",
             "estimator": "Daño estimado de hechizo durante el combate",
             "hide-mount": "Ocultar monturas durante las peleas",
+            "show-resources" : "Mostrar recursos del mapa",
+            "show-resources-shortcut" : "Atajo para mostrar/ocultar recursos del mapa",
             "harvest-indicator" : "Activar la visualización del tiempo restante debajo de los recursos",
             "party-member-on-map" : "Agregar un indicador para saber si los miembros de un grupo están en el mismo mapa"
           },
@@ -204,7 +207,8 @@
         },
         "zaapsearchfilter":{
           "placeholder": "Busca un zaap",
-          "placeholderZaapi": "Busca un zaapi"
+          "placeholderZaapi": "Busca un zaapi",
+          "placeholderPrisme": "Busca un prisme"
         },
         "party-info": {
           "header-lvl": "Mostrar nivel del grupo",

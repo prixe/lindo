@@ -19,7 +19,7 @@ const httpAdapter = httpAdapterLib;
  */
 interface Differences {
    [key: string]: number;
-} 
+}
 
 /**
  * { "filename": "fileContent" }
@@ -73,7 +73,7 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
     private remoteManifestPath: string = "manifest.json";
     private remoteAssetMapPath: string = "assetMap.json";
     private remoteLindoManifest: string = "https://raw.githubusercontent.com/Clover-Lindo/lindo-game-base/master/manifest.json";
-    private remoteLindoManifestAlt: string = "http://api.no-emu.co/manifest.json";
+    private remoteLindoManifestAlt: string = "https://api.lindo-app.com/manifest.json";
     private remoteKeymaster: string = "https://raw.githubusercontent.com/madrobby/keymaster/master/keymaster.js";
     private remoteITunesAppVersion: string = (this.settingsService.option.general.early ? "https://itunes.apple.com/lookup?id=1245534439" : "https://itunes.apple.com/lookup?id=1041406978") + "&t=" + (new Date().getTime())
     private currentLindoManifest: Manifest;
@@ -102,8 +102,6 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
 
         this.log("Checking for updates");
 
-
-
         this.sub = this.route.params.subscribe(async params => {
             // Defaults to 0 if no query param provided.
             this.destinationPath = decodeURIComponent(params['destinationPath']) + "/";
@@ -113,7 +111,6 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
             }, 500);
 
             try {
-
                 let promises = [];
 
                 // Downloading manifests
@@ -125,7 +122,6 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
                 ]);
 
                 this.log("Manifests downloaded");
-
 
                 // Checking differences
 
@@ -149,7 +145,6 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
 
                 this.computeProgressTotal(manifestDifferences, assetMapDifferences);
 
-
                 // Downloading lindo & game files
 
                 let [lindoMissingFiles, manifestMissingFiles] = await Promise.all([
@@ -157,28 +152,20 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
                     this.downloadMissingFiles(this.manifest, manifestDifferences, this.remoteOrigin)
                 ]);
 
-
                 // Downloading Keymaster
-
                 promises.push(this.downloadKeymaster());
 
-
                 // Downloading & saving assets
-
                 promises.push(this.downloadAndSaveMissingFiles(this.assetMap, assetMapDifferences, this.remoteOrigin));
 
-
                 // Deleting old files
-
                 promises.push(Promise.all([
                     this.deleteOldFiles(lindoManifestDifferences),
                     this.deleteOldFiles(manifestDifferences),
                     this.deleteOldFiles(assetMapDifferences)
                 ]));
 
-
                 // Downloading game script
-
                 promises.push((async (resolve, reject) => {
                     if (manifestMissingFiles["build/script.js"]) {
                         this.log("Getting new versions numbers");
@@ -199,32 +186,25 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
 
 
                 // Applying regex to game files
-
                 promises.push((async (resolve, reject) => {
-
                     this.log("Applying regex...");
-
                     this.applyRegex(lindoManifestDifferences['regex.json'] == 1
                         ? (lindoMissingFiles['regex.json'] as RegexPatches)
                         : this.currentRegex,
                         manifestMissingFiles);
-
                     this.log("Regex applied. Saving files");
 
                     // Saving lindo & game files
-
                     await Promise.all([
                         this.saveFiles(lindoMissingFiles),
                         this.saveFiles(manifestMissingFiles)
                     ]);
-
                     this.log("Files saved");
                 })());
 
 
                 // Await other promises
                 await Promise.all(promises);
-
 
                 this.log("Saving manifests");
 
@@ -235,9 +215,7 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
                     this.saveOneFile(this.destinationPath + "versions.json", JSON.stringify(this.versions))
                 ]);
 
-
                 this.ipcRendererService.send('update-finished', this.versions);
-
             } catch (e) {
                 this.translate.get('app.window.update-dofus.information.error').subscribe((res: string) => {
                     this.informations = res + " (" + e.message + ")";
@@ -247,7 +225,6 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
             }
 
             clearInterval(refreshProgressInterval);
-
         });
     }
 
@@ -316,7 +293,7 @@ export class OfficialGameUpdateComponent implements OnInit, OnDestroy {
                 this.addProgress(weight - currentProgress);
                 resolve(response.data);
             }).catch((error: any) => {
-                Logger.info(error);
+                Logger.error(error);
                 reject(error);
             });
         });

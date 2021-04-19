@@ -26,41 +26,24 @@ export class ApplicationService {
     }
 
     public async load(): Promise<void> {
-
         // Chargement de la configuration distance
         this.appName = environment.appName;
         this.websiteUrl = environment.websiteUrl;
         this.apiUrl = environment.apiUrl;
 
         return new Promise<void>((resolve, reject)=>{
-
             //On récupère la version de DT distante
-            if (isElectron) {
-                this.remoteBuildVersion = Application.remoteBuildVersion;
-                this.remoteAppVersion = Application.remoteAppVersion;
-                this.version = Application.version;
+            this.remoteBuildVersion = Application.remoteBuildVersion;
+            this.remoteAppVersion = Application.remoteAppVersion;
+            this.version = Application.version;
 
-                let appConfig = Settings.getAppConfig();
-                this.appPath = appConfig.appPath;
-                this.gamePath = appConfig.gamePath;
-                this.appVersion = appConfig.appVersion;
-                this.buildVersion = appConfig.buildVersion;
+            let appConfig = Settings.getAppConfig();
+            this.appPath = appConfig.appPath;
+            this.gamePath = appConfig.gamePath;
+            this.appVersion = appConfig.appVersion;
+            this.buildVersion = appConfig.buildVersion;
 
-                return resolve();
-            } else {
-                this.http.get(`${this.apiUrl}/version.json?time=${new Date().getTime()}`).subscribe((data:any) =>{
-                    this.remoteAppVersion = data.appVersion;
-                    this.remoteBuildVersion = data.buildVersion;
-
-                    // TODO : retrieve appVersion from the update.php
-                    this.appVersion = data.appVersion;
-                    this.buildVersion = data.buildVersion;
-
-                    return resolve();
-                }, err =>{
-                    return reject(err);
-                });
-            }
+            return resolve();
         });
     }
 }

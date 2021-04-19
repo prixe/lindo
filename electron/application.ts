@@ -11,7 +11,7 @@ const pkg = require(`${app.getAppPath()}/package.json`);
 export class Application {
 
     public static mainWindows: MainWindow[] = [];
-    public static websiteUrl: string = "http://lindo.no-emu.co";
+    public static websiteUrl: string = "https://lindo-app.com";
     public static appPath: string = __dirname + '/../..';
     public static userDataPath: string = app.getPath('userData');
 
