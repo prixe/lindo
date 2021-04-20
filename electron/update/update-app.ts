@@ -57,7 +57,7 @@ export class UpdateApp {
 
                     Logger.info("[UPDATE] Redirected to app download page.");
 
-                    shell.openExternal("https://lindo-app.com/#download");
+                    shell.openExternal("https://lindo-app.com");
                     app.exit();
 
                 } else {

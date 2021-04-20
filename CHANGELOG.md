@@ -16,11 +16,15 @@
 ### Correctifs
 - Crash de Lindo avec le déplacement rapide lorsque la case est inaccessible
 
+## [2.5.4] - 2021-04-13
+
+### Ajouts
+- Possibilité de choisir la position du champ texte du chat
+
 ## [2.5.3] - 2021-04-04
 
 ### Correctifs
-
-- Mise à jour des liens du site de Lindo pour qu'ils pointent vers la nouvelle adresse: https://lindo-app.com
+- Mise à jour les liens du site de Lindo pour qu'ils pointent vers la nouvelle adresse: https://lindo-app.com
 
 ## [2.5.2] - 2020-11-14
 

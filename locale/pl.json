@@ -70,6 +70,7 @@
           "general": {
             "header": "Główne",
             "disable-inactivity": "Pozostań ciągle zalogowany",
+            "chat-input-bottom": "Umieść pole tekstowe czatu na dole",
             "health-bar": "Aktywuj wyświetlanie paska życia poniżej postaci",
             "health-bar-shortcut": "Skrót klawiszowy do pokazywania/chowania pasków życia",
             "jobsxp": "Wyświetl niezbędną liczbę doświadczenia wymaganego do następnego poziomu",

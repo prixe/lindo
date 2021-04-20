@@ -70,6 +70,7 @@
           "general": {
             "header": "Général",
             "disable-inactivity": "Prolonger le délai maximum d'inactivité",
+            "chat-input-bottom": "Mettre le champ texte du chat en bas",
             "estimator": "Estimation des dégats des sorts en combat",
             "health-bar": "Barres de vie en-dessous des combatants",
             "health-bar-shortcut": "Raccourcis pour les barres de vie",

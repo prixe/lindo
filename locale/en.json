@@ -70,6 +70,7 @@
           "general": {
             "header": "General",
             "disable-inactivity": "Extend the delay before disconnection for inactivity",
+            "chat-input-bottom": "Put the chat text field at the bottom",
             "health-bar": "Activate the display of the life bars below the fighters",
             "health-bar-shortcut": "Shortcuts for show/hide life bars",
             "jobsxp": "Activate the display of the job xp need for leveling",
