@@ -138,7 +138,7 @@ export class Jobsxp extends Mod{
             try {
                 this.clean();
             } catch (ex) {
-                Logger.info(ex);
+                Logger.error(ex);
             }
         });
     }
@@ -148,7 +148,7 @@ export class Jobsxp extends Mod{
             try {
                 this.create();
             } catch (ex) {
-                Logger.info(ex);
+                Logger.error(ex);
             }
         });
     }
@@ -158,7 +158,7 @@ export class Jobsxp extends Mod{
             try {
                 this.create();
             } catch (ex) {
-                Logger.info(ex);
+                Logger.error(ex);
             }
         });
     }
@@ -178,7 +178,7 @@ export class Jobsxp extends Mod{
                     this.create();
                 }
             } catch (ex) {
-                Logger.info(ex);
+                Logger.error(ex);
             }
         });
     }

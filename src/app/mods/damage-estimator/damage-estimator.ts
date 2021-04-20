@@ -30,7 +30,7 @@ export class DamageEstimator extends Mod {
             try {
                 this.damageContainer.destroyEstimator(e.targetId);
             } catch (ex) {
-                Logger.info(ex);
+                Logger.error(ex);
             }
         });
     }
@@ -41,7 +41,7 @@ export class DamageEstimator extends Mod {
                 Logger.info('onSpellSlotDeselected');
                 this.damageContainer.destroyEstimators();
             } catch (ex) {
-                Logger.info(ex);
+                Logger.error(ex);
             }
         });
     }
@@ -53,7 +53,7 @@ export class DamageEstimator extends Mod {
                 const spell = this.wGame.gui.playerData.characters.mainCharacter.spellData.spells[spellId];
                 this.damageContainer.display(spell);
             } catch (ex) {
-                Logger.info(ex);
+                Logger.error(ex);
             }
         });
     }
@@ -63,7 +63,7 @@ export class DamageEstimator extends Mod {
             try {
                 this.damageContainer.fightEnded();
             } catch (ex) {
-                Logger.info(ex);
+                Logger.error(ex);
             }
         });
     }

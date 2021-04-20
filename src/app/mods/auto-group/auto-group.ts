@@ -75,7 +75,7 @@ export class AutoGroup extends Mod {
                 }
             }, this.getRandomTime(2, 3));
         } catch (e) {
-            Logger.info(e);
+            Logger.error(e);
         }
 
     }
@@ -98,7 +98,7 @@ export class AutoGroup extends Mod {
                 });
             }, this.getRandomTime(1, 2));
         } catch (e) {
-            Logger.info(e);
+            Logger.error(e);
         }
     }
 
@@ -438,7 +438,7 @@ export class AutoGroup extends Mod {
     private isCellWalkable(cell: number): boolean {
     	return this.wGame.isoEngine.mapRenderer.isWalkable(cell);
     }
-    
+
     private isMobOnCell(cellId) {
         const occupiedCells = this.wGame.isoEngine.actorManager._occupiedCells;
         if (occupiedCells[cellId]) {
@@ -610,7 +610,7 @@ export class AutoGroup extends Mod {
                     this.on(this.wGame.dofus.connectionManager, 'GameFightEndMessage', onGameFightEndMessage);
                 }, this.getRandomTime(1, 2));
             } catch (e) {
-                Logger.info(e);
+                Logger.error(e);
             }
         };
 
@@ -691,7 +691,7 @@ export class AutoGroup extends Mod {
                 this.on(this.wGame.dofus.connectionManager, 'MapComplementaryInformationsWithCoordsMessage', onMapComplementaryInformationsDataMessage);
             }, this.getRandomTime(1, 2));
         } catch (e) {
-            Logger.info(e);
+            Logger.error(e);
         }
     }
 

@@ -91,7 +91,7 @@ export class HealthBar extends Mod {
             try {
                 this.barContainer.destroyBar(e.targetId);
             } catch (ex) {
-                Logger.info(ex);
+                Logger.error(ex);
             }
         });
     }
@@ -101,7 +101,7 @@ export class HealthBar extends Mod {
             try {
                 this.fightJustStarted = true;
             } catch (ex) {
-                Logger.info(ex);
+                Logger.error(ex);
             }
         });
     }
@@ -114,7 +114,7 @@ export class HealthBar extends Mod {
                     this.barContainer.fightStarted();
                 }
             } catch (ex) {
-                Logger.info(ex);
+                Logger.error(ex);
             }
         });
     }
@@ -124,7 +124,7 @@ export class HealthBar extends Mod {
             try {
                 this.barContainer.fightEnded();
             } catch (ex) {
-                Logger.info(ex);
+                Logger.error(ex);
             }
         });
     }
@@ -134,7 +134,7 @@ export class HealthBar extends Mod {
             try {
                 this.barContainer.fightEnded();
             } catch (ex) {
-                Logger.info(ex);
+                Logger.error(ex);
             }
         });
     }

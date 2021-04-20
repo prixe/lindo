@@ -60,7 +60,7 @@ export class Harvest extends Mod {
             try {
                 this.statedElements.set(e.statedElement.elementId, e.statedElement.elementCellId);
             } catch (ex) {
-                Logger.info(ex);
+                Logger.error(ex);
             }
         });
     }
@@ -74,7 +74,7 @@ export class Harvest extends Mod {
                     this.statedElements.clear();
                 }
             } catch (ex) {
-                Logger.info(ex);
+                Logger.error(ex);
             }
         });
     }
@@ -84,7 +84,7 @@ export class Harvest extends Mod {
             try {
                 this.isInHarvest = !(this.harvestBar.destroy());
             } catch (ex) {
-                Logger.info(ex);
+                Logger.error(ex);
             }
         });
     }

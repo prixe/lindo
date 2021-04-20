@@ -72,7 +72,7 @@ export class Bar {
                         }
                     }
                     catch(e) {
-                        Logger.info(cellId);
+                        Logger.error(cellId);
                         Logger.error(e);
                     }
                 }
