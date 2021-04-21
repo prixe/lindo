@@ -1,6 +1,4 @@
-import { Logger } from "app/core/electron/logger.helper";
-
-import { Mod } from "../mod";
+import {Mod} from "../mod";
 
 export class Chat extends Mod {
     public inputBottom: boolean;

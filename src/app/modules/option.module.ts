@@ -1,6 +1,22 @@
 import {SettingsProvider} from "@interfaces/setting-provider";
 
 export namespace Option {
+    export class Chat {
+        public _inputBottom: boolean;
+
+        constructor(private settingsProvider: SettingsProvider) {
+            this._inputBottom = this.settingsProvider.read('option.chat.inputBottom');
+        }
+
+        get inputBottom(): boolean {
+            return this._inputBottom;
+        }
+
+        set inputBottom(inputBottom: boolean) {
+            this.settingsProvider.write('option.chat.inputBottom', inputBottom);
+            this._inputBottom = inputBottom;
+        }
+    }
 
     export class Shortcuts {
         public no_emu: Shortcuts.NoEmu;
