@@ -116,10 +116,11 @@ export class ZaapSearchFilter extends Mod {
 
         this.zaapSearchContainer.append(this.zaapSearchInput);
         this.wGame.document.getElementsByClassName("zaapBody")[0].prepend(this.zaapSearchContainer);
-        setTimeout(() => {
+         requestAnimationFrame(() => {
             this.zaapSearchInput.focus()
             this.zaapSearchInput.select()
-          }, 300);
+        });
+        
     }
 
     private addFavInDom() {
@@ -286,10 +287,10 @@ export class ZaapSearchFilter extends Mod {
 
         this.zaapSearchContainer.append(this.zaapSearchInput);
         this.wGame.document.getElementsByClassName("zaapBody")[0].prepend(this.zaapSearchContainer);
-        setTimeout(() => {
+         requestAnimationFrame(() => {
             this.zaapSearchInput.focus()
             this.zaapSearchInput.select()
-          }, 300);
+        });
     }
 
     private addFavInDomPrism() {
@@ -459,10 +460,10 @@ export class ZaapSearchFilter extends Mod {
 
         this.zaapSearchContainer.append(this.zaapSearchInput);
         this.wGame.document.getElementsByClassName("subwayBody")[0].prepend(this.zaapSearchContainer);
-        setTimeout(() => {
+         requestAnimationFrame(() => {
             this.zaapSearchInput.focus()
             this.zaapSearchInput.select()
-          }, 300);
+        });
     }
 
      // Zaapi Favoris
