@@ -81,7 +81,8 @@ private numMM = null
 
 
 
-private openMM(response) {		
+private openMM(response) {
+	       this.reset()
 		this.addBtn();	
 		this.numMM = this.tab.findIndex(i => i.id == response.sellerId);
 	}
