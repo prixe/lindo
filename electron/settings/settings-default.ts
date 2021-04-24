@@ -41,9 +41,7 @@ export const SettingsDefault: SettingsInterface = {
                     "f5",
                     "f6",
                     "f7",
-                    "f8",
-                    "f9",
-                    "f10"
+                    "f8"
                 ]
             },
             diver: {
