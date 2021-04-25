@@ -37,7 +37,7 @@ export namespace Option {
         get spell(): Array<string> {
             return new Proxy(this._spell, {
                 get: (target: any, name: any) => target[name],
-                set(target: any, prop: string, value: any) {
+                set: (target: any, prop: string, value: any) => {
                     target[prop] = value;
                     this.settingsProvider.write('option.shortcuts.spell', target);
                     return true;
@@ -54,7 +54,7 @@ export namespace Option {
 
             return new Proxy(this._item, {
                 get: (target, name) => target[name],
-                set(target, prop: string, value) {
+                set: (target, prop: string, value) => {
                     target[prop] = value;
                     this.settingsProvider.write('option.shortcuts.item', target);
                     return true;
@@ -380,7 +380,7 @@ export namespace Option {
 
                 return new Proxy(this._tabs, {
                     get: (target: any, name: any) => target[name],
-                    set(target: any, prop: string, value: any) {
+                    set: (target: any, prop: string, value: any) => {
                         target[prop] = value;
                         this.settingsProvider.write('option.shortcuts.no_emu.tabs', target);
                         return true;
