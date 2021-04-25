@@ -8,6 +8,7 @@
 - Ajout d'une icône sur les membres de groupes pour savoir s'il sont sur la même map
 - Ajout de favoris pour les zaaps
 - Ajout d'un affichage des ressources présentes sur la carte
+- Ajout d'une notification lors de la vente d'un objet en hôtel de vente
 
 ### Améliorations
 - Ajout de l’icône dans le build .deb
