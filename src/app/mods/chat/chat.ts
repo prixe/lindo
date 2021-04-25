@@ -11,7 +11,8 @@ export class Chat extends Mod {
             Logger.info('- enable chat inputBottom');
             let stylesheet = this.wGame.document.createElement('style');
             stylesheet.id = "inputBottom";
-            stylesheet.innerHTML = '.chat .formChat {order: 6;}';
+            stylesheet.innerHTML = `.chat .formChat {order: 6;}
+            .chat.open {margin-top: -26px;}`;
             this.wGame.document.getElementsByTagName('head')[0].appendChild(stylesheet);
         }
     }
