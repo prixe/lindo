@@ -36,6 +36,7 @@ export interface SettingsInterface {
             diver: {
                 end_turn: string;
                 open_chat: string;
+                alignment_scan: string,
                 active_open_menu: boolean;
                 open_menu: string;
                 go_up: string;
@@ -59,7 +60,7 @@ export interface SettingsInterface {
                 alliance: string;
                 mount: string;
                 directory: string;
-                alignement: string;
+                alignment: string;
                 bestiary: string;
                 title: string;
                 achievement: string;

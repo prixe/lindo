@@ -4,10 +4,14 @@ import { ShortcutsHelper } from "app/core/helpers/shortcuts.helper";
 import { Logger } from "app/core/electron/logger.helper";
 
 import { Mod } from "../mod";
+
+import { Alignment } from "../alignment/alignment";
 import { Mover } from "./mover";
 
 export class Shortcuts extends Mod {
     private shortcutsHelper: ShortcutsHelper;
+
+    private alignment: Alignment;
     private mover: Mover;
 
     startMod(): void {
@@ -17,6 +21,8 @@ export class Shortcuts extends Mod {
         if (this.params.diver.active_open_menu) {
             Logger.info('- enable Open_menu');
         }
+
+        this.alignment = new Alignment(this.wGame, this.settings, this.translate);
         this.mover = new Mover(this.wGame, this.settings, this.translate);
         this.bindAll();
     }
@@ -76,6 +82,13 @@ export class Shortcuts extends Mod {
             }
         });
 
+        // Scan alignment
+        this.shortcutsHelper.bind(this.params.diver.alignment_scan, (e:any) => {
+            this.alignment.scan();
+        });
+        this.shortcutsHelper.bindVanillaKeyUp(this.params.diver.alignment_scan, (e:any) => {
+            this.alignment.destroy();
+        });
         // Open menu
         this.shortcutsHelper.bind(this.params.diver.open_menu, () => {
             this.wGame.gui.mainControls.buttonBox._childrenList[14].tap()
@@ -160,6 +173,9 @@ export class Shortcuts extends Mod {
 
     public reset() {
         super.reset();
+        if (this.alignment) {
+          this.alignment.reset();
+        }
         if (this.mover) {
             this.mover.reset();
         }

@@ -12,7 +12,6 @@ export class ShortcutsHelper {
         (<any>this.window).key(shortcut, (e: KeyboardEvent) => {
             action(e);
         });
-
         this.shortcuts.push(shortcut);
     }
 
@@ -21,6 +20,14 @@ export class ShortcutsHelper {
             if (e.key.toLowerCase() == shortcut) action(e);
         };
         (<any>this.window).addEventListener('keydown', listener);
+
+        this.shortcutsVanilla.push(listener);
+    }
+    public bindVanillaKeyUp(shortcut: string, action: (e?: KeyboardEvent) => void): void {
+        let listener = (e: KeyboardEvent) => {
+            if (shortcut.includes(e.key.toLowerCase()) ) action(e);
+        };
+        (<any>this.window).addEventListener('keyup', listener);
 
         this.shortcutsVanilla.push(listener);
     }
