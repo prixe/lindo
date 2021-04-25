@@ -21,7 +21,8 @@
       "tax-collector": "Twój Perceptor został zaatakowany!",
       "kolizeum": "Koloseum zostało znalezione!",
       "party-invitation": "Dostałeś zaproszenie do dołączenia do grupy {{character}} .",
-      "aggression": "Zostałeś zaatakowany!"
+      "aggression": "Zostałeś zaatakowany!",
+      "sale-message": "Bank"
     },
     "window": {
       "changelog": {
@@ -309,7 +310,8 @@
         "tax-collector": "Perceptor będzie zaatakowany",
         "kolizeum": "Walka w Koloseum została znaleziona",
         "party-invitation": "Ktoś wysłał Ci zaproszenie do grupy",
-        "aggression": "Zostaniesz zaatakowany"
+        "aggression": "Zostaniesz zaatakowany",
+        "sale-message": "Gdy przedmiot jest sprzedawany"
       },
       "reset": "Resetuj",
       "save": "Zatwierdź",

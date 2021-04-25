@@ -1,10 +1,16 @@
 import * as EventEmitter from 'eventemitter3';
+<<<<<<< HEAD:src/app/mods/notifications/notifications.ts
 import {ElectronService as electron} from '@services/electron/electron.service';
+=======
+import { ElectronService as electron } from "app/core/electron/electron.service";
+const axios = require('axios');
+>>>>>>> 0ccb3fbffcaf3840909aab1b763cf10e2d1d6670:src/app/core/mods/notifications/notifications.ts
 
 import {Mod} from "../mod";
 
 export class Notifications extends Mod {
     public eventEmitter: EventEmitter;
+    private ressourcesKnow: Array<string> = [];
 
     startMod(): void {
         this.eventEmitter = new EventEmitter();
@@ -28,6 +34,34 @@ export class Notifications extends Mod {
         this.on(this.wGame.dofus.connectionManager, 'GameRolePlayAggressionMessage', (e: any) => {
             this.sendAggressionNotif(e);
         });
+        this.on(this.wGame.dofus.connectionManager, 'TextInformationMessage', (e: any) => {
+            this.sendHdvSaleNotif(e);
+        });
+    }
+
+    private async sendHdvSaleNotif(e: any) {
+        if (!this.wGame.document.hasFocus() && this.params.sale_message) {
+            if (e.msgId == 65) {
+                const id = e.parameters[1];
+
+                this.eventEmitter.emit('newNotification');
+
+                if (this.ressourcesKnow[id] == null) {
+                    const res = await axios.post('https://proxyconnection.touch.dofus.com/data/map?lang=fr&v=1.49.9', {class: "Items", ids: [id]});
+                    this.ressourcesKnow[id] = res.data[id].nameId;
+                }
+
+                let saleNotif = new Notification(this.translate.instant('app.notifications.sale-message'), {
+                    body: `+ ${e.parameters[0]} Kamas (vente de ${e.parameters[3]} ${this.ressourcesKnow[id]})`
+                });
+
+                saleNotif.onclick = () => {
+                    electron.getCurrentWindow().focus();
+                    this.eventEmitter.emit('focusTab');
+                }
+            }
+        }
+
     }
 
     private sendMPNotif(msg: any) {
