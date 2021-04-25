@@ -1,10 +1,6 @@
 import * as EventEmitter from 'eventemitter3';
-<<<<<<< HEAD:src/app/mods/notifications/notifications.ts
 import {ElectronService as electron} from '@services/electron/electron.service';
-=======
-import { ElectronService as electron } from "app/core/electron/electron.service";
-const axios = require('axios');
->>>>>>> 0ccb3fbffcaf3840909aab1b763cf10e2d1d6670:src/app/core/mods/notifications/notifications.ts
+import axios from 'axios';
 
 import {Mod} from "../mod";
 
