@@ -21,7 +21,8 @@
       "tax-collector": "Un precettore è stato attaccato !",
       "kolizeum": "Trovata battaglia Kolosseo !",
       "party-invitation": "{{character}} ti ha invitato ad unirsi al suo gruppo.",
-      "aggression": "Sei stato assalito !"
+      "aggression": "Sei stato assalito !",
+      "sale-message": "Banca"
     },
     "window": {
       "changelog": {
@@ -308,7 +309,8 @@
         "tax-collector": "Quanto un percettore viene attaccato",
         "kolizeum": "Quando viene trovata una battaglia Kolosseo",
         "party-invitation": "Quando qualcuno ti invita in un gruppo",
-        "aggression": "Quando qualcuno ti assalta"
+        "aggression": "Quando qualcuno ti assalta",
+        "sale-message": "Quando un articolo viene venduto"
       },
       "reset": "Reimposta",
       "save": "Applica",
