@@ -37,9 +37,11 @@ export class TabGameService extends EventEmitter {
 
             let game = new Game(tab.id, credentials);
 
-            game.on('character', (name: string) => {
+            game.on('character', (name: string, level: any) => {
                 tab.character = name;
+                tab.level = `(${level})`;
             });
+
 
             game.on('icon', (icon: HTMLDivElement) => {
                 tab.icon = icon;
@@ -49,6 +51,23 @@ export class TabGameService extends EventEmitter {
             game.on('logged', (logged: boolean) => {
                 tab.isLogged = logged;
             });
+
+            game.on('ready', (ready: boolean) => {
+                tab.isReady = ready;
+            });
+
+            game.on('fight', (fight: boolean) => {
+              tab.isFighting = fight;
+            });
+
+            game.on('move', (move: boolean) => {
+                tab.isMoving = move;
+            });
+
+            game.on('fullPods', (fullPods: boolean) => {
+                tab.isFullPods = fullPods;
+            });
+
             game.on('notification', () => {
                 if (this.tabService.active.id !== tab.id) {
                     tab.notification = true;
