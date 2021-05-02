@@ -14,7 +14,7 @@ export class Chat extends Mod {
             let stylesheet = this.wGame.document.createElement('style');
             stylesheet.id = "inputBottom";
             stylesheet.innerHTML = `.chat .formChat {order: 6;}
-            .chat.open {margin-top: -26px;}`;
+            .chat.open:not(.fightMode) {margin-top: -26px;}`;
             this.wGame.document.getElementsByTagName('head')[0].appendChild(stylesheet);
         }
     }
