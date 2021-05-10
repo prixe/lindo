@@ -53,7 +53,9 @@ export class Marchand extends Mod {
         leftdiv.id = "leftMM";
         let lefticon = document.createElement("div");
         lefticon.className = "icon";
-        lefticon.style.backgroundImage="url(../game/assets/ui/arrow_left.png)";
+        lefticon.style.backgroundImage="url(../game/assets/ui/borderArrow/left.png)";
+        lefticon.style.backgroundSize="80%";
+        lefticon.style.backgroundPosition="50% 35%";
         leftdiv.appendChild(lefticon);
         this.wGame.document.getElementsByClassName("window TradeStorageWindow buy-human")[0].getElementsByClassName("filter")[0].parentNode.insertBefore(leftdiv,this.wGame.document.getElementsByClassName("window TradeStorageWindow buy-human")[0].getElementsByClassName("filter")[0]);
 
@@ -62,7 +64,9 @@ export class Marchand extends Mod {
         rightdiv.id = "rightMM";
         let righticon = document.createElement("div");
         righticon.className = "icon";
-        righticon.style.backgroundImage="url(../game/assets/ui/arrow_right.png)";
+        righticon.style.backgroundImage="url(../game/assets/ui/borderArrow/right.png)";
+        righticon.style.backgroundSize="80%";
+        righticon.style.backgroundPosition="50% 35%";
         rightdiv.appendChild(righticon);
         this.wGame.document.getElementsByClassName("window TradeStorageWindow buy-human")[0].getElementsByClassName("filter")[0].parentNode.insertBefore(rightdiv, null);
     }
