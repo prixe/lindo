@@ -1,15 +1,37 @@
 import {Estimation} from "@interfaces/mods/damage-estimator/estimation";
 
+// Data from 'script.js' line 33013 (Build Version: 1.49.8)
+enum EffectCategory {
+    undefined = -1,
+    miscellaneous = 0,
+    resistance = 1,
+    damage = 2,
+    special = 3
+}
+
+const SpellColor = {
+    5: '#ba87dd', // Do Pou
+    91: '#668cff', // Vol de vie eau
+    92: '#cc8800', // Vol de vie terre
+    93: '#00e68a', // Vol de vie air
+    94: '#ff5c33', // Vol de vie feu
+    96: '#668cff', // Dommages Eau
+    97: '#cc8800', // Dommages Terre
+    98: '#00e68a', // Dommages Air
+    99: '#ff5c33', // Dommages Feu
+    108: '#cc0080' // Soins
+};
+
 export class Estimator {
 
-    private fighter: any;
+    private actorId: number;
     private spell: any;
     private wGame: any;
 
     private estimatorContainer: HTMLDivElement;
 
-    constructor(fighter: any, spell: any, wGame: any | Window) {
-        this.fighter = fighter;
+    constructor(actor: any, spell: any, wGame: any | Window) {
+        this.actorId = actor.id;
         this.wGame = wGame;
         this.spell = spell;
 
@@ -18,83 +40,81 @@ export class Estimator {
 
     public update(spell: any) {
         this.spell = spell;
+        const actor = this.getActor();
 
-        const fighter = this.wGame.gui.fightManager.getFighter(this.fighter.id);
+        if (!this.wGame.isoEngine.mapRenderer.isFightMode || !actor.data.alive || !this.isActorVisible(actor)) {
+            return;
+        }
+        if (!this.estimatorContainer) {
+            this.createEstimator();
+        }
+        const cellId = actor.data.disposition.cellId;
 
-        if (this.wGame.isoEngine.mapRenderer.isFightMode) {
-
-            if (fighter.data.alive) {
-                if (!this.estimatorContainer ) {
-                    this.createEstimator();
-                }
-
-                let invisible = false;
-                for (const idB in fighter.buffs) {
-                    if (fighter.buffs[idB].effect.effectId == 150)
-                        invisible = true;
-                }
-
-                const cellId = fighter.data.disposition.cellId;
-
-                if (cellId && !invisible) {
-                    const scenePos = this.wGame.isoEngine.mapRenderer.getCellSceneCoordinate(cellId);
-                    const pos = this.wGame.isoEngine.mapScene.convertSceneToCanvasCoordinate(scenePos.x, scenePos.y);
-                    this.estimatorContainer.style.left = (pos.x - 40) + 'px';
-                    this.estimatorContainer.style.top = (pos.y - 80) + 'px';
-                }
-            }
+        if (cellId) {
+            const scenePos = this.wGame.isoEngine.mapRenderer.getCellSceneCoordinate(cellId);
+            const pos = this.wGame.isoEngine.mapScene.convertSceneToCanvasCoordinate(scenePos.x, scenePos.y);
+            this.estimatorContainer.style.left = (pos.x - (this.estimatorContainer.clientWidth / 2)) + 'px';
+            this.estimatorContainer.style.top = (pos.y - 80) + 'px';
         }
     }
 
     private createEstimator() {
-        /* retrieve data */
-        const cellId = this.fighter.data.disposition.cellId;
+        // retrieve data
+        const actor = this.getActor();
+
+        if (!this.isActorVisible(actor)) {
+            return;
+        }
+        const cellId = actor.data.disposition.cellId;
         const scenePos = this.wGame.isoEngine.mapRenderer.getCellSceneCoordinate(cellId);
         const pos = this.wGame.isoEngine.mapScene.convertSceneToCanvasCoordinate(scenePos.x, scenePos.y);
 
-        /* estimatorContainer */
-        if(this.wGame.document.getElementById('estimatorContainer' + this.fighter.id)){
-            this.estimatorContainer = this.wGame.document.getElementById('estimatorContainer' + this.fighter.id);
-        }else{
+        // estimatorContainer
+        if (this.wGame.document.getElementById('estimatorContainer' + this.actorId)) {
+            this.estimatorContainer = this.wGame.document.getElementById('estimatorContainer' + this.actorId);
+        } else {
             this.estimatorContainer = document.createElement('div');
-            this.estimatorContainer.id = 'estimatorContainer' + this.fighter.id;
+            this.estimatorContainer.id = 'estimatorContainer' + this.actorId;
         }
 
         this.estimatorContainer.style.cssText = 'padding:3px; box-sizing: border-box; border: 1px gray solid; background-color: #222;color: white; position: absolute; border-radius: 3px; overflow: hidden; transition-duration: 500ms;';
-        this.estimatorContainer.style.left = (pos.x - 40) + 'px';
-        this.estimatorContainer.style.top = (pos.y - 80) + 'px';
         this.estimatorContainer.innerHTML = '';
 
-        const estimations = this.getEstimations(this.spell, this.fighter);
+        const estimations = this.spell.isItem ?
+            this.getWeaponEstimations(this.spell, actor) :
+            this.getEstimations(this.spell, actor);
 
-        estimations.forEach((estimation)=>{
-            const displayDammage = document.createElement('div');
-            displayDammage.innerHTML = `(${estimation.min} - ${estimation.max})`;
+        for (const [effectId, min, criticalMin, max, criticalMax] of estimations) {
+            const damage = document.createElement('div');
+            damage.textContent = (min || max) + '';
+            damage.style.color = SpellColor[effectId] || '';
+            damage.style.fontSize = '0.9em';
 
-
-            switch(estimation.element){
-                case 'water':
-                    displayDammage.style.color = '#668cff';
-                    break;
-                case 'fire':
-                    displayDammage.style.color = '#ff5c33';
-                    break;
-                case 'air':
-                    displayDammage.style.color = '#00e68a';
-                    break;
-                case 'earth':
-                    displayDammage.style.color = '#cc8800';
-                    break;
-                case 'heal':
-                    displayDammage.style.color = '#cc0080';
-                    break;
+            if (min > 0 && max > 0) {
+                damage.textContent += ` - ${max}`;
             }
+            if (criticalMin > 0 || criticalMax > 0) {
+                const criticalDamage = document.createElement('span');
+                const p1 = document.createElement('span');
+                const p2 = document.createElement('span');
+                p1.textContent = " (";
+                p1.style.color = "white";
+                p2.textContent = ")";
+                p2.style.color = "white";
+                criticalDamage.textContent = (criticalMin || criticalMax) + '';
 
-            Logger.info(estimation.element);
-            this.estimatorContainer.appendChild(displayDammage);
-        });
-
+                if (criticalMin > 0 && criticalMax > 0) {
+                    criticalDamage.textContent += ` - ${criticalMax}`;
+                }
+                damage.appendChild(p1);
+                damage.appendChild(criticalDamage);
+                damage.appendChild(p2);
+            }
+            this.estimatorContainer.appendChild(damage);
+        }
         this.wGame.document.getElementById('damage-estimator').appendChild(this.estimatorContainer);
+        this.estimatorContainer.style.left = (pos.x - (this.estimatorContainer.clientWidth / 2)) + 'px';
+        this.estimatorContainer.style.top = (pos.y - 80) + 'px';
     }
 
     public destroy() {
@@ -103,360 +123,329 @@ export class Estimator {
 
     //-------------------------------------------------------------------------------------------------
 
-    //obtient les estimations de dégats
-    private getEstimations(spell: any, fighter: any): Estimation[] {
-        const estimations : Estimation[] = [];
+    private getWeaponEstimations(spell: any, actor: any) {
+        const estimations = [];
 
-        //pour chaque effet du sort
-        for (const effectId in spell.spellLevel.effects) {
-            const effect = spell.spellLevel.effects[effectId];
+        for (const key in spell.effectInstances) {
+            const { effect, effectId, min, max } = spell.effectInstances[key];
+            const criticalHitBonus = spell._item.item.criticalHitBonus;
+            const estimation = [effectId, 0, 0, 0, 0] as [number, number, number, number, number];
 
-            //si effet direct
-            if (effect._type == "EffectInstanceDice") {
-                const element = Estimator.effectIdToElement(effect.effectId);
-                if (element != "undefined") {
-                    const min = this.getMinDamageDealed(element, fighter, effect);
-                    const max = this.getMaxDamageDealed(element, fighter, effect);
-                    estimations.push({
-                        element: element,
-                        min: Math.max(0, min),
-                        max: Math.max(0, max),
-                        isHeal: false,
-                    });
-                }
+            if (effect.category != EffectCategory.damage) {
+                continue;
             }
-            else {
-                Logger.info("Quel cet effet mystique ?" + effect._type);
-                Logger.info(effect);
-                Logger.info("De ce sort:");
-                Logger.info(spell);
+            if (this.isActorInvincible(actor)) {
+                estimations.push(estimation);
+                continue;
             }
+            if (!this.isValidEffectId(effectId)) {
+                continue;
+            }
+            if (!this.isActorBuff(actor, 410)) {
+                estimation[1] = Math.max(0, this.getSpellEstimation(effectId, actor, min));
+                estimation[2] = Math.max(0, this.getSpellEstimation(effectId, actor, min + criticalHitBonus, true));
+            }
+            if (!this.isActorBuff(actor, 416)) {
+                estimation[3] = Math.max(0, this.getSpellEstimation(effectId, actor, max));
+                estimation[4] = Math.max(0, this.getSpellEstimation(effectId, actor, max + criticalHitBonus, true));
+            }
+            estimations.push(estimation);
         }
-
         return estimations;
     }
 
-    /**
-     * (info) Il s'agit d'un nombre qui, comme son nom l'indique, va être multiplié avec le jet. Il est composé d'une de vos caractéristique, selon l'élément de votre sort ou arme, ainsi que de votre puissance.
-     *
-     * Multiplicateur = (Puissance + Caractéristique+100)/100
-     */
-    private getFactor(element: string) {
-        let carac = 0;
-        switch (element) {
-            case 'air':
-                carac = this.getAgility();
-                break;
-            case 'fire':
-                carac = this.getIntelligence();
-                break;
-            case 'earth':
-            case 'neutral':
-                carac = this.getStrength();
-                break;
-            case 'water':
-                carac = this.getChance();
-                break;
+    private getEstimations(spell: any, actor: any) {
+        const estimations = [];
 
-            default:
-                break;
+        for (let i = 0; i < spell.spellLevel.effects.length; i++) {
+            const { effectId, diceNum, diceSide } = spell.spellLevel.effects[i];
+            const criticalEffect = spell.spellLevel.criticalEffect[i];
+            const estimation = [effectId, 0, 0, 0, 0] as [number, number, number, number, number];
+
+            if (this.isActorInvincible(actor)) {
+                estimations.push(estimation);
+                continue;
+            }
+            if (effectId == 5) {
+                /*
+                    NOTE: Push damage effects on critical doesn't seem to push further
+                    Formula: (8 + (random * level) / 50) * diceNum + totalPushDamage
+
+                    Push damages doesn't have damage variations like spells so we
+                    have a random number between 0 and 8 to do that
+                */
+                const self = this.getUserActor();
+                const bonus = this.getCharacterStat("pushDamageBonus") - actor.data.stats.pushDamageFixedResist;
+                estimation[1] = Math.max(0, ((8 + (0 * self.level) / 50) * diceNum) + bonus);
+                estimation[3] = Math.max(0, ((8 + (8 * self.level) / 50) * diceNum) + bonus);
+                estimations.push(estimation);
+                continue;
+            }
+            if (!this.isValidEffectId(effectId)) {
+                continue;
+            }
+            if (!this.isActorBuff(actor, 410)) {
+                estimation[1] = Math.max(0, this.getSpellEstimation(effectId, actor, diceNum));
+                estimation[2] = Math.max(0, this.getSpellEstimation(effectId, actor, criticalEffect.diceNum, true));
+            }
+            if (!this.isActorBuff(actor, 416)) {
+                estimation[3] = Math.max(0, this.getSpellEstimation(effectId, actor, diceSide));
+                estimation[4] = Math.max(0, this.getSpellEstimation(effectId, actor, criticalEffect.diceSide, true));
+            }
+            estimations.push(estimation);
         }
-        return (this.getPower() + carac + 100 ) / 100;
+        return estimations;
     }
 
-    /**
-     * Le fixe est un bonus qui s'ajoute aux dégâts indépendamment du jet. Cela vous permet d'assurer un minimum de dégâts à chaque attaque, même si le jet obtenu est faible.
-     *
-     * Fixe = Dommages + Dommages élémentaires (+ Dommages critiques si vous faites un Coup Critique)
-     */
-    private getFixDamages(element: string) {
-        //TODO crit
-        let elementalDamages = 0;
-        switch (element) {
-            case 'air':
-                elementalDamages = this.getAirDamage();
-                break;
-            case 'fire':
-                elementalDamages = this.getFireDamage();
-                break;
-            case 'earth':
-                elementalDamages = this.getEarthDamage();
-                break;
-            case 'water':
-                elementalDamages = this.getWaterDamage();
-                break;
-            case 'neutral':
-                elementalDamages = this.getNeutralDamage();
-                break;
-
-            default:
-                break;
-        }
-        return Estimator.getFullCharaBonus(this.wGame.gui.playerData.characters.mainCharacter.characteristics.allDamagesBonus) + elementalDamages;
+    private isValidEffectId(id: number) {
+        return [96, 91, 100, 97, 92, 98, 93, 99, 94, 108, 672].includes(id);
     }
 
-    /**
-     * Dégâts bruts = Partie entière[Multiplicateur x Jet + Fixe]
-     *
-     * effect: un des effets d'un sort
-     */
-    private getMinBrutDamages(element: string, effect: any) {
-        //diceNume le jet minimum d'un sort
-        return Math.trunc(this.getFactor(element) * effect.diceNum + this.getFixDamages(element));
-    }
-
-    private getMaxBrutDamages(element: string, effect: any) {
-        //diceSide le jet maximum d'un sort
-        return Math.trunc(this.getFactor(element) * effect.diceSide + this.getFixDamages(element));
-    }
-
-    private static effectIdToElement(effectId: number) {
+    private getSpellEstimation(effectId: number, actor: any, spellDice: number, isCritical = false) {
         switch (effectId) {
-            case 96://dommages eau
-            case 91://vol de vie eau
-                return 'water';
-            case 97://dommages terre
-            case 92://vol de vie terre
-                return 'earth';
-            case 98://dommages air
-            case 93://vol de vie air
-                return 'air';
-            case 99://dommages feu
-            case 94://vol de vie feu
-                return 'fire';
-            case 100://dommages neutres
-                return 'neutral';
-            case 108://soins
-                return 'heal';
-            case 101: //retrait PA ??
-            case 116: //perte PO
+            case 96: // Dommages Eau
+            case 91: // Vol de vie eau
+                return this.computeSpellEstimation(
+                    spellDice,
+                    isCritical,
+                    this.getCharacterBaseStat("chance"),
+                    this.getCharacterStat("waterDamageBonus"),
+                    this.getSpellDamageModifier(actor),
+                    actor.data.stats.waterElementReduction,
+                    actor.data.stats.criticalDamageFixedResist,
+                    this.getElementResistPercent(actor, "waterElementResistPercent")
+                );
+            case 100: // Dommages Neutre
+                return this.computeSpellEstimation(
+                    spellDice,
+                    isCritical,
+                    this.getCharacterBaseStat("strength"),
+                    this.getCharacterStat("neutralDamageBonus"),
+                    this.getSpellDamageModifier(actor),
+                    actor.data.stats.neutralElementReduction,
+                    actor.data.stats.criticalDamageFixedResist,
+                    this.getElementResistPercent(actor, "neutralElementResistPercent")
+                );
+            case 97: // Dommages Terre
+            case 92: // Vol de vie terre
+                return this.computeSpellEstimation(
+                    spellDice,
+                    isCritical,
+                    this.getCharacterBaseStat("strength"),
+                    this.getCharacterStat("earthDamageBonus"),
+                    this.getSpellDamageModifier(actor),
+                    actor.data.stats.earthElementReduction,
+                    actor.data.stats.criticalDamageFixedResist,
+                    this.getElementResistPercent(actor, "earthElementResistPercent")
+                );
+            case 98: // Dommages Air
+            case 93: // Vol de vie air
+                return this.computeSpellEstimation(
+                    spellDice,
+                    isCritical,
+                    this.getCharacterBaseStat("agility"),
+                    this.getCharacterStat("airDamageBonus"),
+                    this.getSpellDamageModifier(actor),
+                    actor.data.stats.airElementReduction,
+                    actor.data.stats.criticalDamageFixedResist,
+                    this.getElementResistPercent(actor, "airElementResistPercent")
+                );
+            case 99: // Dommages Feu
+            case 94: // Vol de vie feu
+                return this.computeSpellEstimation(
+                    spellDice,
+                    isCritical,
+                    this.getCharacterBaseStat("intelligence"),
+                    this.getCharacterStat("fireDamageBonus"),
+                    this.getSpellDamageModifier(actor),
+                    actor.data.stats.fireElementReduction,
+                    actor.data.stats.criticalDamageFixedResist,
+                    this.getElementResistPercent(actor, "fireElementResistPercent")
+                );
+            case 108: // Soins
+                return Math.trunc(spellDice * (100 + this.getCharacterBaseStat("intelligence")) / 100 + this.getCharacterStat("healBonus"));
+            case 672: // Punition du Sacrieur
+                const self = this.getUserActor();
+                const maxHealth = this.getCharacterStat("vitality") + (50 + self.level * 5);
+                const percentMax = (self.lifePoints / self.maxLifePoints);
+                return ((spellDice / 100) * Math.pow(Math.cos(2 * Math.PI * (percentMax - 0.5)) + 1, 2)) / 4 * maxHealth;
             default:
-                Logger.info("effectId inconnu:" + effectId);
-                return 'undefined';
+                Logger.info("effectId not handled:" + effectId);
+                return 0;
         }
-    }
-
-    private getMaxDamageDealed(element: string, fighter: any, effect: any) {
-        if (element != "heal")
-            return Math.trunc((this.getMaxBrutDamages(element, effect) - this.getResFix(element, fighter)) * (100 - Estimator.getPercentRes(element, fighter)) / 100);
-        else
-            return this.getMaxHeal(element, fighter, effect);
     }
 
     /**
-     *
-     * Dégâts subis = Partie entière([Dégâts bruts - ​Bonus fixes] * [100 - Résistance en %]/ 100)
+     * TODO: prévisu dégâts sort de zone éloigné
+     * Dégâts subis = (((Puissance + Caractéristique + 100) / 100) - Résistances fixes) * (100 - % Résistances) / 100
      */
-    private getMinDamageDealed(element: string, fighter: any, effect: any) {
-        if (element != "heal")
-            return Math.trunc((this.getMinBrutDamages(element, effect) - this.getResFix(element, fighter)) * (100 - Estimator.getPercentRes(element, fighter)) / 100);
-        else
-            return this.getMinHeal(element, fighter, effect);
-    }
+    private computeSpellEstimation(
+        baseSpellDamage: number,
+        isCritical: boolean,
+        baseStat: number,
+        fixDamages: number,
+        spellDamageModifier: [number, number, number, number],
+        fixResistances: number,
+        criticalDamageFixedResist: number,
+        percentResistances: number
+    ) {
+        const [baseStatModifier, baseSpellDamageModifier, fixedDamageModifier, damageMultiplicator] = spellDamageModifier;
+        const power = this.getCharacterStat("damagesBonusPercent");
+        let possibleDamages = (((power * 0.8) + baseStatModifier + baseStat + 100) / 100) * (baseSpellDamage + baseSpellDamageModifier) + this.getCharacterStat('allDamagesBonus') + fixDamages;
 
-    /**
-     * Soins = Base * (100 + Intelligence ) / 100 + Soins
-     */
-    private getMaxHeal(element: string, fighter: any, effect: any){
-        return Math.trunc(effect.diceSide * (100 + this.getIntelligence()) / 100 + this.getHealingBonus());
-    }
-    private getMinHeal(element: string, fighter: any, effect: any){
-        return Math.trunc(effect.diceNum * (100 + this.getIntelligence()) / 100 + this.getHealingBonus());
-    }
-
-    private getHealingBonus(){
-        const h = this.wGame.gui.playerData.characters.mainCharacter.characteristics.healBonus;
-        return Estimator.getFullCharaBonus(h);
-    }
-
-//retourne le montant total de la carac (bonus inclus)
-    private static getFullCharaBonus(characteristic: any) {
-        let sum = 0;
-        if (typeof characteristic.getBasePts() !== 'undefined') {
-            sum += characteristic.getBasePts();
+        if (isCritical) {
+            possibleDamages += this.getCharacterStat("criticalDamageBonus") - criticalDamageFixedResist;
         }
-        if (typeof characteristic.getContextModif() !== 'undefined') {
-            sum += characteristic.getContextModif();
-        }
-        if (typeof characteristic.getEquipmentPts() !== 'undefined') {
-            sum += characteristic.getEquipmentPts();
-        }
-        if (typeof characteristic.getAlignGiftPts() !== 'undefined') {
-            sum += characteristic.getAlignGiftPts();
-        }
-        return sum;
+        return Math.trunc((possibleDamages - fixResistances + fixedDamageModifier) * damageMultiplicator * (100 - percentResistances) / 100);
     }
 
-//puissance
-    private getPower() {
-        const d = this.wGame.gui.playerData.characters.mainCharacter.characteristics.damagesBonusPercent;
-        //dafuq is that: permanentDamagePercent
-        //let p = this.wGame.gui.playerData.characters.mainCharacter.characteristics.permanentDamagePercent;
-        return Estimator.getFullCharaBonus(d);// + this.getFullCharaBonus(p);
-    }
-
-// ---- éléments ----
-
-    private getFullCharaBonusElement(characteristic:any){
-        //si element < 0 alors = 0
-        let total = Estimator.getFullCharaBonus(characteristic);
-        if (total < 0)
-            total = 0;
-        return total;
-    }
-
-    private getAgility() {
-        const a = this.wGame.gui.playerData.characters.mainCharacter.characteristics.agility;
-        return this.getFullCharaBonusElement(a);
-    }
-
-    private getChance() {
-        const a = this.wGame.gui.playerData.characters.mainCharacter.characteristics.chance;
-        return this.getFullCharaBonusElement(a);
-    }
-
-    private getIntelligence() {
-        const a = this.wGame.gui.playerData.characters.mainCharacter.characteristics.intelligence;
-        return this.getFullCharaBonusElement(a);
-    }
-
-    private getStrength() {
-        const a = this.wGame.gui.playerData.characters.mainCharacter.characteristics.strength;
-        return this.getFullCharaBonusElement(a);
-    }
-
-// ---- dommages élémentaires ---
-    private getAirDamage() {
-        const a = this.wGame.gui.playerData.characters.mainCharacter.characteristics.airDamageBonus;
-        return Estimator.getFullCharaBonus(a);
-    }
-
-    private getFireDamage() {
-        const a = this.wGame.gui.playerData.characters.mainCharacter.characteristics.fireDamageBonus;
-        return Estimator.getFullCharaBonus(a);
-    }
-
-    private getEarthDamage() {
-        const a = this.wGame.gui.playerData.characters.mainCharacter.characteristics.earthDamageBonus;
-        return Estimator.getFullCharaBonus(a);
-    }
-
-    private getWaterDamage() {
-        const a = this.wGame.gui.playerData.characters.mainCharacter.characteristics.waterDamageBonus;
-        return Estimator.getFullCharaBonus(a);
-    }
-
-    private getNeutralDamage() {
-        const a = this.wGame.gui.playerData.characters.mainCharacter.characteristics.neutralDamageBonus;
-        return Estimator.getFullCharaBonus(a);
-    }
-
-// --- resistances / faiblesses ---
-    /**
-     *
-     * Bonus fixe = Résistance élémentaire fixe + Résistance fixe des sorts (+Résistance critique si le sort fait un coup critique)
-     */
-    private getResFix(element: string, fighter: any) {
-        //TODO crit
-        return Estimator.getResFixElement(element, fighter) + this.getResFixSpell(element, fighter);
-    }
-
-//resistance élémentaire fixe
-    private static getResFixElement(element: string, fighter: any) {
-        const stats = fighter.data.stats;
-        let res = 0;
-        switch (element) {
-            case 'air':
-                res = stats.airElementReduction;
-                break;
-            case 'fire':
-                res = stats.fireElementReduction;
-                break;
-            case 'earth':
-                res = stats.earthElementReduction;
-                break;
-            case 'water':
-                res = stats.waterElementReduction;
-                break;
-            case 'neutral':
-                res = stats.neutralElementReduction;
-                break;
-
-            default:
-                break;
-        }
-        return res;
-    }
-
-//restance fixe des sorts (mot prev ...)
-    private getResFixSpell(element: string, fighter: any) {
-        let res = 0;
-
-        for (const buff of fighter.buffs) {
-            //si reduction de dégats
-            const caster = this.wGame.gui.fightManager.getFighter(buff.source);
-            const lvl = caster.level;
-            if (buff.effect.effect.characteristic == 16) {
-                switch (buff.castingSpell.spell.id){
-                    case 1://armure incandescente
-                        if(element === 'fire')
-                            res += buff.effect.value * (100 + 5 * lvl) / 100;
-                        break;
-                    case 18://armure aqueuse
-                        Logger.info("armure aqueuse: "+element);
-                        if(element === 'water')
-                            res += buff.effect.value * (100 + 5 * lvl) / 100;
-                        break;
-                    case 6:// armure terrestre
-                        if(element === 'earth')
-                            res += buff.effect.value * (100 + 5 * lvl) / 100;
-                        break;
-                    case 14:// armure venteuse
-                        if(element === 'air')
-                            res += buff.effect.value * (100 + 5 * lvl) / 100;
-                        break;
-                    case 5://trêve
-                    case 127://mot de prévention
-                        res += buff.effect.value * (100 + 5 * lvl) / 100;
-                        break;
-                    default:
-                        Logger.info("Quel est ce buff: "+buff.effect.effectId+ " - "+buff.effect.description);
-                        Logger.info("catégorie: "+buff.effect.effect.category);
-                        break;
-                }
-                //res += buff.effect.value * (100 + 5 * lvl) / 100;
+    private isActorInvincible(actor: any) {
+        for (const buff of actor.buffs) {
+            // array = Dérobade, Corruption, Puissance Sylvestre
+            if ([444, 4694, 197].includes(buff.castingSpell.spell.id)) {
+                return true;
             }
         }
-        return Math.trunc(res);
+        return false;
     }
 
-//res en pourcents
-    private static getPercentRes(element: string, fighter: any) {
-        const stats = fighter.data.stats;
-        let res = 0;
-        switch (element) {
-            case 'air':
-                res = stats.airElementResistPercent;
-                break;
-            case 'fire':
-                res = stats.fireElementResistPercent;
-                break;
-            case 'earth':
-                res = stats.earthElementResistPercent;
-                break;
-            case 'water':
-                res = stats.waterElementResistPercent;
-                break;
-            case 'neutral':
-                res = stats.neutralElementResistPercent;
-                break;
+    // TODO: Incomplete spell list
+    private getSpellDamageModifier(actor: any) {
+        let damageMultiplicator = 1;
+        let baseSpellDamageModifier = 0;
+        let fixedDamageModifier = 0;
+        let baseStatModifier = 0;
 
-            default:
-                break;
+        for (const buff of this.getUserActor().buffs) {
+            switch (buff.castingSpell.spell.id) {
+                case 159: // Colère de Iop
+                case 146: // Epée du destin
+                case 167: // Flèche d'Expiation
+                case 171: // Flèche Punitive
+                    if (this.spell.id == buff.castingSpell.spell.id) {
+                        baseSpellDamageModifier += buff.effect.value;
+                    }
+                    break;
+                case 3506: // Maîtrise d'Arme
+                    if (this.spell.isItem) {
+                        baseStatModifier += buff.effect.diceNum;
+                    }
+                    break;
+            }
         }
-        //si c'est un joueur (pas une invoc ou créature) la res ne peux pas etre plus elevée que 50%
-        if ((!fighter.isCreature) && res > 50)
-            res = 50;
-        return res;
+        for (const buff of actor.buffs) {
+            if (buff.effect.effect.characteristic != 16) {
+                continue;
+            }
+            switch (buff.castingSpell.spell.id) {
+                case 7: // Bouclier Féca
+                case 2031: // Bouclier Féca du doepul
+                case 1503: // Glyphe Agressif
+                case 1504: // Glyphe Agressif
+                case 2037: // Glyphe Agressif du dopeul
+                case 4511: // Glyphe Agressif
+                case 4696: // Glyphe Agressif
+                case 4684: // Flèche Analgésique
+                    damageMultiplicator *= buff.effect.diceNum / 100;
+                    break;
+                case 4: // Barricade
+                case 2030: // Barricade du dopeul
+                    if (this.isCellIdNextToMe(actor.data.disposition.cellId)) {
+                        fixedDamageModifier -= buff.effect.diceNum;
+                    }
+                    break;
+                case 20: // Bastion
+                case 2039: // Bastion du dopeul
+                    if (!this.isCellIdNextToMe(actor.data.disposition.cellId)) {
+                        fixedDamageModifier -= buff.effect.diceNum;
+                    }
+                    break;
+                case 4690: // Chance d'Ecaflip
+                    damageMultiplicator *= buff.duration == 1 ? 1.5 : 0.5;
+                    break;
+                case 6: // Rempart
+                case 4698: // Rempart
+                case 5: // Trêve
+                case 127: // Mot de prévention
+                case 2093: // Mot de prévention du doepul
+                    const caster = this.wGame.gui.fightManager.getFighter(buff.source);
+                    fixedDamageModifier -= buff.effect.value * (100 + 5 * caster.level) / 100;
+                    break;
+                default:
+                    Logger.info(`effectId: ${buff.effect.effectId}, category: ${buff.effect.effect.category} spellId: ${buff.castingSpell.spell.id} | ${buff.effect.description}`);
+                    break;
+            }
+        }
+        return [
+            baseStatModifier,
+            baseSpellDamageModifier,
+            fixedDamageModifier,
+            damageMultiplicator
+        ] as [number, number, number, number];
+    }
+
+    // TODO: Might not work when controlling a summon
+    private isCellIdNextToMe(actorCellId: number) {
+        const currentCellId = this.getUserActor().data.disposition.cellId;
+        const actorPos = this.wGame.isoEngine.mapRenderer.grid.getCoordinateGridFromCellId(actorCellId);
+        const currentPos = this.wGame.isoEngine.mapRenderer.grid.getCoordinateGridFromCellId(currentCellId);
+        const neighbours = [
+            [currentPos.i, currentPos.j + 1],
+            [currentPos.i, currentPos.j - 1],
+            [currentPos.i + 1, currentPos.j],
+            [currentPos.i - 1, currentPos.j],
+            [currentPos.i + 1, currentPos.j + 1],
+            [currentPos.i - 1, currentPos.j - 1],
+            [currentPos.i + 1, currentPos.j - 1],
+            [currentPos.i - 1, currentPos.j + 1]
+        ];
+        for (const [x, y] of neighbours) {
+            if (actorPos.i == x && actorPos.j == y) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private getCharacterBaseStat(key: string) {
+        return Math.max(
+            0,
+            this.getCharacterStat(key)
+        );
+    }
+
+    private getCharacterStat(key: string) {
+        return this.wGame.gui.playerData.characters.mainCharacter.characteristics[key].getTotalStat();
+    }
+
+    private getElementResistPercent(actor: any, key: string) {
+        return !actor.isCreature && actor.data.stats[key] > 50 ? 50 : actor.data.stats[key];
+    }
+
+    private isActorBuff(actor: any, spellId: number) {
+        for (const buff of actor.buffs) {
+            if (buff.castingSpell.spell.id == spellId) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private getUserActor() {
+        return this.wGame.gui.fightManager.getFighter(this.wGame.gui.playerData.id);
+    }
+
+    private getActor() {
+        return this.wGame.gui.fightManager.getFighter(this.actorId);
+    }
+
+    private isActorVisible(actor: any) {
+        for (const key in actor.buffs) {
+            // 150 = Rend le personnage invisible
+            if (actor.buffs[key].effect.effectId == 150) {
+                return false;
+            }
+        }
+        return true;
     }
 }
