@@ -34,7 +34,7 @@ private numMM = null
 
     private clickB(event): void {
         if (event.target.parentNode.id == "rightMM") {
-            
+
             this.clickRight();
             this.reset()
         }
@@ -49,7 +49,7 @@ private numMM = null
 
 
 
-    private getMM(response) {  
+    private getMM(response) {
        this.tab = [];
        for (let i in response.actors) {
            if(response.actors[i]._type == "GameRolePlayMerchantInformations") {
@@ -83,7 +83,7 @@ private numMM = null
 
 private openMM(response) {
 	       this.reset()
-		this.addBtn();	
+		this.addBtn();
 		this.numMM = this.tab.findIndex(i => i.id == response.sellerId);
 	}
 
@@ -97,7 +97,7 @@ private openMM(response) {
 	            humanVendorId: this.tab[this.numMM+1].id,
 	            humanVendorCell: this.tab[this.numMM+1].position
 	        });
-	    }    
+	    }
 	}
 
 	private clickRight() {
@@ -110,14 +110,14 @@ private openMM(response) {
 	            humanVendorId: this.tab[this.numMM-1].id,
 	            humanVendorCell: this.tab[this.numMM-1].position
 	        });
-	    }    
+	    }
 	}
 
 	private closeMM() {
 		this.wGame.dofus.sendMessage("LeaveDialogRequestMessage", null);
-	}	
+	}
 
-	private closeW() {		
+	private closeW() {
 		this.wGame.document.querySelectorAll("#leftMM").forEach((elem) => elem.remove());
 		this.wGame.document.querySelectorAll("#rightMM").forEach((elem) => elem.remove());
         console.log("KEYTUR 2")
