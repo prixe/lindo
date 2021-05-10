@@ -9,6 +9,7 @@
 - Ajout de favoris pour les zaaps
 - Ajout d'un affichage des ressources présentes sur la carte
 - Ajout d'une notification lors de la vente d'un objet en hôtel de vente
+- Ajout de flèches pour naviguer entre les marchands sur une carte
 
 ### Améliorations
 - Ajout de l’icône dans le build .deb
