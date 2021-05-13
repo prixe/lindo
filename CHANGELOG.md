@@ -17,6 +17,7 @@
 
 ### Correctifs
 - Crash de Lindo avec le déplacement rapide lorsque la case est inaccessible
+- Corrections de l'estimation des dégâts
 
 ## [2.5.4] - 2021-04-13
 
