@@ -19,7 +19,8 @@ const SpellColor = {
     97: '#cc8800', // Dommages Terre
     98: '#00e68a', // Dommages Air
     99: '#ff5c33', // Dommages Feu
-    108: '#cc0080' // Soins
+    108: '#cc0080', // Soins
+    1109: '#cc0080' // Percent healths
 };
 
 export class Estimator {
@@ -176,8 +177,8 @@ export class Estimator {
                 */
                 const self = this.getUserActor();
                 const bonus = this.getCharacterStat("pushDamageBonus") - actor.data.stats.pushDamageFixedResist;
-                estimation[1] = Math.max(0, ((8 + (0 * self.level) / 50) * diceNum) + bonus);
-                estimation[3] = Math.max(0, ((8 + (8 * self.level) / 50) * diceNum) + bonus);
+                estimation[1] = Math.trunc(Math.max(0, ((8 + (0 * self.level) / 50) * diceNum) + bonus));
+                estimation[3] = Math.trunc(Math.max(0, ((8 + (8 * self.level) / 50) * diceNum) + bonus));
                 estimations.push(estimation);
                 continue;
             }
@@ -186,11 +187,15 @@ export class Estimator {
             }
             if (!this.isActorBuff(actor, 410)) {
                 estimation[1] = Math.max(0, this.getSpellEstimation(effectId, actor, diceNum));
-                estimation[2] = Math.max(0, this.getSpellEstimation(effectId, actor, criticalEffect.diceNum, true));
+                if (criticalEffect != undefined) {
+                    estimation[2] = Math.max(0, this.getSpellEstimation(effectId, actor, criticalEffect.diceNum, true));
+                }
             }
-            if (!this.isActorBuff(actor, 416)) {
+            if (!this.isActorBuff(actor, 416) && diceSide > diceNum) {
                 estimation[3] = Math.max(0, this.getSpellEstimation(effectId, actor, diceSide));
-                estimation[4] = Math.max(0, this.getSpellEstimation(effectId, actor, criticalEffect.diceSide, true));
+                if (criticalEffect != undefined) {
+                    estimation[4] = Math.max(0, this.getSpellEstimation(effectId, actor, criticalEffect.diceSide, true));
+                }
             }
             estimations.push(estimation);
         }
@@ -198,7 +203,7 @@ export class Estimator {
     }
 
     private isValidEffectId(id: number) {
-        return [96, 91, 100, 97, 92, 98, 93, 99, 94, 108, 672].includes(id);
+        return [96, 91, 100, 97, 92, 98, 93, 99, 94, 82, 108, 1109, 672].includes(id);
     }
 
     private getSpellEstimation(effectId: number, actor: any, spellDice: number, isCritical = false) {
@@ -262,8 +267,12 @@ export class Estimator {
                     actor.data.stats.criticalDamageFixedResist,
                     this.getElementResistPercent(actor, "fireElementResistPercent")
                 );
+            case 82: // Fixed neutral life steal
+                return Math.trunc((spellDice - actor.data.stats.neutralElementReduction) * (100 - this.getElementResistPercent(actor, "neutralElementResistPercent")) / 100);
             case 108: // Soins
                 return Math.trunc(spellDice * (100 + this.getCharacterBaseStat("intelligence")) / 100 + this.getCharacterStat("healBonus"));
+            case 1109: // Percent healths
+                return Math.trunc(spellDice * (actor.data.stats.maxLifePoints / 100));
             case 672: // Punition du Sacrieur
                 const self = this.getUserActor();
                 const maxHealth = this.getCharacterStat("vitality") + (50 + self.level * 5);
@@ -324,6 +333,11 @@ export class Estimator {
                 case 171: // Flèche Punitive
                     if (this.spell.id == buff.castingSpell.spell.id) {
                         baseSpellDamageModifier += buff.effect.value;
+                    }
+                    break;
+                case 166: // Powerful Shooting
+                    if (!this.spell.isItem) {
+                        baseStatModifier += buff.effect.diceNum;
                     }
                     break;
                 case 3506: // Maîtrise d'Arme
