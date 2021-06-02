@@ -24,7 +24,6 @@ const SpellColor = {
 };
 
 export class Estimator {
-
     private actorId: number;
     private spell: any;
     private wGame: any;
@@ -193,7 +192,7 @@ export class Estimator {
             }
             if (!this.isActorBuff(actor, 416) && diceSide > diceNum) {
                 estimation[3] = Math.max(0, this.getSpellEstimation(effectId, actor, diceSide));
-                if (criticalEffect != undefined) {
+                if (criticalEffect != undefined && criticalEffect.diceSide > criticalEffect.diceNum) {
                     estimation[4] = Math.max(0, this.getSpellEstimation(effectId, actor, criticalEffect.diceSide, true));
                 }
             }
@@ -331,8 +330,15 @@ export class Estimator {
                 case 146: // Epée du destin
                 case 167: // Flèche d'Expiation
                 case 171: // Flèche Punitive
-                    if (this.spell.id == buff.castingSpell.spell.id) {
-                        baseSpellDamageModifier += buff.effect.value;
+                    if (this.spell.id == buff.castingSpell.spell.id && !buff.effect.trigger) {
+                        if (buff.stack != null) {
+                            for (const _buff of buff.stack) {
+                                baseSpellDamageModifier += _buff.effect.value;
+                            }
+                        }
+                        else {
+                            baseSpellDamageModifier += buff.effect.value;
+                        }
                     }
                     break;
                 case 166: // Powerful Shooting
