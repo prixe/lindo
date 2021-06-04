@@ -275,8 +275,9 @@ export class Estimator {
             case 672: // Punition du Sacrieur
                 const self = this.getUserActor();
                 const maxHealth = this.getCharacterStat("vitality") + (50 + self.level * 5);
-                const percentMax = (self.lifePoints / self.maxLifePoints);
-                return ((spellDice / 100) * Math.pow(Math.cos(2 * Math.PI * (percentMax - 0.5)) + 1, 2)) / 4 * maxHealth;
+                const percentMax = (self.data.stats.lifePoints / self.data.stats.maxLifePoints);
+                const possibleDamage = ((spellDice / 100) * Math.pow(Math.cos(2 * Math.PI * (percentMax - 0.5)) + 1, 2)) / 4 * maxHealth;
+                return Math.trunc((possibleDamage - actor.data.stats.neutralElementReduction) * (100 - this.getElementResistPercent(actor, "neutralElementResistPercent")) / 100);
             default:
                 Logger.info("effectId not handled:" + effectId);
                 return 0;
