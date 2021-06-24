@@ -71,7 +71,6 @@
           "general": {
             "header": "Generali",
             "disable-inactivity": "Aumenta il tempo per disconessione da inattività",
-            "chat-input-bottom": "Metti il ​​campo di testo della chat in basso",
             "health-bar": "Visualizza le barre della vita sotto i combattenti",
             "health-bar-shortcut": "Tasto rapido per mostrare/nascondere le barre della vita",
             "jobsxp": "Attiva il display dell'esperienza del lavoro necessaria ad aumentarne il livello",
