@@ -19,15 +19,17 @@ export class Settings {
             const shortLocal = local.slice(0, 1);
 
             switch (shortLocal) {
+                // native language of DT
                 case "fr":
+                case "en":
                 case "es":
                 case "it":
+                case "pt":
                     settings.setSync('language', shortLocal);
                     break;
-                case "en":
+                // language unavaible in DT
                 case "pl":
                 case "tr":
-                case "pt":
                 default:
                     settings.setSync('language', 'en');
                     break;
