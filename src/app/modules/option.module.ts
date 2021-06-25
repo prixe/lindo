@@ -71,7 +71,7 @@ export namespace Option {
             private _bestiary: string;
             private _title: string;
             private _achievement: string;
-            private _almanax: string;
+            private _dailyQuest: string;
             private _spouse: string;
             private _shop: string;
             private _goultine: string;
@@ -229,13 +229,13 @@ export namespace Option {
                 this._achievement = achievement;
             }
 
-            get almanax(): string {
-                return this._almanax;
+            get dailyQuest(): string {
+                return this._dailyQuest;
             }
 
-            set almanax(almanax: string) {
-                this.settingsProvider.write('option.shortcuts.interface.almanax', almanax);
-                this._almanax = almanax;
+            set dailyQuest(dailyQuest: string) {
+                this.settingsProvider.write('option.shortcuts.interface.dailyQuest', dailyQuest);
+                this._dailyQuest = dailyQuest;
             }
 
             get spouse(): string {
@@ -299,7 +299,7 @@ export namespace Option {
                 this._bestiary = this.settingsProvider.read('option.shortcuts.interface.bestiary');
                 this._title = this.settingsProvider.read('option.shortcuts.interface.title');
                 this._achievement = this.settingsProvider.read('option.shortcuts.interface.achievement');
-                this._almanax = this.settingsProvider.read('option.shortcuts.interface.almanax');
+                this._dailyQuest = this.settingsProvider.read('option.shortcuts.interface.dailyQuest');
                 this._spouse = this.settingsProvider.read('option.shortcuts.interface.spouse');
                 this._shop = this.settingsProvider.read('option.shortcuts.interface.shop');
                 this._goultine = this.settingsProvider.read('option.shortcuts.interface.goultine');
