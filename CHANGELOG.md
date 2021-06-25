@@ -18,6 +18,7 @@
 ### Correctifs
 - Crash de Lindo avec le déplacement rapide lorsque la case est inaccessible
 - Corrections de l'estimation des dégâts
+- Correction du raccourci de l'Almanax
 
 ### Suppression
 - Possibilité de choisir la position du champ texte du chat (option implémenté par Ankama)
