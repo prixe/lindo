@@ -1,5 +1,3 @@
-import {BarContainer} from "./bar-container";
-
 export class Bar {
 
     private fighter: any;
@@ -7,69 +5,49 @@ export class Bar {
 
     private lifeBarContainer : HTMLDivElement;
     private lifeBar : HTMLDivElement;
-    private shieldBar : HTMLDivElement;
     private lifePointsText : HTMLDivElement;
-    private container : BarContainer;
 
-    constructor(fighter: any, container: BarContainer, wGame: any | Window){
+    constructor(fighter: any, wGame: any | Window){
         this.fighter = fighter;
         this.wGame = wGame;
-        this.container = container;
 
-        this.createBar();
-
-    }
-
-    public getId(){
-        return this.fighter.id;
+        this.create();
     }
 
     public update(){
-        const fighter = this.wGame.gui.fightManager.getFighter(this.fighter.id);
+        let fighter = this.wGame.gui.fightManager.getFighter(this.fighter.id);
 
         if (this.wGame.gui.fightManager.isInBattle()) {
 
             if (fighter.data.alive) {
-                if (!this.lifeBar || !this.lifeBarContainer || !this.lifePointsText) {
-                    this.createBar();
-                }
-
-                const life = fighter.data.stats.lifePoints / fighter.data.stats.maxLifePoints;
-                const shield = fighter.data.stats.shieldPoints / fighter.data.stats.maxLifePoints;
-                this.lifeBar.style.width = Math.round(life * (shield > 0 ? 50 : 100)) + '%';
-                this.shieldBar.style.width = Math.round(shield * 50) + '%';
+                if (!this.lifeBar || !this.lifeBarContainer || !this.lifePointsText) this.create();
+                
+                let lifemaxPercentage = (fighter.data.stats.lifePoints * 100) / (fighter.data.stats.maxLifePoints + fighter.data.stats.shieldPoints);
+                let shieldMaxPercentage = lifemaxPercentage + ((fighter.data.stats.shieldPoints * 100) / (fighter.data.stats.maxLifePoints + fighter.data.stats.shieldPoints));
+                let teamColor = this.fighter.data.teamId == 0 ? 'red' : '#3ad';
+                
+                this.lifeBar.style.background = 'linear-gradient(to right, ' + teamColor + ' 0%,' + teamColor + ' ' + lifemaxPercentage + '%,#944ae0 ' + lifemaxPercentage + '%,#944ae0 ' + shieldMaxPercentage + '%,#222 ' + shieldMaxPercentage + '%,#222 100%)';
                 this.lifePointsText.innerHTML = fighter.data.stats.lifePoints + fighter.data.stats.shieldPoints;
 
-                if (shield > 0) {
-                    this.lifeBar.style.right = '50%';
-                }
-                else {
-                    this.lifeBar.style.right = '';
-                }
-
                 let invisible = false;
-                for (const idB in fighter.buffs) {
+                for (let idB in fighter.buffs) {
                   if (fighter.buffs[idB].effect.effectId == 150) invisible = true;
                 }
 
-                const cellId = fighter.data.disposition.cellId;
-
+                let cellId = fighter.data.disposition.cellId;
                 if (cellId && (!invisible || this.wGame.gui.fightManager.isFighterOnUsersTeam(fighter.id))) {
                     try {
-                        const scenePos = this.wGame.isoEngine.mapRenderer.getCellSceneCoordinate(cellId);
-                        const pos = this.wGame.isoEngine.mapScene.convertSceneToCanvasCoordinate(scenePos.x, scenePos.y);
+                        let scenePos = this.wGame.isoEngine.mapRenderer.getCellSceneCoordinate(cellId);
+                        let pos = this.wGame.isoEngine.mapScene.convertSceneToCanvasCoordinate(scenePos.x, scenePos.y);
+
+                        this.lifeBarContainer.style.opacity = '';
                         this.lifeBarContainer.style.left = (pos.x - this.lifeBarContainer.offsetWidth / 2) + 'px';
                         this.lifeBarContainer.style.top = (pos.y) + 'px';
-                        this.lifeBarContainer.style.opacity = '';
+
                         this.lifePointsText.style.opacity = '';
-                        if (this.container.getShowLifePoints()) {
-                            this.lifePointsText.style.display = '';
-                            this.lifePointsText.style.left = (pos.x - this.lifeBarContainer.offsetWidth / 2) + 'px';
-                            this.lifePointsText.style.top = (pos.y) + 'px';
-                        }
-                        else {
-                            this.lifePointsText.style.display = 'none';
-                        }
+                        this.lifePointsText.style.display = '';
+                        this.lifePointsText.style.left = (pos.x - this.lifeBarContainer.offsetWidth / 2) + 'px';
+                        this.lifePointsText.style.top = (pos.y) + 'px';
                     }
                     catch(e) {
                         Logger.error(cellId);
@@ -84,31 +62,18 @@ export class Bar {
         }
     }
 
-    private createBar(){
+    private create(){
 
         /* lifeBarContainer */
         this.lifeBarContainer = document.createElement('div');
         this.lifeBarContainer.id = 'fighterLifeBarContainer' + this.fighter.id;
         this.lifeBarContainer.className = 'lifeBarContainer';
 
-        if (this.fighter.data.teamId == 0) this.lifeBarContainer.style.borderColor = 'red';
-        else this.lifeBarContainer.style.borderColor = '#3ad';
-
         /* lifeBar */
         this.lifeBar = document.createElement('div');
         this.lifeBar.id = 'fighterLifeBar' + this.fighter.id;
         this.lifeBar.className = 'lifeBar';
-
-        if (this.fighter.data.teamId == 0) this.lifeBar.style.backgroundColor = 'red';
-        else this.lifeBar.style.backgroundColor = '#3ad';
         this.lifeBarContainer.appendChild(this.lifeBar);
-
-        /* shieldBar */
-        this.shieldBar = document.createElement('div');
-        this.shieldBar.id = 'fighterShieldBar' + this.fighter.id;
-        this.shieldBar.className = 'shieldBar';
-
-        this.lifeBarContainer.appendChild(this.shieldBar);
 
         /* lifePointsText */
         this.lifePointsText = document.createElement('div');

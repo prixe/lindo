@@ -707,7 +707,6 @@ export namespace Option {
         export class General {
             private _disable_inactivity: boolean;
             private _health_bar: boolean;
-            private _health_bar_shortcut: string;
             private _jobsxp: boolean;
             private _fightchronometer: boolean;
             private _zaapsearchfilter: boolean;
@@ -801,15 +800,6 @@ export namespace Option {
                 this._health_bar = health_bar;
             }
 
-            get health_bar_shortcut(): string {
-                return this._health_bar_shortcut;
-            }
-
-            set health_bar_shortcut(health_bar_shortcut: string) {
-                this.settingsProvider.write('option.vip.general.health_bar_shortcut', health_bar_shortcut);
-                this._health_bar_shortcut = health_bar_shortcut;
-            }
-
             get show_resources(): boolean {
                 return this._show_resources;
             }
@@ -852,7 +842,6 @@ export namespace Option {
                 this.jobsxp = this.settingsProvider.read('option.vip.general.jobsxp');
                 this.fightchronometer = this.settingsProvider.read('option.vip.general.fightchronometer');
                 this.zaapsearchfilter = this.settingsProvider.read('option.vip.general.zaapsearchfilter');
-                this.health_bar_shortcut = this.settingsProvider.read('option.vip.general.health_bar_shortcut');
                 this.estimator = this.settingsProvider.read('option.vip.general.estimator');
                 this.hidden_mount = this.settingsProvider.read('option.vip.general.hidden_mount');
                 this.party_info_pp = this.settingsProvider.read('option.vip.general.party_info_pp');

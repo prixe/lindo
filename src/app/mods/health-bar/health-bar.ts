@@ -1,153 +1,151 @@
 import {Mod} from "../mod";
-import {BarContainer} from "./bar-container";
-import {ShortcutsHelper} from "@helpers/shortcuts.helper";
+import {Bar} from "./bar";
+import { TranslateService } from "@ngx-translate/core";
+import {SettingsService} from "@services/settings.service";
 
 export class HealthBar extends Mod {
-    private shortcutsHelper: ShortcutsHelper;
-    private barContainer: BarContainer;
-    private fightJustStarted: boolean = false;
 
-    startMod(): void {
-        this.params = this.settings.option.vip.general;
+    startMod(): void {}
 
-        if (this.params.health_bar) {
+    private bars: { [fighterId: number]: Bar; } = { };
+    private container: HTMLDivElement;
 
-            Logger.info('- enable Health-Bar');
+    constructor(
+        wGame: any,
+        settings: SettingsService,
+        translate: TranslateService
+    ){
+        super(wGame,settings,translate);
 
-            const healthbarCss = document.createElement('style');
-            healthbarCss.id = 'healthbarCss';
-            healthbarCss.innerHTML = `
-            .lifeBarsContainer {
-                position: absolute;
-                top: 0;
-                left: 0;
-                pointer-events: none;
-                z-index: 1;
-                visibility: hidden;
-            }
+        if (this.settings.option.vip.general.health_bar) this.enableHealthBars();
+    }
 
-            .lifeBarContainer {
-                box-sizing: border-box;
-                border: 1px gray solid;
-                background-color: #222;
-                height: 6px;
-                width: 80px;
-                position: absolute;
-                border-radius: 3px;
-                overflow: hidden;
-                transition-duration: 500ms;
-                margin-top: 10px;
-            }
+    private enableHealthBars(){
+        Logger.info('- enable Health-Bar');
 
-            .lifeBar {
-                transition-duration: 300ms;
-                height: 100%;
-                width: 0%;
-                background-color: #333;
-            }
+        let healthbarCss = document.createElement('style');
+        healthbarCss.id = 'healthbarCss';
+        healthbarCss.innerHTML = `
 
-            .shieldBar {
-                transition-duration: 300ms;
-                height: 100%;
-                width: 0%;
-                margin-left: 50%;
-                background-color: #944ae0;
-                position: absolute;
-                top: 0;
-            }
+        .lifeBarsContainer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
 
-            .lifePointsText {
-                font-size: 12px;
-                position: absolute;
-                width: 80px;
-                color: white;
-                text-shadow: 0 0 5px rgba(0, 0, 0, 0.9);
-                transition-duration: 500ms;
-                margin-top: 16px;
-                margin-left: 2px;
-            }`;
-            this.wGame.document.getElementsByTagName('head')[0].appendChild(healthbarCss);
+        .lifeBarContainer {
+            box-sizing: border-box;
+            background-color: #222;
+            height: 6px;
+            width: 80px;
+            position: absolute;
+            border-radius: 3px;
+            overflow: hidden;
+            transition-duration: 500ms;
+            margin-top: 10px;
+        }
 
-            this.shortcutsHelper = new ShortcutsHelper(this.wGame);
-            this.barContainer = new BarContainer(this.wGame);
+        .lifeBar {
+            transition-duration: 300ms;
+            height: 100%;
+            width: 100%;
+            background-color: #333;
+        }
 
+        .lifePointsText {
+            font-size: 12px;
+            position: absolute;
+            width: 80px;
+            color: white;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.9);
+            transition-duration: 500ms;
+            margin-top: 16px;
+            margin-left: 2px;
+        }`;
 
-            this.removeOnDeath();
-            this.setFightStart();
-            this.displayOnStart();
-            this.stopOnFightEnd();
-            this.stopOnFightStop();
+        this.wGame.document.getElementsByTagName('head')[0].appendChild(healthbarCss);
 
+        this.createHealthBars();
+        this.showHealthBars();
 
-            this.shortcutsHelper.bind(this.params.health_bar_shortcut, () => {
-                this.barContainer.toggle();
-            });
+        let show = () => { this.createHealthBars(); this.showHealthBars(); }
+        this.on(this.wGame.gui,'GameFightOptionStateUpdateMessage',show);
+        this.on(this.wGame.dofus.connectionManager, 'GameFightTurnStartMessage',show);
+        this.on(this.wGame.dofus.connectionManager, 'GameFightTurnEndMessage',show);
+
+        let destroy = () => {  this.destoryHealthBars();   }
+        this.on(this.wGame.dofus.connectionManager, 'GameFightLeaveMessage',destroy);
+        this.on(this.wGame.dofus.connectionManager, 'GameFightEndMessage',destroy);
+
+        this.on(this.wGame.gui, 'GameActionFightDeathMessage', (e: any) => { this.destroyHealthBar(e.targetId); });
+    }
+
+    private createHealthBars(){
+        if (this.wGame.document.getElementById('lifeBars') != null) return;
+        
+        this.container = document.createElement('div');
+        this.container.id = 'lifeBars';
+        this.container.className = 'lifeBarsContainer';
+        this.container.style.visibility = '';
+
+        this.wGame.foreground.rootElement.appendChild(this.container);
+    }
+
+    private showHealthBars(){
+        if (this.container.style.visibility != "visible"){
+            this.container.style.visibility = 'visible';
+            
+            this.createHealthBars();
+            this.updateHealthBar();
+
+            let updateData = () => { setTimeout(() => { this.updateHealthBar(); }, 50); }
+            this.on(this.wGame.dofus.connectionManager, 'GameFightTurnStartMessage',updateData);
+            this.on(this.wGame.dofus.connectionManager, 'GameFightTurnEndMessage',updateData);
+
+            this.on(this.wGame.gui,'GameActionFightLifePointsGainMessage',updateData);
+            this.on(this.wGame.gui,'GameActionFightLifePointsLostMessage',updateData);
+            this.on(this.wGame.gui,'GameActionFightLifeAndShieldPointsLostMessage',updateData);
+
+            this.on(this.wGame.gui,'GameActionFightExchangePositionsMessage',updateData);
+            this.on(this.wGame.gui,'GameActionFightPointsVariationMessage',updateData);
+            this.on(this.wGame.gui,'GameFightOptionStateUpdateMessage',updateData);
+            this.on(this.wGame.gui,'GameActionFightDeathMessage',updateData);
+            this.on(this.wGame.gui,'resize',updateData);
         }
     }
 
-
-    private removeOnDeath(): void {
-        this.on(this.wGame.gui, 'GameActionFightDeathMessage', (e: any) => {
-            try {
-                this.barContainer.destroyBar(e.targetId);
-            } catch (ex) {
-                Logger.error(ex);
-            }
-        });
+    private updateHealthBar() {
+        this.createHealBar();
     }
 
-    private setFightStart(): void {
-        this.on(this.wGame.dofus.connectionManager, 'GameFightStartingMessage', () => {
-            try {
-                this.fightJustStarted = true;
-            } catch (ex) {
-                Logger.error(ex);
-            }
-        });
-    }
-
-    private displayOnStart(): void {
-        this.on(this.wGame.dofus.connectionManager, 'GameFightNewRoundMessage', () => {
-            try {
-                if (this.fightJustStarted) {
-                    this.fightJustStarted = false;
-                    this.barContainer.fightStarted();
+    private createHealBar(){
+        let fighters = this.wGame.gui.fightManager.getFighters();
+        for (let index in fighters) {
+            let fighter = this.wGame.gui.fightManager.getFighter(fighters[index]);
+            if (fighter.data.alive) {
+                if (!this.bars[fighter.id]) {
+                    this.bars[fighter.id] = new Bar(fighter, this.wGame); 
+                    this.addOnResetListener(() => { this.destoryHealthBars(); });
                 }
-            } catch (ex) {
-                Logger.error(ex);
+                this.bars[fighter.id].update();
             }
-        });
-    }
-
-    private stopOnFightEnd(): void {
-        this.on(this.wGame.dofus.connectionManager, 'GameFightEndMessage', () => {
-            try {
-                this.barContainer.fightEnded();
-            } catch (ex) {
-                Logger.error(ex);
-            }
-        });
-    }
-
-    private stopOnFightStop(): void {
-        this.on(this.wGame.dofus.connectionManager, 'GameFightLeaveMessage', () => {
-            try {
-                this.barContainer.fightEnded();
-            } catch (ex) {
-                Logger.error(ex);
-            }
-        });
-    }
-
-
-    public reset() {
-        super.reset();
-        if (this.params.health_bar) {
-            if (this.shortcutsHelper) this.shortcutsHelper.unBindAll();
-            if (this.barContainer) this.barContainer.destroy();
-            const healthbarCss = this.wGame.document.getElementById('healthbarCss');
-            if (healthbarCss && healthbarCss.parentElement) healthbarCss.parentElement.removeChild(healthbarCss);
         }
     }
 
+    private destroyHealthBar(fighterId: any){
+        if (this.bars[fighterId]) {
+            this.bars[fighterId].destroy();
+            delete this.bars[fighterId];
+        }
+    }
+
+    private destoryHealthBars(){
+        let lifeBars = this.wGame.document.getElementById('lifeBars');
+        if (lifeBars != null) {
+            this.bars = { };
+            lifeBars.parentElement.removeChild(lifeBars);
+        }
+    }
 }
