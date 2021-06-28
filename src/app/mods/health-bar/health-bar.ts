@@ -103,12 +103,9 @@ export class HealthBar extends Mod {
             let updateData = () => { setTimeout(() => { this.updateHealthBar(); }, 50); }
             this.on(this.wGame.dofus.connectionManager, 'GameFightTurnStartMessage',updateData);
             this.on(this.wGame.dofus.connectionManager, 'GameFightTurnEndMessage',updateData);
-
             this.on(this.wGame.gui,'GameActionFightLifePointsGainMessage',updateData);
             this.on(this.wGame.gui,'GameActionFightLifePointsLostMessage',updateData);
             this.on(this.wGame.gui,'GameActionFightLifeAndShieldPointsLostMessage',updateData);
-
-            this.on(this.wGame.gui,'GameActionFightExchangePositionsMessage',updateData);
             this.on(this.wGame.gui,'GameActionFightPointsVariationMessage',updateData);
             this.on(this.wGame.gui,'GameFightOptionStateUpdateMessage',updateData);
             this.on(this.wGame.gui,'GameActionFightDeathMessage',updateData);
