@@ -15,48 +15,39 @@ export class Bar {
     }
 
     public update(){
-        let fighter = this.wGame.gui.fightManager.getFighter(this.fighter.id);
+        const fighter = this.wGame.gui.fightManager.getFighter(this.fighter.id);
 
         if (this.wGame.gui.fightManager.isInBattle()) {
-
             if (fighter.data.alive) {
                 if (!this.lifeBar || !this.lifeBarContainer || !this.lifePointsText) this.create();
                 
-                let lifemaxPercentage = (fighter.data.stats.lifePoints * 100) / (fighter.data.stats.maxLifePoints + fighter.data.stats.shieldPoints);
-                let shieldMaxPercentage = lifemaxPercentage + ((fighter.data.stats.shieldPoints * 100) / (fighter.data.stats.maxLifePoints + fighter.data.stats.shieldPoints));
-                let teamColor = this.fighter.data.teamId == 0 ? 'red' : '#3ad';
-                
-                this.lifeBar.style.background = 'linear-gradient(to right, ' + teamColor + ' 0%,' + teamColor + ' ' + lifemaxPercentage + '%,#944ae0 ' + lifemaxPercentage + '%,#944ae0 ' + shieldMaxPercentage + '%,#222 ' + shieldMaxPercentage + '%,#222 100%)';
-                this.lifePointsText.innerHTML = fighter.data.stats.lifePoints + fighter.data.stats.shieldPoints;
+                    const lifemaxPercentage = (fighter.data.stats.lifePoints * 100) / (fighter.data.stats.maxLifePoints + fighter.data.stats.shieldPoints);
+                    const shieldMaxPercentage = lifemaxPercentage + ((fighter.data.stats.shieldPoints * 100) / (fighter.data.stats.maxLifePoints + fighter.data.stats.shieldPoints));
+                    const teamColor = this.fighter.data.teamId === 0 ? 'red' : '#3ad';
+                    
+                    this.lifeBar.style.background = 'linear-gradient(to right, ' + teamColor + ' 0%,' + teamColor + ' ' + lifemaxPercentage + '%,#944ae0 ' + lifemaxPercentage + '%,#944ae0 ' + shieldMaxPercentage + '%,#222 ' + shieldMaxPercentage + '%,#222 100%)';
+                    this.lifePointsText.innerHTML = fighter.data.stats.lifePoints + fighter.data.stats.shieldPoints;
 
-                let invisible = false;
-                for (let idB in fighter.buffs) {
-                  if (fighter.buffs[idB].effect.effectId == 150) invisible = true;
-                }
+                    const invisible = fighter.buffs.some(({ effect: { effectId } }) => effectId === 150);
+                    const cellId = fighter.data.disposition.cellId;
 
-                let cellId = fighter.data.disposition.cellId;
-                if (cellId && (!invisible || this.wGame.gui.fightManager.isFighterOnUsersTeam(fighter.id))) {
-                    try {
-                        let scenePos = this.wGame.isoEngine.mapRenderer.getCellSceneCoordinate(cellId);
-                        let pos = this.wGame.isoEngine.mapScene.convertSceneToCanvasCoordinate(scenePos.x, scenePos.y);
-
-                        this.lifeBarContainer.style.opacity = '';
-                        this.lifeBarContainer.style.left = (pos.x - this.lifeBarContainer.offsetWidth / 2) + 'px';
-                        this.lifeBarContainer.style.top = (pos.y) + 'px';
-
-                        this.lifePointsText.style.opacity = '';
-                        this.lifePointsText.style.display = '';
-                        this.lifePointsText.style.left = (pos.x - this.lifeBarContainer.offsetWidth / 2) + 'px';
-                        this.lifePointsText.style.top = (pos.y) + 'px';
+                    if (cellId && (!invisible || this.wGame.gui.fightManager.isFighterOnUsersTeam(fighter.id))) {
+                        try {
+                            const scenePos = this.wGame.isoEngine.mapRenderer.getCellSceneCoordinate(cellId);
+                            const pos = this.wGame.isoEngine.mapScene.convertSceneToCanvasCoordinate(scenePos.x, scenePos.y);
+                            this.lifeBarContainer.style.left = (pos.x - this.lifeBarContainer.offsetWidth / 2) + 'px';
+                            this.lifeBarContainer.style.top = (pos.y) + 'px';
+                            this.lifePointsText.style.left = (pos.x - this.lifeBarContainer.offsetWidth / 2) + 'px';
+                            this.lifePointsText.style.top = (pos.y) + 'px';
+                        }
+                        catch(e) {
+                            Logger.error(cellId);
+                            Logger.error(e);
+                        }
                     }
-                    catch(e) {
-                        Logger.error(cellId);
-                        Logger.error(e);
-                    }
-                }
-                else if (invisible) {
-                    this.lifeBarContainer.style.opacity = '0.5';
-                    this.lifePointsText.style.opacity = '0.5';
+                    else if (invisible) {
+                        this.lifeBarContainer.style.opacity = '0.5';
+                        this.lifePointsText.style.opacity = '0.5';
                 }
             }
         }
