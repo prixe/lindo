@@ -52,7 +52,7 @@ export class HealthBar extends Mod {
             width: 80px;
             color: white;
             text-shadow: 0 0 5px rgba(0, 0, 0, 0.9);
-            margin-top: 16px;
+            margin-top: 14px;
             margin-left: 2px;
             transition-property: top, left;
             transition-duration: 300ms;
