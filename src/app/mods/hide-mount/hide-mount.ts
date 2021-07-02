@@ -52,7 +52,7 @@ export class HideMount extends Mod
                         this.wGame.gui.mainControls._creatureModeButton.tap();
                         setTimeout(() => {
                             this.wGame.gui.mainControls._creatureModeButton.tap();
-                        }, 100);
+                        }, 200);
                     }
                 } catch (ex) {
                     Logger.error(ex);
