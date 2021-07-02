@@ -1,5 +1,5 @@
 # Lindo
-[![Build Status](https://travis-ci.org/prixe/lindo.svg?branch=master)](https://travis-ci.org/prixe/lindo)
+[![Build Status](https://travis-ci.com/prixe/lindo.svg?branch=master)](https://travis-ci.com/prixe/lindo)
 [![npm](https://img.shields.io/badge/npm-%3E%3D%205.6.0-blue.svg)]()
 [![node](https://img.shields.io/badge/node-%3E%3D%2014.0.0-green.svg)]()
 [![Github All Releases](https://img.shields.io/github/downloads/prixe/lindo/total.svg)]()
