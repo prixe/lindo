@@ -9,9 +9,7 @@ export class HealthBar extends Mod {
     private shortcutsHelper: ShortcutsHelper;
     private bars: { [fighterId: number]: Bar; } = { };
     private container: HTMLDivElement;
-
-    private visibleBars:boolean     = true;
-    private visibleBarsText:boolean = true;
+    private visibleBars:boolean = true;
 
     startMod(): void {}
 
@@ -88,9 +86,8 @@ export class HealthBar extends Mod {
     }
 
     private toggleHealthBars(){
-        if (this.visibleBarsText) { this.visibleBarsText = false; this.updateHealthBar(); }
-        else if (this.visibleBars) {this.container.style.visibility = ""; this.destroyHealthBars(); this.visibleBars = false; }
-        else { this.visibleBarsText = true; this.visibleBars = true; this.standardHealthBars(); }
+        if (this.visibleBars) {this.container.style.visibility = ""; this.destroyHealthBars(); this.visibleBars = false; }
+        else {  this.visibleBars = true; this.standardHealthBars(); }
     }
 
     private createHealthBars(){
@@ -134,7 +131,7 @@ export class HealthBar extends Mod {
                     this.bars[fighter.id] = new Bar(fighter, this.wGame); 
                     this.addOnResetListener(() => { this.destroyHealthBars(); });
                 }
-                this.bars[fighter.id].update(this.visibleBarsText);
+                this.bars[fighter.id].update();
             }
         }
     }
