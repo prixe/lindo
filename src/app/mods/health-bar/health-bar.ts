@@ -2,11 +2,16 @@ import {Mod} from "../mod";
 import {Bar} from "./bar";
 import { TranslateService } from "@ngx-translate/core";
 import {SettingsService} from "@services/settings.service";
+import { ShortcutsHelper } from "@helpers/shortcuts.helper";
 
 export class HealthBar extends Mod {
 
+    private shortcutsHelper: ShortcutsHelper;
     private bars: { [fighterId: number]: Bar; } = { };
     private container: HTMLDivElement;
+
+    private visibleBars:boolean     = true;
+    private visibleBarsText:boolean = true;
 
     startMod(): void {}
 
@@ -16,6 +21,7 @@ export class HealthBar extends Mod {
         translate: TranslateService
     ){
         super(wGame,settings,translate);
+        this.shortcutsHelper = new ShortcutsHelper(this.wGame);
 
         if (this.settings.option.vip.general.health_bar) this.enableHealthBars();
     }
@@ -60,19 +66,31 @@ export class HealthBar extends Mod {
 
         this.wGame.document.getElementsByTagName('head')[0].appendChild(healthbarCss);
 
-        this.createHealthBars();
-        this.showHealthBars();
+        this.standardHealthBars();
 
-        const show = () => { this.createHealthBars(); this.showHealthBars(); }
+        const show = () => { this.standardHealthBars(); }
         this.on(this.wGame.gui,'GameFightOptionStateUpdateMessage',show);
         this.on(this.wGame.dofus.connectionManager, 'GameFightTurnStartMessage',show);
         this.on(this.wGame.dofus.connectionManager, 'GameFightTurnEndMessage',show);
 
-        const destroy = () => {  this.destoryHealthBars();   }
+        const destroy = () => { this.destroyHealthBars(); }
         this.on(this.wGame.dofus.connectionManager, 'GameFightLeaveMessage',destroy);
         this.on(this.wGame.dofus.connectionManager, 'GameFightEndMessage',destroy);
 
+        this.shortcutsHelper.bind(this.settings.option.vip.general.health_bar_shortcut, () => this.toggleHealthBars());
+
         this.on(this.wGame.gui, 'GameActionFightDeathMessage', (e: any) => { this.destroyHealthBar(e.targetId); });
+    }
+
+    private standardHealthBars(){
+        this.createHealthBars();
+        this.showHealthBars();
+    }
+
+    private toggleHealthBars(){
+        if (this.visibleBarsText) { this.visibleBarsText = false; this.updateHealthBar(); }
+        else if (this.visibleBars) {this.container.style.visibility = ""; this.destroyHealthBars(); this.visibleBars = false; }
+        else { this.visibleBarsText = true; this.visibleBars = true; this.standardHealthBars(); }
     }
 
     private createHealthBars(){
@@ -86,7 +104,7 @@ export class HealthBar extends Mod {
     }
 
     private showHealthBars(){
-        if (this.container.style.visibility != "visible"){
+        if (this.container.style.visibility != "visible" && this.visibleBars){
             this.container.style.visibility = 'visible';
             
             this.createHealthBars();
@@ -106,19 +124,17 @@ export class HealthBar extends Mod {
     }
 
     private updateHealthBar() {
-        this.createHealBar();
-    }
+        if (!this.visibleBars) return;
 
-    private createHealBar(){
         const fighters = this.wGame.gui.fightManager.getFighters();
         for (const index in fighters) {
             const fighter = this.wGame.gui.fightManager.getFighter(fighters[index]);
             if (fighter.data.alive) {
                 if (!this.bars[fighter.id]) {
                     this.bars[fighter.id] = new Bar(fighter, this.wGame); 
-                    this.addOnResetListener(() => { this.destoryHealthBars(); });
+                    this.addOnResetListener(() => { this.destroyHealthBars(); });
                 }
-                this.bars[fighter.id].update();
+                this.bars[fighter.id].update(this.visibleBarsText);
             }
         }
     }
@@ -130,7 +146,7 @@ export class HealthBar extends Mod {
         }
     }
 
-    private destoryHealthBars(){
+    private destroyHealthBars(){
         const lifeBars = this.wGame.document.getElementById('lifeBars');
         if (lifeBars != null) {
             this.bars = { };

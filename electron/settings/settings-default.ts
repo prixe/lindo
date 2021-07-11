@@ -155,7 +155,7 @@ export const SettingsDefault: SettingsInterface = {
             general: {
                 disable_inactivity: false,
                 health_bar: true,
-                health_bar_shortcut: 'p',
+                health_bar_shortcut: '',
                 jobsxp: false,
                 estimator: true,
                 fightchronometer: true,

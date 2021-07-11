@@ -14,7 +14,7 @@ export class Bar {
         this.create();
     }
 
-    public update(){
+    public update(visibleText:boolean){
         const fighter = this.wGame.gui.fightManager.getFighter(this.fighter.id);
 
         if (this.wGame.gui.fightManager.isInBattle()) {
@@ -26,7 +26,7 @@ export class Bar {
                     const teamColor = this.fighter.data.teamId === 0 ? 'red' : '#3ad';
                     
                     this.lifeBar.style.background = 'linear-gradient(to right, ' + teamColor + ' 0%,' + teamColor + ' ' + lifemaxPercentage + '%,#944ae0 ' + lifemaxPercentage + '%,#944ae0 ' + shieldMaxPercentage + '%,#222 ' + shieldMaxPercentage + '%,#222 100%)';
-                    this.lifePointsText.innerHTML = fighter.data.stats.lifePoints + fighter.data.stats.shieldPoints;
+                    this.lifePointsText.innerHTML = visibleText ? fighter.data.stats.lifePoints + fighter.data.stats.shieldPoints : "";
 
                     const invisible = fighter.buffs.some(({ effect: { effectId } }) => effectId === 150);
                     const cellId = fighter.data.disposition.cellId;
