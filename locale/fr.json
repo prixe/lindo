@@ -81,7 +81,9 @@
             "show-resources" : "Affiches les ressources de la carte",
             "show-resources-shortcut" : "Raccourcis pour l'affichage des ressources",
             "harvest-indicator" : "Barres de temps sous les récoltes",
-            "party-member-on-map" : "Ajoute un indicateur pour savoir si les membres d'un groupe sont sur la même carte"
+            "party-member-on-map" : "Ajoute un indicateur pour savoir si les membres d'un groupe sont sur la même carte",
+            "monster-tooltip": "Affiche les informations des groupes de monstres sur la carte",
+            "monster-tooltip-shortcut": "Raccourci pour les informations des groupes de monstres"
           },
           "groups": {
             "header": "Groupe"
@@ -227,6 +229,10 @@
         },
         "jobsxp": {
           "text": " XP manquant<br>avant le niveau "
+        },
+        "monstertooltip": {
+          "level": "Rang",
+          "group": "Groupe"
         }
       },
       "general": {
