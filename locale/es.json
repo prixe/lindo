@@ -79,7 +79,9 @@
             "show-resources" : "Mostrar recursos del mapa",
             "show-resources-shortcut" : "Atajo para mostrar/ocultar recursos del mapa",
             "harvest-indicator" : "Activar la visualización del tiempo restante debajo de los recursos",
-            "party-member-on-map" : "Agregar un indicador para saber si los miembros de un grupo están en el mismo mapa"
+            "party-member-on-map" : "Agregar un indicador para saber si los miembros de un grupo están en el mismo mapa",
+            "monster-tooltip": "Mostrar información de grupos de monstruos en el mapa",
+            "monster-tooltip-shortcut": "Atajo para mostrar / ocultar información sobre herramientas de monstruos"
           },
           "groups": {
             "header": "Grupo"

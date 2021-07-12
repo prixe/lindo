@@ -81,7 +81,9 @@
             "show-resources" : "Mostra le risorse della mappa",
             "show-resources-shortcut" : "Scorciatoia per mostrare/nascondere le risorse della mappa",
             "harvest-indicator" : "Attiva la visualizzazione del tempo rimanente sotto le risorse",
-            "party-member-on-map" : "Aggiungi un indicatore per sapere se i membri di un gruppo si trovano sulla stessa mappa"
+            "party-member-on-map" : "Aggiungi un indicatore per sapere se i membri di un gruppo si trovano sulla stessa mappa",
+            "monster-tooltip": "Visualizza le informazioni sui gruppi di mostri sulla mappa",
+            "monster-tooltip-shortcut": "Scorciatoia per il tooltip mostra/nascondi mostri"
           },
           "groups": {
             "header": "Gruppi"
