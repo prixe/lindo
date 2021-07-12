@@ -163,7 +163,9 @@ export const SettingsDefault: SettingsInterface = {
                 harvest_indicator: true,
                 show_resources: false,
                 show_resources_shortcut: '',
-                party_member_on_map: true
+                party_member_on_map: true,
+                monster_tooltip: false,
+                monster_tooltip_shortcut: '',
             },
             auto_group: {
                 active: false,
