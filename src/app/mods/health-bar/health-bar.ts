@@ -87,7 +87,7 @@ export class HealthBar extends Mod {
 
     private toggleHealthBars(){
         if (this.visibleBars) {this.container.style.visibility = ""; this.destroyHealthBars(); this.visibleBars = false; }
-        else {  this.visibleBars = true; this.standardHealthBars(); }
+        else { this.visibleBars = true; this.createHealthBars(); this.updateHealthBar(); }
     }
 
     private createHealthBars(){
@@ -104,7 +104,6 @@ export class HealthBar extends Mod {
         if (this.container.style.visibility != "visible" && this.visibleBars){
             this.container.style.visibility = 'visible';
             
-            this.createHealthBars();
             this.updateHealthBar();
 
             const updateData = () => { setTimeout(() => { this.updateHealthBar(); }, 50); }
