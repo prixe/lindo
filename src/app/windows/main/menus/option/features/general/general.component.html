@@ -55,6 +55,18 @@
                 </component-option-input-shortcuts>
             </ng-container>
         </div>
+        
+        <div class="col-xs-12" style="margin-bottom: 10px;">
+            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.monster_tooltip">{{ 'app.window.options.features.general.monster-tooltip' | translate }}</mat-checkbox>
+        </div>
+
+        <div class="col-xs-12">
+            <ng-container *ngIf="settingsService.option.vip.general.monster_tooltip">
+                <component-option-input-shortcuts id="monster_tooltip_shortcut" name="{{ 'app.window.options.features.general.monster-tooltip-shortcut' | translate }}"
+                    [(model)]="settingsService.option.vip.general.monster_tooltip_shortcut">
+                </component-option-input-shortcuts>
+            </ng-container>
+        </div>
 
     </div>
 </div>
