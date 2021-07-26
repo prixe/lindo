@@ -1,6 +1,6 @@
 {
   "name": "lindo",
-  "version": "2.6.0-beta.18",
+  "version": "2.6.0-beta.19",
   "description": "Play Dofus Touch on Linux/OS X/Window",
   "author": "Prixe",
   "licence": "GPL-3.0",
@@ -52,6 +52,7 @@
     "ngx-chips": "~2.2.2",
     "ngx-sortablejs": "^11.1.0",
     "node-translate": "~0.0.4",
+    "npm": "^7.20.1",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.7",
     "safe-pipe": "^1.0.3",
