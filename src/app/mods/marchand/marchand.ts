@@ -110,7 +110,6 @@ export class Marchand extends Mod {
     private closeW() {
         this.wGame.document.querySelectorAll("#leftMM").forEach((elem) => elem.remove());
         this.wGame.document.querySelectorAll("#rightMM").forEach((elem) => elem.remove());
-        console.log("KEYTUR 2")
     }
 
     public reset() {
