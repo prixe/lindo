@@ -32,6 +32,7 @@ export class Jobsxp extends Mod{
                 right: 10px;
                 pointer-events: none;
                 padding: 5px 16px;
+                top: 0;
             }
 
             .xpRestanteText::after {
