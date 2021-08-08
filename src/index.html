@@ -5,35 +5,48 @@
     <meta charset="UTF-8">
     <title>Lindo</title>
     <base href="./index.html">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src * 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval'; font-src * data: 'unsafe-inline' 'unsafe-eval';">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <script>
+
+        /** Electron */
         const electron = require('electron');
         const electronSettings = require('electron-settings');
+        const electronRemote = require('@electron/remote');
+        const electronRemoteApp = require('@electron/remote').app;
+        const electronRemoteProcess = require('@electron/remote').process;
+
+        window.electronSettings = electronSettings;
+        window.electronRemote = electronRemote;
+        window.electronRemoteApp = electronRemoteApp;
+        window.electronRemoteProcess = electronRemoteProcess;
+
+        /** Others */
         const cryptoLib = require('crypto');
-        const httpsLib = require('https');
         const fsLib = require('fs');
         const osLib = require('os');
         const pathLib = require('path');
-        const axiosLib = require('axios');
         const httpAdapterLib = require('axios/lib/adapters/http');
-        const nodeProcess = window.process;
-        const {
-            Application
-        } = require('electron').remote.require('./application');
-        const {
-            Settings
-        } = require('electron').remote.require('./settings/settings');
-        const LoggerLib = require('electron').remote.require('./core/logger/logger-app').Logger;
-        window.FileLoggerLib = require('electron').remote.require('./core/logger/file-logger-app').logger;
-        window.platform = electron.remote.process.platform;
+
+        const Application = require('@electron/remote').require('./application').Application;
+        const Settings = require('@electron/remote').require('./settings/settings').Settings;
+
+        let LoggerGame = require('@electron/remote').require('./core/logger/logger-game').Logger;
+        let LoggerLindo = require('@electron/remote').require('./core/logger/logger-lindo').Logger;
+
+        window.platform = require('@electron/remote').process.platform;
+
+        /** Just for distant code compatiblity */
+        window.FileLoggerLib = LoggerGame;
+        window.Logger = LoggerLindo;
     </script>
 </head>
 
-<body class="dt-no-emu-default">
+<body>
 
-<component-app></component-app>
+<app-component></app-component>
 
 <div class="loader-container" id="loading">
     <div class="loader-egg"></div>

@@ -24,7 +24,13 @@ export class UpdateWindow {
             resizable: false,
             show: false,
             backgroundColor: '#e6e6e6',
-            frame: false
+            frame: false,
+            webPreferences: {
+                webSecurity: false,
+                nodeIntegration: true,
+                contextIsolation: false,
+                enableRemoteModule: true
+            }
         });
 
         window.once('ready-to-show', () => { window.show() })

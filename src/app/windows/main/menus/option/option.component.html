@@ -1,0 +1,31 @@
+<div class="dialog-settings light-theme">
+
+    <div class="settings-left">
+        <div class="tab-bar SIDE">
+
+            <div class="tab-bar-header" translate>app.window.options.title</div>
+
+            <a routerLink="/option/general" routerLinkActive="selected" class="tab-bar-item" translate>app.option.general.title</a>
+            <a routerLink="/option/features" routerLinkActive="selected" class="tab-bar-item" translate>app.window.options.features.title</a>
+            <a routerLink="/option/notification" routerLinkActive="selected" class="tab-bar-item" translate>app.option.notifications.title</a>
+            <a routerLink="/option/about" routerLinkActive="selected" class="tab-bar-item" translate="">app.window.options.about.title</a>
+
+            <div class="change-log-button-container">
+                <a class="change-log-button" (click)="changelog.open($event); dialogRef.close();" translate>app.window.options.about.links.changelog</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="settings-right">
+
+        <div class="settings-inner">
+            <router-outlet></router-outlet>
+        </div>
+
+        <div class="settings-actions">
+            <button mat-raised-button color="accent" style="float:left;" (click)="reset()">{{ 'app.window.options.general.reset-all' | translate }}</button>
+            <button mat-raised-button color="primary" (click)="dialogRef.close()">{{ 'app.window.options.button.close' | translate }}</button>
+        </div>
+
+    </div>
+</div>

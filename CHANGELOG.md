@@ -5,16 +5,24 @@
 
 ### Ajouts
 - Ajout d'une barre sous chaque ressource utilisée permettant de visualiser le temps restant
-- Ajout d'une icone sur les membres de groupes pour savoir s'il sont sur la meme map
+- Ajout d'une icône sur les membres de groupes pour savoir s'il sont sur la même map
 - Ajout de favoris pour les zaaps
-- Ajout d'un affichage des ressourses presentes sur la carte
+- Ajout d'un affichage des ressources présentes sur la carte
+- Ajout d'une notification lors de la vente d'un objet en hôtel de vente
+- Ajout de flèches pour naviguer entre les marchands sur une carte
+- Ajout de bulles d'informations sur les groupes de monstres
 
 ### Améliorations
-- Ajout de l'icone dans le build .deb
+- Ajout de l’icône dans le build .deb
 - Agrandissement du rond focus
 
 ### Correctifs
 - Crash de Lindo avec le déplacement rapide lorsque la case est inaccessible
+- Corrections de l'estimation des dégâts
+- Correction du raccourci de l'Almanax
+
+### Suppression
+- Possibilité de choisir la position du champ texte du chat (option implémenté par Ankama)
 
 ## [2.5.4] - 2021-04-13
 

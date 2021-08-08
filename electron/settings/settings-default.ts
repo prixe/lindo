@@ -23,9 +23,6 @@ export const SettingsDefault: SettingsInterface = {
             audio_muted: false,
             user_agent: 'Mozilla/5.0 (Linux; Android 6.0.1; SAMSUNG SM-N920T Build/MMB29K; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/58.0.3029.83 Mobile Safari/537.36'
         },
-        chat: {
-            inputBottom: true,
-        },
         shortcuts: {
             no_emu: {
                 new_tab: "ctrl+t",
@@ -41,9 +38,7 @@ export const SettingsDefault: SettingsInterface = {
                     "f5",
                     "f6",
                     "f7",
-                    "f8",
-                    "f9",
-                    "f10"
+                    "f8"
                 ]
             },
             diver: {
@@ -138,7 +133,7 @@ export const SettingsDefault: SettingsInterface = {
                 bestiary: "b",
                 title: "t",
                 achievement: "u",
-                almanax: "x",
+                dailyQuest: "x",
                 spouse: "l",
                 shop: "v",
                 goultine: "r"
@@ -157,7 +152,7 @@ export const SettingsDefault: SettingsInterface = {
             general: {
                 disable_inactivity: false,
                 health_bar: true,
-                health_bar_shortcut: 'p',
+                health_bar_shortcut: '',
                 jobsxp: false,
                 estimator: true,
                 fightchronometer: true,

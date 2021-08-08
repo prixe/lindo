@@ -1,17 +1,10 @@
-import { ShortcutsSpellComponent } from './window/shortcuts/spell/spell.component';
-import { ShortcutsOtherComponent } from './window/shortcuts/other/other.component';
-import { ShortcutsInventoryComponent } from './window/shortcuts/inventory/inventory.component';
-import { ShortcutsInterfaceComponent } from './window/shortcuts/interface/interface.component';
-import { ShortcutsApplicationComponent } from './window/shortcuts/application/application.component';
-import { Http, HttpModule } from "@angular/http";
-import { NgModule, LOCALE_ID } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
-import { TagInputModule } from 'ngx-chips';
-import { CoreModule } from "app/core/modules/core.module";
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {FormsModule} from '@angular/forms';
+import {TagInputModule} from 'ngx-chips';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import localeFr from '@angular/common/locales/fr';
 import localeEn from '@angular/common/locales/en';
 import localeEs from '@angular/common/locales/es';
@@ -20,39 +13,43 @@ import localePl from '@angular/common/locales/pl';
 import localeTr from '@angular/common/locales/tr';
 
 
-import { AppRoutingModule } from './app.routing';
+import {AppRoutingModule} from './app.routing';
 
-import { AppComponent } from "app/app.component";
-import { MainComponent } from "app/main/main.component";
-import { GameComponent } from "app/components/game/game.component";
-import { ChangeLogComponent } from "app/window/changelog/changelog.component";
-import { OptionComponent } from "app/window/option/option.component";
-import { GeneralComponent } from "app/window/option/general/general.component";
-import { TabGameComponent } from "app/main/tab-game/tab-game.component";
-import { ToolbarComponent } from "app/main/toolbar/toolbar.component";
-import { VipComponent } from "app/window/option/vip/vip.component";
-import { GeneralComponent as VipGeneralComponent } from "app/window/option/vip/general/general.component";
-import { AutoGroupComponent } from "app/window/option/vip/auto-group/auto-group.component";
-import { MultiAccountComponent } from "app/window/option/vip/multi-account/multi-account.component";
-import { NotificationComponent } from "app/window/option/notification/notification.component";
-import { AuthComponent } from "app/components/auth/auth.component";
-import { AboutComponent } from "app/window/option/about/about.component";
-import { OfficialGameUpdateComponent } from "app/window/official-game-update/official-game-update.component";
-import { BugReportComponent } from "app/window/bug-report/bug-report.component";
+import {AppComponent} from "app/app.component";
+import {MainComponent} from "app/windows/main/main.component";
+import {GameComponent} from "app/windows/main/layout/game/game.component";
+import {ChangeLogComponent} from "app/windows/main/menus/changelog/changelog.component";
+import {OptionComponent} from "app/windows/main/menus/option/option.component";
+import {GeneralComponent} from "app/windows/main/menus/option/general/general.component";
+import {SidebarComponent} from "app/windows/main/layout/sidebar/sidebar.component";
+import {ToolbarComponent} from "app/windows/main/layout/toolbar/toolbar.component";
+import {FeraturesComponent} from "app/windows/main/menus/option/features/feratures.component";
+import {GeneralComponent as VipGeneralComponent} from "app/windows/main/menus/option/features/general/general.component";
+import {GroupComponent} from "app/windows/main/menus/option/features/group/group.component";
+import {AccountsComponent} from "app/windows/main/menus/option/features/accounts/accounts.component";
+import {NotificationsComponent} from "app/windows/main/menus/option/notifications/notifications.component";
+import {AuthenticationComponent} from "app/windows/main/authentication/authentication.component";
+import {AboutComponent} from "app/windows/main/menus/option/about/about.component";
+import {UpdateComponent} from "app/windows/update/update.component";
+import {BugReportComponent} from "app/windows/main/bug-report/bug-report.component";
 
-import { SortablejsModule } from "angular-sortablejs/dist";
-import { MaterialModule } from "app/core/modules/material.module";
+import {MaterialModule} from "app/modules/material.module";
+import {ServiceModule} from "app/modules/service.module";
 
-import { ShortcutsComponent } from "app/window/shortcuts/shortcuts.component";
-import { InputComponent } from 'app/window/shortcuts/input/input.component';
+import {ShortcutsComponent} from "app/windows/main/menus/shortcuts/shortcuts.component";
+import {InputComponent} from 'app/windows/main/menus/shortcuts/input/input.component';
+import {CommonModule, registerLocaleData} from "@angular/common";
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {SortablejsModule} from "ngx-sortablejs";
+import {SafePipeModule} from "safe-pipe";
 
-import { ServiceModule } from "app/core/modules/service.module";
-import { registerLocaleData, CommonModule } from "@angular/common";
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {ShortcutsApplicationComponent} from "./windows/main/menus/shortcuts/application/application.component";
+import {ShortcutsInterfaceComponent} from "./windows/main/menus/shortcuts/interface/interface.component";
+import {ShortcutsInventoryComponent} from "./windows/main/menus/shortcuts/inventory/inventory.component";
+import {ShortcutsOtherComponent} from "./windows/main/menus/shortcuts/other/other.component";
+import {ShortcutsSpellComponent} from "./windows/main/menus/shortcuts/spell/spell.component";
 
-export function translateModuleFactory(http: HttpClient) {
-    return new TranslateHttpLoader(http, '../../locale/', '.json')
-}
+export const createTranslateLoader = (http: HttpClient): TranslateHttpLoader => new TranslateHttpLoader(http, '../../locale/', '.json');
 
 registerLocaleData(localeFr);
 registerLocaleData(localeEn);
@@ -64,41 +61,42 @@ registerLocaleData(localeTr);
 @NgModule({
     imports: [
         CommonModule,
-        CoreModule,
         BrowserModule,
         BrowserAnimationsModule,
         AppRoutingModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
-                useFactory: (translateModuleFactory),
+                useFactory: (createTranslateLoader),
                 deps: [HttpClient]
-            }
+            },
+            defaultLanguage: 'en'
         }),
         SortablejsModule,
         FormsModule,
         TagInputModule,
         HttpClientModule,
         MaterialModule,
-        ServiceModule
+        ServiceModule,
+        SafePipeModule
     ],
     declarations: [
         AppComponent,
         MainComponent,
-        AuthComponent,
-        TabGameComponent,
+        AuthenticationComponent,
+        SidebarComponent,
         ToolbarComponent,
         GameComponent,
         AboutComponent,
         ChangeLogComponent,
         OptionComponent,
         GeneralComponent,
-        NotificationComponent,
-        VipComponent,
-        AutoGroupComponent,
+        NotificationsComponent,
+        FeraturesComponent,
+        GroupComponent,
         VipGeneralComponent,
-        MultiAccountComponent,
-        OfficialGameUpdateComponent,
+        AccountsComponent,
+        UpdateComponent,
         BugReportComponent,
 
         ShortcutsComponent,

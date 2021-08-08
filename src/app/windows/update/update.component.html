@@ -1,0 +1,30 @@
+<div class="toolbar-child-window">
+
+    <div class="title">{{'app.window.update-dofus.title' | translate}}</div>
+
+    <div class="close">
+        <mat-icon class="pointer window-close mat-22" (click)="close()">close</mat-icon>
+    </div>
+</div>
+
+<div class="main-content light-theme">
+
+    <div class="col-xs-12">
+        <div class="row information">
+            <div class="col-xs-12 text-center">
+
+                <strong>{{progressText}}</strong>
+
+                <div *ngIf="progressError === true">
+                    <button style="margin-top: 10px;" (click)="restart()" mat-raised-button color="primary">{{ 'app.window.update-dofus.information.retry' | translate }}</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="progressError === false">
+            <div class="col-xs-12">
+                <mat-progress-bar [mode]="progressMode" class="example-margin" [value]="progressValue"></mat-progress-bar>
+            </div>
+        </div>
+    </div>
+</div>

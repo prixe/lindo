@@ -1,0 +1,33 @@
+mat-card.window {
+    padding: 0 0 19px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    mat-card-header {
+        margin: 0;
+        background-color: #424242;
+        height: 35px;
+        align-items: center;
+        color: white;
+        font-size: 16px;
+        .delete-window {
+            position: absolute;
+            right: 8px;
+        }
+    }
+    mat-card-content {
+        margin-bottom: 0;
+    }
+    mat-card-actions {
+        padding: 0 24px 5px;
+    }
+    
+    mat-card-title {
+        margin-bottom: 0;
+        font-size: 16px;
+    }
+}
+
+.add-window {
+    padding-top: 10px;
+}

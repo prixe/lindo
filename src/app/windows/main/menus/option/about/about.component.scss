@@ -1,0 +1,35 @@
+.option-content{
+    padding: 0 20px 20px;
+    overflow: auto !important;
+}
+
+.app-name {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.team {
+    text-align: justify;
+    line-height: 23px;
+    margin-top: 20px;
+}
+
+.links{
+
+    ul{
+        list-style-type: none; 
+        padding: 0;
+
+        li.changelog{
+            margin-top: 20px;
+            a{ text-decoration: none; }
+        }
+    }
+}
+
+.logo{
+    display: flex;
+    width: 150px;
+    margin: auto;
+}

@@ -1,0 +1,30 @@
+.auth-content {
+  display: flex;
+
+  height: 200px;
+  width: 400px;
+  margin: auto;
+  background: rgba(240, 240, 240, 0.93);
+  box-shadow: 0 2px 12px grey;
+  position: relative;
+}
+
+form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-inputs {
+  padding: 25px 20px 20px;
+}
+
+.auth-actions {
+  justify-content: space-around;
+  margin-top: auto;
+  margin-bottom: 15px;
+}
+
+button[type="submit"] {
+  float: right;
+}

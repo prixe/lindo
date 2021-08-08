@@ -1,0 +1,92 @@
+<ng-container *ngIf="!hasPassword()">
+
+    <div>
+        {{'app.option.vip.multi-account.home-no-master' | translate}}
+    </div>
+
+    <br>
+
+    <button mat-raised-button (click)="setMasterPassword()">
+        {{'app.option.vip.multi-account.configure_password' | translate}}
+    </button>
+
+</ng-container>
+
+<ng-container *ngIf="hasPassword()">
+    <div class="row">
+        <div class="col-xs-5">
+            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.multiaccount.active">{{
+                'app.option.vip.multi-account.active' | translate}}
+            </mat-checkbox>
+        </div>
+        <div class="col-xs-7">
+            <button mat-button (click)="updateMasterPassword()">
+                    {{'app.option.vip.multi-account.modify_password' | translate}}
+            </button>
+            <button mat-button (click)="confirmDeleteMasterPassword()">
+                    {{'app.option.vip.multi-account.delete_password' | translate}}
+            </button>
+        </div>
+    </div>
+</ng-container>
+
+<div class="request-master-password"
+     *ngIf="hasPassword() && settingsService.option.vip.multiaccount.active && !applicationService.masterpassword">
+
+    {{'app.option.vip.multi-account.request-master-password.explanation' | translate}}
+
+    <br/><br/>
+
+    <form>
+        <div class="row">
+            <mat-form-field class="col-xs-3">
+                <input matInput autofocus type="password" [(ngModel)]="inputCheckMasterPassword" name="inputCheckMasterPassword" [placeholder]="'app.option.vip.multi-account.request-master-password.label'| translate">
+            </mat-form-field>
+            <div class="col-xs-6 col-xs-offset-1">
+                <button mat-raised-button (click)="checkMasterPassword($event)">
+                    {{'app.option.vip.multi-account.request-master-password.confirm' | translate}}
+                </button>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+<div *ngIf="hasPassword() && settingsService.option.vip.multiaccount.active && applicationService.masterpassword">
+
+    <div class="row mt-2">
+        <div class="col-xs-6" *ngFor="let window of settingsService.option.vip.multiaccount.windows; let windowIndex = index">
+            <mat-card class="window">
+
+                <mat-card-header>
+                    <mat-card-title>{{ 'app.option.vip.multi-account.window' | translate}} {{windowIndex + 1}}</mat-card-title>
+                    <mat-icon class="mat-24 delete-window pointer" (click)="deleteWindow(windowIndex)">close</mat-icon>
+                </mat-card-header>
+
+                <mat-card-content>
+                    <mat-list>
+                        <mat-list-item *ngFor="let account of window; let accountIndex = index">
+
+                            <mat-icon mat-list-icon>account_box</mat-icon>
+
+                            <h4 mat-line>{{crypt.decrypt(account.account_name_encrypted, applicationService.masterpassword)}}</h4>
+
+                            <mat-icon class="text-active edit-account pointer" (click)="modifyAccount(windowIndex, accountIndex, account.account_name_encrypted)">edit</mat-icon>
+                            <mat-icon class="text-danger delete-account pointer" (click)="deleteAccount(windowIndex, accountIndex)">delete</mat-icon>
+
+                        </mat-list-item>
+                    </mat-list>
+                </mat-card-content>
+
+                <mat-card-actions>
+                    <button mat-button (click)="addAccount(windowIndex)">{{'app.option.vip.multi-account.add' |translate}}</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+        <div class="col-xs-6 text-center add-window">
+            <button mat-button (click)="addWindow()">{{'app.option.vip.multi-account.add-window' |
+                translate}}
+            </button>
+        </div>
+    </div>
+</div>

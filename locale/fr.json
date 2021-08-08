@@ -21,7 +21,8 @@
       "tax-collector": "Un percepteur est attaqué !",
       "kolizeum": "Un Kolizéum a été trouvé !",
       "party-invitation": "{{character}} vous invite à rejoindre son groupe.",
-      "aggression": "Vous avez été aggressé !"
+      "aggression": "Vous avez été aggressé !",
+      "sale-message": "Banque"
     },
     "window": {
       "changelog": {
@@ -35,11 +36,20 @@
         "password-bad": "Le mot de passe est incorrect"
       },
       "update-dofus": {
-        "title": "Mise à jour de Dofus Touch",
+        "title": "Mise à jour de Lindo",
+        "step0": "Préparation de la mise à jours..",
+        "step1": "Étape 1 : Téléchargement des fichiers de Dofus",
+        "step2": "Étape 2 : Téléchargement des patch Lindo",
+        "step3": "Étape 3 : Résolution des versions",
+        "step4": "Étape 4 : Application des patchs",
+        "step5": "Étape 5 : Écriture des fichiers modifiés",
+        "step6": "Étape 6 : Suppression des anciens fichiers",
+        "step7": "Étape 7 : Finalisation",
+        "step8": "Étape 8 : Lancement de Lindo..",
         "information": {
           "search": "Recherche de mises à jour...",
-          "downloading": "Téléchargement en cours...",
-          "error": "Impossible de télécharger la mise à jour ! Veuillez réessayer ultérieurement"
+          "error": "Impossible d'effectuer la mise à jour ! Veuillez réessayer ultérieurement",
+          "retry": "Réessayer"
         }
       },
       "options": {
@@ -61,7 +71,6 @@
           "general": {
             "header": "Général",
             "disable-inactivity": "Prolonger le délai maximum d'inactivité",
-            "chat-input-bottom": "Mettre le champ texte du chat en bas",
             "estimator": "Estimation des dégats des sorts en combat",
             "health-bar": "Barres de vie en-dessous des combatants",
             "health-bar-shortcut": "Raccourcis pour les barres de vie",
@@ -72,7 +81,9 @@
             "show-resources" : "Affiches les ressources de la carte",
             "show-resources-shortcut" : "Raccourcis pour l'affichage des ressources",
             "harvest-indicator" : "Barres de temps sous les récoltes",
-            "party-member-on-map" : "Ajoute un indicateur pour savoir si les membres d'un groupe sont sur la même carte"
+            "party-member-on-map" : "Ajoute un indicateur pour savoir si les membres d'un groupe sont sur la même carte",
+            "monster-tooltip": "Affiche les informations des groupes de monstres sur la carte",
+            "monster-tooltip-shortcut": "Raccourci pour les informations des groupes de monstres"
           },
           "groups": {
             "header": "Groupe"
@@ -82,7 +93,7 @@
           }
         },
         "about": {
-          "title": "A propos de",
+          "title": "À propos",
           "links": {
             "website": "Site web",
             "changelog": "Notes de version"
@@ -218,6 +229,10 @@
         },
         "jobsxp": {
           "text": " XP manquant<br>avant le niveau "
+        },
+        "monstertooltip": {
+          "level": "Rang",
+          "group": "Groupe"
         }
       },
       "general": {
@@ -269,7 +284,7 @@
           "bestiary": "Bestiare",
           "title": "Titres et Ornements",
           "achievement": "Succès",
-          "almanax": "Almanax",
+          "dailyQuest": "Quêtes Journalières",
           "spouse": "Conjoint",
           "shop": "Marchand"
         },
@@ -298,7 +313,8 @@
         "tax-collector": "Quand un percepteur est attaqué",
         "kolizeum": "Quand un combat de kolizéum est trouvé",
         "party-invitation": "Quand un joueur vous invite dans un groupe",
-        "aggression": "Quand un joueur vous aggresse"
+        "aggression": "Quand un joueur vous aggresse",
+        "sale-message": "Quand un item est vendu"
       },
       "save": "Valider",
       "prompt": {

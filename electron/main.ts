@@ -1,49 +1,37 @@
-import { Logger } from './core/logger/logger-electron';
-import { Application } from './application';
-import { Settings } from './settings/settings';
-import { app, BrowserWindow, dialog, session } from 'electron';
+import {Logger} from './core/logger/logger-lindo';
+import {Application} from './application';
+import {Settings} from './settings/settings';
+import {app, BrowserWindow, dialog} from 'electron';
 
-const settings = require('electron-settings');
+const i18n = require('node-translate');
 
-// Ignore black list GPU for WebGL
+require('@electron/remote/main').initialize();
+
+if (!app.requestSingleInstanceLock()) {
+    app.quit();
+}
+
 app.commandLine.appendSwitch('ignore-gpu-blacklist', 'true');
-
-// Disable backgrounding renderer
 app.commandLine.appendSwitch("disable-renderer-backgrounding");
 app.commandLine.appendSwitch("disable-background-timer-throttling");
 
-// Bypass SSL bad certificate
-app.on('certificate-error', (event, webContents, url, error, certificate, callback) => {
-    event.preventDefault();
-    callback(true);
-});
+app.on('ready', () => {
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+    process.on('uncaughtException', function (error) {
 
-(process as NodeJS.EventEmitter).on('uncaughtException', function (error) {
+        Logger.error(error);
 
-    Logger.error(error);
-
-    dialog.showMessageBox(BrowserWindow.getFocusedWindow(), {
-        type: 'error',
-        title: 'Error',
-        message: 'An error occured in your settings, they will be reseted :' + error.toString(),
-        buttons: ['Close']
-    }, () => {
-
-        Settings.resetSettings();
-        app.exit();
+        dialog.showMessageBox(BrowserWindow.getFocusedWindow(), {
+            type: 'error',
+            title: i18n.t('uncaught-exception.title'),
+            message: i18n.t('uncaught-exception.message'),
+            buttons: [i18n.t('uncaught-exception.close')]
+        }).then(function () {
+            Settings.resetSettings();
+            app.exit();
+        });
     });
 
+    Settings.init();
+    Application.run();
 });
-
-const gotTheLock = app.requestSingleInstanceLock()
-
-if (!gotTheLock) {
-  app.quit()
-} else {
-    app.on('ready', () => {
-        Settings.init();
-        Application.run();
-    });
-}

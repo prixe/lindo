@@ -1,0 +1,72 @@
+<div class="option-content">
+
+    <div class="row">
+        <div class="col-xs-12">
+            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.disable_inactivity">{{ 'app.window.options.features.general.disable-inactivity' | translate }}</mat-checkbox>
+        </div>
+        <div class="col-xs-12">
+            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.estimator">{{ 'app.window.options.features.general.estimator' | translate }}</mat-checkbox>
+        </div>
+        <div class="col-xs-12">
+            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.hidden_mount">{{ 'app.window.options.features.general.hide-mount' | translate }}</mat-checkbox>
+        </div>
+        <div class="col-xs-12">
+            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.party_info_pp">{{ 'app.option.vip.party-info.header-pp' | translate }}</mat-checkbox>
+        </div>
+        <div class="col-xs-12">
+            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.party_info_lvl">{{ 'app.option.vip.party-info.header-lvl' | translate }}</mat-checkbox>
+        </div>
+        <div class="col-xs-12">
+            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.fightchronometer">{{ 'app.window.options.features.general.fightchronometer' | translate }}</mat-checkbox>
+        </div>
+
+        <div class="col-xs-12">
+            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.zaapsearchfilter">{{ 'app.window.options.features.general.zaapsearchfilter' | translate }}</mat-checkbox>
+        </div>
+
+        <div class="col-xs-12">
+            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.party_member_on_map">{{ 'app.window.options.features.general.party-member-on-map' | translate }}</mat-checkbox>
+        </div>
+
+       <div class="col-xs-12">
+            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.harvest_indicator">{{ 'app.window.options.features.general.harvest-indicator' | translate }}</mat-checkbox>
+        </div>
+
+        <div class="col-xs-12">
+            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.jobsxp">{{ 'app.window.options.features.general.jobsxp' | translate }}</mat-checkbox>
+        </div>
+        <div class="col-xs-12">
+            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.health_bar">{{ 'app.window.options.features.general.health-bar' | translate }}</mat-checkbox>
+        </div>
+        <div class="col-xs-12">
+            <ng-container *ngIf="settingsService.option.vip.general.health_bar">
+                <component-option-input-shortcuts id="health_bar_shortcut" name="{{ 'app.window.options.features.general.health-bar-shortcut' | translate }}"
+                    [(model)]="settingsService.option.vip.general.health_bar_shortcut">
+                </component-option-input-shortcuts>
+            </ng-container>
+        </div>
+        <div class="col-xs-12" style="margin-bottom: 10px;"> 
+            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.show_resources">{{ 'app.window.options.features.general.show-resources' | translate }}</mat-checkbox>
+        </div>
+        <div class="col-xs-12">
+            <ng-container *ngIf="settingsService.option.vip.general.show_resources">
+                <component-option-input-shortcuts id="show_resources_shortcut" name="{{ 'app.window.options.features.general.show-resources-shortcut' | translate }}"
+                    [(model)]="settingsService.option.vip.general.show_resources_shortcut">
+                </component-option-input-shortcuts>
+            </ng-container>
+        </div>
+        
+        <div class="col-xs-12" style="margin-bottom: 10px;">
+            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.monster_tooltip">{{ 'app.window.options.features.general.monster-tooltip' | translate }}</mat-checkbox>
+        </div>
+
+        <div class="col-xs-12">
+            <ng-container *ngIf="settingsService.option.vip.general.monster_tooltip">
+                <component-option-input-shortcuts id="monster_tooltip_shortcut" name="{{ 'app.window.options.features.general.monster-tooltip-shortcut' | translate }}"
+                    [(model)]="settingsService.option.vip.general.monster_tooltip_shortcut">
+                </component-option-input-shortcuts>
+            </ng-container>
+        </div>
+
+    </div>
+</div>

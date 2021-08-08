@@ -1,21 +1,21 @@
-import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { MainComponent } from 'app/main/main.component';
-import { GeneralComponent } from 'app/window/option/general/general.component';
-import { NotificationComponent } from 'app/window/option/notification/notification.component';
-import { AutoGroupComponent } from 'app/window/option/vip/auto-group/auto-group.component';
-import { GeneralComponent as VipGeneralComponent } from 'app/window/option/vip/general/general.component';
-import { MultiAccountComponent } from 'app/window/option/vip/multi-account/multi-account.component';
-import { VipComponent } from 'app/window/option/vip/vip.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {MainComponent} from 'app/windows/main/main.component';
+import {GeneralComponent} from 'app/windows/main/menus/option/general/general.component';
+import {NotificationsComponent} from 'app/windows/main/menus/option/notifications/notifications.component';
+import {GroupComponent} from 'app/windows/main/menus/option/features/group/group.component';
+import {GeneralComponent as VipGeneralComponent} from 'app/windows/main/menus/option/features/general/general.component';
+import {AccountsComponent} from 'app/windows/main/menus/option/features/accounts/accounts.component';
+import {FeraturesComponent} from 'app/windows/main/menus/option/features/feratures.component';
 
-import { ShortcutsOtherComponent } from "app/window/shortcuts/other/other.component";
-import { ShortcutsApplicationComponent } from "app/window/shortcuts/application/application.component";
-import { ShortcutsInventoryComponent } from "app/window/shortcuts/inventory/inventory.component";
-import { ShortcutsInterfaceComponent } from "app/window/shortcuts/interface/interface.component";
-import { ShortcutsSpellComponent } from "app/window/shortcuts/spell/spell.component";
-import { OfficialGameUpdateComponent } from "app/window/official-game-update/official-game-update.component";
-import { AboutComponent } from "app/window/option/about/about.component";
-import { BugReportComponent } from "app/window/bug-report/bug-report.component";
+import {ShortcutsOtherComponent} from "app/windows/main/menus/shortcuts/other/other.component";
+import {ShortcutsApplicationComponent} from "app/windows/main/menus/shortcuts/application/application.component";
+import {ShortcutsInventoryComponent} from "app/windows/main/menus/shortcuts/inventory/inventory.component";
+import {ShortcutsInterfaceComponent} from "app/windows/main/menus/shortcuts/interface/interface.component";
+import {ShortcutsSpellComponent} from "app/windows/main/menus/shortcuts/spell/spell.component";
+import {UpdateComponent} from "app/windows/update/update.component";
+import {AboutComponent} from "app/windows/main/menus/option/about/about.component";
+import {BugReportComponent} from "app/windows/main/bug-report/bug-report.component";
 
 const appRoutes: Routes = [
     {
@@ -27,14 +27,14 @@ const appRoutes: Routes = [
             { path: 'general', component: GeneralComponent },
             {
                 path: 'features',
-                component: VipComponent,
+                component: FeraturesComponent,
                 children: [
                     { path: 'general', component: VipGeneralComponent, outlet: 'featuresOutlet' },
-                    { path: 'groups', component: AutoGroupComponent, outlet: 'featuresOutlet' },
-                    { path: 'accounts', component: MultiAccountComponent, outlet: 'featuresOutlet' }
+                    { path: 'groups', component: GroupComponent, outlet: 'featuresOutlet' },
+                    { path: 'accounts', component: AccountsComponent, outlet: 'featuresOutlet' }
                 ]
             },
-            { path: 'notification', component: NotificationComponent },
+            { path: 'notification', component: NotificationsComponent },
             { path: 'about', component: AboutComponent }
         ]
     },
@@ -51,7 +51,7 @@ const appRoutes: Routes = [
     {
         path: 'official-game-update',
         children: [
-            { path: ':destinationPath', component: OfficialGameUpdateComponent }
+            { path: ':destinationPath', component: UpdateComponent }
         ]
     },
     {
@@ -65,8 +65,9 @@ const appRoutes: Routes = [
 @NgModule({
     imports: [
         RouterModule.forRoot(appRoutes, {
-            useHash: true
-        })
+    useHash: true,
+    relativeLinkResolution: 'legacy'
+})
     ],
     exports: [
         RouterModule

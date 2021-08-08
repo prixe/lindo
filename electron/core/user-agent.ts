@@ -1,5 +1,4 @@
 const settings = require('electron-settings');
-import { Logger } from '../core/logger/logger-electron';
 
 export class UserAgent {
 
@@ -94,7 +93,7 @@ export class UserAgent {
     }
 
     private generateUserAgentString(): void {
-        let mac = settings.get("macAddress");
+        let mac = settings.getSync("macAddress");
         let seed = 0, i, chr;
         for (i = 0; i < mac.length; i++) {
             chr   = mac.charCodeAt(i);

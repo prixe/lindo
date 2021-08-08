@@ -21,7 +21,8 @@
       "tax-collector": "Twój Perceptor został zaatakowany!",
       "kolizeum": "Koloseum zostało znalezione!",
       "party-invitation": "Dostałeś zaproszenie do dołączenia do grupy {{character}} .",
-      "aggression": "Zostałeś zaatakowany!"
+      "aggression": "Zostałeś zaatakowany!",
+      "sale-message": "Bank"
     },
     "window": {
       "changelog": {
@@ -35,11 +36,20 @@
         "password-bad": "Podane hasło jest nieprawidłowe"
       },
       "update-dofus": {
-        "title": "Aktualizacja Dofus Touch",
+        "title": "Aktualizacja Lindo",
+        "step0": "Przygotowanie do aktualizacji..",
+        "step1": "Krok 1 : Pobieranie plików Dofus",
+        "step2": "Krok 2 : Pobieranie łatki Lindo",
+        "step3": "Krok 3 : Rozdzielczość wersji",
+        "step4": "Krok 4 : Nakładanie plastrów",
+        "step5": "Krok 5 : Pisanie zmodyfikowanych plików",
+        "step6": "Krok 6 : Usuń stare pliki",
+        "step7": "Krok 7 : Finalizacja",
+        "step8": "Krok 8 : Uruchomienie Lindo..",
         "information": {
           "search": "Szukanie aktualizacji...",
-          "downloading": "Pobieranie...",
-          "error": "Nie można pobrać aktualizacji! Proszę spróbować później"
+          "error": "Nie można pobrać aktualizacji! Proszę spróbować później",
+          "retry": "Spróbuj ponownie"
         }
       },
       "options": {
@@ -61,7 +71,6 @@
           "general": {
             "header": "Główne",
             "disable-inactivity": "Pozostań ciągle zalogowany",
-            "chat-input-bottom": "Umieść pole tekstowe czatu na dole",
             "health-bar": "Aktywuj wyświetlanie paska życia poniżej postaci",
             "health-bar-shortcut": "Skrót klawiszowy do pokazywania/chowania pasków życia",
             "jobsxp": "Wyświetl niezbędną liczbę doświadczenia wymaganego do następnego poziomu",
@@ -271,7 +280,7 @@
           "bestiary": "Bestiariusz",
           "title": "Tytuły i ornamenty",
           "achievement": "Osiągnięcia",
-          "almanax": "Almanax",
+          "dailyQuest": "Codzienne Zadania",
           "spouse": "Spouse(druga połówka)",
           "shop": "Własny sklep"
         },
@@ -300,7 +309,8 @@
         "tax-collector": "Perceptor będzie zaatakowany",
         "kolizeum": "Walka w Koloseum została znaleziona",
         "party-invitation": "Ktoś wysłał Ci zaproszenie do grupy",
-        "aggression": "Zostaniesz zaatakowany"
+        "aggression": "Zostaniesz zaatakowany",
+        "sale-message": "Gdy przedmiot jest sprzedawany"
       },
       "reset": "Resetuj",
       "save": "Zatwierdź",

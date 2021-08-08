@@ -16,31 +16,31 @@ body {
 }
 
 a:focus {
-  outline: 0px !important;
+  outline: 0 !important;
 }
 
-component-app {
+app-component {
   flex: 1;
   display: flex;
 }
 
-component-main {
+app-main-component {
   flex: 1;
   display: flex !important;
   flex-direction: column !important;
   background: #424242;
 }
 
-component-auth {
+app-main-authentication-component {
   flex: 1;
   display: flex !important;
   flex-direction: column !important;
-  background: url("../images/auth-bg.jpg") bottom center no-repeat;
+  background: url("../../images/authentication-background.webp") bottom center no-repeat;
   background-size: cover;
 }
 
 component-options,
-component-bug-report {
+app-main-bug-report-component {
   width: 100%;
   flex: 1;
   display: flex !important;
@@ -52,8 +52,7 @@ component-option-general {
 }
 
 component-option-general,
-component-game-update,
-component-official-game-update,
+app-update-component,
 ng-component {
   flex: 1;
 }

@@ -1,0 +1,20 @@
+<app-main-toolbar-component></app-main-toolbar-component>
+
+<div class="main-content">
+
+    <ng-container *ngIf="authService.authRequired">
+        <app-main-authentication-component></app-main-authentication-component>
+    </ng-container>
+
+    <ng-container *ngIf="!authService.authRequired">
+
+        <div class="main-tabs">
+            <app-main-sidebar-component></app-main-sidebar-component>
+        </div>
+
+        <div class="main-tabs-content">
+            <app-main-game-component *ngFor="let game of gameService.games" (selected)="tabGameService.selectTabGame(game.id)" [game]="game" [hidden]="!game.isFocus"></app-main-game-component>
+        </div>
+
+    </ng-container>
+</div>

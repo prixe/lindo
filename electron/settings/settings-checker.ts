@@ -1,4 +1,4 @@
-import { Logger } from '../core/logger/logger-electron';
+import { Logger } from '../core/logger/logger-lindo';
 import { SettingsDefault } from './settings-default';
 import { SettingsInterface } from './settings.interface';
 import * as macAddress from 'macaddress';
@@ -9,7 +9,7 @@ export function checkSettings() {
 
     Logger.info("[SETTING] Checking settings integrity..");
 
-    let sett: SettingsInterface = settings.getAll();
+    let sett: SettingsInterface = settings.getSync();
     
     if (sett.option === undefined) {
         return false;
@@ -46,7 +46,7 @@ export function checkSettings() {
     let ok = checkRecursive(sett, SettingsDefault, 0);
     if (!ok) {
         Logger.info('Replacing settings above by defaults');
-        settings.setAll(sett);
+        settings.setSync(sett);
         ok = checkRecursive(sett, SettingsDefault, 0);
     }
 
@@ -60,13 +60,13 @@ export function checkSettings() {
         sett.option.general.resolution.y = Math.floor(sett.option.general.resolution.y);
     }
 
-    if (!settings.get('macAddress')) {
+    if (!settings.getSync('macAddress')) {
         macAddress.one((err, addr) => {
             if(err || !addr){
-                settings.set('macAddress',  Math.random().toString());
+                settings.setSync('macAddress',  Math.random().toString());
                 Logger.warn("[SETTING] Unable to retrieve the mac address");
             }else{
-                settings.set('macAddress', Buffer.from(addr).toString('base64'));
+                settings.setSync('macAddress', Buffer.from(addr).toString('base64'));
             }
         });
     }

@@ -35,7 +35,7 @@ module.exports = {
             "title": "?",
             "changelog": "Notes de mise à jour",
             "console": "Console développeur",
-            "about": "A propos..."
+            "about": "À propos..."
         }
     },
     "updater": {
@@ -52,5 +52,10 @@ module.exports = {
             "title": "Cache vidé",
             "message": "Le cache des fenêtres ouvertes a été vidé avec succès"
         }
+    },
+    "uncaught-exception":{
+        "title": "Une erreur s'est produite",
+        "message": "Une erreur non prévu s'est produite dans le programme. \nVos paramètres ont été réinitialisés.",
+        "close": "Fermer l'application"
     }
 };

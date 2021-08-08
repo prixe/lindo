@@ -1,4 +1,4 @@
-import { Logger } from './logger/logger-electron';
+import { Logger } from './logger/logger-lindo';
 
 const electronLocalshortcut = require('electron-localshortcut');
 const settings = require('electron-settings');
@@ -21,7 +21,7 @@ export class ShortCuts {
         let errorConsoleFunction = console.error;
         console.error = function() {}
 
-        async.forEachOf(settings.get('option.shortcuts.no_emu.tabs'), (shortcut: string, index: number) => {
+        async.forEachOf(settings.getSync('option.shortcuts.no_emu.tabs'), (shortcut: string, index: number) => {
             if (shortcut) {
                 try{
                     electronLocalshortcut.register(this.win, ShortCuts.convert(shortcut), () => {

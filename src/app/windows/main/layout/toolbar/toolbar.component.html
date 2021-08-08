@@ -1,0 +1,26 @@
+<div class="toolbar" (dblclick)="maximizeWindow()">
+
+    <div class="system-buttons mac" *ngIf="platform == 'mac'">
+        <mat-icon class="pointer window-close mat-16" (click)="closeWindow()">lens</mat-icon>
+        <mat-icon class="pointer window-minimize mat-16" (click)="minimizeWindow()">lens</mat-icon>
+        <mat-icon class="pointer window-maximize mat-16" (click)="fullScreenWindow()">lens</mat-icon>
+    </div>
+
+    <span class="title">{{ appName }}</span>
+
+    <div class="system-buttons all">
+        <mat-icon class="pointer text-danger mat-22" *ngIf="isAudioMuted" (click)="toggleSound(false)" matTooltip="{{ 'app.main.head.toggle-audio-on' | translate }}">audiotrack</mat-icon>
+        <mat-icon class="pointer text-success mat-22" *ngIf="!isAudioMuted" (click)="toggleSound(true)" matTooltip="{{ 'app.main.head.toggle-audio-off' | translate }}">audiotrack</mat-icon>
+        <mat-icon class="pointer mat-22" (click)="newWindow()" matTooltip="{{ 'app.main.head.new-window' | translate }}">launch</mat-icon>
+    </div>
+
+    <div class="system-buttons win" *ngIf="platform == 'win'">
+        <mat-icon class="pointer window-minimize mat-22" (click)="minimizeWindow()">remove</mat-icon>
+        <mat-icon class="pointer window-maximize mat-22" (click)="maximizeWindow()">crop_din</mat-icon>
+        
+        <mat-icon class="pointer window-fullscreen mat-22" *ngIf="!window.isFullScreen()" (click)="fullScreenWindow()">fullscreen</mat-icon>
+        <mat-icon class="pointer window-fullscreen mat-22" *ngIf="window.isFullScreen()" (click)="fullScreenWindow()">fullscreen_exit</mat-icon>
+
+        <mat-icon class="pointer window-close mat-22" (click)="closeWindow()">close</mat-icon>
+    </div>
+</div>

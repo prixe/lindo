@@ -21,7 +21,8 @@
       "tax-collector": "Un precettore è stato attaccato !",
       "kolizeum": "Trovata battaglia Kolosseo !",
       "party-invitation": "{{character}} ti ha invitato ad unirsi al suo gruppo.",
-      "aggression": "Sei stato assalito !"
+      "aggression": "Sei stato assalito !",
+      "sale-message": "Banca"
     },
     "window": {
       "changelog": {
@@ -35,11 +36,20 @@
         "password-bad": "La password è sbagliata"
       },
       "update-dofus": {
-        "title": "Aggiornamento Dofus Touch",
+        "title": "Aggiornamento Lindo",
+        "step0": "Preparazione per l'aggiornamento..",
+        "step1": "Passo 1 : Download di file Dofus",
+        "step2": "Passo 2 : Download della patch Lindo",
+        "step3": "Passo 3 : Risoluzione della versione",
+        "step4": "Passo 4 : Applicare le patch",
+        "step5": "Passo 5 : Scrittura di file modificati",
+        "step6": "Passo 6 : Elimina i vecchi file",
+        "step7": "Passo 7 : Finalizzazione",
+        "step8": "Passo 8 : Lancio di Lindo..",
         "information": {
           "search": "In cerca di aggiornamenti...",
-          "downloading": "Scaricamento...",
-          "error": "Impossibile scaricare l'aggiornamento ! Riprova più tardi"
+          "error": "Impossibile scaricare l'aggiornamento ! Riprova più tardi",
+          "retry": "Riprova"
         }
       },
       "options": {
@@ -61,7 +71,6 @@
           "general": {
             "header": "Generali",
             "disable-inactivity": "Aumenta il tempo per disconessione da inattività",
-            "chat-input-bottom": "Metti il ​​campo di testo della chat in basso",
             "health-bar": "Visualizza le barre della vita sotto i combattenti",
             "health-bar-shortcut": "Tasto rapido per mostrare/nascondere le barre della vita",
             "jobsxp": "Attiva il display dell'esperienza del lavoro necessaria ad aumentarne il livello",
@@ -270,7 +279,7 @@
           "bestiary": "Bestiario",
           "title": "Titoli ed ornamenti",
           "achievement": "Obbiettivi",
-          "almanax": "Almanax",
+          "dailyQuest": "Missioni Giornaliere",
           "spouse": "Matrimonio",
           "shop": "Negoziante"
         },
@@ -299,7 +308,8 @@
         "tax-collector": "Quanto un percettore viene attaccato",
         "kolizeum": "Quando viene trovata una battaglia Kolosseo",
         "party-invitation": "Quando qualcuno ti invita in un gruppo",
-        "aggression": "Quando qualcuno ti assalta"
+        "aggression": "Quando qualcuno ti assalta",
+        "sale-message": "Quando un articolo viene venduto"
       },
       "reset": "Reimposta",
       "save": "Applica",

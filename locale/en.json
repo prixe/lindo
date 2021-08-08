@@ -21,7 +21,8 @@
       "tax-collector": "A tax collector is being attacked !",
       "kolizeum": "A Kolizeum has been found !",
       "party-invitation": "You are invited to join {{character}}'s group.",
-      "aggression": "You have been aggressed !"
+      "aggression": "You have been aggressed !",
+      "sale-message": "Bank"
     },
     "window": {
       "changelog": {
@@ -35,11 +36,20 @@
         "password-bad": "The password is incorrect"
       },
       "update-dofus": {
-        "title": "Dofus Touch update",
+        "title": "Lindo update",
+        "step0": "Preparing update..",
+        "step1": "Step 1 : Downloading Dofus files",
+        "step2": "Step 2 : Lindo patch download",
+        "step3": "Step 3 : Version resolution",
+        "step4": "Step 4 : Applying the patches",
+        "step5": "Step 5 : Writing modified files",
+        "step6": "Step 6 : Delete old files",
+        "step7": "Step 7 : Finalization",
+        "step8": "Step 8 : Launch of Lindo..",
         "information": {
           "search": "Looking for updates...",
-          "downloading": "Downloading...",
-          "error": "Can't download the update ! Please try again later"
+          "error": "Can't download the update ! Please try again later",
+          "retry": "Try again"
         }
       },
       "options": {
@@ -61,7 +71,6 @@
           "general": {
             "header": "General",
             "disable-inactivity": "Extend the delay before disconnection for inactivity",
-            "chat-input-bottom": "Put the chat text field at the bottom",
             "health-bar": "Activate the display of the life bars below the fighters",
             "health-bar-shortcut": "Shortcuts for show/hide life bars",
             "jobsxp": "Activate the display of the job xp need for leveling",
@@ -72,7 +81,9 @@
             "show-resources" : "Show map resources",
             "show-resources-shortcut" : "Shortcut to show/hide map resources",
             "harvest-indicator" : "Activate the display of the remaining time below the ressources",
-            "party-member-on-map" : "Add an indicator to know if the members of a group are on the same map"
+            "party-member-on-map" : "Add an indicator to know if the members of a group are on the same map",
+            "monster-tooltip": "Display monsters groups informations on the map",
+            "monster-tooltip-shortcut": "Shortcut for show/hide monsters tooltip"
           },
           "groups": {
             "header": "Groups"
@@ -219,6 +230,10 @@
         },
         "jobsxp": {
           "text": " XP missing<br>before level "
+        },
+        "monstertooltip": {
+          "level": "Level",
+          "group": "Group"
         }
       },
       "general": {
@@ -270,7 +285,7 @@
           "bestiary": "Bestiary",
           "title": "Titles and Ornaments",
           "achievement": "Achievements",
-          "almanax": "Almanax",
+          "dailyQuest": "Daily Quests",
           "spouse": "Spouse",
           "shop": "Shopkeeper"
         },
@@ -299,7 +314,8 @@
         "tax-collector": "When a tax collector is attacked",
         "kolizeum": "When a kolizeum fight is found",
         "party-invitation": "When someone invites you to join a group",
-        "aggression": "When someone aggresses you"
+        "aggression": "When someone aggresses you",
+        "sale-message": "When an item is sold"
       },
       "reset": "Reset",
       "save": "Apply",

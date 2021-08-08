@@ -1,0 +1,45 @@
+<div class="option-content">
+
+  <div class="row mb-1">
+    <div class="col-xs-12">
+      {{ 'app.option.notifications.description' | translate }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <mat-checkbox color="primary" [(ngModel)]="settingsService.option.notification.fight_turn">
+        {{ 'app.option.notifications.fight-turn' | translate }}</mat-checkbox>
+    </div>
+
+    <div class="col-xs-12">
+      <mat-checkbox color="primary" [(ngModel)]="settingsService.option.notification.private_message">
+        {{ 'app.option.notifications.private-message' | translate }}</mat-checkbox>
+    </div>
+
+    <div class="col-xs-12">
+      <mat-checkbox color="primary" [(ngModel)]="settingsService.option.notification.tax_collector">
+        {{ 'app.option.notifications.tax-collector' | translate }}</mat-checkbox>
+    </div>
+
+    <div class="col-xs-12">
+      <mat-checkbox color="primary" [(ngModel)]="settingsService.option.notification.kolizeum">
+        {{ 'app.option.notifications.kolizeum' | translate }}</mat-checkbox>
+    </div>
+
+    <div class="col-xs-12">
+      <mat-checkbox color="primary" [(ngModel)]="settingsService.option.notification.party_invitation">
+        {{ 'app.option.notifications.party-invitation' | translate }}</mat-checkbox>
+    </div>
+
+    <div class="col-xs-12">
+      <mat-checkbox color="primary" [(ngModel)]="settingsService.option.notification.aggression">
+        {{ 'app.option.notifications.aggression' | translate }}</mat-checkbox>
+    </div>
+
+    <div class="col-xs-12">
+      <mat-checkbox color="primary" [(ngModel)]="settingsService.option.notification.sale_message">
+        {{ 'app.option.notifications.sale-message' | translate }}</mat-checkbox>
+    </div>
+  </div>
+</div>

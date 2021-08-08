@@ -21,7 +21,8 @@
       "tax-collector": "Atınıza bir saldırı düzenlendi",
       "kolizeum": "Kolizeum bulundu!",
       "party-invitation": "{{character}} seni grubuna katılmaya davet etti.",
-      "aggression": "Saldırıya uğradın!"
+      "aggression": "Saldırıya uğradın!",
+      "sale-message": "Banka"
     },
     "window": {
       "changelog": {
@@ -35,11 +36,20 @@
         "password-bad": "Şifre yanlış"
       },
       "update-dofus": {
-        "title": "Dofus Touch güncellemesi",
+        "title": "Lindo güncellemesi",
+        "step0": "Güncelleme için hazırlanıyor..",
+        "step1": "Aşama 1 : Dofus dosyalarını indirme",
+        "step2": "Aşama 2 : Lindo yaması indir",
+        "step3": "Aşama 3 : Sürüm çözünürlüğü",
+        "step4": "Aşama 4 : Yamaların uygulanması",
+        "step5": "Aşama 5 : Değiştirilen dosyaları yazma",
+        "step6": "Aşama 6 : Eski dosyaları silin",
+        "step7": "Aşama 7 : Sonlandırma",
+        "step8": "Aşama 8 : Lindo'nun piyasaya sürülmesi..",
         "information": {
           "search": "Güncellemeler aranıyor...",
-          "downloading": "Yükleniyor...",
-          "error": "Güncelleme indirilemiyor! Lütfen daha sonra tekrar deneyiniz"
+          "error": "Güncelleme indirilemiyor! Lütfen daha sonra tekrar deneyiniz",
+          "retry": "Tekrar deneyin"
         }
       },
       "options": {
@@ -61,7 +71,6 @@
           "general": {
             "header": "Genel",
             "disable-inactivity": "Bağlantı kesilmeden önce hareketsizlik nedeniyle gecikmeyi uzatın",
-            "chat-input-bottom": "Sohbet metin alanını en alta yerleştirin",
             "health-bar": "Savaşçıların altındaki yaşam çubuklarının görüntülenmesini etkinleştirin",
             "health-bar-shortcut": "Yaşam çubuklarını göster / gizle kısayolları",
             "jobsxp": "Seviye atlamak için iş xp ihtiyacının görüntülenmesini etkinleştirin",
@@ -273,7 +282,7 @@
           "bestiary": "Yaratık Ansiklopedisi",
           "title": "Başlıklar ve Süsler",
           "achievement": "Başarılar",
-          "almanax": "Almanax",
+          "dailyQuest": "Günlük Görevler",
           "spouse": "Eş",
           "shop": "Dükkâncı"
         },
@@ -302,7 +311,8 @@
         "tax-collector": "Atınıza bir saldırı düzenlendiğinde",
         "kolizeum": "Kolizeum bulunduğunda",
         "party-invitation": "Birisi sizi bir gruba katılmaya davet ettiğinde",
-        "aggression": "Birisi sana saldırdığında"
+        "aggression": "Birisi sana saldırdığında",
+        "sale-message": "Bir ürün satıldığında"
       },
       "reset": "Sıfırla",
       "save": "Uygula",

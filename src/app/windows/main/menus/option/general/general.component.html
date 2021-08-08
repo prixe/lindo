@@ -1,0 +1,69 @@
+<div class="option-content">
+
+    <h2>{{ 'app.option.general.interface' | translate }}</h2>
+
+    <div class="row">
+        <div class="col-xs-8" style="margin-bottom: 6px">
+            <table>
+                <tr>
+                    <td>{{ 'app.option.general.language' | translate }}</td>
+                    <td>
+                        <mat-select (selectionChange)="onLanguageChange($event)" placeholder="{{ 'app.option.general.language' | translate }}" [(ngModel)]="settingsService.language">
+                            <mat-option *ngFor="let l of languages" [value]="l.value">{{ l.name }}</mat-option>
+                        </mat-select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>{{ 'app.option.general.resolution' | translate }}</td>
+                    <td>
+                        <mat-select placeholder="{{ 'app.option.general.resolution' | translate }}" [(ngModel)]="_resolution" (selectionChange)="setResolution($event)">
+                            <mat-option *ngFor="let resolution of resolutions" [value]="resolution.value">{{ resolution.name }}</mat-option>
+                        </mat-select>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-xs-12">
+            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.general.hidden_shop">{{ 'app.option.general.hide-shop' | translate }}</mat-checkbox>
+        </div>
+        <div class="col-xs-12">
+            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.shortcuts.diver.active_open_menu">{{ 'app.option.shortcuts.diver.active-open-menu' | translate }}</mat-checkbox>
+        </div>
+        <div class="col-xs-12">
+            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.notification.focus_fight_turn">{{ 'app.option.general.focus-fight-turn' | translate }}</mat-checkbox>
+        </div>
+    </div>
+
+    <h2>{{ 'app.option.general.sound' | translate }}</h2>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.general.sound_focus">{{ 'app.option.general.sound-focus' | translate }}</mat-checkbox>
+        </div>
+    </div>
+
+    <h2>{{ 'app.option.general.shortcuts' | translate }}</h2>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <button type="button" color="primary" (click)="option.closeAndOpenShortcuts();" mat-raised-button>
+                <mat-icon>keyboard</mat-icon> {{ 'app.window.options.general.shortcuts' | translate }}
+            </button>
+        </div>
+    </div>
+
+    <h2>{{ 'app.option.general.game-data' | translate }}</h2>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <button type="button" color="primary" (click)="resetGameFile()" mat-raised-button>{{ 'app.window.options.general.reset-game' | translate }}</button>
+        </div>
+        <div class="col-xs-12">
+            <button type="button" color="primary" (click)="clearCache()" mat-raised-button>{{ 'app.window.options.general.clear-cache' | translate }}</button>
+        </div>
+        <div class="col-xs-12">
+            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.general.early" (change)="setServerName($event)">{{ 'app.option.general.early' | translate }}</mat-checkbox>
+            <button class="inline-button" type="button" color="primary" (click)="resetGameFile()" [style.visibility]="restartForEarlyDisplayed ? 'visible' : 'hidden'" mat-raised-button>{{ 'app.option.general.restart' | translate }}</button>
+        </div>
+    </div>
+</div>

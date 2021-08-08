@@ -15,14 +15,14 @@ export class GameMenuTemplate {
                 submenu: [
                     {
                         label: i18n.t('game-menu.file.new-window'),
-                        accelerator: ShortCuts.convert(settings.get('option.shortcuts.no_emu.new_window')),
+                        accelerator: ShortCuts.convert(settings.getSync('option.shortcuts.no_emu.new_window')),
                         click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow) {
                             Application.addWindow();
                         }
                     },
                     {
                         label: i18n.t('game-menu.file.new-tab'),
-                        accelerator: ShortCuts.convert(settings.get('option.shortcuts.no_emu.new_tab')),
+                        accelerator: ShortCuts.convert(settings.getSync('option.shortcuts.no_emu.new_tab')),
                         click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow) {
                             focusedWindow.webContents.send('new-tab', {});
                         }
@@ -74,7 +74,7 @@ export class GameMenuTemplate {
                     },
                     {
                         label: i18n.t('game-menu.edit.selectall'),
-                        role: 'selectall'
+                        role: 'selectAll'
                     }
                 ]
             },
@@ -95,14 +95,14 @@ export class GameMenuTemplate {
 
                     {
                         label: i18n.t('game-menu.window.prev-tab'),
-                        accelerator: ShortCuts.convert(settings.get('option.shortcuts.no_emu.prev_tab')),
+                        accelerator: ShortCuts.convert(settings.getSync('option.shortcuts.no_emu.prev_tab')),
                         click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow) {
                             focusedWindow.webContents.send('previous-tab', 'prev');
                         }
                     },
                     {
                         label: i18n.t('game-menu.window.next-tab'),
-                        accelerator: ShortCuts.convert(settings.get('option.shortcuts.no_emu.next_tab')),
+                        accelerator: ShortCuts.convert(settings.getSync('option.shortcuts.no_emu.next_tab')),
                         click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow) {
                             focusedWindow.webContents.send('next-tab', 'next');
                         }
@@ -119,15 +119,15 @@ export class GameMenuTemplate {
                     },
                     {
                         label: i18n.t('game-menu.window.zoomin'),
-                        role: 'zoomin'
+                        role: 'zoomIn'
                     },
                     {
                         label: i18n.t('game-menu.window.zoomout'),
-                        role: 'zoomout'
+                        role: 'zoomOut'
                     },
                     {
                         label: i18n.t('game-menu.window.resetzoom'),
-                        role: 'resetzoom'
+                        role: 'resetZoom'
                     },
                     {
                         type: 'separator'

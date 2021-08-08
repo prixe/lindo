@@ -21,9 +21,6 @@ export interface SettingsInterface {
             early: boolean;
             audio_muted: boolean;
         },
-        chat: {
-            inputBottom: boolean;
-        },
         shortcuts: {
             no_emu: {
                 new_tab: string;
@@ -63,7 +60,7 @@ export interface SettingsInterface {
                 bestiary: string;
                 title: string;
                 achievement: string;
-                almanax: string;
+                dailyQuest: string;
                 spouse: string;
                 shop: string;
                 goultine: string;
