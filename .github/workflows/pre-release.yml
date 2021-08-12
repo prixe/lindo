@@ -83,7 +83,7 @@ jobs:
             releases/Lindo-${{ steps.extract_version.outputs.version }}.dmg
             releases/Lindo-${{ steps.extract_version.outputs.version }}-mac.zip
 
-  uplod-release:
+  upload-release:
     name: "Upload Release"
     runs-on: ubuntu-20.04
     needs: [release-win, release-linux, release-macOS]
