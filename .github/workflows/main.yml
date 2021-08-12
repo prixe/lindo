@@ -1,0 +1,124 @@
+name: CI/CD
+on:
+  push:
+    tags:
+      - "v*"
+
+
+jobs:
+
+  #TODO
+  #https://github.com/ad-m/github-push-action
+  #on tag, update package.json, create release then "push" the package.json updated
+  release-win:
+    name: "Release windows"
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      #utiliser node v14 ? https://github.com/actions/setup-node
+      - run: npm i
+      - run: npm run build:prod
+      - run: docker run -v ${PWD}:/project electronuserland/builder:wine /bin/bash -c "npm run release:win"
+
+      - name: Extract version
+        id: extract_version
+        uses: Saionaro/extract-package-version@v1.0.6
+
+      - name: Create windows artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: win
+          path: |
+            releases/Lindo ${{ steps.extract_version.outputs.version }}.exe
+            releases/Lindo Setup ${{ steps.extract_version.outputs.version }}.exe
+            releases/Lindo-${{ steps.extract_version.outputs.version }}-win.zip
+            releases/Lindo-${{ steps.extract_version.outputs.version }}-ia32-win.zip
+
+  release-linux:
+    name: "Release linux"
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      #utiliser node v14 ? https://github.com/actions/setup-node
+      - run: npm i
+      - run: npm run build:prod
+      - run: npm run release:linux
+
+      - name: Extract version
+        id: extract_version
+        uses: Saionaro/extract-package-version@v1.0.6
+
+      - name: Create linux artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: lin
+          path: |
+            releases/lindo-${{ steps.extract_version.outputs.version }}.tar.gz
+            releases/lindo_${{ steps.extract_version.outputs.version }}_amd64.deb
+
+  release-macOS:
+    name: "Release macOS"
+    runs-on: macos-10.15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      #utiliser node v14 ? https://github.com/actions/setup-node
+      - run: npm i
+      - run: npm run build:prod
+      - name: release mac
+        run: |
+          npm run release:mac
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract version
+        id: extract_version
+        uses: Saionaro/extract-package-version@v1.0.6
+
+      - name: Create macOS artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: mac
+          path: |
+            releases/Lindo-${{ steps.extract_version.outputs.version }}.dmg
+            releases/Lindo-${{ steps.extract_version.outputs.version }}-mac.zip
+
+  upload-release:
+    name: "Upload Release"
+    runs-on: ubuntu-20.04
+    needs: [release-win, release-linux, release-macOS]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      #update pachage.json?
+      - run: npm i
+      #on dowload tous les artifacts
+      - uses: actions/download-artifact@v2
+
+      - name: Extract version
+        id: extract_version
+        uses: Saionaro/extract-package-version@v1.0.6
+
+      - name: Automatic Release
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          automatic_release_tag: "v${{ steps.extract_version.outputs.version }}"
+          title: "v${{ steps.extract_version.outputs.version }}"
+          files: |
+            win/Lindo ${{ steps.extract_version.outputs.version }}.exe
+            win/Lindo Setup ${{ steps.extract_version.outputs.version }}.exe
+            win/Lindo-${{ steps.extract_version.outputs.version }}-win.zip
+            win/Lindo-${{ steps.extract_version.outputs.version }}-ia32-win.zip
+            lin/lindo-${{ steps.extract_version.outputs.version }}.tar.gz
+            lin/lindo_${{ steps.extract_version.outputs.version }}_amd64.deb
+            mac/Lindo-${{ steps.extract_version.outputs.version }}.dmg
+            mac/Lindo-${{ steps.extract_version.outputs.version }}-mac.zip
