@@ -15,8 +15,10 @@
 ### Améliorations
 - Ajout de l’icône dans le build .deb
 - Agrandissement du rond focus
+- Amélioration de l'affichage et de la stabilité des barres de vie
 
 ### Correctifs
+- Amélioration de la stabilité lors du téléchargement du jeu (problème de téléchargement infini)
 - Crash de Lindo avec le déplacement rapide lorsque la case est inaccessible
 - Corrections de l'estimation des dégâts
 - Correction du raccourci de l'Almanax
