@@ -318,7 +318,7 @@ export class MonsterTooltip extends Mod {
         let givenXPModifier = (100 - xpRatioMount) - ((100 - xpRatioMount) * xpGuildGivenPercent / 100)
         givenXPModifier /= 100
 
-        return toInt(playerXp * givenXPModifier) * bonusModifier;
+        return toInt(toInt(playerXp * givenXPModifier) * bonusModifier);
     }
 
     private update() {
