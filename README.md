@@ -16,7 +16,7 @@ https://lindo-app.com
 
 ## Supported Platform
 Lindo No-Emu works on :
-- **Windows** 7 and newer (ia32/amd64) 
+- **Windows** 7 and newer (ia32/amd64)
 - **macOS** 10.9 and newer
 - **Linux** (Debian >= 9, Ubuntu >= 18) (amd64)
 
@@ -51,7 +51,7 @@ Lindo No-Emu works on :
 - [Discord](https://discord.gg/xdt5J4N)
 - [Trello](https://trello.com/b/d1mc9DeS/lindo)
 
-## Installation 
+## Installation
 ### Prerequisites
 #### Node.js
 - Windows : [Website](https://nodejs.org)
@@ -67,7 +67,7 @@ $ brew install nodejs
 ```sh
 $ git clone https://github.com/prixe/lindo.git
 $ cd lindo
-$ npm install
+$ npm ci
 ```
 
 ## Start project in dev mode
@@ -75,7 +75,7 @@ Compile electron typescript source and angular source in developpement mode with
 ```sh
 $ npm run build:dev
 ```
-Start the project in electron (open a new terminal) : 
+Start the project in electron (open a new terminal) :
 ```sh
 $ npm start
 ```
@@ -112,7 +112,7 @@ $ npm run release:mac
 **Lindo** is developed with [Angular](https://angular.io/) as web framework and uses [Material](https://material.angular.io/) for the UI. It uses [electron](https://github.com/electron/electron) to be run as an standalone application, wich is based on Node.js and Chromium.
 
 So we have to distinguish 2 contexts :
-- **Navigator context** -> executed by Chromium (the Angular part) 
+- **Navigator context** -> executed by Chromium (the Angular part)
 - **Electron context** -> executed by Node.js (it's allow platform interaction)
 
 Navigator context is in the ```src/```folder and Electron context is in the ```electron/``` folder.
@@ -170,7 +170,7 @@ The config used by angular in `$ ng build (--configuration=production)` is at an
 You can contact a senior developer of the project as [Clover](https://github.com/Clover-Lindo) or [Prixe](https://github.com/prixe). Or you can eventually join our [Discord](https://discord.gg/wcCgtsv).
 Then you can create a pull request to add or fix features, you can also submit improvement idea or bug issue in the [issues section](https://github.com/prixe/lindo/issues).
 
-### Generate the TOC 
+### Generate the TOC
 If you edit the README.MD you wanna update the table of contents you can easily achieve it by using this command :
 ```sh
 $ npm run toc
