@@ -15,6 +15,11 @@ type TooltipData = {
 Original work from : https://github.com/arcln/lindo/blob/master/src/app/core/mods/monsterTooltip/monsterTooltip.ts
 */
 
+// Helper function similar to Math.floor
+const toInt = (e: number) => {
+    return e | 0;
+}
+
 export class MonsterTooltip extends Mod {
 
     private visible = false;
@@ -226,11 +231,17 @@ export class MonsterTooltip extends Mod {
         } else {
             monsters = allMonsters;
         }
-        
+
         const groupLevel = monsters.reduce((level, monster) => level + monster.staticInfos.level, 0);
         const monstersXp = monsters.reduce((xp, monster) => xp + monster.staticInfos.xp, 0);
         const highestMonsterLevel = monsters.slice().sort((a, b) => a.staticInfos.level - b.staticInfos.level).pop();
-
+        // Get mount, alliance and guild xp modifiers
+        const { playerData: { guild, id, alliance, position, ...rest } } = this.wGame.gui;
+        const guildInformation = guild.getGuildMemberInfo(id) || {};
+        const xpAlliancePrismBonusPercent = alliance.getPrismBonusPercent(position.subAreaId);
+        const xpRatioMount = rest.isRiding ? rest.mountXpRatio || 0 : 0;
+        const xpGuildGivenPercent = guildInformation.experienceGivenPercent || 0
+        
         if (Object.keys(partyData._partyFromId).length > 0) {
             partyXp = this.calculateXp(
                 monstersXp,
@@ -240,6 +251,9 @@ export class MonsterTooltip extends Mod {
                 highestMonsterLevel,
                 group.ageBonus,
                 partySizeModifier,
+                xpAlliancePrismBonusPercent,
+                xpRatioMount,
+                xpGuildGivenPercent
             );
         }
 
@@ -250,6 +264,10 @@ export class MonsterTooltip extends Mod {
             groupLevel,
             highestMonsterLevel,
             group.ageBonus,
+            1,
+            xpAlliancePrismBonusPercent,
+            xpRatioMount,
+            xpGuildGivenPercent
         );
 
         const bonusPackActive = this.wGame.gui.playerData.identification.subscriptionEndDate > Date.now();
@@ -273,6 +291,9 @@ export class MonsterTooltip extends Mod {
         highestMonsterLevel: number,
         ageBonus: number,
         partySizeModifier: number = 1,
+        xpAlliancePrismBonusPercent: number = 0,
+        xpRatioMount: number = 0,
+        xpGuildGivenPercent: number = 0,
     ): number {
         let modifier = 1;
         if (groupLevel > partyLevel + 10) {
@@ -281,30 +302,23 @@ export class MonsterTooltip extends Mod {
         else if (partyLevel > groupLevel + 5) {
             modifier = groupLevel / partyLevel;
         }
-        else if (partyLevel > highestMonsterLevel * 2.5) {
-            modifier = Math.floor(highestMonsterLevel * 2.5) / partyLevel;
-        }
 
-        const { _base, _additionnal, _objectsAndMountBonus } = this.wGame.gui.playerData.characters.mainCharacter.characteristics.wisdom;
-        const wisdom = _base + _additionnal + _objectsAndMountBonus;
+        const wisdom = this.wGame.gui.playerData.characters.mainCharacter.characteristics.wisdom.getTotalStat()
         const wisdomModifier = 1 + wisdom / 100;
-        const ageModifier = 1 + ageBonus / 100;
+        const ageModifier = ageBonus <= 0 ? 1 : 1 + ageBonus / 100;
         const bonusModifier = 1 + this.wGame.gui.playerData.experienceFactor / 100;
-        const contributionModifier = playerLevel / partyLevel;
+        const contributionModifier = Math.min(playerLevel, toInt(2.5 * groupLevel)) / partyLevel;
 
-        return Math.floor(
-            bonusModifier * Math.floor(
-                partySizeModifier * Math.round(
-                    contributionModifier * Math.floor(
-                        wisdomModifier * Math.floor(
-                            ageModifier * Math.floor(
-                                monstersXp * modifier,
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        );
+        const xpPool = toInt(toInt(toInt(monstersXp * modifier) * partySizeModifier) * ageModifier)
+        const allianceMultiplier = xpAlliancePrismBonusPercent > 0 ? (1 + xpAlliancePrismBonusPercent / 100) : 1
+        if (xpPool <= 0) return 0;
+
+        const playerXp = toInt(toInt(xpPool * contributionModifier) * wisdomModifier) * allianceMultiplier
+        // Mount and guild xp given
+        let givenXPModifier = (100 - xpRatioMount) - ((100 - xpRatioMount) * xpGuildGivenPercent / 100)
+        givenXPModifier /= 100
+
+        return toInt(toInt(playerXp * givenXPModifier) * bonusModifier);
     }
 
     private update() {
