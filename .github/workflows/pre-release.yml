@@ -101,6 +101,11 @@ jobs:
         id: extract_version
         uses: Saionaro/extract-package-version@v1.0.6
 
+      - name: Rename Files
+        id: rename_files
+        run: |
+          cp "win/Lindo ${{ steps.extract_version.outputs.version }}.exe" "win/Lindo latest.exe"
+
       - name: Automatic Release
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
@@ -110,6 +115,7 @@ jobs:
           title: "latest"
           files: |
             win/Lindo latest.exe
+            win/Lindo ${{ steps.extract_version.outputs.version }}.exe
             win/Lindo Setup latest.exe
             win/Lindo-latest-win.zip
             win/Lindo-latest-ia32-win.zip
