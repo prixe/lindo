@@ -21,20 +21,15 @@ jobs:
         id: extract_version
         uses: Saionaro/extract-package-version@v1.0.6
 
-      - name: Rename Files
-        id: rename_files
-        run: |
-          cp "releases/Lindo ${{ steps.extract_version.outputs.version }}.exe" "releases/Lindo latest.exe"
-
       - name: Create windows artifact
         uses: actions/upload-artifact@v2
         with:
           name: win
           path: |
-            releases/Lindo latest.exe
-            releases/Lindo Setup latest.exe
-            releases/Lindo-latest-win.zip
-            releases/Lindo-latest-ia32-win.zip
+            releases/Lindo ${{ steps.extract_version.outputs.version }}.exe
+            releases/Lindo Setup ${{ steps.extract_version.outputs.version }}.exe
+            releases/Lindo-${{ steps.extract_version.outputs.version }}-win.zip
+            releases/Lindo-${{ steps.extract_version.outputs.version }}-ia32-win.zip
 
   release-linux:
     name: "Release linux"
@@ -57,8 +52,8 @@ jobs:
         with:
           name: lin
           path: |
-            releases/lindo-latest.tar.gz
-            releases/lindo_latest_amd64.deb
+            releases/lindo-${{ steps.extract_version.outputs.version }}.tar.gz
+            releases/lindo_${{ steps.extract_version.outputs.version }}_amd64.deb
 
   release-macOS:
     name: "Release macOS"
@@ -85,8 +80,8 @@ jobs:
         with:
           name: mac
           path: |
-            releases/Lindo-latest.dmg
-            releases/Lindo-latest-mac.zip
+            releases/Lindo-${{ steps.extract_version.outputs.version }}.dmg
+            releases/Lindo-${{ steps.extract_version.outputs.version }}-mac.zip
 
   upload-release:
     name: "Upload Release"
@@ -106,11 +101,6 @@ jobs:
         id: extract_version
         uses: Saionaro/extract-package-version@v1.0.6
 
-      - name: Rename Files
-        id: rename_files
-        run: |
-          cp "win/Lindo ${{ steps.extract_version.outputs.version }}.exe" "win/Lindo latest.exe"
-
       - name: Automatic Release
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
@@ -119,12 +109,11 @@ jobs:
           automatic_release_tag: "latest"
           title: "latest"
           files: |
-            win/Lindo latest.exe
             win/Lindo ${{ steps.extract_version.outputs.version }}.exe
-            win/Lindo Setup latest.exe
-            win/Lindo-latest-win.zip
-            win/Lindo-latest-ia32-win.zip
-            lin/lindo-latest.tar.gz
-            lin/lindo_latest_amd64.deb
-            mac/Lindo-latest.dmg
-            mac/Lindo-latest-mac.zip
+            win/Lindo Setup ${{ steps.extract_version.outputs.version }}.exe
+            win/Lindo-${{ steps.extract_version.outputs.version }}-win.zip
+            win/Lindo-${{ steps.extract_version.outputs.version }}-ia32-win.zip
+            lin/lindo-${{ steps.extract_version.outputs.version }}.tar.gz
+            lin/lindo_${{ steps.extract_version.outputs.version }}_amd64.deb
+            mac/Lindo-${{ steps.extract_version.outputs.version }}.dmg
+            mac/Lindo-${{ steps.extract_version.outputs.version }}-mac.zip
