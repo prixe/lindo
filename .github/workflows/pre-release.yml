@@ -21,6 +21,11 @@ jobs:
         id: extract_version
         uses: Saionaro/extract-package-version@v1.0.6
 
+      - name: Rename Files
+        id: rename_files
+        run: |
+          cp "releases/Lindo ${{ steps.extract_version.outputs.version }}.exe" "releases/Lindo latest.exe"
+
       - name: Create windows artifact
         uses: actions/upload-artifact@v2
         with:
