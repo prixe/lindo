@@ -26,10 +26,10 @@ jobs:
         with:
           name: win
           path: |
-            releases/Lindo ${{ steps.extract_version.outputs.version }}.exe
-            releases/Lindo Setup ${{ steps.extract_version.outputs.version }}.exe
-            releases/Lindo-${{ steps.extract_version.outputs.version }}-win.zip
-            releases/Lindo-${{ steps.extract_version.outputs.version }}-ia32-win.zip
+            releases/Lindo latest.exe
+            releases/Lindo Setup latest.exe
+            releases/Lindo-latest-win.zip
+            releases/Lindo-latest-ia32-win.zip
 
   release-linux:
     name: "Release linux"
@@ -52,8 +52,8 @@ jobs:
         with:
           name: lin
           path: |
-            releases/lindo-${{ steps.extract_version.outputs.version }}.tar.gz
-            releases/lindo_${{ steps.extract_version.outputs.version }}_amd64.deb
+            releases/lindo-latest.tar.gz
+            releases/lindo_latest_amd64.deb
 
   release-macOS:
     name: "Release macOS"
@@ -80,8 +80,8 @@ jobs:
         with:
           name: mac
           path: |
-            releases/Lindo-${{ steps.extract_version.outputs.version }}.dmg
-            releases/Lindo-${{ steps.extract_version.outputs.version }}-mac.zip
+            releases/Lindo-latest.dmg
+            releases/Lindo-latest-mac.zip
 
   upload-release:
     name: "Upload Release"
@@ -109,11 +109,11 @@ jobs:
           automatic_release_tag: "latest"
           title: "latest"
           files: |
-            win/Lindo ${{ steps.extract_version.outputs.version }}.exe
-            win/Lindo Setup ${{ steps.extract_version.outputs.version }}.exe
-            win/Lindo-${{ steps.extract_version.outputs.version }}-win.zip
-            win/Lindo-${{ steps.extract_version.outputs.version }}-ia32-win.zip
-            lin/lindo-${{ steps.extract_version.outputs.version }}.tar.gz
-            lin/lindo_${{ steps.extract_version.outputs.version }}_amd64.deb
-            mac/Lindo-${{ steps.extract_version.outputs.version }}.dmg
-            mac/Lindo-${{ steps.extract_version.outputs.version }}-mac.zip
+            win/Lindo latest.exe
+            win/Lindo Setup latest.exe
+            win/Lindo-latest-win.zip
+            win/Lindo-latest-ia32-win.zip
+            lin/lindo-latest.tar.gz
+            lin/lindo_latest_amd64.deb
+            mac/Lindo-latest.dmg
+            mac/Lindo-latest-mac.zip
