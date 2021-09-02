@@ -106,8 +106,8 @@ jobs:
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: true
-          automatic_release_tag: "v${{ steps.extract_version.outputs.version }}-beta"
-          title: "v${{ steps.extract_version.outputs.version }}-beta"
+          automatic_release_tag: "latest"
+          title: "latest"
           files: |
             win/Lindo ${{ steps.extract_version.outputs.version }}.exe
             win/Lindo Setup ${{ steps.extract_version.outputs.version }}.exe
