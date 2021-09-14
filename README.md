@@ -1,5 +1,5 @@
 # Lindo
-[![Build Status](https://travis-ci.com/prixe/lindo.svg?branch=master)](https://travis-ci.com/prixe/lindo)
+[![Release](https://github.com/prixe/lindo/actions/workflows/main.yml/badge.svg)]()
 [![npm](https://img.shields.io/badge/npm-%3E%3D%205.6.0-blue.svg)]()
 [![node](https://img.shields.io/badge/node-%3E%3D%2014.0.0-green.svg)]()
 [![Github All Releases](https://img.shields.io/github/downloads/prixe/lindo/total.svg)]()
@@ -16,7 +16,7 @@ https://lindo-app.com
 
 ## Supported Platform
 Lindo No-Emu works on :
-- **Windows** 7 and newer (ia32/amd64)
+- **Windows** 10 and newer (ia32/amd64)
 - **macOS** 10.9 and newer
 - **Linux** (Debian >= 9, Ubuntu >= 18) (amd64)
 

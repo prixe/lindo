@@ -1,4 +1,4 @@
-name: CI/CD pre release
+name: Dev
 on:
   push:
     branches: [ master ]
