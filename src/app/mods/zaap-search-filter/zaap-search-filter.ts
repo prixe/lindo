@@ -117,7 +117,7 @@ export class ZaapSearchFilter extends Mod {
             this.zaapSearchInput.focus()
             this.zaapSearchInput.select()
         });
-        
+
     }
 
     private addFavInDom() {
@@ -143,16 +143,9 @@ export class ZaapSearchFilter extends Mod {
                         if (unfav != 0) {
                             favoriArray.splice(unfav, 1)
                             divButton.innerHTML = `
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 51 48">
-                                    <path fill="none" stroke="#000" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
-                                </svg>
-                                `
+                            <img width="25" height="24" src="./assets/ui/icons/greyStar.png">
+                            `
                         } else {
-                            /*divButton.innerHTML = `
-                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 51 48">
-                                          <path fill="yellow" stroke="#000" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
-                                      </svg>
-                                      `*/
                             divButton.innerHTML = `
                             <img width="25" height="24" src="./assets/ui/icons/goldenStar.png">
                             `
@@ -176,20 +169,10 @@ export class ZaapSearchFilter extends Mod {
                     }
 
                     if (trouver) {
-                        /*divButton.innerHTML = `
-                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 51 48">
-                                          <path fill="yellow" stroke="#000" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
-                                      </svg>
-                                      `*/
                         divButton.innerHTML = `
                         <img width="25" height="24" src="./assets/ui/icons/goldenStar.png">
                         `
                     } else {
-                        /*divButton.innerHTML = `
-                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 51 48">
-                                          <path fill="none" stroke="#000" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
-                                      </svg>
-                                      `*/
                         divButton.innerHTML = `
                         <img width="25" height="24" src="./assets/ui/icons/greyStar.png">
                         `
@@ -324,11 +307,6 @@ export class ZaapSearchFilter extends Mod {
                             <img width="25" height="24" src="./assets/ui/icons/greyStar.png">
                             `
                         } else {
-                            /*divButton.innerHTML = `
-                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 51 48">
-                                          <path fill="yellow" stroke="#000" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
-                                      </svg>
-                                      `*/
                             divButton.innerHTML = `
                             <img width="25" height="24" src="./assets/ui/icons/goldenStar.png">
                             `
@@ -352,20 +330,10 @@ export class ZaapSearchFilter extends Mod {
                     }
 
                     if (trouver) {
-                        /*divButton.innerHTML = `
-                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 51 48">
-                                          <path fill="yellow" stroke="#000" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
-                                      </svg>
-                                      `*/
                         divButton.innerHTML = `
                         <img width="25" height="24" src="./assets/ui/icons/goldenStar.png">
                         `
                     } else {
-                        /*divButton.innerHTML = `
-                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 51 48">
-                                          <path fill="none" stroke="#000" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
-                                      </svg>
-                                      `*/
                         divButton.innerHTML = `
                         <img width="25" height="24" src="./assets/ui/icons/greyStar.png">
                         `
@@ -501,11 +469,6 @@ export class ZaapSearchFilter extends Mod {
                             <img width="25" height="24" src="./assets/ui/icons/greyStar.png">
                             `
                         } else {
-                            /*divButton.innerHTML = `
-                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 51 48">
-                                          <path fill="yellow" stroke="#000" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
-                                      </svg>
-                                      `*/
                             divButton.innerHTML = `
                             <img width="25" height="24" src="./assets/ui/icons/goldenStar.png">
                             `
@@ -529,20 +492,10 @@ export class ZaapSearchFilter extends Mod {
                     }
 
                     if (trouver) {
-                        /*divButton.innerHTML = `
-                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 51 48">
-                                          <path fill="yellow" stroke="#000" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
-                                      </svg>
-                                      `*/
                         divButton.innerHTML = `
                         <img width="25" height="24" src="./assets/ui/icons/goldenStar.png">
                         `
                     } else {
-                        /*divButton.innerHTML = `
-                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 51 48">
-                                          <path fill="none" stroke="#000" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
-                                      </svg>
-                                      `*/
                         divButton.innerHTML = `
                         <img width="25" height="24" src="./assets/ui/icons/greyStar.png">
                         `
