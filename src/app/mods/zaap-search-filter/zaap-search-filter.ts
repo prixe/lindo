@@ -154,7 +154,7 @@ export class ZaapSearchFilter extends Mod {
                                       </svg>
                                       `*/
                             divButton.innerHTML = `
-                            <img width="25" height="24" src="./assets/ui/icons/starYellow.png">
+                            <img width="25" height="24" src="./assets/ui/icons/goldenStar.png">
                             `
                             favoriArray.push(zaap)
                         }
@@ -182,7 +182,7 @@ export class ZaapSearchFilter extends Mod {
                                       </svg>
                                       `*/
                         divButton.innerHTML = `
-                        <img width="25" height="24" src="./assets/ui/icons/starYellow.png">
+                        <img width="25" height="24" src="./assets/ui/icons/goldenStar.png">
                         `
                     } else {
                         /*divButton.innerHTML = `
@@ -191,7 +191,7 @@ export class ZaapSearchFilter extends Mod {
                                       </svg>
                                       `*/
                         divButton.innerHTML = `
-                        <img width="25" height="24" src="./assets/ui/icons/starOff.png">
+                        <img width="25" height="24" src="./assets/ui/icons/greyStar.png">
                         `
                     }
 
@@ -321,7 +321,7 @@ export class ZaapSearchFilter extends Mod {
                         if (unfav != 0) {
                             favoriArray.splice(unfav, 1)
                             divButton.innerHTML = `
-                            <img width="25" height="24" src="./assets/ui/icons/starOff.png">
+                            <img width="25" height="24" src="./assets/ui/icons/greyStar.png">
                             `
                         } else {
                             /*divButton.innerHTML = `
@@ -330,7 +330,7 @@ export class ZaapSearchFilter extends Mod {
                                       </svg>
                                       `*/
                             divButton.innerHTML = `
-                            <img width="25" height="24" src="./assets/ui/icons/starYellow.png">
+                            <img width="25" height="24" src="./assets/ui/icons/goldenStar.png">
                             `
                             favoriArray.push(zaap)
                         }
@@ -358,7 +358,7 @@ export class ZaapSearchFilter extends Mod {
                                       </svg>
                                       `*/
                         divButton.innerHTML = `
-                        <img width="25" height="24" src="./assets/ui/icons/starYellow.png">
+                        <img width="25" height="24" src="./assets/ui/icons/goldenStar.png">
                         `
                     } else {
                         /*divButton.innerHTML = `
@@ -367,7 +367,7 @@ export class ZaapSearchFilter extends Mod {
                                       </svg>
                                       `*/
                         divButton.innerHTML = `
-                        <img width="25" height="24" src="./assets/ui/icons/starOff.png">
+                        <img width="25" height="24" src="./assets/ui/icons/greyStar.png">
                         `
                     }
 
@@ -498,7 +498,7 @@ export class ZaapSearchFilter extends Mod {
                         if (unfav != 0) {
                             favoriArray.splice(unfav, 1)
                             divButton.innerHTML = `
-                            <img width="25" height="24" src="./assets/ui/icons/starOff.png">
+                            <img width="25" height="24" src="./assets/ui/icons/greyStar.png">
                             `
                         } else {
                             /*divButton.innerHTML = `
@@ -507,7 +507,7 @@ export class ZaapSearchFilter extends Mod {
                                       </svg>
                                       `*/
                             divButton.innerHTML = `
-                            <img width="25" height="24" src="./assets/ui/icons/starYellow.png">
+                            <img width="25" height="24" src="./assets/ui/icons/goldenStar.png">
                             `
                             favoriArray.push(zaap)
                         }
@@ -535,7 +535,7 @@ export class ZaapSearchFilter extends Mod {
                                       </svg>
                                       `*/
                         divButton.innerHTML = `
-                        <img width="25" height="24" src="./assets/ui/icons/starYellow.png">
+                        <img width="25" height="24" src="./assets/ui/icons/goldenStar.png">
                         `
                     } else {
                         /*divButton.innerHTML = `
@@ -544,7 +544,7 @@ export class ZaapSearchFilter extends Mod {
                                       </svg>
                                       `*/
                         divButton.innerHTML = `
-                        <img width="25" height="24" src="./assets/ui/icons/starOff.png">
+                        <img width="25" height="24" src="./assets/ui/icons/greyStar.png">
                         `
                     }
 
