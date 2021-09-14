@@ -1,6 +1,16 @@
 ## ⚠ ATTENTION, VÉRIFIEZ QUE VOUS TÉLÉCHARGEZ LINDO DEPUIS LINDO-APP.COM
 ## ⚠ CERTAINS SITES MALVEILLANTS INSTALLERONT UN VIRUS SUR VOTRE ORDINATEUR
 
+
+## [2.6.1]
+
+### Améliorations
+- Changement des icons pour les zaap/zaapi favoris
+- L'xp des groupes de monstres prend maintenant compte de l'xp donné à la guide/monture/etc
+
+### Correctifs
+- Correction du calcul de l'xp pour les groupes de monstres
+
 ## [2.6.0]
 
 ### Ajouts
