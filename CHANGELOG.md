@@ -2,7 +2,12 @@
 ## ⚠ CERTAINS SITES MALVEILLANTS INSTALLERONT UN VIRUS SUR VOTRE ORDINATEUR
 
 
-## [2.6.1]
+## [2.6.2] - 2021-09-24
+
+### Correctifs
+- Correction de la double barre des ressources présentes sur la carte après l'utilisation du raccourcis
+
+## [2.6.1] - 2021-09-14
 
 ### Améliorations
 - Changement des icons pour les zaap/zaapi favoris
@@ -11,7 +16,7 @@
 ### Correctifs
 - Correction du calcul de l'xp pour les groupes de monstres
 
-## [2.6.0]
+## [2.6.0] - 2021-08-12
 
 ### Ajouts
 - Ajout d'une barre sous chaque ressource utilisée permettant de visualiser le temps restant
