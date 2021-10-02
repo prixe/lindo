@@ -1,7 +1,22 @@
 ## ⚠ ATTENTION, VÉRIFIEZ QUE VOUS TÉLÉCHARGEZ LINDO DEPUIS LINDO-APP.COM
 ## ⚠ CERTAINS SITES MALVEILLANTS INSTALLERONT UN VIRUS SUR VOTRE ORDINATEUR
 
-## [2.6.0]
+
+## [2.6.2] - 2021-09-24
+
+### Correctifs
+- Correction de la double barre des ressources présentes sur la carte après l'utilisation du raccourcis
+
+## [2.6.1] - 2021-09-14
+
+### Améliorations
+- Changement des icons pour les zaap/zaapi favoris
+- L'xp des groupes de monstres prend maintenant compte de l'xp donné à la guide/monture/etc
+
+### Correctifs
+- Correction du calcul de l'xp pour les groupes de monstres
+
+## [2.6.0] - 2021-08-12
 
 ### Ajouts
 - Ajout d'une barre sous chaque ressource utilisée permettant de visualiser le temps restant
@@ -15,8 +30,10 @@
 ### Améliorations
 - Ajout de l’icône dans le build .deb
 - Agrandissement du rond focus
+- Amélioration de l'affichage et de la stabilité des barres de vie
 
 ### Correctifs
+- Amélioration de la stabilité lors du téléchargement du jeu (problème de téléchargement infini)
 - Crash de Lindo avec le déplacement rapide lorsque la case est inaccessible
 - Corrections de l'estimation des dégâts
 - Correction du raccourci de l'Almanax

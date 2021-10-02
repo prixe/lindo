@@ -5,7 +5,7 @@ import {ShortcutsHelper} from "@helpers/shortcuts.helper";
 export class ShowResources extends Mod {
     private shortcutsHelper: ShortcutsHelper;
     private loadDataTry: number = 0;
-    
+
     private data: Map<number, Resources> = new Map();
     private elemIdToTypeid: Map<number, number> = new Map();
 
@@ -27,7 +27,7 @@ export class ShowResources extends Mod {
                     flex-direction: row;
                     align-items: flex-end;
                     position: absolute;
-                    top: 0;    
+                    top: 0;
                     border: 1px solid #3e3e3e;
                     border-top: none;
                     background-color: rgba(0, 0, 0, 0.55);
@@ -57,16 +57,18 @@ export class ShowResources extends Mod {
             this.wGame.document.querySelector('head').appendChild(resourcesBoxCss);
 
             this.shortcutsHelper = new ShortcutsHelper(this.wGame);
-            this.shortcutsHelper.bind(this.params.show_resources_shortcut, () => this.toggle() );
+            this.shortcutsHelper.bind(this.params.show_resources_shortcut, () => this.toggle());
 
             this.on(this.wGame.dofus.connectionManager, 'MapComplementaryInformationsDataMessage', (e: any) => this.onMapComplementaryInfos(e.interactiveElements, e.statedElements));
             this.on(this.wGame.dofus.connectionManager, 'StatedElementUpdatedMessage', ({statedElement}) => this.onStatedElementUpdated(statedElement));
             this.on(this.wGame.dofus.connectionManager, 'GameFightStartingMessage', () => {
                 if (this.enabled) {
-                    this.isHide = true;
                     this.toggle();
                 }
             });
+
+            this.on(this.wGame.dofus.connectionManager, 'GameFightLeaveMessage', () => this.isHide = false);
+            this.on(this.wGame.dofus.connectionManager, 'GameFightEndMessage', () => this.isHide = false);
 
             setTimeout(() => this.loadMapInfoOnStart(), 100);
         }
@@ -122,7 +124,9 @@ export class ShowResources extends Mod {
             this.elemIdToTypeid.set(i.elementId, i.elementTypeId);
         });
 
-        if (this.enabled || this.isHide) this.create();
+        if (this.enabled && !this.isHide) {
+            this.create();
+        }
     }
 
     /**
@@ -182,12 +186,19 @@ export class ShowResources extends Mod {
 
     private toggle() {
         this.enabled = !this.enabled;
-        if (!this.enabled) this.clearHtml();
-        else this.create();
+        if (!this.enabled) {
+            this.isHide = true;
+            this.clearHtml();
+        } else {
+            this.isHide = false;
+            this.create();
+        }
     }
 
     private clearHtml() {
-        if (this.resourcesBox && this.resourcesBox.parentElement) this.resourcesBox.parentElement.removeChild(this.resourcesBox);
+        if (this.resourcesBox && this.resourcesBox.parentElement) {
+            this.resourcesBox.parentElement.removeChild(this.resourcesBox);
+        }
     }
 
     private clear() {
@@ -198,5 +209,5 @@ export class ShowResources extends Mod {
     public reset(): void {
         super.reset();
         this.clear();
-    }  
+    }
 }
