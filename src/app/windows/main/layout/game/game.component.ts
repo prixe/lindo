@@ -111,6 +111,10 @@ export class GameComponent implements AfterViewInit {
                     });
                     this.mods.push(notifications)
                     break;
+                case 'GripPositionSave':
+                    const grippositionsave = new Mods[mod](this.game.window, this.settingsService, this.translateService, this.ipcRendererService);
+                    this.mods.push(grippositionsave)
+                    break;
                 default:
                     this.mods.push(new Mods[mod](this.game.window, this.settingsService, this.translateService))
             }
