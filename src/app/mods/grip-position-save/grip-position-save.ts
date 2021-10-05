@@ -4,8 +4,6 @@
 // Can't make ipcRendererService works : this.ipcRendererService is well instanciated
 // If you log this.ipcRendererService you see in Listener on move-grip
 // But this.ipcRendererService.send('move-grip', target) doesn't make anything
-//
-// - Calculate max top/left of grips to not overlap foreground
 
 import { SettingsService } from "@services/settings.service";
 import { TranslateService } from "@ngx-translate/core";
@@ -83,17 +81,23 @@ export class GripPositionSave extends Mod {
   private moveElement(target) {
     if (localStorage.getItem(target + "Position")) {
       const position = JSON.parse(localStorage.getItem(target + "Position"));
+      const bodyWidth = this.wGame.document.querySelector('#dofusBody').clientWidth;
+      const bodyHeight = this.wGame.document.querySelector('#dofusBody').clientHeight;
+      const cssTarget = '.' + target.charAt(0).toUpperCase() + target.slice(1);
+      const targetWidth = this.wGame.document.querySelector(cssTarget).clientWidth;
+      const targetHeight = this.wGame.document.querySelector(cssTarget).clientHeight;
+      const left = (position.left.slice(0, -2) <= (bodyWidth - targetWidth)) ? position.left.slice(0, -2) : bodyWidth - targetWidth;
+      const top = (position.top.slice(0, -2) <= (bodyHeight - targetHeight)) ? position.top.slice(0, -2) : bodyHeight - targetHeight;
 
       // Removing existing stylesheet
       this.wGame?.document?.querySelector?.('#' + target + 'stylesheet')?.remove?.();
 
       const stylesheet = this.wGame.document.createElement('style');
       stylesheet.id = target + 'stylesheet';
-      // Convert first letter to uppercase to use default class
-      stylesheet.innerHTML = '.' + target.charAt(0).toUpperCase() + target.slice(1);
+      stylesheet.innerHTML = cssTarget;
       stylesheet.innerHTML += '{';
-      stylesheet.innerHTML += 'top:' + position.top + ' !important;'; // Calculate max top position to be fully and always visible
-      stylesheet.innerHTML += 'left:' + position.left + ' !important;'; // Calculate max left position to be fully and always visible
+      stylesheet.innerHTML += 'top:' + top + 'px !important;';
+      stylesheet.innerHTML += 'left:' + left + 'px !important;';
       stylesheet.innerHTML += '}';
       this.wGame.document.head.appendChild(stylesheet);
     }
