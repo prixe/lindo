@@ -69,17 +69,21 @@
         "features": {
           "title": "Özellikler",
           "general": {
+            "menu": {
+              "general": "Genel",
+              "fight": "Kavga",
+              "group": "Grup",
+              "job": "Iş"
+            },
             "header": "Genel",
             "disable-inactivity": "Bağlantı kesilmeden önce hareketsizlik nedeniyle gecikmeyi uzatın",
             "health-bar": "Savaşçıların altındaki yaşam çubuklarının görüntülenmesini etkinleştirin",
-            "health-bar-shortcut": "Yaşam çubuklarını göster / gizle kısayolları",
             "jobsxp": "Seviye atlamak için iş xp ihtiyacının görüntülenmesini etkinleştirin",
             "estimator": "Savaşta büyü hasarını tahmin etme",
             "hide-mount": "Savaş sırasında binekleri gizle",
             "fightchronometer" : "Savaş kronometresini göster",
             "zaapsearchfilter" : "Zaap arama filtresini göster",
             "show-resources" : "Harita kaynaklarını göster",
-            "show-resources-shortcut" : "Harita kaynaklarını göstermek/gizlemek için kısayol",
             "harvest-indicator" : "Kaynakların altında kalan sürenin gösterimini etkinleştirin",
             "party-member-on-map" : "Bir grubun üyelerinin aynı haritada olup olmadığını öğrenmek için bir gösterge ekleyin"
           },
@@ -110,7 +114,8 @@
           "interface": "Arayüz",
           "spell": "Büyüler",
           "inventory": "Envanter",
-          "other": "Diğer"
+          "other": "Diğer",
+          "mod": "Modlar"
         }
       },
       "bug-report": {
@@ -301,6 +306,10 @@
         "spells": {
           "header": "Büyüler",
           "slot": "Sıra {{x}}"
+        },
+        "mods": {
+          "show-resources" : "Göstermek/gizlemek için kısayol",
+          "health-bar": "Göster / gizle kısayolları"
         }
       },
       "notifications": {

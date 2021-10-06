@@ -69,17 +69,21 @@
         "features": {
           "title": "Contenuti",
           "general": {
+            "menu": {
+              "general": "Generale",
+              "fight": "Combattimento",
+              "group": "Gruppo",
+              "job": "Lavaro"
+            },
             "header": "Generali",
             "disable-inactivity": "Aumenta il tempo per disconessione da inattività",
             "health-bar": "Visualizza le barre della vita sotto i combattenti",
-            "health-bar-shortcut": "Tasto rapido per mostrare/nascondere le barre della vita",
             "jobsxp": "Attiva il display dell'esperienza del lavoro necessaria ad aumentarne il livello",
             "fightchronometer": "Mostra combattimenti di cronometri",
             "zaapsearchfilter" : "Mostra filtro di ricerca zaap",
             "estimator": "Fai una stima dei danni da incantesimi in battaglia",
             "hide-mount": "Nascondi le cavalcature durante i combattimenti",
             "show-resources" : "Mostra le risorse della mappa",
-            "show-resources-shortcut" : "Scorciatoia per mostrare/nascondere le risorse della mappa",
             "harvest-indicator" : "Attiva la visualizzazione del tempo rimanente sotto le risorse",
             "party-member-on-map" : "Aggiungi un indicatore per sapere se i membri di un gruppo si trovano sulla stessa mappa"
           },
@@ -110,7 +114,8 @@
           "interface": "Interfaccia",
           "spell": "Incantesimi",
           "inventory": "Inventario",
-          "other": "Varie"
+          "other": "Varie",
+          "mod": "Mod"
         }
       },
       "bug-report": {
@@ -298,6 +303,10 @@
         "spells": {
           "header": "Incantesimi",
           "slot": "Posizione {{x}}"
+        },
+        "mods": {
+          "show-resources" : "Mostrare/nascondere le risorse della mappa",
+          "health-bar": "Mostrare/nascondere le barre della vita"
         }
       },
       "notifications": {

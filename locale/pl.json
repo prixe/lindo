@@ -69,17 +69,21 @@
         "features": {
           "title": "Funkcje",
           "general": {
+            "menu": {
+              "general": "Generał",
+              "fight": "Walka",
+              "group": "Grupa",
+              "job": "Praca"
+            },
             "header": "Główne",
             "disable-inactivity": "Pozostań ciągle zalogowany",
             "health-bar": "Aktywuj wyświetlanie paska życia poniżej postaci",
-            "health-bar-shortcut": "Skrót klawiszowy do pokazywania/chowania pasków życia",
             "jobsxp": "Wyświetl niezbędną liczbę doświadczenia wymaganego do następnego poziomu",
             "estimator": "Włącz przewidywanie obrażeń podczas walki",
             "hide-mount": "Nie pokazuj wierzchowców podczas walki",
             "fightchronometer" : "Pokaż czas trwania walki",
             "zaapsearchfilter" : "Pokaż filtr wyszukiwania zaap'ów",
             "show-resources" : "Pokaż zasoby mapy",
-            "show-resources-shortcut" : "Skrót do pokazywania/ukrywania zasobów mapy",
             "harvest-indicator" : "Aktywuj wyświetlanie pozostałego czasu poniżej zasobów",
             "party-member-on-map" : "Dodaj wskaźnik, aby wiedzieć, czy członkowie grupy znajdują się na tej samej mapie"
           },
@@ -111,7 +115,8 @@
           "interface": "Interfejs",
           "spell": "Czary",
           "inventory": "Ekwipunek",
-          "other": "Inne"
+          "other": "Inne",
+          "mod": "Mody"
         }
       },
       "bug-report": {
@@ -299,6 +304,10 @@
         "spells": {
           "header": "Czary",
           "slot": "Miejsce {{x}}"
+        },
+        "mods": {
+          "show-resources" : "Pokazywania/ukrywania zasobów mapy",
+          "health-bar": "Pokazywania/chowania pasków życia"
         }
       },
       "notifications": {

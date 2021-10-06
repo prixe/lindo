@@ -105,6 +105,7 @@ registerLocaleData(localeTr);
         ShortcutsInventoryComponent,
         ShortcutsOtherComponent,
         ShortcutsSpellComponent,
+        ShortcutsModComponent,
         InputComponent
     ],
     entryComponents: [

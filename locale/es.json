@@ -69,6 +69,12 @@
         "features": {
           "title": "Funciones",
           "general": {
+            "menu": {
+              "general": "General",
+              "fight": "Combate",
+              "group": "Grupo",
+              "job": "Trabajo"
+            },
             "header": "General",
             "disable-inactivity": "Extender el período de inactividad",
             "health-bar": "Visualización de barras de vida debajo de los combatientes",
@@ -79,7 +85,6 @@
             "fightchronometer" : "Mostrar peleas cronómetro",
             "zaapsearchfilter" : "Mostra filtro di ricerca zaap",
             "show-resources" : "Mostrar recursos del mapa",
-            "show-resources-shortcut" : "Atajo para mostrar/ocultar recursos del mapa",
             "harvest-indicator" : "Activar la visualización del tiempo restante debajo de los recursos",
             "party-member-on-map" : "Agregar un indicador para saber si los miembros de un grupo están en el mismo mapa"
           },
@@ -110,7 +115,8 @@
           "interface": "Interfaz",
           "spell": "Hechizos",
           "inventory": "Inventario",
-          "other": "Diverso"
+          "other": "Diverso",
+          "mod": "Mods"
         }
       },
       "bug-report": {
@@ -298,6 +304,10 @@
         "spells": {
           "header": "Hechizos",
           "slot": "Localización {{x}}"
+        },
+        "mods": {
+          "show-resources" : "Mostrar/ocultar recursos del mapa",
+          "health-bar": "Mostrar las barras de salud"
         }
       },
       "notifications": {

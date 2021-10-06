@@ -45,7 +45,8 @@ const appRoutes: Routes = [
             { path: 'interface', component: ShortcutsInterfaceComponent },
             { path: 'spell', component: ShortcutsSpellComponent },
             { path: 'inventory', component: ShortcutsInventoryComponent },
-            { path: 'other', component: ShortcutsOtherComponent }
+            { path: 'other', component: ShortcutsOtherComponent },
+            { path: 'mod', component: ShortcutsModComponent}
         ]
     },
     {
