@@ -85,7 +85,8 @@
             "zaapsearchfilter" : "Zaap arama filtresini göster",
             "show-resources" : "Harita kaynaklarını göster",
             "harvest-indicator" : "Kaynakların altında kalan sürenin gösterimini etkinleştirin",
-            "party-member-on-map" : "Bir grubun üyelerinin aynı haritada olup olmadığını öğrenmek için bir gösterge ekleyin"
+            "party-member-on-map" : "Bir grubun üyelerinin aynı haritada olup olmadığını öğrenmek için bir gösterge ekleyin",
+            "monster-tooltip": "Canavar grupları bilgilerini haritada göster"
           },
           "groups": {
             "header": "Gruplar"
@@ -309,7 +310,8 @@
         },
         "mods": {
           "show-resources" : "Göstermek/gizlemek için kısayol",
-          "health-bar": "Göster / gizle kısayolları"
+          "health-bar": "Göster/gizle kısayolları",
+          "monster-tooltip": "Göstermek/gizlemek canavarlar ipucu"
         }
       },
       "notifications": {

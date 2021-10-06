@@ -85,7 +85,8 @@
             "hide-mount": "Nascondi le cavalcature durante i combattimenti",
             "show-resources" : "Mostra le risorse della mappa",
             "harvest-indicator" : "Attiva la visualizzazione del tempo rimanente sotto le risorse",
-            "party-member-on-map" : "Aggiungi un indicatore per sapere se i membri di un gruppo si trovano sulla stessa mappa"
+            "party-member-on-map" : "Aggiungi un indicatore per sapere se i membri di un gruppo si trovano sulla stessa mappa",
+            "monster-tooltip": "Visualizza le informazioni sui gruppi di mostri sulla mappa"
           },
           "groups": {
             "header": "Gruppi"
@@ -306,7 +307,8 @@
         },
         "mods": {
           "show-resources" : "Mostrare/nascondere le risorse della mappa",
-          "health-bar": "Mostrare/nascondere le barre della vita"
+          "health-bar": "Mostrare/nascondere le barre della vita",
+          "monster-tooltip": "Mostra/nascondere tooltip mostri"
         }
       },
       "notifications": {

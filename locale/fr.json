@@ -86,8 +86,7 @@
             "show-resources" : "Affiches les ressources de la carte",
             "harvest-indicator" : "Barres de temps sous les récoltes",
             "party-member-on-map" : "Ajoute un indicateur pour savoir si les membres d'un groupe sont sur la même carte",
-            "monster-tooltip": "Affiche les informations des groupes de monstres sur la carte",
-            "monster-tooltip-shortcut": "Raccourci pour les informations des groupes de monstres"
+            "monster-tooltip": "Affiche les informations des groupes de monstres sur la carte"
           },
           "groups": {
             "header": "Groupe"
@@ -311,7 +310,8 @@
         },
         "mods": {
           "show-resources" : "Affichage des ressources",
-          "health-bar": "Afficher la barres de vie"
+          "health-bar": "Affichage la barres de vie",
+          "monster-tooltip": "Affichage des informations des groupes de monstres"
         }
       },
       "notifications": {

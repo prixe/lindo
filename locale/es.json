@@ -86,7 +86,8 @@
             "zaapsearchfilter" : "Mostra filtro di ricerca zaap",
             "show-resources" : "Mostrar recursos del mapa",
             "harvest-indicator" : "Activar la visualización del tiempo restante debajo de los recursos",
-            "party-member-on-map" : "Agregar un indicador para saber si los miembros de un grupo están en el mismo mapa"
+            "party-member-on-map" : "Agregar un indicador para saber si los miembros de un grupo están en el mismo mapa",
+            "monster-tooltip": "Mostrar información de grupos de monstruos en el mapa",
           },
           "groups": {
             "header": "Grupo"
@@ -307,7 +308,8 @@
         },
         "mods": {
           "show-resources" : "Mostrar/ocultar recursos del mapa",
-          "health-bar": "Mostrar las barras de salud"
+          "health-bar": "Mostrar/ocultar las barras de salud",
+          "monster-tooltip": "Mostrar/ocultar descripción emergente de monstruos"
         }
       },
       "notifications": {
