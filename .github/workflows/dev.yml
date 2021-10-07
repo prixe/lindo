@@ -54,7 +54,6 @@ jobs:
           path: |
             releases/lindo-${{ steps.extract_version.outputs.version }}.tar.gz
             releases/lindo_${{ steps.extract_version.outputs.version }}_amd64.deb
-            releases/lindo-${{ steps.extract_version.outputs.version }}.x86_64.rpm
 
   release-macOS:
     name: "Release macOS"
@@ -116,6 +115,5 @@ jobs:
             win/Lindo-${{ steps.extract_version.outputs.version }}-ia32-win.zip
             lin/lindo-${{ steps.extract_version.outputs.version }}.tar.gz
             lin/lindo_${{ steps.extract_version.outputs.version }}_amd64.deb
-            lin/lindo-${{ steps.extract_version.outputs.version }}.x86_64.rpm
             mac/Lindo-${{ steps.extract_version.outputs.version }}.dmg
             mac/Lindo-${{ steps.extract_version.outputs.version }}-mac.zip
