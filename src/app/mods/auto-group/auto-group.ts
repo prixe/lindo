@@ -21,10 +21,6 @@ export class AutoGroup extends Mod {
 
     private pathFinder: PathFinder
     private disableTimeouts = false
-    private customRandom(p1, p2) {
-        if (this.disableTimeouts) return 0;
-        else return this.getRandomTime(p1, p2);
-      }
 
     constructor(
         wGame: any,
@@ -66,7 +62,7 @@ export class AutoGroup extends Mod {
         }
     }
 
-    public autoMasterParty() {
+    public autoMasterParty(): void {
         try {
             setTimeout(() => {
                 if (this.params.leader == this.wGame.gui.playerData.characterBaseInformations.name && this.params.members) {
@@ -74,13 +70,13 @@ export class AutoGroup extends Mod {
 
                     const idInt = setInterval(() => {
                         this.masterParty(this.params.members.split(';'));
-                    }, this.customRandom(5, 7));
+                    }, this.getRandomTime(5, 7));
 
                     this.addOnResetListener(() => {
                         clearInterval(idInt);
                     });
                 }
-            }, this.customRandom(2, 3));
+            }, this.getRandomTime(2, 3));
         } catch (e) {
             Logger.error(e);
         }
@@ -103,7 +99,7 @@ export class AutoGroup extends Mod {
                         this.acceptPartyInvitation(msg.partyId);
                     }
                 });
-            }, this.customRandom(1, 2));
+            }, this.getRandomTime(1, 2));
         } catch (e) {
             Logger.error(e);
         }
@@ -198,7 +194,7 @@ export class AutoGroup extends Mod {
                     setTimeout(callback, 100 + Math.random() * 700);
                 }
             }
-            setTimeout(changeMapRetry, this.customRandom(1,1));
+            setTimeout(changeMapRetry, this.getRandomTime(1,1));
         };
         this.once(this.wGame.dofus.connectionManager, "MapComplementaryInformationsWithCoordsMessage", onChange);
         this.once(this.wGame.dofus.connectionManager, "MapComplementaryInformationsDataMessage", onChange);
@@ -227,22 +223,22 @@ export class AutoGroup extends Mod {
             if (!this.isPartyLeader()) {
                 if (this.path.length > 0) {
                     this.skipCellFollowAfterMapChanged();
-                    this.log('⚡ ' + this.path[0].type + ' on ' + this.path[0].mapId + ' (' + (this.path.length - 1) + ' left)');
+                    //Logger.info('⚡ ' + this.path[0].type + ' on ' + this.path[0].mapId + ' (' + (this.path.length - 1) + ' left)');
                     this.processFollow(this.path[0], () => {
                         if (!this.idle) {
-                            this.log('OK');
+                            //Logger.info('OK');
                             this.lastType = this.path[0].type;
-                            this.log('CLEAR (success) ' + AutoGroup.objectToString(this.path.shift()));
+                            //Logger.info('CLEAR (success) ' + AutoGroup.objectToString(this.path.shift()));
                             if (this.lastType != 'cell') this.movedOnRandomCell = false;
                             if (this.path.length > 0) {
                                 setTimeout(() => {
                                     this.checkFollow();
-                                }, this.customRandom(1,1) / ((this.path.length) + 1) + Math.random() * 400);
+                                }, this.getRandomTime(1,1) / ((this.path.length) + 1) + Math.random() * 400);
                             }
                             else this.turnIdle();
                         }
                     }, (reason: string = '') => {
-                        this.log('Nope... (' + reason + ')');
+                        //Logger.info('Nope... (' + reason + ')');
                         this.turnIdle();
                     });
                 }
@@ -262,7 +258,7 @@ export class AutoGroup extends Mod {
                     this.movedOnRandomCell = true;
                     if (Math.random() > 0.2) this.moveToRandomCellOnMap();
                 }
-            }, this.customRandom(2, 5));
+            }, this.getRandomTime(2, 5));
         }
     }
 
@@ -347,9 +343,9 @@ export class AutoGroup extends Mod {
             const bb = b[0].length
             return(aa-bb)
         })
-        if(tableau.length>5){
+        if (tableau.length > 5) {
             return tableau[AutoGroup.getRandomInt(0, 5)][1];
-        }else{
+        } else {
             return tableau[AutoGroup.getRandomInt(0, tableau.length-1)][1];
         }
     }
@@ -396,11 +392,12 @@ export class AutoGroup extends Mod {
                 let moveSuccess = false;
                 const checkMovement = () => {
                     if (this.wGame.isoEngine.actorManager.userActor.moving) {
-                        setTimeout(checkMovement, this.customRandom(1,1));
+                        setTimeout(checkMovement, this.getRandomTime(1,1));
+                    } else if (!moveSuccess) {
+                        fail('Move to cell timeout');
                     }
-                    else if (!moveSuccess) fail('Move to cell timeout');
                 };
-                setTimeout(checkMovement, this.customRandom(3,3));
+                setTimeout(checkMovement, this.getRandomTime(3,3));
                 const move = () => {
                     this.wGame.isoEngine._movePlayerOnMap(cell, false, () => {
                         moveSuccess = true;
@@ -410,17 +407,20 @@ export class AutoGroup extends Mod {
                         else success();
                     });
                 };
-                if (this.wGame.isoEngine.actorManager.userActor.moving) this.wGame.isoEngine.actorManager.userActor.cancelMovement(move);
-                else move();
+                if (this.wGame.isoEngine.actorManager.userActor.moving) {
+                    this.wGame.isoEngine.actorManager.userActor.cancelMovement(move);
+                } else {
+                    move();
+                }
             } else if ('interactive' == followInstruction.type) {
                 let moveSuccess = false;
                 const checkMovement = () => {
                     if (this.wGame.isoEngine.actorManager.userActor.moving) {
-                        setTimeout(checkMovement, this.customRandom(1,1));
+                        setTimeout(checkMovement, this.getRandomTime(1,1));
                     }
                     else if (!moveSuccess) fail('Use interactive timeout');
                 };
-                setTimeout(checkMovement, this.customRandom(3,3));
+                setTimeout(checkMovement, this.getRandomTime(3,3));
                 this.once(this.wGame.dofus.connectionManager, 'InteractiveUsedMessage', (msg) => {
                     if (msg.elemId == followInstruction.elemId && msg.entityId == this.wGame.gui.playerData.id) {
                         moveSuccess = true;
@@ -431,9 +431,8 @@ export class AutoGroup extends Mod {
             } else {
                 fail('Unknown follow type');
             }
-        }
-        else {
-            this.log(followInstruction.mapId + ' != ' + this.wGame.isoEngine.mapRenderer.mapId);
+        } else {
+            //Logger.info(followInstruction.mapId + ' != ' + this.wGame.isoEngine.mapRenderer.mapId);
             fail('Mapid not matching or character in fight');
         }
     }
@@ -490,16 +489,14 @@ export class AutoGroup extends Mod {
         if (this.isPartyLeader()) {
             if (this.skipNextMapChange) {
                 this.skipNextMapChange = false;
-            }
-            else {
+            } else {
                 if (AutoGroup.isBorder(this.wGame.isoEngine.actorManager.userActor.cellId)) {
                     this.addToPath({
                         type: 'map',
                         mapId: this.wGame.isoEngine.mapRenderer.mapId,
                         cellId: this.wGame.isoEngine.actorManager.userActor.cellId
                     });
-                }
-                else {
+                } else {
                     this.addToPath({
                         type: 'sun',
                         mapId: this.wGame.isoEngine.mapRenderer.mapId,
@@ -550,7 +547,7 @@ export class AutoGroup extends Mod {
     }
 
     private addToPath(followInstruction: any): void {
-        this.log(AutoGroup.objectToString(followInstruction));
+        //Logger.info(AutoGroup.objectToString(followInstruction));
         this.ipcRendererService.send('auto-group-push-path', followInstruction);
     }
 
@@ -558,7 +555,7 @@ export class AutoGroup extends Mod {
         if (this.lastType !== 'cell') {
             // Skip every cellFollow
             while (this.path.length > 1 && this.path[0].type === 'cell') {
-                this.log('CLEAR (skip) ' + AutoGroup.objectToString(this.path.shift()));
+                //Logger.info('CLEAR (skip) ' + AutoGroup.objectToString(this.path.shift()));
             }
         }
     }
@@ -579,13 +576,13 @@ export class AutoGroup extends Mod {
             try {
                 this.turnIdle();
                 this.on(this.ipcRendererService, 'auto-group-push-path', (event: Event, followInstruction: any) => {
-                    this.log('Got event! ' + followInstruction.type + ' on ' + followInstruction.mapId);
+                    //Logger.info('Got event! ' + followInstruction.type + ' on ' + followInstruction.mapId);
                      if (followInstruction.type != 'cell' || this.params.follow_on_map) {
                         if (this.didLeaderChange()) this.turnIdle();
                         this.path.push(followInstruction);
                         setTimeout(() => {
                             if (this.idle) this.checkFollow();
-                        }, this.customRandom(1, 2));
+                        }, this.getRandomTime(1, 2));
                     }
                 });
 
@@ -615,7 +612,7 @@ export class AutoGroup extends Mod {
                     this.on(this.wGame.dofus.connectionManager, 'CurrentMapMessage', onCurrentMapMessage);
                     this.on(this.wGame.dofus.connectionManager, 'GameFightStartingMessage', onGameFightStartingMessage);
                     this.on(this.wGame.dofus.connectionManager, 'GameFightEndMessage', onGameFightEndMessage);
-                }, this.customRandom(1, 2));
+                }, this.getRandomTime(1, 2));
             } catch (e) {
                 Logger.error(e);
             }
@@ -638,8 +635,8 @@ export class AutoGroup extends Mod {
                             this.wGame.dofus.sendMessage("GameFightJoinRequestMessage", { fightId, fighterId });
                             setTimeout(() => {
                                 resolve();
-                            }, this.customRandom(1,2));
-                        }, this.customRandom(1, 3));
+                            }, this.getRandomTime(1,2));
+                        }, this.getRandomTime(1, 3));
                     });
                 } else {
                     this.wGame.gui.chat.logMsg(this.translate.instant('app.option.vip.auto-group.pvp-warning'));
@@ -654,7 +651,7 @@ export class AutoGroup extends Mod {
                             setTimeout(() => {
                                 resolve();
                             }, 200);
-                        }, this.customRandom(1, 4));
+                        }, this.getRandomTime(1, 4));
                     }
                 });
             };
@@ -685,7 +682,7 @@ export class AutoGroup extends Mod {
                                         else
                                             return;
                                     });
-                            }, this.customRandom(1, 2));
+                            }, this.getRandomTime(1, 2));
                             return;
                         }
                     }
@@ -696,7 +693,7 @@ export class AutoGroup extends Mod {
                 this.on(this.wGame.dofus.connectionManager, "PartyMemberInFightMessage", onPartyMemberInFightMessage);
                 this.on(this.wGame.dofus.connectionManager, 'MapComplementaryInformationsDataMessage', onMapComplementaryInformationsDataMessage);
                 this.on(this.wGame.dofus.connectionManager, 'MapComplementaryInformationsWithCoordsMessage', onMapComplementaryInformationsDataMessage);
-            }, this.customRandom(1, 2));
+            }, this.getRandomTime(1, 2));
         } catch (e) {
             Logger.error(e);
         }
@@ -711,10 +708,6 @@ export class AutoGroup extends Mod {
         else return false;
     }
 
-    private log(msg: string): void {
-        // Logger.info(this.wGame.gui.playerData.characterBaseInformations.name + ': ' + msg);
-    }
-
     private static objectToString(obj: any): string {
         let str = '{ ';
         for (const id in obj) {
@@ -722,5 +715,9 @@ export class AutoGroup extends Mod {
         }
         str = str.substr(0, str.length - 2) + ' }';
         return str;
+    }
+
+    protected getRandomTime(min: number, max: number): number {
+        return this.disableTimeouts ? 0 : super.getRandomTime(min, max);
     }
 }

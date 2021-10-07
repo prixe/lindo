@@ -5,7 +5,6 @@ export class Marchand extends Mod {
     private numMM = null
 
     startMod(): void {
-        console.log("- enable MarchandArrow");
         this.on(this.wGame.dofus.connectionManager, 'MapComplementaryInformationsDataMessage', (response) => {this.getMM(response)} );
         this.on(this.wGame.dofus.connectionManager, 'ExchangeStartOkHumanVendorMessage', (response) => {this.openMM(response)} );
         this.on(this.wGame.dofus.connectionManager, 'ExchangeLeaveMessage', () => {this.closeW()} );
@@ -14,7 +13,7 @@ export class Marchand extends Mod {
         this.on(this.wGame.dofus.connectionManager, 'GameRolePlayShowActorMessage', (response) => {this.showActor(response)} );
     }
 
-    private showActor(response) {
+    private showActor(response): void {
         if (response.informations._type == "GameRolePlayMerchantInformations") {
             this.tab = [];
             this.numMM = [];
@@ -28,7 +27,6 @@ export class Marchand extends Mod {
 
     private clickB(event): void {
         if (event.target.parentNode.id == "rightMM") {
-
             this.clickRight();
             this.reset()
         }
@@ -38,7 +36,7 @@ export class Marchand extends Mod {
         }
     }
 
-    private getMM(response) {
+    private getMM(response): void {
         this.tab = [];
         for (let i in response.actors) {
             if(response.actors[i]._type == "GameRolePlayMerchantInformations") {
@@ -47,7 +45,7 @@ export class Marchand extends Mod {
         }
     }
 
-    private addBtn() {
+    private addBtn(): void {
         let leftdiv = document.createElement("div");
         leftdiv.className = "filter Button scaleOnPress";
         leftdiv.id = "leftMM";
@@ -71,13 +69,13 @@ export class Marchand extends Mod {
         this.wGame.document.getElementsByClassName("window TradeStorageWindow buy-human")[0].getElementsByClassName("filter")[0].parentNode.insertBefore(rightdiv, null);
     }
 
-    private openMM(response) {
+    private openMM(response): void {
         this.reset()
         this.addBtn();
         this.numMM = this.tab.findIndex(i => i.id == response.sellerId);
     }
 
-    private clickLeft() {
+    private clickLeft(): void {
         if (this.wGame.document.getElementById("leftMM")) {
             this.closeMM();
             if (this.numMM == this.tab.length-1) {
@@ -90,7 +88,7 @@ export class Marchand extends Mod {
         }
     }
 
-    private clickRight() {
+    private clickRight(): void {
         if (this.wGame.document.getElementById("rightMM")) {
             this.closeMM();
             if (this.numMM == 0) {
@@ -103,11 +101,11 @@ export class Marchand extends Mod {
         }
     }
 
-    private closeMM() {
+    private closeMM(): void {
         this.wGame.dofus.sendMessage("LeaveDialogRequestMessage", null);
     }
 
-    private closeW() {
+    private closeW(): void {
         this.wGame.document.querySelectorAll("#leftMM").forEach((elem) => elem.remove());
         this.wGame.document.querySelectorAll("#rightMM").forEach((elem) => elem.remove());
     }
