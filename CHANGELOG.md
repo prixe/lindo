@@ -2,7 +2,7 @@
 ## ⚠ CERTAINS SITES MALVEILLANTS INSTALLERONT UN VIRUS SUR VOTRE ORDINATEUR
 
 ## [2.6.3] -
-
+s
 ### Correctifs
 - Valeur par défaut pour l'affichage de l'xp des groupes de monstres
 
