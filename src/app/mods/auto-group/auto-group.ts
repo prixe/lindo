@@ -56,7 +56,7 @@ export class AutoGroup extends Mod {
 
         // Disable du Timer
         if (this.params.disable_timer) {
-            Logger.info('- KeyTur Disable:Timer');
+            Logger.info(' - Disable timers');
             this.disableTimeouts = true
         }
 
