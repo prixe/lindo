@@ -91,6 +91,8 @@ export interface SettingsInterface {
                 show_resources: boolean;
                 show_resources_shortcut: string;
                 party_member_on_map: boolean;
+                monster_tooltip: boolean;
+                monster_tooltip_shortcut: string;
             },
             auto_group: {
                 active: boolean;

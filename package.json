@@ -122,7 +122,7 @@
       "description": "Lindo Client for Linux",
       "target": [
         "tar.gz",
-        "deb",
+        "deb"
       ],
       "icon": "build/icon.png",
       "mimeTypes": [
