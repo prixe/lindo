@@ -1,4 +1,4 @@
-import {Logger} from '../core/logger/logger-lindo';
+import {Logger} from '../core/logger-lindo';
 import {Application} from '../application';
 import {UpdateWindow} from '../windows/update-window';
 import {Versions} from './versions.interface';

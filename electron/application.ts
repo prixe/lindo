@@ -1,4 +1,4 @@
-import {Logger} from './core/logger/logger-lindo';
+import {Logger} from './core/logger-lindo';
 import {UpdateAll} from './update/update-all';
 import {MainWindow} from './windows/main-window';
 import {app, BrowserWindow, dialog, ipcMain} from 'electron';

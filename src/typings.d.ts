@@ -18,9 +18,6 @@ declare let httpAdapterLib: any;
 declare let Application: any;
 declare let Remote: any;
 declare let Settings: any;
-declare let LoggerLib: any;
-
-declare let LoggerGame: any;
 declare let LoggerLindo: any;
 
 /** LoggerLindo */

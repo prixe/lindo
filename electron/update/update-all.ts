@@ -1,5 +1,5 @@
 import { Api } from '../core/api';
-import { Logger } from '../core/logger/logger-lindo';
+import { Logger } from '../core/logger-lindo';
 import { UpdateApp } from './update-app';
 import { UpdateGame } from './update-game';
 import { UpdateInformations } from './update-informations.interface';

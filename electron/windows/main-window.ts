@@ -1,4 +1,4 @@
-import { Logger } from '../core/logger/logger-lindo';
+import { Logger } from '../core/logger-lindo';
 import { Application } from '../application';
 import { GameMenuTemplate } from '../core/game-menu.template';
 import { ShortCuts } from '../core/shortcuts';
