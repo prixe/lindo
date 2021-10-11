@@ -5,16 +5,13 @@ import {Logger as LoggerWinston} from "winston";
 import {Application} from "../application";
 
 class LoggerLindo {
-
     public winston: LoggerWinston;
 
     constructor() {
-
         let LOGS_PATH = Application.userDataPath + '/logs/lindo';
         fs.mkdirSync(LOGS_PATH, {recursive: true});
 
         this.winston = winston.createLogger({
-
             transports: [
                 new (winston.transports.Console)({
                     handleExceptions: true,

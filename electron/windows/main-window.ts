@@ -22,7 +22,6 @@ export class MainWindow {
     private events: Array<any> = [];
 
     constructor(application: Application) {
-
         this.application = application;
 
         let screenPoint = electron.screen.getCursorScreenPoint();
@@ -75,7 +74,6 @@ export class MainWindow {
             });
 
             Application.mainWindows.splice(indexOfWindow, 1);
-
             if (Application.mainWindows.length == 0) {
                 app.quit();
             }
@@ -83,7 +81,6 @@ export class MainWindow {
     }
 
     public reloadSettings(): void {
-
         Logger.info('emit->reload-settings');
         this.win.webContents.send('reload-settings');
 
@@ -91,7 +88,7 @@ export class MainWindow {
             this.win.webContents.send('reload-settings-done');
         });
 
-        //Redraw the menu
+        // Redraw the menu
         this.menu = Menu.buildFromTemplate(GameMenuTemplate.build());
         Menu.setApplicationMenu(this.menu);
     }
@@ -101,7 +98,6 @@ export class MainWindow {
     }
 
     public run(): void {
-
         this.win.loadURL(`file://${Application.appPath}/dist/app/index.html`);
         this.win.once('ready-to-show', () => {
             this.win.show()

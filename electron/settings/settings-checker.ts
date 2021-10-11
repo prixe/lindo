@@ -10,7 +10,7 @@ export function checkSettings() {
     Logger.info("[SETTING] Checking settings integrity..");
 
     let sett: SettingsInterface = settings.getSync();
-    
+
     if (sett.option === undefined) {
         return false;
     }
@@ -25,8 +25,7 @@ export function checkSettings() {
                     settings[id] = defaultSettings[id];
                     pass = false;
                 }
-            }
-            else {
+            } else {
                 if (typeof defaultSettings[id] !== typeof settings[id] && defaultSettings[id] !== null) {
                     Logger.info('Error with setting ' + '.'.repeat(depth) + id);
                     Logger.info('-> Current value:  ' + ' '.repeat(depth) + settings[id]);
@@ -50,7 +49,6 @@ export function checkSettings() {
         ok = checkRecursive(sett, SettingsDefault, 0);
     }
 
-
     sett.alertCounter = Math.floor(sett.alertCounter);
 
     if (!sett.option.general.resolution.x || !sett.option.general.resolution.y) {
@@ -62,10 +60,10 @@ export function checkSettings() {
 
     if (!settings.getSync('macAddress')) {
         macAddress.one((err, addr) => {
-            if(err || !addr){
+            if (err || !addr) {
                 settings.setSync('macAddress',  Math.random().toString());
                 Logger.warn("[SETTING] Unable to retrieve the mac address");
-            }else{
+            } else {
                 settings.setSync('macAddress', Buffer.from(addr).toString('base64'));
             }
         });

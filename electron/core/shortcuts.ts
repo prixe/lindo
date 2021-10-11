@@ -17,7 +17,6 @@ export class ShortCuts {
     }
 
     public bindAll(): void {
-
         let errorConsoleFunction = console.error;
         console.error = function() {}
 
@@ -32,7 +31,6 @@ export class ShortCuts {
                 }
             }
         });
-
         console.error = errorConsoleFunction;
     }
 

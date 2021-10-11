@@ -7,7 +7,6 @@ const settings = require('electron-settings');
 const pkg = require(`${app.getAppPath()}/package.json`);
 
 export class Application {
-
     public static mainWindows: MainWindow[] = [];
     public static appPath: string = __dirname + '/../..';
     public static userDataPath: string = app.getPath('userData');
@@ -22,11 +21,9 @@ export class Application {
     public static masterPassword: string = "";
 
     public static run() {
-
         this.version = pkg.version;
 
         UpdateAll.run().then((versions) => {
-
             settings.setSync('appVersion', versions.appVersion);
 
             this.remoteBuildVersion = versions.buildVersion;
@@ -35,9 +32,7 @@ export class Application {
             Logger.info("[APPLICATION] Starting..");
             this.canAddWindow = true;
             this.addWindow();
-
         }).catch((error: any) => {
-
             Logger.error('Error occured on update process : ');
             Logger.error(error);
 
@@ -76,7 +71,6 @@ export class Application {
         });
 
         app.setAppUserModelId('com.lindo.app');
-
     }
 
     public static addWindow(): void {

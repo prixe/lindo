@@ -71,11 +71,9 @@ export class Settings {
     };
 
     public static resetSettings(): void {
-
         Logger.info("[SETTING] Restoring the settings..")
 
         settings.setSync(SettingsDefault);
-
         macAddress.one((err, addr) => {
             if (err || !addr) {
                 settings.setSync('macAddress', Math.random().toString());
@@ -111,7 +109,6 @@ export class Settings {
     };
 
     public static resetGame() {
-
         let destinationPath = Application.userDataPath + '/game';
 
         rimraf(destinationPath, () => {
@@ -140,5 +137,4 @@ export class Settings {
             });
         });
     }
-
 }

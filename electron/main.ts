@@ -16,9 +16,7 @@ app.commandLine.appendSwitch("disable-renderer-backgrounding");
 app.commandLine.appendSwitch("disable-background-timer-throttling");
 
 app.on('ready', () => {
-
     process.on('uncaughtException', function (error) {
-
         Logger.error(error);
 
         dialog.showMessageBox(BrowserWindow.getFocusedWindow(), {

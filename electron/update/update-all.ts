@@ -8,13 +8,9 @@ import { Versions } from './versions.interface';
 const settings = require('electron-settings');
 
 export class UpdateAll {
-
     public static run(): Promise<Versions> {
-
         return new Promise((resolve, reject) => {
-
             Api.getUpdateInformations().then((response: UpdateInformations) => {
-
                 let doAppUpdate = UpdateApp.check(response);
                 if (doAppUpdate) {
                     Logger.info("[UPDATE] Application update required.");
