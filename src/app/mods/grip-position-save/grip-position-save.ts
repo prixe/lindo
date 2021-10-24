@@ -63,20 +63,22 @@ export class GripPositionSave extends Mod {
       const cssTarget = '.' + target.charAt(0).toUpperCase() + target.slice(1);
       const targetWidth = this.wGame.document.querySelector(cssTarget).clientWidth;
       const targetHeight = this.wGame.document.querySelector(cssTarget).clientHeight;
-      const left = (position.left.slice(0, -2) < (availableWidth - targetWidth)) ? position.left.slice(0, -2) : availableWidth - targetWidth;
-      const top = (position.top.slice(0, -2) < (availableHeight - targetHeight)) ? position.top.slice(0, -2) : availableHeight - targetHeight;
+      if (targetHeight !== undefined && targetWidth !== undefined) {
+        const left = (position.left.slice(0, -2) < (availableWidth - targetWidth)) ? position.left.slice(0, -2) : availableWidth - targetWidth;
+        const top = (position.top.slice(0, -2) < (availableHeight - targetHeight)) ? position.top.slice(0, -2) : availableHeight - targetHeight;
 
-      // Removing existing stylesheet
-      this.wGame?.document?.querySelector?.('#' + target + 'stylesheet')?.remove?.();
+        // Removing existing stylesheet
+        this.wGame?.document?.querySelector?.('#' + target + 'stylesheet')?.remove?.();
 
-      const stylesheet = this.wGame.document.createElement('style');
-      stylesheet.id = target + 'stylesheet';
-      stylesheet.innerHTML = cssTarget;
-      stylesheet.innerHTML += '{';
-      stylesheet.innerHTML += 'top:' + top + 'px !important;';
-      stylesheet.innerHTML += 'left:' + left + 'px !important;';
-      stylesheet.innerHTML += '}';
-      this.wGame.document.head.appendChild(stylesheet);
+        const stylesheet = this.wGame.document.createElement('style');
+        stylesheet.id = target + 'stylesheet';
+        stylesheet.innerHTML = cssTarget;
+        stylesheet.innerHTML += '{';
+        stylesheet.innerHTML += 'top:' + top + 'px !important;';
+        stylesheet.innerHTML += 'left:' + left + 'px !important;';
+        stylesheet.innerHTML += '}';
+        this.wGame.document.head.appendChild(stylesheet);
+      }
     }
   }
 
