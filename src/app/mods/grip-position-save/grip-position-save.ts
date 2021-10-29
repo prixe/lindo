@@ -63,7 +63,7 @@ export class GripPositionSave extends Mod {
       const cssTarget = '.' + target.charAt(0).toUpperCase() + target.slice(1);
       const targetWidth = this.wGame.document.querySelector(cssTarget).clientWidth;
       const targetHeight = this.wGame.document.querySelector(cssTarget).clientHeight;
-      if (targetHeight !== undefined && targetWidth !== undefined) {
+      if (targetWidth !== undefined && targetHeight !== undefined && availableWidth !== undefined && availableHeight !== undefined) {
         const left = (position.left.slice(0, -2) < (availableWidth - targetWidth)) ? position.left.slice(0, -2) : availableWidth - targetWidth;
         const top = (position.top.slice(0, -2) < (availableHeight - targetHeight)) ? position.top.slice(0, -2) : availableHeight - targetHeight;
 
