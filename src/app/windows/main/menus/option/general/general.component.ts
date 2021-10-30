@@ -22,6 +22,7 @@ export class GeneralComponent implements OnInit {
     public _resolution: string;
     public _language: string;
     public resolutions: select[] = [
+        {name: 'Fullscreen', value: "full;screen"},
         {name: '800x600', value: "800;600"},
         {name: '960x600', value: "960;600"},
         {name: '1280x720', value: "1280;720"},
@@ -77,9 +78,18 @@ export class GeneralComponent implements OnInit {
         };
 
         console.log(resolution);
+        
+        if ( aValue[0]  == "full" &&  aValue[1] == "screen"){
+            electron.getCurrentWindow().setFullScreen(true);
+            aValue[0]  = this.settingsService.option.general.resolution.x
+            aValue[1]  = this.settingsService.option.general.resolution.y
+            
 
-        if (this.settingsService.option.general.resolution != resolution) {
+        }
 
+        else if (this.settingsService.option.general.resolution != resolution) {
+            
+            electron.getCurrentWindow().setFullScreen(false);
             electron.getCurrentWindow().setSize(parseInt(aValue[0]), parseInt(aValue[1]), true);
 
             this.promptService.confirm({
