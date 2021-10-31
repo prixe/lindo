@@ -58,11 +58,15 @@ export class GripPositionSave extends Mod {
   private moveElement(target) {
     if (localStorage.getItem(target + "Position")) {
       const position = JSON.parse(localStorage.getItem(target + "Position"));
-      const availableWidth = this.wGame.document.querySelector('#mapScene-canvas').clientWidth;
-      const availableHeight = this.wGame.document.querySelector('#mapScene-canvas').clientHeight;
+      const mapScene = document.querySelector('#mapScene-canvas');
+      let availableWidth = mapScene.clientWidth;
+      const availableHeight = mapScene.clientHeight;
+      if (mapScene.offsetLeft) {
+        availableWidth = availableWidth + mapScene.offsetLeft;
+      }
       const cssTarget = '.' + target.charAt(0).toUpperCase() + target.slice(1);
-      const targetWidth = this.wGame.document.querySelector(cssTarget).clientWidth;
-      const targetHeight = this.wGame.document.querySelector(cssTarget).clientHeight;
+      const targetWidth = this.wGame.document?.querySelector?.(cssTarget)?.clientWidth;
+      const targetHeight = this.wGame.document?.querySelector?.(cssTarget)?.clientHeight;
       if (targetWidth !== undefined && targetHeight !== undefined && availableWidth !== undefined && availableHeight !== undefined) {
         const left = (position.left.slice(0, -2) < (availableWidth - targetWidth)) ? position.left.slice(0, -2) : availableWidth - targetWidth;
         const top = (position.top.slice(0, -2) < (availableHeight - targetHeight)) ? position.top.slice(0, -2) : availableHeight - targetHeight;
