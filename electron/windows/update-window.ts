@@ -1,4 +1,5 @@
 import electron = require('electron');
+import { UserAgent } from '../core/user-agent';
 
 export class UpdateWindow {
 
@@ -31,6 +32,8 @@ export class UpdateWindow {
                 enableRemoteModule: true
             }
         });
+        let userAgent = new UserAgent(0);
+        window.webContents.setUserAgent(userAgent.getString());
 
         window.once('ready-to-show', () => { window.show() })
         window.on('closed', () => { window = null; });
