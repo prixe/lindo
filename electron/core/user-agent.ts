@@ -89,7 +89,7 @@ export class UserAgent {
     ];
 
     public getString(): string {
-        return this.userAgentString;
+        return this.userAgentString + " DofusTouch Client " + settings.getSync('appVersion');
     }
 
     private generateUserAgentString(): void {
