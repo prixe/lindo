@@ -23,8 +23,10 @@ export class GripPositionSave extends Mod {
     this.registerEvent(this.wGame.gui.isConnected);
 
     wGame.addEventListener('storage', (e) => {
-      const target = e.key.slice(0, -8);
-      this.moveElement(target);
+      if(e.key.includes('Position')) {
+        const target = e.key.slice(0, -8);
+        this.moveElement(target);
+      }
     });
   }
 
@@ -56,7 +58,7 @@ export class GripPositionSave extends Mod {
   }
 
   private moveElement(target) {
-    if (localStorage.getItem(target + "Position")) {
+    if (localStorage.getItem(target + "Position") && this.wGame?.gui?.isConnected) {
       const position = JSON.parse(localStorage.getItem(target + "Position"));
       const mapScene = this.wGame.document.querySelector('#mapScene-canvas');
       let availableWidth = mapScene.clientWidth;
