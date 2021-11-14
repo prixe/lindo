@@ -81,7 +81,8 @@
             "show-resources" : "Mostrar recursos del mapa",
             "show-resources-shortcut" : "Atajo para mostrar/ocultar recursos del mapa",
             "harvest-indicator" : "Activar la visualización del tiempo restante debajo de los recursos",
-            "party-member-on-map" : "Agregar un indicador para saber si los miembros de un grupo están en el mismo mapa"
+            "party-member-on-map" : "Agregar un indicador para saber si los miembros de un grupo están en el mismo mapa",
+            "vertical-timeline": "Mostrar línea de tiempo de los luchadores verticalmente"
           },
           "groups": {
             "header": "Grupo"
