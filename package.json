@@ -1,6 +1,6 @@
 {
   "name": "lindo",
-  "version": "2.6.2",
+  "version": "2.6.4",
   "description": "Play Dofus Touch on Linux/OS X/Window",
   "author": "Prixe",
   "licence": "GPL-3.0",
@@ -99,6 +99,7 @@
     "asar": true,
     "appId": "com.lindo.app",
     "directories": {
+      "buildResources": "build",
       "output": "releases"
     },
     "files": [

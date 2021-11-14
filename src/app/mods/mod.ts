@@ -20,10 +20,12 @@ export abstract class Mod {
         this.settings = settings;
         this.translate = translate;
 
-        this.startMod();
+        this.startMod?.();
     }
 
-    abstract startMod(): void;
+    protected startMod(): void {
+        return;
+    }
 
     protected addOnResetListener(fct: any): void {
         this.onReset.push(fct);

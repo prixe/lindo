@@ -77,7 +77,7 @@ export class UpdateComponent implements OnInit, OnDestroy {
 
     private localGameFolder: string;
     private dofusOrigin: string = this.settingsService.option.general.early ? "https://earlyproxy.touch.dofus.com/" : "https://proxyconnection.touch.dofus.com/";
-    private dofusOriginItuneVersion: string = (this.settingsService.option.general.early ? "https://itunes.apple.com/lookup?id=1245534439" : "https://itunes.apple.com/lookup?id=1041406978") + "&t=" + (new Date().getTime())
+    private dofusOriginItuneVersion: string = "https://itunes.apple.com/lookup?id=1041406978&t=" + (new Date().getTime())
 
     private sub: Subscription;
 

@@ -1,11 +1,14 @@
 # Lindo
-[![Release](https://github.com/prixe/lindo/actions/workflows/main.yml/badge.svg)](https://github.com/prixe/lindo/releases/tag/v2.6.2)
+[![Release](https://github.com/prixe/lindo/actions/workflows/main.yml/badge.svg)](https://github.com/prixe/lindo/releases/latest)
 [![npm](https://img.shields.io/badge/npm-%3E%3D%205.6.0-blue.svg)]()
 [![node](https://img.shields.io/badge/node-%3E%3D%2014.0.0-green.svg)]()
 [![Github All Releases](https://img.shields.io/github/downloads/prixe/lindo/total.svg)](https://github.com/prixe/lindo/releases)
+
+[![Discord](https://img.shields.io/discord/297744399138422784.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/xdt5J4N)
 [![Contributors](https://img.shields.io/github/contributors/prixe/lindo.svg)](https://github.com/prixe/lindo/graphs/contributors)
 
-https://lindo-app.com
+[![Website lindo-app.com](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://lindo-app.com) https://lindo-app.com
+
 
 🇬🇧 Lindo allows you to play Dofus Touch on your computer (Windows / Mac OS / Linux) without android emulator, it is based on crossplatform technologies.
 
@@ -26,7 +29,6 @@ Lindo No-Emu works on :
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [Community](#community)
 - [Installation](#installation)
   - [Prerequisites](#prerequisites)
     - [Node.js](#nodejs)
@@ -47,10 +49,6 @@ Lindo No-Emu works on :
 - [Credits](#credits)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-## Community
-- [Discord](https://discord.gg/xdt5J4N)
-- [Trello](https://trello.com/b/d1mc9DeS/lindo)
 
 ## Installation
 ### Prerequisites

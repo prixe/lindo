@@ -55,10 +55,6 @@ export class AutoGroup extends Mod {
         }
     }
 
-    startMod(): void {
-        return;
-    }
-
     public autoMasterParty() {
         try {
             setTimeout(() => {
