@@ -81,8 +81,7 @@
             "show-resources" : "Harita kaynaklarını göster",
             "show-resources-shortcut" : "Harita kaynaklarını göstermek/gizlemek için kısayol",
             "harvest-indicator" : "Kaynakların altında kalan sürenin gösterimini etkinleştirin",
-            "party-member-on-map" : "Bir grubun üyelerinin aynı haritada olup olmadığını öğrenmek için bir gösterge ekleyin",
-            "vertical-timeline": "Savaşçıların zaman çizelgesini dikey olarak göster"
+            "party-member-on-map" : "Bir grubun üyelerinin aynı haritada olup olmadığını öğrenmek için bir gösterge ekleyin"
           },
           "groups": {
             "header": "Gruplar"

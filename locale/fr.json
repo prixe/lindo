@@ -83,8 +83,7 @@
             "harvest-indicator" : "Barres de temps sous les récoltes",
             "party-member-on-map" : "Ajoute un indicateur pour savoir si les membres d'un groupe sont sur la même carte",
             "monster-tooltip": "Affiche les informations des groupes de monstres sur la carte",
-            "monster-tooltip-shortcut": "Raccourci pour les informations des groupes de monstres",
-            "vertical-timeline": "Afficher la barre des combatants de manière verticale"
+            "monster-tooltip-shortcut": "Raccourci pour les informations des groupes de monstres"
           },
           "groups": {
             "header": "Groupe"
