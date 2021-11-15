@@ -16,3 +16,4 @@ export { Shortcuts } from "../mods/shortcuts/shortcuts";
 export { ShowResources } from "./show-resources/show-resources";
 export { ZaapSearchFilter } from "./zaap-search-filter/zaap-search-filter";
 export { MonsterTooltip } from "./monsterTooltip/monsterTooltip";
+export { ForgeMageExtend } from "./forge-mage-extend/forge-mage-extend";
