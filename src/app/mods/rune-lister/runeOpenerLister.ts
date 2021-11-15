@@ -5,25 +5,27 @@ import { Mod } from "../mod";
 export class RuneOpenerList extends Mod {
     ID = 'RuneOpenerList';
     langs = {
-        en: { fragmentGid: 8378, message: "Obtained (Number) (RuneName)" },
-        de: { fragmentGid: 8378, message: "Wurden erreicht (Number) (RuneName) " },
-        es: { fragmentGid: 8378, message: "Se han conseguido (Number) (RuneName) " },
-        fr: { fragmentGid: 8378, message: "Obtention de (Number) (RuneName)" },
-        it: { fragmentGid: 8378, message: "Hai ottenuto (Number) (RuneName) " },
-        pt: { fragmentGid: 8378, message: "Obteve (Number) (RuneName) " }
+        en: { message: "Obtained (Number) (RuneName)" },
+        de: { message: "Wurden erreicht (Number) (RuneName) " },
+        es: { message: "Se han conseguido (Number) (RuneName) " },
+        fr: { message: "Obtention de (Number) (RuneName)" },
+        it: { message: "Hai ottenuto (Number) (RuneName) " },
+        pt: { message: "Obteve (Number) (RuneName) " }
     };
+    fragmentGid = 8378
     openedRune = false;
     oldItems = []
     messageItems = []
-    lang: { fragmentGid: number, message: string };
+    lang: { message: string };
     constructor(
         wGame: any | Window,
         settings: SettingsService,
         translate: TranslateService,
         language: string
+
     ) {
         super(wGame, settings, translate);
-        this.lang = this.langs[language];
+        this.lang = this.langs[language]
         this.load();
     }
 
@@ -80,7 +82,7 @@ export class RuneOpenerList extends Mod {
     checkMagicFragment(uid) {
         var item = this.wGame.gui.playerData.inventory.objects[uid];
         if (!item) return;
-        if (item.objectGID === this.lang.fragmentGid)
+        if (item.objectGID === this.fragmentGid)
             this.openedRune = true;
     }
 }
