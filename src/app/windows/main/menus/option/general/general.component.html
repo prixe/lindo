@@ -16,7 +16,7 @@
                 <tr>
                     <td>{{ 'app.option.general.resolution' | translate }}</td>
                     <td>
-                        <mat-select placeholder="{{ 'app.option.general.resolution' | translate }}" [(ngModel)]="_resolution" (selectionChange)="setResolution($event)">
+                        <mat-select placeholder="{{ 'app.option.general.resolution' | translate }}" [(ngModel)]="_resolution" (selectionChange)="setResolution($event)" [disabled]="settingsService.option.general.full_screen">
                             <mat-option *ngFor="let resolution of resolutions" [value]="resolution.value">{{ resolution.name }}</mat-option>
                         </mat-select>
                     </td>
