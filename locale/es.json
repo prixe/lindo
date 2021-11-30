@@ -239,6 +239,7 @@
         "language": "Idioma",
         "resolution": "Resolución",
         "hide-shop": "Ocultar el botón Shop",
+        "full-screen": "Pantalla completa",
         "hide-tab": "Ocultar la barra de tareas multicuentas",
         "focus-fight-turn": "Cambiar automáticamente a una cuenta cuando inicia su turno",
         "local-content": "Habilitar descargar mapas locales (beta)",

@@ -242,6 +242,7 @@
         "language": "Dil",
         "resolution": "Çözünürlük",
         "hide-shop": "Mağaza düğmesini gizle",
+        "full-screen": "Tam ekran",
         "hide-tab": "Çok hesaplı sekme çubuğunu gizle",
         "focus-fight-turn": "Sıra başladığında otomatik olarak bir hesaba geç",
         "local-content": "Yerel harita indirmeyi etkinleştir (beta)",

@@ -244,6 +244,7 @@
         "language": "Langage",
         "resolution": "Résolution",
         "hide-shop": "Cacher le bouton Shop",
+        "full-screen": "Plein écran",
         "hide-tab": "Masquer la barre d'onglets multi-compte",
         "focus-fight-turn": "Basculer automatiquement vers un compte à son tour de jeu",
         "local-content": "Activer le téléchargement local des cartes (beta)",

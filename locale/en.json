@@ -245,6 +245,7 @@
         "language": "Language",
         "resolution": "Resolution",
         "hide-shop": "Hide the Shop button",
+        "full-screen": "Full screen",
         "hide-tab": "Hide the multi-account tab bar",
         "focus-fight-turn": "Automatically switch to an account when its turn starts",
         "local-content": "Enable local map download (beta)",
