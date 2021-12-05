@@ -183,12 +183,17 @@ export class UpdateComponent implements OnInit, OnDestroy {
             this.translate.get('app.window.update-dofus.step8').subscribe((sentence: string) => this.progressText = sentence);
             this.ipcRendererService.send('update-finished', this.localVersions);
 
-        } catch (error) {
-
+        } catch (error) { 
+                    if (this.dofusOrigin == "https://earlyproxy.touch.dofus.com/"){
+                        this.settingsService.option.general.early = false;
+                       window.location.reload();
+                    }
+                    else {
             let reason = (typeof error.message !== "undefined") ? "(" + error.message + ")" : "";
             this.translate.get('app.window.update-dofus.information.error').subscribe((sentence: string) => this.progressText = sentence + reason);
 
             this.progressError = true;
+        }
         }
     }
 
