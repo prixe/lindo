@@ -12,6 +12,7 @@ export const SettingsDefault: SettingsInterface = {
         general: {
             hidden_shop: false,
             hidden_tabs: false,
+            full_screen: false,
             stay_connected: true,
             resolution: {
                 x: 1280,
@@ -152,7 +153,7 @@ export const SettingsDefault: SettingsInterface = {
             general: {
                 disable_inactivity: false,
                 health_bar: true,
-                health_bar_shortcut: 'p',
+                health_bar_shortcut: '',
                 jobsxp: false,
                 estimator: true,
                 fightchronometer: true,
@@ -163,7 +164,9 @@ export const SettingsDefault: SettingsInterface = {
                 harvest_indicator: true,
                 show_resources: false,
                 show_resources_shortcut: '',
-                party_member_on_map: true
+                party_member_on_map: true,
+                monster_tooltip: false,
+                monster_tooltip_shortcut: '',
             },
             auto_group: {
                 active: false,

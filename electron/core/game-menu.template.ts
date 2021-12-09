@@ -81,7 +81,6 @@ export class GameMenuTemplate {
             {
                 label: i18n.t('game-menu.window.title'),
                 submenu: [
-
                     {
                         label: i18n.t('game-menu.window.reload'),
                         accelerator: 'CmdOrCtrl+R',

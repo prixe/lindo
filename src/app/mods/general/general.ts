@@ -21,8 +21,6 @@ export class General extends Mod {
         }
     }
 
-    startMod(): void {}
-
     public reset() {
         super.reset();
         for (const i in this.mods) {

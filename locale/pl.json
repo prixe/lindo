@@ -69,19 +69,24 @@
         "features": {
           "title": "Funkcje",
           "general": {
+            "menu": {
+              "general": "Generał",
+              "fight": "Walka",
+              "group": "Grupa",
+              "job": "Praca"
+            },
             "header": "Główne",
             "disable-inactivity": "Pozostań ciągle zalogowany",
             "health-bar": "Aktywuj wyświetlanie paska życia poniżej postaci",
-            "health-bar-shortcut": "Skrót klawiszowy do pokazywania/chowania pasków życia",
             "jobsxp": "Wyświetl niezbędną liczbę doświadczenia wymaganego do następnego poziomu",
             "estimator": "Włącz przewidywanie obrażeń podczas walki",
             "hide-mount": "Nie pokazuj wierzchowców podczas walki",
             "fightchronometer" : "Pokaż czas trwania walki",
             "zaapsearchfilter" : "Pokaż filtr wyszukiwania zaap'ów",
             "show-resources" : "Pokaż zasoby mapy",
-            "show-resources-shortcut" : "Skrót do pokazywania/ukrywania zasobów mapy",
             "harvest-indicator" : "Aktywuj wyświetlanie pozostałego czasu poniżej zasobów",
-            "party-member-on-map" : "Dodaj wskaźnik, aby wiedzieć, czy członkowie grupy znajdują się na tej samej mapie"
+            "party-member-on-map" : "Dodaj wskaźnik, aby wiedzieć, czy członkowie grupy znajdują się na tej samej mapie",
+            "monster-tooltip": "Wyświetlaj informacje o grupach potworów na mapie"
           },
           "groups": {
             "header": "Grupy"
@@ -111,7 +116,8 @@
           "interface": "Interfejs",
           "spell": "Czary",
           "inventory": "Ekwipunek",
-          "other": "Inne"
+          "other": "Inne",
+          "mod": "Mody"
         }
       },
       "bug-report": {
@@ -133,12 +139,14 @@
           "header": "Grupa",
           "active": "Włącz automatyczne grupowanie",
           "warning": "Uważaj, automatyczne śledzenie lidera grupy może być postrzegane przez innych graczy jako maraton botów, więc używaj tego z rozwagą i w miejscach z niewielką populacją.",
+          "warningtimer": "Ostrzeżenie, ta funkcja może być uznana za maraton robotów przez innych graczy, więc używaj jej ostrożnie i w miejscach o małej populacji.",
           "explanation-1": "Postacie w grupie muszą znajdować się na liście znajomych, aby działało automatyczne grupowanie.",
           "explanation-2": "Postacie w grupie będa podążać za liderem, jeśli znajduje się on na tej samej mapie.",
           "leader": "Nazwa lidera grupy",
           "members": "Nazwa postaci",
           "members-add": "Dodaj postać",
           "follow-leader": "Podążaj za liderem grupy",
+          "disable-timer": "Dezaktywuj licznik czasu dla grupy automatycznej",
           "ready": "Pomijaj \"ready\" automatycznie",
           "fight": "Wchodź do walki automatycznie",
           "delay": "Opóźnienie w śledzeniu (w sekundach)",
@@ -240,6 +248,7 @@
         "language": "Język",
         "resolution": "Rozdzielczość ekranu",
         "hide-shop": "Ukryj przycisk sklepu",
+        "full-screen": "Pełny ekran",
         "hide-tab": "Ukryj pasek wielu kont",
         "focus-fight-turn": "Automatycznie przełączaj konto kiedy jego tura się rozpocznie",
         "local-content": "Aktywuj usługę pobrania mapy(beta)",
@@ -280,7 +289,7 @@
           "bestiary": "Bestiariusz",
           "title": "Tytuły i ornamenty",
           "achievement": "Osiągnięcia",
-          "dailyQuest": "dailyQuest",
+          "dailyQuest": "Codzienne Zadania",
           "spouse": "Spouse(druga połówka)",
           "shop": "Własny sklep"
         },
@@ -299,6 +308,11 @@
         "spells": {
           "header": "Czary",
           "slot": "Miejsce {{x}}"
+        },
+        "mods": {
+          "show-resources" : "Pokazywania/ukrywania zasobów mapy",
+          "health-bar": "Pokazywania/chowania pasków życia",
+          "monster-tooltip": "Pokazywania/ukrywania opis potworów"
         }
       },
       "notifications": {

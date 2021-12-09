@@ -1,10 +1,14 @@
 # Lindo
-[![Build Status](https://travis-ci.org/prixe/lindo.svg?branch=master)](https://travis-ci.org/prixe/lindo)
+[![Release](https://github.com/prixe/lindo/actions/workflows/main.yml/badge.svg)](https://github.com/prixe/lindo/releases/latest)
 [![npm](https://img.shields.io/badge/npm-%3E%3D%205.6.0-blue.svg)]()
 [![node](https://img.shields.io/badge/node-%3E%3D%2014.0.0-green.svg)]()
-[![Github All Releases](https://img.shields.io/github/downloads/prixe/lindo/total.svg)]()
+[![Github All Releases](https://img.shields.io/github/downloads/prixe/lindo/total.svg)](https://github.com/prixe/lindo/releases)
 
-https://lindo-app.com
+[![Discord](https://img.shields.io/discord/297744399138422784.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/xdt5J4N)
+[![Contributors](https://img.shields.io/github/contributors/prixe/lindo.svg)](https://github.com/prixe/lindo/graphs/contributors)
+
+[![Website lindo-app.com](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://lindo-app.com) https://lindo-app.com
+
 
 🇬🇧 Lindo allows you to play Dofus Touch on your computer (Windows / Mac OS / Linux) without android emulator, it is based on crossplatform technologies.
 
@@ -16,7 +20,7 @@ https://lindo-app.com
 
 ## Supported Platform
 Lindo No-Emu works on :
-- **Windows** 7 and newer (ia32/amd64) 
+- **Windows** 10 and newer (ia32/amd64)
 - **macOS** 10.9 and newer
 - **Linux** (Debian >= 9, Ubuntu >= 18) (amd64)
 
@@ -25,7 +29,6 @@ Lindo No-Emu works on :
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [Community](#community)
 - [Installation](#installation)
   - [Prerequisites](#prerequisites)
     - [Node.js](#nodejs)
@@ -47,11 +50,7 @@ Lindo No-Emu works on :
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## Community
-- [Discord](https://discord.gg/xdt5J4N)
-- [Trello](https://trello.com/b/d1mc9DeS/lindo)
-
-## Installation 
+## Installation
 ### Prerequisites
 #### Node.js
 - Windows : [Website](https://nodejs.org)
@@ -67,7 +66,7 @@ $ brew install nodejs
 ```sh
 $ git clone https://github.com/prixe/lindo.git
 $ cd lindo
-$ npm install
+$ npm ci
 ```
 
 ## Start project in dev mode
@@ -75,7 +74,7 @@ Compile electron typescript source and angular source in developpement mode with
 ```sh
 $ npm run build:dev
 ```
-Start the project in electron (open a new terminal) : 
+Start the project in electron (open a new terminal) :
 ```sh
 $ npm start
 ```
@@ -112,7 +111,7 @@ $ npm run release:mac
 **Lindo** is developed with [Angular](https://angular.io/) as web framework and uses [Material](https://material.angular.io/) for the UI. It uses [electron](https://github.com/electron/electron) to be run as an standalone application, wich is based on Node.js and Chromium.
 
 So we have to distinguish 2 contexts :
-- **Navigator context** -> executed by Chromium (the Angular part) 
+- **Navigator context** -> executed by Chromium (the Angular part)
 - **Electron context** -> executed by Node.js (it's allow platform interaction)
 
 Navigator context is in the ```src/```folder and Electron context is in the ```electron/``` folder.
@@ -170,7 +169,7 @@ The config used by angular in `$ ng build (--configuration=production)` is at an
 You can contact a senior developer of the project as [Clover](https://github.com/Clover-Lindo) or [Prixe](https://github.com/prixe). Or you can eventually join our [Discord](https://discord.gg/wcCgtsv).
 Then you can create a pull request to add or fix features, you can also submit improvement idea or bug issue in the [issues section](https://github.com/prixe/lindo/issues).
 
-### Generate the TOC 
+### Generate the TOC
 If you edit the README.MD you wanna update the table of contents you can easily achieve it by using this command :
 ```sh
 $ npm run toc

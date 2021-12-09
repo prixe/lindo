@@ -2,19 +2,16 @@ import * as winston from 'winston';
 import * as fs from 'fs';
 import 'winston-daily-rotate-file';
 import {Logger as LoggerWinston} from "winston";
-import {Application} from "../../application";
+import {Application} from "../application";
 
-class LoggerGame {
-
+class LoggerLindo {
     public winston: LoggerWinston;
 
     constructor() {
-
-        let LOGS_PATH = Application.userDataPath + '/logs/game';
+        let LOGS_PATH = Application.userDataPath + '/logs/lindo';
         fs.mkdirSync(LOGS_PATH, {recursive: true});
 
         this.winston = winston.createLogger({
-
             transports: [
                 new (winston.transports.Console)({
                     handleExceptions: true,
@@ -40,10 +37,6 @@ class LoggerGame {
             exitOnError: false
         });
     }
-
-    public writeLindoLog(msg) {
-        this.winston.debug(JSON.stringify(msg).substr(0, 1200));
-    }
 }
 
-export const Logger = new LoggerGame();
+export const Logger = new LoggerLindo().winston;

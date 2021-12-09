@@ -47,6 +47,7 @@ import {SafePipeModule} from "safe-pipe";
 import {ShortcutsApplicationComponent} from "./windows/main/menus/shortcuts/application/application.component";
 import {ShortcutsInterfaceComponent} from "./windows/main/menus/shortcuts/interface/interface.component";
 import {ShortcutsInventoryComponent} from "./windows/main/menus/shortcuts/inventory/inventory.component";
+import {ShortcutsModComponent} from './windows/main/menus/shortcuts/mod/mod.component';
 import {ShortcutsOtherComponent} from "./windows/main/menus/shortcuts/other/other.component";
 import {ShortcutsSpellComponent} from "./windows/main/menus/shortcuts/spell/spell.component";
 
@@ -107,6 +108,7 @@ registerLocaleData(localePt);
         ShortcutsInventoryComponent,
         ShortcutsOtherComponent,
         ShortcutsSpellComponent,
+        ShortcutsModComponent,
         InputComponent
     ],
     entryComponents: [

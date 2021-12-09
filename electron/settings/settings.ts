@@ -1,5 +1,5 @@
 import {Application} from '../application';
-import {Logger} from '../core/logger/logger-lindo';
+import {Logger} from '../core/logger-lindo';
 import {checkSettings} from './settings-checker';
 import {SettingsDefault} from './settings-default';
 import * as macAddress from 'macaddress';
@@ -75,11 +75,9 @@ export class Settings {
     }
 
     public static resetSettings(): void {
-
         Logger.info("[SETTING] Restoring the settings..")
 
         settings.setSync(SettingsDefault);
-
         macAddress.one((err, addr) => {
             if (err || !addr) {
                 settings.setSync('macAddress', Math.random().toString());
@@ -115,7 +113,6 @@ export class Settings {
     }
 
     public static resetGame() {
-
         const destinationPath = Application.userDataPath + '/game';
 
         rimraf(destinationPath, () => {
@@ -144,5 +141,4 @@ export class Settings {
             });
         });
     }
-
 }

@@ -69,19 +69,24 @@
         "features": {
           "title": "Özellikler",
           "general": {
+            "menu": {
+              "general": "Genel",
+              "fight": "Kavga",
+              "group": "Grup",
+              "job": "Iş"
+            },
             "header": "Genel",
             "disable-inactivity": "Bağlantı kesilmeden önce hareketsizlik nedeniyle gecikmeyi uzatın",
             "health-bar": "Savaşçıların altındaki yaşam çubuklarının görüntülenmesini etkinleştirin",
-            "health-bar-shortcut": "Yaşam çubuklarını göster / gizle kısayolları",
             "jobsxp": "Seviye atlamak için iş xp ihtiyacının görüntülenmesini etkinleştirin",
             "estimator": "Savaşta büyü hasarını tahmin etme",
             "hide-mount": "Savaş sırasında binekleri gizle",
             "fightchronometer" : "Savaş kronometresini göster",
             "zaapsearchfilter" : "Zaap arama filtresini göster",
             "show-resources" : "Harita kaynaklarını göster",
-            "show-resources-shortcut" : "Harita kaynaklarını göstermek/gizlemek için kısayol",
             "harvest-indicator" : "Kaynakların altında kalan sürenin gösterimini etkinleştirin",
-            "party-member-on-map" : "Bir grubun üyelerinin aynı haritada olup olmadığını öğrenmek için bir gösterge ekleyin"
+            "party-member-on-map" : "Bir grubun üyelerinin aynı haritada olup olmadığını öğrenmek için bir gösterge ekleyin",
+            "monster-tooltip": "Canavar grupları bilgilerini haritada göster"
           },
           "groups": {
             "header": "Gruplar"
@@ -110,7 +115,8 @@
           "interface": "Arayüz",
           "spell": "Büyüler",
           "inventory": "Envanter",
-          "other": "Diğer"
+          "other": "Diğer",
+          "mod": "Modlar"
         }
       },
       "bug-report": {
@@ -132,12 +138,14 @@
           "header": "Grup",
           "active": "Otomatik gruplandırmayı etkinleştir",
           "warning": "Dikkat, grup liderini takip etmek diğer oyuncular tarafından bir bot kullanımı olarak anlaşılabilir, dikkatle ve tenha alanlarda kullanın.",
+          "warning": "Uyarı, Bu özellik, diğer oyuncular tarafından kullanılan bir bot olarak anlaşılabilir, dikkatli ve izole alanlarda kullanın.",
           "explanation-1": "Davetin otomatik olması için gruptaki karakterlerin liderle arkadaş olması gerekir.",
           "explanation-2": "Üyeler aynı haritada aynı karede lideri takip eder.",
           "leader": "Liderin adı",
           "members": "Karakterlerin isimleri",
           "members-add": "Bir karakter ekle",
           "follow-leader": "Grup liderini takip edin",
+          "disable-timer": "Otomatik grup için Zamanlayıcıyı devre dışı bırakın",
           "ready": "Atla \"Hazır\" otomatikleştir",
           "fight": "Savaşa otomatik olarak girişi sağla",
           "delay": "Takip süresi (saniye olarak)",
@@ -242,6 +250,7 @@
         "language": "Dil",
         "resolution": "Çözünürlük",
         "hide-shop": "Mağaza düğmesini gizle",
+        "full-screen": "Tam ekran",
         "hide-tab": "Çok hesaplı sekme çubuğunu gizle",
         "focus-fight-turn": "Sıra başladığında otomatik olarak bir hesaba geç",
         "local-content": "Yerel harita indirmeyi etkinleştir (beta)",
@@ -282,7 +291,7 @@
           "bestiary": "Yaratık Ansiklopedisi",
           "title": "Başlıklar ve Süsler",
           "achievement": "Başarılar",
-          "dailyQuest": "dailyQuest",
+          "dailyQuest": "Günlük Görevler",
           "spouse": "Eş",
           "shop": "Dükkâncı"
         },
@@ -301,6 +310,11 @@
         "spells": {
           "header": "Büyüler",
           "slot": "Sıra {{x}}"
+        },
+        "mods": {
+          "show-resources" : "Göstermek/gizlemek için kısayol",
+          "health-bar": "Göster/gizle kısayolları",
+          "monster-tooltip": "Göstermek/gizlemek canavarlar ipucu"
         }
       },
       "notifications": {

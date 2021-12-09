@@ -1,4 +1,4 @@
-import {Logger} from './core/logger/logger-lindo';
+import {Logger} from './core/logger-lindo';
 import {Application} from './application';
 import {Settings} from './settings/settings';
 import {app, BrowserWindow, dialog} from 'electron';
@@ -16,9 +16,7 @@ app.commandLine.appendSwitch("disable-renderer-backgrounding");
 app.commandLine.appendSwitch("disable-background-timer-throttling");
 
 app.on('ready', () => {
-
     process.on('uncaughtException', function (error) {
-
         Logger.error(error);
 
         dialog.showMessageBox(BrowserWindow.getFocusedWindow(), {

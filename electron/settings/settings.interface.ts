@@ -10,6 +10,7 @@ export interface SettingsInterface {
         general: {
             hidden_shop: boolean;
             hidden_tabs: boolean;
+            full_screen: boolean;
             stay_connected: boolean;
             user_agent: string;
             resolution: {
@@ -91,6 +92,8 @@ export interface SettingsInterface {
                 show_resources: boolean;
                 show_resources_shortcut: string;
                 party_member_on_map: boolean;
+                monster_tooltip: boolean;
+                monster_tooltip_shortcut: string;
             },
             auto_group: {
                 active: boolean;

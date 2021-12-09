@@ -69,19 +69,24 @@
         "features": {
           "title": "Contenuti",
           "general": {
+            "menu": {
+              "general": "Generale",
+              "fight": "Combattimento",
+              "group": "Gruppo",
+              "job": "Lavaro"
+            },
             "header": "Generali",
             "disable-inactivity": "Aumenta il tempo per disconessione da inattività",
             "health-bar": "Visualizza le barre della vita sotto i combattenti",
-            "health-bar-shortcut": "Tasto rapido per mostrare/nascondere le barre della vita",
             "jobsxp": "Attiva il display dell'esperienza del lavoro necessaria ad aumentarne il livello",
             "fightchronometer": "Mostra combattimenti di cronometri",
             "zaapsearchfilter" : "Mostra filtro di ricerca zaap",
             "estimator": "Fai una stima dei danni da incantesimi in battaglia",
             "hide-mount": "Nascondi le cavalcature durante i combattimenti",
             "show-resources" : "Mostra le risorse della mappa",
-            "show-resources-shortcut" : "Scorciatoia per mostrare/nascondere le risorse della mappa",
             "harvest-indicator" : "Attiva la visualizzazione del tempo rimanente sotto le risorse",
-            "party-member-on-map" : "Aggiungi un indicatore per sapere se i membri di un gruppo si trovano sulla stessa mappa"
+            "party-member-on-map" : "Aggiungi un indicatore per sapere se i membri di un gruppo si trovano sulla stessa mappa",
+            "monster-tooltip": "Visualizza le informazioni sui gruppi di mostri sulla mappa"
           },
           "groups": {
             "header": "Gruppi"
@@ -110,7 +115,8 @@
           "interface": "Interfaccia",
           "spell": "Incantesimi",
           "inventory": "Inventario",
-          "other": "Varie"
+          "other": "Varie",
+          "mod": "Mod"
         }
       },
       "bug-report": {
@@ -132,12 +138,14 @@
           "header": "Gruppo",
           "active": "Abilita creazione gruppo automatica",
           "warning": "Attenzione, seguire il capo-gruppo può essere considerato utilizzo di bot per altri giocatore, utilizza questa funzione con cautela e in zone poco affollate.",
+          "warningtimer": "Attenzione, esta característica porque considera el uso del bot para altri giocatore, usa que funciona con precaución y en una pequeña zona de pánico.",
           "explanation-1": "I personaggi nel gruppo devono essere amici con il capo-gruppo per rendere automatico l'invito.",
           "explanation-2": "I membri seguono il capo-gruppo se quest'ultimo è sulla stessa mappa.",
           "leader": "Nome del capo-gruppo",
           "members": "Nome dei personaggi",
           "members-add": "Aggiungi un personaggio",
           "follow-leader": "Segui il capo-gruppo",
+          "disable-timer": "Desactivación del temporizador del grupo automático",
           "ready": "Salta \"ready\" automaticamente",
           "fight": "Entra in combattimento automaticamente",
           "delay": "Tempo di attesa nel seguire il capo-gruppo (in secondi)",
@@ -239,6 +247,7 @@
         "language": "Lingua",
         "resolution": "Risoluzione",
         "hide-shop": "Nascondi il bottone dello Shop",
+        "full-screen": "A schermo intero",
         "hide-tab": "Nascondi la barra multi-account",
         "focus-fight-turn": "Fai focus su account quando inizia il suo turno di combattimento",
         "local-content": "Abilita download mappa in locale (beta)",
@@ -279,7 +288,7 @@
           "bestiary": "Bestiario",
           "title": "Titoli ed ornamenti",
           "achievement": "Obbiettivi",
-          "dailyQuest": "dailyQuest",
+          "dailyQuest": "Missioni Giornaliere",
           "spouse": "Matrimonio",
           "shop": "Negoziante"
         },
@@ -298,6 +307,11 @@
         "spells": {
           "header": "Incantesimi",
           "slot": "Posizione {{x}}"
+        },
+        "mods": {
+          "show-resources" : "Mostrare/nascondere le risorse della mappa",
+          "health-bar": "Mostrare/nascondere le barre della vita",
+          "monster-tooltip": "Mostra/nascondere tooltip mostri"
         }
       },
       "notifications": {

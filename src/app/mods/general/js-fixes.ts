@@ -41,7 +41,4 @@ export class JsFixes extends Mod {
             delete this.wGame.isoEngine.mapScene._refreshAreasBackup;
         });
     }
-    public reset() {
-        super.reset();
-    }
 }

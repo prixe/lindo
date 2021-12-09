@@ -1,9 +1,9 @@
 import electron = require('electron');
+import { UserAgent } from '../core/user-agent';
 
 export class UpdateWindow {
 
     public static createWindow(): Electron.BrowserWindow {
-
         let screenPoint = electron.screen.getCursorScreenPoint();
         let display = electron.screen.getDisplayNearestPoint(screenPoint);
 
@@ -32,6 +32,8 @@ export class UpdateWindow {
                 enableRemoteModule: true
             }
         });
+        let userAgent = new UserAgent(0);
+        window.webContents.setUserAgent(userAgent.getString());
 
         window.once('ready-to-show', () => { window.show() })
         window.on('closed', () => { window = null; });

@@ -75,8 +75,7 @@ export class GeneralComponent implements OnInit {
             y: parseInt(aValue[1])
         };
 
-        console.log(resolution);
-
+        Logger.info(resolution);
         if (this.settingsService.option.general.resolution != resolution) {
             electron.getCurrentWindow().setSize(parseInt(aValue[0]), parseInt(aValue[1]), true);
 
@@ -84,7 +83,6 @@ export class GeneralComponent implements OnInit {
                 html: this.translateService.instant("app.window.options.general.resolution.confirm-body"),
                 timer: 10000
             }).then((result) => {
-
                 if (result.isConfirmed) {
                     this.settingsService.option.general.resolution = resolution;
                 } else if (result.isDenied) {
@@ -95,6 +93,14 @@ export class GeneralComponent implements OnInit {
                     electron.getCurrentWindow().setSize(parseInt(this.settingsService.option.general.resolution.x), parseInt(this.settingsService.option.general.resolution.y), true);
                 }
             });
+        }
+    }
+
+    public setFullScreen($event: any): void {
+        if (this.settingsService.option.general.full_screen) {
+            electron.getCurrentWindow().setFullScreen(true);
+        } else {
+            electron.getCurrentWindow().setFullScreen(false);
         }
     }
 
