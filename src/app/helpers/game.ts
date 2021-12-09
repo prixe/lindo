@@ -8,7 +8,6 @@ export class Game extends EventEmitter {
     public credentials: { account_name: string, password: string };
 
     public constructor(id: number, credentials?: { account_name: string, password: string }) {
-
         super();
         this.id = id;
 

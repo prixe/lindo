@@ -1,4 +1,4 @@
-import { Logger } from './logger/logger-lindo';
+import { Logger } from './logger-lindo';
 
 const electronLocalshortcut = require('electron-localshortcut');
 const settings = require('electron-settings');
@@ -17,7 +17,6 @@ export class ShortCuts {
     }
 
     public bindAll(): void {
-
         let errorConsoleFunction = console.error;
         console.error = function() {}
 
@@ -32,7 +31,6 @@ export class ShortCuts {
                 }
             }
         });
-
         console.error = errorConsoleFunction;
     }
 

@@ -33,13 +33,11 @@
         const Application = require('@electron/remote').require('./application').Application;
         const Settings = require('@electron/remote').require('./settings/settings').Settings;
 
-        let LoggerGame = require('@electron/remote').require('./core/logger/logger-game').Logger;
-        let LoggerLindo = require('@electron/remote').require('./core/logger/logger-lindo').Logger;
+        let LoggerLindo = require('@electron/remote').require('./core/logger-lindo').Logger;
 
         window.platform = require('@electron/remote').process.platform;
 
         /** Just for distant code compatiblity */
-        window.FileLoggerLib = LoggerGame;
         window.Logger = LoggerLindo;
     </script>
 </head>

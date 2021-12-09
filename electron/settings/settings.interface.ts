@@ -10,6 +10,7 @@ export interface SettingsInterface {
         general: {
             hidden_shop: boolean;
             hidden_tabs: boolean;
+            full_screen: boolean;
             stay_connected: boolean;
             user_agent: string;
             resolution: {

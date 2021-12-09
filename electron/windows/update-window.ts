@@ -4,7 +4,6 @@ import { UserAgent } from '../core/user-agent';
 export class UpdateWindow {
 
     public static createWindow(): Electron.BrowserWindow {
-
         let screenPoint = electron.screen.getCursorScreenPoint();
         let display = electron.screen.getDisplayNearestPoint(screenPoint);
 

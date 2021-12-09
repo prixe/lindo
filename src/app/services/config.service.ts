@@ -12,6 +12,7 @@ type Param = 'language'
     /* GENERAL */
     | 'option.general'
     | 'option.general.hidden_shop'
+    | 'option.general.full_screen'
     | 'option.general.stay_connected'
     | 'option.general.resolution'
     | 'option.general.resolution.x'

@@ -1,5 +1,5 @@
 import {Application} from '../application';
-import {Logger} from '../core/logger/logger-lindo';
+import {Logger} from '../core/logger-lindo';
 import {checkSettings} from './settings-checker';
 import {SettingsDefault} from './settings-default';
 import * as macAddress from 'macaddress';
@@ -15,16 +15,19 @@ export class Settings {
         (checkSettings()) ? null : this.resetSettings();
 
         if (!settings.getSync('language')) {
-            let local = app.getLocale();
-            let shortLocal = local.slice(0, 1);
+            const local = app.getLocale();
+            const shortLocal = local.slice(0, 1);
 
             switch (shortLocal) {
+                // native language of DT
                 case "fr":
+                case "en":
                 case "es":
                 case "it":
+                case "pt":
                     settings.setSync('language', shortLocal);
                     break;
-                case "en":
+                // language unavaible in DT
                 case "pl":
                 case "tr":
                 default:
@@ -40,11 +43,12 @@ export class Settings {
             'es': require(Application.appPath + `/dist/electron/i18n/es`),
             'it': require(Application.appPath + `/dist/electron/i18n/it`),
             'pl': require(Application.appPath + `/dist/electron/i18n/pl`),
-            'tr': require(Application.appPath + `/dist/electron/i18n/tr`)
+            'tr': require(Application.appPath + `/dist/electron/i18n/tr`),
+            'pt': require(Application.appPath + `/dist/electron/i18n/pt`)
         }).setLocale(settings.getSync('language'));
 
         ipcMain.on('read-settings', (event, args) => {
-            let value = settings.getSync(args[0]);
+            const value = settings.getSync(args[0]);
             event.returnValue = value;
         });
 
@@ -68,14 +72,12 @@ export class Settings {
             i18n.setLocale(args[0]);
             this.reloadSettings();
         });
-    };
+    }
 
     public static resetSettings(): void {
-
         Logger.info("[SETTING] Restoring the settings..")
 
         settings.setSync(SettingsDefault);
-
         macAddress.one((err, addr) => {
             if (err || !addr) {
                 settings.setSync('macAddress', Math.random().toString());
@@ -87,7 +89,7 @@ export class Settings {
             Logger.info("[SETTING] All settings are restored.");
             this.reloadSettings();
         });
-    };
+    }
 
     public static reloadSettings(): void {
         Application.mainWindows.forEach((window) => {
@@ -108,11 +110,10 @@ export class Settings {
             platform: process.platform,
             language: settings.getSync('language')
         };
-    };
+    }
 
     public static resetGame() {
-
-        let destinationPath = Application.userDataPath + '/game';
+        const destinationPath = Application.userDataPath + '/game';
 
         rimraf(destinationPath, () => {
             app.relaunch();
@@ -121,7 +122,7 @@ export class Settings {
     }
 
     public static clearCache() {
-        let promises = [];
+        const promises = [];
         promises.push(new Promise((resolve, reject) => {
             Application.mainWindows.forEach((mainWindow) => {
                 mainWindow.win.webContents.session.clearCache().then(() => {
@@ -140,5 +141,4 @@ export class Settings {
             });
         });
     }
-
 }

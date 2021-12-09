@@ -3,7 +3,8 @@ import {SettingsService} from '@services/settings.service';
 import {ApplicationService} from "@services/electron/application.service";
 
 @Component({
-    templateUrl: './general.component.html'
+    templateUrl: './general.component.html',
+    styleUrls: ['./general.component.scss']
 })
 export class GeneralComponent {
 

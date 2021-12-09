@@ -1,14 +1,14 @@
-import {AfterViewInit, Component, EventEmitter, Input, NgZone, Output} from '@angular/core';
-import {TranslateService} from "@ngx-translate/core";
+import { AfterViewInit, Component, EventEmitter, Input, NgZone, Output } from '@angular/core';
+import { TranslateService } from "@ngx-translate/core";
 
 import * as Mods from "@mods/index";
-import {Mod} from "@mods/mod";
-import {Game} from "@helpers/game";
-import {WindowService} from "@services/window.service";
-import {IpcRendererService} from "@services/electron/ipcrenderer.service";
-import {SettingsService} from "@services/settings.service";
-import {BugReportService} from "@services/bug-report.service";
-import {ApplicationService} from "@services/electron/application.service";
+import { Mod } from "@mods/mod";
+import { Game } from "@helpers/game";
+import { WindowService } from "@services/window.service";
+import { IpcRendererService } from "@services/electron/ipcrenderer.service";
+import { SettingsService } from "@services/settings.service";
+import { BugReportService } from "@services/bug-report.service";
+import { ApplicationService } from "@services/electron/application.service";
 
 @Component({
     selector: 'app-main-game-component',
@@ -111,6 +111,12 @@ export class GameComponent implements AfterViewInit {
                     });
                     this.mods.push(notifications)
                     break;
+                case 'RuneOpenerList':
+                    const lang = this.windowService.window['Frame' + this.game.id].contentWindow.Config.language;
+                    const runeOpenerLister = new Mods[mod](this.game.window, this.settingsService, this.translateService, lang);
+                    this.mods.push(runeOpenerLister)
+
+                    break;
                 default:
                     this.mods.push(new Mods[mod](this.game.window, this.settingsService, this.translateService))
             }
@@ -137,7 +143,7 @@ export class GameComponent implements AfterViewInit {
                 this.game.emit('logged', true);
 
                 /* create icon */
-                const char = new this.game.window.CharacterDisplay({scale: 'fitin'});
+                const char = new this.game.window.CharacterDisplay({ scale: 'fitin' });
                 char.setLook(this.game.window.gui.playerData.characterBaseInformations.entityLook, {
                     riderOnly: true,
                     direction: 4,

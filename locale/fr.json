@@ -69,21 +69,24 @@
         "features": {
           "title": "Fonctionnalités",
           "general": {
+            "menu": {
+              "general": "Général",
+              "fight": "Combat",
+              "group": "Groupe",
+              "job": "Métier"
+            },
             "header": "Général",
             "disable-inactivity": "Prolonger le délai maximum d'inactivité",
             "estimator": "Estimation des dégats des sorts en combat",
             "health-bar": "Barres de vie en-dessous des combatants",
-            "health-bar-shortcut": "Raccourcis pour les barres de vie",
             "jobsxp": "Activer l'affichage de l'xp a obtenir pour monter de niveau (métier)",
             "hide-mount": "Cacher les montures pendant les combats",
             "fightchronometer": "Afficher le chronomètre de combats",
             "zaapsearchfilter" : "Afficher le filtre de recherche de zaap",
             "show-resources" : "Affiches les ressources de la carte",
-            "show-resources-shortcut" : "Raccourcis pour l'affichage des ressources",
             "harvest-indicator" : "Barres de temps sous les récoltes",
             "party-member-on-map" : "Ajoute un indicateur pour savoir si les membres d'un groupe sont sur la même carte",
-            "monster-tooltip": "Affiche les informations des groupes de monstres sur la carte",
-            "monster-tooltip-shortcut": "Raccourci pour les informations des groupes de monstres"
+            "monster-tooltip": "Affiche les informations des groupes de monstres sur la carte"
           },
           "groups": {
             "header": "Groupe"
@@ -112,7 +115,8 @@
           "interface": "Interface",
           "spell": "Sorts",
           "inventory": "Inventaire",
-          "other": "Divers"
+          "other": "Divers",
+          "mod": "Mods"
         }
       },
       "bug-report": {
@@ -133,12 +137,14 @@
         "auto-group": {
           "active": "Activer le groupage automatique",
           "warning": "Attention, suivre le meneur peut être considéré comme du boting pour les autres joueurs, utilisez le avec modération et dans des zones non peuplées.",
+          "warningtimer": "Attention, cette fonctionnalité peut être considérée comme du boting pour les autres joueurs, utilisez le avec modération et dans des zones non peuplées.",
           "explanation-1": "Les personnages du groupe doivent être amis avec le meneur pour que l'invitation soit automatique.",
           "explanation-2": "Les membres suivent le meneur si ce dernier est sur la même carte.",
           "leader": "Nom du meneur",
           "members": "Noms des personnages",
           "members-add": "Ajouter un personnage",
           "follow-leader": "Suivre le meneur du groupe",
+          "disable-timer": "Désactiver le Timer pour l'auto groupe",
           "ready": "Passer automatique en ready",
           "fight": "Entrée dans les combats automatique",
           "delay": "Délai avant de suivre (en seconde)",
@@ -244,6 +250,7 @@
         "language": "Langage",
         "resolution": "Résolution",
         "hide-shop": "Cacher le bouton Shop",
+        "full-screen": "Plein écran",
         "hide-tab": "Masquer la barre d'onglets multi-compte",
         "focus-fight-turn": "Basculer automatiquement vers un compte à son tour de jeu",
         "local-content": "Activer le téléchargement local des cartes (beta)",
@@ -303,6 +310,11 @@
         "spells": {
           "header": "Sorts",
           "slot": "Emplacement {{x}}"
+        },
+        "mods": {
+          "show-resources" : "Affichage des ressources",
+          "health-bar": "Affichage la barres de vie",
+          "monster-tooltip": "Affichage des informations des groupes de monstres"
         }
       },
       "notifications": {
