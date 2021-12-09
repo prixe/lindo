@@ -194,7 +194,7 @@
             },
             "maximum-account": {
               "title": "Oops!",
-              "text": "You can not save more than 4 accounts with Wabbit donor rank.",
+              "text": "You can not save more than 4 accounts without Wabbit donor rank.",
               "confirm": "Increase my VIP rank",
               "cancel": "I understood"
             },
