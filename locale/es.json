@@ -11,7 +11,7 @@
       },
       "prompt": {
         "tabs-overflow": {
-          "text": "Lindo no admite más de 6 pestañas por ventana, por encima de eso, puede ser lento y con errores. Pero puede abrir una nueva ventana y funcionará bien."
+          "text": "Lindo no permite más de 6 pestañas por ventana, más puede hacer que vaya lento y tenga errores. Puedes abrir una nueva ventana y funcionará bien."
         }
       }
     },
@@ -20,8 +20,8 @@
       "private-message": "Mensaje de {{character}}",
       "tax-collector": "Un recaudador está siendo atacado!",
       "kolizeum": "Se ha encontrado un Koliseo !",
-      "party-invitation": "Estás invitado a unirte al grupo de {{character}}",
-      "aggression": "Has sido agredido !",
+      "party-invitation": "Estás invitado al grupo de {{character}}",
+      "aggression": "Has sido agredido!",
       "sale-message": "Banco"
     },
     "window": {
@@ -31,31 +31,31 @@
       },
       "master-password": {
         "continue": "Continuar",
-        "skip": "Omita este paso",
-        "password-label": "Introduzca la contraseña maestra",
+        "skip": "Omitir este paso",
+        "password-label": "Introduzca la contraseña",
         "password-bad": "La contraseña es incorrecta"
       },
       "update-dofus": {
         "title": "Actualizar Lindo",
         "step0": "Preparándose para la actualización..",
-        "step1": "Etapa 1 : Descarga de archivos Dofus",
-        "step2": "Etapa 2 : Descargar lindo parche",
-        "step3": "Etapa 3 : Resolución de versión",
-        "step4": "Etapa 4 : Aplicar los parches",
-        "step5": "Etapa 5 : Escribir archivos modificados",
-        "step6": "Etapa 6 : Eliminar archivos antiguos",
-        "step7": "Etapa 7 : Finalización",
-        "step8": "Etapa 8 : Lanzamiento de Lindo..",
+        "step1": "Etapa 1 : Descargando archivos Dofus",
+        "step2": "Etapa 2 : Descargando parche de lindo",
+        "step3": "Etapa 3 : Resolviendo de versión",
+        "step4": "Etapa 4 : Aplicando los parches",
+        "step5": "Etapa 5 : Escribiendo archivos modificados",
+        "step6": "Etapa 6 : Eliminando archivos antiguos",
+        "step7": "Etapa 7 : Finalizado",
+        "step8": "Etapa 8 : Abriendo de Lindo...",
         "information": {
           "search": "Buscando actualizaciones...",
-          "error": "No se puede descargar la actualización! Por favor, inténtelo de nuevo otra vez",
-          "retry": "Volver a intentar"
+          "error": "No se puede descargar la actualización! Por favor, inténtelo de nuevo",
+          "retry": "Reintentar"
         }
       },
       "options": {
         "title": "Opciones",
         "button": {
-          "close": "Terminar"
+          "close": "Cerrar"
         },
         "general": {
           "reset-game": "Volver a descargar los datos",
@@ -63,7 +63,7 @@
           "shortcuts": "Configurar",
           "clear-cache": "Vaciar la caché",
           "resolution": {
-            "confirm-body": "¿Está de acuerdo con la resolución actual?<br/>La recuperación automática en 10 segundos..."
+            "confirm-body": "¿Está de acuerdo con la resolución actual?<br/>Se recuperará automáticamente en 10 segundos..."
           }
         },
         "features": {
@@ -77,17 +77,17 @@
             },
             "header": "General",
             "disable-inactivity": "Extender el período de inactividad",
-            "health-bar": "Visualización de barras de vida debajo de los combatientes",
+            "health-bar": "Visualización de barras de vida debajo de los personajes",
             "health-bar-shortcut": "Atajos para mostrar las barras de salud",
             "jobsxp": "Activar la visualización de la xp necesaria para subir de nivel el oficio",
             "estimator": "Daño estimado de hechizo durante el combate",
             "hide-mount": "Ocultar las monturas durante las peleas",
-            "fightchronometer" : "Mostrar peleas cronómetro",
-            "zaapsearchfilter" : "Mostra filtro di ricerca zaap",
+            "fightchronometer" : "Mostrar el cronómetro durante la pelea",
+            "zaapsearchfilter" : "Mostrar filtro de busqueda zaap",
             "show-resources" : "Mostrar recursos del mapa",
-            "harvest-indicator" : "Activar la visualización del tiempo restante debajo de los recursos",
-            "party-member-on-map" : "Agregar un indicador para saber si los miembros de un grupo están en el mismo mapa",
-            "monster-tooltip": "Mostrar información de grupos de monstruos en el mapa",
+            "show-resources-shortcut" : "Atajo para mostrar/ocultar recursos del mapa",
+            "harvest-indicator" : "Activar la visualización del tiempo restante de recolección debajo de los recursos",
+            "party-member-on-map" : "Añadir un indicador para saber si los miembros de un grupo están en el mismo mapa"
           },
           "groups": {
             "header": "Grupo"
@@ -138,31 +138,29 @@
         "auto-group": {
           "header": "Grupo",
           "active": "Habilitar agrupación automática",
-          "warning": "Atención siguiendo al líder del grupo puede ser considerado como un bot para los otros jugadores, lo utilizan con moderación y en las zonas despobladas.",
-          "warningtimer": "Atención, esta función puede verse como un bot para otros jugadores, úsala con moderación y en áreas escasamente pobladas.",
-          "explanation-1": "Los personajes del grupo deben ser amigos con el líder de la invitación a ser automática.",
-          "explanation-2": "Los miembros siguen el líder si está en la misma tarjeta.",
+          "warning": "Atención! Seguir al líder del grupo puede ser considerado como un bot para los otros jugadores, utilizalo con moderación y en las zonas despobladas.",
+          "explanation-1": "Los personajes del grupo deben ser amigos con el lider para que la invitación sea automática.",
+          "explanation-2": "Los miembros siguen el líder si está en el mismo mapa.",
           "leader": "Nombre del jefe",
           "members": "Nombres de los personajes",
           "members-add": "Añadir un personaje",
-          "follow-leader": "Seguir el líder del grupo",
-          "disable-timer": "Desactivar el temporizador para el grupo automático",
-          "ready": "Skip \"listo\" de forma automática",
-          "fight": "La entrada automática en la lucha contra",
+          "follow-leader": "Seguir al líder del grupo",
+          "ready": "Saltar \"listo\" de forma automática",
+          "fight": "Entrar en combate automáticamente",
           "delay": "Tiempo antes de seguir (en segundos)",
           "follow-on-map": "Sigue al líder en un mapa",
           "strict-move": "Muevete sobre la celda que mueve el líder",
           "pvp-warning": "No puedes unirte a una pelea PvP automáticamente"
         },
         "multi-account": {
-          "home-no-master": "Para utilizar esta función, una contraseña debe configurarse. Se utiliza para iniciar Lindo con varias cuentas de automatización.",
+          "home-no-master": "Para utilizar esta función, debe configurar una contraseña. Se utiliza para iniciar Lindo con varias cuentas de forma automática.",
           "header": "Múltiples cuentas",
           "active": "Habilitar múltiples cuentas",
           "window": "Ventana",
           "delete-window": "Quitar",
           "add-window": "Añadir ventana",
           "add": "Añadir cuenta",
-          "account-name": "Login",
+          "account-name": "Usuario",
           "password": "Contraseña",
           "modify_password": "Cambiar la contraseña",
           "configure_password": "Configurar la contraseña",
@@ -172,54 +170,54 @@
             "label": "Introduzca su contraseña",
             "bad": "La contraseña es incorrecta",
             "confirm": "Continuar",
-            "ignore-step": "Omita este paso"
+            "ignore-step": "Omitir este paso"
           },
           "prompt": {
             "add-master": {
               "title": "Configuración de la contraseña",
-              "confirm": "Registro",
-              "cancel": "Anular",
+              "confirm": "Aceptar",
+              "cancel": "Cancelar",
               "min-lenght": "La contraseña debe contener al menos {{ lenght }} caracteres de longitud",
-              "success-text": "La contraseña que tendrá que iniciar la aplicación ahora"
+              "success-text": "Se ha creado la contraseña"
             },
             "edit-master": {
-              "title": "Cambio de contraseña",
+              "title": "Cambiar de contraseña",
               "input-old-placeholder": "Antigua contraseña",
               "input-new-placeholder": "Nueva contraseña",
-              "confirm": "Registro",
-              "cancel": "Anular",
+              "confirm": "Aceptar",
+              "cancel": "Cancelar",
               "min-lenght": "La nueva contraseña debe contener al menos {{ lenght }} caracteres de longitud",
               "incorrect-old": "La antigua contraseña es incorrecta",
-              "success-text": "La contraseña se ha cambiado."
+              "success-text": "Se ha cambiado la contraseña."
             },
             "delete-master": {
               "title": "Eliminación de la contraseña",
-              "text": "¿Está usted seguro?<br/>Esto eliminará las cuentas grabadas.",
-              "confirm": "Quitar",
-              "cancel": "Anular",
+              "text": "¿Está usted seguro?<br/>Esto eliminará las cuentas guardadas.",
+              "confirm": "Aceptar",
+              "cancel": "Cancelar",
               "success-text": "La contraseña ha sido borrada."
             },
             "maximum-account": {
               "title": "Uy !",
-              "text": "Puede guardar siendo más de 4 cuentas el rango de Wabbit donante.",
+              "text": "No puede guardar más de 4 cuentas sin el rango de Wabbit donante.",
               "confirm": "Aumentar mi rango VIP",
-              "cancel": "He entendido"
+              "cancel": "Cancelar"
             },
             "add-account": {
               "title": "Añadir cuenta",
               "input-login-placeholder": "Login",
               "input-password-placeholder": "Contraseña",
-              "confirm": "Registro",
-              "cancel": "Anular",
-              "min-lenght-login": "El login debe contener al menos 1 carácter",
+              "confirm": "Registrar",
+              "cancel": "Cancelar",
+              "min-lenght-login": "El usuario debe contener al menos 1 carácter",
               "min-lenght-password": "El contraseña debe contener al menos 1 carácter"
             },
             "edit-account": {
-              "title": "Edición de una cuenta",
-              "input-login-placeholder": "Login",
+              "title": "Editar una cuenta",
+              "input-login-placeholder": "Usuario",
               "input-password-placeholder": "Contraseña",
-              "confirm": "Registro",
-              "cancel": "Anular",
+              "confirm": "Aceptar",
+              "cancel": "Cancelar",
               "min-lenght-login": "El login debe contener al menos 1 carácter",
               "min-lenght-password": "El contraseña debe contener al menos 1 carácter"
             }
@@ -228,7 +226,7 @@
         "zaapsearchfilter":{
           "placeholder": "Busca un zaap",
           "placeholderZaapi": "Busca un zaapi",
-          "placeholderPrisme": "Busca un prisme"
+          "placeholderPrisme": "Busca un prisma"
         },
         "party-info": {
           "header-lvl": "Mostrar nivel del grupo",
@@ -236,7 +234,7 @@
           "level":"Niv."
         },
         "jobsxp": {
-          "text": " XP faltante<br>antes nivel "
+          "text": " XP faltante<br>antes del nivel "
         }
       },
       "general": {
@@ -248,6 +246,7 @@
         "language": "Idioma",
         "resolution": "Resolución",
         "hide-shop": "Ocultar el botón Shop",
+        "full-screen": "Pantalla completa",
         "hide-tab": "Ocultar la barra de tareas multicuentas",
         "focus-fight-turn": "Cambiar automáticamente a una cuenta cuando inicia su turno",
         "local-content": "Habilitar descargar mapas locales (beta)",
@@ -320,7 +319,7 @@
         "fight-turn": "Al inicio del torno (combate)",
         "private-message": "A la llegada de un mensaje privado",
         "tax-collector": "Cuando un recaudador de impuestos es atacado",
-        "kolizeum": "Cuando se encuentra la pelea de kolizeum",
+        "kolizeum": "Cuando se encuentra la pelea de koliseo",
         "party-invitation": "Cuando alguien te invita a unirte a un grupo",
         "aggression": "Cuando alguien te agrede",
         "sale-message": "Cuando se vende un artículo"

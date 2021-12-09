@@ -63,6 +63,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       #utiliser node v14 ? https://github.com/actions/setup-node
+      - run: node -v
       - run: npm i
       - run: npm run build:prod
       - name: release mac

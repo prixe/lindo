@@ -59,6 +59,10 @@ export class MainWindow {
             }
         });
 
+        if (settings.getSync('option.general.full_screen')) {
+            this.win.setFullScreen(true);
+        }
+
         MainWindow.count++;
 
         this.userAgent = new UserAgent(windowId);
@@ -68,7 +72,6 @@ export class MainWindow {
         this.menu = Menu.buildFromTemplate(GameMenuTemplate.build());
 
         this.win.on('close', () => {
-
             let indexOfWindow = Application.mainWindows.findIndex((element) => {
                 return element.win.id == this.win.id;
             });

@@ -485,6 +485,7 @@ export namespace Option {
     export class General {
 
         private _hidden_shop: boolean;
+        private _full_screen: boolean;
         private _hidden_tabs: boolean;
         private _resolution: {
             x: boolean;
@@ -503,6 +504,15 @@ export namespace Option {
         set hidden_shop(hidden_shop: boolean) {
             this.settingsProvider.write('option.general.hidden_shop', hidden_shop);
             this._hidden_shop = hidden_shop;
+        }
+
+        get full_screen(): boolean {
+            return this._full_screen;
+        }
+
+        set full_screen(full_screen: boolean) {
+            this.settingsProvider.write('option.general.full_screen', full_screen);
+            this._full_screen = full_screen;
         }
 
         get user_agent(): string {
@@ -571,6 +581,7 @@ export namespace Option {
         constructor(private settingsProvider: SettingsProvider) {
             this.user_agent = this.settingsProvider.read('option.general.user_agent');
             this.hidden_shop = this.settingsProvider.read('option.general.hidden_shop');
+            this.full_screen = this.settingsProvider.read('option.general.full_screen');
             this.hidden_tabs = this.settingsProvider.read('option.general.hidden_tabs');
             this.resolution = this.settingsProvider.read('option.general.resolution');
             this.local_content = this.settingsProvider.read('option.general.local_content');
