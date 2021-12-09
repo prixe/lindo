@@ -58,7 +58,7 @@ export class PartyMember extends Mod{
         let i = 0;
         this.members.forEach((status, memberId) => {
             if (memberId != this.wGame.isoEngine.actorManager.userId) {
-                const divMember: HTMLDivElement = this.wGame.document.getElementsByClassName('member')[i];
+                const divMember = this.wGame.document.getElementsByClassName('member')[i] as HTMLDivElement;
                 this.addStatusToMember(divMember,status);
             }
             i++;

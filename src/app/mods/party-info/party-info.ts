@@ -57,7 +57,9 @@ export class PartyInfo extends Mod {
 
             partyLevelElement.textContent = this.translate.instant('app.option.vip.party-info.level') + " ?";
             partyLevelElement.id = "party-level";
-            partyLevelElement.style = "font-size: 13px;user-select: none;cursor: default;"
+            partyLevelElement.style.fontSize = "13px";
+            partyLevelElement.style.userSelect = "none";
+            partyLevelElement.style.cursor = "default";
             this.container.appendChild(partyLevelElement);
         }
 
@@ -67,13 +69,16 @@ export class PartyInfo extends Mod {
             const prospectionTextElement = this.wGame.document.createElement("span");
 
             prospectionImageElement.src = "./assets/ui/icons/prospecting.png";
-            prospectionImageElement.style = "height: 1em; vertical-align: middle;"
+            prospectionImageElement.style.height = "1em";
+            prospectionImageElement.style.verticalAlign = "middle;"
             prospectionContainerElement.appendChild(prospectionImageElement);
-            prospectionContainerElement.style = "font-size: 13px;user-select: none;cursor: default;"
+            prospectionContainerElement.style.fontSize = "13px";
+            prospectionContainerElement.style.userSelect = "none";
+            prospectionContainerElement.style.cursor = "default";
 
             prospectionTextElement.textContent = " ?";
             prospectionTextElement.id = "party-pr";
-            prospectionTextElement.style = "vertical-align: middle;"
+            prospectionTextElement.style.verticalAlign = "middle"
 
             prospectionContainerElement.appendChild(prospectionTextElement);
             this.container.appendChild(prospectionContainerElement);

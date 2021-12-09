@@ -1,18 +1,19 @@
 import {SettingsService} from "@services/settings.service";
 import {TranslateService} from "@ngx-translate/core";
+import {WGame} from "../types/dofus.types";
 
 export abstract class Mod {
     private events: any[] = [];
     private onReset: any[] = [];
 
-    public wGame: any|Window;
+    public wGame: WGame;
     protected settings: SettingsService;
     protected translate: TranslateService;
 
     protected params: any;
 
     constructor(
-        wGame: any|Window,
+        wGame: WGame,
         settings: SettingsService,
         translate: TranslateService
     ) {

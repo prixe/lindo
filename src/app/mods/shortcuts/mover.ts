@@ -163,7 +163,7 @@ export class Mover extends Mod {
     }
 
     private isCellOnMap(cell: number): boolean {
-    	return this.wGame.isoEngine.mapRenderer.map.cells[cell];
+    	return this.wGame.isoEngine.mapRenderer.map.cells[cell] !== undefined;
     }
 
     private isCellWalkable(cell: number): boolean {

@@ -1,6 +1,6 @@
 import {SettingsService} from "@services/settings.service";
 import {TranslateService} from "@ngx-translate/core";
-
+import {WGame} from "../../types/dofus.types";
 import {Mod} from "../mod";
 import * as Mods from "./index";
 
@@ -8,7 +8,7 @@ export class General extends Mod {
     private mods: Mod[] = [];
 
     constructor(
-        wGame: any|Window,
+        wGame: WGame,
         settings: SettingsService,
         translate: TranslateService
     ) {
