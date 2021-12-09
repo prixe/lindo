@@ -1,6 +1,16 @@
 ## ⚠ ATTENTION, VÉRIFIEZ QUE VOUS TÉLÉCHARGEZ LINDO DEPUIS LINDO-APP.COM
 ## ⚠ CERTAINS SITES MALVEILLANTS INSTALLERONT UN VIRUS SUR VOTRE ORDINATEUR
 
+# [2.6.5]
+
+### Ajout
+- Ajout du portugais
+- Possibilité de supprimer les timers pour le suivit automatique
+
+
+### Améliorations
+- Affichage des raccourcis dans les options de Lindo
+
 ## [2.6.5]
 
 ### Ajout
