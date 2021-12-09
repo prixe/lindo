@@ -715,6 +715,7 @@ export namespace Option {
             private _harvest_indicator: boolean;
             private _monster_tooltip: boolean;
             private _monster_tooltip_shortcut: string;
+            private _verticaltimeline: boolean;
 
             get party_info_pp():boolean{
                 return this._party_info_pp;
@@ -805,7 +806,7 @@ export namespace Option {
                 this.settingsProvider.write('option.vip.general.health_bar_shortcut', health_bar_shortcut);
                 this._health_bar_shortcut = health_bar_shortcut;
             }
-            
+
             get show_resources(): boolean {
                 return this._show_resources;
             }
@@ -841,7 +842,7 @@ export namespace Option {
                 this.settingsProvider.write('option.vip.general.harvest_indicator', harvest_indicator);
                 this._harvest_indicator = harvest_indicator;
             }
-            
+
             get monster_tooltip(): boolean {
                 return this._monster_tooltip;
             }
@@ -858,6 +859,15 @@ export namespace Option {
             set monster_tooltip_shortcut(monster_tooltip_shortcut: string) {
                 this.settingsProvider.write('option.vip.general.monster_tooltip_shortcut', monster_tooltip_shortcut);
                 this._monster_tooltip_shortcut = monster_tooltip_shortcut;
+            }
+
+            get verticaltimeline(): boolean {
+                return this._verticaltimeline;
+            }
+
+            set verticaltimeline(verticaltimeline: boolean) {
+                this.settingsProvider.write('option.vip.general.verticaltimeline', verticaltimeline);
+                this._verticaltimeline = verticaltimeline;
             }
 
             constructor(private settingsProvider: SettingsProvider) {
@@ -877,6 +887,7 @@ export namespace Option {
                 this.harvest_indicator = this.settingsProvider.read('option.vip.general.harvest_indicator');
                 this._monster_tooltip = this.settingsProvider.read('option.vip.general.monster_tooltip');
                 this._monster_tooltip_shortcut = this.settingsProvider.read('option.vip.general.monster_tooltip_shortcut');
+                this.verticaltimeline = this.settingsProvider.read('option.vip.general.verticaltimeline');
             }
         }
 
