@@ -15,8 +15,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit(): void {
-
-        this.translate.addLangs(["en", "fr", "es", "it", "pl", "tr"]);
+        this.translate.addLangs(["en", "fr", "es", "it", "pl", "tr", "pt"]);
 
         this.translate.setDefaultLang(this.settingsService.language);
         this.translate.use(this.settingsService.language);

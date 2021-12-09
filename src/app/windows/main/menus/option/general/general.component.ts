@@ -40,8 +40,9 @@ export class GeneralComponent implements OnInit {
         {name: 'English', value: "en"},
         {name: 'Español', value: "es"},
         {name: 'Italiano', value: "it"},
+        {name: "Português", value: "pt" },
         {name: 'Polskie', value: "pl"},
-        {name: 'Türkçe', value: "tr"}
+        {name: 'Türkçe', value: "tr"},
     ];
 
     public restartForEarlyDisplayed: boolean = false;
@@ -59,7 +60,6 @@ export class GeneralComponent implements OnInit {
     ) {
         this.windowService = this.injector.get(WindowService)
     }
-
 
     ngOnInit(): void {
         // fixe the two way binding object by this tricks
