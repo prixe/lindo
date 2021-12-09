@@ -39,7 +39,6 @@ export class RuneOpenerList extends Mod {
         this.removeListener(this.wGame.dofus.connectionManager, 'data', this.onReceiveMessage)
     }
     onSendMessage = (msg) => {
-        console.log(msg);
         if (!msg.data.data) return;
         if (msg.data.data.type !== 'ObjectUseMessage') return;
         var uid = msg.data.data.data.objectUID;
