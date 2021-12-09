@@ -3,6 +3,13 @@
 
 ## [2.6.4] - 2021-11-12
 
+### Ajout
+- Lors de l'ouverture des Fragments Magiques avoie un message dans le chan Info contenant les runes découvertes
+- Possibilité de définir la résolution de Lindo en plain écran
+
+
+## [2.6.4] - 2021-11-12
+
 ### Améliorations
 - Mise à jour des User Agents utilisés
 
