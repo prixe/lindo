@@ -22,6 +22,7 @@ export class MainWindow {
     private events: Array<any> = [];
 
     constructor(application: Application) {
+        Logger.info('Build Main Window')
 
         this.application = application;
 
@@ -60,6 +61,10 @@ export class MainWindow {
             }
         });
 
+        if (settings.getSync('option.general.full_screen')) {
+            this.win.setFullScreen(true);
+        }
+
         MainWindow.count++;
 
         this.userAgent = new UserAgent(windowId);
@@ -69,7 +74,6 @@ export class MainWindow {
         this.menu = Menu.buildFromTemplate(GameMenuTemplate.build());
 
         this.win.on('close', () => {
-
             let indexOfWindow = Application.mainWindows.findIndex((element) => {
                 return element.win.id == this.win.id;
             });
@@ -83,7 +87,6 @@ export class MainWindow {
     }
 
     public reloadSettings(): void {
-
         Logger.info('emit->reload-settings');
         this.win.webContents.send('reload-settings');
 
@@ -101,7 +104,6 @@ export class MainWindow {
     }
 
     public run(): void {
-
         this.win.loadURL(`file://${Application.appPath}/dist/app/index.html`);
         this.win.once('ready-to-show', () => {
             this.win.show()

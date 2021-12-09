@@ -16,12 +16,15 @@
                 <tr>
                     <td>{{ 'app.option.general.resolution' | translate }}</td>
                     <td>
-                        <mat-select placeholder="{{ 'app.option.general.resolution' | translate }}" [(ngModel)]="_resolution" (selectionChange)="setResolution($event)">
+                        <mat-select placeholder="{{ 'app.option.general.resolution' | translate }}" [(ngModel)]="_resolution" (selectionChange)="setResolution($event)" [disabled]="settingsService.option.general.full_screen">
                             <mat-option *ngFor="let resolution of resolutions" [value]="resolution.value">{{ resolution.name }}</mat-option>
                         </mat-select>
                     </td>
                 </tr>
             </table>
+        </div>
+        <div class="col-xs-12">
+            <mat-checkbox color="primary" (change)="setFullScreen($event)" [(ngModel)]="settingsService.option.general.full_screen">{{ 'app.option.general.full-screen' | translate }}</mat-checkbox>
         </div>
         <div class="col-xs-12">
             <mat-checkbox color="primary" [(ngModel)]="settingsService.option.general.hidden_shop">{{ 'app.option.general.hide-shop' | translate }}</mat-checkbox>
