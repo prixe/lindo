@@ -6,10 +6,14 @@
 ### Ajout
 - Ajout du portugais
 - Possibilité de supprimer les timers pour le suivit automatique
-
+- Synchronisation de la timeline en combat entre les comptes
+- Possibilité de mettre la timeline en vertical
 
 ### Améliorations
 - Affichage des raccourcis dans les options de Lindo
+
+### Suppression
+- Cacher les montures en combat (option implémentée par Ankama)
 
 ## [2.6.5]
 
@@ -70,7 +74,7 @@
 - Correction du raccourci de l'Almanax
 
 ### Suppression
-- Possibilité de choisir la position du champ texte du chat (option implémenté par Ankama)
+- Possibilité de choisir la position du champ texte du chat (option implémentée par Ankama)
 
 ## [2.5.4] - 2021-04-13
 
