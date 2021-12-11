@@ -12,7 +12,7 @@
 
         <div class="col-xs-12 menu">
             <p>{{ 'app.window.options.features.general.menu.fight' | translate }}</p>
-
+            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.verticaltimeline">{{ 'app.window.options.features.general.vertical-timeline' | translate }}</mat-checkbox>
             <mat-checkbox color="primary" [(ngModel)]="settingsService.option.notification.focus_fight_turn">{{ 'app.option.general.focus-fight-turn' | translate }}</mat-checkbox>
             <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.hidden_mount">{{ 'app.window.options.features.general.hide-mount' | translate }}</mat-checkbox>
             <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.fightchronometer">{{ 'app.window.options.features.general.fightchronometer' | translate }}</mat-checkbox>
@@ -35,8 +35,6 @@
 
             <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.harvest_indicator">{{ 'app.window.options.features.general.harvest-indicator' | translate }}</mat-checkbox>
             <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.jobsxp">{{ 'app.window.options.features.general.jobsxp' | translate }}</mat-checkbox>
-            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.show_resources">{{ 'app.window.options.features.general.show-resources' | translate }}</mat-checkbox>
         </div>
-
     </div>
 </div>
