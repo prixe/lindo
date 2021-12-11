@@ -6,7 +6,6 @@ export { FightChronometer } from "./fight-chronometer/fight-chronometer";
 export { GripPositionSave } from "./grip-position-save/grip-position-save";
 export { Harvest } from "./harvest-bar/harvest";
 export { HealthBar } from "./health-bar/health-bar";
-export { HideMount } from "./hide-mount/hide-mount";
 export { Jobsxp } from "../mods/jobsxp/jobsxp";
 export { Marchand } from "../mods/marchand/marchand";
 export { MonsterTooltip } from "./monsterTooltip/monsterTooltip";

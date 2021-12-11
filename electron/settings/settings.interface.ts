@@ -84,7 +84,6 @@ export interface SettingsInterface {
                 jobsxp: boolean;
                 estimator: boolean;
                 fightchronometer: boolean;
-                hidden_mount: boolean;
                 party_info_pp: boolean;
                 party_info_lvl: boolean;
                 zaapsearchfilter: boolean;

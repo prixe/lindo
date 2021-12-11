@@ -80,7 +80,6 @@
             "health-bar": "Activate the display of the life bars below the fighters",
             "jobsxp": "Activate the display of the job xp need for leveling",
             "estimator": "Estimating spell damage in battle",
-            "hide-mount": "Hide mounts during fights",
             "fightchronometer" : "Show combats chronometer",
             "zaapsearchfilter" : "Show zaap search filter",
             "show-resources" : "Show map resources",

@@ -157,7 +157,6 @@ export const SettingsDefault: SettingsInterface = {
                 jobsxp: false,
                 estimator: true,
                 fightchronometer: true,
-                hidden_mount: false,
                 party_info_pp: false,
                 party_info_lvl: false,
                 zaapsearchfilter: true,
