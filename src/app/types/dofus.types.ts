@@ -340,7 +340,7 @@ interface EnabledSkill {
     skillInstanceUid: number
 }
 
-interface InteractiveElement {
+export interface InteractiveElement {
     elementId: number,
     elementTypeId: number,
     enabledSkills: [EnabledSkill],
@@ -348,7 +348,7 @@ interface InteractiveElement {
     _type: string
 }
 
-interface StatedElement {
+export interface StatedElement {
     id: number,
     isDisplayed: boolean,
     _x: number,

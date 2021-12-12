@@ -1,5 +1,7 @@
 import {Mod} from "../mod";
 
+import {GameRolePlayShowActorMessage, GameContextRemoveElementMessage, MapComplementaryInformationsDataMessage} from "../../types/message.types";
+
 export class PartyMember extends Mod{
     private members: Map<number, boolean>;
     private divElement: Array<HTMLDivElement>;
@@ -43,11 +45,11 @@ export class PartyMember extends Mod{
             this.on(this.wGame.dofus.connectionManager, 'PartyNewMemberMessage', () => this.updatePartyMembers());
 
             // Receive when player join the map
-            this.on(this.wGame.dofus.connectionManager, 'GameRolePlayShowActorMessage', (e: any) => this.updateMember(e, true));
+            this.on(this.wGame.dofus.connectionManager, 'GameRolePlayShowActorMessage', (e: GameRolePlayShowActorMessage) => this.updateMember(e, true));
             // Receive when player leave the map
-            this.on(this.wGame.dofus.connectionManager, 'GameContextRemoveElementMessage', (e: any) => this.updateMember(e, false));
+            this.on(this.wGame.dofus.connectionManager, 'GameContextRemoveElementMessage', (e: GameContextRemoveElementMessage) => this.updateMember(e, false));
             // Receive when your game map change
-            this.on(this.wGame.dofus.connectionManager, 'MapComplementaryInformationsDataMessage', (e: any) => this.updateMemberOnMapChange(e));
+            this.on(this.wGame.dofus.connectionManager, 'MapComplementaryInformationsDataMessage', (e: MapComplementaryInformationsDataMessage) => this.updateMemberOnMapChange(e));
 
             // Use here init mod if player already have grp when mod start
             this.updatePartyMembers();
@@ -102,7 +104,7 @@ export class PartyMember extends Mod{
     }
 
     // Use for update member if join/leave map
-    private updateMember(data: any, isOnMap: boolean) {
+    private updateMember(data: GameRolePlayShowActorMessage|GameContextRemoveElementMessage, isOnMap: boolean) {
         if (this.wGame.gui.party.currentParty && this.wGame.gui.party.currentParty._childrenList.length > 0) {
             const playerId: number = isOnMap ? data.informations.contextualId : data.id;
             if (this.members.has(playerId)) this.members.set(playerId, isOnMap);

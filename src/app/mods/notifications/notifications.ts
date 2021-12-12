@@ -3,6 +3,14 @@ import {ElectronService as electron} from '@services/electron/electron.service';
 import axios from 'axios';
 
 import {Mod} from "../mod";
+import {
+    ChatServerMessage, 
+    GameFightTurnStartMessage, 
+    TaxCollectorAttackedMessage, 
+    PartyInvitationMessage,
+    GameRolePlayAggressionMessage,
+    TextInformationMessage
+} from "../../types/message.types";
 
 export class Notifications extends Mod {
     public eventEmitter: EventEmitter;
@@ -12,33 +20,34 @@ export class Notifications extends Mod {
         this.eventEmitter = new EventEmitter();
         this.params = this.settings.option.notification;
 
-        this.on(this.wGame.dofus.connectionManager, 'ChatServerMessage', (msg: any) => {
+        this.on(this.wGame.dofus.connectionManager, 'ChatServerMessage', (msg: ChatServerMessage) => {
             this.sendMPNotif(msg);
         });
-        this.on(this.wGame.gui, 'GameFightTurnStartMessage', (actor: any) => {
+        this.on(this.wGame.gui, 'GameFightTurnStartMessage', (actor: GameFightTurnStartMessage) => {
             this.sendFightTurnNotif(actor);
         });
-        this.on(this.wGame.dofus.connectionManager, 'TaxCollectorAttackedMessage', (tc: any) => {
+        this.on(this.wGame.dofus.connectionManager, 'TaxCollectorAttackedMessage', (tc: TaxCollectorAttackedMessage) => {
             this.sendTaxCollectorNotif(tc);
         });
-        this.on(this.wGame.dofus.connectionManager, 'GameRolePlayArenaFightPropositionMessage', (e: any) => {
+        this.on(this.wGame.dofus.connectionManager, 'GameRolePlayArenaFightPropositionMessage', () => {
             this.sendKolizeumNotif();
         });
-        this.on(this.wGame.dofus.connectionManager, 'PartyInvitationMessage', (e: any) => {
+        this.on(this.wGame.dofus.connectionManager, 'PartyInvitationMessage', (e: PartyInvitationMessage) => {
             this.sendPartyInvitationNotif(e);
         });
-        this.on(this.wGame.dofus.connectionManager, 'GameRolePlayAggressionMessage', (e: any) => {
+        this.on(this.wGame.dofus.connectionManager, 'GameRolePlayAggressionMessage', (e: GameRolePlayAggressionMessage) => {
             this.sendAggressionNotif(e);
         });
-        this.on(this.wGame.dofus.connectionManager, 'TextInformationMessage', (e: any) => {
+        this.on(this.wGame.dofus.connectionManager, 'TextInformationMessage', (e: TextInformationMessage) => {
             this.sendHdvSaleNotif(e);
         });
     }
 
-    private async sendHdvSaleNotif(e: any) {
+    private async sendHdvSaleNotif(e: TextInformationMessage) {
         if (!this.wGame.document.hasFocus() && this.params.sale_message) {
             if (e.msgId == 65) {
-                const id = e.parameters[1];
+                // @ts-ignore
+                const id: number = e.parameters[1];
 
                 this.eventEmitter.emit('newNotification');
 
@@ -47,9 +56,9 @@ export class Notifications extends Mod {
                     this.ressourcesKnow[id] = res.data[id].nameId;
                 }
 
-                let saleNotif = new Notification(this.translate.instant('app.notifications.sale-message'), {
-                    body: `+ ${e.parameters[0]} Kamas (vente de ${e.parameters[3]} ${this.ressourcesKnow[id]})`
-                });
+                // @ts-ignore
+                const body = `+ ${e.parameters[0]} Kamas (vente de ${e.parameters[3]} ${this.ressourcesKnow[id]})`;
+                const saleNotif = new Notification(this.translate.instant('app.notifications.sale-message'), {body});
 
                 saleNotif.onclick = () => {
                     electron.getCurrentWindow().focus();
@@ -60,7 +69,7 @@ export class Notifications extends Mod {
 
     }
 
-    private sendMPNotif(msg: any) {
+    private sendMPNotif(msg: ChatServerMessage) {
         if (!this.wGame.document.hasFocus() && this.params.private_message) {
             if (msg.channel == 9) {
 
@@ -78,7 +87,7 @@ export class Notifications extends Mod {
         }
     }
 
-    private sendFightTurnNotif(actor: any) {
+    private sendFightTurnNotif(actor: GameFightTurnStartMessage) {
         if (!this.wGame.document.hasFocus()
             && this.wGame.gui.playerData.characterBaseInformations.id == actor.id) {
 
@@ -116,7 +125,7 @@ export class Notifications extends Mod {
         }
     }
 
-    private sendTaxCollectorNotif(tc: any) {
+    private sendTaxCollectorNotif(tc: TaxCollectorAttackedMessage) {
         if (!this.wGame.document.hasFocus() && this.params.tax_collector) {
 
             this.eventEmitter.emit('newNotification');
@@ -139,7 +148,7 @@ export class Notifications extends Mod {
         }
     }
 
-    private sendPartyInvitationNotif(e: any) {
+    private sendPartyInvitationNotif(e: PartyInvitationMessage) {
         if (!this.wGame.document.hasFocus() && this.params.party_invitation) {
 
             this.eventEmitter.emit('newNotification');
@@ -155,7 +164,7 @@ export class Notifications extends Mod {
         }
     }
 
-    private sendAggressionNotif(e: any) {
+    private sendAggressionNotif(e: GameRolePlayAggressionMessage) {
         if (!this.wGame.document.hasFocus()
             && this.params.aggression
             && e.defenderId == this.wGame.gui.playerData.characterBaseInformations.id) {

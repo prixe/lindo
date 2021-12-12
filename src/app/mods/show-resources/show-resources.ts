@@ -2,6 +2,8 @@ import {Mod} from "../mod";
 import {iconIdByTypeId, Resource, Resources, ressourcesToSkip} from "./resources";
 import {ShortcutsHelper} from "@helpers/shortcuts.helper";
 
+import {MapComplementaryInformationsDataMessage, StatedElementUpdatedMessage, InteractiveElementData, StatedElementData} from "../../types/message.types";
+
 export class ShowResources extends Mod {
     private shortcutsHelper: ShortcutsHelper;
     private loadDataTry: number = 0;
@@ -59,8 +61,8 @@ export class ShowResources extends Mod {
             this.shortcutsHelper = new ShortcutsHelper(this.wGame);
             this.shortcutsHelper.bind(this.params.show_resources_shortcut, () => this.toggle());
 
-            this.on(this.wGame.dofus.connectionManager, 'MapComplementaryInformationsDataMessage', (e: any) => this.onMapComplementaryInfos(e.interactiveElements, e.statedElements));
-            this.on(this.wGame.dofus.connectionManager, 'StatedElementUpdatedMessage', ({statedElement}) => this.onStatedElementUpdated(statedElement));
+            this.on(this.wGame.dofus.connectionManager, 'MapComplementaryInformationsDataMessage', (e: MapComplementaryInformationsDataMessage) => this.onMapComplementaryInfos(e.interactiveElements, e.statedElements));
+            this.on(this.wGame.dofus.connectionManager, 'StatedElementUpdatedMessage', (e: StatedElementUpdatedMessage) => this.onStatedElementUpdated(e.statedElement));
             this.on(this.wGame.dofus.connectionManager, 'GameFightStartingMessage', () => {
                 if (this.enabled) {
                     this.toggle();
@@ -100,7 +102,7 @@ export class ShowResources extends Mod {
         }
     }
 
-    private onMapComplementaryInfos(interactiveElements: any[], statedElements: any []) {
+    private onMapComplementaryInfos(interactiveElements: InteractiveElementData[], statedElements: StatedElementData[]) {
         this.clear();
 
         const statedMap: Map<number, number> = new Map();
