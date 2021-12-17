@@ -1,0 +1,337 @@
+{
+    "app": {
+        "main": {
+            "tab": {
+                "add": "Adicionar um jogo"
+            },
+            "head": {
+                "toggle-audio-on": "Ativar som",
+                "toggle-audio-off": "Mudo",
+                "new-window": "Abrir uma nova janela"
+            },
+            "prompt": {
+                "tabs-overflow": {
+                    "text": "Lindo não suporta mais de 6 abas por janela, acima disso pode ser lento e cheio de bugs. Mas você pode abrir uma nova janela e funcionará perfeitamente."
+                }
+            }
+        },
+        "notifications": {
+            "fight-turn": "Turno inicial para {{character}}",
+            "private-message": "Mensagem de entrada de {{character}}",
+            "tax-collector": "Um token está sendo atacado!",
+            "kolizeum": "Uma luta no Kolizeum foi encontrado!",
+            "party-invitation": "Você está convidado a ingressar no grupo de {{character}}.",
+            "aggression": "Você foi agredido!",
+            "sale-message": "Banco"
+        },
+        "window": {
+            "changelog": {
+                "title": "Notas de lançamento",
+                "prefixe": "Liberar"
+            },
+            "master-password": {
+                "continue": "Continue",
+                "skip": "Pular está etapa",
+                "password-label": "Entrar com a senha mestra",
+                "password-bad": "A senha está correta"
+            },
+            "update-dofus": {
+                "title": "Lindo update",
+                "step0": "Preparando atualização ...",
+                "step1": "Etapa 1 : Baixando arquivos do Dofus",
+                "step2": "Etapa 2 : Download do patch Lindo",
+                "step3": "Etapa 3 : Resolução da versão",
+                "step4": "Step 4 : Aplicando os patches",
+                "step5": "Step 5 : Gravando arquivos modificados",
+                "step6": "Step 6 : Excluir arquivos antigos",
+                "step7": "Step 7 : Finalização",
+                "step8": "Step 8 : Iniciando o Lindo...",
+                "information": {
+                    "search": "Procurando por atualização...",
+                    "error": "Não foi possível baixar as atualizações, tente novamente mais tarde",
+                    "retry": "Tente Novamente"
+                }
+            },
+            "options": {
+                "title": "Opções",
+                "button": {
+                    "close": "Completo"
+                },
+                "general": {
+                    "reset-game": "Baixar novamente os dados do jogo",
+                    "reset-all": "Reset",
+                    "shortcuts": "Configurar",
+                    "clear-cache": "Limpar cache",
+                    "resolution": {
+                        "confirm-body": "A resolução atual combina com você? <br/> Reinicialização automática em 10 segundos .."
+                    }
+                },
+                "features": {
+                    "title": "Features",
+                    "general": {
+                        "header": "Geral",
+                        "disable-inactivity": "Prolongue o atraso antes da desconexão por inatividade",
+                        "chat-input-bottom": "Coloque o campo de texto do chat na parte inferior",
+                        "health-bar": "Ative a exibição das barras de vida abaixo dos lutadores",
+                        "health-bar-shortcut": "Atalhos para mostrar / ocultar barras de vida",
+                        "jobsxp": "Ative a exibição da necessidade de nivelamento do job xp",
+                        "estimator": "Estimando o dano do feitiço em batalha",
+                        "fightchronometer": "Mostrar cronômetro de combate",
+                        "zaapsearchfilter": "Mostrar filtro de pesquisa zaap",
+                        "show-resources": "Mostrar recursos do mapa",
+                        "show-resources-shortcut": "Atalho para mostrar / ocultar recursos do mapa",
+                        "harvest-indicator": "Ativa a visualização do tempo restante abaixo dos recursos",
+                        "party-member-on-map": "Adicione um indicador para saber se os membros de um grupo estão no mesmo mapa"
+                    },
+                    "groups": {
+                        "header": "Grupos"
+                    },
+                    "accounts": {
+                        "header": "Contas"
+                    }
+                },
+                "about": {
+                    "title": "Sobre",
+                    "links": {
+                        "website": "Site",
+                        "changelog": "Notas de Atualização"
+                    },
+                    "text0": "Lindo é um software de código aberto que permite que você jogue DOFUS Touch em seu computador.",
+                    "text1": "Ao contrário de um emulador Android, o código é interpretado diretamente pelo seu computador, o que o torna mais rápido para que você possa jogar DOFUS Touch com o desempenho total do seu computador!",
+                    "text2": "Originalmente conhecido como DOFUS Touch No-Emu, este software desenvolvido por Daniel e Thomas foi forçado a encerrar a causa de um impedimento da Ankama."
+                }
+            },
+            "shortcuts": {
+                "title": "Atalhos",
+                "description1": "Você pode usar as teclas especiais CTRL, SHIFT, SPACE, ALT (CTRL = cmd no Mac OS X)",
+                "description2": "Você pode especificar seu atalho pressionando as teclas desejadas ao mesmo tempo após selecionar a entrada",
+                "tab": {
+                    "application": "Aplicativo",
+                    "interface": "Interface",
+                    "spell": "Feitiços",
+                    "inventory": "Inventário",
+                    "other": "Vários"
+                }
+            },
+            "bug-report": {
+                "title": "Reportar um bug",
+                "description": "Se você observou um comportamento inesperado em Lindo, pode relatá-lo descrevendo-o abaixo.",
+                "instructions": "Forneça pelo menos estas informações:",
+                "list": {
+                    "1": "A descrição do comportamento inesperado",
+                    "2": "Como reproduzi-lo",
+                    "3": "Qual seria o comportamento normal esperado"
+                },
+                "placeholder": "Descrição",
+                "send": "Enviar"
+            }
+        },
+        "option": {
+            "vip": {
+                "auto-group": {
+                    "header": "Grupo",
+                    "active": "Ativar agrupamento automático",
+                    "warning": "Cuidado, seguir o líder do grupo pode ser considerado boting para outros jogadores, use-o com cautela e em áreas despovoadas.",
+                    "explanation-1": "Os personagens do grupo devem ser amigos do líder para que o convite seja automático.",
+                    "explanation-2": "Os membros seguem o líder se este estiver no mesmo mapa.",
+                    "leader": "Nome do líder",
+                    "members": "Nomes de personagens",
+                    "members-add": "Adicionar um personagem",
+                    "follow-leader": "Seguir o líder do grupo",
+                    "ready": "Pular \"Pronto\" Automaticamente",
+                    "fight": "Entrar em combate Automaticamente",
+                    "delay": "Tempo a seguir (em segundos)",
+                    "follow-on-map": "Seguir o líder pelo mapa",
+                    "strict-move": "Move na mesma célula que o líder se move",
+                    "pvp-warning": "Você não pode entrar em uma luta PvP automaticamente"
+                },
+                "multi-account": {
+                    "home-no-master": "Para usar este recurso, uma senha deve ser configurada. Ela será usada para iniciar o Lindo com automação multi-conta.",
+                    "header": "Múltiplas Contas",
+                    "active": "Ativar Múltiplas Contas",
+                    "window": "Janela",
+                    "delete-window": "Apagar",
+                    "add-window": "Adicionar nova Janela",
+                    "add": "Adicionar uma conta",
+                    "account-name": "Usuário",
+                    "password": "Senha",
+                    "modify_password": "Trocar senha",
+                    "configure_password": "Configurar senha",
+                    "delete_password": "Remover Senha",
+                    "request-master-password": {
+                        "explanation": "Para acessar o gerenciamento de sua conta, você deve primeiro inserir sua senha mestra. Esta senha foi definida na primeira ativação da multi-conta.",
+                        "label": "Digite a senha",
+                        "bad": "Senha incorreta",
+                        "confirm": "Continue",
+                        "ignore-step": "Pule esta etapa"
+                    },
+                    "prompt": {
+                        "add-master": {
+                            "title": "Configurando a senha",
+                            "confirm": "salvar",
+                            "cancel": "Cancelar",
+                            "min-lenght": "A senha deve conter pelo menos {{lenght}} caracteres",
+                            "success-text": "A senha agora será usada para iniciar o aplicativo."
+                        },
+                        "edit-master": {
+                            "title": "Alterar a senha",
+                            "input-old-placeholder": "Senha antiga",
+                            "input-new-placeholder": "Nova senha",
+                            "confirm": "Salvar",
+                            "cancel": "Cancelar",
+                            "min-lenght": "A nova senha deve conter pelo menos {{lenght}} caracteres",
+                            "incorrect-old": "Senha antiga incorreta",
+                            "success-text": "Senha trocado com sucesso."
+                        },
+                        "delete-master": {
+                            "title": "Remover senha",
+                            "text": "Você tem certeza?<br/>Que quer remover a senha.",
+                            "confirm": "Remover",
+                            "cancel": "cancelar",
+                            "success-text": "The password has been deleted."
+                        },
+                        "maximum-account": {
+                            "title": "Oops!",
+                            "text": "Você não pode salvar mais de 4 contas com classificação de doador Wabbit.",
+                            "confirm": "Aumentar minha classificação VIP",
+                            "cancel": "Entendi"
+                        },
+                        "add-account": {
+                            "title": "Adicionando uma conta",
+                            "input-login-placeholder": "Usuário",
+                            "input-password-placeholder": "senha",
+                            "confirm": "salvar",
+                            "cancel": "Cancelar",
+                            "min-lenght-login": "O nome de usuário deve conter pelo menos 1 caractere",
+                            "min-lenght-password": "A senha deve conter pelo menos 1 caractere"
+                        },
+                        "edit-account": {
+                            "title": "Changing an account",
+                            "input-login-placeholder": "Usuário",
+                            "input-password-placeholder": "Senha",
+                            "confirm": "Salvar",
+                            "cancel": "Cancelar",
+                            "min-lenght-login": "O nome de usuário deve conter pelo menos 1 caractere",
+                            "min-lenght-password": "A senha deve conter pelo menos 1 caractere"
+                        }
+                    }
+                },
+                "zaapsearchfilter": {
+                    "placeholder": "Procurar um zaap",
+                    "placeholderZaapi": "Procurar um zaapi",
+                    "placeholderPrisme": "Procurar um Prisme"
+                },
+                "party-info": {
+                    "header-lvl": "Mostrar o nível do grupo",
+                    "header-pp": "Mostrar a prospecção do grupo",
+                    "level": "Nível."
+                },
+                "jobsxp": {
+                    "text": " XP perdida<br>dois do nível "
+                }
+            },
+            "general": {
+                "title": "Geral",
+                "interface": "Interface",
+                "sound": "Som",
+                "shortcuts": "Atalhos do Teclado",
+                "game-data": "Arquivos do jogo",
+                "language": "Linguagem",
+                "resolution": "Resolução",
+                "hide-shop": "Esconde botão do mercado",
+                "hide-tab": "Esconder barra de multicontas",
+                "focus-fight-turn": "Trocar automaticamente a tela entre os turnos",
+                "local-content": "Ativar download do mapa atual(beta)",
+                "sound-focus": "Som do jogo apenas na janela em primeiro plano",
+                "early": "Jogar Dofus Touch Early",
+                "restart": "Aplicar e reiniciar"
+            },
+            "shortcuts": {
+                "title": "Atalhos",
+                "diver": {
+                    "header": "Diversos",
+                    "end-turn": "Fim do turno e pronto",
+                    "open-chat": "Abrir o chat",
+                    "active-open-menu": "Menu aberto quando nenhuma janela estiver aberta (ECHAP)",
+                    "open-menu": "Abrir menu",
+                    "go_up": "Subir um mapa",
+                    "go_bottom": "Descer um mapa",
+                    "go_left": "Ir para o mapa da esquerda",
+                    "go_right": "Ir para o mapa da direita"
+                },
+                "interfaces": {
+                    "header": "Interfaces",
+                    "carac": "Personagem",
+                    "spell": "Feitiços",
+                    "bag": "Inventario",
+                    "bidhouse": "Mercado",
+                    "map": "Mapa",
+                    "friend": "Amigos",
+                    "book": "Missões",
+                    "guild": "Guild",
+                    "conquest": "Kolizeu",
+                    "goultine": "Loja",
+                    "job": "Profissão",
+                    "alliance": "Aliança",
+                    "mount": "Montaria",
+                    "directory": "Lista de Guilds e Alianças",
+                    "alignement": "Alinhamento",
+                    "bestiary": "Bestiário",
+                    "title": "Títulos e ornamentos",
+                    "achievement": "Conquistas",
+                    "dailyQuest": "Almanax",
+                    "spouse": "Cônjuge",
+                    "shop": "Lojinha"
+                },
+                "items": {
+                    "header": "Itens",
+                    "slot": "Slot {{x}}"
+                },
+                "no-emu": {
+                    "header": "Lindo",
+                    "new-window": "Nova Janela",
+                    "new-tab": "Nova aba",
+                    "tab": "Aba {{x}}",
+                    "next-tab": "Proxima aba",
+                    "prev-tab": "Aba anterior"
+                },
+                "spells": {
+                    "header": "Feitiços",
+                    "slot": "Slot {{x}}"
+                }
+            },
+            "notifications": {
+                "title": "Notificação",
+                "description": "Você pode receber notificações do jogo quando o aplicativo está em segundo plano. Você será notificado:",
+                "fight-turn": "Quando estiver no turno (fight)",
+                "private-message": "Quando receber uma mensagem privada",
+                "tax-collector": "Quando um collector é atacado",
+                "kolizeum": "Quando uma luta de kolizeum é encontrada",
+                "party-invitation": "Quando alguém o convida para participar de um grupo",
+                "aggression": "Quando alguém te agride",
+                "sale-message": "Quando um item for vendido"
+            },
+            "reset": "Resetar",
+            "save": "Aplicar",
+            "prompt": {
+                "reset-option": {
+                    "text": "Continuando, todos os parâmetros serão redefinidos. <br/> Esta operação não é reversível."
+                }
+            }
+        },
+        "prompt": {
+            "title": {
+                "confirm": "Confirmação necessária",
+                "warning": "Alerta !",
+                "success": "Operação bem sucedida !",
+                "error": "Operação Falhou !",
+                "info": "Informação"
+            },
+            "button": {
+                "cancel": "Cancelar",
+                "confirm": "Eu confirmo",
+                "close": "Fechar"
+            }
+        }
+    }
+}

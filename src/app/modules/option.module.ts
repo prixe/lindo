@@ -485,6 +485,7 @@ export namespace Option {
     export class General {
 
         private _hidden_shop: boolean;
+        private _full_screen: boolean;
         private _hidden_tabs: boolean;
         private _resolution: {
             x: boolean;
@@ -503,6 +504,15 @@ export namespace Option {
         set hidden_shop(hidden_shop: boolean) {
             this.settingsProvider.write('option.general.hidden_shop', hidden_shop);
             this._hidden_shop = hidden_shop;
+        }
+
+        get full_screen(): boolean {
+            return this._full_screen;
+        }
+
+        set full_screen(full_screen: boolean) {
+            this.settingsProvider.write('option.general.full_screen', full_screen);
+            this._full_screen = full_screen;
         }
 
         get user_agent(): string {
@@ -571,6 +581,7 @@ export namespace Option {
         constructor(private settingsProvider: SettingsProvider) {
             this.user_agent = this.settingsProvider.read('option.general.user_agent');
             this.hidden_shop = this.settingsProvider.read('option.general.hidden_shop');
+            this.full_screen = this.settingsProvider.read('option.general.full_screen');
             this.hidden_tabs = this.settingsProvider.read('option.general.hidden_tabs');
             this.resolution = this.settingsProvider.read('option.general.resolution');
             this.local_content = this.settingsProvider.read('option.general.local_content');
@@ -704,6 +715,7 @@ export namespace Option {
             private _harvest_indicator: boolean;
             private _monster_tooltip: boolean;
             private _monster_tooltip_shortcut: string;
+            private _verticaltimeline: boolean;
 
             get party_info_pp():boolean{
                 return this._party_info_pp;
@@ -794,7 +806,7 @@ export namespace Option {
                 this.settingsProvider.write('option.vip.general.health_bar_shortcut', health_bar_shortcut);
                 this._health_bar_shortcut = health_bar_shortcut;
             }
-            
+
             get show_resources(): boolean {
                 return this._show_resources;
             }
@@ -830,7 +842,7 @@ export namespace Option {
                 this.settingsProvider.write('option.vip.general.harvest_indicator', harvest_indicator);
                 this._harvest_indicator = harvest_indicator;
             }
-            
+
             get monster_tooltip(): boolean {
                 return this._monster_tooltip;
             }
@@ -847,6 +859,15 @@ export namespace Option {
             set monster_tooltip_shortcut(monster_tooltip_shortcut: string) {
                 this.settingsProvider.write('option.vip.general.monster_tooltip_shortcut', monster_tooltip_shortcut);
                 this._monster_tooltip_shortcut = monster_tooltip_shortcut;
+            }
+
+            get verticaltimeline(): boolean {
+                return this._verticaltimeline;
+            }
+
+            set verticaltimeline(verticaltimeline: boolean) {
+                this.settingsProvider.write('option.vip.general.verticaltimeline', verticaltimeline);
+                this._verticaltimeline = verticaltimeline;
             }
 
             constructor(private settingsProvider: SettingsProvider) {
@@ -866,6 +887,7 @@ export namespace Option {
                 this.harvest_indicator = this.settingsProvider.read('option.vip.general.harvest_indicator');
                 this._monster_tooltip = this.settingsProvider.read('option.vip.general.monster_tooltip');
                 this._monster_tooltip_shortcut = this.settingsProvider.read('option.vip.general.monster_tooltip_shortcut');
+                this.verticaltimeline = this.settingsProvider.read('option.vip.general.verticaltimeline');
             }
         }
 

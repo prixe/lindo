@@ -10,6 +10,7 @@ export interface SettingsInterface {
         general: {
             hidden_shop: boolean;
             hidden_tabs: boolean;
+            full_screen: boolean;
             stay_connected: boolean;
             user_agent: string;
             resolution: {
@@ -83,7 +84,6 @@ export interface SettingsInterface {
                 jobsxp: boolean;
                 estimator: boolean;
                 fightchronometer: boolean;
-                hidden_mount: boolean;
                 party_info_pp: boolean;
                 party_info_lvl: boolean;
                 zaapsearchfilter: boolean;

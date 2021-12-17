@@ -80,13 +80,13 @@
             "health-bar": "Savaşçıların altındaki yaşam çubuklarının görüntülenmesini etkinleştirin",
             "jobsxp": "Seviye atlamak için iş xp ihtiyacının görüntülenmesini etkinleştirin",
             "estimator": "Savaşta büyü hasarını tahmin etme",
-            "hide-mount": "Savaş sırasında binekleri gizle",
             "fightchronometer" : "Savaş kronometresini göster",
             "zaapsearchfilter" : "Zaap arama filtresini göster",
             "show-resources" : "Harita kaynaklarını göster",
             "harvest-indicator" : "Kaynakların altında kalan sürenin gösterimini etkinleştirin",
             "party-member-on-map" : "Bir grubun üyelerinin aynı haritada olup olmadığını öğrenmek için bir gösterge ekleyin",
-            "monster-tooltip": "Canavar grupları bilgilerini haritada göster"
+            "monster-tooltip": "Canavar grupları bilgilerini haritada göster",
+            "vertical-timeline": "Savaşçıların zaman çizelgesini dikey olarak göster"
           },
           "groups": {
             "header": "Gruplar"
@@ -250,6 +250,7 @@
         "language": "Dil",
         "resolution": "Çözünürlük",
         "hide-shop": "Mağaza düğmesini gizle",
+        "full-screen": "Tam ekran",
         "hide-tab": "Çok hesaplı sekme çubuğunu gizle",
         "focus-fight-turn": "Sıra başladığında otomatik olarak bir hesaba geç",
         "local-content": "Yerel harita indirmeyi etkinleştir (beta)",

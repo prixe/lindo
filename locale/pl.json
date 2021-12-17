@@ -80,13 +80,13 @@
             "health-bar": "Aktywuj wyświetlanie paska życia poniżej postaci",
             "jobsxp": "Wyświetl niezbędną liczbę doświadczenia wymaganego do następnego poziomu",
             "estimator": "Włącz przewidywanie obrażeń podczas walki",
-            "hide-mount": "Nie pokazuj wierzchowców podczas walki",
             "fightchronometer" : "Pokaż czas trwania walki",
             "zaapsearchfilter" : "Pokaż filtr wyszukiwania zaap'ów",
             "show-resources" : "Pokaż zasoby mapy",
             "harvest-indicator" : "Aktywuj wyświetlanie pozostałego czasu poniżej zasobów",
             "party-member-on-map" : "Dodaj wskaźnik, aby wiedzieć, czy członkowie grupy znajdują się na tej samej mapie",
-            "monster-tooltip": "Wyświetlaj informacje o grupach potworów na mapie"
+            "monster-tooltip": "Wyświetlaj informacje o grupach potworów na mapie",
+            "vertical-timeline": "Pokaż oś czasu bojowników w pionie"
           },
           "groups": {
             "header": "Grupy"
@@ -248,6 +248,7 @@
         "language": "Język",
         "resolution": "Rozdzielczość ekranu",
         "hide-shop": "Ukryj przycisk sklepu",
+        "full-screen": "Pełny ekran",
         "hide-tab": "Ukryj pasek wielu kont",
         "focus-fight-turn": "Automatycznie przełączaj konto kiedy jego tura się rozpocznie",
         "local-content": "Aktywuj usługę pobrania mapy(beta)",

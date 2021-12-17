@@ -82,11 +82,11 @@
             "fightchronometer": "Mostra combattimenti di cronometri",
             "zaapsearchfilter" : "Mostra filtro di ricerca zaap",
             "estimator": "Fai una stima dei danni da incantesimi in battaglia",
-            "hide-mount": "Nascondi le cavalcature durante i combattimenti",
             "show-resources" : "Mostra le risorse della mappa",
             "harvest-indicator" : "Attiva la visualizzazione del tempo rimanente sotto le risorse",
             "party-member-on-map" : "Aggiungi un indicatore per sapere se i membri di un gruppo si trovano sulla stessa mappa",
-            "monster-tooltip": "Visualizza le informazioni sui gruppi di mostri sulla mappa"
+            "monster-tooltip": "Visualizza le informazioni sui gruppi di mostri sulla mappa",
+            "vertical-timeline": "Mostra la cronologia dei combattenti in verticale"
           },
           "groups": {
             "header": "Gruppi"
@@ -247,6 +247,7 @@
         "language": "Lingua",
         "resolution": "Risoluzione",
         "hide-shop": "Nascondi il bottone dello Shop",
+        "full-screen": "A schermo intero",
         "hide-tab": "Nascondi la barra multi-account",
         "focus-fight-turn": "Fai focus su account quando inizia il suo turno di combattimento",
         "local-content": "Abilita download mappa in locale (beta)",

@@ -80,13 +80,14 @@
             "health-bar": "Activate the display of the life bars below the fighters",
             "jobsxp": "Activate the display of the job xp need for leveling",
             "estimator": "Estimating spell damage in battle",
-            "hide-mount": "Hide mounts during fights",
             "fightchronometer" : "Show combats chronometer",
             "zaapsearchfilter" : "Show zaap search filter",
             "show-resources" : "Show map resources",
             "harvest-indicator" : "Activate the display of the remaining time below the ressources",
             "party-member-on-map" : "Add an indicator to know if the members of a group are on the same map",
-            "monster-tooltip": "Display monsters groups informations on the map"
+            "monster-tooltip": "Display monsters groups informations on the map",
+            "monster-tooltip-shortcut": "Shortcut for show/hide monsters tooltip",
+            "vertical-timeline": "Show fighters timeline vertically"
           },
           "groups": {
             "header": "Groups"
@@ -200,7 +201,7 @@
             },
             "maximum-account": {
               "title": "Oops!",
-              "text": "You can not save more than 4 accounts with Wabbit donor rank.",
+              "text": "You can not save more than 4 accounts without Wabbit donor rank.",
               "confirm": "Increase my VIP rank",
               "cancel": "I understood"
             },
@@ -251,6 +252,7 @@
         "language": "Language",
         "resolution": "Resolution",
         "hide-shop": "Hide the Shop button",
+        "full-screen": "Full screen",
         "hide-tab": "Hide the multi-account tab bar",
         "focus-fight-turn": "Automatically switch to an account when its turn starts",
         "local-content": "Enable local map download (beta)",

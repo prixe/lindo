@@ -40,8 +40,9 @@ export class GeneralComponent implements OnInit {
         {name: 'English', value: "en"},
         {name: 'Español', value: "es"},
         {name: 'Italiano', value: "it"},
+        {name: "Português", value: "pt" },
         {name: 'Polskie', value: "pl"},
-        {name: 'Türkçe', value: "tr"}
+        {name: 'Türkçe', value: "tr"},
     ];
 
     public restartForEarlyDisplayed: boolean = false;
@@ -60,7 +61,6 @@ export class GeneralComponent implements OnInit {
         this.windowService = this.injector.get(WindowService)
     }
 
-
     ngOnInit(): void {
         // fixe the two way binding object by this tricks
         this._resolution = this.settingsService.option.general.resolution.x + ';' + this.settingsService.option.general.resolution.y;
@@ -68,7 +68,6 @@ export class GeneralComponent implements OnInit {
     }
 
     public setResolution($event: any): void {
-
         const aValue = $event.value.split(';');
 
         const resolution = {
@@ -76,23 +75,17 @@ export class GeneralComponent implements OnInit {
             y: parseInt(aValue[1])
         };
 
-        console.log(resolution);
-
+        Logger.info(resolution);
         if (this.settingsService.option.general.resolution != resolution) {
-
             electron.getCurrentWindow().setSize(parseInt(aValue[0]), parseInt(aValue[1]), true);
 
             this.promptService.confirm({
                 html: this.translateService.instant("app.window.options.general.resolution.confirm-body"),
                 timer: 10000
             }).then((result) => {
-
                 if (result.isConfirmed) {
-
                     this.settingsService.option.general.resolution = resolution;
-
                 } else if (result.isDenied) {
-
                     const oldX = this.settingsService.option.general.resolution.x;
                     const oldY = this.settingsService.option.general.resolution.y;
                     this._resolution = oldX + ';' + oldY;
@@ -100,6 +93,14 @@ export class GeneralComponent implements OnInit {
                     electron.getCurrentWindow().setSize(parseInt(this.settingsService.option.general.resolution.x), parseInt(this.settingsService.option.general.resolution.y), true);
                 }
             });
+        }
+    }
+
+    public setFullScreen($event: any): void {
+        if (this.settingsService.option.general.full_screen) {
+            electron.getCurrentWindow().setFullScreen(true);
+        } else {
+            electron.getCurrentWindow().setFullScreen(false);
         }
     }
 
