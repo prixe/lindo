@@ -60,7 +60,7 @@ export class GripPositionSave extends Mod {
   private moveElement(target) {
     if (localStorage.getItem(target + "Position") && this.wGame?.gui?.isConnected) {
       const position = JSON.parse(localStorage.getItem(target + "Position"));
-      const mapScene = this.wGame.document.querySelector('#mapScene-canvas');
+      const mapScene: HTMLDivElement = this.wGame.document.querySelector('#mapScene-canvas');
       let availableWidth = mapScene.clientWidth;
       const availableHeight = mapScene.clientHeight;
       if (mapScene.offsetLeft) {

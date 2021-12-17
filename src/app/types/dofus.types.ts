@@ -130,6 +130,37 @@ interface Identification {
     subscriptionEndDate: number
 }
 
+interface ItemType {
+    id: number,
+    nameId: string
+}
+
+interface Item {
+    id: number,
+    level: number,
+    type: ItemType,
+    typeId: number
+}
+
+interface InventoryItem {
+    id: number,
+    item: Item,
+    objectGID: number,
+    objectUID: number,
+    position: number,
+    quantity: number,
+    shortName: string,
+    weight: number
+}
+
+interface Inventory {
+    goultines: number,
+    kamas: number,
+    maxWeight: number,
+    objects: {[objectUID: number]: InventoryItem},
+    weight: number
+}
+
 interface Alliance {
     getPrismBonusPercent: (subAreaId: number) => number
 }
@@ -151,6 +182,7 @@ interface PlayerData {
     guild: Guild,
     id: number,
     identification: Identification,
+    inventory: Inventory,
     isRiding: boolean,
     experienceFactor: number,
     jobs: any,
@@ -161,9 +193,13 @@ interface PlayerData {
 
 interface GuiObject {
     rootElement: HTMLElement,
-    setValue: (any) => void,
-    tap?: () => void,
-    _childrenList: [GuiObject]
+    _childrenList: [GuiObject],
+    setValue?: (any) => void,
+    tap?: () => void
+}
+
+interface InteractGuiObject extends GuiObject {
+    tap: () => void,
 }
 
 interface NpcDialogUI {
@@ -182,7 +218,7 @@ interface WindowsContainer {
     _childrenList: [GuiWindow]
 }
 
-interface ShortcutBarSlot extends GuiObject {
+interface ShortcutBarSlot extends InteractGuiObject {
     on: (action: string, callback: () => void) => void
 }
 
@@ -213,8 +249,31 @@ interface FightControlButtons {
     toggleReadyForFight: () => void
 }
 
+interface IScrollIndicator {
+    options: {
+        listenX: boolean,
+        listenY: boolean
+    },
+    wrapper: HTMLElement
+}
+
+interface IScroll extends GuiObject {
+    indicators: [IScrollIndicator],
+    refresh: () => void,
+    options: {
+        scrollX: boolean,
+        scrollY: boolean
+    }
+}
+
+interface FighterListScrollerGui extends GuiObject {
+    iScroll: IScroll
+}
+
 interface Timeline {
     fightControlButtons: FightControlButtons
+    fighterList: GuiObject,
+    fighterListScroller: FighterListScrollerGui
 }
 
 interface NumberInputPad {
