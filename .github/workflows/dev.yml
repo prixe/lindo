@@ -12,7 +12,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      #utiliser node v14 ? https://github.com/actions/setup-node
       - run: npm i
       - run: npm run build:prod
       - run: docker run -v ${PWD}:/project electronuserland/builder:wine /bin/bash -c "npm run release:win"
@@ -38,7 +37,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      #utiliser node v14 ? https://github.com/actions/setup-node
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
       - run: npm i
       - run: npm run build:prod
       - run: npm run release:linux
@@ -62,7 +63,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      #utiliser node v14 ? https://github.com/actions/setup-node
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
       - run: node -v
       - run: npm i
       - run: npm run build:prod
