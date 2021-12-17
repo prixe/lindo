@@ -1,7 +1,7 @@
 ## ⚠ ATTENTION, VÉRIFIEZ QUE VOUS TÉLÉCHARGEZ LINDO DEPUIS LINDO-APP.COM
 ## ⚠ CERTAINS SITES MALVEILLANTS INSTALLERONT UN VIRUS SUR VOTRE ORDINATEUR
 
-## [2.6.5]
+## [2.6.5] - 2021-12-17
 
 ### Ajout
 - Lors de l'ouverture des Fragments Magiques avoie un message dans le chan Info contenant les runes découvertes
