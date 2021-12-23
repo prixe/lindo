@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, EventEmitter, Input, NgZone, Output } from '@angular/core';
-import { TranslateService } from "@ngx-translate/core";
+import { TranslateService } from "@services/translate.service";
 
 import * as Mods from "@mods/index";
 import { Mod } from "@mods/mod";

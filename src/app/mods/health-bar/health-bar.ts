@@ -1,6 +1,6 @@
 import {Mod} from "../mod";
 import {Bar} from "./bar";
-import { TranslateService } from "@ngx-translate/core";
+import { TranslateService } from "@services/translate.service";
 import {SettingsService} from "@services/settings.service";
 import { ShortcutsHelper } from "@helpers/shortcuts.helper";
 

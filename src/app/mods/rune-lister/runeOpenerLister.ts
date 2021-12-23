@@ -1,4 +1,4 @@
-import { TranslateService } from "@ngx-translate/core";
+import { TranslateService } from "@services/translate.service";
 import { SettingsService } from "@services/settings.service";
 import { Mod } from "../mod";
 

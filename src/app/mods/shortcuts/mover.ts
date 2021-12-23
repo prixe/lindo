@@ -1,4 +1,4 @@
-import {TranslateService} from "@ngx-translate/core";
+import {TranslateService} from "@services/translate.service";
 import {SettingsService} from "@services/settings.service";
 import {PathFinder} from "../auto-group/path-finder";
 import {Mod} from "../mod";

@@ -1,7 +1,7 @@
 //background.toggleDebugMode()
 
 import {SettingsService} from "@services/settings.service";
-import {TranslateService} from "@ngx-translate/core";
+import {TranslateService} from "@services/translate.service";
 
 import {Mod} from "../mod";
 import {PathFinder} from "./path-finder";
