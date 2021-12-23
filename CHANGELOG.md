@@ -6,7 +6,7 @@
 ### Ajout
 - Ajout du portugais
 - Possibilité de supprimer les timers pour le suivit automatique
-- Synchronisation de la timeline en combat entre les comptes
+- Synchronisation des menus entre les personnages ( Timeline en combat , Notifications , Challenges , Groupe)
 - Possibilité de mettre la timeline en vertical
 
 ### Améliorations
