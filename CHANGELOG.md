@@ -12,6 +12,9 @@
 ### Améliorations
 - Affichage des raccourcis dans les options de Lindo
 
+### Correctifs
+- Désactivation de l'option beta en cas d'erreur au chargement de Lindo
+
 ### Suppression
 - Cacher les montures en combat (option implémentée par Ankama)
 
