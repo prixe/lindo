@@ -1,13 +1,13 @@
 ## ⚠ ATTENTION, VÉRIFIEZ QUE VOUS TÉLÉCHARGEZ LINDO DEPUIS LINDO-APP.COM
 ## ⚠ CERTAINS SITES MALVEILLANTS INSTALLERONT UN VIRUS SUR VOTRE ORDINATEUR
 
-# [2.7.0]
+# [2.7.0] - 2021-12-25
 
 ### Ajout
 - Ajout du portugais
 - Possibilité de supprimer les timers pour le suivit automatique
-- Synchronisation des menus entre les personnages ( Timeline en combat , Notifications , Challenges , Groupe)
-- Possibilité de mettre la timeline en vertical
+- Synchronisation des menus entre les personnages (Timeline en combat, Notifications, Challenges, Groupe)
+- Possibilité de mettre la timeline en combat en vertical
 
 ### Améliorations
 - Affichage des raccourcis dans les options de Lindo
