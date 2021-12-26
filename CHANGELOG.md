@@ -1,7 +1,7 @@
 ## ⚠ ATTENTION, VÉRIFIEZ QUE VOUS TÉLÉCHARGEZ LINDO DEPUIS LINDO-APP.COM
 ## ⚠ CERTAINS SITES MALVEILLANTS INSTALLERONT UN VIRUS SUR VOTRE ORDINATEUR
 
-# [2.7.0] - 2021-12-25
+## [2.7.0] - 2021-12-25
 
 ### Ajout
 - Ajout du portugais
@@ -18,7 +18,7 @@
 ### Suppression
 - Cacher les montures en combat (option implémentée par Ankama)
 
-# [2.6.5] 2021-12-17
+## [2.6.5] - 2021-12-17
 
 ### Ajout
 - Lors de l'ouverture des Fragments Magiques, avoir un message dans le canal Info contenant les runes découvertes
