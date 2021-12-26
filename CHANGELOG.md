@@ -5,15 +5,15 @@
 
 ### Ajout
 - Ajout du portugais
-- Possibilité de supprimer les timers pour le suivit automatique
-- Synchronisation des menus entre les personnages (Timeline en combat, Notifications, Challenges, Groupe)
-- Possibilité de mettre la timeline en combat en vertical
+- Possibilité de supprimer les délais (timers) pour le suivi automatique
+- Déplacement synchronisé et sauvegarde des menus entre les personnages (Groupe, Challenge, Timeline de combat, Notification, État/Buff (transformation, bonbon, ...))
+- Possibilité de mettre la timeline des combattants en vertical
 
 ### Améliorations
 - Affichage des raccourcis dans les options de Lindo
 
 ### Correctifs
-- Désactivation de l'option beta en cas d'erreur au chargement de Lindo
+- Désactivation automatique de l'option béta en cas d'erreur au chargement de Lindo
 
 ### Suppression
 - Cacher les montures en combat (option implémentée par Ankama)
@@ -21,7 +21,7 @@
 # [2.6.5] 2021-12-17
 
 ### Ajout
-- Lors de l'ouverture des Fragments Magiques avoie un message dans le chan Info contenant les runes découvertes
+- Lors de l'ouverture des Fragments Magiques, avoir un message dans le canal Info contenant les runes découvertes
 - Possibilité de définir la résolution de Lindo en plein écran
 
 ## [2.6.4] - 2021-11-12
