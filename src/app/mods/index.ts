@@ -17,4 +17,5 @@ export { Shortcuts } from "../mods/shortcuts/shortcuts";
 export { ShowResources } from "./show-resources/show-resources";
 export { VerticalTimeline } from "./vertical-timeline/vertical-timeline";
 export { ZaapSearchFilter } from "./zaap-search-filter/zaap-search-filter";
-export { RuneOpenerList } from "./rune-lister/runeOpenerLister"
+export { RuneOpenerList } from "./rune-lister/runeOpenerLister";
+export { EstimationPrix } from "./estimationprix/estimationprix"
