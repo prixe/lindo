@@ -1,6 +1,11 @@
 ## ⚠ ATTENTION, VÉRIFIEZ QUE VOUS TÉLÉCHARGEZ LINDO DEPUIS LINDO-APP.COM
 ## ⚠ CERTAINS SITES MALVEILLANTS INSTALLERONT UN VIRUS SUR VOTRE ORDINATEUR
 
+## [2.7.1]
+### Correctifs
+- Corrections de l'auto-follow de groupe
+- Corrections de l'affichage des numeros de version
+
 ## [2.7.0] - 2021-12-25
 
 ### Ajout
