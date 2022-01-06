@@ -12,7 +12,7 @@ export class EstimationPrix extends Mod {
              });
             this.itemWindow = this.wGame.gui.windowsContainer._childrenList.find(e=>e.id=="itemRecipes")
             this.wGame.gui.windowsContainer._childrenList.find(e=>e.id=="itemRecipes").on("open",(e)=>{
-            e = this.wGame.gui.windowsContainer._childrenList.find(e=>e.id=="itemRecipes").on("open",(e)=>{})
+            e = this.wGame.gui.windowsContainer._childrenList.find(e=>e.id=="itemRecipes")
             let prix = this.getPrice(e.dbItemId)
             setTimeout(() => {
                 this.afficherprix(prix);
@@ -36,6 +36,7 @@ export class EstimationPrix extends Mod {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     }
 
+
      private KeyTurRecette() {
          let monitem = this.wGame.gui.windowsContainer.getChildren().find(e=>e.id=="itemRecipes")
         if(monitem.recipeBox == undefined || monitem.recipeBox == NaN){
@@ -45,35 +46,50 @@ export class EstimationPrix extends Mod {
         let array4 = []
         var array2 = monitem.recipeBox.rawRecipe.quantities;
         let totalprix = 0
-
+        let totalpods = 0
+        let pods = []
+        let pods2 = []
+        let finish = []
+        
         for(var i = 0; i < array1.length; i++){
             array1[i] = this.getPrice(array1[i])
+            pods[i] = monitem.recipeBox.ingredients[i].data.realWeight
          }
 
         for(var i = 0; i < array1.length; i++){
             let array3 = array1[i] * array2[i]
+            let pods3 = pods[i] * array2[i]
             array4.push(array3);
+            pods2.push(pods3);
          }
          for(var i = 0; i < array4.length; i++){
              totalprix += array4[i] 
+             totalpods += pods2[i]
+            
          }
-         return totalprix;
+         finish.push(totalprix);
+         finish.push(totalpods);
+         return finish;
         
     }
 
     private afficherprix(prix): void {
         let thePrice = this.KeyTurRecette()
-        if(thePrice != NaN && thePrice != null && thePrice != undefined && thePrice.toString() != "NaN"){
+        let totalprix = thePrice[0]
+        let totalpods = thePrice[1]
+        if(totalprix != NaN && totalprix != null && totalprix != undefined && totalprix.toString() != "NaN"){
             let leftdiv = document.createElement("div");
             leftdiv.className = "estimationprix";
             leftdiv.id = "eprix";
-            leftdiv.innerText = "Prix moyen du craft : " + this.formatNumber(thePrice) + " Kamas";
+            leftdiv.innerText = "Prix moyen du craft : " + this.formatNumber(totalprix) + " Kamas" + " (" + totalpods + " Pods).";
                 requestAnimationFrame(() => {
                     this.wGame.document.getElementsByClassName("RecipeBox")[0].parentNode.insertBefore(leftdiv, null);
                 })
         } 
             else {
-                return ;
-            }      
+            return ;
+            }
+        
    };
+
  }
