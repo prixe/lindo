@@ -430,7 +430,7 @@ export class AutoGroup extends Mod {
     }
 
     private isCellOnMap(cell: number): boolean {
-    	return this.wGame.isoEngine.mapRenderer.map.cells[cell];
+    	return this.wGame.isoEngine.mapRenderer.map.cells[cell].length > 0;
     }
 
     private isCellWalkable(cell: number): boolean {
