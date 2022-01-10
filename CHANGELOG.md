@@ -1,24 +1,32 @@
 ## ⚠ ATTENTION, VÉRIFIEZ QUE VOUS TÉLÉCHARGEZ LINDO DEPUIS LINDO-APP.COM
 ## ⚠ CERTAINS SITES MALVEILLANTS INSTALLERONT UN VIRUS SUR VOTRE ORDINATEUR
 
-# [2.7.0]
+## [2.7.1]
+### Correctifs
+- Corrections de l'auto-follow de groupe
+- Corrections de l'affichage des numeros de version
+
+## [2.7.0] - 2021-12-25
 
 ### Ajout
 - Ajout du portugais
-- Possibilité de supprimer les timers pour le suivit automatique
-- Synchronisation de la timeline en combat entre les comptes
-- Possibilité de mettre la timeline en vertical
+- Possibilité de supprimer les délais (timers) pour le suivi automatique
+- Déplacement synchronisé et sauvegarde des menus entre les personnages (Groupe, Challenge, Timeline de combat, Notification, État/Buff (transformation, bonbon, ...))
+- Possibilité de mettre la timeline des combattants en vertical
 
 ### Améliorations
 - Affichage des raccourcis dans les options de Lindo
 
+### Correctifs
+- Désactivation automatique de l'option béta en cas d'erreur au chargement de Lindo
+
 ### Suppression
 - Cacher les montures en combat (option implémentée par Ankama)
 
-# [2.6.5] 2021-12-17
+## [2.6.5] - 2021-12-17
 
 ### Ajout
-- Lors de l'ouverture des Fragments Magiques avoie un message dans le chan Info contenant les runes découvertes
+- Lors de l'ouverture des Fragments Magiques, avoir un message dans le canal Info contenant les runes découvertes
 - Possibilité de définir la résolution de Lindo en plein écran
 
 ## [2.6.4] - 2021-11-12

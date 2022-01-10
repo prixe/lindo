@@ -20,7 +20,6 @@ export class AutoGroup extends Mod {
     private movedOnRandomCell: boolean = true;
 
     private pathFinder: PathFinder
-    private disableTimeouts = false
 
     constructor(
         wGame: any,
@@ -50,23 +49,17 @@ export class AutoGroup extends Mod {
             this.followLeader(this.wGame.gui.isConnected);
         }
 
-        // Disable du Timer
-        if (this.params.disable_timer) {
-            Logger.info(' - Disable timers');
-            this.disableTimeouts = true
-        }
-
         // entre en combat automatiquement
         if (this.params.fight) {
             this.autoEnterFight();
         }
     }
 
-    public autoMasterParty(): void {
+    public autoMasterParty() {
         try {
             setTimeout(() => {
                 if (this.params.leader == this.wGame.gui.playerData.characterBaseInformations.name && this.params.members) {
-                    Logger.info('start master party');
+                  //  Logger.info('start master party');
 
                     const idInt = setInterval(() => {
                         this.masterParty(this.params.members.split(';'));
@@ -194,7 +187,7 @@ export class AutoGroup extends Mod {
                     setTimeout(callback, 100 + Math.random() * 700);
                 }
             }
-            setTimeout(changeMapRetry, this.getRandomTime(1,1));
+            setTimeout(changeMapRetry, 1200);
         };
         this.once(this.wGame.dofus.connectionManager, "MapComplementaryInformationsWithCoordsMessage", onChange);
         this.once(this.wGame.dofus.connectionManager, "MapComplementaryInformationsDataMessage", onChange);
@@ -223,22 +216,22 @@ export class AutoGroup extends Mod {
             if (!this.isPartyLeader()) {
                 if (this.path.length > 0) {
                     this.skipCellFollowAfterMapChanged();
-                    //Logger.info('⚡ ' + this.path[0].type + ' on ' + this.path[0].mapId + ' (' + (this.path.length - 1) + ' left)');
+                    this.log('⚡ ' + this.path[0].type + ' on ' + this.path[0].mapId + ' (' + (this.path.length - 1) + ' left)');
                     this.processFollow(this.path[0], () => {
                         if (!this.idle) {
-                            //Logger.info('OK');
+                            this.log('OK');
                             this.lastType = this.path[0].type;
-                            //Logger.info('CLEAR (success) ' + AutoGroup.objectToString(this.path.shift()));
+                            this.log('CLEAR (success) ' + AutoGroup.objectToString(this.path.shift()));
                             if (this.lastType != 'cell') this.movedOnRandomCell = false;
                             if (this.path.length > 0) {
                                 setTimeout(() => {
                                     this.checkFollow();
-                                }, this.getRandomTime(1,1) / ((this.path.length) + 1) + Math.random() * 400);
+                                }, 900 / ((this.path.length) + 1) + Math.random() * 400);
                             }
                             else this.turnIdle();
                         }
                     }, (reason: string = '') => {
-                        //Logger.info('Nope... (' + reason + ')');
+                        this.log('Nope... (' + reason + ')');
                         this.turnIdle();
                     });
                 }
@@ -343,9 +336,9 @@ export class AutoGroup extends Mod {
             const bb = b[0].length
             return(aa-bb)
         })
-        if (tableau.length > 5) {
+        if(tableau.length>5){
             return tableau[AutoGroup.getRandomInt(0, 5)][1];
-        } else {
+        }else{
             return tableau[AutoGroup.getRandomInt(0, tableau.length-1)][1];
         }
     }
@@ -392,12 +385,11 @@ export class AutoGroup extends Mod {
                 let moveSuccess = false;
                 const checkMovement = () => {
                     if (this.wGame.isoEngine.actorManager.userActor.moving) {
-                        setTimeout(checkMovement, this.getRandomTime(1,1));
-                    } else if (!moveSuccess) {
-                        fail('Move to cell timeout');
+                        setTimeout(checkMovement, 1000);
                     }
+                    else if (!moveSuccess) fail('Move to cell timeout');
                 };
-                setTimeout(checkMovement, this.getRandomTime(3,3));
+                setTimeout(checkMovement, 3000);
                 const move = () => {
                     this.wGame.isoEngine._movePlayerOnMap(cell, false, () => {
                         moveSuccess = true;
@@ -407,20 +399,17 @@ export class AutoGroup extends Mod {
                         else success();
                     });
                 };
-                if (this.wGame.isoEngine.actorManager.userActor.moving) {
-                    this.wGame.isoEngine.actorManager.userActor.cancelMovement(move);
-                } else {
-                    move();
-                }
+                if (this.wGame.isoEngine.actorManager.userActor.moving) this.wGame.isoEngine.actorManager.userActor.cancelMovement(move);
+                else move();
             } else if ('interactive' == followInstruction.type) {
                 let moveSuccess = false;
                 const checkMovement = () => {
                     if (this.wGame.isoEngine.actorManager.userActor.moving) {
-                        setTimeout(checkMovement, this.getRandomTime(1,1));
+                        setTimeout(checkMovement, 1000);
                     }
                     else if (!moveSuccess) fail('Use interactive timeout');
                 };
-                setTimeout(checkMovement, this.getRandomTime(3,3));
+                setTimeout(checkMovement, 3000);
                 this.once(this.wGame.dofus.connectionManager, 'InteractiveUsedMessage', (msg) => {
                     if (msg.elemId == followInstruction.elemId && msg.entityId == this.wGame.gui.playerData.id) {
                         moveSuccess = true;
@@ -431,18 +420,19 @@ export class AutoGroup extends Mod {
             } else {
                 fail('Unknown follow type');
             }
-        } else {
-            //Logger.info(followInstruction.mapId + ' != ' + this.wGame.isoEngine.mapRenderer.mapId);
+        }
+        else {
+            this.log(followInstruction.mapId + ' != ' + this.wGame.isoEngine.mapRenderer.mapId);
             fail('Mapid not matching or character in fight');
         }
     }
 
     private isCellOnMap(cell: number): boolean {
-        return this.wGame.isoEngine.mapRenderer.map.cells[cell];
+    	return this.wGame.isoEngine.mapRenderer.map.cells[cell];
     }
 
     private isCellWalkable(cell: number): boolean {
-        return this.wGame.isoEngine.mapRenderer.isWalkable(cell);
+    	return this.wGame.isoEngine.mapRenderer.isWalkable(cell);
     }
 
     private isMobOnCell(cellId) {
@@ -489,14 +479,16 @@ export class AutoGroup extends Mod {
         if (this.isPartyLeader()) {
             if (this.skipNextMapChange) {
                 this.skipNextMapChange = false;
-            } else {
+            }
+            else {
                 if (AutoGroup.isBorder(this.wGame.isoEngine.actorManager.userActor.cellId)) {
                     this.addToPath({
                         type: 'map',
                         mapId: this.wGame.isoEngine.mapRenderer.mapId,
                         cellId: this.wGame.isoEngine.actorManager.userActor.cellId
                     });
-                } else {
+                }
+                else {
                     this.addToPath({
                         type: 'sun',
                         mapId: this.wGame.isoEngine.mapRenderer.mapId,
@@ -547,7 +539,7 @@ export class AutoGroup extends Mod {
     }
 
     private addToPath(followInstruction: any): void {
-        //Logger.info(AutoGroup.objectToString(followInstruction));
+        this.log(AutoGroup.objectToString(followInstruction));
         this.ipcRendererService.send('auto-group-push-path', followInstruction);
     }
 
@@ -555,7 +547,7 @@ export class AutoGroup extends Mod {
         if (this.lastType !== 'cell') {
             // Skip every cellFollow
             while (this.path.length > 1 && this.path[0].type === 'cell') {
-                //Logger.info('CLEAR (skip) ' + AutoGroup.objectToString(this.path.shift()));
+                this.log('CLEAR (skip) ' + AutoGroup.objectToString(this.path.shift()));
             }
         }
     }
@@ -576,7 +568,7 @@ export class AutoGroup extends Mod {
             try {
                 this.turnIdle();
                 this.on(this.ipcRendererService, 'auto-group-push-path', (event: Event, followInstruction: any) => {
-                    //Logger.info('Got event! ' + followInstruction.type + ' on ' + followInstruction.mapId);
+                    this.log('Got event! ' + followInstruction.type + ' on ' + followInstruction.mapId);
                      if (followInstruction.type != 'cell' || this.params.follow_on_map) {
                         if (this.didLeaderChange()) this.turnIdle();
                         this.path.push(followInstruction);
@@ -635,7 +627,7 @@ export class AutoGroup extends Mod {
                             this.wGame.dofus.sendMessage("GameFightJoinRequestMessage", { fightId, fighterId });
                             setTimeout(() => {
                                 resolve();
-                            }, this.getRandomTime(1,2));
+                            }, 1500);
                         }, this.getRandomTime(1, 3));
                     });
                 } else {
@@ -708,6 +700,19 @@ export class AutoGroup extends Mod {
         else return false;
     }
 
+    private log(msg: string): void {
+        // Logger.info(this.wGame.gui.playerData.characterBaseInformations.name + ': ' + msg);
+    }
+    protected getRandomTime(min: number, max: number): number {
+        if (this.params.disable_timer) {
+            return 0;
+        } else {
+          return  super.getRandomTime(min, max);
+           
+        }
+    }
+
+
     private static objectToString(obj: any): string {
         let str = '{ ';
         for (const id in obj) {
@@ -715,9 +720,5 @@ export class AutoGroup extends Mod {
         }
         str = str.substr(0, str.length - 2) + ' }';
         return str;
-    }
-
-    protected getRandomTime(min: number, max: number): number {
-        return this.disableTimeouts ? 0 : super.getRandomTime(min, max);
     }
 }
