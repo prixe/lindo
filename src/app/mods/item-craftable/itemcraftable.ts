@@ -21,10 +21,10 @@ export class ItemCraftable extends Mod {
         if(listrecette == NaN){
            return ;
         } 
-            else if(statuscheckbox == false){
+             if(statuscheckbox == false){
                  this.searchFilterOn(listrecette)
             } 
-            else if(statuscheckbox == true){
+            else {
                  this.searchFilterOff(listrecette)
             } 
 
