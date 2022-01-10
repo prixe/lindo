@@ -75,6 +75,7 @@ export class Shortcuts extends Mod {
 
         // Open menu
         this.shortcutsHelper.bind(this.params.diver.open_menu, () => {
+            // @ts-ignore
             this.wGame.gui.mainControls.buttonBox._childrenList[14].tap()
         });
 
@@ -139,11 +140,13 @@ export class Shortcuts extends Mod {
                 if (this.wGame.gui.notificationBar._elementIsVisible) {
                     const dialogName = this.wGame.gui.notificationBar.currentOpenedId;
                     // If notifiaction is openened, allow to close it with ESC
+                    // @ts-ignore
                     this.wGame.gui.notificationBar.dialogs[dialogName]._childrenList[0]._childrenList[1].tap();
                     winClosed++;
                 }
                 if (this.params.diver.active_open_menu && !winClosed) {
                     // If no window closed open menu
+                    // @ts-ignore
                     this.wGame.gui.mainControls.buttonBox._childrenList[14].tap()
                 }
             }

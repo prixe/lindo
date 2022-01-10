@@ -1,6 +1,7 @@
 import {Mod} from "../mod";
 import {DamageContainer} from "./damage-container";
 import {ShortcutsHelper} from "@helpers/shortcuts.helper";
+import {GameActionFightDeathMessage} from "../../types/message.types";
 
 export class DamageEstimator extends Mod {
     private shortcutsHelper: ShortcutsHelper;
@@ -26,7 +27,7 @@ export class DamageEstimator extends Mod {
 
     private removeOnDeath(): void {
 
-        this.on(this.wGame.gui, 'GameActionFightDeathMessage', (e: any) => {
+        this.on(this.wGame.gui, 'GameActionFightDeathMessage', (e: GameActionFightDeathMessage) => {
             try {
                 this.damageContainer.destroyEstimator(e.targetId);
             } catch (ex) {
