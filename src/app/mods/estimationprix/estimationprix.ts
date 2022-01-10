@@ -4,7 +4,7 @@ export class EstimationPrix extends Mod {
     private mapPrice = null
     private recipes = null
     private itemWindow = null
-
+    private styleTag: HTMLStyleElement;
     
     startMod(): void {
             this.on(this.wGame.dofus.connectionManager, "ObjectAveragePricesMessage", (e) => {
@@ -37,34 +37,34 @@ export class EstimationPrix extends Mod {
     }
 
 
-     private KeyTurRecette() {
+     private getInformation() {
          let monitem = this.wGame.gui.windowsContainer.getChildren().find(e=>e.id=="itemRecipes")
         if(monitem.recipeBox == undefined || monitem.recipeBox == NaN){
             return ;
         }
-        let array1 = monitem.recipeBox.rawRecipe.ingredientIds;
-        let array4 = []
-        var array2 = monitem.recipeBox.rawRecipe.quantities;
+        let listeingredient = monitem.recipeBox.rawRecipe.ingredientIds;
+        let tableautotalprix = []
+        var listequantiter = monitem.recipeBox.rawRecipe.quantities;
         let totalprix = 0
         let totalpods = 0
-        let pods = []
-        let pods2 = []
+        let tableaupods = []
+        let podsreunit = []
         let finish = []
         
-        for(var i = 0; i < array1.length; i++){
-            array1[i] = this.getPrice(array1[i])
-            pods[i] = monitem.recipeBox.ingredients[i].data.realWeight
+        for(var i = 0; i < listeingredient.length; i++){
+            listeingredient[i] = this.getPrice(listeingredient[i])
+            tableaupods[i] = monitem.recipeBox.ingredients[i].data.realWeight
          }
 
-        for(var i = 0; i < array1.length; i++){
-            let array3 = array1[i] * array2[i]
-            let pods3 = pods[i] * array2[i]
-            array4.push(array3);
-            pods2.push(pods3);
+        for(var i = 0; i < listeingredient.length; i++){
+            let array3 = listeingredient[i] * listequantiter[i]
+            let pods3 = tableaupods[i] * listequantiter[i]
+            tableautotalprix.push(array3);
+            podsreunit.push(pods3);
          }
-         for(var i = 0; i < array4.length; i++){
-             totalprix += array4[i] 
-             totalpods += pods2[i]
+         for(var i = 0; i < tableautotalprix.length; i++){
+             totalprix += tableautotalprix[i] 
+             totalpods += podsreunit[i]
             
          }
          finish.push(totalprix);
@@ -74,16 +74,46 @@ export class EstimationPrix extends Mod {
     }
 
     private afficherprix(prix): void {
-        let thePrice = this.KeyTurRecette()
+        let thePrice = this.getInformation()
         let totalprix = thePrice[0]
         let totalpods = thePrice[1]
         if(totalprix != NaN && totalprix != null && totalprix != undefined && totalprix.toString() != "NaN"){
-            let leftdiv = document.createElement("div");
-            leftdiv.className = "estimationprix";
-            leftdiv.id = "eprix";
-            leftdiv.innerText = "Prix moyen du craft : " + this.formatNumber(totalprix) + " Kamas" + " (" + totalpods + " Pods).";
+            let estimationprix = document.createElement("div");
+            estimationprix.className = "estimationprix";
+            estimationprix.id = "estimationprix";
+
+            let kamaslogo = document.createElement("div");
+            kamaslogo.className = "kamaslogo";
+            kamaslogo.id = "kamaslogo";
+
+            let textpods = document.createElement("div");
+            textpods.className = "pods";
+            textpods.id = "pods";
+
+            
+            this.styleTag = this.wGame.document.createElement("style");
+            this.wGame.document.getElementsByTagName("head")[0].appendChild(this.styleTag);
+            this.styleTag.innerHTML += `
+            .kamaslogo { 
+                -webkit-flex: 1;
+                flex: 1;
+                min-height: 1px;
+                background: url(./assets/ui/icons/kama.png)  no-repeat;
+                background-size: 18px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;     
+        }
+        `
+        estimationprix.innerText = "Prix moyen du craft : " + this.formatNumber(totalprix);
+            textpods.innerText = " (" + totalpods + " Pods).";
                 requestAnimationFrame(() => {
-                    this.wGame.document.getElementsByClassName("RecipeBox")[0].parentNode.insertBefore(leftdiv, null);
+                    this.wGame.document.getElementsByClassName("RecipeBox")[0].parentNode.insertBefore(estimationprix, null);
+                    this.wGame.document.getElementsByClassName("estimationprix")[0].parentNode.insertBefore(kamaslogo, null);
+                    this.wGame.document.getElementsByClassName("kamaslogo")[0].parentNode.insertBefore(textpods, null);
+
+
+                    
                 })
         } 
             else {
