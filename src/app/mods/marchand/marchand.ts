@@ -17,9 +17,9 @@ export class Marchand extends Mod {
         if (response.informations._type == "GameRolePlayMerchantInformations") {
             this.tab = [];
             this.numMM = [];
-            for (let i in this.wGame.dofus.actorManager.actors) {
-                if (this.wGame.dofus.actorManager.actors[i].isMerchant()) {
-                    this.tab.push({id: i, position: this.wGame.dofus.actorManager.actors[i].cellId});
+            for (let i in this.wGame.actorManager.actors) {
+                if (this.wGame.actorManager.actors[i].isMerchant()) {
+                    this.tab.push({id: i, position: this.wGame.actorManager.actors[i].cellId});
                 }
             }
         }

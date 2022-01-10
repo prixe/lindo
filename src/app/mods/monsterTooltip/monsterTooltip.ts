@@ -237,10 +237,10 @@ export class MonsterTooltip extends Mod {
         const highestMonsterLevel = monsters.slice().sort((a, b) => a.staticInfos.level - b.staticInfos.level).pop();
         // Get mount, alliance and guild xp modifiers
         const { playerData: { guild, id, alliance, position, ...rest } } = this.wGame.gui;
-        const guildInformation = guild.getGuildMemberInfo(id) || {};
+        const guildInformation = guild.getGuildMemberInfo(id) || {experienceGivenPercent: 0};
         const xpAlliancePrismBonusPercent = alliance.getPrismBonusPercent(position.subAreaId);
         const xpRatioMount = rest.isRiding ? rest.mountXpRatio || 0 : 0;
-        const xpGuildGivenPercent = guildInformation.experienceGivenPercent || 0
+        const xpGuildGivenPercent = guildInformation.experienceGivenPercent;
         
         if (Object.keys(partyData._partyFromId).length > 0) {
             partyXp = this.calculateXp(

@@ -1,4 +1,3 @@
-import { SettingsService } from "@services/settings.service";
 import {Mod} from "../mod";
 
 export class VerticalTimeline extends Mod {

@@ -1,7 +1,7 @@
 import {Mod} from "../mod";
 
 export class CssOverload extends Mod {
-    private styleTag: HTMLDivElement;
+    private styleTag: HTMLStyleElement;
 
     startMod(): void {
         this.styleTag = this.wGame.document.createElement('style');

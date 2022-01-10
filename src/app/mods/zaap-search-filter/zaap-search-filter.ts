@@ -44,6 +44,11 @@ export class ZaapSearchFilter extends Mod {
         }
     }
 
+    private getZaapList(): HTMLCollectionOf<HTMLElement> {
+        // @ts-ignore
+        return this.wGame.document.getElementsByClassName("lindo_subwayBodyHeight__custom")[0].getElementsByClassName("row").map((k) => k as HTMLElement);
+    }
+
     // Zaap
     private createSearchFilter(): void {
         this.injectInputInDom();
@@ -52,9 +57,7 @@ export class ZaapSearchFilter extends Mod {
         this.zaapSearchInput.addEventListener("keyup", () => {
             const zaapWanted = this.zaapSearchInput.value.toLowerCase();
 
-            const zaapList = this.wGame.document.getElementsByClassName("lindo_zaapBodyHeight__custom")[0].getElementsByClassName("row");
-
-            for (const currentZaap of zaapList) {
+            for (const currentZaap of this.getZaapList()) {
                 const destination = currentZaap.getElementsByClassName("destinationName");
 
                 if (!destination.length) {
@@ -121,7 +124,7 @@ export class ZaapSearchFilter extends Mod {
     }
 
     private addFavInDom() {
-        let zaapList = this.wGame.document.getElementsByClassName("lindo_zaapBodyHeight__custom")[0].getElementsByClassName("row");
+        let zaapList = this.getZaapList();
 
         // Ajout de l'étoile fovori (rempli ou non)
         for (let index = 1; index < zaapList.length - 1; index++) {
@@ -184,7 +187,7 @@ export class ZaapSearchFilter extends Mod {
         }
 
         //on met les favori "en haut"
-        zaapList = this.wGame.document.getElementsByClassName("lindo_zaapBodyHeight__custom")[0].getElementsByClassName("row");
+        zaapList = this.getZaapList();
         let saveIndex = 1
         for (let index = 1; index < zaapList.length - 1; index++) {
             const currentZaap = zaapList[index];
@@ -214,10 +217,7 @@ export class ZaapSearchFilter extends Mod {
         this.zaapSearchInput.addEventListener("keyup", () => {
             const zaapWanted = this.zaapSearchInput.value.toLowerCase();
 
-            const zaapList = this.wGame.document.getElementsByClassName("lindo_prismeBodyHeight__custom")[0]
-                .getElementsByClassName("row");
-
-            for (const currentZaap of zaapList) {
+            for (const currentZaap of this.getZaapList()) {
                 const destination = currentZaap.getElementsByClassName("destinationName");
 
                 if (!destination.length) {
@@ -282,7 +282,7 @@ export class ZaapSearchFilter extends Mod {
     }
 
     private addFavInDomPrism() {
-        let zaapList = this.wGame.document.getElementsByClassName("lindo_prismeBodyHeight__custom")[0].getElementsByClassName("row");
+        let zaapList = this.getZaapList();
 
         // Ajout de l'étoile fovori (rempli ou non)
         for (let index = 1; index < zaapList.length - 1; index++) {
@@ -345,7 +345,7 @@ export class ZaapSearchFilter extends Mod {
         }
 
         //on met les favori "en haut"
-        zaapList = this.wGame.document.getElementsByClassName("lindo_prismeBodyHeight__custom")[0].getElementsByClassName("row");
+        zaapList = this.getZaapList();
         let saveIndex = 1
         for (let index = 1; index < zaapList.length - 1; index++) {
             const currentZaap = zaapList[index];
@@ -375,10 +375,7 @@ export class ZaapSearchFilter extends Mod {
         this.zaapSearchInput.addEventListener("keyup", () => {
             const zaapWanted = this.zaapSearchInput.value.toLowerCase();
 
-            const zaapList = this.wGame.document.getElementsByClassName("lindo_subwayBodyHeight__custom")[0]
-                .getElementsByClassName("row");
-
-            for (const currentZaap of zaapList) {
+            for (const currentZaap of this.getZaapList()) {
                 const destination = currentZaap.getElementsByClassName("destinationName");
 
                 if (!destination.length) {

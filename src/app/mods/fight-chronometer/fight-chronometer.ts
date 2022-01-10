@@ -35,8 +35,8 @@ export class FightChronometer extends Mod {
             }
 
             // Makes some room for the chronometer
-            const turnsContainer = this.wGame.document.querySelector('.turnCountLabel');
-            turnsContainer.style = `margin-top: -5px;`;
+            const turnsContainer = this.wGame.document.querySelector('.turnCountLabel') as HTMLElement;
+            turnsContainer.style.marginTop = '-5px;';
 
             this.chronometerContainer = this.wGame.document.createElement("div");
             this.chronometerContainer.id = "chronometerContainer";

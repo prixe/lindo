@@ -1,5 +1,7 @@
 import {Mod} from "../mod";
 
+import {JobExperienceUpdateMessage} from "../../types/message.types";
+
 export class Jobsxp extends Mod{
     private xpRestanteText : HTMLDivElement;
 
@@ -173,7 +175,7 @@ export class Jobsxp extends Mod{
     }
 
     private updateJob(): void {
-        this.on(this.wGame.gui, 'JobExperienceUpdateMessage', (e: any) => {
+        this.on(this.wGame.gui, 'JobExperienceUpdateMessage', (e: JobExperienceUpdateMessage) => {
             try {
                 if (e.experiencesUpdate.jobXpNextLevelFloor) {
                     this.create();

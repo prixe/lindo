@@ -1,6 +1,8 @@
 import {Mod} from "../mod";
 import {HarvestBar} from "./harvest-bar";
 
+import {StatedElementUpdatedMessage, InteractiveUsedMessage} from "../../types/message.types";
+
 export class Harvest extends Mod {
     private harvestBar: HarvestBar;
     private statedElements: Map<number, number> = new Map();
@@ -56,7 +58,7 @@ export class Harvest extends Mod {
     }
 
    private setHarvestStart(): void {
-        this.on(this.wGame.dofus.connectionManager, 'StatedElementUpdatedMessage', (e: any) => {
+        this.on(this.wGame.dofus.connectionManager, 'StatedElementUpdatedMessage', (e: StatedElementUpdatedMessage) => {
             try {
                 this.statedElements.set(e.statedElement.elementId, e.statedElement.elementCellId);
             } catch (ex) {
@@ -66,7 +68,7 @@ export class Harvest extends Mod {
     }
 
    private displayOnStart(): void {
-        this.on(this.wGame.dofus.connectionManager, 'InteractiveUsedMessage', (e: any) => {
+        this.on(this.wGame.dofus.connectionManager, 'InteractiveUsedMessage', (e: InteractiveUsedMessage) => {
             try {
                 if (this.statedElements.has(e.elemId) && e.entityId == this.wGame.isoEngine.actorManager.userId) {
                     this.harvestBar.harvestStarted(this.statedElements.get(e.elemId), e.duration);
