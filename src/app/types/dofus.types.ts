@@ -195,58 +195,70 @@ interface GuiObject {
     rootElement: HTMLElement,
     _childrenList: [GuiObject],
     setValue?: (any) => void,
-    tap?: () => void
+    tap?: () => void,
+    [key: string]: any,
 }
 
 interface InteractGuiObject extends GuiObject {
     tap: () => void,
+    [key: string]: any,
 }
 
 interface NpcDialogUI {
     replies: [string],
-    replyBoxes: [GuiObject]
+    replyBoxes: [GuiObject],
+    [key: string]: any,
 }
 
 interface GuiWindow extends GuiObject {
     close: () => void,
     id: string,
-    isVisible: () => boolean
+    isVisible: () => boolean,
+    [key: string]: any,
 }
 
 interface WindowsContainer {
     getChildren: () => [GuiWindow],
-    _childrenList: [GuiWindow]
+    _childrenList: [GuiWindow],
+    [key: string]: any,
 }
 
 interface ShortcutBarSlot extends InteractGuiObject {
-    on: (action: string, callback: () => void) => void
+    on: (action: string, callback: () => void) => void,
+    [key: string]: any,
 }
 
 interface ShortcutBarSlots {
-    slotList: [ShortcutBarSlot]
+    slotList: [ShortcutBarSlot],
+    [key: string]: any,
 }
 
 interface ShortcutBarPanels {
     item: ShortcutBarSlots,
-    spell: ShortcutBarSlots
+    spell: ShortcutBarSlots,
+    [key: string]: any,
 }
 
 interface ShortcutBar {
-    _panels: ShortcutBarPanels
+    _panels: ShortcutBarPanels,
+    [key: string]: any,
 }
 
 interface MenuBar extends GuiObject {
-    _icons: GuiObject
+    _icons: GuiObject,
+    [key: string]: any,
 }
 
 interface MainControls {
     buttonBox: GuiObject,
     _childrenList: [GuiWindow],
-    _creatureModeButton: GuiObject
+    _creatureModeButton: GuiObject,
+    [key: string]: any,
 }
 
 interface FightControlButtons {
-    toggleReadyForFight: () => void
+    toggleReadyForFight: () => void,
+    [key: string]: any,
 }
 
 interface IScrollIndicator {
@@ -254,7 +266,8 @@ interface IScrollIndicator {
         listenX: boolean,
         listenY: boolean
     },
-    wrapper: HTMLElement
+    wrapper: HTMLElement,
+    [key: string]: any,
 }
 
 interface IScroll extends GuiObject {
@@ -263,36 +276,43 @@ interface IScroll extends GuiObject {
     options: {
         scrollX: boolean,
         scrollY: boolean
-    }
+    },
+    [key: string]: any,
 }
 
 interface FighterListScrollerGui extends GuiObject {
-    iScroll: IScroll
+    iScroll: IScroll,
+    [key: string]: any,
 }
 
 interface Timeline {
     fightControlButtons: FightControlButtons
     fighterList: GuiObject,
-    fighterListScroller: FighterListScrollerGui
+    fighterListScroller: FighterListScrollerGui,
+    [key: string]: any,
 }
 
 interface NumberInputPad {
-    isVisible: () => boolean
+    isVisible: () => boolean,
+    [key: string]: any,
 }
 
 interface SentMessage {
-    message: string
+    message: string,
+    [key: string]: any,
 }
 
 interface SentMessageHistory {
     getCurrentEntry: () => [SentMessage],
     goBack: () => void,
-    goForward: () => void
+    goForward: () => void,
+    [key: string]: any,
 }
 
 interface ChatInput {
     inputChat: GuiObject,
-    sentMessageHistory: SentMessageHistory
+    sentMessageHistory: SentMessageHistory,
+    [key: string]: any,
 }
 
 interface Chat {
@@ -300,18 +320,21 @@ interface Chat {
     active: boolean,
     chatInput: ChatInput,
     deactivate: () => void,
-    logMsg: (message: string) => void
+    logMsg: (message: string) => void,
+    [key: string]: any,
 }
 
 interface NotificationBar {
     currentOpenedId: number,
     dialogs: [GuiObject],
-    _elementIsVisible: boolean
+    _elementIsVisible: boolean,
+    [key: string]: any,
 }
 
 interface ShopFloatingToolbar {
     hide: () => void,
-    show: () => void
+    show: () => void,
+    [key: string]: any,
 }
 
 interface DofusGUI {
@@ -328,7 +351,8 @@ interface DofusGUI {
     shopFloatingToolbar: ShopFloatingToolbar
     shortcutBar: ShortcutBar,
     timeline: Timeline,
-    windowsContainer: WindowsContainer
+    windowsContainer: WindowsContainer,
+    [key: string]: any,
 }
 
 interface DofusState {
@@ -339,16 +363,19 @@ interface DofusState {
     isListening: boolean,
     lastActivityTime: number,
     pingInterval: number,
-    recordActivity: () => void
+    recordActivity: () => void,
+    [key: string]: any,
 }
 
 interface DofusConfig {
     assetsUrl: string,
-    dataUrl: string
+    dataUrl: string,
+    [key: string]: any,
 }
 
 interface ActorLook {
-    subentities: [any]
+    subentities: [any],
+    [key: string]: any,
 }
 
 interface Actor {
@@ -358,7 +385,8 @@ interface Actor {
     cellId: number,
     isMerchant: () => boolean,
     look: ActorLook,
-    moving: boolean
+    moving: boolean,
+    [key: string]: any,
 }
 
 interface ActorManager {
@@ -368,35 +396,42 @@ interface ActorManager {
     getOccupiedCells: (cellId: number) => { [cellId: number]: [Cell]},
     userActor: Actor,
     userId: number,
-    _occupiedCells: { [id: number]: [Cell] }
+    _occupiedCells: { [id: number]: [Cell] },
+    [key: string]: any,
 }
 
-interface Coord2D { 
+interface Coord2D {
     x: number,
-    y: number
+    y: number,
+    [key: string]: any,
 }
 
 interface Cell {
     actorId: number,
     cellId: number,
-    direction: string
+    direction: string,
+    [key: string]: any,
 }
 
 interface MapCellData {
-    l?: number
+    l?: number,
+    [key: string]: any,
 }
 
 interface MapCells {
-    cells: [MapCellData[]]
+    cells: [MapCellData[]],
+    [key: string]: any,
 }
 
 interface MapGrid {
-    grid: [Cell[]]
+    grid: [Cell[]],
+    [key: string]: any,
 }
 
 interface EnabledSkill {
     skillId: number,
-    skillInstanceUid: number
+    skillInstanceUid: number,
+    [key: string]: any,
 }
 
 export interface InteractiveElement {
@@ -404,14 +439,16 @@ export interface InteractiveElement {
     elementTypeId: number,
     enabledSkills: [EnabledSkill],
     _name: string,
-    _type: string
+    _type: string,
+    [key: string]: any,
 }
 
 export interface StatedElement {
     id: number,
     isDisplayed: boolean,
     _x: number,
-    _y: number
+    _y: number,
+    [key: string]: any,
 }
 
 interface MapRenderer {
@@ -422,20 +459,24 @@ interface MapRenderer {
     isWalkable: (cellId: number) => boolean,
     map: MapCells,
     mapId: number,
-    statedElements: [StatedElement]
+    statedElements: [StatedElement],
+    [key: string]: any,
 }
 
 interface LindoMapScene {
-    _refreshAreasBackup: () => void
+    _refreshAreasBackup: () => void,
+    [key: string]: any,
 }
 
 interface MapScene extends LindoMapScene {
     convertSceneToCanvasCoordinate: (x: number, y: number) => Coord2D,
-    _refreshAreas: () => void
+    _refreshAreas: () => void,
+    [key: string]: any,
 }
 
 interface Background {
-    render: () => void
+    render: () => void,
+    [key: string]: any,
 }
 
 type Direction = "top" | "bottom" | "left" | "right" | false;
@@ -449,7 +490,8 @@ interface IsoEngine {
     useInteractive: (elemId: number, skillInstanceUid: number) => void,
     userId: number,
     _castSpellImmediately: (number) => void,
-    _movePlayerOnMap: (cellId: number, arg: boolean, callback: () => void) => void
+    _movePlayerOnMap: (cellId: number, arg: boolean, callback: () => void) => void,
+    [key: string]: any,
 }
 
 export interface WGame extends Window {
@@ -460,5 +502,6 @@ export interface WGame extends Window {
     connectionManager: any,
     foreground: GuiObject
     gui: DofusGUI,
-    isoEngine: IsoEngine
+    isoEngine: IsoEngine,
+    [key: string]: any,
 }
