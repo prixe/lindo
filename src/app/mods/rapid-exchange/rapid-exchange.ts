@@ -170,9 +170,9 @@ export class RapidExchange extends Mod {
             // For these, fond the MinMax selector in children of the window and call the hide function
             case "tradeWithPlayerAndNPCInventory":
             case "tradeWithPlayer":
-                for (const i in window._childrenList) {
-                    if (window._childrenList[i].rootElement && window._childrenList[i].rootElement.className == "minMaxSelector") {
-                        window._childrenList[i].hide();
+                for (const i in window.getChildren()) {
+                    if (window.getChildren()[i].rootElement && window.getChildren()[i].rootElement.className == "minMaxSelector") {
+                        window.getChildren()[i].hide();
                     }
                 }
         }

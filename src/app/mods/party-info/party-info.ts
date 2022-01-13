@@ -103,8 +103,8 @@ export class PartyInfo extends Mod {
         try {
             let partyLevel = 0;
             let prospecting = 0;
-            if (this.wGame.gui.party.currentParty && this.wGame.gui.party.currentParty._childrenList.length > 0) {
-                this.wGame.gui.party.currentParty._childrenList.forEach((c) => {
+            if (this.wGame.gui.party.currentParty && this.wGame.gui.party.currentParty.getChildren().length > 0) {
+                this.wGame.gui.party.currentParty.getChildren().forEach((c) => {
                     partyLevel += c.memberData.level;
                     prospecting += c.memberData.prospecting;
                 });

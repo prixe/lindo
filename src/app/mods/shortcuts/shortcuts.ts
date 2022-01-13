@@ -76,7 +76,7 @@ export class Shortcuts extends Mod {
         // Open menu
         this.shortcutsHelper.bind(this.params.diver.open_menu, () => {
             // @ts-ignore
-            this.wGame.gui.mainControls.buttonBox._childrenList[14].tap()
+            this.wGame.gui.mainControls.buttonBox.getChildren().tap()
         });
 
         // Spell
@@ -147,7 +147,7 @@ export class Shortcuts extends Mod {
                 if (this.params.diver.active_open_menu && !winClosed) {
                     // If no window closed open menu
                     // @ts-ignore
-                    this.wGame.gui.mainControls.buttonBox._childrenList[14].tap()
+                    this.wGame.gui.mainControls.buttonBox.getChildren().tap()
                 }
             }
         });
