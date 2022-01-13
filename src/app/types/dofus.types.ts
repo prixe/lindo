@@ -1,15 +1,18 @@
 interface DofusCommunication {
     connectionManager: any,
-    sendMessage: (message: string, data: any) => void
+    sendMessage: (message: string, data: any) => void,
+    [key: string]: any,
 }
 
 interface FighterDataStats {
     actionPoints: number,
-    maxActionPoints: number
+    maxActionPoints: number,
+    [key: string]: any,
 }
 
 interface FighterDataDisposition {
-    cellId: string
+    cellId: string,
+    [key: string]: any,
 }
 
 interface FighterData {
@@ -17,12 +20,14 @@ interface FighterData {
     disposition: FighterDataDisposition,
     isCreature: boolean,
     stats: FighterDataStats,
-    teamId: number
+    teamId: number,
+    [key: string]: any,
 }
 
 interface Fighter {
     data: FighterData,
-    id: number
+    id: number,
+    [key: string]: any,
 }
 
 interface FightManager {
@@ -32,45 +37,55 @@ interface FightManager {
     getFighter: (fighterId: number) => Fighter,
     getFighters: () => [number],
     turnCount: number,
-    _fighters: { [actorId: number]: Fighter }
+    _fighters: { [actorId: number]: Fighter },
+    [key: string]: any,
 }
 
 interface ClassicParty {
-    partyLeaderId: number
+    partyLeaderId: number,
+    [key: string]: any,
 }
 
 interface MemberData {
     id: number,
     level: number,
     mapId: number,
-    prospecting: number
+    prospecting: number,
+    [key: string]: any,
 }
 
 interface PartyMember extends GuiObject {
-    memberData: MemberData
+    memberData: MemberData,
+    [key: string]: any,
 }
 
 interface CurrentParty {
-    _childrenList: [PartyMember]
+    getChildren: () => [PartyMember],
+    _childrenList: [PartyMember],
+    [key: string]: any,
 }
 
 interface Party {
     classicParty: ClassicParty,
-    currentParty: CurrentParty
+    currentParty: CurrentParty,
+    [key: string]: any,
 }
 
 interface CharacterBreed {
-    shortNameId: string
+    shortNameId: string,
+    [key: string]: any,
 }
 
 interface CharacterBaseInformations {
     id: number,
     level: number,
-    name: string
+    name: string,
+    [key: string]: any,
 }
 
 interface Wisdom {
-    getTotalStat: () => number
+    getTotalStat: () => number,
+    [key: string]: any,
 }
 
 interface PlayerCharacterCharacteristics {
@@ -80,12 +95,14 @@ interface PlayerCharacterCharacteristics {
     kamas: number,
     lifePoints: number,
     maxLifePoints: number,
-    wisdom: Wisdom
+    wisdom: Wisdom,
+    [key: string]: any,
 }
 
 interface SpellDesc {
     id: number,
-    nameId: string
+    nameId: string,
+    [key: string]: any,
 }
 
 interface Spell {
@@ -95,51 +112,60 @@ interface Spell {
     level: number,
     ownerId: number,
     position: number,
-    spell: SpellDesc
+    spell: SpellDesc,
+    [key: string]: any,
 }
 
 interface SpellData {
-    spells: [Spell]
+    spells: [Spell],
+    [key: string]: any,
 }
 
 interface PlayerCharacter {
     characteristics: PlayerCharacterCharacteristics,
-    spellData: SpellData
+    spellData: SpellData,
+    [key: string]: any,
 }
 
 interface Characters {
     mainCharacter: PlayerCharacter,
     mainCharacterId: number,
     regenRate: number,
-    regenTimer: number
+    regenTimer: number,
+    [key: string]: any,
 }
 
 interface Position2D {
     posX: number,
-    posY: number
+    posY: number,
+    [key: string]: any,
 }
 
 interface Position {
     coordinates: Position2D,
     mapId: number,
     subAreaId: number,
-    worldmapId: number
+    worldmapId: number,
+    [key: string]: any,
 }
 
 interface Identification {
-    subscriptionEndDate: number
+    subscriptionEndDate: number,
+    [key: string]: any,
 }
 
 interface ItemType {
     id: number,
-    nameId: string
+    nameId: string,
+    [key: string]: any,
 }
 
 interface Item {
     id: number,
     level: number,
     type: ItemType,
-    typeId: number
+    typeId: number,
+    [key: string]: any,
 }
 
 interface InventoryItem {
@@ -150,7 +176,8 @@ interface InventoryItem {
     position: number,
     quantity: number,
     shortName: string,
-    weight: number
+    weight: number,
+    [key: string]: any,
 }
 
 interface Inventory {
@@ -158,20 +185,24 @@ interface Inventory {
     kamas: number,
     maxWeight: number,
     objects: {[objectUID: number]: InventoryItem},
-    weight: number
+    weight: number,
+    [key: string]: any,
 }
 
 interface Alliance {
-    getPrismBonusPercent: (subAreaId: number) => number
+    getPrismBonusPercent: (subAreaId: number) => number,
+    [key: string]: any,
 }
 
 interface GuildMemberInfo {
-    experienceGivenPercent: number
+    experienceGivenPercent: number,
+    [key: string]: any,
 }
 
 interface Guild {
     current: number|null,
-    getGuildMemberInfo: (playerId: number) => GuildMemberInfo
+    getGuildMemberInfo: (playerId: number) => GuildMemberInfo,
+    [key: string]: any,
 }
 
 interface PlayerData {
@@ -188,11 +219,13 @@ interface PlayerData {
     jobs: any,
     mountXpRatio: number,
     partyData: any,
-    position: Position
+    position: Position,
+    [key: string]: any,
 }
 
 interface GuiObject {
     rootElement: HTMLElement,
+    getChildren: () => [GuiObject],
     _childrenList: [GuiObject],
     setValue?: (any) => void,
     tap?: () => void,
@@ -219,7 +252,6 @@ interface GuiWindow extends GuiObject {
 
 interface WindowsContainer {
     getChildren: () => [GuiWindow],
-    _childrenList: [GuiWindow],
     [key: string]: any,
 }
 
@@ -251,6 +283,7 @@ interface MenuBar extends GuiObject {
 
 interface MainControls {
     buttonBox: GuiObject,
+    getChildren: () => [GuiWindow],
     _childrenList: [GuiWindow],
     _creatureModeButton: GuiObject,
     [key: string]: any,
