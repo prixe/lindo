@@ -1,22 +1,36 @@
 import {Mod} from "../mod";
 
 export class EstimationPrix extends Mod {
-    private mapPrice = null
-   
+    private mapPrice;
+    private tableauitemid = []
+    private tableauitemprice = []
     startMod(): void {
-            this.on(this.wGame.dofus.connectionManager, "ObjectAveragePricesMessage", (e) => {
-                    this.createMap(e.ids, e.avgPrices);
-             });
-            
-            this.wGame.gui.windowsContainer.getChildren().find(e=>e.id=="itemRecipes").on("open",(e)=>{
-            e = this.wGame.gui.windowsContainer.getChildren().find(e=>e.id=="itemRecipes")
+
+
+       this.on(this.wGame.dofus.connectionManager, "ObjectAveragePricesMessage", (e) => {
+            this.tableauitemid = (e.ids)
+            this.tableauitemprice = (e.avgPrices)
+     });
+             
+     setTimeout(() => {
+        this.getObjectAveragePrice(this.tableauitemid, this.tableauitemprice)
+    }, 2000);   
+
+            this.wGame.gui.windowsContainer._childrenList.find(e=>e.id=="itemRecipes").on("open",(e)=>{
+            e = this.wGame.gui.windowsContainer._childrenList.find(e=>e.id=="itemRecipes")
             let prix = this.getPrice(e.dbItemId)
             setTimeout(() => {
                 this.afficherprix(prix);
             }, 200);                  
         })
     }
-
+    
+    private getObjectAveragePrice(array1, array2){
+        this.tableauitemid = array1
+        this.tableauitemprice = array2
+        this.createMap(this.tableauitemid, this.tableauitemprice);
+    }
+    
     private createMap(array1, array2) {
         const length = array1.length;
         this.mapPrice = new Map();
@@ -89,4 +103,10 @@ export class EstimationPrix extends Mod {
         
    };
 
+   reset(){
+    this.getObjectAveragePrice(this.tableauitemid, this.tableauitemprice)
+}
+
+
+   
  }
