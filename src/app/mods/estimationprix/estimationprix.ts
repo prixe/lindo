@@ -8,8 +8,8 @@ export class EstimationPrix extends Mod {
                     this.createMap(e.ids, e.avgPrices);
              });
             
-            this.wGame.gui.windowsContainer._childrenList.find(e=>e.id=="itemRecipes").on("open",(e)=>{
-            e = this.wGame.gui.windowsContainer._childrenList.find(e=>e.id=="itemRecipes")
+            this.wGame.gui.windowsContainer.getChildren().find(e=>e.id=="itemRecipes").on("open",(e)=>{
+            e = this.wGame.gui.windowsContainer.getChildren().find(e=>e.id=="itemRecipes")
             let prix = this.getPrice(e.dbItemId)
             setTimeout(() => {
                 this.afficherprix(prix);
