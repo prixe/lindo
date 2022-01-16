@@ -78,11 +78,6 @@ export class EstimationPrix extends Mod {
             let estimationprix = document.createElement("div");
             estimationprix.className = "estimationprix";
             estimationprix.id = "estimationprix";
-
-            let textpods = document.createElement("div");
-            textpods.className = "pods";
-            textpods.id = "pods";
-
         estimationprix.innerHTML = "Prix moyen du craft : " + this.formatNumber(totalprix) + " <img src='./assets/ui/icons/kama.png' width='20px' height='16px'/>" + " (" + totalpods + " Pods).";
                 requestAnimationFrame(() => {
                     this.wGame.document.getElementsByClassName("RecipeBox")[0].parentNode.insertBefore(estimationprix, null);      
