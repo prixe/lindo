@@ -2,15 +2,12 @@ import {Mod} from "../mod";
 
 export class EstimationPrix extends Mod {
     private mapPrice = null
-    private recipes = null
-    private itemWindow = null
-    private styleTag: HTMLStyleElement;
-    
+   
     startMod(): void {
             this.on(this.wGame.dofus.connectionManager, "ObjectAveragePricesMessage", (e) => {
                     this.createMap(e.ids, e.avgPrices);
              });
-            this.itemWindow = this.wGame.gui.windowsContainer._childrenList.find(e=>e.id=="itemRecipes")
+            
             this.wGame.gui.windowsContainer._childrenList.find(e=>e.id=="itemRecipes").on("open",(e)=>{
             e = this.wGame.gui.windowsContainer._childrenList.find(e=>e.id=="itemRecipes")
             let prix = this.getPrice(e.dbItemId)
@@ -82,38 +79,13 @@ export class EstimationPrix extends Mod {
             estimationprix.className = "estimationprix";
             estimationprix.id = "estimationprix";
 
-            let kamaslogo = document.createElement("div");
-            kamaslogo.className = "kamaslogo";
-            kamaslogo.id = "kamaslogo";
-
             let textpods = document.createElement("div");
             textpods.className = "pods";
             textpods.id = "pods";
 
-            
-            this.styleTag = this.wGame.document.createElement("style");
-            this.wGame.document.getElementsByTagName("head")[0].appendChild(this.styleTag);
-            this.styleTag.innerHTML += `
-            .kamaslogo { 
-                -webkit-flex: 1;
-                flex: 1;
-                min-height: 1px;
-                background: url(./assets/ui/icons/kama.png)  no-repeat;
-                background-size: 18px;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;     
-        }
-        `
-        estimationprix.innerText = "Prix moyen du craft : " + this.formatNumber(totalprix);
-            textpods.innerText = " (" + totalpods + " Pods).";
+        estimationprix.innerHTML = "Prix moyen du craft : " + this.formatNumber(totalprix) + " <img src='./assets/ui/icons/kama.png' width='20px' height='16px'/>" + " (" + totalpods + " Pods).";
                 requestAnimationFrame(() => {
-                    this.wGame.document.getElementsByClassName("RecipeBox")[0].parentNode.insertBefore(estimationprix, null);
-                    this.wGame.document.getElementsByClassName("estimationprix")[0].parentNode.insertBefore(kamaslogo, null);
-                    this.wGame.document.getElementsByClassName("kamaslogo")[0].parentNode.insertBefore(textpods, null);
-
-
-                    
+                    this.wGame.document.getElementsByClassName("RecipeBox")[0].parentNode.insertBefore(estimationprix, null);      
                 })
         } 
             else {
