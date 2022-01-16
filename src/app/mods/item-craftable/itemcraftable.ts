@@ -22,8 +22,8 @@ export class ItemCraftable extends Mod {
                 background-image: url("./assets/ui/checkbox_checked.png")
              }
             `
-            this.wGame.gui.windowsContainer._childrenList.find(e=>e.id=="itemRecipes").on("open",(e)=>{
-            e = this.wGame.gui.windowsContainer._childrenList.find(e=>e.id=="itemRecipes")
+            this.wGame.gui.windowsContainer.getChildren().find(e=>e.id=="itemRecipes").on("open",(e)=>{
+            e = this.wGame.gui.windowsContainer.getChildren().find(e=>e.id=="itemRecipes")
             setTimeout(() => {
                 this.checkBox();    
             }, 200);           
@@ -32,7 +32,7 @@ export class ItemCraftable extends Mod {
 
     private verifRecette(statuscheckbox){
         let listallrecette = this.wGame.gui.windowsContainer.getChildren().find(e=>e.id=="itemRecipes")
-        let listrecette = listallrecette.recipeList.recipesList._childrenList
+        let listrecette = listallrecette.recipeList.recipesList.getChildren()
         if(listrecette == NaN){
            return ;
         } 
