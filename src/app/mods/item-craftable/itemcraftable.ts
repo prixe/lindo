@@ -1,12 +1,27 @@
 import {Mod} from "../mod";
 
 export class ItemCraftable extends Mod {
-    private itemWindow = null
     private styleTag: HTMLStyleElement;
     private statuscheckbox = false
+    private checkBoxDiv;
 
     startMod(): void {
-        this.itemWindow = this.wGame.gui.windowsContainer._childrenList.find(e=>e.id=="itemRecipes")
+            this.styleTag = window.document.createElement('style');
+            this.styleTag.innerHTML += `
+            .checkboxitemcraftable {
+                text-align: left;
+                padding: 3px 3px 3px 30px;
+                background-position: -24px calc(50% - 2px);
+                background-size: 18px 18px;
+                background-repeat: no-repeat;
+                background-origin: content-box;
+                background-image: url("./assets/ui/checkbox.png")
+             }
+             
+              .checkboxitemcraftable.on {
+                background-image: url("./assets/ui/checkbox_checked.png")
+             }
+            `
             this.wGame.gui.windowsContainer._childrenList.find(e=>e.id=="itemRecipes").on("open",(e)=>{
             e = this.wGame.gui.windowsContainer._childrenList.find(e=>e.id=="itemRecipes")
             setTimeout(() => {
@@ -16,8 +31,8 @@ export class ItemCraftable extends Mod {
     }
 
     private verifRecette(statuscheckbox){
-        let aa = this.wGame.gui.windowsContainer.getChildren().find(e=>e.id=="itemRecipes")
-        let listrecette = aa.recipeList.recipesList._childrenList
+        let listallrecette = this.wGame.gui.windowsContainer.getChildren().find(e=>e.id=="itemRecipes")
+        let listrecette = listallrecette.recipeList.recipesList._childrenList
         if(listrecette == NaN){
            return ;
         } 
@@ -53,58 +68,35 @@ export class ItemCraftable extends Mod {
     
         private checkBox(){   
             let boutondroit = this.wGame.document.querySelector('.ItemRecipesWindow .rightCol .PaginationUI .next.Button')
-            let checkboxic = document.createElement("div");
-                checkboxic.setAttribute("type", "checkbox");
-                checkboxic.className = "checkboxitemcraftable";
-                checkboxic.innerText = "Afficher les items craftable";
-            this.styleTag = this.wGame.document.createElement("style");
-            this.wGame.document.getElementsByTagName("head")[0].appendChild(this.styleTag);
+            let checkBoxDiv = document.createElement("div");
+            checkBoxDiv.setAttribute("type", "checkbox");
+            checkBoxDiv.className = "checkboxitemcraftable";
+            checkBoxDiv.innerText = "Afficher les items craftable";
+
+            this.wGame.document.head.appendChild(this.styleTag);
                 let onClick = () => {
-                    this.statusCheckBox()
-                };
-            this.styleTag.innerHTML += `
-            .checkboxitemcraftable {
-                text-align: left;
-                padding: 3px 3px 3px 30px;
-                background-position: -24px calc(50% - 2px);
-                background-size: 18px 18px;
-                background-repeat: no-repeat;
-                background-origin: content-box;
-                background-image: url("./assets/ui/checkbox.png")
-            }
-            `
-                boutondroit.parentNode.insertBefore(checkboxic, null);
-                checkboxic.addEventListener('click', onClick);
+               
+               
+
+                if(this.statuscheckbox == false){
+                    this.verifRecette(this.statuscheckbox);
+                    this.statuscheckbox = true
+                    checkBoxDiv.classList.add('on')
+                   
+                }
+                else {
+                    this.verifRecette(this.statuscheckbox);
+                    this.statuscheckbox = false
+                    checkBoxDiv.classList.remove('on')
+                }
+            };
+            
+                boutondroit.parentNode.insertBefore(checkBoxDiv, null);
+                checkBoxDiv.addEventListener('click', onClick);
         }
 
-        private statusCheckBox(){
-            if(this.statuscheckbox == false){
-                this.verifRecette(this.statuscheckbox);
-                this.statuscheckbox = true
-                this.styleTag.innerHTML = `
-                .checkboxitemcraftable {
-                text-align: left;
-                padding: 3px 3px 3px 30px;
-                background-position: -24px calc(50% - 2px);
-                background-size: 18px 18px;
-                background-repeat: no-repeat;
-                background-origin: content-box;
-                background-image: url("./assets/ui/checkbox_checked.png");
-                    ` 
-            }
-            else {
-                this.verifRecette(this.statuscheckbox);
-                this.statuscheckbox = false
-                this.styleTag.innerHTML = `
-                .checkboxitemcraftable {
-                    text-align: left;
-                    padding: 3px 3px 3px 30px;
-                    background-position: -24px calc(50% - 2px);
-                    background-size: 18px 18px;
-                    background-repeat: no-repeat;
-                    background-origin: content-box;
-                    background-image: url("./assets/ui/checkbox.png")
-                    ` 
-            }
-        } 
+
+        reset(){
+            this.styleTag?.remove?.();
+        }
  }
