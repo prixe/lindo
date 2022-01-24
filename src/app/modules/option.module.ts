@@ -886,7 +886,7 @@ export namespace Option {
                 this.party_member_on_map = this.settingsProvider.read('option.vip.general.party_member_on_map');
                 this.harvest_indicator = this.settingsProvider.read('option.vip.general.harvest_indicator');
                 this._monster_tooltip = this.settingsProvider.read('option.vip.general.monster_tooltip');
-                this._monster_tooltip_shortcut = this.settingsProvider.read('option.vip.general.monster_tooltip_shortcut');
+                this.monster_tooltip_shortcut = this.settingsProvider.read('option.vip.general.monster_tooltip_shortcut');
                 this.verticaltimeline = this.settingsProvider.read('option.vip.general.verticaltimeline');
             }
         }
