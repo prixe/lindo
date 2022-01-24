@@ -48,7 +48,7 @@
     "fs-extra": "~9.1.0",
     "js-beautify": "~1.13.5",
     "macaddress": "~0.5.1",
-    "marked": "~4.0.10",
+    "marked": "3.0.8",
     "ngx-chips": "~2.2.2",
     "ngx-sortablejs": "^11.1.0",
     "node-translate": "~0.0.4",
