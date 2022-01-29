@@ -880,6 +880,15 @@ export namespace Option {
                 this.settingsProvider.write('option.vip.general.dtmap_shortcut', dtmap_shortcut);
                 this._dtmap_shortcut = dtmap_shortcut;
             }
+            
+            get challpercent(): boolean {
+                return this._challpercent;
+            }
+
+            set challpercent(challpercent: boolean) {
+                this.settingsProvider.write('option.vip.general.challpercent', challpercent);
+                this._challpercent = challpercent;
+            }
 
             get challpercent(): boolean {
                 return this._challpercent;
