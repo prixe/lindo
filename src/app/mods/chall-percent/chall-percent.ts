@@ -20,13 +20,14 @@ export class ChallPercent extends Mod {
 
       .challPercentOnIcon,
       .challPercentOnIcon .challengeSlot {
-        width: 115px;
+        width: 100px;
       }
 
       .challPercentOnIconDetails {
         position: absolute;
-        width: 55px;
-        left: 50px;
+        width: 45px;
+        left: 45px;
+        top: 11px;
       }
       `;
 
