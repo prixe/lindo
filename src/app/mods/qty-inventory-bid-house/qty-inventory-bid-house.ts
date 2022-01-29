@@ -3,8 +3,6 @@ import {Mod} from "../mod";
 
 export class QtyInventoryBidHouse extends Mod {
 
-  private stylesheet: HTMLStyleElement;
-
   startMod(): void {
 
     const tradeItemWindow = this.wGame.gui.windowsContainer.getChildren().find(w => w.id == 'tradeItem');
