@@ -14,6 +14,8 @@ if (!app.requestSingleInstanceLock()) {
 app.commandLine.appendSwitch('ignore-gpu-blacklist', 'true');
 app.commandLine.appendSwitch("disable-renderer-backgrounding");
 app.commandLine.appendSwitch("disable-background-timer-throttling");
+//more webgl and less black screen
+app.commandLine.appendSwitch("max-active-webgl-contexts", "32");
 
 app.on('ready', () => {
     process.on('uncaughtException', function (error) {
