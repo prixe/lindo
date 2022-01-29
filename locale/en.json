@@ -87,7 +87,8 @@
             "party-member-on-map" : "Add an indicator to know if the members of a group are on the same map",
             "monster-tooltip": "Display monsters groups informations on the map",
             "monster-tooltip-shortcut": "Shortcut for show/hide monsters tooltip",
-            "vertical-timeline": "Show fighters timeline vertically"
+            "vertical-timeline": "Show fighters timeline vertically",
+            "chall-percent": "Show challenge XP/Drop bonus"
           },
           "groups": {
             "header": "Groups"

@@ -699,6 +699,7 @@ export namespace Option {
 
     export namespace VIP {
         export class General {
+            private _challpercent: boolean;
             private _disable_inactivity: boolean;
             private _health_bar: boolean;
             private _health_bar_shortcut: string;
@@ -870,6 +871,15 @@ export namespace Option {
                 this._verticaltimeline = verticaltimeline;
             }
 
+            get challpercent(): boolean {
+                return this._challpercent;
+            }
+
+            set challpercent(challpercent: boolean) {
+                this.settingsProvider.write('option.vip.general.challpercent', challpercent);
+                this._challpercent = challpercent;
+            }
+
             constructor(private settingsProvider: SettingsProvider) {
                 this.disable_inactivity = this.settingsProvider.read('option.vip.general.disable_inactivity');
                 this.health_bar = this.settingsProvider.read('option.vip.general.health_bar');
@@ -888,6 +898,7 @@ export namespace Option {
                 this._monster_tooltip = this.settingsProvider.read('option.vip.general.monster_tooltip');
                 this.monster_tooltip_shortcut = this.settingsProvider.read('option.vip.general.monster_tooltip_shortcut');
                 this.verticaltimeline = this.settingsProvider.read('option.vip.general.verticaltimeline');
+                this.challpercent = this.settingsProvider.read('option.vip.general.challpercent');
             }
         }
 
@@ -933,7 +944,7 @@ export namespace Option {
                 return this._follow_leader;
             }
 
-            
+
             set follow_leader(follow_leader: boolean) {
                 this.settingsProvider.write('option.vip.auto_group.follow_leader', follow_leader);
                 this._follow_leader = follow_leader;
@@ -948,7 +959,7 @@ export namespace Option {
                 this._disable_timer = disable_timer;
             }
 
-           
+
 
             get ready(): boolean {
                 return this._ready;
