@@ -4,9 +4,12 @@ export class AutoFocus extends Mod {
     private focusableWindows = {
         "ExchangeStartedBidBuyerMessage": ".BidHouseShopWindow .searchBox",
         "ObjectItem" : ".ItemRecipesWindow .searchBox",
+        "Item" : ".ItemRecipesWindow .searchBox",
+        "Weapon" : ".ItemRecipesWindow .searchBox",
         "friends" : ".SocialWindow .FriendsWindow",
         "bestiary" : ".GrimoireWindow .BestiaryWindow",
-        "achievements" : ".GrimoireWindow .AchievementsWindow"
+        "achievements" : ".GrimoireWindow .AchievementsWindow",
+        "jobs" : ".GrimoireWindow .jobsWindow .RecipeList"
     }
 
     startMod(): void { 
