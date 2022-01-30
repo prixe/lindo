@@ -12,6 +12,8 @@ export class AutoFocus extends Mod {
         "jobs" : ".GrimoireWindow .jobsWindow .RecipeList"
     }
 
+  //  private noFocusableWindows = ["ornaments", "guild", "spells", "quests", "alliance", "alignment"]
+    
     startMod(): void { 
         this.wGame.gui.windowsContainer.getChildren().find(e=>e.id=="itemRecipes").on("open",(e)=>{
             this.focusInput(e.itemData._type)
@@ -20,17 +22,22 @@ export class AutoFocus extends Mod {
             this.focusInput(e._messageType)
         })
 
-        this.wGame.gui.windowsContainer.getChildren().find(e=>e.id=="grimoire").on("open",(e)=>{
+      let a =  this.wGame.gui.windowsContainer.getChildren().find(e=>e.id=="grimoire").on("open",(e)=>{
             this.focusInput(e.tabId)
         })  
+
       this.wGame.gui.windowsContainer.getChildren().find(e=>e.id=="social").on("open",(e)=>{
            this.focusInput(e.tabId)
         })
-            
     }   
     private focusInput(id): void {
+        const noFocusableWindows = ["ornaments", "guild", "spells", "quests", "alliance", "alignment"];
+        if(noFocusableWindows.includes(id)){
+        return;
+        }
+        else{
         requestAnimationFrame(() => { 
         this.wGame.document.querySelector(this.focusableWindows[id] + ' .InputBox input').focus()      
     })};
+}
  }
-
