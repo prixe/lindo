@@ -39,7 +39,6 @@ export class AssetTheme extends Mod {
         ];
 
         if (this.cycleMode) {
-            Logger.info('cyclemode on')
             this.intervalUpdate = setInterval(() => {
                 this.setMapColorFromTime(); // a  appeler toutes les minutes
             }, 1000*60);
@@ -57,7 +56,6 @@ export class AssetTheme extends Mod {
     private setMapColorFromTime(h = -1,m = -1) {
         const d = new Date();
         if(h == -1 && m == -1){
-            Logger.info("dateds")
             h = d.getHours();
             m = d.getMinutes();
         }
