@@ -1,3 +1,17 @@
-.mat-checkbox {
-    display: block;
+.option-content {
+    margin-top: -10px;
+
+    .menu {
+        display: flex;
+        flex-direction: column;
+    
+        p {
+            font-size: 16px;
+            margin: 10px 0 2px 0;
+        }
+    
+        mat-checkbox {
+            margin-left: 15px;
+        }
+    }
 }

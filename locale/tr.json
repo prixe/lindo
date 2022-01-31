@@ -86,7 +86,8 @@
             "harvest-indicator" : "Kaynakların altında kalan sürenin gösterimini etkinleştirin",
             "party-member-on-map" : "Bir grubun üyelerinin aynı haritada olup olmadığını öğrenmek için bir gösterge ekleyin",
             "monster-tooltip": "Canavar grupları bilgilerini haritada göster",
-            "vertical-timeline": "Savaşçıların zaman çizelgesini dikey olarak göster"
+            "vertical-timeline": "Savaşçıların zaman çizelgesini dikey olarak göster",
+            "hide-mount": "Savaş sırasında binekleri gizle"
           },
           "groups": {
             "header": "Gruplar"

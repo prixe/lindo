@@ -314,8 +314,9 @@
         },
         "mods": {
           "show-resources" : "Affichage des ressources",
-          "health-bar": "Affichage la barres de vie",
-          "monster-tooltip": "Affichage des informations des groupes de monstres"
+          "health-bar": "Afficher la barres de vie",
+          "monster-tooltip": "Affiche infos des groupes de monstres",
+          "dtmap": "Carte des ressources"
         }
       },
       "notifications": {
