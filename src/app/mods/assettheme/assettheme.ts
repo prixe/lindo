@@ -1,10 +1,13 @@
-//TODO
-//gerer intérieur si cyclemode (remettre par default)
+/**
+ * crédit : le grand et beau switool (https://github.com/SwiTool)
+ * 
+ */
 import { Mod } from "../mod";
 
 export class AssetTheme extends Mod {
     private intervalUpdate
 
+    private outdoor
     private cycleMode
     private nightMode
     private nightModeCustom
@@ -38,6 +41,24 @@ export class AssetTheme extends Mod {
             { pct: 23.99, color: { r: 0x33, g: 0x4c, b: 0xff } },
         ];
 
+        this.outdoor = true
+        this.action()
+        
+        //"fausse" data: this.wGame.gui.playerData.position.mapPosition.outdoor
+        //exemple extérieur taverne d'incarnam, ça considere un intérieur
+        //this.wGame.isoEngine.on('mapLoaded', (packet) => {
+        //    console.log("this.outdoor:"+this.outdoor+', this.wGame.gui.playerData.position.mapPosition.outdoor:'+this.wGame.gui.playerData.position.mapPosition.outdoor)
+        //    if(!this.wGame.gui.playerData.position.mapPosition.outdoor && this.outdoor != this.wGame.gui.playerData.position.mapPosition.outdoor){
+        //        this.resetMapColor()
+        //        this.outdoor = false
+        //    }else if(this.wGame.gui.playerData.position.mapPosition.outdoor && this.outdoor != this.wGame.gui.playerData.position.mapPosition.outdoor){
+        //        this.action()
+        //        this.outdoor = true
+        //    }
+        //})
+    }
+
+    private action(){
         if (this.cycleMode) {
             this.intervalUpdate = setInterval(() => {
                 this.setMapColorFromTime(); // a  appeler toutes les minutes
@@ -49,7 +70,6 @@ export class AssetTheme extends Mod {
             }else{
                 this.setMapColorFromTime(0,0);//set minuit
             }
-            
         }
     }
 
