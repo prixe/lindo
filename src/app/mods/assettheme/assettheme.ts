@@ -46,7 +46,7 @@ export class AssetTheme extends Mod {
         
         //"fausse" data: this.wGame.gui.playerData.position.mapPosition.outdoor
         //exemple extérieur taverne d'incarnam, ça considere un intérieur
-        //this.wGame.isoEngine.on('mapLoaded', (packet) => {
+        this.wGame.isoEngine.on('mapLoaded', (packet) => {
         //    console.log("this.outdoor:"+this.outdoor+', this.wGame.gui.playerData.position.mapPosition.outdoor:'+this.wGame.gui.playerData.position.mapPosition.outdoor)
         //    if(!this.wGame.gui.playerData.position.mapPosition.outdoor && this.outdoor != this.wGame.gui.playerData.position.mapPosition.outdoor){
         //        this.resetMapColor()
@@ -55,25 +55,26 @@ export class AssetTheme extends Mod {
         //        this.action()
         //        this.outdoor = true
         //    }
-        //})
+            this.action(false)
+        })
     }
 
-    private action(){
+    private action(all = true){
         if (this.cycleMode) {
             this.intervalUpdate = setInterval(() => {
-                this.setMapColorFromTime(); // a  appeler toutes les minutes
+                this.setMapColorFromTime(all); // a  appeler toutes les minutes
             }, 1000*60);
         }else if(this.nightMode){
             if(this.nightModeCustom && this.nightModeCustomDate != null){
                 const dateCustom = new Date(this.nightModeCustomDate)
-                this.setMapColorFromTime(dateCustom.getHours(),dateCustom.getMinutes());//set custom
+                this.setMapColorFromTime(all, dateCustom.getHours(),dateCustom.getMinutes());//set custom
             }else{
-                this.setMapColorFromTime(0,0);//set minuit
+                this.setMapColorFromTime(all,0,0);//set minuit
             }
         }
     }
 
-    private setMapColorFromTime(h = -1,m = -1) {
+    private setMapColorFromTime(all = true, h = -1,m = -1) {
         const d = new Date();
         if(h == -1 && m == -1){
             h = d.getHours();
@@ -83,7 +84,8 @@ export class AssetTheme extends Mod {
         const color =this.getColorForPercentage(this.percentColors, value);
         const bgColor = this.getColorForPercentage(this.bgPctColor, value);
 
-        this.wGame.isoEngine.mapRenderer.background.hue = [bgColor.r, bgColor.g, bgColor.b, 1];
+        if(all)
+            this.wGame.isoEngine.mapRenderer.background.hue = [bgColor.r, bgColor.g, bgColor.b, 1];
         this.wGame.isoEngine.mapRenderer.graphics.forEach((g) =>
             g?._sprites?.forEach((s) => {
                 s.hue = [color.r, color.g, color.b, 1];
