@@ -82,6 +82,10 @@ export interface SettingsInterface {
                 health_bar: boolean;
                 health_bar_shortcut: string;
                 jobsxp: boolean;
+                cyclemode: boolean;
+                nightmode: boolean;
+                nightmodecustom: boolean;
+                nightmodecustomdate: any;
                 estimator: boolean;
                 fightchronometer: boolean;
                 party_info_pp: boolean;

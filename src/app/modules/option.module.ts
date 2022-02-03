@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-namespace */
 import {SettingsProvider} from "@interfaces/setting-provider";
 
 export namespace Option {
@@ -703,6 +704,10 @@ export namespace Option {
             private _health_bar: boolean;
             private _health_bar_shortcut: string;
             private _jobsxp: boolean;
+            private _cyclemode: boolean;
+            private _nightmode: boolean;
+            private _nightmodecustom: boolean;
+            private _nightmodecustomdate: any;
             private _fightchronometer: boolean;
             private _zaapsearchfilter: boolean;
             private _estimator: boolean;
@@ -766,6 +771,42 @@ export namespace Option {
                 return this._health_bar;
             }
 
+            get nightmodecustomdate(): any {
+                return this._nightmodecustomdate;
+            }
+
+            set nightmodecustomdate(nightmodecustomdate: any) {
+                this.settingsProvider.write('option.vip.general.nightmodecustomdate', nightmodecustomdate);
+                this._nightmodecustomdate = nightmodecustomdate;
+            }
+
+            get nightmode(): boolean {
+                return this._nightmode;
+            }
+
+            set nightmode(nightmode: boolean) {
+                this.settingsProvider.write('option.vip.general.nightmode', nightmode);
+                this._nightmode = nightmode;
+            }
+            
+            get nightmodecustom(): boolean {
+                return this._nightmodecustom;
+            }
+
+            set nightmodecustom(nightmodecustom: boolean) {
+                this.settingsProvider.write('option.vip.general.nightmodecustom', nightmodecustom);
+                this._nightmodecustom = nightmodecustom;
+            }
+
+            get cyclemode(): boolean {
+                return this._cyclemode;
+            }
+
+            set cyclemode(cyclemode: boolean) {
+                this.settingsProvider.write('option.vip.general.cyclemode', cyclemode);
+                this._cyclemode = cyclemode;
+            }
+
             get jobsxp(): boolean {
                 return this._jobsxp;
             }
@@ -793,6 +834,7 @@ export namespace Option {
                 this._zaapsearchfilter = zaapsearchfilter;
             }
 
+            // eslint-disable-next-line @typescript-eslint/adjacent-overload-signatures
             set health_bar(health_bar: boolean) {
                 this.settingsProvider.write('option.vip.general.health_bar', health_bar);
                 this._health_bar = health_bar;
@@ -875,6 +917,10 @@ export namespace Option {
                 this.health_bar = this.settingsProvider.read('option.vip.general.health_bar');
                 this.health_bar_shortcut = this.settingsProvider.read('option.vip.general.health_bar_shortcut');
                 this.jobsxp = this.settingsProvider.read('option.vip.general.jobsxp');
+                this.cyclemode = this.settingsProvider.read('option.vip.general.cyclemode');
+                this.nightmode = this.settingsProvider.read('option.vip.general.nightmode');
+                this.nightmodecustom = this.settingsProvider.read('option.vip.general.nightmodecustom');
+                this.nightmodecustomdate = this.settingsProvider.read('option.vip.general.nightmodecustomdate');
                 this.fightchronometer = this.settingsProvider.read('option.vip.general.fightchronometer');
                 this.zaapsearchfilter = this.settingsProvider.read('option.vip.general.zaapsearchfilter');
                 this.estimator = this.settingsProvider.read('option.vip.general.estimator');

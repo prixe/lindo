@@ -8,6 +8,12 @@
             </mat-checkbox><mat-checkbox color="primary" [(ngModel)]="settingsService.option.shortcuts.diver.active_open_menu">{{ 'app.option.shortcuts.diver.active-open-menu' | translate }}</mat-checkbox>
             <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.disable_inactivity">{{ 'app.window.options.features.general.disable-inactivity' | translate }}</mat-checkbox>
             <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.zaapsearchfilter">{{ 'app.window.options.features.general.zaapsearchfilter' | translate }}</mat-checkbox>
+            <mat-checkbox *ngIf="!settingsService.option.vip.general.nightmode" color="primary" [(ngModel)]="settingsService.option.vip.general.cyclemode">{{ 'app.window.options.features.general.cyclemode' | translate }}</mat-checkbox>
+            <mat-checkbox *ngIf="!settingsService.option.vip.general.cyclemode" color="primary" [(ngModel)]="settingsService.option.vip.general.nightmode">{{ 'app.window.options.features.general.nightmode' | translate }}</mat-checkbox>
+            <mat-checkbox *ngIf="settingsService.option.vip.general.nightmode" color="primary" [(ngModel)]="settingsService.option.vip.general.nightmodecustom">{{ 'app.window.options.features.general.nightmodecustomdateetime' | translate }}</mat-checkbox>
+            <mat-form-field *ngIf="settingsService.option.vip.general.nightmodecustom && settingsService.option.vip.general.nightmode">
+                <input matInput type="datetime-local" [(ngModel)]="settingsService.option.vip.general.nightmodecustomdate" placeholder="{{ 'app.window.options.features.general.nightmodecustomdateetime' | translate }}">
+            </mat-form-field>
         </div>
 
         <div class="col-xs-12 menu">

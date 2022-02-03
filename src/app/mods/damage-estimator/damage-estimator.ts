@@ -38,7 +38,7 @@ export class DamageEstimator extends Mod {
     private setSpellSlotDeselected(): void {
         this.on(this.wGame.gui, 'spellSlotDeselected', () => {
             try {
-                Logger.info('onSpellSlotDeselected');
+                //Logger.info('onSpellSlotDeselected');
                 this.damageContainer.destroyEstimators();
             } catch (ex) {
                 Logger.error(ex);
@@ -49,7 +49,7 @@ export class DamageEstimator extends Mod {
     private setSpellSelected(): void {
         this.on(this.wGame.gui, 'spellSlotSelected', (spellId: number) => {
             try {
-                Logger.info('onSpellSelected');
+                //Logger.info('onSpellSelected');
                 const spell = this.wGame.gui.playerData.characters.mainCharacter.spellData.spells[spellId];
                 this.damageContainer.display(spell);
             } catch (ex) {
