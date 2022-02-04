@@ -2,6 +2,7 @@ export { General } from "../mods/general/general";
 
 export { AutoGroup } from "./auto-group/auto-group";
 export { DamageEstimator } from "../mods/damage-estimator/damage-estimator";
+export { EstimationPrix } from "./estimationprix/estimationprix";
 export { FightChronometer } from "./fight-chronometer/fight-chronometer";
 export { GripPositionSave } from "./grip-position-save/grip-position-save";
 export { Harvest } from "./harvest-bar/harvest";
@@ -17,4 +18,4 @@ export { Shortcuts } from "../mods/shortcuts/shortcuts";
 export { ShowResources } from "./show-resources/show-resources";
 export { VerticalTimeline } from "./vertical-timeline/vertical-timeline";
 export { ZaapSearchFilter } from "./zaap-search-filter/zaap-search-filter";
-export { RuneOpenerList } from "./rune-lister/runeOpenerLister"
+export { RuneOpenerList } from "./rune-lister/runeOpenerLister";
