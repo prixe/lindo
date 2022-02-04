@@ -35,8 +35,12 @@ export class AutoFocus extends Mod {
             return;
         }
         requestAnimationFrame(() => {
+<<<<<<< HEAD
             const e: any = this.wGame.document.querySelector(this.focusableWindows[id] + ' .InputBox input')
             e.focus();
+=======
+            this.wGame.document.querySelector(this.focusableWindows[id] + ' .InputBox input').focus()
+>>>>>>> Prepare 2.7.2
         });
     }
 }
