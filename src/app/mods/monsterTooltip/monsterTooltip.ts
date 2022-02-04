@@ -29,7 +29,6 @@ export class MonsterTooltip extends Mod {
         this.params = this.settings.option.vip.general;
 
         if (this.params.monster_tooltip) {
-
             Logger.info('- Enabled MonsterTooltip');
 
             this.wGame.addEventListener("keydown", e => this.onKeyEvent(e));
@@ -191,7 +190,7 @@ export class MonsterTooltip extends Mod {
         return result;
     }
 
-    // FIXME Problems with formula 
+    // FIXME Problems with formula
     private getTooltipData(group: any): TooltipData {
         // General data
         const { partyData, characterBaseInformations } = this.wGame.gui.playerData;
@@ -241,7 +240,7 @@ export class MonsterTooltip extends Mod {
         const xpAlliancePrismBonusPercent = alliance.getPrismBonusPercent(position.subAreaId);
         const xpRatioMount = rest.isRiding ? rest.mountXpRatio || 0 : 0;
         const xpGuildGivenPercent = guildInformation.experienceGivenPercent || 0
-        
+
         if (Object.keys(partyData._partyFromId).length > 0) {
             partyXp = this.calculateXp(
                 monstersXp,

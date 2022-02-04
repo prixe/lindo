@@ -1,6 +1,13 @@
 ## ⚠ ATTENTION, VÉRIFIEZ QUE VOUS TÉLÉCHARGEZ LINDO DEPUIS LINDO-APP.COM
 ## ⚠ CERTAINS SITES MALVEILLANTS INSTALLERONT UN VIRUS SUR VOTRE ORDINATEUR
 
+
+## [2.7.2]
+
+### Ajouts
+- Focus automatiquement les inputs dans les nouvelles fenêtres
+- Afficher le bonus XP/Drop des challenges
+
 ## [2.7.1]
 
 ### Amelioration
@@ -8,7 +15,7 @@
 
 ### Correctifs
 - Correction de l'auto-follow de groupe
-- Correction du raccourci pour l'affichage des montres sur la carte
+- Correction du raccourci pour l'affichage des monstres sur la carte
 - Correction du raccourci pour l'affichage des ressources sur la carte
 - Correction de l'affichage des numéros de version
 
