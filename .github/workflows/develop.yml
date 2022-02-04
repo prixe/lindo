@@ -1,0 +1,53 @@
+name: Develop
+on:
+  push:
+    branches: [ develop ]
+
+jobs:
+
+  release-win:
+    name: "Release windows"
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Build
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - run: npm i
+      - run: npm run build:prod
+      - run: docker run -v ${PWD}:/project electronuserland/builder:wine /bin/bash -c "npm run release:win"
+
+  release-linux:
+    name: "Release linux"
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Build
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - run: npm i
+      - run: npm run build:prod
+      - run: npm run release:linux
+
+
+  release-macOS:
+    name: "Release macOS"
+    runs-on: macos-10.15
+
+    steps:
+      - name: Build
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - run: npm i
+      - run: npm run build:prod
+      - name: release mac
+        run: |
+          npm run release:mac
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
