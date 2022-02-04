@@ -30,12 +30,14 @@ export class Harvest extends Mod {
                 transition-duration: 500ms;
                 margin-top: 10px;
             }
+            
             .harvestBar {
                 transition-duration: 300ms;
                 height: 100%;
                 width: 100%;
                 background-color: orange;
             }
+
             .harvestTimeText {
                 font-size: 11px;
                 font-weight: bold;
@@ -47,6 +49,7 @@ export class Harvest extends Mod {
                 transition-duration: 500ms;
                 margin-top: 4px;
             }`;
+            
             this.wGame.document.getElementsByTagName('head')[0].appendChild(harvestCss);
 
             this.harvestBar = new HarvestBar(this.wGame);

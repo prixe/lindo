@@ -35,6 +35,9 @@ export class ShowResources extends Mod {
                     background-color: rgba(0, 0, 0, 0.55);
                     border-radius: 0 0 5px 5px;
                     padding: 4px 2px;
+                    background: rgba(120, 120, 120, 0.25);
+                    box-shadow: #505050 1px 1px 2px;
+                    text-shadow: 0 0 5px #000;
                 }
 
                 .resource-item {
@@ -44,7 +47,13 @@ export class ShowResources extends Mod {
                     padding: 0 5px;
                     margin: 0 5px;
                     border-radius: 4px;
-                    background-color: #00000033;
+                    background-color: #6b6b6b33;
+                    font-weight: bold;
+                    font-size: 12px;
+                }
+
+                .resource-item div {
+                    height: 35px;
                 }
 
                 .resource-item p {
@@ -80,17 +89,17 @@ export class ShowResources extends Mod {
      * Use to load map informations when player activate mod in game
      */
     private loadMapInfoOnStart() {
-        // Get data from isoEngine
-        const interactives = this.wGame.isoEngine.mapRenderer.interactiveElements;
-        const stated = this.wGame.isoEngine.mapRenderer.statedElements;
-
-        if (interactives != null && stated != null) {
+        if (this.wGame.isoEngine.mapRenderer.isReady) {
             const interactiveElements = [];
             const statedElements = [];
 
+            // Get data from isoEngine
+            const interactives = this.wGame.isoEngine.mapRenderer.interactiveElements;
+            const stated = this.wGame.isoEngine.mapRenderer.statedElements;
+
             // Push data in Array
             for(const i in interactives) { interactiveElements.push(interactives[i]); }
-            for(const s in stated) { statedElements.push(stated[s]); }
+            for(const s in stated) { statedElements.push({elementId: stated[s].id, elementState: stated[s].state}); }
 
             this.loadDataTry = 0;
             this.onMapComplementaryInfos(interactiveElements, statedElements);
@@ -158,7 +167,8 @@ export class ShowResources extends Mod {
     }
 
     private create() {
-        if (this.isHide) this.isHide = false;
+        this.isHide = false;
+        this.enabled = true;
 
         this.resourcesBox = this.wGame.document.createElement('div');
         this.resourcesBox.id = 'resourcesBox';
@@ -210,6 +220,7 @@ export class ShowResources extends Mod {
 
     public reset(): void {
         super.reset();
+        this.wGame.document.getElementById('resourcesBoxCss')?.remove();
         this.clear();
     }
 }
