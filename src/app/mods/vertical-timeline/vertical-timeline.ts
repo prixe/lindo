@@ -72,6 +72,7 @@ export class VerticalTimeline extends Mod {
       .Timeline.vertical:not(.collapsed).magnetLeft .FightBuffs {
         left: auto;
         right: -45px;
+      }
       `;
 
       this.wGame.document.head.appendChild(this.stylesheet);

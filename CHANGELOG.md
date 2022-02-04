@@ -2,9 +2,14 @@
 ## ⚠ CERTAINS SITES MALVEILLANTS INSTALLERONT UN VIRUS SUR VOTRE ORDINATEUR
 
 ## [2.7.1]
+
+### Amelioration
+- Optimisation de Lindo pour jouer avec plus de comptes
+
 ### Correctifs
 - Correction de l'auto-follow de groupe
 - Correction du raccourci pour l'affichage des montres sur la carte
+- Correction du raccourci pour l'affichage des ressources sur la carte
 - Correction de l'affichage des numéros de version
 
 ## [2.7.0] - 2021-12-25
