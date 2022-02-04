@@ -5,4 +5,4 @@ export { HideShop } from "./hide-shop";
 export { Inactivity } from "./inactivity";
 export { JsFixes } from "./js-fixes";
 export { KeyboardInput } from "./keyboardInput";
-
+export { ShowPods } from "./show-pods";
