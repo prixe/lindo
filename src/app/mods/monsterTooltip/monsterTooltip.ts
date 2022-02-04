@@ -1,4 +1,5 @@
 import { Mod } from "../mod";
+import {ShortcutsHelper} from "@helpers/shortcuts.helper";
 
 type TooltipData = {
     id: number;
@@ -21,9 +22,11 @@ const toInt = (e: number) => {
 }
 
 export class MonsterTooltip extends Mod {
-
+    
+    private shortcutsHelper: ShortcutsHelper;
     private visible = false;
     private monsterGroups = [];
+    private active = false
 
     public startMod(): void {
         this.params = this.settings.option.vip.general;
@@ -32,8 +35,8 @@ export class MonsterTooltip extends Mod {
 
             Logger.info('- Enabled MonsterTooltip');
 
-            this.wGame.addEventListener("keydown", e => this.onKeyEvent(e));
-            this.wGame.addEventListener("keyup", e => this.onKeyEvent(e));
+            this.shortcutsHelper = new ShortcutsHelper(this.wGame);
+            this.shortcutsHelper.bind(this.params.monster_tooltip_shortcut, () => this.onKeyEvent());
 
             const monsterTooltipCss = document.createElement('style');
             monsterTooltipCss.id = 'monsterTooltipCss';
@@ -86,8 +89,6 @@ export class MonsterTooltip extends Mod {
     }
 
     public reset() {
-        this.wGame.removeEventListener("keydown", this.onKeyEvent);
-        this.wGame.removeEventListener("keyup", this.onKeyEvent);
         this.hide();
         super.reset();
     }
@@ -328,10 +329,14 @@ export class MonsterTooltip extends Mod {
         this.show();
     }
 
-    private onKeyEvent(event: any) {
-        if (event.key == this.params.monster_tooltip_shortcut) {
-            if (event.type === "keydown") this.show();
-            else if (event.type === "keyup") this.hide();
+        private onKeyEvent() {
+        if (!this.active) {
+            this.show() 
+            this.active = true
+        }
+            else {
+                this.active = false
+                this.hide();  
         }
     }
 
