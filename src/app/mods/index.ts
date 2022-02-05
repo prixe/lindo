@@ -15,6 +15,7 @@ export { PartyMember } from "./party-info/party-member-on-map";
 export { RapidExchange } from "./rapid-exchange/rapid-exchange";
 export { Shortcuts } from "../mods/shortcuts/shortcuts";
 export { ShowResources } from "./show-resources/show-resources";
+export { SpellScroll } from "./spell-scroll/spell-scroll";
 export { VerticalTimeline } from "./vertical-timeline/vertical-timeline";
 export { ZaapSearchFilter } from "./zaap-search-filter/zaap-search-filter";
 export { RuneOpenerList } from "./rune-lister/runeOpenerLister"

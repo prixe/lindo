@@ -235,6 +235,9 @@
         },
         "jobsxp": {
           "text": " XP faltante<br>antes del nivel "
+        },
+        "spellscroll": {
+          "spellScrollUsed": "Pergaminos de hechizo usados:"
         }
       },
       "general": {

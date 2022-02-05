@@ -239,6 +239,9 @@
         },
         "status": {
           "header": "VIP Durumu"
+        },
+        "spellscroll": {
+          "spellScrollUsed": "Kullanılan büyü kaydırmaları:"
         }
       },
       "general": {

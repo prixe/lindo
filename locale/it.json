@@ -236,6 +236,9 @@
         },
         "jobsxp": {
           "text": " XP mancante<br>prima livello "
+        },
+        "spellscroll": {
+          "spellScrollUsed": "Pergamene di incantesimi utilizzate:"
         }
       },
       "general": {

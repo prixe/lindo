@@ -241,6 +241,9 @@
         "monstertooltip": {
           "level": "Level",
           "group": "Group"
+        },
+        "spellscroll": {
+          "spellScrollUsed": "Spell scrolls used:"
         }
       },
       "general": {

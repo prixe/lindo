@@ -228,6 +228,9 @@
                 },
                 "jobsxp": {
                     "text": " XP perdida<br>dois do nível "
+                },
+                "spellscroll": {
+                  "spellScrollUsed": "Pergaminhos de feitiço usados:"
                 }
             },
             "general": {
