@@ -93,6 +93,7 @@ export interface SettingsInterface {
                 party_member_on_map: boolean;
                 monster_tooltip: boolean;
                 monster_tooltip_shortcut: string;
+                dtmap_shortcut: string;
             },
             auto_group: {
                 active: boolean;
