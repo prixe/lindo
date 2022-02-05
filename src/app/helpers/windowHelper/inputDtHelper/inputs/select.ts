@@ -25,7 +25,8 @@ export class Select {
             // Child of container for display select element
             const selectorContent: HTMLDivElement = this.wGame.document.createElement('div');
             selectorContent.className = 'selectorContent Button';
-            selectorContent.textContent = choices[0].textInSelect ? choices[0].textInSelect : choices[0].text;
+            const ticketChoice = choices.find(c => c.ticked) || choices[0];
+            selectorContent.textContent = ticketChoice?.textInSelect || ticketChoice.text;
 
             // Button for activate drop down
             const openBtn: HTMLDivElement = this.wGame.document.createElement('div');
