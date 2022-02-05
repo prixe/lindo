@@ -30,8 +30,6 @@ export class ShowResources extends Mod {
                     align-items: flex-end;
                     position: absolute;
                     top: 0;
-                    border: 1px solid #3e3e3e;
-                    border-top: none;
                     background-color: rgba(0, 0, 0, 0.55);
                     border-radius: 0 0 5px 5px;
                     padding: 4px 2px;
