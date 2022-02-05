@@ -2,6 +2,7 @@ import { from } from "rxjs";
 
 export { General } from "../mods/general/general";
 
+export { AlternativeTheme } from "./alternative-themes/alternativeTheme";
 export { AutoGroup } from "./auto-group/auto-group";
 export { ChallPercent } from "./chall-percent/chall-percent";
 export { DamageEstimator } from "../mods/damage-estimator/damage-estimator";
