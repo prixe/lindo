@@ -2,7 +2,6 @@ import { from } from "rxjs";
 
 export { General } from "../mods/general/general";
 
-export { AlternativeTheme } from "./alternative-themes/alternativeTheme";
 export { AutoGroup } from "./auto-group/auto-group";
 export { ChallPercent } from "./chall-percent/chall-percent";
 export { DamageEstimator } from "../mods/damage-estimator/damage-estimator";
@@ -24,3 +23,6 @@ export { Shortcuts } from "../mods/shortcuts/shortcuts";
 export { ShowResources } from "./show-resources/show-resources";
 export { VerticalTimeline } from "./vertical-timeline/vertical-timeline";
 export { ZaapSearchFilter } from "./zaap-search-filter/zaap-search-filter";
+
+// Need to be the last export
+export { AlternativeTheme } from "./alternative-themes/alternativeTheme";

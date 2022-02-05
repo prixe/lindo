@@ -1,6 +1,8 @@
 import { Select } from "@helpers/windowHelper/inputDtHelper/inputs/select";
-import { neoDark } from "./themes/neoDark";
 import { Mod } from "../mod";
+
+import { neoDark } from "./themes/neoDark";
+import { neoGlassTheme } from "./themes/neoGlass";
 
 export class AlternativeTheme extends Mod {
 
@@ -16,8 +18,9 @@ export class AlternativeTheme extends Mod {
 
         // Set Theme list
         this.themeList = [
-            {id: 'default', text: 'Thème par défaut'},
-            {id: 'neoBlack', text: 'Thème noir transparent'},
+            {id: 'default', text: 'Défaut'},
+            {id: 'neoBlack', text: 'Noir transparent'},
+            {id: 'neoGlass', text: 'Glass'},
         ];
 
         this.init();
@@ -39,7 +42,7 @@ export class AlternativeTheme extends Mod {
 
         // Create new elements
         const headTitle = this.wGame.document.createElement('div');
-        headTitle.innerText = 'Choix du thème';
+        headTitle.innerText = 'Choix du thème (LINDO)';
         headTitle.className = "header";
 
         // Create select
@@ -65,6 +68,7 @@ export class AlternativeTheme extends Mod {
 
         switch (themeId) {
             case 'neoBlack': theme.innerHTML = neoDark; break;
+            case 'neoGlass': theme.innerHTML = neoGlassTheme(); break;
         }
 
         this.wGame.document.head.appendChild(theme);
