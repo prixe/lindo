@@ -7,6 +7,7 @@
 ### Ajouts
 - Focus automatiquement les inputs dans les nouvelles fenêtres
 - Afficher le bonus XP/Drop des challenges
+- Affiche le nombre de pods disponibles
 
 ## [2.7.1]
 
