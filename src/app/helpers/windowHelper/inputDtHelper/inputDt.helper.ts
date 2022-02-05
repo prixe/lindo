@@ -16,41 +16,6 @@ export class InputDtHelper {
     constructor(wGame: any|Window) {
         this.wGame = wGame;
 
-        if (!this.wGame.document.getElementById('inputDtCss')) {
-            const inputCss = document.createElement('style');
-            inputCss.id = 'inputDtCss';
-            inputCss.innerHTML = `
-                .customScrollerContent {
-                    overflow-y: scroll;
-                    margin-right: 0 !important;
-                    height: inherit;
-                    max-height: inherit;
-                }
-                .customScrollerContent::-webkit-scrollbar {
-                    width: 2px;
-                }
-                .customScrollerContent::-webkit-scrollbar-track {
-                    background-color: black;
-                }
-                .customScrollerContent::-webkit-scrollbar-thumb,
-                .customScrollerContent::-webkit-scrollbar-thumb:hover {
-                    background: #a3d52e;
-                    border-radius: 2px;
-                }
-                /* Custom input */
-                input::-webkit-outer-spin-button,
-                input::-webkit-inner-spin-button {
-                -webkit-appearance: none;
-                margin: 0;
-                }
-                .customNumber {
-                    width: 45px;
-                }
-            `;
-
-            this.wGame.document.querySelector('head').appendChild(inputCss);
-        }
-
         this.button = new Button(this.wGame);
         this.checkBox = new Checkbox(this.wGame);
         this.input = new Input(this.wGame, this);
