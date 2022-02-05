@@ -87,7 +87,8 @@
             "harvest-indicator" : "Activate the display of the remaining time below the ressources",
             "party-member-on-map" : "Add an indicator to know if the members of a group are on the same map",
             "monster-tooltip-shortcut": "Shortcut for show/hide monsters tooltip",
-            "vertical-timeline": "Show fighters timeline vertically"
+            "vertical-timeline": "Show fighters timeline vertically",
+            "chall-percent": "Show challenge XP/Drop bonus"
           },
           "groups": {
             "header": "Groups"
