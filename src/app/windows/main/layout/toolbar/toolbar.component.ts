@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {SoundService} from '@services/sound.service';
 import {ApplicationService} from "@services/electron/application.service";
 import {ElectronService as electron} from '@services/electron/electron.service';
-
+import {TabGameService} from '@services/tab-game.service';
+import {Tab} from "@helpers/tab";
 @Component({
     selector: 'app-main-toolbar-component',
     templateUrl: './toolbar.component.html'
@@ -16,6 +17,7 @@ export class ToolbarComponent implements OnInit {
     public isFullscreen: boolean = false;
 
     constructor(
+        public tabGameService: TabGameService,
         private soundService: SoundService,
         private applicationService: ApplicationService
     ) {
@@ -36,6 +38,20 @@ export class ToolbarComponent implements OnInit {
         }
 
         this.window = electron.getCurrentWindow();
+// Changement du pseudo lors de changement de fenetre
+        this.tabGameService.on('tab-change', (id: Tab) => {
+            if(id){
+                this.playerName = String(id);                
+             }
+        })
+// Changement du pseudo lors de changement de perso
+        this.tabGameService.on('icon-change', (tab: Tab) => {
+            
+            if(tab.character){
+                  this.playerName = tab.character;                
+               }
+        })
+    }
     }
 
     public minimizeWindow() {

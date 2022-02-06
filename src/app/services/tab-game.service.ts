@@ -93,7 +93,8 @@ export class TabGameService extends EventEmitter {
         tab.isFocus = true;
         tab.notification = false;
         game.isFocus = true;
-
+        // Event pour faire changer le nom du pseudo [toolbar.component] lors d'un changement de fenetre.
+        this.emit('tab-change', tab.character);
         if (tab.isLogged) {
             game.window.focus();
         }

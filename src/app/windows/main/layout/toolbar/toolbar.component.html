@@ -6,7 +6,8 @@
         <mat-icon class="pointer window-maximize mat-16" (click)="fullScreenWindow()">lens</mat-icon>
     </div>
 
-    <span class="title">{{ appName }}</span>
+    <span class="title">{{ appName }} : {{ playerName }}</span>
+    <img src="https://raw.githubusercontent.com/prixe/lindo/master/build/icon.png" width="25" height="25">
 
     <div class="system-buttons all">
         <mat-icon class="pointer text-danger mat-22" *ngIf="isAudioMuted" (click)="toggleSound(false)" matTooltip="{{ 'app.main.head.toggle-audio-on' | translate }}">audiotrack</mat-icon>
