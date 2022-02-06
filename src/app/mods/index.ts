@@ -10,6 +10,7 @@ export { HealthBar } from "./health-bar/health-bar";
 export { Jobsxp } from "../mods/jobsxp/jobsxp";
 export { Marchand } from "../mods/marchand/marchand";
 export { MonsterTooltip } from "./monsterTooltip/monsterTooltip";
+export { MoveWindows } from "./move-windows/move-windows";
 export { Notifications } from "../mods/notifications/notifications";
 export { PartyInfo } from "./party-info/party-info";
 export { PartyMember } from "./party-info/party-member-on-map";
