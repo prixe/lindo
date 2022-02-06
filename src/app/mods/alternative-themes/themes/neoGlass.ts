@@ -19,20 +19,99 @@ const themeVariable = [
 
   {id:'%text_primary%',   value:'#3d3d3d'},
   {id:'%text_secondary%', value:'#5c5c5c'},
-  {id:'%text_success%',   value:'#295c0c'},
-  {id:'%text_danger%',    value:'#a91212'},
-  {id:'%text_warning%',   value:'#0f557f'},
+
+  {id:'%title_color%',    value:'#3d3d3d'},
+  {id:'%link_color%',     value:'#a7238f'},
+  {id:'%bonus_color%',    value:'#486b11'},
+  {id:'%malus_color%',    value:'#d01d1d'},
 
   {id:'%btn_color%', value:'filter: saturate(0.1) brightness(1.5);'},
   {id:'%blur%', value:'blur(5px)'},
 ];
 
 const neoGlass = `
+        /*******************************************************************
+        *   General                                                        *
+        *******************************************************************/
+
         /*  BlackStripe Color             *
         **********************************/
         .blackStripe {
           background: rgb(35 37 33);
         }
+
+
+        /*  Text Color                    *
+        **********************************/
+        .windowBody,
+        .infoText {
+          color: %text_primary%;
+        }
+        .link,
+        #dofusBody a {
+          color: %link_color% !important;
+        }
+        .title {
+          color: %title_color% !important;
+        }
+        .malus {
+          color: %malus_color% !important;
+        }
+        .bonus {
+          color: %bonus_color% !important;
+        }
+
+
+
+        /*******************************************************************
+        *   Contextual Menu                                                *
+        *******************************************************************/
+
+        /*  Header                        *
+        **********************************/
+        .ContextualMenu .contextHeader {
+          border: 1px solid %primary_a70%;
+          border-radius: 7px 7px 0 0;
+        }
+        .ContextualMenu .contextHeader:before {
+          border: none;
+        }
+
+
+        /*  Title                         *
+        **********************************/
+        .ContextualMenu .title:before {
+          background: none;
+          border: none;
+        }
+        .ContextualMenu .title {
+            background: %primary_a70%;
+            border: 1px solid %primary%;
+            margin-left: -1px;
+            width: calc(100% + 4px);
+            box-sizing: border-box;
+        }
+
+
+        /*  Content                       *
+        **********************************/
+        .ContextualMenu .contextHeader,
+        .ContextualMenu .contextContent .contentScroller {
+          border-color: %primary_a70%;
+          background-color: %primary_a70%;
+          color: %text_primary%;
+          backdrop-filter: %blur%;
+        }
+        
+
+        /*  Separator                     *
+        **********************************/
+        .ContextualMenu .separator,
+        .ContextualMenu .group {
+          border-bottom: 1px solid %primary% !important;
+        }
+
+
 
         /*******************************************************************
         *   Windows                                                        *
@@ -58,6 +137,7 @@ const neoGlass = `
             border: none;
         }
 
+
         /*  Window Container              *
         **********************************/
         .window .windowBorder,
@@ -70,6 +150,7 @@ const neoGlass = `
             backdrop-filter: %blur%;
         }
         
+
         /*  Window content container      *
         **********************************/
         .window .OrnamentsWindow .col2::before,
@@ -126,7 +207,10 @@ const neoGlass = `
         #dofusBody .MountDetails .mainContainer::before,
         .window.LevelUpWindow .info .pointBlock:before,
         .window.LevelUpWindow .info .spellBlock:before,
-        .log.Scroller {
+        .log.Scroller,
+        .PerceptorBoostPanel .leftPanel .perceptorCharacteristicsTable:before,
+        .window.characUpdateWindow .containerBlock:before,
+        .window.PartyInviteDetailsWindow .container:before {
             border-image: none;
             border: 1px solid %primary_a20%;
             border-radius: 7px;
@@ -135,6 +219,7 @@ const neoGlass = `
             width: calc(100% - 10px);
             box-shadow: 3px 3px 7px #0000004f;
         }
+
 
         /*  Window content container      *
         *   (without margin & width fix)  *
@@ -147,10 +232,19 @@ const neoGlass = `
         #dofusBody .MountDetails .panel::before,
         #dofusBody .MountDetails .mainContainer::before,
         .window.LevelUpWindow .info .pointBlock:before,
-        .window.LevelUpWindow .info .spellBlock:before {
+        .window.LevelUpWindow .info .spellBlock:before,
+        .window .DailyQuestTab .mainProgressPart:before,
+        .window .DailyQuestTab .dailyPart:before,
+        .window.characteristics .panels::before,
+        .HelpWindow .helpBody .col1::before,
+        .window.ToaWindow .panels .panel .contentBlock::before,
+        .window.ToaWindow .panels .panel .unscrollableContentBlock::before,
+        .window.FightEndWindow .summaryBlock:before,
+        .window.PartyInviteDetailsWindow .container:before {
             margin: 0;
             width: 100%;
         }
+
 
         /*  Window content container      *
         *   in container  *
@@ -166,9 +260,11 @@ const neoGlass = `
         }
 
 
+
         /*******************************************************************
         *   Inputs                                                         *
         *******************************************************************/
+
         /* InputBox                       *
         **********************************/
         .InputBox,
@@ -182,12 +278,14 @@ const neoGlass = `
           opacity: 1;
         }
 
+
         /* Input Text                     *
         **********************************/
         #dofusBody .MountDetails .mountName {
           border: 1px solid %primary_a30%;
           color: #3d3d3d;
         }
+
 
         /* SearchBox                      *
         **********************************/
@@ -209,15 +307,29 @@ const neoGlass = `
           top: -8px;
           right: 14px;
         }
+        /* Fix size */
+        .subFiltersBox .searchBox .inputFrame .InputBox {
+          width: auto;
+        }
+
+
+        /* Filter tag                     *
+        **********************************/
+        .filterTagButton .btnBackground {
+          background: white;
+        }
+
 
         /* CheckBox                       *
         **********************************/
-        .CheckboxLabel {
+        .CheckboxLabel,
+        .AchievementsWindow .objective {
           background-image: none;
           position: relative;
           color: %text_primary%;
         }
-        .CheckboxLabel::after {
+        .CheckboxLabel::before,
+        .AchievementsWindow .objective::before {
           content: " ";
           background: %primary_a30%;
           border: 1px solid %primary%;
@@ -228,12 +340,24 @@ const neoGlass = `
           left: 6px;
           top: 3px;
         }
-        .CheckboxLabel.on {
+        .CheckboxLabel.on,
+        .AchievementsWindow .objective.completed {
           background-image: none;
         }
-        .CheckboxLabel.on::after {
-          background-color: green; /*TODO Add image*/
+        /* Add check icon */
+        .CheckboxLabel.on::after,
+        .AchievementsWindow .objective.completed::after {
+          content: " ";
+          background: url(./assets/ui/tick_large.png) 0 0 no-repeat;
+          background-position: 2px -2px;
+          background-size: 18px 18px;
+          position: absolute;
+          height: 20px;
+          width: 20px;
+          left: 6px;
+          top: 3px;
         }
+
 
         /* CheckBox Label                 *
         **********************************/
@@ -254,6 +378,7 @@ const neoGlass = `
           content: none !important;
         }
 
+
         /* Select                         *
         **********************************/
         .Selector .selectorContent {
@@ -261,6 +386,7 @@ const neoGlass = `
           border-radius: 7px;
           border: 1px solid %primary_a50%;
           color: %text_primary%;
+          box-shadow: none;
         }
         .dropDown .entryContainer .entryList {
           background-color: %primary_a50%;
@@ -275,13 +401,19 @@ const neoGlass = `
           %btn_color%
         }
 
+
         /* Button                         *
         **********************************/
-        .Button.button, .Button.greenButton, .Button.secondaryButton, .Button.specialButton {
+        .Button.button,
+        .Button.greenButton,
+        .Button.secondaryButton,
+        .Button.specialButton,
+        .ItemBox .actionContainer .actionButton,
+        .fightBtn.Button {
           border: 1px solid %primary%;
           border-radius: 7px;
           color: #3d3d3d;
-          background: rgb(255 255 255);
+          background: %primary%;
           padding: 5px 15px;
           height: auto !important;
         }
@@ -311,43 +443,97 @@ const neoGlass = `
         .chat .chatCloseButton,
         .chat .historyButton,
         .chat .sendButton .btnIcon,
-        .window.CraftersListWindow .Table .col:nth-child(7) .Button
-         {
+        .window.CraftersListWindow .Table .col:nth-child(7) .Button,
+        .window .QuestsWindow .locateButton, .window .QuestsWindow .followedQuestButton,
+        .ItemBox .actionContainer .destroyButton,
+        .ItemBox .actionContainer .recipeButton,
+        .ItemBox .infoContainer .topLeftInfoContainer .itemContainer .itemImage .recipeButton,
+        .window.BidHouseShopWindow .backButton,
+        .drillDownList .breadcrumb .btnIcon,
+        #dofusBody .MountDetails .tinyBtn,
+        .GuildMembers .TableV2 .buttons .rowButton.rights,
+        .GuildMembers .TableV2 .buttons .rowButton.deletion,
+        .GuildMemberRightsWindow .upperPanel .container .setXpButton,
+        .minMaxSelector .confirmBtn,
+        .minMaxSelector .closeBtn,
+        .minMaxSelector .arrow,
+        .PaginationUI .arrow.next,
+        .PaginationUI .arrow.previous,
+        .window.padLockWindow .container .leftPanel .resetButton .resetButtonIcon,
+        .window.characUpdateWindow .minusButton
+        {
           %btn_color%
-          /*
-          filter: saturate(0.1) brightness(1.5);
-          */
         }
+
 
         /* ProgressBar                    *
         **********************************/
-        .ProgressBar {
+        .ProgressBar,
+        .ProgressBarMultiple {
           overflow: hidden;
           border: 2px solid %primary%;
           border-radius: 20px;
           height: 13px;
           width: calc(100% - 4px);
         }
-        .ProgressBar .barBg {
+        .ProgressBar .barBg,
+        .ProgressBarMultiple .barBg {
           border: none;
           background: %primary_a50%;
         }
-        .ProgressBar .barColor {
+        .ProgressBar .barColor
+        .ProgressBarMultiple .barColor {
           border: none;
-          background: skyblue;
+          background: #00b5ff;
+        }
+        .ProgressBar.blue .barColor,
+        .ProgressBarMultiple .extraXp,
+        .ProgressBarMultiple .oldXp,
+        .ProgressBarMultiple .gainXp {
+          background: #00b5ff;
         }
         .ProgressBar.red .barColor {
-          border: none;
           background: red;
         }
         .ProgressBar.green .barColor {
-          border: none;
-          background: yellowgreen;
+          background: #28c700;
         }
         .ProgressBar.jobExpBar .barColor {
-          border: none;
-          background: yellow;
+          background: #ffb100;
         }
+        .ProgressBar.light-orange .barColor {
+          background: #ffb13b;
+        }
+        .ProgressBar.pink .barColor {
+          background: #f7507e;
+        }
+        .ProgressBar.aqua .barColor {
+          background: #48d6c3;
+        }
+        .ProgressBar.purple .barColor {
+          background: #d66dfc;
+        }
+        .ProgressBar.orange .barColor {
+          background: #ff821f;
+        }
+        .ProgressBar.yellow .barColor {
+          background: #feed02;
+        }
+        .ProgressBar.blue .barColor,
+        .ProgressBar.red .barColor,
+        .ProgressBar.green .barColor,
+        .ProgressBar.jobExpBar .barColor,
+        .ProgressBar.light-orange .barColor,
+        .ProgressBar.pink .barColor,
+        .ProgressBar.aqua .barColor,
+        .ProgressBar.purple .barColor,
+        .ProgressBar.orange .barColor,
+        .ProgressBar.yellow .barColor,
+        .ProgressBarMultiple .oldXp {
+          border: none;
+          background-image: linear-gradient(to bottom, rgb(255 255 255 / 30%), rgb(0 0 0 / 10%));
+        }
+
 
 
         /*******************************************************************
@@ -356,6 +542,7 @@ const neoGlass = `
         .TableV2 .placeholderFrame {
           width: calc(100% - 4px);
         }
+
 
         /* Header                         *
         **********************************/
@@ -376,6 +563,7 @@ const neoGlass = `
             color: %text_primary%;
         }
 
+
         /* Column                         *
         **********************************/
         .TableV2 .row .col {
@@ -386,13 +574,17 @@ const neoGlass = `
           border-left: solid 2px %primary_a30%;
         }
 
+
         /* Row                            *
         **********************************/
         .Table .tableContent .row,
-        .TableV2 .tableContent .row {
+        .TableV2 .tableContent .row,
+        .ListV2 .listItem,
+        .sublist .label .text {
           background-color : transparent;
-          color: %text_primary%;
+          color: %text_primary% !important;
         }
+
 
         /* Row Odd                        *
         **********************************/
@@ -406,9 +598,14 @@ const neoGlass = `
         .HelpWindow .helpBody .col1 .SingleSelectionList .listItem.selected > .sublist > .label:nth-child(2n+1),
         .window.OptionsWindow .wrapper .menuCol .menu .listItem.odd,
         .drillDownList .listItem.odd,
-        .window .OrnamentsWindow .col1 .ListV2 .listItem.odd {
+        .window .OrnamentsWindow .col1 .ListV2 .listItem.odd,
+        .window .QuestsWindow .col1 .ListV2 .listItem.odd > .label,
+        .window .BestiaryWindow .col1 .SingleSelectionList .listItem.selected > .sublist > .label:nth-child(2n+1),
+        .window .BestiaryWindow .col1 .SingleSelectionList .listItem:nth-child(2n+1) > .label,
+        .window.FightEndWindow .TableV2 .row.title {
             background-color : %primary_a30%;
         }
+
 
         /* Row Selected                   *
         **********************************/
@@ -419,20 +616,26 @@ const neoGlass = `
         .window .AchievementsWindow .col1 .scroll .tree .listItem.selected>.label,
         .window .BestiaryWindow .col1 .SingleSelectionList .listItem.selected>.label,
         .window .BestiaryWindow .sublist .label.selected,
-        .Table .container.content .row.highlight {
+        .Table .container.content .row.highlight,
+        .window .BestiaryWindow .sublist .label.selected,
+        .HelpWindow .helpBody .col1 .sublist .label.selected {
           position: relative;
           border-image: none !important;
           webkit-border-image: none !important;
           background-color: transparent !important;
-          color: %primary%;
+          color: %primary% !important;
+          text-shadow: none;
         }
 
         .TableV2 .tableContent .row.selected:before,
-        .ListV2 .listItem.selected:before,
+        .ListV2 .listItem.selected > .label::before,
         .window .AchievementsWindow .col1 .scroll .tree .listItem.selected>.label:before,
         .window .BestiaryWindow .col1 .SingleSelectionList .listItem.selected>.label:before,
         .window .BestiaryWindow .sublist .label.selected:before,
-        .Table .container.content .row.highlight:before {
+        .Table .container.content .row.highlight:before,
+        .window .QuestsWindow .sublist .label.selected::before,
+        .window.OptionsWindow .wrapper .menuCol .menu .listItem.selected::before,
+        .HelpWindow .helpBody .col1 .sublist .label.selected::before {
           content: " ";
           z-index: -1;
           position: absolute;
@@ -447,6 +650,27 @@ const neoGlass = `
         }
 
 
+        /* Fix list problems              *
+        **********************************/
+        .ListV2.tree .listItem .label {
+          position: relative;
+        }
+        /* Fix color when sublist item is selected */
+        .window .QuestsWindow .sublist .label.selected .text,
+        .window .BestiaryWindow .sublist .label.selected .text {
+          color: %primary% !important;
+        }
+        /* Fix background style when selected */
+        .window .QuestsWindow .sublist .label.selected,
+        .HelpWindow .helpBody .col1 .SingleSelectionList .listItem.selected>.label,
+        .HelpWindow .helpBody .col1 .sublist .label.selected {
+          border-image: none;
+          text-shadow: none;
+          background-color: transparent;
+        }
+
+
+
         /*******************************************************************
         *   Scroller                                                       *
         *******************************************************************/
@@ -456,6 +680,7 @@ const neoGlass = `
         .Scroller .scrollerContent {
           margin-right: 2px; /* Same result with 2px or 5px */
         }
+
 
 
         /*******************************************************************
@@ -482,228 +707,163 @@ const neoGlass = `
         }
 
 
-
-
-
-
-        /* BlackBox */
-        .window .AlmanaxWindow .col1 .dateBlock .dayBg,
-        .generalTab .generalContent .introBlock .col2 .scoreBoxHeaderContentBlock,
-        .generalTab .generalContent .introBlock .col2 .localisationBox {
-            background-color : #00000087;
-        }
-
-        /* GrimoireIcon */
-        .window.GrimoireWindow .windowBody .tab:nth-child(1)::before,
-        .window.GrimoireWindow .windowBody .tab:nth-child(2)::before,
-        .window.GrimoireWindow .windowBody .tab:nth-child(3)::before,
-        .window.GrimoireWindow .windowBody .tab:nth-child(4)::before,
-        .window.GrimoireWindow .windowBody .tab:nth-child(5)::before,
-        .window.GrimoireWindow .windowBody .tab:nth-child(6)::before,
-        .window.GrimoireWindow .windowBody .tab:nth-child(7)::before,
-        .window.GrimoireWindow .windowBody .tab:nth-child(8)::before {
-            background-position : 70% 50%;
-        }
-
-        /* AlmanaxWindow */
-        .window .AlmanaxTab .col2 .questBlock .questContent .dolmanaxBg,
-        .window .AlmanaxTab .col2 .saintBlock .saintBg {
-            background-image : none;
-            border : 1px solid #333333;
-            border-radius : 25px;
-            background-color : #00000057;
-            box-shadow : inset #545454 0px -5px 10px;
-        }
-
-        /* DailyQuestWindow */
-        .window .DailyQuestTab .dqList .slot {
-          background-color: rgb(72 72 72 / 44%);
-        }
-        .window .DailyQuestTab .dailyHeader .rerollCounter .wrapper {
-          background: rgb(72 72 72 / 44%);
-        }
-
-        /* SpellWindow */
-        .window .SpellsWindow .col2 .panel .header .panelTop {
-            background : none;
-        }
-        .window .SpellsWindow .col1::before {
-            border-image : none;
-            border : 2px solid rgba(0, 0, 0, 0.21);
-            border-radius : 8px;
-        }
-
-        /* QuestWindow */
-        .window .QuestsWindow .objectiveList .objectiveRow:nth-child(2n+1) {
-            background-color : #0000004d;
-        }
-        .window .QuestsWindow .col1 .ListV2 .listItem.odd > .label {
-            background-color : rgba(32, 33, 29, 0.7);
-        }
-
-        /* BestiaryWindow */
-        .window .BestiaryWindow .col1::before {
-            border-image : none;
-            border : 2px solid black;
-            border-radius : 8px;
-        }
-        .BestiaryWindow .monster .infos {
-            border-image : none;
-            background-color : #2b2b2b9c;
-            border : 2px solid black;
-            border-radius : 8px;
-            box-shadow : inset 0px 0px 20px -2px rgba(140,140,140,0.8);
-        }
-        .window .BestiaryWindow .sublist .label {
-            margin : 0 2px;
-        }
-        .window .BestiaryWindow .col1 .SingleSelectionList .listItem.selected > .sublist > .label:nth-child(2n+1) {
-            background-color : rgba(30, 31, 28, 0.6);
-        }
-        .window .BestiaryWindow .col1 .SingleSelectionList .listItem:nth-child(2n+1) > .label {
-            background-color : rgba(0, 0, 0, 0.46);
-        }
-        .BestiaryWindow .monster .more {
-            background-color : #2d2c2a9c;
-            box-shadow : inset 0px -2px 10px -2px rgba(140,140,140,0.8);
-        }
-        .BestiaryWindow .monster .stat {
-            background-color :rgb(83 88 60 / 20%);
-        }
-        .BestiaryWindow .monster .stat:nth-child(2n+1) {
-            background-color : rgba(32,32,27,0.4);
-        }
-
-        /* AchievementWindow */
-        .window .AchievementsWindow .col2 .achievementsScroll .achievementsList .achievement .infos {
-            background-color : rgba(62, 63, 57, 0.5);
-        }
-        .window .AchievementsWindow .col2 .achievementsScroll .achievementsList .achievement.completed .infos {
+        /*******************************************************************
+        *   Items slot                                                     *
+        *******************************************************************/
+        .window .QuestsWindow .rewardSlot,
+        .window .jobsWindow .skillsBlock .skillsList .label .skillRight .Slot,
+        .window .jobsWindow .job .Slot,
+        .RecipeList .ingredientsList .ItemSlot,
+        .RecipeList .recipeTitle .ItemSlot,
+        .window .AchievementsWindow .col2 .achievementsScroll .achievementsList .achievement .Slot,
+        .BestiaryWindow .monster .Slot,
+        .StorageViewer .slotBox .slots,
+        .StorageViewer .slotBox .slots .ItemSlot,
+        .ToaWindow .rewardsDisplay .Slot,
+        .PresetsBox .setSlotsBox .Slot,
+        .window.FightEndWindow .TableV2 .row .col .dropRow .ItemSlot,
+        .window.padLockWindow .codeContainer .codeDigitContainer,
+        .TradeSpace .slotBox .slots,
+        .numberInputPad .displayContainer .digitBox {
           background: none;
-          position: relative;
         }
-        .window .AchievementsWindow .col2 .achievementsScroll .achievementsList .achievement.completed .infos::before {
-          content: ' ';
+        .window .QuestsWindow .rewardSlot::before,
+        .window .jobsWindow .skillsBlock .skillsList .label .skillRight .Slot::before,
+        .window .jobsWindow .job .Slot::before,
+        .RecipeList .ingredientsList .ItemSlot::before,
+        .RecipeList .recipeTitle .ItemSlot::before,
+        .window .AchievementsWindow .col2 .achievementsScroll .achievementsList .achievement .Slot::before,
+        .BestiaryWindow .monster .Slot::before,
+        .StorageViewer .slotBox .slots .ItemSlot::before,
+        .ItemBox .infoContainer .topLeftInfoContainer .itemContainer .itemImage:before,
+        .ToaWindow .rewardsDisplay .Slot::before,
+        .PresetsBox .setSlotsBox .Slot::before,
+        .window.FightEndWindow .TableV2 .row .col .dropRow .ItemSlot::before,
+        .window.padLockWindow .codeContainer .codeDigitContainer::before,
+        .TradeSpace .slotBox .slots .Slot::before,
+        .numberInputPad .displayContainer .digitBox::before {
+          content: " ";
+          z-index: -1;
+          position: absolute;
+          top: 1px;
+          left: 0;
           width: 100%;
           height: 100%;
-          position: absolute;
-          opacity: 0.3;
-          background: url(./assets/ui/diagonal_stripe.png) 0 0 repeat;
-          top: 0;
-          left: 0;
-        }
-
-        /* JobsWindow */
-        .RecipeList .recipeTitle {
-            background-color : rgba(125, 125, 98, 0.3);
-        }
-        .RecipeList .ingredientsList {
-            box-shadow : inset 0px -1px 7px #ffffff42;
-        }
-
-        /* BidHouseWindow */
-        .drillDownList {
-            background-color : transparent;
-        }
-
-        /* BreedingWindow */
-        .tileRoom .fg {
-            background-color : transparent;
-        }
-        .window.BreedingWindow .focusedTile {
-            background-color : rgba(125, 125, 125, 0.3);
-        }
-
-        /* StorageWindow */
-        .StorageViewer .slotBox .slots .Slot,
-        .StorageViewer .slotBox .slots {
-          background-image: none;
-        }
-        .StorageViewer .slotBox .slots .Slot:before {
-          content: ' ';
-          position: absolute;
-          background: url(./assets/ui/slot.png) 50% 50% no-repeat;
-          background-size: 100% 100%;
-          width: 40px;
-          height: 40px;
-          -moz-box-sizing: border-box;
-          -webkit-box-sizing: border-box;
           box-sizing: border-box;
-          z-index: -1;
-          opacity: 0.4;
-        }
-        .StorageViewer .slotBox .slots .cosmeticSlot {
-          border-radius: 5px;
-          box-shadow: inset 0px 0px 20px -3px #00d0ff;
-        }
-
-        /* MountBox Window */
-        .window.BreedingWindow .neutralTile {
-          background-color: rgb(29 30 26 / 0.6);
-          box-shadow: inset 0px 0px 20px -5px rgba(140,140,140,0.8);
-        }
-
-        /* CraftMagusWindow */
-        .window.CraftMagusWindow .craftingBoxContainer:before {
-          opacity: 0.6;
-        }
-
-        /* TradeWindow */
-        .window.tradeItemWindow .windowBody .minPrice .valueBox .title {
-          background-color: #7171717d;
-        }
-        .window.tradeItemWindow .windowBody .minPrice .valueBox .value {
-          background-color: #33333387;
-        }
-
-        /* FightEndWindow */
-        .window.FightEndWindow .summaryBlock {
-          height: 47px;
-        }
-        .window.FightEndWindow .TableV2 .row.title {
-          background-color: rgb(97 107 87 / 65%);
-        }
-
-        /* GuildWindow */
-        .socialInfoEditor {
-          background-color: rgb(60 62 55 / 65%);
-        }
-        .socialInfoEditor .textDiv, .socialInfoEditor .editDiv {
-          background-color: transparent;
-          border: 1px solid #131313bf;
-        }
-
-        /* AllianceWindow */
-        /* Fix alignement of conquest Table */
-        .ConquestsTab .TableV2 .row .col.subArea {
-          flex: 5;
-        }
-        .ConquestsTab .TableV2 .row .col.nextVulnerabilityDate {
-          flex: 1.5;
-        }
-
-        /* MountFamilyTreeWindow */
-        .window.FamilyTreeWindow .tree {
-          background: none;
-        }
-        .window.FamilyTreeWindow .tree:before {
-          content: ' ';
-          background: url(./assets/ui/familyTree.png) 50% 50% no-repeat;
-          background-size: 100% 100%;
-          width: 97%;
-          height: 95.6%;
-          /* background: red; */
-          position: absolute;
-          opacity: 0.6;
+          border: 2px solid %primary_a40%;
+          border-radius: 7px;
+          background-color: %primary_a30%;
         }
 
 
 
+        /*******************************************************************
+        *   Items Box                                                      *
+        *******************************************************************/
+
+        /* Container                      *
+        **********************************/
+        .window.FeedWindow .itemBox .ItemBox::before,
+        .EquipmentDrawer .drawerContent .ItemBox::before,
+        .ItemBox::before {
+          margin: 2px 2px;
+          width: calc(100% - 4px);
+          height: calc(100% - 4px);
+        }
+
+        
+        /* Informations Tabs              *
+        **********************************/
+        .ItemBox .infoContainer .topRightInfoContainer .tabs {
+          margin-top: 2px;
+        }
+
+        
+        /* Informations container         *
+        **********************************/
+        .ItemBox .infoContainer .topRightInfoContainer .itemInfoPanels {
+          margin-left: 6px;
+          width: calc(100% - 6px);
+        }
+        .ItemBox .infoContainer .topRightInfoContainer .itemInfoPanels::before {
+          border-radius: 0 0 7px 7px;
+        }
+
+
+        /* Descriptions container         *
+        **********************************/
+        .ItemBox .itemDescriptionContainer .scrollerContent .category {
+          color: %text_primary%;
+        }
+        .ItemBox .itemDescriptionContainer .scrollerContent .description {
+          color: %text_secondary%;
+        }
+
+
+        .window.FeedWindow .quantityBox {
+          margin-top: 10px;
+        }
+        
+
+
+        /*******************************************************************
+        *   Status indicator                                               *
+        *******************************************************************/
+
+        .FriendsWindow .mainPanel .Table .container .row .col:nth-child(1) .onlineStatusIcon,
+        .GuildMembers .TableV2 .tableContent .row .col:nth-child(1) .onlineStatusIcon,
+        .chat .statusButton,
+        .ContextualMenuUserStatus li.available::after,
+        .ContextualMenuUserStatus li.away::after,
+        .ContextualMenuUserStatus li.private::after,
+        .ContextualMenuUserStatus li.solo::after,
+        .pmomStatus {
+          border-radius: 50%;
+          background-image: linear-gradient(to bottom, rgb(255 255 255 / 30%), rgb(0 0 0 / 10%)) !important;
+        }
+
+        .FriendsWindow .mainPanel .Table .container .row .col:nth-child(1) .onlineStatusIcon.status10,
+        .GuildMembers .TableV2 .tableContent .row .col:nth-child(1) .onlineStatusIcon.status10,
+        .chat .statusButton.available,
+        .ContextualMenuUserStatus li.available::after,
+        .pmomOnMap {
+          background: green;
+        }
+        .FriendsWindow .mainPanel .Table .container .row .col:nth-child(1) .onlineStatusIcon.status21,
+        .GuildMembers .TableV2 .tableContent .row .col:nth-child(1) .onlineStatusIcon.status21,
+        .chat .statusButton.away,
+        .ContextualMenuUserStatus li.away::after {
+          background: #cacaca;
+        }
+        .FriendsWindow .mainPanel .Table .container .row .col:nth-child(1) .onlineStatusIcon.status30,
+        .GuildMembers .TableV2 .tableContent .row .col:nth-child(1) .onlineStatusIcon.status30,
+        .chat .statusButton.private,
+        .ContextualMenuUserStatus li.private::after,
+        .pmomNotInMap {
+          background: #d00000;
+        }
+        .FriendsWindow .mainPanel .Table .container .row .col:nth-child(1) .onlineStatusIcon.status40,
+        .GuildMembers .TableV2 .tableContent .row .col:nth-child(1) .onlineStatusIcon.status40,
+        .chat .statusButton.solo,
+        .ContextualMenuUserStatus li.solo::after {
+          background: #f78900;
+        }
 
 
 
+        /*******************************************************************
+        *   Scroller                                                       *
+        *******************************************************************/
+        .Scroller.scrollBgVisible .iScrollVerticalScrollbar, .Scroller.scrollBgVisible .iScrollHorizontalScrollbar {
+          background-color: %primary_a50%;
+        }
+        .Scroller .iScrollIndicator {
+          background-color: %text_primary%;
+        }
+        
 
-        /******************************************************************
+
+        /*******************************************************************
         *   Fix bug                                                        *
         *******************************************************************/
 
@@ -741,6 +901,17 @@ const neoGlass = `
           justify-content: start;
         }
 
+        /* Fix color link for chat */
+        .message .link {
+          color: gold !important;
+        }
+
+        /* Fix Dialog title color */
+        #dofusBody .speechBubble .title {
+          color: white !important;
+        }
+
+
 
         /*******************************************************************
         *   Special Window/Component                                       *
@@ -775,6 +946,40 @@ const neoGlass = `
           left: 1px;
         }
 
+
+        /* TooltipBox                     *
+        **********************************/
+        .TooltipBox {
+          background: %primary_a70%;
+          color: %text_primary%;
+          backdrop-filter: %blur%;
+        }
+        .ItemDescription .description {
+          color: %text_secondary%;
+        }
+
+
+        /* Grip Handler                   *
+        **********************************/
+        .Timeline .infoAndFighters,
+        .Party {
+          box-sizing: border-box;
+          background: %primary_a50%;
+          border: 1px solid %primary%;
+          backdrop-filter: %blur%;
+          color: %text_primary%;
+        }
+
+        /* Fighting timeLine */
+        div#chronometerContainer {
+          color: %text_primary% !important;
+        }
+        .window.FightEndWindow .TableV2 {
+          margin-top: 3px;
+        }
+
+        
+
         /* Notifications                  *
         **********************************/
         .NotificationBar .container {
@@ -800,14 +1005,58 @@ const neoGlass = `
           color: %text_secondary%;
         }
 
+
         /* Chat channels list             *
         **********************************/
         .chat .channelsLists .channelsList {
-          background: %primary_a30%;
+          background: %primary_a50%;
           backdrop-filter: %blur%;
-          border: 1px solid %primary_a30%;
+          border: 1px solid %primary_a50%;
           border-radius: 4px;
+          text-shadow: none;
         }
+        /* Status icon */
+        .chat .statusButton {
+          min-height: 16px;
+          height: 16px;
+          width: 16px;
+          min-width: 16px;
+          margin: 10px 9px;
+        }
+
+
+        /* Contextual menu user           *
+        *  Status Icon                    *
+        **********************************/
+        .ContextualMenuUserStatus li {
+          background: none !important;
+          position: relative;
+        }
+        .ContextualMenuUserStatus li.available::after,
+        .ContextualMenuUserStatus li.away::after,
+        .ContextualMenuUserStatus li.private::after,
+        .ContextualMenuUserStatus li.solo::after {
+          content: " ";
+          position: absolute;
+          top: 11px;
+          left: 6px;
+          width: 14px;
+          height: 14px;
+        }
+
+
+        /*  Contextual Menu Monster       *
+        **********************************/
+        .ContextualMenuMonster {
+          background: none;
+        }
+        .ContextualMenuMonster .monsterInfosContainer .xp {
+          color: %text_secondary%;
+        }
+        .ContextualMenuMonster .contextContent .contentScroller .monstersList {
+          color: %text_primary%;
+        }
+
 
         /* Side tabs menu                 *
         **********************************/
@@ -829,6 +1078,7 @@ const neoGlass = `
             background-image : none;
             background : radial-gradient(circle at center, white 0%, rgba(255, 255, 255, 0.51) 24%, rgba(0, 0, 0, 0.01) 60%);
         }
+
 
         /* Npc Dialog                     *
         **********************************/
@@ -852,6 +1102,52 @@ const neoGlass = `
         }
 
 
+        /* Confirm trade                  *
+        **********************************/
+        .window.TradeItemConfirmWindow .leftCol .itemContainer .itemImg:before {
+          border: 2px solid %primary_a40%;
+          border-radius: 7px;
+          background-color: %primary_a20%;
+        }
+
+
+        /* House code                     *
+        **********************************/
+        .window.padLockWindow .codeContainer .codeDigitContainer.highlight {
+          border: 3px solid %primary%;
+          border-radius: 7px;
+          width: calc(100% - 6px);
+          height: calc(100% - 6px);
+          background: none;
+        }
+
+
+        /* Trade / Exchange               *
+        **********************************/
+        .TradeSpace .slotBox,
+        .TradeGold .kamaContent {
+          background: %primary_a30%;
+          border: 1px solid %primary_a30%;
+        }
+        .TradeGold .kamaContent .kamaInput input {
+          height: 100%;
+        }
+
+
+        /* Number Input Pad               *
+        **********************************/
+        .numberInputPad .titleBar .title {
+          font-weight: bold;
+          background: none;
+          border: none;
+          margin-top: -3px;
+        }
+        .numberInputPad .displayContainer .digitBox {
+          color: %text_primary%;
+        }
+
+
+
         /*******************************************************************
         *   Rules by window                                                *
         *******************************************************************/
@@ -863,18 +1159,64 @@ const neoGlass = `
           margin: 3px 0;
         }
 
+
+        /* Options                        *
+        **********************************/
+        .window.OptionsWindow .wrapper .settingsCol .settings .optionSection .header {
+          color: %text_primary%;
+        }
+
+
         /* Characteristics                *
         **********************************/
         .window.characteristics .panels::before {
-            margin: 0;
-            width: 100%;
-            border-radius: 0px 0 7px 7px;
+          border-radius: 0px 0 7px 7px;
         }
         .window.characteristics .panel {
           left: 0;
           width: 100%;
-          color: %text_secondary%;
         }
+        /* Alignment box */
+        .window.characteristics .logoWrapper {
+          background-color: %primary_a30%;
+        }
+        /* Player name */
+        .window.characteristics .playerName {
+          color: %title_color%;
+        }
+
+        /* Characteristics Update         *
+        **********************************/
+        .characUpdateWindow .container.content {
+          overflow: hidden;
+          margin: 0;
+        }
+        .characUpdateWindow .Table {
+          width: calc(100% - 2px);
+        }
+
+
+        /* Mount                          *
+        **********************************/
+        /* MountFamilyTreeWindow */
+        .window.FamilyTreeWindow .tree {
+          background: none;
+        }
+        .window.FamilyTreeWindow .tree:before {
+          content: ' ';
+          background: url(./assets/ui/familyTree.png) 50% 50% no-repeat;
+          background-size: 100% 100%;
+          width: 97%;
+          height: 95.6%;
+          position: absolute;
+          opacity: 0.35;
+        }
+        /* Fix container display */
+        #dofusBody .MountDetails .panel::before {
+          border-radius: 0 0 7px 7px;
+          box-shadow: none;
+        }
+
 
         /* Breeding                       *
         **********************************/
@@ -882,6 +1224,7 @@ const neoGlass = `
           width: 162px;
           margin: 4px;
         }
+
 
         /* Friends                        *
         **********************************/
@@ -893,8 +1236,608 @@ const neoGlass = `
         .FriendsWindow .mainPanel .Table .container .row .col:nth-child(7) .Button {
           height: 30px !important;
         }
+        /* Fix Container size */
+        .FriendsWindow .mainPanel::before {
+          margin: 0;
+          border-radius: 0 7px 7px 7px;
+          width: 100%;
+          box-shadow: none;
+        }
+        .Table .container.content .row.offline {
+          color: %text_primary%;
+        }
+        .FriendsWindow .mainPanel .Table .container .row.offline .col:nth-child(2) {
+          color: %text_secondary%;
+        }
+        
 
-        /*TODO NumberInput pad*/
+
+        /* Almanax                        *
+        **********************************/
+        /* Change background of almanax quest images */
+        .window .AlmanaxTab .col2 .questBlock .questContent .dolmanaxBg,
+        .window .AlmanaxTab .col2 .saintBlock .saintBg {
+          background-image: none;
+          border: 1px solid %primary_a30%;
+          border-radius: 25px;
+          background-color: %primary_a30%;
+          box-shadow: inset %primary% 0px -5px 10px;
+        }
+        /* Date block */
+        .window .AlmanaxTab .col1 .dateBlock .dayBg {
+          background: %primary_a40%;
+          border: 1px solid %primary%;
+          color: %text_secondary%;
+        }
+        .window .AlmanaxTab .col2 .questBlock .questContent .progression .questProgressTitle {
+          color: %title_color% !important;
+        }
+
+        /* Daily Quest                    *
+        **********************************/
+        /* Separate the two content container */
+        .window .DailyQuestTab .dailyPart:before {
+          margin-top: 5px;
+        }
+        /* Quest informations */
+        .window .DailyQuestTab .dqList .slot,
+        .window .DailyQuestTab .dailyHeader .rerollCounter .wrapper {
+          background-color: %primary_a40%;
+          border: 1px solid %primary_a50%;
+          box-sizing: border-box;
+          color: %text_primary%;
+        }
+
+
+        /* Grimoire Icon                  *
+        **********************************/
+        .window.GrimoireWindow .windowBody .tab:nth-child(1)::before,
+        .window.GrimoireWindow .windowBody .tab:nth-child(2)::before,
+        .window.GrimoireWindow .windowBody .tab:nth-child(3)::before,
+        .window.GrimoireWindow .windowBody .tab:nth-child(4)::before,
+        .window.GrimoireWindow .windowBody .tab:nth-child(5)::before,
+        .window.GrimoireWindow .windowBody .tab:nth-child(6)::before,
+        .window.GrimoireWindow .windowBody .tab:nth-child(7)::before,
+        .window.GrimoireWindow .windowBody .tab:nth-child(8)::before {
+            background-position : 30% 50%;
+        }
+
+
+        /* Spells                         *
+        **********************************/
+        /* SpellWindow */
+        .window .SpellsWindow .col2 .panel .header .panelTop {
+          background : none;
+        }
+        .window .SpellsWindow .col1::before {
+          border-image : none;
+          border : 2px solid %primary_a30%;
+          border-radius : 8px;
+        }
+        /* Tab right */
+        .window .SpellsWindow .col2 .panel {
+          border: 2px solid %primary_a30%;
+          border-radius: 0 7px 7px;
+          background-color: %primary_a20%;
+          margin: 0;
+          padding: 10px 5px 5px;
+          box-sizing: border-box;
+          color: %text_primary%;
+        }
+        /* Spell title */
+        .window .SpellsWindow .col2 .panel .header .panelTop {
+          background: %primary_a70%;
+          border: 1px solid %primary%;
+          border-left: none;
+          box-sizing: border-box;
+          color: %text_primary%;
+        }
+        /* Add button */
+        .window .SpellsWindow .col1 .TableV2 .row .col:nth-child(4) .button {
+          height: 35px !important;
+        }
+        /* Text */
+        .EffectDescription .effectTitle,
+        .window .SpellsWindow .col2 .panel .header .panelTop .minPlayerLevel {
+          color: %text_secondary%;
+        }
+        .SpellDescription .description,
+        .window .SpellsWindow .col1 {
+          color: %text_primary%;
+        }
+
+
+        /* Quests                         *
+        **********************************/
+        .window .QuestsWindow .objectiveList .objectiveRow:nth-child(odd) {
+          background-color: %primary_a30%;
+        }
+        /* Hidde item default items slots */
+        .window .QuestsWindow .rewardList {
+          background: none;
+        }
+        .window .QuestsWindow .rewardSlot {
+          margin-right: 2px;
+        }
+
+
+        /* Alignment                      *
+        **********************************/
+        .window .AlignmentWindow .leftColumn .topRow .CharacterDisplay {
+          border-color: %primary_a70%;
+        }
+
+
+        /* Jobs                           *
+        **********************************/
+        /* Craft recipe title */
+        .RecipeList .recipeTitle {
+          background-color: %primary_a40%;
+        }
+        /* Color text recipe skill */
+        .RecipeList .recipeTitle .recipeLeft .recipeSkillName {
+          color: %text_secondary%;
+        }
+        /* Craft recipe ingredient list */
+        .RecipeList .ingredientsList {
+          border: 2px solid %primary_a50%;
+          box-sizing: border-box;
+        }
+        /* Bonus xp text */
+        .window .jobsWindow .bonusXP {
+          font-weight: bold;
+          color: %color_link%;
+        }
+        /* HightLight selected job */
+        .Slot.selected .slotIconBorder:after {
+          border: 3px solid %primary%;
+          border-radius: 7px;
+          width: calc(100% - 6px);
+          height: calc(100% - 6px);
+          background: none;
+        }
+
+
+        /* Achivements                    *
+        **********************************/
+        /* Change icon color */
+        .window .AchievementsWindow .col1 .scroll .tree .listItem .icon {
+          filter: brightness(0) invert(1) drop-shadow(1px 2px 0px grey);
+        }
+        /* Achievement details */
+        .window .AchievementsWindow .col2 .achievementsScroll .achievementsList .achievement .infos {
+            background-color : %primary_a30%;
+            color: %text_secondary%;
+        }
+        .window .AchievementsWindow .col2 .achievementsScroll .achievementsList .achievement .more .rewards {
+          color: %text_primary%;
+        }
+        .AchievementsWindow .achievement .points {
+          background: %primary_a40%;
+          box-sizing: border-box;
+          border: 1px solid %primary_a40%;
+          border-radius: 7px;
+          color: %text_primary%;
+        }
+        /* Achievement details completed */
+        .window .AchievementsWindow .col2 .achievementsScroll .achievementsList .achievement.completed .infos {
+          background: %primary_a50%;
+          position: relative;
+        }
+        .window .AchievementsWindow .col2 .achievementsScroll .achievementsList .achievement.completed .infos::before {
+          content: ' ';
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          opacity: 0.3;
+          background: url(./assets/ui/diagonal_stripe.png) 0 0 repeat;
+          top: 0;
+          left: 0;
+          filter: grayscale(1) brightness(1.7);
+        }
+        .AchievementsWindow .objective.completed {
+          color: %text_secondary%;
+        }
+        .AchievementsWindow .objective .text {
+          margin-left: 5px;
+        }
+
+
+        /* Bestiary                       *
+        **********************************/
+        .window .BestiaryWindow .col1::before {
+          content: none;
+        }
+        .window .BestiaryWindow .col1 .SingleSelectionList::before {
+          content: " ";
+          border: 2px solid %primary_a40%;
+          border-top: none;
+          border-radius: 0 0 5px 5px;
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          box-sizing: border-box;
+        }
+        /* Monsters details */
+        .BestiaryWindow .monster .infos {
+          background-color: %primary_a30%;
+          border-color: %primary_a30%;
+        }
+        .window .BestiaryWindow .sublist .label {
+          margin : 0 2px;
+        }
+        .listItem.monster.selected .infos {
+          color: #3d3d3d;
+          border-color: %primary%;
+        }
+        /* MiniBoss icon */
+        .BestiaryWindow .monster .name.miniBoss,
+        .BestiaryWindow .monster .name.boss,
+        .BestiaryWindow .monster .name.questMonster {
+          background: none;
+          position: relative;
+        }
+        .BestiaryWindow .monster .name.miniBoss::after {
+          content: " ";
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+          position: absolute;
+          filter: drop-shadow(1px 2px 3px grey);
+          background: url(./assets/ui/icons/miniBoss.png) 0 50% no-repeat;
+        }
+        .BestiaryWindow .monster .name.boss::after {
+          content: " ";
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+          position: absolute;
+          filter: drop-shadow(1px 2px 3px grey);
+          background: url(./assets/ui/icons/boss.png) 0 50% no-repeat;
+        }
+        .BestiaryWindow .monster .name.questMonster::after {
+          content: " ";
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+          position: absolute;
+          filter: drop-shadow(1px 2px 3px grey);
+          background: url(./assets/ui/icons/questMonster.png) 0 50% no-repeat;
+        }
+        /* Details more */
+        .BestiaryWindow .monster .more {
+          background-color: %primary_a30%;
+          border-color: %primary_a30%;
+          border-top: none;
+          color: %text_primary%;
+        }
+        /* Monster stats */
+        .BestiaryWindow .monster .stat {
+          background: none;
+        }
+        .BestiaryWindow .monster .stat:nth-child(2n+1) {
+          background-color: %primary_a30%;
+        }
+        /* Items drop slots */
+        .BestiaryWindow .monster .Slot.rareDrop,
+        .BestiaryWindow .monster .Slot.okDrop,
+        .BestiaryWindow .monster .Slot.special {
+          border: none;
+          background: none;
+        }
+        .BestiaryWindow .monster .Slot.rareDrop::before {
+          border-color: gold;
+        }
+        .BestiaryWindow .monster .Slot.okDrop::before {
+          border-color: #3d3d3d;
+        }
+
+
+        /* Map                            *
+        **********************************/
+        .window.WorldMapWindow .buttonBox {
+          background-color: %primary_a70%;
+        }
+
+
+        /* Guild                          *
+        **********************************/
+        /* Members rights window */
+        .GuildMemberRightsWindow .upperPanel:before {
+          border: 1px solid %primary%;
+          border-radius: 7px;
+          background: %primary_a30%;
+        }
+        /* Fix button height */
+        .GuildMemberRightsWindow .upperPanel .container .setXpButton {
+          height: 20px !important;
+        }
+        /* Fix content container */
+        .GuildWindow .SwipingTabs .swipeTabContent:before {
+          margin: 0;
+          width: 100%;
+          box-shadow: none;
+          border-radius: 0 0 7px 7px;
+        }
+        .GuildHousesWindow .Table:before,
+        .GuildPerceptorsWindow .tableContainer:before {
+          margin: 0;
+          width: 100%;
+          border-radius: 0;
+        }
+        /* Social message */
+        .socialInfoEditor {
+          background-color: %primary_a30%;
+          color: %text_primary%;
+          box-shadow: 3px 3px 7px #0000004f;
+        }
+        .placeholderFrame {
+          border-color: %primary%;
+        }
+        .placeholderFrame .placeholderText {
+          color: %text_primary%;
+        }
+        /* Perceptor fix */
+        .PerceptorBoostPanel .leftPanel .perceptorCharacteristicsTable:before {
+          box-shadow: none;
+        }
+        .PerceptorBoostPanel .leftPanel .characterImage {
+          border-color: %primary_a70%;
+        }
+
+
+        /* Help window                    *
+        **********************************/
+        .HelpWindow .helpBody h1,
+        .HelpWindow .helpBody h2,
+        .HelpWindow .helpBody h3,
+        .HelpWindow .helpBody h4,
+        .HelpWindow .helpBody h5,
+        .HelpWindow .helpBody h6 {
+          color: %title_color%;
+        }
+        .HelpWindow .helpBody strong {
+          color: %text_primary% !important;
+        }
+        /* Fix content size */
+        .HelpWindow .helpBody .col2::before {
+          margin: 0;
+          width: 100%;
+          box-shadow: none;
+        }
+
+
+        /* Ascension                      *
+        **********************************/
+        .window.ToaWindow .panels .panel .contentBlock::before,
+        .window.ToaWindow .panels .panel .unscrollableContentBlock::before {
+          border-radius: 0 7px 7px 7px;
+          box-shadow: none;
+        }
+        .window.ToaWindow h1,
+        .window.ToaWindow h2,
+        .window.ToaWindow h3,
+        .window.ToaWindow h4,
+        .window.ToaWindow h5,
+        .window.ToaWindow h6 {
+          color: %title_color%;
+        }
+        .window.ToaWindow .panels .panel .contentBlock .separator {
+          background: %primary%;
+        }
+        /* Info block */
+        .generalTab .generalContent .introBlock .col2 .scoreBoxHeaderContentBlock,
+        .generalTab .generalContent .introBlock .col2 .localisationBox {
+          background: %primary_a40%;
+          border: 1px solid %primary%;
+          color: %text_secondary%;
+          border-radius: 7px;
+        }
+
+
+        /* BidHouse Shop                  *
+        **********************************/
+        .drillDownList {
+          background: %primary_a30%;
+          border-color: %primary_a30%;
+        }
+        .drillDownList .subitemList .subitem,
+        .bidHouseCategories .listItem.selected .text {
+          color: %text_primary%;
+        }
+        .drillDownList .breadcrumb,
+        .drillDownList .subitemList .subitem.selected {
+          border-color: %primary%;
+        }
+        .BidHouseBuyerBox .row .col .icon .quantity {
+          color: white;
+        }
+        .window.TradeItemConfirmWindow .leftCol .itemContainer .itemQuantity {
+          text-shadow: none;
+        }
+        /* Sell window */
+        .window.tradeItemWindow .windowBody .minPrice .valueBox .title,
+        .window.tradeItemWindow .windowBody .minPrice .valueBox .value {
+          border-color: %primary%;
+          background: %primary_a30%;
+        }
+        .window.tradeItemWindow .windowBody .minPrice .valueBox:first-child .title,
+        .window.tradeItemWindow .windowBody .minPrice .valueBox:first-child .value {
+          border-left: 1px solid %primary%;
+        }
+        /* Currency */
+        .wallet .currency .text {
+          border: 1px solid %primary_a30%;
+          border-radius: 0 13px 13px 0;
+          background: %primary_a30%;
+          color: %text_primary%;
+        }
+
+
+        /* Inventory                      *
+        **********************************/
+        .PresetsBox .setItemSlotsBox:before {
+          border: 1px solid %primary_a40%;
+          border-radius: 7px;
+          background: %primary_a30%;
+          box-shadow: 3px 3px 7px #0000004f;
+        }
+        /* HightLight cosmetic Item */
+        .StorageViewer .slotBox .slots .cosmeticSlot {
+          position: relative;
+        }
+        .StorageViewer .slotBox .slots .cosmeticSlot::after {
+          border: 2px solid #23bdbd;
+          border-radius: 7px;
+          content: " ";
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: calc(100% - 4px);
+          width: calc(100% - 4px);
+        }
+        /* Categories buttons */
+        .ItemFilters .filters .content {
+          border: none;
+        }
+        .ItemFilters .filters .filter {
+          background-image: none;
+          position: relative;
+        }
+        .ItemFilters .filters .filter::before {
+          content: " ";
+          position: absolute;
+          width: 37px;
+          height: 100%;
+          display: inline-block;
+          background-size: 100% 100%;
+          margin: 0 1px;
+          background-image: url(./assets/ui/inventory/tabOff.png);
+          filter: invert(1);
+          z-index: -1;
+          top: 0;
+          left: 0;
+        }
+
+
+        /* FightEnd                       *
+        **********************************/
+        /* Color gain xp */
+        .window.FightEndWindow .xpBox .gainedXpText {
+          color: #167da8;
+        }
+        /* Color bonus pack xp disabled */
+        .window.FightEndWindow .xpBox .extraXpDiv .ifBonusPack {
+          color: %text_secondary%;
+        }
+        .StarCounter .starContainer, .StarCounter .bonusContainer {
+          background: %primary_a30%;
+          border: 1px solid %primary%;
+        }
+
+
+        /* CraftMagus                     *
+        **********************************/
+        /* Fix Space between button */
+        .CraftMagusWindow .Button {
+          margin-bottom: 4px;
+        }
+        .window.CraftMagusWindow .craftingBoxContainer:before {
+          border: 1px solid %primary_a40%;
+          border-radius: 7px;
+          background: %primary_a30%;
+        }
+
+
+        /* Market                         *
+        **********************************/
+        .box .priceButtonsBox .priceButtons .priceButton {
+          width: 100%;
+          height: 100% !important;
+        }
+        .MarketWindow .title,
+        .MarketWindow p,
+        .MarketWindow li,
+        .MarketWindow .details,
+        .MarketWindow .weight,
+        .MarketWindow .text,
+        .MarketWindow .placeholder.row {
+          color: white !important;
+        }
+
+
+        /* Group invitation details       *
+        **********************************/
+        .window.PartyInviteDetailsWindow .container .character .background {
+          background: %primary_a50%;
+        }
+        .window.PartyInviteDetailsWindow .container .character .background.guestFrame {
+          border: 2px solid %primary%;
+        }
+        .window.PartyInviteDetailsWindow .container .character .name {
+          color: %text_primary%;
+          font-weight: bold;
+        }
+
+        
+        /* Group Handler                  *
+        **********************************/
+        div#party-info-container {
+          background: %primary_a50% !important;
+          box-shadow: none !important;
+          border: 1px solid %primary_a50%;
+          color: %text_primary% !important;
+        }
+        .Party .partyBoxes .partyBox .member {
+          background: %primary_a30%;
+          border-color: %primary%;
+        }
+        .Party .partyBoxes .partyBox .member .CharacterDisplay {
+          background: %primary_a70%;
+        }
+        .Party .partyBoxes .partyBox .member .hpBar .hp {
+          background-color: #d02830;
+        }
+
+
+
+        /*******************************************************************
+        *   Mods                                                           *
+        *******************************************************************/
+
+
+        /* Jobs xp                        *
+        **********************************/
+        .xpRestanteText {
+          margin-right: 0;
+          padding: 0;
+        }
+        .xpRestanteText::after {
+          border: none;
+          background: none;
+        }
+        .xpRestanteText .job {
+          background: %primary_a40%;
+          border: 1px solid %primary_a40%;
+          backdrop-filter: %blur%;
+          color: %text_primary%;
+          text-shadow: none;
+        }
+        .xpRestanteText .name {
+          text-shadow: none;
+          color: %text_secondary%;
+        }
+
+
+        /* Party Member On Map            *
+        **********************************/
+        .pmomStatus {
+          height: 15px;
+          bottom: 3px;
+        }
 `;
 
 // filter: saturate(0.1) brightness(1.5);

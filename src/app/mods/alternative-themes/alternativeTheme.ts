@@ -34,6 +34,9 @@ export class AlternativeTheme extends Mod {
             let theme = this.themeList.find(theme => theme.id == selectTheme);
             theme['ticked'] = true;
         }
+        else {
+            this.themeList[0]['ticked'] = true;
+        }
     }
 
     private onOpen() {

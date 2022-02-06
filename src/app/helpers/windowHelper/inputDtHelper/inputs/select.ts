@@ -165,7 +165,7 @@ export class Select {
             selectorContent.textContent = element.dataset.textInSelect != 'undefined' ? element.dataset.textInSelect : element.textContent;
 
             const tickedEntry = entryContainer.getElementsByClassName('ticked')[0];
-            if (tickedEntry.classList.contains('ticked')) tickedEntry.classList.remove('ticked');
+            if (tickedEntry?.classList.contains('ticked')) tickedEntry.classList.remove('ticked');
             element.classList.add('ticked');
 
             hideDropDown();
