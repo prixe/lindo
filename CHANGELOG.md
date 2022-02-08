@@ -2,14 +2,14 @@
 ## ⚠ CERTAINS SITES MALVEILLANTS INSTALLERONT UN VIRUS SUR VOTRE ORDINATEUR
 
 
-## [2.7.2]
+## [2.7.2] - 2022-02-04
 
 ### Ajouts
 - Focus automatiquement les inputs dans les nouvelles fenêtres
 - Afficher le bonus XP/Drop des challenges
 - Affiche le nombre de pods disponibles
 
-## [2.7.1]
+## [2.7.1] - 2021-01-25
 
 ### Amelioration
 - Optimisation de Lindo pour jouer avec plus de comptes
