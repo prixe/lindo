@@ -1,94 +1,103 @@
-interface DofusCommunication {
-    connectionManager: any,
-    sendMessage: (message: string, data: any) => void,
-    [key: string]: any,
+// Used for accept all
+interface Base {
+    [key: string]: any
 }
 
-interface FighterDataStats {
+interface DofusCommunication extends Base {
+    connectionManager: ConnectionManager,
+    sendMessage: (message: string, data: any) => void,
+}
+
+interface FighterDataStats extends Base {
     actionPoints: number,
     maxActionPoints: number,
-    [key: string]: any,
 }
 
-interface FighterDataDisposition {
+interface FighterDataDisposition extends Base {
     cellId: string,
-    [key: string]: any,
 }
 
-interface FighterData {
+interface FighterData extends Base {
     alive: boolean,
     disposition: FighterDataDisposition,
     isCreature: boolean,
     stats: FighterDataStats,
     teamId: number,
-    [key: string]: any,
 }
 
-interface Fighter {
+interface Fighter extends Base {
     data: FighterData,
     id: number,
-    [key: string]: any,
 }
 
-interface FightManager {
+interface FightManager extends Base {
     fightId: number,
     fightState: number,
     finishTurn: () => void,
     getFighter: (fighterId: number) => Fighter,
-    getFighters: () => [number],
+    getFighters: () => number[],
     turnCount: number,
     _fighters: { [actorId: number]: Fighter },
-    [key: string]: any,
 }
 
-interface ClassicParty {
+interface ClassicParty extends Base {
     partyLeaderId: number,
-    [key: string]: any,
 }
 
-interface MemberData {
+interface MemberData extends Base {
     id: number,
     level: number,
     mapId: number,
     prospecting: number,
-    [key: string]: any,
 }
 
 interface PartyMember extends GuiObject {
     memberData: MemberData,
-    [key: string]: any,
 }
 
-interface CurrentParty {
-    getChildren: () => [PartyMember],
-    _childrenList: [PartyMember],
-    [key: string]: any,
+interface CurrentParty extends Base {
+    partyLeaderId: number,
+    getChildren: () => PartyMember[],
+    _childrenList: PartyMember[],
 }
 
-interface Party {
+interface Party extends Base {
     classicParty: ClassicParty,
     currentParty: CurrentParty,
-    [key: string]: any,
 }
 
-interface CharacterBreed {
+interface CharacterBreed extends Base {
+    id: number,
+    descriptionId: string,
+    longNameId: string,
     shortNameId: string,
-    [key: string]: any,
 }
 
-interface CharacterBaseInformations {
+interface EntityLook extends Base {
+    _type: string,
+    bonesId: number,
+    skins: any,
+    indexedColors: any,
+    scales: any,
+    subentities: any,
+    speed: number,
+}
+interface CharacterBaseInformations extends Base {
+    _type: string,
+    breed: number,
+    entityLook: EntityLook,
     id: number,
     level: number,
     name: string,
-    [key: string]: any,
+    speed: number,
+    sex: boolean
 }
 
-interface Wisdom {
+interface Wisdom extends Base {
     getTotalStat: () => number,
-    [key: string]: any,
 }
 
-interface PlayerCharacterCharacteristics {
+interface PlayerCharacterCharacteristics extends Base {
     actionPointsCurrent: number,
     energyPoints: number,
     experience: number,
@@ -96,16 +105,17 @@ interface PlayerCharacterCharacteristics {
     lifePoints: number,
     maxLifePoints: number,
     wisdom: Wisdom,
-    [key: string]: any,
+    statsPoints: number,
+    experienceNextLevelFloor: number,
+    experienceLevelFloor: number
 }
 
-interface SpellDesc {
+interface SpellDesc extends Base {
     id: number,
     nameId: string,
-    [key: string]: any,
 }
 
-interface Spell {
+interface Spell extends Base {
     id: number,
     isItem: boolean,
     isLoaded: boolean,
@@ -113,62 +123,96 @@ interface Spell {
     ownerId: number,
     position: number,
     spell: SpellDesc,
-    [key: string]: any,
 }
 
-interface SpellData {
-    spells: [Spell],
-    [key: string]: any,
+interface SpellData extends Base {
+    spells: Spell[],
 }
 
-interface PlayerCharacter {
+interface PlayerCharacter extends Base {
     characteristics: PlayerCharacterCharacteristics,
     spellData: SpellData,
-    [key: string]: any,
 }
 
-interface Characters {
+interface Characters extends Base {
     mainCharacter: PlayerCharacter,
     mainCharacterId: number,
     regenRate: number,
     regenTimer: number,
-    [key: string]: any,
 }
 
-interface Position2D {
+interface Position2D extends Base {
     posX: number,
-    posY: number,
-    [key: string]: any,
+    posY: number
 }
 
-interface Position {
-    coordinates: Position2D,
-    mapId: number,
+interface MapPosition extends Position2D {
+    _type: string,
+    id: number,
+    outdoor: boolean,
+    capabilities: number,
     subAreaId: number,
-    worldmapId: number,
-    [key: string]: any,
+    worldMap: number,
+    hasPriorityOnWorldmap: boolean,
 }
 
-interface Identification {
-    subscriptionEndDate: number,
-    [key: string]: any,
-}
-
-interface ItemType {
+interface Area extends Base {
+    _type: string,
     id: number,
     nameId: string,
-    [key: string]: any,
+    superAreaId: number,
+    containHouses: boolean,
+    containPaddocks: boolean,
+    bounds: any
 }
 
-interface Item {
+interface SubArea extends Base {
+    _type: string,
+    id: number,
+    nameId: string,
+    areaId: number,
+    level: number,
+    capturable: boolean,
+}
+
+interface SuperArea extends Base {
+    id: number,
+    nameId: string,
+    worldmapId: number
+}
+
+interface Position extends Base {
+    area: Area,
+    coordinates: Position2D,
+    isInMyHouse: boolean,
+    mapId: number,
+    mapPosition: MapPosition,
+    subAreaId: number,
+    subArea: SubArea,
+    superArea: SuperArea,
+    worldmapId: number,
+}
+
+interface Identification extends Base {
+    accountCreation: number,
+    accountId: number,
+    login: string,
+    subscriptionEndDate: number,
+}
+
+interface ItemType extends Base {
+    id: number,
+    nameId: string,
+}
+
+interface Item extends Base {
     id: number,
     level: number,
     type: ItemType,
     typeId: number,
-    [key: string]: any,
 }
 
-interface InventoryItem {
+interface InventoryItem extends Base {
     id: number,
     item: Item,
     objectGID: number,
@@ -177,35 +221,46 @@ interface InventoryItem {
     quantity: number,
     shortName: string,
     weight: number,
-    [key: string]: any,
 }
 
-interface Inventory {
+interface EquippedItem extends Base {
+    id: number,
+    objectUID: number,
+    shortName: string,
+    weight: number
+}
+
+interface Inventory extends Base {
     goultines: number,
+    isLoaded: boolean,
     kamas: number,
     maxWeight: number,
     objects: {[objectUID: number]: InventoryItem},
     weight: number,
-    [key: string]: any,
+    equippedItems: {[objectPlaceId: number]: EquippedItem},
 }
 
-interface Alliance {
+interface Alliance extends Base {
     getPrismBonusPercent: (subAreaId: number) => number,
-    [key: string]: any,
 }
 
-interface GuildMemberInfo {
+interface GuildMemberInfo extends Base {
     experienceGivenPercent: number,
-    [key: string]: any,
 }
 
-interface Guild {
+interface Guild extends Base {
     current: number|null,
     getGuildMemberInfo: (playerId: number) => GuildMemberInfo,
-    [key: string]: any,
 }
 
-interface PlayerData {
+interface PartyData extends Base {
+    _dangerSetting: boolean,
+    arenaStats: any,
+    _partyFromId: {[partyId: string]: any}
+}
+
+interface PlayerData extends Base {
+    actionPoints: number,
     alliance: Alliance,
     characterBreed: CharacterBreed
     characterBaseInformations: CharacterBaseInformations,
@@ -214,164 +269,161 @@ interface PlayerData {
     id: number,
     identification: Identification,
     inventory: Inventory,
+    isFightLeader: boolean,
+    isFighting: boolean,
     isRiding: boolean,
+    isSpectator: boolean,
     experienceFactor: number,
     jobs: any,
+    lifePoints: number,
+    maxLifePoints: number,
+    movementPoints: number,
+    loginName: string,
     mountXpRatio: number,
-    partyData: any,
+    partyData: PartyData,
     position: Position,
-    [key: string]: any,
+    state: number,
 }
 
-interface GuiObject {
+export interface GuiObject extends Base {
     rootElement: HTMLElement,
-    getChildren: () => [GuiObject],
-    _childrenList: [GuiObject],
+    getChildren: () => GuiObject[],
+    _childrenList: GuiObject[],
     setValue?: (any) => void,
     tap?: () => void,
-    [key: string]: any,
 }
 
 interface InteractGuiObject extends GuiObject {
     tap: () => void,
-    [key: string]: any,
 }
 
-interface NpcDialogUI {
-    replies: [string],
-    replyBoxes: [GuiObject],
-    [key: string]: any,
+interface NpcDialogUI extends Base {
+    replies: string[],
+    replyBoxes: GuiObject[],
 }
 
-interface GuiWindow extends GuiObject {
+export interface GuiWindow extends GuiObject {
     close: () => void,
     id: string,
     isVisible: () => boolean,
-    [key: string]: any,
+    on: (event: string, callback: (e?: any) => void) => this,
+    hide: () => void,
 }
 
-interface WindowsContainer {
-    getChildren: () => [GuiWindow],
-    [key: string]: any,
+interface WindowsContainer extends Base {
+    getChildren: () => GuiWindow[],
+    _childrenList: GuiWindow[]
 }
 
 interface ShortcutBarSlot extends InteractGuiObject {
     on: (action: string, callback: () => void) => void,
-    [key: string]: any,
+    isDisabled: boolean,
+    selected: boolean
 }
 
-interface ShortcutBarSlots {
-    slotList: [ShortcutBarSlot],
-    [key: string]: any,
+interface ShortcutBarSlots extends Base {
+    slotList: ShortcutBarSlot[],
 }
 
-interface ShortcutBarPanels {
+interface ShortcutBarPanels extends Base {
     item: ShortcutBarSlots,
     spell: ShortcutBarSlots,
-    [key: string]: any,
 }
 
-interface ShortcutBar {
+interface ShortcutBar extends Base {
     _panels: ShortcutBarPanels,
-    [key: string]: any,
 }
 
 interface MenuBar extends GuiObject {
     _icons: GuiObject,
-    [key: string]: any,
 }
 
-interface MainControls {
+interface MainControls extends Base {
     buttonBox: GuiObject,
-    getChildren: () => [GuiWindow],
-    _childrenList: [GuiWindow],
+    getChildren: () => GuiWindow[],
+    _childrenList: GuiWindow[],
     _creatureModeButton: GuiObject,
-    [key: string]: any,
 }
 
-interface FightControlButtons {
+interface FightControlButtons extends Base {
     toggleReadyForFight: () => void,
-    [key: string]: any,
 }
 
-interface IScrollIndicator {
+interface IScrollIndicator extends Base {
     options: {
         listenX: boolean,
         listenY: boolean
     },
     wrapper: HTMLElement,
-    [key: string]: any,
 }
 
 interface IScroll extends GuiObject {
-    indicators: [IScrollIndicator],
+    indicators: IScrollIndicator[],
     refresh: () => void,
     options: {
         scrollX: boolean,
         scrollY: boolean
     },
-    [key: string]: any,
 }
 
 interface FighterListScrollerGui extends GuiObject {
     iScroll: IScroll,
-    [key: string]: any,
 }
 
-interface Timeline {
+interface Timeline extends Base {
     fightControlButtons: FightControlButtons
     fighterList: GuiObject,
     fighterListScroller: FighterListScrollerGui,
-    [key: string]: any,
 }
 
-interface NumberInputPad {
+interface NumberInputPad extends Base {
     isVisible: () => boolean,
-    [key: string]: any,
 }
 
-interface SentMessage {
+interface SentMessage extends Base {
     message: string,
-    [key: string]: any,
 }
 
-interface SentMessageHistory {
-    getCurrentEntry: () => [SentMessage],
+interface SentMessageHistory extends Base {
+    getCurrentEntry: () => SentMessage[],
     goBack: () => void,
     goForward: () => void,
-    [key: string]: any,
 }
 
-interface ChatInput {
+interface ChatInput extends Base {
     inputChat: GuiObject,
     sentMessageHistory: SentMessageHistory,
-    [key: string]: any,
 }
 
-interface Chat {
+interface Chat extends Base {
     activate: () => void,
     active: boolean,
     chatInput: ChatInput,
     deactivate: () => void,
     logMsg: (message: string) => void,
-    [key: string]: any,
 }
 
-interface NotificationBar {
+interface NotificationBar extends Base {
     currentOpenedId: number,
-    dialogs: [GuiObject],
+    dialogs: GuiObject[],
     _elementIsVisible: boolean,
-    [key: string]: any,
 }
 
-interface ShopFloatingToolbar {
+interface ShopFloatingToolbar extends Base {
     hide: () => void,
     show: () => void,
-    [key: string]: any,
+    _childrenList: GuiObject[]
 }
 
-interface DofusGUI {
+interface Marker extends Base {}
+
+interface Compass {
+    markers: {[markerId: string]: Marker}
+}
+
+interface DofusGUI extends GuiObject {
     chat: Chat,
+    compass: Compass,
     fightManager: FightManager,
     isConnected: boolean,
     mainControls: MainControls,
@@ -384,11 +436,10 @@ interface DofusGUI {
     shopFloatingToolbar: ShopFloatingToolbar
     shortcutBar: ShortcutBar,
     timeline: Timeline,
-    windowsContainer: WindowsContainer,
-    [key: string]: any,
+    windowsContainer: WindowsContainer
 }
 
-interface DofusState {
+interface DofusState extends Base {
     activityInterval: number,
     hasSeenActivity: boolean,
     isConnected: boolean,
@@ -397,144 +448,196 @@ interface DofusState {
     lastActivityTime: number,
     pingInterval: number,
     recordActivity: () => void,
-    [key: string]: any,
 }
 
-interface DofusConfig {
+interface DofusConfig extends Base {
     assetsUrl: string,
     dataUrl: string,
-    [key: string]: any,
 }
 
-interface ActorLook {
-    subentities: [any],
-    [key: string]: any,
+interface ActorLook extends Base {
+    subentities: any[],
 }
 
-interface Actor {
+interface ActorStaticInfos extends Base {
+    mainCreatureLightInfos: ActorData,
+    nameId: string,
+    underlings?: ActorData[]
+}
+
+interface NpcData extends Base {
+    actions: number[],
+    actionsName: string[],
+    id: number,
+    look: string,
+    nameId: string,
+}
+
+interface ActorData extends Base {
+    actorId: number,
+    ageBonus: number,
+    npcData?: NpcData,
+    npcId?: number,
+    staticInfos: ActorStaticInfos
+    type: string,
+}
+
+interface Actor extends Base {
+    actorId: number,
     actorManager: ActorManager,
     canMoveDiagonally: boolean,
     cancelMovement: (newMovement: () => void) => void,
     cellId: number,
+    data: ActorData,
+    direction: number,
+    isDead: boolean,
+    isDisplayed: boolean,
     isMerchant: () => boolean,
+    isRiding: boolean,
     look: ActorLook,
     moving: boolean,
-    [key: string]: any,
 }
 
-interface ActorManager {
-    actors: [Actor],
+interface ActorManager extends Base {
+    actors: Actor[],
     getActor: (userId: number) => Actor,
     getIndexedVisibleActors(): () => { [actorId: number]: Actor },
-    getOccupiedCells: (cellId: number) => { [cellId: number]: [Cell]},
+    getOccupiedCells: (cellId: number) => { [cellId: number]: Cell[]},
     userActor: Actor,
     userId: number,
-    _occupiedCells: { [id: number]: [Cell] },
-    [key: string]: any,
+    _occupiedCells: { [id: number]: Cell[] },
 }
 
-interface Coord2D {
+interface Coord2D extends Base {
     x: number,
     y: number,
-    [key: string]: any,
 }
 
-interface Cell {
+interface Cell extends Base {
     actorId: number,
     cellId: number,
     direction: string,
-    [key: string]: any,
 }
 
-interface MapCellData {
+interface MapCellData extends Base {
     l?: number,
-    [key: string]: any,
 }
 
-interface MapCells {
-    cells: [MapCellData[]],
-    [key: string]: any,
+interface Map extends Base {
+    topNeighbourId: number,
+    bottomNeighbourId: number,
+    leftNeighbourId: number,
+    rightNeighbourId: number,
+    shadowBonusOnEntities: number,
+    cells: {[cellId: number]: MapCellData[]},
+    midgroundLayer: {[cellId: number]: MapCellData[]},
 }
 
-interface MapGrid {
+interface MapGrid extends Base {
     grid: [Cell[]],
-    [key: string]: any,
 }
 
-interface EnabledSkill {
+interface EnabledSkill extends Base {
     skillId: number,
     skillInstanceUid: number,
-    [key: string]: any,
 }
 
-export interface InteractiveElement {
+export interface InteractiveElement extends Base {
     elementId: number,
     elementTypeId: number,
-    enabledSkills: [EnabledSkill],
+    enabledSkills: EnabledSkill[],
     _name: string,
     _type: string,
-    [key: string]: any,
 }
 
-export interface StatedElement {
+export interface StatedElement extends Base {
     id: number,
     isDisplayed: boolean,
     _x: number,
     _y: number,
-    [key: string]: any,
 }
 
-interface MapRenderer {
+interface CellData {
+    cell: number
+}
+
+interface MapRenderer extends Base {
+    getCellId: (posX, posY) => CellData,
     getCellSceneCoordinate: (cellId: number) => Coord2D,
-    getChangeMapFlags: (cellId: number) => [string],
+    getChangeMapFlags: (cellId: number) => string[],
     grid: MapGrid,
     interactiveElements: { [id: number]: InteractiveElement },
     isWalkable: (cellId: number) => boolean,
-    map: MapCells,
+    map: Map,
+    mapScene: MapScene,
     mapId: number,
-    statedElements: [StatedElement],
-    [key: string]: any,
+    statedElements: StatedElement[],
 }
 
-interface LindoMapScene {
+interface LindoMapScene extends Base {
     _refreshAreasBackup: () => void,
-    [key: string]: any,
 }
 
 interface MapScene extends LindoMapScene {
+    name: string,
+    viewWidth: number,
+    viewHeight: number,
     convertSceneToCanvasCoordinate: (x: number, y: number) => Coord2D,
     _refreshAreas: () => void,
-    [key: string]: any,
 }
 
-interface Background {
+interface Background extends Base {
     render: () => void,
-    [key: string]: any,
 }
 
 type Direction = "top" | "bottom" | "left" | "right" | false;
 
-interface IsoEngine {
+interface CellRangeDataTransformState extends Base {
+    a: number,
+    r: number,
+    g: number,
+    b: number
+}
+
+interface CellRangeData extends Base {
+    transformState: CellRangeDataTransformState
+}
+
+interface SpellRangeLayer extends Base {
+    cellInfos: {[cellId: number]: CellRangeData }
+}
+
+interface IsoEngine extends Base {
     actorManager: ActorManager,
+    attackActor: (actorId: number) => void,
     background: Background,
     gotoNeighbourMap: (direction: Direction, cellId: number, x: number, y: number) => void,
+    isInGame: boolean,
     mapRenderer: MapRenderer,
     mapScene: MapScene,
     useInteractive: (elemId: number, skillInstanceUid: number) => void,
     userId: number,
     _castSpellImmediately: (number) => void,
-    _movePlayerOnMap: (cellId: number, arg: boolean, callback: () => void) => void,
-    [key: string]: any,
+    _movePlayerOnMap: (cellId: number, arg?: boolean, callback?: () => void) => void,
+    _spellRangeLayer: SpellRangeLayer
+}
+
+interface ConnectionManager extends Base {
+    eventHandlers: any[],
+    lastReceivedMessage: string,
+    disconnect: () => void,
+    sendMessage: (message: string, data: any) => void,
+    removeListener: (message: string, callbackFunction: any) => void
 }
 
 export interface WGame extends Window {
     actorManager: ActorManager,
     Config: DofusConfig,
     d: DofusState,
+    developmentMode: boolean,
     dofus: DofusCommunication,
-    connectionManager: any,
+    connectionManager: ConnectionManager,
     foreground: GuiObject
     gui: DofusGUI,
     isoEngine: IsoEngine,
-    [key: string]: any,
 }
