@@ -30,10 +30,6 @@ export class UserAgent {
         "Linux; Android 7.0; LG-H840 Build/NRD90U"
     ];
 
-    //Mobile Phone
-    //Tablet
-    //SELECT `Comment`, `Device_Name`, `Device_Code_Name`, `Device_Brand_Name`, `Device_Maker`, `isTablet`, `isMobileDevice` FROM `users` WHERE `isMobileDevice` = '""true""' OR `isTablet` = '""true""'
-
     private _tablets:String[] = [
         "Linux; Android 11; SM-T720",
         "Linux; Android 11; SM-T970",
