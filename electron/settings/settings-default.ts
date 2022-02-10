@@ -22,7 +22,7 @@ export const SettingsDefault: SettingsInterface = {
             sound_focus: true,
             early: false,
             audio_muted: false,
-            user_agent: 'Mozilla/5.0 (Linux; Android 6.0.1; SAMSUNG SM-N920T Build/MMB29K; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/58.0.3029.83 Mobile Safari/537.36'
+            user_agent: 'Mozilla/5.0 (Linux; Android 8.0.0; SM-G960F Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.87 Mobile Safari/537.36'
         },
         shortcuts: {
             no_emu: {
