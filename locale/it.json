@@ -87,7 +87,8 @@
             "party-member-on-map" : "Aggiungi un indicatore per sapere se i membri di un gruppo si trovano sulla stessa mappa",
             "monster-tooltip": "Visualizza le informazioni sui gruppi di mostri sulla mappa",
             "vertical-timeline": "Mostra la cronologia dei combattenti in verticale",
-            "chall-percent": "Mostra XP sfida/bonus drop"
+            "chall-percent": "Mostra XP sfida/bonus drop",
+            "autoprivate": "Attiva automaticamente la modalità privata (tra 25 e 60 secondi dopo la connessione)"
           },
           "groups": {
             "header": "Gruppi"

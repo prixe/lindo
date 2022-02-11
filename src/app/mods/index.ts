@@ -2,6 +2,7 @@ export { General } from "../mods/general/general";
 
 export { AutoGroup } from "./auto-group/auto-group";
 export { ChallPercent } from "./chall-percent/chall-percent";
+export { AutoPrivate } from "./auto-private/auto-private";
 export { DamageEstimator } from "../mods/damage-estimator/damage-estimator";
 export { FightChronometer } from "./fight-chronometer/fight-chronometer";
 export { GripPositionSave } from "./grip-position-save/grip-position-save";

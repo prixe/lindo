@@ -87,7 +87,8 @@
             "party-member-on-map" : "Dodaj wskaźnik, aby wiedzieć, czy członkowie grupy znajdują się na tej samej mapie",
             "monster-tooltip": "Wyświetlaj informacje o grupach potworów na mapie",
             "vertical-timeline": "Pokaż oś czasu bojowników w pionie",
-            "chall-percent": "Pokaż premię XP/Drop wyzwania"
+            "chall-percent": "Pokaż premię XP/Drop wyzwania",
+            "autoprivate": "Automatycznie aktywuj tryb prywatny (między 25 a 60 s po połączeniu)"
           },
           "groups": {
             "header": "Grupy"
