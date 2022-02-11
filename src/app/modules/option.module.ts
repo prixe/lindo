@@ -717,6 +717,7 @@ export namespace Option {
             private _monster_tooltip: boolean;
             private _monster_tooltip_shortcut: string;
             private _verticaltimeline: boolean;
+            private _autoprivate: boolean;
 
             get party_info_pp():boolean{
                 return this._party_info_pp;
@@ -880,6 +881,15 @@ export namespace Option {
                 this._challpercent = challpercent;
             }
 
+            get autoprivate(): boolean {
+                return this._autoprivate;
+            }
+
+            set autoprivate(autoprivate: boolean) {
+                this.settingsProvider.write('option.vip.general.autoprivate', autoprivate);
+                this._autoprivate = autoprivate;
+            }
+
             constructor(private settingsProvider: SettingsProvider) {
                 this.disable_inactivity = this.settingsProvider.read('option.vip.general.disable_inactivity');
                 this.health_bar = this.settingsProvider.read('option.vip.general.health_bar');
@@ -899,6 +909,7 @@ export namespace Option {
                 this.monster_tooltip_shortcut = this.settingsProvider.read('option.vip.general.monster_tooltip_shortcut');
                 this.verticaltimeline = this.settingsProvider.read('option.vip.general.verticaltimeline');
                 this.challpercent = this.settingsProvider.read('option.vip.general.challpercent');
+                this.autoprivate = this.settingsProvider.read('option.vip.general.autoprivate');
             }
         }
 

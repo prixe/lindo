@@ -88,7 +88,8 @@
             "monster-tooltip": "Display monsters groups informations on the map",
             "monster-tooltip-shortcut": "Shortcut for show/hide monsters tooltip",
             "vertical-timeline": "Show fighters timeline vertically",
-            "chall-percent": "Show challenge XP/Drop bonus"
+            "chall-percent": "Show challenge XP/Drop bonus",
+            "autoprivate": "Automatically activate private mode (between 25s and 60s after connection)"
           },
           "groups": {
             "header": "Groups"

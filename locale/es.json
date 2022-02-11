@@ -88,7 +88,8 @@
             "harvest-indicator" : "Activar la visualización del tiempo restante de recolección debajo de los recursos",
             "party-member-on-map" : "Añadir un indicador para saber si los miembros de un grupo están en el mismo mapa",
             "vertical-timeline": "Mostrar línea de tiempo de los luchadores verticalmente",
-            "chall-percent": "Mostrar bonificación XP/Drop de desafío"
+            "chall-percent": "Mostrar bonificación XP/Drop de desafío",
+            "autoprivate": "Activar automáticamente el modo privado (entre 25s y 60s después de la conexión)"
           },
           "groups": {
             "header": "Grupo"

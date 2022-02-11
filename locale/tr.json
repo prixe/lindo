@@ -87,7 +87,8 @@
             "party-member-on-map" : "Bir grubun üyelerinin aynı haritada olup olmadığını öğrenmek için bir gösterge ekleyin",
             "monster-tooltip": "Canavar grupları bilgilerini haritada göster",
             "vertical-timeline": "Savaşçıların zaman çizelgesini dikey olarak göster",
-            "chall-percent": "Meydan okuma XP/Bırakma bonusunu göster"
+            "chall-percent": "Meydan okuma XP/Bırakma bonusunu göster",
+            "autoprivate": "Özel modu otomatik olarak etkinleştir (bağlantıdan sonra 25s ile 60s arasında)"
           },
           "groups": {
             "header": "Gruplar"
