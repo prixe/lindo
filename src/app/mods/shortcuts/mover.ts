@@ -1,4 +1,4 @@
-import {TranslateService} from "@ngx-translate/core";
+import {TranslateService} from "@services/translate.service";
 import {SettingsService} from "@services/settings.service";
 import {PathFinder} from "../auto-group/path-finder";
 import {Mod} from "../mod";
@@ -163,7 +163,7 @@ export class Mover extends Mod {
     }
 
     private isCellOnMap(cell: number): boolean {
-    	return this.wGame.isoEngine.mapRenderer.map.cells[cell];
+    	return this.wGame.isoEngine.mapRenderer.map.cells[cell] !== undefined;
     }
 
     private isCellWalkable(cell: number): boolean {

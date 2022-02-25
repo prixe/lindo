@@ -1,10 +1,24 @@
 ## ⚠ ATTENTION, VÉRIFIEZ QUE VOUS TÉLÉCHARGEZ LINDO DEPUIS LINDO-APP.COM
 ## ⚠ CERTAINS SITES MALVEILLANTS INSTALLERONT UN VIRUS SUR VOTRE ORDINATEUR
 
+
+## [2.7.2]
+
+### Ajouts
+- Focus automatiquement les inputs dans les nouvelles fenêtres
+- Afficher le bonus XP/Drop des challenges
+- Affiche le nombre de pods disponibles
+
 ## [2.7.1]
+
+### Amelioration
+- Optimisation de Lindo pour jouer avec plus de comptes
+
 ### Correctifs
-- Corrections de l'auto-follow de groupe
-- Corrections de l'affichage des numeros de version
+- Correction de l'auto-follow de groupe
+- Correction du raccourci pour l'affichage des monstres sur la carte
+- Correction du raccourci pour l'affichage des ressources sur la carte
+- Correction de l'affichage des numéros de version
 
 ## [2.7.0] - 2021-12-25
 

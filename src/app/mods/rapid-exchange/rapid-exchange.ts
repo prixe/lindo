@@ -1,5 +1,7 @@
 import {Mod} from "../mod";
 
+import {ExchangeObjectAddedMessage} from "../../types/message.types";
+
 /**
  * Allow the user to hold "control" key and double click
  * items slots in the bank to quickly move items
@@ -84,7 +86,7 @@ export class RapidExchange extends Mod {
 
         // Special Event for the "common" trade window
         // When a slot is added, add a listener on it, tha will call the move item icon
-        this.on(this.wGame.gui, 'ExchangeObjectAddedMessage', (msg: any) => {
+        this.on(this.wGame.gui, 'ExchangeObjectAddedMessage', (msg: ExchangeObjectAddedMessage) => {
 
             // If the event come from the remote character
             if (msg.remote)
@@ -168,9 +170,9 @@ export class RapidExchange extends Mod {
             // For these, fond the MinMax selector in children of the window and call the hide function
             case "tradeWithPlayerAndNPCInventory":
             case "tradeWithPlayer":
-                for (const i in window._childrenList) {
-                    if (window._childrenList[i].rootElement && window._childrenList[i].rootElement.className == "minMaxSelector") {
-                        window._childrenList[i].hide();
+                for (const i in window.getChildren()) {
+                    if (window.getChildren()[i].rootElement && window.getChildren()[i].rootElement.className == "minMaxSelector") {
+                        window.getChildren()[i].hide();
                     }
                 }
         }

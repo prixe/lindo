@@ -1,5 +1,7 @@
 import {Mod} from "../mod";
 
+import {GameRolePlayShowActorMessage, GameContextRemoveElementMessage, MapComplementaryInformationsDataMessage} from "../../types/message.types";
+
 export class PartyMember extends Mod{
     private members: Map<number, boolean>;
     private divElement: Array<HTMLDivElement>;
@@ -43,22 +45,28 @@ export class PartyMember extends Mod{
             this.on(this.wGame.dofus.connectionManager, 'PartyNewMemberMessage', () => this.updatePartyMembers());
 
             // Receive when player join the map
-            this.on(this.wGame.dofus.connectionManager, 'GameRolePlayShowActorMessage', (e: any) => this.updateMember(e, true));
+            this.on(this.wGame.dofus.connectionManager, 'GameRolePlayShowActorMessage', (e: GameRolePlayShowActorMessage) => this.updateMember(e, true));
             // Receive when player leave the map
-            this.on(this.wGame.dofus.connectionManager, 'GameContextRemoveElementMessage', (e: any) => this.updateMember(e, false));
+            this.on(this.wGame.dofus.connectionManager, 'GameContextRemoveElementMessage', (e: GameContextRemoveElementMessage) => this.updateMember(e, false));
             // Receive when your game map change
-            this.on(this.wGame.dofus.connectionManager, 'MapComplementaryInformationsDataMessage', (e: any) => this.updateMemberOnMapChange(e));
+            this.on(this.wGame.dofus.connectionManager, 'MapComplementaryInformationsDataMessage', (e: MapComplementaryInformationsDataMessage) => this.updateMemberOnMapChange(e));
 
             // Use here init mod if player already have grp when mod start
-            this.updatePartyMembers();
+            this.checkIfPartyExist();
         }
     }
+
+    private checkIfPartyExist() {
+        if (this.wGame.gui.party.currentParty && this.wGame.gui.party.currentParty._childrenList.length > 0) {
+          this.updatePartyMembers();
+        }
+      }
 
     private updateDOM() {
         let i = 0;
         this.members.forEach((status, memberId) => {
             if (memberId != this.wGame.isoEngine.actorManager.userId) {
-                const divMember: HTMLDivElement = this.wGame.document.getElementsByClassName('member')[i];
+                const divMember = this.wGame.document.getElementsByClassName('member')[i] as HTMLDivElement;
                 this.addStatusToMember(divMember,status);
             }
             i++;
@@ -88,10 +96,10 @@ export class PartyMember extends Mod{
         const oldMembers: Map<number, boolean> = this.members;
         this.members.clear();
 
-        if (this.wGame.gui.party.currentParty && this.wGame.gui.party.currentParty._childrenList.length > 0) {
+        if (this.wGame.gui.party.currentParty && this.wGame.gui.party.currentParty.getChildren().length > 0) {
             const mapId: number = this.wGame.isoEngine.mapRenderer.mapId;
 
-            this.wGame.gui.party.currentParty._childrenList.forEach((m) => {
+            this.wGame.gui.party.currentParty.getChildren().forEach((m) => {
                 let isOnMap: boolean = mapId == m.memberData.mapId;
                 if (oldMembers.has(m.memberData.id)) isOnMap = oldMembers.get(m.memberData.id);
 
@@ -102,18 +110,19 @@ export class PartyMember extends Mod{
     }
 
     // Use for update member if join/leave map
-    private updateMember(data: any, isOnMap: boolean) {
-        if (this.wGame.gui.party.currentParty && this.wGame.gui.party.currentParty._childrenList.length > 0) {
+    private updateMember(data: GameRolePlayShowActorMessage|GameContextRemoveElementMessage, isOnMap: boolean) {
+        if (this.wGame.gui.party.currentParty && this.wGame.gui.party.currentParty.getChildren().length > 0) {
             const playerId: number = isOnMap ? data.informations.contextualId : data.id;
-            if (this.members.has(playerId)) this.members.set(playerId, isOnMap);
-
-            this.updateDOM();
+            if (this.members.has(playerId)) {
+                this.members.set(playerId, isOnMap);
+                this.updateDOM();
+            }
         }
     }
 
     // Use for update member when your map change
     private updateMemberOnMapChange(data: any) {
-        if (this.wGame.gui.party.currentParty && this.wGame.gui.party.currentParty._childrenList.length > 0) {
+        if (this.wGame.gui.party.currentParty && this.wGame.gui.party.currentParty.getChildren().length > 0) {
             const actorsId: Array<number> = [];
 
             // Get all playerId in map
@@ -136,7 +145,7 @@ export class PartyMember extends Mod{
     public reset() {
         super.reset();
         this.destroy();
-        const pmomCss = this.wGame.document.getElementById('pmomCss');
-        if (pmomCss && pmomCss.parentElement) pmomCss.parentElement.removeChild(pmomCss);
+        let pmomCss = this.wGame.document.getElementById('pmomCss');
+        if (pmomCss) pmomCss.remove();
     }
 }

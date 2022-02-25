@@ -21,7 +21,7 @@ export class Resources {
 
     public getIcon(): Array<string> {
         const iconId = iconIdByTypeId[this.typeId];
-        const result: Array<string> = [];
+        let result: Array<string> = [];
 
         if (iconId == undefined) {
             result.push('./assets/ui/icons/fail.png');
@@ -172,7 +172,7 @@ export const iconIdByTypeId: any = {
     ],
     225: '170877'   // piraniak
     /*
-    ??:'41405',     // pichon Eud'Compet
+    ??:'41405',     // pichon Eud'Compet 
      */
 }
 

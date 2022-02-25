@@ -9,6 +9,7 @@ import {TabGameService} from '@services/tab-game.service';
 import {TabService} from '@services/tab.service';
 import {WindowService} from '@services/window.service';
 import {BugReportService} from '@services/bug-report.service';
+import {TranslateService} from '@services/translate.service';
 import {ApplicationService} from "@services/electron/application.service";
 import {ElectronService} from "@services/electron/electron.service";
 import {IpcRendererService} from "@services/electron/ipcrenderer.service";
@@ -34,6 +35,7 @@ export const settingModuleFactory = (setting: SettingsService) => setting.langua
         GameService,
         TabGameService,
         AuthService,
+        TranslateService,
         SettingsService,
         IpcRendererService,
         CryptService,

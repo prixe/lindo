@@ -1,8 +1,10 @@
 import {Mod} from "../mod";
 import {Bar} from "./bar";
-import { TranslateService } from "@ngx-translate/core";
+import { TranslateService } from "@services/translate.service";
 import {SettingsService} from "@services/settings.service";
 import { ShortcutsHelper } from "@helpers/shortcuts.helper";
+
+import {GameActionFightDeathMessage} from "../../types/message.types";
 
 export class HealthBar extends Mod {
 
@@ -143,7 +145,7 @@ export class HealthBar extends Mod {
         this.on(this.wGame.gui,'GameActionFightDeathMessage', updateData);
         this.on(this.wGame.gui,'resize', updateData);
 
-        this.on(this.wGame.gui, 'GameActionFightDeathMessage', (e: any) => { this.destroyHealthBar(e.targetId); });
+        this.on(this.wGame.gui, 'GameActionFightDeathMessage', (e: GameActionFightDeathMessage) => { this.destroyHealthBar(e.targetId); });
 
         // Remove all bars when the fight ends
         const destroy = () => { this.destroyHealthBars(); }

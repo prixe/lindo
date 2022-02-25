@@ -1,4 +1,4 @@
-<div class="option-content">
+    <div class="option-content">
 
     <div class="row">
         <div class="col-xs-12 menu">
@@ -7,12 +7,14 @@
             <mat-checkbox color="primary" [(ngModel)]="settingsService.option.general.hidden_shop">{{ 'app.option.general.hide-shop' | translate }}
             </mat-checkbox><mat-checkbox color="primary" [(ngModel)]="settingsService.option.shortcuts.diver.active_open_menu">{{ 'app.option.shortcuts.diver.active-open-menu' | translate }}</mat-checkbox>
             <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.disable_inactivity">{{ 'app.window.options.features.general.disable-inactivity' | translate }}</mat-checkbox>
-            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.zaapsearchfilter">{{ 'app.window.options.features.general.zaapsearchfilter' | translate }}</mat-checkbox>
+            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.zaapsearchfilter">{{ 'app.window.options.features.general.zaapsearchfilter' | translate }}</mat-checkbox>    
         </div>
 
         <div class="col-xs-12 menu">
             <p>{{ 'app.window.options.features.general.menu.fight' | translate }}</p>
+
             <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.verticaltimeline">{{ 'app.window.options.features.general.vertical-timeline' | translate }}</mat-checkbox>
+            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.challpercent">{{ 'app.window.options.features.general.chall-percent' | translate }}</mat-checkbox>
             <mat-checkbox color="primary" [(ngModel)]="settingsService.option.notification.focus_fight_turn">{{ 'app.option.general.focus-fight-turn' | translate }}</mat-checkbox>
             <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.fightchronometer">{{ 'app.window.options.features.general.fightchronometer' | translate }}</mat-checkbox>
             <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.estimator">{{ 'app.window.options.features.general.estimator' | translate }}</mat-checkbox>
@@ -33,6 +35,8 @@
 
             <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.harvest_indicator">{{ 'app.window.options.features.general.harvest-indicator' | translate }}</mat-checkbox>
             <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.jobsxp">{{ 'app.window.options.features.general.jobsxp' | translate }}</mat-checkbox>
+            <mat-checkbox color="primary" [(ngModel)]="settingsService.option.vip.general.show_resources">{{ 'app.window.options.features.general.show-resources' | translate }}</mat-checkbox>
         </div>
+        
     </div>
 </div>

@@ -1,11 +1,13 @@
 //background.toggleDebugMode()
 
 import {SettingsService} from "@services/settings.service";
-import {TranslateService} from "@ngx-translate/core";
+import {TranslateService} from "@services/translate.service";
 
 import {Mod} from "../mod";
 import {PathFinder} from "./path-finder";
 import {IpcRendererService} from "@services/electron/ipcrenderer.service";
+
+import {PartyInvitationMessage} from "../../types/message.types";
 
 type Direction = "top" | "bottom" | "left" | "right" | false;
 
@@ -87,7 +89,7 @@ export class AutoGroup extends Mod {
     public autoAcceptPartyInvitation(): void {
         try {
             setTimeout(() => {
-                this.on(this.wGame.dofus.connectionManager, 'PartyInvitationMessage', (msg: any) => {
+                this.on(this.wGame.dofus.connectionManager, 'PartyInvitationMessage', (msg: PartyInvitationMessage) => {
                     if (this.params.leader === msg.fromName) {
                         this.acceptPartyInvitation(msg.partyId);
                     }
@@ -428,7 +430,7 @@ export class AutoGroup extends Mod {
     }
 
     private isCellOnMap(cell: number): boolean {
-    	return this.wGame.isoEngine.mapRenderer.map.cells[cell];
+    	return this.wGame.isoEngine.mapRenderer.map.cells[cell].length > 0;
     }
 
     private isCellWalkable(cell: number): boolean {
@@ -622,7 +624,7 @@ export class AutoGroup extends Mod {
             const joinFight = (fightId: number, fighterId: number) => {
                 if (this.isPvMFight(fightId)) {
                     this.turnIdle();
-                    return new Promise((resolve) => {
+                    return new Promise<void>((resolve) => {
                         setTimeout(() => {
                             this.wGame.dofus.sendMessage("GameFightJoinRequestMessage", { fightId, fighterId });
                             setTimeout(() => {
@@ -636,7 +638,7 @@ export class AutoGroup extends Mod {
             };
 
             const ready = () => {
-                return new Promise((resolve) => {
+                return new Promise<void>((resolve) => {
                     if (this.wGame.gui.fightManager.fightState == 0) {
                         setTimeout(() => {
                             this.wGame.dofus.sendMessage("GameFightReadyMessage", { isReady: true });
@@ -708,7 +710,7 @@ export class AutoGroup extends Mod {
             return 0;
         } else {
           return  super.getRandomTime(min, max);
-           
+
         }
     }
 

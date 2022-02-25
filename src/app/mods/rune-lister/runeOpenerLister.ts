@@ -1,4 +1,4 @@
-import { TranslateService } from "@ngx-translate/core";
+import { TranslateService } from "@services/translate.service";
 import { SettingsService } from "@services/settings.service";
 import { Mod } from "../mod";
 
@@ -41,7 +41,7 @@ export class RuneOpenerList extends Mod {
     onSendMessage = (msg) => {
         if (!msg.data.data) return;
         if (msg.data.data.type !== 'ObjectUseMessage') return;
-        var uid = msg.data.data.data.objectUID;
+        const uid = msg.data.data.data.objectUID;
         this.checkMagicFragment(uid)
     }
 

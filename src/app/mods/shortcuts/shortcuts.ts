@@ -75,7 +75,8 @@ export class Shortcuts extends Mod {
 
         // Open menu
         this.shortcutsHelper.bind(this.params.diver.open_menu, () => {
-            this.wGame.gui.mainControls.buttonBox._childrenList[14].tap()
+            // @ts-ignore
+            this.wGame.gui.mainControls.buttonBox.getChildren().tap()
         });
 
         // Spell
@@ -139,12 +140,22 @@ export class Shortcuts extends Mod {
                 if (this.wGame.gui.notificationBar._elementIsVisible) {
                     const dialogName = this.wGame.gui.notificationBar.currentOpenedId;
                     // If notifiaction is openened, allow to close it with ESC
+                    // @ts-ignore
                     this.wGame.gui.notificationBar.dialogs[dialogName]._childrenList[0]._childrenList[1].tap();
+                    winClosed++;
+                }
+                if (this.wGame.document.getElementById('sales-summary').style.display !== 'none' && winClosed < 1) {
+                    this.wGame.document.getElementById('sales-summary').style.display = 'none';
+                    winClosed++;
+                }
+                if (this.wGame.document.getElementById('dtmap').style.display !== 'none' && winClosed < 1) {
+                    this.wGame.document.getElementById('dtmap').style.display = 'none';
                     winClosed++;
                 }
                 if (this.params.diver.active_open_menu && !winClosed) {
                     // If no window closed open menu
-                    this.wGame.gui.mainControls.buttonBox._childrenList[14].tap()
+                    // @ts-ignore
+                    this.wGame.gui.mainControls.buttonBox.getChildren().tap()
                 }
             }
         });

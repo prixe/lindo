@@ -699,6 +699,7 @@ export namespace Option {
 
     export namespace VIP {
         export class General {
+            private _challpercent: boolean;
             private _disable_inactivity: boolean;
             private _health_bar: boolean;
             private _health_bar_shortcut: string;
@@ -709,13 +710,14 @@ export namespace Option {
             private _hidden_mount: boolean;
             private _party_info_pp:boolean;
             private _party_info_lvl:boolean;
+            private _harvest_indicator: boolean;
             private _show_resources: boolean;
             private _show_resources_shortcut: string;
             private _party_member_on_map:boolean;
-            private _harvest_indicator: boolean;
             private _monster_tooltip: boolean;
             private _monster_tooltip_shortcut: string;
             private _verticaltimeline: boolean;
+            private _dtmap_shortcut: string;
 
             get party_info_pp():boolean{
                 return this._party_info_pp;
@@ -807,6 +809,15 @@ export namespace Option {
                 this._health_bar_shortcut = health_bar_shortcut;
             }
 
+            get harvest_indicator(): boolean {
+                return this._harvest_indicator;
+            }
+
+            set harvest_indicator(harvest_indicator: boolean) {
+                this.settingsProvider.write('option.vip.general.harvest_indicator', harvest_indicator);
+                this._harvest_indicator = harvest_indicator;
+            }
+
             get show_resources(): boolean {
                 return this._show_resources;
             }
@@ -832,15 +843,6 @@ export namespace Option {
             set party_member_on_map(party_member_on_map: boolean) {
                 this.settingsProvider.write('option.vip.general.party_member_on_map', party_member_on_map);
                 this._party_member_on_map = party_member_on_map;
-            }
-
-            get harvest_indicator(): boolean {
-                return this._harvest_indicator;
-            }
-
-            set harvest_indicator(harvest_indicator: boolean) {
-                this.settingsProvider.write('option.vip.general.harvest_indicator', harvest_indicator);
-                this._harvest_indicator = harvest_indicator;
             }
 
             get monster_tooltip(): boolean {
@@ -870,6 +872,24 @@ export namespace Option {
                 this._verticaltimeline = verticaltimeline;
             }
 
+            get dtmap_shortcut(): string {
+                return this._dtmap_shortcut;
+            }
+
+            set dtmap_shortcut(dtmap_shortcut: string) {
+                this.settingsProvider.write('option.vip.general.dtmap_shortcut', dtmap_shortcut);
+                this._dtmap_shortcut = dtmap_shortcut;
+            }
+
+            get challpercent(): boolean {
+                return this._challpercent;
+            }
+
+            set challpercent(challpercent: boolean) {
+                this.settingsProvider.write('option.vip.general.challpercent', challpercent);
+                this._challpercent = challpercent;
+            }
+
             constructor(private settingsProvider: SettingsProvider) {
                 this.disable_inactivity = this.settingsProvider.read('option.vip.general.disable_inactivity');
                 this.health_bar = this.settingsProvider.read('option.vip.general.health_bar');
@@ -881,13 +901,16 @@ export namespace Option {
                 this.hidden_mount = this.settingsProvider.read('option.vip.general.hidden_mount');
                 this.party_info_pp = this.settingsProvider.read('option.vip.general.party_info_pp');
                 this.party_info_lvl = this.settingsProvider.read('option.vip.general.party_info_lvl');
+                this.harvest_indicator = this.settingsProvider.read('option.vip.general.harvest_indicator');
                 this.show_resources = this.settingsProvider.read('option.vip.general.show_resources');
                 this.show_resources_shortcut = this.settingsProvider.read('option.vip.general.show_resources_shortcut');
                 this.party_member_on_map = this.settingsProvider.read('option.vip.general.party_member_on_map');
                 this.harvest_indicator = this.settingsProvider.read('option.vip.general.harvest_indicator');
                 this._monster_tooltip = this.settingsProvider.read('option.vip.general.monster_tooltip');
-                this._monster_tooltip_shortcut = this.settingsProvider.read('option.vip.general.monster_tooltip_shortcut');
+                this.monster_tooltip_shortcut = this.settingsProvider.read('option.vip.general.monster_tooltip_shortcut');
                 this.verticaltimeline = this.settingsProvider.read('option.vip.general.verticaltimeline');
+                this._dtmap_shortcut = this.settingsProvider.read('option.vip.general.dtmap_shortcut');
+                this.challpercent = this.settingsProvider.read('option.vip.general.challpercent');
             }
         }
 
@@ -933,7 +956,7 @@ export namespace Option {
                 return this._follow_leader;
             }
 
-            
+
             set follow_leader(follow_leader: boolean) {
                 this.settingsProvider.write('option.vip.auto_group.follow_leader', follow_leader);
                 this._follow_leader = follow_leader;
@@ -948,7 +971,7 @@ export namespace Option {
                 this._disable_timer = disable_timer;
             }
 
-           
+
 
             get ready(): boolean {
                 return this._ready;

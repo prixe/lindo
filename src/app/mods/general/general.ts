@@ -1,6 +1,6 @@
 import {SettingsService} from "@services/settings.service";
-import {TranslateService} from "@ngx-translate/core";
-
+import {TranslateService} from "@services/translate.service";
+import {WGame} from "../../types/dofus.types";
 import {Mod} from "../mod";
 import * as Mods from "./index";
 
@@ -8,7 +8,7 @@ export class General extends Mod {
     private mods: Mod[] = [];
 
     constructor(
-        wGame: any|Window,
+        wGame: WGame,
         settings: SettingsService,
         translate: TranslateService
     ) {
@@ -19,6 +19,13 @@ export class General extends Mod {
         for (const mod in Mods) {
             this.mods.push(new Mods[mod](this.wGame, this.settings, this.translate))
         }
+
+        Logger.info("------------ lang")
+        Logger.info(this.translate.currentLang);
+        Logger.info(this.translate.getDefaultLang());
+        Logger.info(this.translate.getLangs());
+        Logger.info(this.translate.getBrowserLang());
+        Logger.info(this.translate.getBrowserCultureLang());
     }
 
     public reset() {

@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, EventEmitter, Input, NgZone, Output } from '@angular/core';
-import { TranslateService } from "@ngx-translate/core";
+import { TranslateService } from "@services/translate.service";
 
 import * as Mods from "@mods/index";
 import { Mod } from "@mods/mod";
@@ -81,6 +81,7 @@ export class GameComponent implements AfterViewInit {
         for (const i in this.mods) {
             this.mods[i].reset();
         }
+        this.mods = [];
     }
 
     public reloadMods(start: boolean = true): void {
