@@ -166,6 +166,8 @@ export const SettingsDefault: SettingsInterface = {
                 party_member_on_map: true,
                 monster_tooltip: false,
                 monster_tooltip_shortcut: '',
+                challpercent: false,
+                verticaltimeline: false
             },
             auto_group: {
                 active: false,
