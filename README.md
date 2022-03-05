@@ -8,13 +8,14 @@
 
 [![Website lindo-app.com](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://lindo-app.com) https://lindo-app.com
 
-## Telegram
-🇫🇷 Rejoignez nous sur telegram : https://t.me/+8jEjvFd5M-g4NTc0
-Suite à la fermeture forcé de notre serveur discord, telegram sera utilisé pour annoncer les nouvelles versions (surtout si ce repo est fermé aussi).
+## Liens
 
-🇬🇧 Join us on telegram : https://t.me/+8jEjvFd5M-g4NTc0
-Because of our discord shut down, telegram will now be used to announce new releases (especially if this github repo is shut down too).
+Retrouvez-nous sur Reddit pour échanger avec la communauté !
+- [Reddit](https://www.reddit.com/r/LindoApp/)
 
+Nous sommes aussi sur Twitter et Telegram si vous voulez être averti en cas de mise à jour :
+- [Twitter](https://twitter.com/Lindo_Officiel)
+- [Telegram](https://t.me/+8jEjvFd5M-g4NTc0)
 
 ## Lindo
 🇬🇧 Lindo allows you to play Dofus Touch on your computer (Windows / Mac OS / Linux) without android emulator, it is based on crossplatform technologies.
