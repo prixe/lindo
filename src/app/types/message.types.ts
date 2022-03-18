@@ -73,8 +73,14 @@ export interface JobExperienceUpdateMessage {
 }
 
 export interface MapComplementaryInformationsDataMessage {
+    actors: [],
+    fights: [],
+    houses: [],
     interactiveElements: [],
-    statedElements: []
+    mapId: number,
+    obstacles: [],
+    statedElements: [],
+    subAreaId: number,
 }
 
 export interface ExchangeObjectAddedMessage {
