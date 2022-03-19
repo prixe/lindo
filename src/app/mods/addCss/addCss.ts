@@ -65,6 +65,15 @@ export class AddCss extends Mod {
                 .customNumber {
                     width: 45px;
                 }
+                /* DofusTouch icon button */
+                .centerButton {
+                    width: 35px;
+                    height: 40px;
+                    background-image: url(./assets/ui/worldmap/btn_center.png);
+                    background-position: 50% 30%;
+                    background-size: 33px 33px;
+                    background-repeat: no-repeat;
+                }
             `;
 
             this.wGame.document.querySelector('head').appendChild(inputCss);
