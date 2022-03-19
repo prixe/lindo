@@ -1,14 +1,14 @@
-import { MapComplementaryInformationsDataMessage } from "app/types/message.types";
-import { ShortcutsHelper } from "../../helpers/shortcuts.helper";
-import { CustomWindowHelper } from "../../helpers/windowHelper/customWindow.helper";
-import { DraggableWindowHelper } from "../../helpers/windowHelper/draggableWindow.helper";
 import { Mod } from "../mod";
+import { MapComplementaryInformationsDataMessage } from "app/types/message.types";
+import { ShortcutsHelper } from "@helpers/shortcuts.helper";
+import { CustomWindow } from "@helpers/windowHelper/customWindow";
+import { Button } from "@helpers/windowHelper/inputs/button";
 
 export class DtMap extends Mod {
     private shortcutsHelper: ShortcutsHelper;
-    private windowHelper: CustomWindowHelper;
+    private canLog: boolean = false;
 
-    private window: DraggableWindowHelper;
+    private window: CustomWindow;
     private iframe: HTMLIFrameElement;
     private iframeWindow: Window;
 
@@ -16,13 +16,10 @@ export class DtMap extends Mod {
     private toSkip: number[] = [-1, 2, 11, 12, 13, 15, 16, 22, 27, 40, 41, 48, 49, 50, 56, 57, 58, 60, 62, 63, 64, 65, 69, 70, 72, 73, 82, 83, 85, 86, 88, 90, 92, 93, 94, 95, 96, 97, 99, 100, 102, 103, 106, 107, 115, 116, 117, 118, 119, 120, 122, 127, 128, 129, 137, 138, 139, 140, 141, 142, 143, 144, 145, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224];
     private db: IDBDatabase;
 
-    //TODO Create debugLogger to not display all log of this mod
-
     startMod() {
         this.params = this.settings.option.vip.general;
 
         // Initialize helper
-        this.windowHelper = new CustomWindowHelper(this.wGame);
         this.shortcutsHelper = new ShortcutsHelper(this.wGame);
 
         // Define and apply css
@@ -47,8 +44,6 @@ export class DtMap extends Mod {
 
         // Set shortcut to open map
         this.shortcutsHelper.bind(this.params.dtmap_shortcut, () => this.toggle());
-        // Create window
-        this.window = this.windowHelper.getWindow();
 
         // Set Listener
         this.on(this.wGame.dofus.connectionManager, 'MapComplementaryInformationsDataMessage', (e: MapComplementaryInformationsDataMessage) => {
@@ -58,23 +53,37 @@ export class DtMap extends Mod {
 
         this.createWindow();
         this.loadDb();
+
+        this.wGame.debugDtmap = (isActivated: boolean) => {
+            this.canLog = isActivated;
+            console.log(`Debug Dtmap session ${(isActivated) ? 'start' : 'end'}`);
+        }
     }
 
     private createWindow() {
-        this.window.createDofusWindow("Dofus Touch Map", "dtmap")
+        const centerBtn = Button.createIconButton(this.wGame, 'dtmap-center', {icon: 'centerButton'});
+
+        this.window = CustomWindow.createDofusWindow(this.wGame, 'Dofus Touch Map', 'dtmap')
             .makeDraggable()
             .makeResizable()
-            .addFullScreenButton();
+            .addFullScreenButton()
+            .addButtonToLeftToHeader(centerBtn);
+
+        centerBtn.addEvent(() => this.centerViewOnPlayerMarker());
 
         this.iframe = this.wGame.document.createElement("iframe");
         this.iframe.id = "dtmap-iframe";
-        this.iframe.src = 'https://dev.dofus-touch-map.com';
+        this.iframe.src = 'https://www.dofus-touch-map.com';
 
         this.window.addContent(this.iframe).hide();
 
         this.iframe.addEventListener('load', () => {
             this.iframeWindow = this.iframe.contentWindow;
         });
+    }
+
+    private centerViewOnPlayerMarker() {
+        this.iframeWindow.postMessage({ type: 'centerViewOnPlayerMarker' }, 'https://www.dofus-touch-map.com');
     }
 
     private updatePlayerMarker(data: MapComplementaryInformationsDataMessage) {
@@ -85,7 +94,7 @@ export class DtMap extends Mod {
                 y: this.wGame?.gui?.playerData?.position?.mapPosition?.posY,
             };
             // Update marker on dtmap-iframe
-            this.iframeWindow.postMessage({ type: 'updatePlayerMarker', pos }, 'https://dev.dofus-touch-map.com');
+            this.iframeWindow.postMessage({ type: 'updatePlayerMarker', pos }, 'https://www.dofus-touch-map.com');
         }
         else setTimeout(() => this.updatePlayerMarker(data), 200);
     }
@@ -93,7 +102,7 @@ export class DtMap extends Mod {
     private async getData(e: MapComplementaryInformationsDataMessage) {
         // Check if map is not already visit during the session
         if (this.mapIds.includes(e.mapId)) {
-            console.log("This map already visit today !");
+            this.logMsg("This map already visit today !");
             return;
         }
 
@@ -106,16 +115,16 @@ export class DtMap extends Mod {
                 const oneWeek = 7 * 24 * 3600 * 1000;
 
                 if ((lastUpdate + oneWeek) <= now) {
-                    console.log("Les données sont trop vieilles");
+                    this.logMsg("Les données sont trop vieilles");
                     this.addDataToDB({ lastUpdate: new Date(), mapId: e.mapId });
                 }
                 else {
-                    console.log("Les données sont à jour");
+                    this.logMsg("Les données sont à jour");
                     skip = true;
                 };
             },
             (nodata) => {
-                console.log("Ajout de la carte en BDD");
+                this.logMsg("Ajout de la carte en BDD");
                 this.addDataToDB({ lastUpdate: new Date(), mapId: e.mapId });
             }
         );
@@ -137,7 +146,7 @@ export class DtMap extends Mod {
             // If resource already in "interactives" add 1 else init with 1
             else interactives[typeId] = (interactives[typeId]) ? interactives[typeId] + 1 : 1
         });
-        console.log("Ressources ignorées : ", skippedResources);
+        this.logMsg("Ressources ignorées : ", skippedResources);
 
         // For all interactives parse add in result object
         for (const i in interactives) {
@@ -148,7 +157,7 @@ export class DtMap extends Mod {
         if (result.interactives.length == 0) result.interactives = [];
         toSend = JSON.stringify(result);
 
-        console.log("Données envoyées : ", toSend);
+        this.logMsg("Données envoyées : ", toSend);
 
         fetch('https://api.dofus-touch-map.com/api/v2/resources', {
             method: 'POST',
@@ -171,11 +180,11 @@ export class DtMap extends Mod {
         // Open the database
         const dbconnect: IDBOpenDBRequest = window.indexedDB.open('flashDb', 1);
         dbconnect.onerror = (event: any) => console.error(`[DtMap] Erreur lors de la création / ouverture de la BDD`, event.target.error);
-        dbconnect.onsuccess = () => console.info(`[DtMap] BDD créer avec succès`);
+        dbconnect.onsuccess = () => this.logMsg(`[DtMap] BDD créer avec succès`);
 
         // Create or update the db
         dbconnect.onupgradeneeded = (ev: any) => {
-            console.log('Création / Mise à jour de la BDD');
+            this.logMsg('Création / Mise à jour de la BDD');
             const db = ev.target.result;
             db.onerror = (event: any) => console.error(`[DtMap] Erreur BDD`, event.target.errorCode);
 
@@ -184,7 +193,7 @@ export class DtMap extends Mod {
 
         // Load the db
         dbconnect.onsuccess = (ev: any) => {
-            console.log('BDD chargée!');
+            this.logMsg('BDD chargée!');
             this.db = ev.target.result;
         };
     }
@@ -195,7 +204,7 @@ export class DtMap extends Mod {
         const mapsVisitedStore: IDBObjectStore = transaction.objectStore('mapsVisited');
 
         transaction.onerror = (ev: any) => console.error(`[DtMap] Une erreur est survenue!`, ev.target.error.message);
-        transaction.oncomplete = () => console.log(`Les données ont été ajoutées avec succès à la BDD!`);
+        transaction.oncomplete = () => this.logMsg(`Les données ont été ajoutées avec succès à la BDD!`);
 
         // Add data to db
         mapsVisitedStore.put(data);
@@ -216,6 +225,9 @@ export class DtMap extends Mod {
         });
     }
 
+    private logMsg(...data: any[]) {
+        if (this.canLog) console.log(...data);
+    }
 
     private toggle() {
         if (this.window.isVisible()) this.window.hide();
