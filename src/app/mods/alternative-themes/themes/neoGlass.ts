@@ -1,14 +1,43 @@
-export function neoGlassTheme(): string {
+export function neoGlassThemeWhite(): string {
     let theme = neoGlass;
 
-    themeVariable.forEach(v => {
+    themeVariableWhite.forEach(v => {
       theme = theme.split(v.id).join(v.value);
     });
 
     return theme;
 }
+export function neoGlassThemeBlack(): string {
+  let theme = neoGlass;
 
-const themeVariable = [
+  themeVariableBlack.forEach(v => {
+    theme = theme.split(v.id).join(v.value);
+  });
+
+  return theme;
+}
+const themeVariableBlack = [
+  {id:'%primary%',      value:'rgb(0,0,0)'},
+  {id:'%primary_a70%', value:'rgba(0,0,0,0.7)'},
+  {id:'%primary_a50%', value:'rgba(0,0,0,0.5)'},
+  {id:'%primary_a40%', value:'rgba(0,0,0,0.4)'},
+  {id:'%primary_a30%', value:'rgba(0,0,0,0.3)'},
+  {id:'%primary_a20%', value:'rgba(0,0,0,0.2)'},
+  {id:'%primary_a15%', value:'rgba(0,0,0,0.4)'},
+
+  {id:'%text_primary%',   value:'#ffffff'},
+  {id:'%text_secondary%', value:'#c1c1c1'},
+
+  {id:'%title_color%',    value:'#ffffff'},
+  {id:'%link_color%',     value:'#9a077f'},
+  {id:'%bonus_color%',    value:'#a8f928'},
+  {id:'%malus_color%',    value:'#a51919'},
+
+  {id:'%btn_color%', value:''},
+  {id:'%blur%', value:'blur(5px)'},
+];
+
+const themeVariableWhite = [
   {id:'%primary%',      value:'rgb(255,255,255)'},
   {id:'%primary_a70%', value:'rgba(255,255,255,0.7)'},
   {id:'%primary_a50%', value:'rgba(255,255,255,0.5)'},
@@ -27,6 +56,7 @@ const themeVariable = [
 
   {id:'%btn_color%', value:'filter: saturate(0.1) brightness(1.5);'},
   {id:'%blur%', value:'blur(5px)'},
+  {id:'%invert%', value:'invert(1)'},
 ];
 
 const neoGlass = `
@@ -283,7 +313,7 @@ const neoGlass = `
         **********************************/
         #dofusBody .MountDetails .mountName {
           border: 1px solid %primary_a30%;
-          color: #3d3d3d;
+          color: %text_primary%;
         }
 
 
@@ -291,14 +321,14 @@ const neoGlass = `
         **********************************/
         .InputBox .domInputBox {
           border: none;
-          color: #3d3d3d;
+          color: %text_primary%;
           padding-left: 4px;
         }
         .searchBox .inputFrame .cancelBtn {
           top: -2px;
         }
         .searchBox .inputFrame .cancelBtn .btnIcon {
-          filter: invert(1);
+          filter: %invert%;
         }
         .searchBox .searchBtn .btnIcon {
           %btn_color%
@@ -340,6 +370,11 @@ const neoGlass = `
           left: 6px;
           top: 3px;
         }
+        /* Fix checkbox position in filter */
+        .filterCheckboxes .CheckboxLabel.on::before {
+          left: 2px;
+          top: 2px;
+        }
         .CheckboxLabel.on,
         .AchievementsWindow .objective.completed {
           background-image: none;
@@ -372,6 +407,7 @@ const neoGlass = `
         .RecipeList .searchBar .CheckboxLabel.on {
           background-image: none;
           background-color: %primary%;
+          color: %text_primary%;
         }
         .RecipeList .searchBar .CheckboxLabel::after,
         .RecipeList .searchBar .CheckboxLabel.on::after {
@@ -412,8 +448,8 @@ const neoGlass = `
         .fightBtn.Button {
           border: 1px solid %primary%;
           border-radius: 7px;
-          color: #3d3d3d;
-          background: %primary%;
+          color: %text_primary%;
+          background: %primary_a50%;
           padding: 5px 15px;
           height: auto !important;
         }
@@ -602,7 +638,8 @@ const neoGlass = `
         .window .QuestsWindow .col1 .ListV2 .listItem.odd > .label,
         .window .BestiaryWindow .col1 .SingleSelectionList .listItem.selected > .sublist > .label:nth-child(2n+1),
         .window .BestiaryWindow .col1 .SingleSelectionList .listItem:nth-child(2n+1) > .label,
-        .window.FightEndWindow .TableV2 .row.title {
+        .window.FightEndWindow .TableV2 .row.title,
+        .compositionTab .unscrollableContentBlock .compositionContent .col1 .SingleSelectionList .listItem.selected>.sublist>.label:nth-child(odd) {
             background-color : %primary_a30%;
         }
 
@@ -618,12 +655,14 @@ const neoGlass = `
         .window .BestiaryWindow .sublist .label.selected,
         .Table .container.content .row.highlight,
         .window .BestiaryWindow .sublist .label.selected,
-        .HelpWindow .helpBody .col1 .sublist .label.selected {
+        .HelpWindow .helpBody .col1 .sublist .label.selected,
+        .compositionTab .unscrollableContentBlock .compositionContent .col1 .sublist .label.selected,
+        .compositionTab .unscrollableContentBlock .compositionContent .col1 .SingleSelectionList .listItem.selected>.label {
           position: relative;
           border-image: none !important;
           webkit-border-image: none !important;
           background-color: transparent !important;
-          color: %primary% !important;
+          color: white !important;
           text-shadow: none;
         }
 
@@ -635,7 +674,9 @@ const neoGlass = `
         .Table .container.content .row.highlight:before,
         .window .QuestsWindow .sublist .label.selected::before,
         .window.OptionsWindow .wrapper .menuCol .menu .listItem.selected::before,
-        .HelpWindow .helpBody .col1 .sublist .label.selected::before {
+        .HelpWindow .helpBody .col1 .sublist .label.selected::before,
+        .compositionTab .unscrollableContentBlock .compositionContent .col1 .sublist .label.selected:before,
+        .compositionTab .unscrollableContentBlock .compositionContent .col1 .SingleSelectionList .listItem.selected>.label:before {
           content: " ";
           z-index: -1;
           position: absolute;
@@ -699,11 +740,12 @@ const neoGlass = `
             border-radius: 10px 10px 0 0;
             border: 1px solid %primary_a30%;
             border-bottom: none;
-            color: #4a4a4a;
+            color: %text_primary%;
         }
         .tabs .tab.on,
         .SwipingTabs .swipeHeader .swipeTabBtn.on {
           background-color : %primary_a70%;
+          color: %text_secondary%;
         }
 
 
@@ -1158,6 +1200,10 @@ const neoGlass = `
         .globalWindow .windowBody .Button.button {
           margin: 3px 0;
         }
+        /* Fix text visible with button transparency */
+        .window.globalWindow .selectorContent.Button {
+          color: transparent;
+        }
 
 
         /* Options                        *
@@ -1459,7 +1505,8 @@ const neoGlass = `
           box-sizing: border-box;
         }
         /* Monsters details */
-        .BestiaryWindow .monster .infos {
+        .BestiaryWindow .monster .infos,
+        .compositionTab .unscrollableContentBlock .compositionContent .col2 .monster .infos {
           background-color: %primary_a30%;
           border-color: %primary_a30%;
         }
@@ -1467,7 +1514,7 @@ const neoGlass = `
           margin : 0 2px;
         }
         .listItem.monster.selected .infos {
-          color: #3d3d3d;
+          color: %text_primary%;
           border-color: %primary%;
         }
         /* MiniBoss icon */
@@ -1508,17 +1555,20 @@ const neoGlass = `
           background: url(./assets/ui/icons/questMonster.png) 0 50% no-repeat;
         }
         /* Details more */
-        .BestiaryWindow .monster .more {
+        .BestiaryWindow .monster .more,
+        .compositionTab .unscrollableContentBlock .compositionContent .col2 .monster .more {
           background-color: %primary_a30%;
           border-color: %primary_a30%;
           border-top: none;
           color: %text_primary%;
         }
         /* Monster stats */
-        .BestiaryWindow .monster .stat {
+        .BestiaryWindow .monster .stat,
+        .compositionTab .unscrollableContentBlock .compositionContent .col2 .monster .stat {
           background: none;
         }
-        .BestiaryWindow .monster .stat:nth-child(2n+1) {
+        .BestiaryWindow .monster .stat:nth-child(2n+1),
+        .compositionTab .unscrollableContentBlock .compositionContent .col2 .monster .stat:nth-child(2n+1) {
           background-color: %primary_a30%;
         }
         /* Items drop slots */
@@ -1532,7 +1582,7 @@ const neoGlass = `
           border-color: gold;
         }
         .BestiaryWindow .monster .Slot.okDrop::before {
-          border-color: #3d3d3d;
+          border-color: %text_primary%;
         }
 
 
@@ -1612,6 +1662,10 @@ const neoGlass = `
 
         /* Ascension                      *
         **********************************/
+        /* List composition */
+        .compositionTab .unscrollableContentBlock .compositionContent .col1:before {
+          border: none;
+        }
         .window.ToaWindow .panels .panel .contentBlock::before,
         .window.ToaWindow .panels .panel .unscrollableContentBlock::before {
           border-radius: 0 7px 7px 7px;
@@ -1625,12 +1679,15 @@ const neoGlass = `
         .window.ToaWindow h6 {
           color: %title_color%;
         }
-        .window.ToaWindow .panels .panel .contentBlock .separator {
+        .window.ToaWindow .panels .panel .contentBlock .separator,
+        .compositionTab .unscrollableContentBlock .compositionContent .col2 .separator {
           background: %primary%;
         }
         /* Info block */
         .generalTab .generalContent .introBlock .col2 .scoreBoxHeaderContentBlock,
-        .generalTab .generalContent .introBlock .col2 .localisationBox {
+        .generalTab .generalContent .introBlock .col2 .localisationBox,
+        .compositionTab .unscrollableContentBlock .compositionContent .col2 .statBlock .scoreBlock .scoreBoxHeaderContentBlock,
+        .compositionTab .unscrollableContentBlock .compositionContent .col2 .statBlock .scoreBlock .floorScoreBoxHeaderContentBlock {
           background: %primary_a40%;
           border: 1px solid %primary%;
           color: %text_secondary%;
@@ -1673,6 +1730,23 @@ const neoGlass = `
           border: 1px solid %primary_a30%;
           border-radius: 0 13px 13px 0;
           background: %primary_a30%;
+          color: %text_primary%;
+        }
+        /* Fix Button */
+        .window.BidHouseShopWindow .sellModeBtn,
+        .window.BidHouseShopWindow .buyModeBtn {
+          height: 30px;
+        }
+        .window.BidHouseShopWindow .sellModeBtn .btnIcon,
+        .window.BidHouseShopWindow .buyModeBtn .btnIcon {
+          top: -7px;
+          left: -7px;
+        }
+        .window.tradeItemWindow .windowBody .buyHardSoftButtons {
+          max-height: 39px;
+          min-height: 30px;
+        }
+        .window.TradeItemConfirmWindow .rightCol .btnAndFee .buyBtn .btnLabel {
           color: %text_primary%;
         }
 

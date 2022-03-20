@@ -1,8 +1,8 @@
-import { Select } from "@helpers/windowHelper/inputDtHelper/inputs/select";
+import { Select } from "@helpers/windowHelper/inputDtHelper/select";
 import { Mod } from "../mod";
 
 import { neoDark } from "./themes/neoDark";
-import { neoGlassTheme } from "./themes/neoGlass";
+import { neoGlassThemeWhite, neoGlassThemeBlack } from "./themes/neoGlass";
 
 export class AlternativeTheme extends Mod {
 
@@ -20,7 +20,8 @@ export class AlternativeTheme extends Mod {
         this.themeList = [
             {id: 'default', text: 'Défaut'},
             {id: 'neoBlack', text: 'Noir transparent'},
-            {id: 'neoGlass', text: 'Glass'},
+            {id: 'neoGlassWhite', text: 'Glass (Blanc)'},
+            {id: 'neoGlassBlack', text: 'Glass (Noir)'},
         ];
 
         this.init();
@@ -40,7 +41,6 @@ export class AlternativeTheme extends Mod {
     }
 
     private onOpen() {
-        const selectHelper: Select = new Select(this.wGame);
         const content = this.optionsWindow.rootElement.getElementsByClassName('miscSection')[0].getElementsByClassName('allOptions')[0];
 
         // Create new elements
@@ -49,16 +49,16 @@ export class AlternativeTheme extends Mod {
         headTitle.className = "header";
 
         // Create select
-        const select = selectHelper.createSelect('theme-selector', this.themeList);
-        select.style.marginBottom = "15px";
+        const select: Select = Select.createSelect(this.wGame, 'theme-selector', this.themeList);
+        select.getHtmlElement().style.marginBottom = "15px";
 
         // Insert in parent
         content.append(headTitle);
-        content.append(select);
+        content.append(select.getHtmlElement());
 
         // Add event on select
         let onClickSelect = (data: any) => { this.applyTheme(data.id) };
-        selectHelper.addSelectEvent(select, (data: any) => {onClickSelect(data)});
+        select.addEvent((data: any) => {onClickSelect(data)});
     }
 
     private applyTheme(themeId: string) {
@@ -71,7 +71,8 @@ export class AlternativeTheme extends Mod {
 
         switch (themeId) {
             case 'neoBlack': theme.innerHTML = neoDark; break;
-            case 'neoGlass': theme.innerHTML = neoGlassTheme(); break;
+            case 'neoGlassWhite': theme.innerHTML = neoGlassThemeWhite(); break;
+            case 'neoGlassBlack': theme.innerHTML = neoGlassThemeBlack(); break;
         }
 
         this.wGame.document.head.appendChild(theme);
