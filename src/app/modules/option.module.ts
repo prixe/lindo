@@ -890,14 +890,6 @@ export namespace Option {
                 this._challpercent = challpercent;
             }
 
-            get challpercent(): boolean {
-                return this._challpercent;
-            }
-
-            set challpercent(challpercent: boolean) {
-                this.settingsProvider.write('option.vip.general.challpercent', challpercent);
-                this._challpercent = challpercent;
-            }
 
             constructor(private settingsProvider: SettingsProvider) {
                 this.disable_inactivity = this.settingsProvider.read('option.vip.general.disable_inactivity');
