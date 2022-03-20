@@ -38,6 +38,8 @@ export class AlternativeTheme extends Mod {
         else {
             this.themeList[0]['ticked'] = true;
         }
+        const guiContainer: any = this.wGame.document.getElementsByClassName('windowsContainer')[0];
+        guiContainer.style.backgroundColor = 'transparent';
     }
 
     private onOpen() {

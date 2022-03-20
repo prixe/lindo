@@ -9,6 +9,8 @@ import { IpcRendererService } from "@services/electron/ipcrenderer.service";
 import { SettingsService } from "@services/settings.service";
 import { BugReportService } from "@services/bug-report.service";
 import { ApplicationService } from "@services/electron/application.service";
+import { neoDark } from '@mods/alternative-themes/themes/neoDark';
+import { neoGlassThemeWhite, neoGlassThemeBlack } from '@mods/alternative-themes/themes/neoGlass';
 
 @Component({
     selector: 'app-main-game-component',
@@ -45,7 +47,7 @@ export class GameComponent implements AfterViewInit {
     public gameReady(): void {
         if (this.gameLoaded) {
             this.game.window.initDofus(() => {
-                /* Hide the game loading overlay */
+                // Hide the game loading overlay
                 const loading = document.getElementById("LoadingGame_" + this.game.id);
 
                 if (loading) {
@@ -69,6 +71,27 @@ export class GameComponent implements AfterViewInit {
                         this.reloadMods();
                     }
                 });
+
+                // Apply theme after game load
+                const selectTheme: string = localStorage.getItem('alternativeTheme');
+                if (selectTheme) {
+                    console.log(`Apply theme : "${selectTheme}"`);
+                    // Remove previous theme if exist
+                    this.game.window.document.getElementById('alternativeTheme')?.remove();
+
+                    // Create new style element for theme
+                    const theme = this.game.window.document.createElement('style');
+                    theme.id = 'alternativeTheme';
+
+                    switch (selectTheme) {
+                        case 'neoBlack': theme.innerHTML = neoDark; break;
+                        case 'neoGlassWhite': theme.innerHTML = neoGlassThemeWhite(); break;
+                        case 'neoGlassBlack': theme.innerHTML = neoGlassThemeBlack(); break;
+                    }
+
+                    this.game.window.document.head.appendChild(theme);
+                    localStorage.setItem('alternativeTheme', selectTheme);
+                }
 
             });
 

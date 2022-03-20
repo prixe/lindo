@@ -32,6 +32,7 @@ const themeVariableBlack = [
   {id:'%link_color%',     value:'#9a077f'},
   {id:'%bonus_color%',    value:'#a8f928'},
   {id:'%malus_color%',    value:'#a51919'},
+  {id:'%gold_color%',     value:'gold'},
 
   {id:'%btn_color%', value:''},
   {id:'%blur%', value:'blur(5px)'},
@@ -53,6 +54,7 @@ const themeVariableWhite = [
   {id:'%link_color%',     value:'#a7238f'},
   {id:'%bonus_color%',    value:'#486b11'},
   {id:'%malus_color%',    value:'#d01d1d'},
+  {id:'%gold_color%',     value:'#b58109'},
 
   {id:'%btn_color%', value:'filter: saturate(0.1) brightness(1.5);'},
   {id:'%blur%', value:'blur(5px)'},
@@ -60,6 +62,214 @@ const themeVariableWhite = [
 ];
 
 const neoGlass = `
+        .windowsContainer {
+          background: grey;
+        }
+        /*******************************************************************
+        *   Home Screen                                                    *
+        *******************************************************************/
+
+        /*  General window                *
+        **********************************/
+        /* Container */
+        #dofusBody .loginScreen .frame.frame2,
+        #dofusBody .loginScreen .frame.frame1,
+        #dofusBody .loginScreen .rightColumn .formBtn,
+        #dofusBody .loginScreen .rightColumn .formBtn2, #dofusBody .loginScreen .rightColumn .formBtn3 {
+          border: 1px solid %primary%;
+          border-radius: 7px;
+          background: %primary_a30%;
+          backdrop-filter: %blur%;
+          color: %text_primary%;
+          box-shadow: 3px 3px 7px #0000004f;
+        }
+        
+        .RetractableBlock {
+          margin-bottom: 10px;
+        }
+
+        #dofusBody .loginScreen .topButtons {
+          background-color: %primary_a50%;
+          border: 1px solid %primary%;
+          border-width: 0 0 1px 1px;
+        }
+
+        
+        /*  Login form                    *
+        **********************************/
+        /* Container */
+        #dofusBody .loginScreen .frame.frame1,
+        #dofusBody .loginScreen .rightColumn .formBtn,
+        #dofusBody .loginScreen .rightColumn .formBtn2, #dofusBody .loginScreen .rightColumn .formBtn3 {
+          border: 1px solid %primary%;
+          border-radius: 7px;
+          background: %primary_a50%;
+          backdrop-filter: %blur%;
+        }
+        /* Text color */
+        #dofusBody .loginScreen .LoginForm,
+        #dofusBody .loginScreen .TokenForm .introText,
+        #dofusBody .loginScreen .ForumBlock .content .forumNewsMargin .forumNews {
+          color: %text_primary%;
+        }
+        #dofusBody .loginScreen .ForumBlock .content .forumNewsMargin .forumNews h2 {
+          color: #b58109;
+        }
+        /* Login input */
+        .InputBox .domInputBox.whiteStyle {
+          border-image: none;
+          color: %text_primary%;
+        }
+        /* Play button */
+        #dofusBody .loginScreen .buttonPlay {
+          color: %text_primary%;
+        }
+        /* Options buttons */
+        #dofusBody .loginScreen .ConnectionOptions .bottomLinks .forgottenPassword,
+        #dofusBody .loginScreen .ConnectionOptions .bottomLinks .connectionOptions {
+          color: %text_secondary%;
+        }
+        /* Button Register & others */
+        #dofusBody .loginScreen .rightColumn .formBtn,
+        #dofusBody .loginScreen .rightColumn .formBtn2, #dofusBody .loginScreen .rightColumn .formBtn3 {
+          padding: 5px;
+        }
+        #dofusBody .loginScreen .rightColumn .formBtn {
+          bottom: -49px;
+        }
+        #dofusBody .loginScreen .rightColumn .formBtn2 {
+          bottom: -95px;
+        }
+
+
+        /* News window                    *
+        **********************************/
+        /* Title and date */
+        #dofusBody .loginScreen .NewsBlock .content .bannerTitle,
+        #dofusBody .loginScreen .NewsBlock .content .date {
+          color: %text_primary%;
+        }
+        #dofusBody .loginScreen .NewsBlock .dotsWrapper .dot.selected {
+          %btn_color%
+        }
+        /* Carousel button */
+        .Carousel .rightArrow, .Carousel .leftArrow {
+          background-image: none;
+          height: 76%;
+          top: 0;
+          width: 21px;
+          margin: 0;
+          padding: 0 10px 0 15px;
+        }
+        .Carousel .rightArrow:hover, .Carousel .leftArrow:hover {
+          background: rgb(140 140 140 / 30%);
+        }
+        .Carousel .rightArrow:after, .Carousel .leftArrow:after {
+          content: " ";
+          position: absolute;
+          top: calc(50% - 10px);
+        }
+        .Carousel .rightArrow:after,
+        .Carousel .leftArrow:after,
+        .Carousel .rightArrow:hover:after,
+        .Carousel .leftArrow:hover:after {
+          border-top: 20px solid transparent;
+          border-bottom: 20px solid transparent;
+        }
+        .Carousel .rightArrow:after {
+          border-left: 20px solid %primary_a50%;
+        }
+        .Carousel .leftArrow:after {
+          border-right: 20px solid %primary_a50%;
+        }
+        .Carousel .rightArrow:hover:after {
+          border-left: 20px solid %primary%;
+        }
+        .Carousel .leftArrow:hover:after {
+          border-right: 20px solid %primary%;
+        }
+
+
+        /*  Changelog                     *
+        **********************************/
+        #dofusBody .loginScreen .RetractableBlock .content .titleBox .subTitle {
+          color: %text_primary%;
+        }
+        /* Fix size of expand button */
+        #dofusBody .loginScreen .RetractableBlock .content .titleBox .expandButton {
+          min-height: 35px;
+        }
+
+
+        /*******************************************************************
+        *   Game server                                                    *
+        *******************************************************************/
+        
+        .window.ServerSelectionWindow .windowBody .arrowRight,
+        .window.ServerSelectionWindow .windowBody .arrowLeft {
+          %btn_color%
+        }
+
+        /*  Select server                 *
+        **********************************/
+        /* Container */
+        .ServerDetails .content .top .details,
+        .window.ServerListSelectionWindow .windowBody .middleDiv .leftFrame .serverList,
+        .ServerDetails .content .bottom .bottomContent {
+          background: %primary_a40%;
+          border: 1px solid %primary%;
+          border-radius: 7px;
+        }
+        /* Fix border radius for details server container */
+        .window.ServerListSelectionWindow .windowBody .middleDiv .rightFrame .ServerDetails .content .bottom .bottomContent {
+          border-radius: 0 7px 7px 7px;
+        }
+        /* Remove padding for server list container */
+        .window.ServerListSelectionWindow .windowBody .middleDiv .leftFrame .serverList {
+          padding: 0;
+        }
+        /* Tab details */
+        .ServerDetails .content .bottom .descBtn.selected, .ServerDetails .content .bottom .rulesBtn.selected {
+          background: %primary%;
+        }
+        .ServerDetails .content .bottom .descBtn, .ServerDetails .content .bottom .rulesBtn {
+          border: 2px solid %primary%;
+        }
+
+        /* Server list table              *
+        **********************************/
+        .window.ServerListSelectionWindow .windowBody .middleDiv .leftFrame .serverList .div-table,
+        .window.ServerListSelectionWindow .windowBody .middleDiv .leftFrame .serverList .listHead .listHeadBox {
+          border: 1px solid %primary%;
+        }
+        .window.ServerListSelectionWindow .windowBody .middleDiv .leftFrame .serverList .listHead.odd {
+          background: %primary_a70%;
+        }
+        .ServerRow .listBox {
+          border-left: 1px solid %primary%;
+          border-right: 1px solid %primary%;
+        }
+        .ServerRow.odd {
+          background-color: %primary_a50%;
+        }
+        .ServerRow.selected {
+          background-color: rgb(149 195 30 / 50%);
+        }
+        .window.ServerListSelectionWindow .windowBody .findFriendDiv .okBtn,
+        .window.ServerListSelectionWindow .windowBody .findFriendDiv .clearBtn {
+          %btn_color%
+        }
+
+        /* Select player                  *
+        **********************************/
+        .window.CharacterSelectionWindow .windowBody .leftColumn .characterTable:before {
+          border: 1px solid %primary%;
+          border-radius: 7px;
+          background: %primary_a30%;
+        }
+
+
+
         /*******************************************************************
         *   General                                                        *
         *******************************************************************/
@@ -953,6 +1163,10 @@ const neoGlass = `
           color: white !important;
         }
 
+        /* Fix link color on login screen */
+        #dofusBody .loginScreen .footer .link {
+          color: white !important;
+        }
 
 
         /*******************************************************************
