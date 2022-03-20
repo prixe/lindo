@@ -1,4 +1,4 @@
-import { Button } from "./inputDtHelper/button";
+import { Button } from "./inputs/button";
 
 export class CustomWindow {
     public wGame: any|Window;
@@ -38,8 +38,8 @@ export class CustomWindow {
     /**
      * Create a basic window with dofus style but without define size.
      * Auto insert in DOM (windowsContainer)
-     * @param title Title will show to user
-     * @param id The id of that window
+     * @param {string} title Title will show to user
+     * @param {string} id The id of that window
      */
     public static createDofusWindow(wGame: any|Window, title: string, id: string, options?: {customClassBody?: string}): CustomWindow {
         const instance: CustomWindow = new CustomWindow(wGame);
@@ -86,19 +86,19 @@ export class CustomWindow {
 
     /**
      * Add a button to the right of the header
-     * @param button The div button to add
+     * @param {Button} button The div button to add
      */
-    public addButtonToRightToHeader(button: HTMLDivElement): CustomWindow {
-        this.windowTitle.insertAdjacentElement('afterend', button);
+    public addButtonToRightToHeader(button: Button): CustomWindow {
+        this.windowTitle.insertAdjacentElement('afterend', button.getHtmlElement());
         return this;
     }
 
     /**
      * Add a button to the left of the header
-     * @param button The div button to add
+     * @param {Button} button The div button to add
      */
-    public addButtonToLeftToHeader(button: HTMLDivElement): CustomWindow {
-        this.windowTitle.insertAdjacentElement('beforebegin', button);
+    public addButtonToLeftToHeader(button: Button): CustomWindow {
+        this.windowTitle.insertAdjacentElement('beforebegin', button.getHtmlElement());
         return this;
     }
 
@@ -141,8 +141,8 @@ export class CustomWindow {
             this.window.style.height = this.oldState.height;
         };
 
-        this.addButtonToRightToHeader(extendBtn.getHtmlElement());
-        this.addButtonToRightToHeader(reduceBtn.getHtmlElement());
+        this.addButtonToRightToHeader(extendBtn);
+        this.addButtonToRightToHeader(reduceBtn);
 
         extendBtn.addEvent(extendWindow);
         reduceBtn.addEvent(reduceWindow);

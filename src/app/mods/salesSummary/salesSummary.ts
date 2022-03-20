@@ -1,10 +1,12 @@
-import { Table } from "../../helpers/windowHelper/componentDtHelper/components/table";
-import { CustomWindowHelper } from "../../helpers/windowHelper/customWindow.helper";
-import { DraggableWindowHelper } from "../../helpers/windowHelper/draggableWindow.helper";
+import { Table } from "../../helpers/windowHelper/components/table";
 import { Mod } from "../mod";
 import axios from 'axios';
+import { CustomWindow } from "@helpers/windowHelper/customWindow";
+import { WindowContentHelper } from "@helpers/windowHelper/windowContent.helper";
 
 export class SalesSummary extends Mod {
+    private windowContentHelper: WindowContentHelper;
+
     private sales: any[][] = [];
     private awaitingSales: {id: number, price: number, quantity: number}[] = [];
     private totalSales: number = 0;
@@ -12,18 +14,13 @@ export class SalesSummary extends Mod {
 
     private debounce: ReturnType<typeof setTimeout>;
 
-    // Helper for ui
-    private windowHelper: CustomWindowHelper;
-
     // Ui element
-    private window: DraggableWindowHelper;
+    private window: CustomWindow;
     private table: Table;
     private resumeBox: HTMLDivElement;
 
     startMod() {
-        // Init global variable
-        this.windowHelper = new CustomWindowHelper(this.wGame);
-        this.window = this.windowHelper.getWindow();
+        this.windowContentHelper = new WindowContentHelper(this.wGame);
 
         let salesSummaryCss = document.createElement('style');
         salesSummaryCss.id = 'salesSummaryCss';
@@ -65,10 +62,11 @@ export class SalesSummary extends Mod {
      * Build the window of sales summary
      */
     private createWindow() {
-        this.window.createDofusWindow('Récapitulatif des ventes', 'sales-summary').makeDraggable().hide();
+        this.window = CustomWindow.createDofusWindow(this.wGame, 'Récapitulatif des ventes', 'sales-summary').makeDraggable().hide();
 
         // Define table
-        this.table = this.windowHelper.getComponentHelper.Table.createTable(
+        this.table = Table.createTable(
+            this.wGame,
             'sls-smy',
             [
                 {name: '', style: [{cssRule: 'minWidth', value: '65px'}]},
@@ -79,7 +77,7 @@ export class SalesSummary extends Mod {
         );
 
         // Create contentBox to display total kamas/quantity sold
-        this.resumeBox = this.windowHelper.WindowContent.createContentBox('sls-smy-total');
+        this.resumeBox = this.windowContentHelper.createContentBox('sls-smy-total');
         const qtySold: HTMLDivElement = this.wGame.document.createElement('div');
         qtySold.className = 'sls-smy-total-text';
         const totalPrice: HTMLDivElement = this.wGame.document.createElement('div');
@@ -87,7 +85,7 @@ export class SalesSummary extends Mod {
         this.resumeBox.append(qtySold, totalPrice);
 
         // Add element to window
-        this.window.addContent(this.table.getTableHtmlElement()).addContent(this.resumeBox);
+        this.window.addContent(this.table.getHtmlElement).addContent(this.resumeBox);
     }
 
     private onTextInformationMessage() {
@@ -99,7 +97,7 @@ export class SalesSummary extends Mod {
                 if (this.debounce) clearInterval(this.debounce);
                 this.debounce = setTimeout(() => {
                     this.loadData().then(() => {
-                        this.table.addData(this.sales);
+                        this.table.insertData(this.sales);
                         this.resumeBox.children[0].insertAdjacentText('beforeend', `Item(s) vendu : ${this.sales.length}`);
                         this.resumeBox.children[1].insertAdjacentText('beforeend', `Total gains : ${this.formatNumber(this.totalSales)} k`);
                         this.window.show();
