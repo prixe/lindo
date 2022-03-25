@@ -20,7 +20,7 @@ export class AutoFocus extends Mod {
             this.focusInput(e._messageType)
         })
 
-        this.wGame.gui.windowsContainer.getChildren().find(e=>e.id=="grimoire").on("open",(e)=>{
+      let a =  this.wGame.gui.windowsContainer.getChildren().find(e=>e.id=="grimoire").on("open",(e)=>{
             this.focusInput(e.tabId)
         })
 
@@ -31,16 +31,11 @@ export class AutoFocus extends Mod {
 
     private focusInput(id): void {
         const noFocusableWindows = ["ornaments", "guild", "spells", "quests", "alliance", "alignment"];
-        if (noFocusableWindows.includes(id)) {
-            return;
-        }
+        if (noFocusableWindows.includes(id)) return;
+        
         requestAnimationFrame(() => {
-<<<<<<< HEAD
-            const e: any = this.wGame.document.querySelector(this.focusableWindows[id] + ' .InputBox input')
+            const e: any = this.wGame.document.querySelector(this.focusableWindows[id] + ' .InputBox input');
             e.focus();
-=======
-            this.wGame.document.querySelector(this.focusableWindows[id] + ' .InputBox input').focus()
->>>>>>> Prepare 2.7.2
         });
     }
 }
