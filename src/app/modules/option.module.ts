@@ -880,7 +880,7 @@ export namespace Option {
                 this.settingsProvider.write('option.vip.general.dtmap_shortcut', dtmap_shortcut);
                 this._dtmap_shortcut = dtmap_shortcut;
             }
-
+            
             get challpercent(): boolean {
                 return this._challpercent;
             }
@@ -889,6 +889,7 @@ export namespace Option {
                 this.settingsProvider.write('option.vip.general.challpercent', challpercent);
                 this._challpercent = challpercent;
             }
+
 
             constructor(private settingsProvider: SettingsProvider) {
                 this.disable_inactivity = this.settingsProvider.read('option.vip.general.disable_inactivity');
