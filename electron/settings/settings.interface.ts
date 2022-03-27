@@ -93,6 +93,8 @@ export interface SettingsInterface {
                 party_member_on_map: boolean;
                 monster_tooltip: boolean;
                 monster_tooltip_shortcut: string;
+                challpercent: boolean;
+                verticaltimeline: boolean;
             },
             auto_group: {
                 active: boolean;
