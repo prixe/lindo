@@ -75,7 +75,7 @@ export class Shortcuts extends Mod {
 
         // Open menu
         this.shortcutsHelper.bind(this.params.diver.open_menu, () => {
-            this.wGame.gui.mainControls.buttonBox._childrenList[14].tap()
+            this.wGame.gui.mainControls.buttonBox._childrenList[15].tap()
         });
 
         // Spell
