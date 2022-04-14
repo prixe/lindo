@@ -37,7 +37,7 @@
     "@electron/remote": "^1.1.0",
     "@ngx-translate/core": "~13.0.0",
     "@ngx-translate/http-loader": "~6.0.0",
-    "async": "~3.2.0",
+    "async": "~3.2.2",
     "axios": "^0.21.2",
     "axios-retry": "^3.1.9",
     "compare-versions": "~3.6.0",
