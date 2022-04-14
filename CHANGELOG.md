@@ -2,6 +2,12 @@
 ## ⚠ CERTAINS SITES MALVEILLANTS INSTALLERONT UN VIRUS SUR VOTRE ORDINATEUR
 
 
+## [2.7.3] - 2022-04-14
+
+### Correctifs
+- Correction de la touche échap qui n'ouvrait plus le menu suite à une mise à jour du jeu
+- Les paramètres ne devraient plus se réinitialiser en activant certaines options (affichage bonus challenge, timeline verticale)
+
 ## [2.7.2] - 2022-02-09
 
 ### Ajouts
