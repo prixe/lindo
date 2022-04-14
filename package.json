@@ -77,7 +77,7 @@
     "@typescript-eslint/eslint-plugin": "^4.20.0",
     "@typescript-eslint/parser": "^4.20.0",
     "doctoc": "~2.0.0",
-    "electron": "12.1.0",
+    "electron": "13.6.6",
     "electron-builder": "~22.10.5",
     "electron-packager": "~15.2.0",
     "eslint": "^7.23.0",
