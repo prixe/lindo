@@ -178,7 +178,7 @@ The config used by angular in `$ ng build (--configuration=production)` is at an
 
 
 ### How to help ?
-You can contact a senior developer of the project as [Clover](https://github.com/Clover-Lindo) or [Prixe](https://github.com/prixe). Or you can eventually join our [Discord](https://discord.gg/wcCgtsv).
+You can contact a senior developer of the project as [Clover](https://github.com/Clover-Lindo) or [Prixe](https://github.com/prixe).
 Then you can create a pull request to add or fix features, you can also submit improvement idea or bug issue in the [issues section](https://github.com/prixe/lindo/issues).
 
 ### Generate the TOC
