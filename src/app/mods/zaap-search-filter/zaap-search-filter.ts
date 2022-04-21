@@ -8,7 +8,6 @@ export class ZaapSearchFilter extends Mod {
     private placeholderZaapi: string;
     private placeholderPrisme: string;
 
-
     startMod(): void {
         this.params = this.settings.option.vip.general.zaapsearchfilter;
         this.inputPlaceholder = this.translate.instant("app.option.vip.zaapsearchfilter.placeholder");
@@ -37,17 +36,12 @@ export class ZaapSearchFilter extends Mod {
             this.on(this.wGame.connectionManager, "LeaveDialogMessage", () => {
                 this.resetSearchFilter();
             });
-            const favori = localStorage.getItem('zaapFav')
-            if (favori == null || favori == '') {
-                localStorage.setItem('zaapFav', '')
-            }
         }
     }
 
     // Zaap
     private createSearchFilter(): void {
         this.injectInputInDom();
-        this.addFavInDom();
 
         this.zaapSearchInput.addEventListener("keyup", () => {
             const zaapWanted = this.zaapSearchInput.value.toLowerCase();
@@ -120,96 +114,9 @@ export class ZaapSearchFilter extends Mod {
 
     }
 
-    private addFavInDom() {
-        let zaapList = this.wGame.document.getElementsByClassName("lindo_zaapBodyHeight__custom")[0].getElementsByClassName("row");
-
-        // Ajout de l'étoile fovori (rempli ou non)
-        for (let index = 1; index < zaapList.length - 1; index++) {
-            const currentZaap = zaapList[index];
-
-            const divVide = currentZaap.getElementsByClassName("col")[0]
-            if (divVide.innerHTML == '') {
-                const idzaap = currentZaap.getElementsByClassName("col")[1].getElementsByClassName("destinationName")[0]
-                if (idzaap != undefined) {
-                    const actionButton = (divButton, zaap) => {
-                        const favori = localStorage.getItem('zaapFav')
-                        const favoriArray = favori.split(',')
-                        let unfav = 0
-                        for (let index = 0; index < favoriArray.length; index++) {
-                            if (favoriArray[index] == zaap) {
-                                unfav = index
-                            }
-                        }
-                        if (unfav != 0) {
-                            favoriArray.splice(unfav, 1)
-                            divButton.innerHTML = `
-                            <img width="25" height="24" src="./assets/ui/icons/greyStar.png">
-                            `
-                        } else {
-                            divButton.innerHTML = `
-                            <img width="25" height="24" src="./assets/ui/icons/goldenStar.png">
-                            `
-                            favoriArray.push(zaap)
-                        }
-                        localStorage.setItem('zaapFav', favoriArray.toString())
-                    }
-
-                    const divButton = document.createElement('div')
-                    divButton.onclick = () => {
-                        actionButton(divButton, idzaap.innerHTML)
-                    }
-
-                    const favorii = localStorage.getItem('zaapFav')
-                    const favoriArrayy = favorii.split(',')
-                    let trouver = false
-                    for (let index = 0; index < favoriArrayy.length; index++) {
-                        if (favoriArrayy[index] == idzaap.innerHTML) {
-                            trouver = true
-                        }
-                    }
-
-                    if (trouver) {
-                        divButton.innerHTML = `
-                        <img width="25" height="24" src="./assets/ui/icons/goldenStar.png">
-                        `
-                    } else {
-                        divButton.innerHTML = `
-                        <img width="25" height="24" src="./assets/ui/icons/greyStar.png">
-                        `
-                    }
-
-                    divVide.appendChild(divButton)
-                }
-            }
-        }
-
-        //on met les favori "en haut"
-        zaapList = this.wGame.document.getElementsByClassName("lindo_zaapBodyHeight__custom")[0].getElementsByClassName("row");
-        let saveIndex = 1
-        for (let index = 1; index < zaapList.length - 1; index++) {
-            const currentZaap = zaapList[index];
-            const idzaap = currentZaap.getElementsByClassName("col")[1].getElementsByClassName("destinationName")[0];
-            const favorii = localStorage.getItem('zaapFav');
-            const favoriArrayy = favorii.split(',');
-            let trouver = false
-            for (let index = 0; index < favoriArrayy.length; index++) {
-                if (idzaap != undefined)
-                    if (favoriArrayy[index] == idzaap.innerHTML) {
-                        trouver = true
-                    }
-            }
-            if (trouver) {
-                currentZaap.parentNode.prepend(currentZaap);
-                saveIndex++
-                index = saveIndex
-            }
-        }
-    }
-
     // Prisme
     private createSearchFilterPrisme(): void {
         this.injectInputInDomPrisme();
-        this.addFavInDomPrism(); // Fav Prisme
 
         this.zaapSearchInput.addEventListener("keyup", () => {
             const zaapWanted = this.zaapSearchInput.value.toLowerCase();
@@ -281,96 +188,9 @@ export class ZaapSearchFilter extends Mod {
         });
     }
 
-    private addFavInDomPrism() {
-        let zaapList = this.wGame.document.getElementsByClassName("lindo_prismeBodyHeight__custom")[0].getElementsByClassName("row");
-
-        // Ajout de l'étoile fovori (rempli ou non)
-        for (let index = 1; index < zaapList.length - 1; index++) {
-            const currentZaap = zaapList[index];
-
-            const divVide = currentZaap.getElementsByClassName("col")[0]
-            if (divVide.innerHTML == '') {
-                const idzaap = currentZaap.getElementsByClassName("col")[1].getElementsByClassName("destinationName")[0]
-                if (idzaap != undefined) {
-                    const actionButton = (divButton, zaap) => {
-                        const favori = localStorage.getItem('zaapFav')
-                        const favoriArray = favori.split(',')
-                        let unfav = 0
-                        for (let index = 0; index < favoriArray.length; index++) {
-                            if (favoriArray[index] == zaap) {
-                                unfav = index
-                            }
-                        }
-                        if (unfav != 0) {
-                            favoriArray.splice(unfav, 1)
-                            divButton.innerHTML = `
-                            <img width="25" height="24" src="./assets/ui/icons/greyStar.png">
-                            `
-                        } else {
-                            divButton.innerHTML = `
-                            <img width="25" height="24" src="./assets/ui/icons/goldenStar.png">
-                            `
-                            favoriArray.push(zaap)
-                        }
-                        localStorage.setItem('zaapFav', favoriArray.toString())
-                    }
-
-                    const divButton = document.createElement('div')
-                    divButton.onclick = () => {
-                        actionButton(divButton, idzaap.innerHTML)
-                    }
-
-                    const favorii = localStorage.getItem('zaapFav')
-                    const favoriArrayy = favorii.split(',')
-                    let trouver = false
-                    for (let index = 0; index < favoriArrayy.length; index++) {
-                        if (favoriArrayy[index] == idzaap.innerHTML) {
-                            trouver = true
-                        }
-                    }
-
-                    if (trouver) {
-                        divButton.innerHTML = `
-                        <img width="25" height="24" src="./assets/ui/icons/goldenStar.png">
-                        `
-                    } else {
-                        divButton.innerHTML = `
-                        <img width="25" height="24" src="./assets/ui/icons/greyStar.png">
-                        `
-                    }
-
-                    divVide.appendChild(divButton)
-                }
-            }
-        }
-
-        //on met les favori "en haut"
-        zaapList = this.wGame.document.getElementsByClassName("lindo_prismeBodyHeight__custom")[0].getElementsByClassName("row");
-        let saveIndex = 1
-        for (let index = 1; index < zaapList.length - 1; index++) {
-            const currentZaap = zaapList[index];
-            const idzaap = currentZaap.getElementsByClassName("col")[1].getElementsByClassName("destinationName")[0];
-            const favorii = localStorage.getItem('zaapFav');
-            const favoriArrayy = favorii.split(',');
-            let trouver = false
-            for (let index = 0; index < favoriArrayy.length; index++) {
-                if (idzaap != undefined)
-                    if (favoriArrayy[index] == idzaap.innerHTML) {
-                        trouver = true
-                    }
-            }
-            if (trouver) {
-                currentZaap.parentNode.prepend(currentZaap);
-                saveIndex++
-                index = saveIndex
-            }
-        }
-    }
-
     // Zaapi
     private createSearchFilterZaapi(): void {
         this.injectInputInDomZaapi();
-        this.addFavInDomZaapi(); // Fav Zaapi
 
         this.zaapSearchInput.addEventListener("keyup", () => {
             const zaapWanted = this.zaapSearchInput.value.toLowerCase();
@@ -440,93 +260,6 @@ export class ZaapSearchFilter extends Mod {
             this.zaapSearchInput.focus()
             this.zaapSearchInput.select()
         });
-    }
-
-    // Zaapi Favoris
-    private addFavInDomZaapi() {
-        let zaapList = this.wGame.document.getElementsByClassName("lindo_subwayBodyHeight__custom")[0].getElementsByClassName("row");
-
-        // Ajout de l'étoile fovori (rempli ou non)
-        for (let index = 1; index < zaapList.length - 1; index++) {
-            const currentZaap = zaapList[index];
-
-            const divVide = currentZaap.getElementsByClassName("col")[0]
-            if (divVide.innerHTML == '') {
-                const idzaap = currentZaap.getElementsByClassName("col")[1].getElementsByClassName("destinationName")[0]
-                if (idzaap != undefined) {
-                    const actionButton = (divButton, zaap) => {
-                        const favori = localStorage.getItem('zaapFav')
-                        const favoriArray = favori.split(',')
-                        let unfav = 0
-                        for (let index = 0; index < favoriArray.length; index++) {
-                            if (favoriArray[index] == zaap) {
-                                unfav = index
-                            }
-                        }
-                        if (unfav != 0) {
-                            favoriArray.splice(unfav, 1)
-                            divButton.innerHTML = `
-                            <img width="25" height="24" src="./assets/ui/icons/greyStar.png">
-                            `
-                        } else {
-                            divButton.innerHTML = `
-                            <img width="25" height="24" src="./assets/ui/icons/goldenStar.png">
-                            `
-                            favoriArray.push(zaap)
-                        }
-                        localStorage.setItem('zaapFav', favoriArray.toString())
-                    }
-
-                    const divButton = document.createElement('div')
-                    divButton.onclick = () => {
-                        actionButton(divButton, idzaap.innerHTML)
-                    }
-
-                    const favorii = localStorage.getItem('zaapFav')
-                    const favoriArrayy = favorii.split(',')
-                    let trouver = false
-                    for (let index = 0; index < favoriArrayy.length; index++) {
-                        if (favoriArrayy[index] == idzaap.innerHTML) {
-                            trouver = true
-                        }
-                    }
-
-                    if (trouver) {
-                        divButton.innerHTML = `
-                        <img width="25" height="24" src="./assets/ui/icons/goldenStar.png">
-                        `
-                    } else {
-                        divButton.innerHTML = `
-                        <img width="25" height="24" src="./assets/ui/icons/greyStar.png">
-                        `
-                    }
-
-                    divVide.appendChild(divButton)
-                }
-            }
-        }
-
-        // On met les favori "en haut"
-        zaapList = this.wGame.document.getElementsByClassName("lindo_subwayBodyHeight__custom")[0].getElementsByClassName("row");
-        let saveIndex = 1
-        for (let index = 1; index < zaapList.length - 1; index++) {
-            const currentZaap = zaapList[index];
-            const idzaap = currentZaap.getElementsByClassName("col")[1].getElementsByClassName("destinationName")[0];
-            const favorii = localStorage.getItem('zaapFav');
-            const favoriArrayy = favorii.split(',');
-            let trouver = false
-            for (let index = 0; index < favoriArrayy.length; index++) {
-                if (idzaap != undefined)
-                    if (favoriArrayy[index] == idzaap.innerHTML) {
-                        trouver = true
-                    }
-            }
-            if (trouver) {
-                currentZaap.parentNode.prepend(currentZaap);
-                saveIndex++
-                index = saveIndex
-            }
-        }
     }
 
     private resetSearchFilter(): void {
