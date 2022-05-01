@@ -17,5 +17,6 @@ export { RapidExchange } from "./rapid-exchange/rapid-exchange";
 export { RuneOpenerList } from "./rune-lister/runeOpenerLister";
 export { Shortcuts } from "../mods/shortcuts/shortcuts";
 export { ShowResources } from "./show-resources/show-resources";
+export { SpellScroll } from "./spell-scroll/spell-scroll";
 export { VerticalTimeline } from "./vertical-timeline/vertical-timeline";
 export { ZaapSearchFilter } from "./zaap-search-filter/zaap-search-filter";

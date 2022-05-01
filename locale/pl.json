@@ -238,6 +238,9 @@
         },
         "jobsxp": {
           "text": " XP brakuje<br>do poziomu "
+        },
+        "spellscroll": {
+          "spellScrollUsed": "Użyte zwoje zaklęć:"
         }
       },
       "general": {

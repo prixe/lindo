@@ -241,6 +241,9 @@
         "monstertooltip": {
           "level": "Rang",
           "group": "Groupe"
+        },
+        "spellscroll": {
+          "spellScrollUsed": "Parchemins de sorts utilisés :"
         }
       },
       "general": {
