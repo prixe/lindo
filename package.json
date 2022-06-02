@@ -52,7 +52,7 @@
     "ngx-chips": "~2.2.2",
     "ngx-sortablejs": "^11.1.0",
     "node-translate": "~0.0.4",
-    "npm": "^7.20.1",
+    "npm": "^8.11.0",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.7",
     "safe-pipe": "^1.0.3",
