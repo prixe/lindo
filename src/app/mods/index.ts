@@ -13,6 +13,7 @@ export { MonsterTooltip } from "./monsterTooltip/monsterTooltip";
 export { Notifications } from "../mods/notifications/notifications";
 export { PartyInfo } from "./party-info/party-info";
 export { PartyMember } from "./party-info/party-member-on-map";
+export { QtyInventoryBidHouse } from "./qty-inventory-bid-house/qty-inventory-bid-house";
 export { RapidExchange } from "./rapid-exchange/rapid-exchange";
 export { RuneOpenerList } from "./rune-lister/runeOpenerLister";
 export { Shortcuts } from "../mods/shortcuts/shortcuts";
