@@ -48,9 +48,27 @@
     "description": "Lindo Client for Linux",
     "icon": "resources/icon.png",
     "target": [
-      "AppImage",
-      "tar.gz",
-      "deb"
+      {
+        "target": "AppImage",
+        "arch": [
+          "x64",
+          "arm64"
+        ]
+      },
+      {
+        "target": "tar.gz",
+        "arch": [
+          "x64",
+          "arm64"
+        ]
+      },
+      {
+        "target": "deb",
+        "arch": [
+          "x64",
+          "arm64"
+        ]
+      }
     ],
     "mimeTypes": [
       "application/x-binary"
