@@ -1,131 +1,75 @@
-# Lindo
-[![Build Status](https://travis-ci.org/prixe/lindo.svg?branch=master)](https://travis-ci.org/prixe/lindo)
-[![npm](https://img.shields.io/badge/npm-%3E%3D%205.6.0-blue.svg)]()
-[![node](https://img.shields.io/badge/node-%3E%3D%2010.0.0-green.svg)]()
-[![Github All Releases](https://img.shields.io/github/downloads/prixe/lindo/total.svg)]()
+# Lindo POC
+
+## Overview
+This project is a rewrite of the `Lindo` application with the latest technologies under React, Typescript, Vite and electron and security in mind. It will also featuring dynamic plugin integration with systemJS and rollup.
+It also provide an easy way to share the application state across the browsers and the electron process with mobx and a synchronisation with IPC (heavely inspired by [electron-vite-boilerplate](https://github.com/klarna/electron-redux) ).
 
 
-
-Lindo allow you to play DofusTouch without android emulator, it's entirely coded in javascript via electron & angular. Lindo is totally corss-platform.
-
-**/!\ Dofus Touch is the entire property of Ankama Games, and we are not affiliated in any way with Ankama. None of the files hosted in this repository is under copyright: They come from Open Source projects, libraries, the original DofusTouch No-Emu created by Daniel & Thomas, and our own Team (Lindo). Also, this project is for educational purposes only, we will never make any money from it.**
-
-**Keep in mind that Lindo doesn't respect the TOU (also known as Conditions Générales d'Utilisation in french) of Dofus Touch, use it at your own risk.**
-
-## Supported Platform
-Lindo No-Emu works on :
-- **Windows** 7 and newer (ia32/amd64) 
-- **macOS** 10.9 and newer
-- **Linux** (Debian >= 8, Ubuntu >= 12, Fedora >= 21) (ia32/amd64)
-
-## Table of contents
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-
-- [Community](#community)
-- [Installation](#installation)
-  - [Prerequisites](#prerequisites)
-    - [Node.js](#nodejs)
-    - [Gulp](#gulp)
-  - [Build Lindo](#build-lindo)
-- [Start project in dev mode](#start-project-in-dev-mode)
-- [Distribution building](#distribution-building)
-  - [Windows](#windows)
-  - [Linux](#linux)
-  - [macOS](#macos)
-- [Development](#development)
-  - [Introduction](#introduction)
-  - [How to help ?](#how-to-help-)
-  - [Generate the TOC](#generate-the-toc)
-  - [Structure of the application](#structure-of-the-application)
-- [License](#license)
-- [Credits](#credits)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-## Community
-- [Discord](https://discord.gg/xdt5J4N)
-- [Trello](https://trello.com/b/d1mc9DeS/lindo)
-
-## Installation 
-### Prerequisites
-#### Node.js
-- Windows : [Website](https://nodejs.org)
-- Linux
-```sh
-$ apt-get install nodejs
-```
-- macOS
-```sh
-$ brew install nodejs
-```
-#### Gulp
-```sh
-$ npm install -g gulp
-```
-### Build Lindo
-```sh
-$ git clone https://github.com/prixe/lindo.git
-$ cd lindo
-$ npm install
+## Run the arm64 mac os version for M1/M2 processors
+![Issue with arm64 build](./screenshots/arm64-issue.png)
+- Drop the **Lindo.app** into your `/Applications` folder
+- Then open the `Terminal` application and run the following command:
+```bash
+xattr -d com.apple.quarantine /Applications/Lindo.app
 ```
 
-## Start project in dev mode
-Compile electron typescript source and angular source in developpement mode with a watcher :
+## Quick start
+TODO 
+
+## Debug
+
+<!--
 ```sh
-$ npm start
+# install dependencies
+yarn install
+
+# start the application
+yarn dev
+
+# make a production build
+yarn build
 ```
-## Distribution building
-If you want to make a release for a specific system you can use this command :
-### Windows
-On a windows environment :
-```sh
-$ npm run release:windows
-```
-On a unix system (require docker)
-```sh
-$ docker-compose up
-```
-### Linux
-```sh
-$ npm run release:linux
-```
-### macOS
-Only available on macOS system :
-```sh
-$ npm run release:mac
-```
+-->
 
-## Development
-### Introduction
-**Lindo** is developed with [Angular](https://angular.io/) as web framework and uses [Material](https://material.angular.io/) for the UI. It uses [electron](https://github.com/electron/electron) to be run as an standalone application, wich is based on Node.js and Chromium.
+## Directory structure
 
-So we have to distinguish 2 contexts :
-- **Renderer context** -> executed by Chromium (the Angular part) 
-- **Electron (main) context** -> executed by Node.js (it's allow platform interaction)
+Once `dev` or `build` npm-script is executed, the `dist` folder will be generated. It has the same structure as the `packages` folder, the purpose of this design is to ensure the correct path calculation.
 
-Renderer context is in the ```src/renderer/```folder and main context is in the ```src/`main/`` folder.
-
-
-The idea is to simulate the environment Dofus Touch to run it on PC, because Dofus Touch is based on [Apache Cordova](https://cordova.apache.org/).
-
-### How to help ?
-You can contact a senior developer of the project as [Clover](https://github.com/Clover-Lindo) or [Prixe](https://github.com/prixe). Or you can eventually join our [Discord](https://discord.gg/wcCgtsv).
-Then you can create a pull request to add or fix features, you can also submit improvement idea or bug issue in the [issues section](https://github.com/prixe/lindo/issues).
-
-### Generate the TOC 
-If you edit the README.MD you wanna update the table of contents you can easily achieve it by using this command :
-```sh
-$ npm run toc
+```tree
+├── build                     Resources for the production build
+|   ├── icon.icns             Icon for the application on macOS
+|   ├── icon.ico              Icon for the application
+|   ├── installerIcon.ico     Icon for the application installer
+|   └── uninstallerIcon.ico   Icon for the application uninstaller
+|
+├── dist                      Generated after build according to the "packages" directory
+|   ├── main
+|   ├── preload
+|   └── renderer
+|
+├── release                   Generated after production build, contains executables
+|   └──{version}
+|       ├── win-unpacked      Contains unpacked application executable
+|       └── Setup.exe         Installer for the application
+|
+├── scripts
+|   ├── build.mjs             Develop script -> npm run build
+|   └── watch.mjs             Develop script -> npm run dev
+|
+├── packages
+|   ├── main                  Main-process source code
+|   |   └── vite.config.ts
+|   ├── preload               Preload-script source code
+|   |   └── vite.config.ts
+|   └── renderer              Renderer-process source code
+|       └── vite.config.ts
 ```
 
-### Structure of the application
-[TODO]
 
-## License
-**Lindo** is under GNU GPLv3 read [LICENCE](https://github.com/prixe/lindo/blob/master/LICENCE)
+## `dependencies` vs `devDependencies`
 
-## Credits
-- Daniel & Thomas for created the original **No-Emu**
-- Ankama which allows us to increase our competences without legal consequence
+- First, you need to know if your dependencies are needed after the application is packaged.
+
+- Like [serialport](https://www.npmjs.com/package/serialport), [sqlite3](https://www.npmjs.com/package/sqlite3) they are node-native modules and should be placed in `dependencies`. In addition, Vite will not build them, but treat them as external modules.
+
+- Dependencies like [Vue](https://www.npmjs.com/package/vue) and [React](https://www.npmjs.com/package/react), which are pure javascript modules that can be built with Vite, can be placed in `devDependencies`. This reduces the size of the application.

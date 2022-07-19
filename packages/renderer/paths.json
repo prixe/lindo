@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@lindo/shared": [
+        "../shared/index.ts"
+      ],
+      "@lindo/i18n": [
+        "../i18n/index.ts"
+      ]
+    }
+  }
+}

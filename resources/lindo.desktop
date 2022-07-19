@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Lindo
+Comment=Dofus Touch Desktop Client
+Exec="/opt/Lindo/Lindo" %U
+Icon=/opt/Lindo/build/icon.svg
+Terminal=false
+Type=Application
+Categories=Game;
+Keywords=Games
+MimeType=application/x-executable;

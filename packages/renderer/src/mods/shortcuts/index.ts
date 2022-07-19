@@ -1,0 +1,1 @@
+export { ShortcutsMod } from './shortcuts'

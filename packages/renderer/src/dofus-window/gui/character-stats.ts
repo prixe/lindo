@@ -1,0 +1,33 @@
+export interface CharacterStats {
+  shieldPoints: number
+  maxLifePoints: number
+  lifePoints: number
+  pushDamageFixedResist: number
+  waterElementReduction: number
+  criticalDamageFixedResist: number
+  neutralElementReduction: number
+  earthElementReduction: number
+  airElementReduction: number
+  fireElementReduction: number
+  waterElementResistPercent: number
+  neutralElementResistPercent: number
+  earthElementResistPercent: number
+  airElementResistPercent: number
+  fireElementResistPercent: number
+  waterDamageBonus: number
+  neutralDamageBonus: number
+  earthDamageBonus: number
+  airDamageBonus: number
+  fireDamageBonus: number
+  damagesBonusPercent: number
+  allDamagesBonus: number
+  criticalDamageBonus: number
+  pushDamageBonus: number
+  vitality: number
+  healBonus: number
+  chance: number
+  strength: number
+  agility: number
+  intelligence: number
+  wisdom: number
+}

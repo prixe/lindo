@@ -1,3 +1,216 @@
+## ⚠ ATTENTION, VÉRIFIEZ QUE VOUS TÉLÉCHARGEZ LINDO DEPUIS LINDO-APP.COM
+## ⚠ CERTAINS SITES MALVEILLANTS INSTALLERONT UN VIRUS SUR VOTRE ORDINATEUR
+
+
+## [2.7.3] - 2022-04-14
+
+### Correctifs
+- Correction de la touche échap qui n'ouvrait plus le menu suite à une mise à jour du jeu
+- Les paramètres ne devraient plus se réinitialiser en activant certaines options (affichage bonus challenge, timeline verticale)
+
+## [2.7.2] - 2022-02-09
+
+### Ajouts
+- Focus automatiquement les inputs dans les nouvelles fenêtres
+- Afficher le bonus XP/Drop des challenges
+- Affiche le nombre de pods disponibles
+
+## [2.7.1] - 2022-02-04
+
+### Amelioration
+- Optimisation de Lindo pour jouer avec plus de comptes
+
+### Correctifs
+- Correction de l'auto-follow de groupe
+- Correction du raccourci pour l'affichage des monstres sur la carte
+- Correction du raccourci pour l'affichage des ressources sur la carte
+- Correction de l'affichage des numéros de version
+
+## [2.7.0] - 2021-12-25
+
+### Ajout
+- Ajout du portugais
+- Possibilité de supprimer les délais (timers) pour le suivi automatique
+- Déplacement synchronisé et sauvegarde des menus entre les personnages (Groupe, Challenge, Timeline de combat, Notification, État/Buff (transformation, bonbon, ...))
+- Possibilité de mettre la timeline des combattants en vertical
+
+### Améliorations
+- Affichage des raccourcis dans les options de Lindo
+
+### Correctifs
+- Désactivation automatique de l'option béta en cas d'erreur au chargement de Lindo
+
+### Suppression
+- Cacher les montures en combat (option implémentée par Ankama)
+
+## [2.6.5] - 2021-12-17
+
+### Ajout
+- Lors de l'ouverture des Fragments Magiques, avoir un message dans le canal Info contenant les runes découvertes
+- Possibilité de définir la résolution de Lindo en plein écran
+
+## [2.6.4] - 2021-11-12
+
+### Améliorations
+- Mise à jour des User Agents utilisés
+
+### Correctifs
+- Mise à jour de la compatibilité avec la version Beta de Dofus Touch
+
+## [2.6.3] - 2021-10-12
+
+### Ajouts
+- Raccourci pour l'historique des messages envoyés
+
+### Correctifs
+- Valeur par défaut pour l'affichage de l'xp des groupes de monstres
+
+## [2.6.2] - 2021-09-24
+
+### Correctifs
+- Correction de la double barre des ressources présentes sur la carte après l'utilisation du raccourcis
+
+## [2.6.1] - 2021-09-14
+
+### Améliorations
+- Changement des icons pour les zaap/zaapi favoris
+- L'xp des groupes de monstres prend maintenant compte de l'xp donné à la guide/monture/etc
+
+### Correctifs
+- Correction du calcul de l'xp pour les groupes de monstres
+
+## [2.6.0] - 2021-08-12
+
+### Ajouts
+- Ajout d'une barre sous chaque ressource utilisée permettant de visualiser le temps restant
+- Ajout d'une icône sur les membres de groupes pour savoir s'il sont sur la même map
+- Ajout de favoris pour les zaaps
+- Ajout d'un affichage des ressources présentes sur la carte
+- Ajout d'une notification lors de la vente d'un objet en hôtel de vente
+- Ajout de flèches pour naviguer entre les marchands sur une carte
+- Ajout de bulles d'informations sur les groupes de monstres
+
+### Améliorations
+- Ajout de l’icône dans le build .deb
+- Agrandissement du rond focus
+- Amélioration de l'affichage et de la stabilité des barres de vie
+
+### Correctifs
+- Amélioration de la stabilité lors du téléchargement du jeu (problème de téléchargement infini)
+- Crash de Lindo avec le déplacement rapide lorsque la case est inaccessible
+- Corrections de l'estimation des dégâts
+- Correction du raccourci de l'Almanax
+
+### Suppression
+- Possibilité de choisir la position du champ texte du chat (option implémentée par Ankama)
+
+## [2.5.4] - 2021-04-13
+
+### Ajouts
+- Possibilité de choisir la position du champ texte du chat
+
+## [2.5.3] - 2021-04-04
+
+### Correctifs
+- Mise à jour les liens du site de Lindo pour qu'ils pointent vers la nouvelle adresse: https://lindo-app.com
+
+## [2.5.2] - 2020-11-14
+
+### Améliorations
+
+- Améliorations de l'auto follow
+- Améliorations du déplacement rapide entre les maps
+- Ajout de logs lors du téléchargement des mises à jour de Dofus Touch
+
+## [2.5.1] - 2020-11-01
+
+### Correctifs
+
+- Correction du mod d'échange rapide qui ne fonctionnait plus
+- Il est de nouveau possible de désactiver la prévisualisation des dégâts
+
+## [2.5.0] - 2020-11-01
+
+### Ajouts
+
+- Ajout d'un champ de recherche pour filtrer les Zaaps et Zaapis
+- Ajout des traductions polonaises et turques
+
+### Améliorations
+
+- Toutes les versions sont affichées dans le changelog inclus dans Lindo
+- Amélioration de la stabilité du téléchargement des mises à jour de Dofus Touch
+- Il n'est plus possible de fermer la fenêtre de ReCaptcha avec la touche Echap
+- Amélioration de l'exécutable compilé pour Linux
+- Mise à jour des User Agents utilisés
+
+### Correctifs
+
+- Amélioration des traductions espagnole et italienne
+- Lorsque l'audio est désactivé, il ne se réactive plus en sauvegardant les paramètres ou en relançant Lindo
+- Corrections de bugs sur les mods suivants :
+  - Chronomètre en combat
+  - Affichage de l'expérience métier
+  - Échange rapide
+  - Invitation auto
+  - Auto follow
+- L'avertissement quand on tente d'ouvrir un 7e onglet s'affiche maintenant à l'ouverture du 6e onglet
+- Correction de l'alignement de certains éléments sur l'interface
+
+## [2.4.0] - 2020-02-15
+
+### Modifications
+
+- Il n'est plus nécessaire de renseigner le mot de passe maître pour supprimer les comptes enregistrés
+- Désactivation du rapport d'erreur automatique
+- Il est désormais possible de jouer sur la version Early de Dofus Touch avec Lindo
+- Mise à jour de la disposition des options générales
+- Les échanges peuvent être refusés avec Echap
+- Une nouvelle fonctionnalité activable permet d'afficher dans la timeline le temps passé en combat
+- Double-cliquer sur un sort permet de l'utiliser instantanément sur soi-même
+
+## [2.3.2] - 2019-10-02
+
+### Modifications
+
+- Forçage du rendu des onglets en arrière plan (corrige le mauvais affichage des résultats de combat)
+- Envoi des erreurs automatisés, et anonymisation de l'adresse IP
+
+## [2.3.1] - 2019-09-29
+
+### Ajouts
+
+- Possibilité d'effectuer un rapport de bug auquel sont attachées les précédentes erreurs survenue au cours de l'exécution de Lindo
+- Les ajouts des version 2.2.1, 2.2.2 et 2.2.3 n'étaient pas présentent dans la 2.3.0. Ils le sont dans la 2.3.1.
+
+## [2.3.0] - 2019-03-30
+
+### Améliorations
+
+- La prévisualisation du niveau et de la prospection peuvent être activées ou désactivées séparément
+- Appuyer sur Echap lorsqu'aucune fenêtre n'est ouverte ouvrira le menu
+- Un raccourci clavier supplémentaire pour ouvrir ce menu a été ajouté
+- Mise à jour des dépendances, dont Electron
+
+## [2.2.3] - 2019-09-29
+
+### Ajouts
+
+- Nouvelle fonctionnalité pour afficher l'XP restante avant de monter un niveau métier
+- Raccourci pour changer de map avec les flèches du clavier
+
+## [2.2.2] - 2019-08-03
+
+### Améliorations
+
+- Ajout d'une option pour désactiver l'ouverture du menu avec la touche Echap
+
+## [2.2.1] - 2019-06-19
+
+### Bugs
+
+- Une tentative de suppression d'assets manquants ne bloque plus la mise à jour
+
 ## [2.2.0] - 2018-12-21
 
 ### Ajouts
@@ -11,14 +224,14 @@
 - Mise à jour de la section "À propos"
 - Support de l'italien
 
-## [2.1.3] - 2018-05-20
+## [2.1.3] - 2018-09-16
 
 ### Bugs
 
 - L'estimation des dégâts est désormais fonctionnelle et compatible avec la version 1.35 de DofusTouch
 - Annulation des mises à jours de librairies effectuées pour Lindo v2.1.2, provoquant une non-compatibilité sur Mac. Solution temporaire qui nous donnera le temps de trouver ce qui posait problème.
 
-## [2.1.2] - 2018-05-20
+## [2.1.2] - 2018-08-28
 
 ### Améliorations
 

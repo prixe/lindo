@@ -1,0 +1,48 @@
+.tab {
+  width: 56px;
+  height: 56px;
+  cursor: pointer;
+  display: block;
+  margin: 7px auto 0 auto;
+  border-radius: 50%;
+  line-height: 1.3;
+  font-weight: 200;
+  font-size: 40px;
+  text-align: center;
+
+  &.tab-game {
+    opacity: .7;
+    border-width: 1px;
+    border-style: solid;
+    position: relative;
+    
+    .icon-char {
+      overflow: hidden;
+      border-radius: 100%;
+      width: 100%;
+      height: 100%;
+      display: none;
+    }
+    .tab-close {
+      display: none;
+    }
+    &:hover {
+      .tab-close {
+        display: block;
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        top: 0;
+        right: 0;
+        line-height: 1;
+        background: white;
+        color: black;
+      }
+    }
+    &.notification {
+      opacity: 1;
+      animation: blink 1.5s linear infinite;
+    }
+  }
+}

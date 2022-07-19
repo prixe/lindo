@@ -1,39 +1,60 @@
 {
-  "productName": "lindo",
+  "appId": "com.lindo.app",
+  "productName": "Lindo",
+  "copyright": "Copyright © 2022 Zenox, Prixe",
+  "asar": true,
   "directories": {
-    "output": "release/",
-    "buildResources": "build/"
+    "output": "release/${version}",
+    "buildResources": "resources"
   },
-    "files": [
-        "**/*",
-        "!**/*.ts",
-        "!*.code-workspace",
-        "!LICENSE.md",
-        "!package.json",
-        "!package-lock.json",
-        "!src/",
-        "!e2e/",
-        "!hooks/",
-        "!angular.json",
-        "!_config.yml",
-        "!karma.conf.js",
-        "!tsconfig.json",
-        "!tslint.json"
-    ],
+  "files": [
+    "dist",
+    "CHANGELOG.md",
+    "LICENCE"
+  ],
   "win": {
+    "icon": "resources/icon.ico",
     "target": [
+      "zip",
       "portable",
-      "nsis"
+      {
+        "target": "nsis",
+        "arch": [
+          "x64"
+        ]
+      }
     ]
+  },
+  "nsis": {
+    "oneClick": false,
+    "perMachine": false,
+    "allowToChangeInstallationDirectory": true,
+    "deleteAppDataOnUninstall": false
   },
   "mac": {
     "target": [
-      "dmg"
-    ]
+      {
+        "target": "dmg",
+        "arch": [
+          "x64",
+          "arm64"
+        ]
+      }
+    ],
+    "category": "public.app-category.games"
   },
   "linux": {
+    "executableName": "Lindo",
+    "description": "Lindo Client for Linux",
+    "icon": "resources/icon.png",
     "target": [
-      "AppImage"
-    ]
+      "AppImage",
+      "tar.gz",
+      "deb"
+    ],
+    "mimeTypes": [
+      "application/x-binary"
+    ],
+    "maintainer": "Prixe"
   }
 }

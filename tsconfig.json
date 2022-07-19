@@ -1,23 +1,17 @@
 {
+  "extends": "./paths.json",
   "compilerOptions": {
-    "sourceMap": true,
-    "declaration": false,
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "target": "es5",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2018",
-      "es2017",
-      "es2016",
-      "es2015",
-      "dom"
-    ]
-  },
-  "exclude": [
-    "node_modules"
-  ]
+    "target": "ESNext",
+    "module": "ESNext",
+    "allowJs": true,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "esModuleInterop": true,
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "jsx": "react-jsx"
+  }
 }

@@ -1,0 +1,54 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "standard",
+    "standard-react",
+    "plugin:prettier/recommended",
+    "prettier",
+    "plugin:@typescript-eslint/eslint-recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["@typescript-eslint", "react"],
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".ts", ".tsx"],
+        "moduleDirectory": ["src", "node_modules"]
+      }
+    }
+  },
+  "ignorePatterns": ["packages/i18n/formatters.ts"],
+  "rules": {
+    "comma-dangle": 1,
+    "no-unused-vars": 0,
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "no-undef": 1,
+    "quotes": 1,
+    "react/prop-types": "off",
+    "space-before-function-paren": 0,
+    "no-use-before-define": 0,
+    "@typescript-eslint/no-explicit-any": 1,
+    "@typescript-eslint/no-var-requires": 1,
+    "no-unused-expressions": "error",
+    "@typescript-eslint/no-unused-expressions": ["error", { "enforceForJSX": true }],
+    "@typescript-eslint/no-non-null-asserted-optional-chain": "error",
+    "no-useless-constructor": "off",
+    "@typescript-eslint/no-useless-constructor": ["error"]
+  }
+}
