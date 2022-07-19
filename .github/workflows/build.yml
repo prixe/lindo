@@ -2,9 +2,9 @@ name: Build CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "v3" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "v3" ]
 
 jobs:
   build-artifacts:
