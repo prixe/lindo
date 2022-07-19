@@ -53,8 +53,11 @@ jobs:
           name: linux
           path: |
             release/${{ steps.extract_version.outputs.version }}/Lindo-${{ steps.extract_version.outputs.version }}.AppImage
+            release/${{ steps.extract_version.outputs.version }}/Lindo-${{ steps.extract_version.outputs.version }}-arm64.AppImage
             release/${{ steps.extract_version.outputs.version }}/lindo-${{ steps.extract_version.outputs.version }}.tar.gz
+            release/${{ steps.extract_version.outputs.version }}/lindo-${{ steps.extract_version.outputs.version }}-arm64.tar.gz
             release/${{ steps.extract_version.outputs.version }}/lindo_${{ steps.extract_version.outputs.version }}_amd64.deb
+            release/${{ steps.extract_version.outputs.version }}/lindo_${{ steps.extract_version.outputs.version }}_arm64.deb
 
   create-release:
     name: "Upload Release"
@@ -87,8 +90,11 @@ jobs:
             windows/Lindo Setup ${{ steps.extract_version.outputs.version }}.exe
             windows/Lindo-${{ steps.extract_version.outputs.version }}-win.zip
             linux/Lindo-${{ steps.extract_version.outputs.version }}.AppImage
+            linux/Lindo-${{ steps.extract_version.outputs.version }}-arm64.AppImage
             linux/lindo-${{ steps.extract_version.outputs.version }}.tar.gz
+            linux/lindo-${{ steps.extract_version.outputs.version }}-arm64.tar.gz
             linux/lindo_${{ steps.extract_version.outputs.version }}_amd64.deb
+            linux/lindo_${{ steps.extract_version.outputs.version }}_arm64.deb
             macos/Lindo-${{ steps.extract_version.outputs.version }}.dmg
             macos/Lindo-${{ steps.extract_version.outputs.version }}-arm64.dmg
 
