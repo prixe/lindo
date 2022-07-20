@@ -7,6 +7,7 @@ export type BaseLocale = 'en'
 
 export type Locales =
 	| 'en'
+	| 'fr'
 
 export type Translation = RootTranslation
 
@@ -1024,7 +1025,7 @@ type RootTranslation = {
 	mod: {
 		jobXP: {
 			/**
-			 * {nextLevel} XP missing<br>before level {xp}
+			 * {xp} XP missing<br>before level {nextLevel}
 			 * @param {number} nextLevel
 			 * @param {number} xp
 			 */
@@ -2073,7 +2074,7 @@ export type TranslationFunctions = {
 	mod: {
 		jobXP: {
 			/**
-			 * {nextLevel} XP missing<br>before level {xp}
+			 * {xp} XP missing<br>before level {nextLevel}
 			 */
 			xpMissing: (arg: { nextLevel: number, xp: number }) => LocalizedString
 		}

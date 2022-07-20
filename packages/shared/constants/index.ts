@@ -1,3 +1,5 @@
+import { Locales } from '@lindo/i18n'
+
 /* eslint-disable no-unused-vars */
 export enum IPCEvents {
   INIT_STATE = 'mobx.INIT_STATE',
@@ -43,11 +45,6 @@ export interface SaveCharacterImageArgs {
   name: string
 }
 
-export interface NameValue {
-  name: string
-  value: string
-}
-
 export const RESOLUTIONS: ReadonlyArray<string> = <const>[
   '800x600',
   '960x600',
@@ -61,12 +58,17 @@ export const RESOLUTIONS: ReadonlyArray<string> = <const>[
   '2560x1440'
 ]
 
-export const LANGUAGES: ReadonlyArray<NameValue> = <const>[
+export interface LanguageOption {
+  name: string
+  value: Locales
+}
+
+export const LANGUAGES: ReadonlyArray<LanguageOption> = <const>[
   { name: 'Français', value: 'fr' },
-  { name: 'English', value: 'en' },
-  { name: 'Español', value: 'es' },
-  { name: 'Italiano', value: 'it' },
-  { name: 'Português', value: 'pt' },
-  { name: 'Polskie', value: 'pl' },
-  { name: 'Türkçe', value: 'tr' }
+  { name: 'English', value: 'en' }
+  // { name: 'Español', value: 'es' },
+  // { name: 'Italiano', value: 'it' },
+  // { name: 'Português', value: 'pt' },
+  // { name: 'Polskie', value: 'pl' },
+  // { name: 'Türkçe', value: 'tr' }
 ]
