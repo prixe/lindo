@@ -2,9 +2,9 @@ import { ThemeProvider } from '@mui/material/styles'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { setupRootStore, RootStore, RootStoreProvider } from './store'
 import { Navigator } from './navigation'
-import { GameContextProvider } from './providers'
+import { GameContextProvider, LocalProvider } from './providers'
 import { GameContext } from '@lindo/shared'
-import { TypesafeI18n } from '@lindo/i18n'
+import { Locales, TypesafeI18n } from '@lindo/i18n'
 import { CssBaseline } from '@mui/material'
 import { darkTheme, lightTheme } from './themes'
 
@@ -45,14 +45,16 @@ export const App = () => {
   if (!rootStore || !gameContext) return null
 
   return (
-    <TypesafeI18n locale='en'>
+    <TypesafeI18n locale={rootStore.appStore.language as Locales}>
       <RootStoreProvider value={rootStore}>
-        <GameContextProvider value={gameContext}>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <Navigator />
-          </ThemeProvider>
-        </GameContextProvider>
+        <LocalProvider>
+          <GameContextProvider value={gameContext}>
+            <ThemeProvider theme={theme}>
+              <CssBaseline />
+              <Navigator />
+            </ThemeProvider>
+          </GameContextProvider>
+        </LocalProvider>
       </RootStoreProvider>
     </TypesafeI18n>
   )

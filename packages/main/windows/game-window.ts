@@ -105,7 +105,7 @@ export class GameWindow extends (EventEmitter as new () => TypedEmitter<GameWind
 
       this._win.loadURL(url)
       if (process.env.NODE_ENV === 'development') {
-        // this._win.webContents.openDevTools({ mode: 'detach' })
+        this._win.webContents.openDevTools({ mode: 'detach' })
       }
     }
     // Make all links open with the browser, not with the application
