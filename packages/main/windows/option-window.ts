@@ -1,8 +1,8 @@
-import { IPCEvents, UpdateProgress } from '@lindo/shared'
 import { app, BrowserWindow } from 'electron'
 import { join } from 'path'
 import { EventEmitter } from 'stream'
 import TypedEmitter from 'typed-emitter'
+import { logger } from '../logger'
 
 type OptionWindowEvents = {
   close: (event: Event) => void
@@ -27,7 +27,7 @@ export class OptionWindow extends (EventEmitter as new () => TypedEmitter<Option
     })
 
     this._win.on('close', (event) => {
-      console.log('OptionWindow ->', 'close')
+      logger.debug('OptionWindow -> close')
       this._handleClose(event)
     })
 
@@ -49,11 +49,6 @@ export class OptionWindow extends (EventEmitter as new () => TypedEmitter<Option
     this._win.webContents.on('did-finish-load', () => {
       this._win.show()
     })
-  }
-
-  sendProgress(progress: UpdateProgress) {
-    console.log(progress.message)
-    this._win.webContents.send(IPCEvents.UPDATE_PROGRESS, progress)
   }
 
   private _handleClose(event: Event) {

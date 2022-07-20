@@ -14,6 +14,7 @@ import { GameWindow, OptionWindow } from './windows'
 import path from 'path'
 import cors from 'cors'
 import { I18n } from './utils'
+import { logger } from './logger'
 
 export class Application {
   private static _instance: Application
@@ -66,11 +67,10 @@ export class Application {
     // set the app menu
     this._setAppMenu()
 
-    // TODO: unlock the master password
     await this._initGameWindows()
 
     app.on('second-instance', () => {
-      console.log('Application ->', 'second-instance')
+      logger.debug('Application -> second-instance')
       if (this._gWindows.length) {
         // Focus on the main window if the user tried to open another
         if (this._gWindows[0].isMinimized()) this._gWindows[0].restore()
@@ -79,7 +79,7 @@ export class Application {
     })
 
     app.on('activate', () => {
-      console.log('Application ->', 'activate')
+      logger.debug('Application -> activate')
       if (this._gWindows.length) {
         this._gWindows[0].focus()
       } else {
@@ -90,7 +90,6 @@ export class Application {
 
   private async _initGameWindows() {
     const multiAccountEnabled = await this._multiAccount.isEnabled()
-    console.log({ multiAccountEnabled })
     if (multiAccountEnabled) {
       try {
         const selectedTeamId = await this._multiAccount.unlockWithTeam()
@@ -103,6 +102,8 @@ export class Application {
         }
       } catch (e) {
         console.log(e)
+        logger.warn('MultiAccount canceled')
+
         this.createGameWindow()
       }
     } else {
@@ -112,9 +113,9 @@ export class Application {
 
   private _setAppMenu() {
     Menu.setApplicationMenu(getAppMenu(this._rootStore.hotkeyStore.window, this._i18n))
-    console.log('Application ->', '_setAppMenu')
+    logger.debug('Application -> _setAppMenu')
     observe(this._rootStore.hotkeyStore.window, (change) => {
-      console.log('Application ->', '_setAppMenu')
+      logger.debug('Application -> _setAppMenu')
       if (change.type === 'update') {
         Menu.setApplicationMenu(getAppMenu(this._rootStore.hotkeyStore.window, this._i18n))
       }
@@ -125,7 +126,7 @@ export class Application {
   }
 
   async createGameWindow(team?: GameTeam, teamWindow?: GameTeamWindow) {
-    console.log('Application ->', '_createGameWindow')
+    logger.debug('Application -> _createGameWindow')
     const gWindow = await GameWindow.init(this._rootStore, team, teamWindow)
     gWindow.on('close', () => {
       this._gWindows.splice(this._gWindows.indexOf(gWindow), 1)
@@ -134,7 +135,7 @@ export class Application {
   }
 
   openOptionWindow() {
-    console.log('Application ->', 'openOptionWindow')
+    logger.debug('Application -> openOptionWindow')
     if (this._optionWindow) {
       this._optionWindow.focus()
       return
@@ -178,12 +179,12 @@ export class Application {
       const base64Data = image.replace(/^data:image\/png;base64,/, '')
       fs.mkdirSync(CHARACTER_IMAGES_PATH, { recursive: true })
       fs.writeFile(path.join(CHARACTER_IMAGES_PATH, `${name}.png`), base64Data, 'base64', (err) => {
-        console.log(err)
+        logger.error(err)
       })
     })
 
     ipcMain.on(IPCEvents.TOGGLE_MAXIMIZE_WINDOW, (event) => {
-      console.log('Application ->', 'TOGGLE_MAXIMIZE_WINDOW')
+      logger.debug('Application -> TOGGLE_MAXIMIZE_WINDOW')
       const gWindow = this._gWindows.find((gWindow) => gWindow.id === event.sender.id)
       if (gWindow) {
         gWindow.toggleMaximize()
@@ -191,14 +192,14 @@ export class Application {
     })
 
     ipcMain.on(IPCEvents.AUTO_GROUP_PUSH_PATH, (event, instruction) => {
-      console.log('Application ->', 'AUTO_GROUP_PUSH_PATH')
+      logger.debug('Application -> AUTO_GROUP_PUSH_PATH')
       for (const gWindow of this._gWindows) {
         gWindow.sendAutoGroupInstruction(instruction)
       }
     })
 
     ipcMain.on(IPCEvents.FOCUS_WINDOW, (event) => {
-      console.log('Application ->', 'FOCUS_WINDOW')
+      logger.debug('Application -> FOCUS_WINDOW')
       const gWindow = this._gWindows.find((gWindow) => gWindow.id === event.sender.id)
       if (gWindow) {
         gWindow.focus()
@@ -206,7 +207,7 @@ export class Application {
     })
 
     ipcMain.on(IPCEvents.AUDIO_MUTE_WINDOW, (event, value) => {
-      console.log('Application ->', 'AUDIO_MUTE_WINDOW')
+      logger.debug('Application -> AUDIO_MUTE_WINDOW')
       const gWindow = this._gWindows.find((gWindow) => gWindow.id === event.sender.id)
       if (gWindow) {
         gWindow.setAudioMute(value)
@@ -214,14 +215,14 @@ export class Application {
     })
 
     ipcMain.on(IPCEvents.RESET_GAME_DATA, () => {
-      console.log('Application ->', 'RESET_GAME_DATA')
+      logger.debug('Application -> RESET_GAME_DATA')
       fs.rmSync(GAME_PATH, { recursive: true, force: true })
       app.relaunch()
       app.quit()
     })
 
     ipcMain.on(IPCEvents.CLEAR_CACHE, async () => {
-      console.log('Application ->', 'CLEAR_CACHE')
+      logger.debug('Application -> CLEAR_CACHE')
       Promise.all(this._gWindows.map((gWindow) => gWindow.clearCache())).finally(() => {
         dialog
           .showMessageBox(BrowserWindow.getFocusedWindow()!, {

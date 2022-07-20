@@ -2,6 +2,7 @@ import { RootStore } from '@lindo/shared'
 import { Octokit } from '@octokit/rest'
 import compareVersions from 'compare-versions'
 import { app, dialog, shell } from 'electron'
+import { logger } from '../logger'
 import { I18n } from '../utils'
 
 export class AppUpdater {
@@ -31,7 +32,7 @@ export class AppUpdater {
       })
       .then((res) => {
         const latestVersion = res.data.tag_name.replaceAll('v', '')
-        console.log({ latestVersion, currentVersion })
+        logger.info({ latestVersion, currentVersion })
         if (compareVersions(latestVersion, currentVersion) === 1) {
           this._showUpdateDialog(latestVersion)
         }
@@ -49,11 +50,11 @@ export class AppUpdater {
       })
       .then((returnValue) => {
         if (returnValue.response === 0) {
-          console.log('[UPDATE] Redirected to app download page.')
+          logger.info('[UPDATE] Redirected to app download page.')
           shell.openExternal('https://github.com/prixe/lindo/releases/latest')
           app.exit()
         } else {
-          console.log('[UPDATE] App update ignored.')
+          logger.info('[UPDATE] App update ignored.')
         }
       })
   }

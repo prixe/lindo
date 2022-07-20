@@ -5,6 +5,7 @@ import { join } from 'path'
 import { EventEmitter } from 'stream'
 import TypedEmitter from 'typed-emitter'
 import { generateUserArgent } from '../utils'
+import { logger } from '../logger'
 
 type GameWindowEvents = {
   close: (event: Event) => void
@@ -69,7 +70,7 @@ export class GameWindow extends (EventEmitter as new () => TypedEmitter<GameWind
     this._win.webContents.setAudioMuted(this._store.optionStore.window.audioMuted)
 
     this._win.on('close', (event) => {
-      console.log('GameWindow ->', 'close')
+      logger.debug('GameWindow -> close')
       this._close(event)
     })
 

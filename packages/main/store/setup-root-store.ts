@@ -4,6 +4,7 @@ import hash from 'object-hash'
 import { applyPatch, getSnapshot, IJsonPatch, Instance, onPatch } from 'mobx-state-tree'
 import ElectronStore from 'electron-store'
 import persist from './root-store-persist'
+import { logger } from '../logger'
 
 /**
  * The key we'll be saving our state as within async storage.
@@ -38,7 +39,7 @@ export async function setupRootStore(): Promise<RootStore> {
       }
     }
   })
-  console.log('RootStore -> restored')
+  logger.info('RootStore -> restored')
 
   const patchesFromRenderer: Array<string> = []
 
@@ -54,7 +55,7 @@ export async function setupRootStore(): Promise<RootStore> {
   ipcMain.on(IPCEvents.PATCH, (event, patch: IJsonPatch) => {
     // TODO: manage local patch, scoped to one process
     // const localPatch = stopForwarding(patch)
-    console.log('Got patch: ', patch)
+    logger.debug('Got patch: ', patch)
     patchesFromRenderer.push(hash(patch))
     applyPatch(rootStore, patch)
 
@@ -68,11 +69,11 @@ export async function setupRootStore(): Promise<RootStore> {
   })
 
   onPatch(rootStore, (patch) => {
-    console.info('Got change: ', patch)
+    logger.debug('Got change: ', patch)
 
     const patchHash = hash(patch)
     if (patchesFromRenderer.includes(patchHash)) {
-      console.log('patch already applied ', patchHash)
+      logger.debug('patch already applied ', patchHash)
       patchesFromRenderer.splice(patchesFromRenderer.indexOf(patchHash), 1)
       return
     }

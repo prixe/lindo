@@ -5,6 +5,7 @@ import * as argon2 from 'argon2'
 import ElectronStore from 'electron-store'
 import { onSnapshot } from 'mobx-state-tree'
 import { UnlockWindow } from './windows'
+import { logger } from './logger'
 
 interface MultiAccountStore {
   masterPassword: string
@@ -43,7 +44,7 @@ export class MultiAccount {
 
     onSnapshot(rootStore.optionStore.gameMultiAccount, (snapshot) => {
       if (!rootStore.optionStore.gameMultiAccount.locked && this._masterPassword) {
-        console.log('Multi-account is unlocked, gonna encrypt the store')
+        logger.debug('Multi-account is unlocked, gonna encrypt the store')
         this._encryptAndSaveState(snapshot, this._masterPassword)
       }
     })
@@ -91,11 +92,6 @@ export class MultiAccount {
       unlockWindow.close()
     }
     ipcMain.on(IPCEvents.CLOSE_UNLOCK_WINDOW, closeListener)
-
-    unlockWindow.once('close', () => {
-      console.log('Unlock window closed')
-      return new Error('Multi-account unlock window was closed')
-    })
 
     const selectTeamId = await new Promise<string>((resolve, reject) => {
       ipcMain.handleOnce(IPCEvents.SELECT_TEAM_TO_CONNECT, async (event, teamId: string) => {
@@ -146,7 +142,7 @@ export class MultiAccount {
     const isEncryptionAvailable = await safeStorage.isEncryptionAvailable()
     let encryptedPassword = await argon2.hash(masterPassword)
     if (!isEncryptionAvailable) {
-      console.log('Safe storage is not available, warn multi-account will use non secure storage')
+      logger.warn('Safe storage is not available, warn multi-account will use non secure storage')
       this._store.set('useSecureStorage', false)
     } else {
       const buffer = safeStorage.encryptString(encryptedPassword)
@@ -186,7 +182,7 @@ export class MultiAccount {
 
       const encryptedState = this._store.get('multiAccountState')
       if (encryptedState) {
-        console.log('Multi-account is unlocked, gonna decrypt the store')
+        logger.debug('Multi-account is unlocked, gonna decrypt the store')
         const decrypted = MultiAccount._decrypt(encryptedState, masterPassword)
         const multiAccountState = JSON.parse(decrypted)
         this._rootStore.optionStore.restoreGameMultiAccount(multiAccountState)

@@ -3,6 +3,7 @@ import { release } from 'os'
 import { Application } from './application'
 import { setupRootStore } from './store'
 import { setupTitlebar } from 'custom-electron-titlebar/main'
+import { logger } from './logger'
 
 app.commandLine.appendSwitch('disable-site-isolation-trials')
 app.commandLine.appendSwitch('disable-renderer-backgrounding')
@@ -20,7 +21,7 @@ if (!app.requestSingleInstanceLock()) {
 }
 
 app.whenReady().then(async () => {
-  console.log('App ->', 'whenReady')
+  logger.debug('App -> whenReady')
   setupTitlebar()
   const store = await setupRootStore()
   await Application.init(store)

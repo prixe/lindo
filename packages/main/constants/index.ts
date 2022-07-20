@@ -1,6 +1,7 @@
 import { app } from 'electron'
 
 export const APP_PATH = app.getAppPath()
+export const LOGS_PATH = app.getPath('logs')
 export const GAME_PATH = app.getPath('userData') + '/game/'
 export const CHARACTER_IMAGES_PATH = app.getPath('userData') + '/character-images/'
 export const DOFUS_ORIGIN = 'https://proxyconnection.touch.dofus.com/'

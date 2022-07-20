@@ -21,7 +21,7 @@ import {
   DOFUS_EARLY_ORIGIN
 } from '../constants'
 import { RootStore } from '@lindo/shared'
-import { app } from 'electron'
+import { logger } from '../logger'
 
 interface GameVersion {
   buildVersion: string
@@ -74,8 +74,8 @@ export class GameUpdater {
     this._updaterWindow.sendProgress({ message: 'DOWNLOAD MISSING ASSETS FILES ON DISK..', percent: 10 })
     return this._downloadAssetsFiles(assetDiffManifest, remoteAssetManifest)
       .catch((error) => {
-        console.log('Error while downloading assets files:', error)
-        console.log('Will restart in non async mod')
+        logger.error('Error while downloading assets files:', error)
+        logger.info('Will restart in non async mod')
         return this._downloadAssetsFiles(assetDiffManifest, remoteAssetManifest, false)
       })
       .then(async () => {
@@ -117,7 +117,7 @@ export class GameUpdater {
         this._rootStore.appStore.setBuildVersion(localVersions.buildVersion)
       })
       .finally(() => {
-        console.log('UPDATE FINISH')
+        logger.info('GAME UPDATE FINISH')
         this._updaterWindow.close()
       })
   }
@@ -187,14 +187,14 @@ export class GameUpdater {
 
     const buildScriptFile = missingDofusFiles['build/script.js']
     if (buildScriptFile && typeof buildScriptFile === 'string') {
-      console.log('FETCH BUILD VERSION FROM script.js')
+      logger.info('FETCH BUILD VERSION FROM script.js')
       localVersions.buildVersion = buildScriptFile.match(/window\.buildVersion\s?=\s?"(\d+\.\d+\.\d+(?:-\d+)?)"/)![1]
       localVersions.appVersion = await this._httpClient
         .get<ItunesLookup>(DOFUS_ITUNES_ORIGIN)
         .then((response) => response.data.results[0].version)
     }
 
-    console.log(
+    logger.info(
       'VERSIONS : buildVersion = ' + localVersions.buildVersion + ' - appVersion = ' + localVersions.appVersion
     )
 
@@ -285,8 +285,7 @@ export class GameUpdater {
               })
               response.data.pipe(fileWriteStream)
             }).catch(() => {
-              console.log('Error while downloading ' + url)
-              console.log('This will ignore')
+              logger.error('Error while downloading ' + url)
             })
           })
           .then(() => {

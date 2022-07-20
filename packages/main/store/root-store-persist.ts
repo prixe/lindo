@@ -1,6 +1,7 @@
 import { RootStore, RootStoreSnapshot } from '@lindo/shared'
 import ElectronStore from 'electron-store'
 import { onSnapshot, applySnapshot, IStateTreeNode } from 'mobx-state-tree'
+import { logger } from '../logger'
 
 export interface IOptions {
   storage: ElectronStore<{ rootStore: RootStoreSnapshot }>
@@ -39,7 +40,7 @@ export const persist: IArgs = (name, store, options) => {
     try {
       applySnapshot(store, snapshot)
     } catch (e) {
-      console.log(e)
+      logger.error(e)
     }
   })
 }

@@ -3,6 +3,7 @@ import { app, BrowserWindow } from 'electron'
 import { join } from 'path'
 import { EventEmitter } from 'stream'
 import TypedEmitter from 'typed-emitter'
+import { logger } from '../logger'
 import { generateUserArgent } from '../utils'
 
 type UpdaterWindowEvents = {
@@ -28,7 +29,7 @@ export class UpdaterWindow extends (EventEmitter as new () => TypedEmitter<Updat
     this._win.webContents.setUserAgent(userAgent)
 
     this._win.on('close', (event) => {
-      console.log('UpdaterWindow ->', 'close')
+      logger.debug('UpdaterWindow -> close')
       this._handleClose(event)
     })
 
@@ -58,7 +59,7 @@ export class UpdaterWindow extends (EventEmitter as new () => TypedEmitter<Updat
   }
 
   sendProgress(progress: UpdateProgress) {
-    console.log(progress.message)
+    logger.debug(progress.message)
     this._win.webContents.send(IPCEvents.UPDATE_PROGRESS, progress)
   }
 

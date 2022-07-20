@@ -38,7 +38,9 @@
     "object-hash": "^3.0.0",
     "rxjs": "^7.5.5",
     "typesafe-i18n": "^5.5.2",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "winston": "^3.8.1",
+    "winston-daily-rotate-file": "^4.7.1"
   },
   "devDependencies": {
     "@dnd-kit/core": "^6.0.3",
