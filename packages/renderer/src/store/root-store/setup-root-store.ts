@@ -28,13 +28,13 @@ export async function setupRootStore() {
   const patchesFromMain: Array<string> = []
 
   window.window.lindoAPI.subscribeToIPCPatch((patch: IJsonPatch) => {
-    window.lindoAPI.logger.debug({ patch })()
+    console.debug({ patch })
     patchesFromMain.push(hash(patch))
     applyPatch(rootStore, patch)
   })
 
   onPatch(rootStore, (patch) => {
-    window.lindoAPI.logger.info('onPatch', patch)()
+    console.info('onPatch', patch)
     // ignore local storage patches
     if (patch.path.startsWith('/gameStore')) {
       return
@@ -42,7 +42,7 @@ export async function setupRootStore() {
 
     const patchHash = hash(patch)
     if (patchesFromMain.includes(patchHash)) {
-      window.lindoAPI.logger.info('patch already applied ', patchHash)()
+      console.info('patch already applied ', patchHash)
       patchesFromMain.splice(patchesFromMain.indexOf(patchHash), 1)
       return
     }
