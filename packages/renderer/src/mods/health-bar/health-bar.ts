@@ -43,7 +43,7 @@ export class HealthBarMod extends Mod {
    * called only when the mod has been enabled in the settings.
    */
   private enableHealthBars() {
-    console.info('- enable Health-Bar')
+    window.lindoAPI.logger.info('- enable Health-Bar')()
 
     this.appendContainerStyle()
     this.appendContainerElement()

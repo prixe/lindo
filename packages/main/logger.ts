@@ -44,3 +44,21 @@ export const logger = winston.createLogger({
   ],
   exitOnError: false
 })
+
+export const rendererLogger = winston.createLogger({
+  transports: [
+    new DailyRotateFile({
+      filename: path.join(LOGS_PATH, 'renderer-logs-%DATE%.log'),
+      datePattern: 'YYYY-MM-DD',
+      maxFiles: '28d',
+      handleExceptions: true,
+      handleRejections: true,
+      level: 'debug',
+      format: winston.format.combine(
+        winston.format.timestamp({ format: 'HH:mm:ss' }),
+        winston.format.printf((info) => `${info.level} ${info.timestamp} : ${info.message}`)
+      )
+    })
+  ],
+  exitOnError: false
+})

@@ -61,8 +61,8 @@ export class Bar {
             this.lifePointsText.style.left = pos.x - this.lifeBarContainer.offsetWidth / 2 + 'px'
             this.lifePointsText.style.top = pos.y + 'px'
           } catch (e) {
-            console.error(cellId)
-            console.error(e)
+            window.lindoAPI.logger.error(cellId)()
+            window.lindoAPI.logger.error(e)()
           }
         } else if (invisible) {
           this.lifeBarContainer.style.opacity = '0.5'

@@ -55,7 +55,9 @@ export const GameScreen = memo(({ game }: GameScreenProps) => {
         })
 
         if (results.length > 1) {
-          console.warn(`[MG] Singleton searcher found multiple results for key "${searchKey}". Returning all of them.`)
+          window.lindoAPI.logger.error(
+            `[MG] Singleton searcher found multiple results for key "${searchKey}". Returning all of them.`
+          )()
           return results
         }
 
@@ -65,7 +67,7 @@ export const GameScreen = memo(({ game }: GameScreenProps) => {
       // can't use SQL Database in modern iframe
       gameWindow.openDatabase = undefined
       gameWindow.initDofus(() => {
-        console.log('initDofus done')
+        window.lindoAPI.logger.info('initDofus done')()
         gameManager.init(gameWindow)
       })
     }

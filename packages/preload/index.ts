@@ -6,6 +6,7 @@ import {
   GameContext,
   IPCEvents,
   LindoAPI,
+  LindoLogger,
   LindoTitleBar,
   RootStoreSnapshot,
   SaveCharacterImageArgs,
@@ -208,6 +209,37 @@ const clearCache = () => {
   ipcRenderer.send(IPCEvents.CLEAR_CACHE)
 }
 
+const logger: LindoLogger = {
+  debug: (...params: unknown[]) => {
+    ipcRenderer.send(IPCEvents.LOGGER_DEBUG, ...params)
+    const args = [].slice.call(params)
+    args.unshift(console as never)
+    // eslint-disable-next-line prefer-spread
+    return console.debug.bind.apply(console.log, args as never)
+  },
+  info: (...params: unknown[]) => {
+    ipcRenderer.send(IPCEvents.LOGGER_INFO, ...params)
+    const args = [].slice.call(params)
+    args.unshift(console as never)
+    // eslint-disable-next-line prefer-spread
+    return console.info.bind.apply(console.log, args as never)
+  },
+  warn: (...params: unknown[]) => {
+    ipcRenderer.send(IPCEvents.LOGGER_WARN, ...params)
+    const args = [].slice.call(params)
+    args.unshift(console as never)
+    // eslint-disable-next-line prefer-spread
+    return console.warn.bind.apply(console.log, args as never)
+  },
+  error: (...params: unknown[]) => {
+    ipcRenderer.send(IPCEvents.LOGGER_ERROR, ...params)
+    const args = [].slice.call(params)
+    args.unshift(console as never)
+    // eslint-disable-next-line prefer-spread
+    return console.info.bind.apply(console.log, args as never)
+  }
+}
+
 const lindoApi: LindoAPI = {
   fetchInitialStateAsync,
   resetStore,
@@ -236,6 +268,7 @@ const lindoApi: LindoAPI = {
   subscribeToAutoGroupPathInstruction,
   sendAutoGroupPathInstruction,
   resetGameData,
-  clearCache
+  clearCache,
+  logger
 }
 contextBridge.exposeInMainWorld('lindoAPI', lindoApi)

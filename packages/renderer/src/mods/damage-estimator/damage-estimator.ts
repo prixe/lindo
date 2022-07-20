@@ -30,7 +30,7 @@ export class DamageEstimatorMod extends Mod {
   }
 
   private start(): void {
-    console.info('- enable Damage-Estimator')
+    window.lindoAPI.logger.info('- enable Damage-Estimator')()
     // this.removeOnDeath();
     this.setSpellSelected()
     this.setSpellSlotDeselected()
@@ -46,7 +46,7 @@ export class DamageEstimatorMod extends Mod {
         try {
           this.damageContainer.destroyEstimator(e.targetId)
         } catch (ex) {
-          console.error(ex)
+          window.lindoAPI.logger.error(ex)()
         }
       }
     )
@@ -55,10 +55,10 @@ export class DamageEstimatorMod extends Mod {
   private setSpellSlotDeselected(): void {
     this._eventManager.on<GUIEvents, 'spellSlotDeselected'>(this.wGame.gui, 'spellSlotDeselected', () => {
       try {
-        console.info('onSpellSlotDeselected')
+        window.lindoAPI.logger.info('onSpellSlotDeselected')()
         this.damageContainer.destroyEstimators()
       } catch (ex) {
-        console.error(ex)
+        window.lindoAPI.logger.error(ex)()
       }
     })
   }
@@ -66,11 +66,10 @@ export class DamageEstimatorMod extends Mod {
   private setSpellSelected(): void {
     this._eventManager.on<GUIEvents, 'spellSlotSelected'>(this.wGame.gui, 'spellSlotSelected', (spellId: number) => {
       try {
-        console.info('onSpellSelected')
         const spell = this.wGame.gui.playerData.characters.mainCharacter.spellData.spells[spellId]
         if (this.rootStore.optionStore.gameFight.damageEstimator) this.damageContainer.display(spell)
       } catch (ex) {
-        console.error(ex)
+        window.lindoAPI.logger.error(ex)()
       }
     })
   }
@@ -83,7 +82,7 @@ export class DamageEstimatorMod extends Mod {
         try {
           this.damageContainer.fightEnded()
         } catch (ex) {
-          console.error(ex)
+          window.lindoAPI.logger.error(ex)()
         }
       }
     )

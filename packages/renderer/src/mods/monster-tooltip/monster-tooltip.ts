@@ -83,7 +83,7 @@ export class MonsterTooltipMod extends Mod {
   }
 
   private start(): void {
-    console.info('- Enabled MonsterTooltip')
+    window.lindoAPI.logger.info('- Enabled MonsterTooltip')()
 
     const onKeyEvent = (event: KeyboardEvent) => {
       this.onKeyEvent(event)

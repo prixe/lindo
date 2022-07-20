@@ -15,7 +15,7 @@ export class JsFixesMod extends Mod {
 
   private contextLost() {
     const onWebGLContextLost = (event: WebGLContextEvent) => {
-      console.info('reload webglcontext cause: webglcontextlost')
+      window.lindoAPI.logger.info('reload webglcontext cause: webglcontextlost')
       this.wGame.isoEngine.background.render()
       event.preventDefault()
     }

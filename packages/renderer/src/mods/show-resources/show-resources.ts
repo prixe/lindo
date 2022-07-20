@@ -45,7 +45,7 @@ export class ShowResourcesMod extends Mod {
   }
 
   private start(): void {
-    console.info('- Enabled ShowResources')
+    window.lindoAPI.logger.info('- Enabled ShowResources')()
 
     const resourcesBoxCss = document.createElement('style')
     resourcesBoxCss.id = 'resourcesBoxCss'
@@ -203,7 +203,7 @@ export class ShowResourcesMod extends Mod {
           name: ''
         })
       } catch {
-        console.error('Unabled to update resource with typeId = ' + typeId)
+        window.lindoAPI.logger.error('Unabled to update resource with typeId = ' + typeId)()
       }
 
       if (this.enabled) this.updateResourceInDom(typeId)

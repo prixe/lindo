@@ -27,7 +27,7 @@ export class ZaapSearchFilterMod extends Mod {
   }
 
   private start(): void {
-    console.info('- enable ZaapSearchFilter')
+    window.lindoAPI.logger.info('- enable ZaapSearchFilter')()
 
     this.eventManager.on(this.wGame.dofus.connectionManager, 'ZaapListMessage', () => {
       this.createSearchFilter()

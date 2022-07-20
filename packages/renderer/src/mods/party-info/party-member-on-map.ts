@@ -34,7 +34,7 @@ export class PartyMemberMod extends Mod {
   }
 
   private _start(): void {
-    console.info('- enabled PartyMember')
+    window.lindoAPI.logger.info('- enabled PartyMember')()
 
     // Init var
     this.members = new Map()

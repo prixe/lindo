@@ -295,7 +295,7 @@ export class Estimator {
         )
       }
       default:
-        console.info('effectId not handled:' + effectId)
+        window.lindoAPI.logger.info('effectId not handled:' + effectId)()
         return 0
     }
   }
@@ -416,9 +416,9 @@ export class Estimator {
           break
         }
         default:
-          console.info(
+          window.lindoAPI.logger.info(
             `effectId: ${buff.effect.effectId}, category: ${buff.effect.effect.category} spellId: ${buff.castingSpell.spell.id} | ${buff.effect.description}`
-          )
+          )()
           break
       }
     }

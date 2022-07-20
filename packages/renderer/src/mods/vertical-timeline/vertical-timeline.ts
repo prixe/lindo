@@ -22,7 +22,7 @@ export class VerticalTimelineMod extends Mod {
   }
 
   private start(): void {
-    console.info('- enable VerticalTimeline')
+    window.lindoAPI.logger.info('- enable VerticalTimeline')()
     this.stylesheet = window.document.createElement('style')
     this.stylesheet.id = 'VerticalTimeline'
     this.stylesheet.innerHTML = `

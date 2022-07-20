@@ -28,7 +28,7 @@ export class ChallengePercentMod extends Mod {
   }
 
   private start(): void {
-    console.info('- enable challengePercent')
+    window.lindoAPI.logger.info('- enable challengePercent')()
     this.stylesheet = window.document.createElement('style')
     this.stylesheet.id = 'ChallPercent'
     this.stylesheet.innerHTML = `

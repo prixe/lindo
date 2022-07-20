@@ -47,7 +47,7 @@ export class AutoGroupMod extends Mod {
 
   private _start() {
     if (this._options.autoGrouping) {
-      console.info('- Auto-Group enable')
+      window.lindoAPI.logger.info('- Auto-Group enable')()
       // le leader invite les membres
       this.autoMasterParty()
 
@@ -73,7 +73,7 @@ export class AutoGroupMod extends Mod {
           this._options.autoGroupLeaderName === this.wGame.gui.playerData.characterBaseInformations.name &&
           this._options.autoGroupMembersName.length > 0
         ) {
-          console.info('start master party')
+          window.lindoAPI.logger.info('start master party')()
 
           const idInt = setInterval(() => {
             this.masterParty(this._options.autoGroupMembersName)
@@ -85,7 +85,7 @@ export class AutoGroupMod extends Mod {
         }
       }, this.getRandomTime(2, 3))
     } catch (e) {
-      console.error(e)
+      window.lindoAPI.logger.error(e)()
     }
   }
 
@@ -111,7 +111,7 @@ export class AutoGroupMod extends Mod {
         )
       }, this.getRandomTime(1, 2))
     } catch (e) {
-      console.error(e)
+      window.lindoAPI.logger.error(e)()
     }
   }
 
@@ -388,7 +388,7 @@ export class AutoGroupMod extends Mod {
       }
     }
     if (tableau.length === 0) {
-      console.error("No way, I can't go there")
+      window.lindoAPI.logger.warn("No way, I can't go there")()
       return undefined
     }
     tableau.sort((a, b) => {
@@ -429,7 +429,7 @@ export class AutoGroupMod extends Mod {
               break
             default:
               fail('The given cellId is not a border cell')
-              console.info('Failed to change map with cellId ' + followInstruction.cellId)
+              window.lindoAPI.logger.info('Failed to change map with cellId ' + followInstruction.cellId)()
               return
           }
           cell = this.getClosestCellToChangeMapRandomized(cells, followInstruction.cellId, dir)!
@@ -683,7 +683,7 @@ export class AutoGroupMod extends Mod {
           )
         }, this.getRandomTime(1, 2))
       } catch (e) {
-        console.error(e)
+        window.lindoAPI.logger.error(e)()
       }
     }
 
@@ -775,7 +775,7 @@ export class AutoGroupMod extends Mod {
         )
       }, this.getRandomTime(1, 2))
     } catch (e) {
-      console.error(e)
+      window.lindoAPI.logger.error(e)()
     }
   }
 
@@ -788,7 +788,7 @@ export class AutoGroupMod extends Mod {
   }
 
   private log(msg: string): void {
-    console.log(msg)
+    window.lindoAPI.logger.info(msg)()
     // Logger.info(this.wGame.gui.playerData.characterBaseInformations.name + ': ' + msg);
   }
 

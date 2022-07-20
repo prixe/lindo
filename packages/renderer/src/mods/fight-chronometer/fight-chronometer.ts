@@ -30,7 +30,7 @@ export class FightChronometerMod extends Mod {
   }
 
   private start(): void {
-    console.info('- enable Fight-Chronometer')
+    window.lindoAPI.logger.info('- enable Fight-Chronometer')()
 
     this.chronometerInitialized = this.wGame.document.querySelector('#chronometerContainer') !== null
     this.create()
@@ -83,7 +83,7 @@ export class FightChronometerMod extends Mod {
       container.insertBefore(this.chronometerContainer, this.wGame.document.querySelector('.fightControlButtons'))
       this.chronometerInitialized = true
     } catch (ex) {
-      console.error(ex)
+      window.lindoAPI.logger.error(ex)()
     }
   }
 
@@ -105,7 +105,7 @@ export class FightChronometerMod extends Mod {
           this.chronometerContainer.innerHTML = new Date(chronometerTime++ * 1000).toISOString().substr(11, 8)
       }, 1000)
     } catch (ex) {
-      console.error(ex)
+      window.lindoAPI.logger.error(ex)()
     }
   }
 
@@ -114,7 +114,7 @@ export class FightChronometerMod extends Mod {
       window.clearInterval(this.chronometerInterval)
       if (this.chronometerContainer) this.chronometerContainer.innerHTML = '00:00:00'
     } catch (ex) {
-      console.error(ex)
+      window.lindoAPI.logger.error(ex)()
     }
   }
 

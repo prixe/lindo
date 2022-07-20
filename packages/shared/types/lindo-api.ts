@@ -10,6 +10,13 @@ export interface LindoTitleBar {
   height: string
 }
 
+export interface LindoLogger {
+  error: (...args: unknown[]) => () => void
+  warn: (...args: unknown[]) => () => void
+  info: (...args: unknown[]) => () => void
+  debug: (...args: unknown[]) => () => void
+}
+
 export interface LindoAPI {
   // mobx
   forwardPatchToMain: (patch: IJsonPatch) => void
@@ -47,4 +54,5 @@ export interface LindoAPI {
   // options
   resetGameData: () => void
   clearCache: () => void
+  logger: LindoLogger
 }

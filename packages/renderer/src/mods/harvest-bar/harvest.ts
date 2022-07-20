@@ -29,7 +29,7 @@ export class HarvestBarMod extends Mod {
   }
 
   start(): void {
-    console.info('- enable Harvest indicator')
+    window.lindoAPI.logger.info('- enable Harvest indicator')()
 
     const harvestCss = document.createElement('style')
     harvestCss.id = 'harvestCss'
@@ -80,7 +80,7 @@ export class HarvestBarMod extends Mod {
         try {
           this.statedElements.set(e.statedElement.elementId, e.statedElement.elementCellId)
         } catch (ex) {
-          console.error(ex)
+          window.lindoAPI.logger.error(ex)()
         }
       }
     )
@@ -97,7 +97,7 @@ export class HarvestBarMod extends Mod {
             this.statedElements.clear()
           }
         } catch (ex) {
-          console.error(ex)
+          window.lindoAPI.logger.error(ex)()
         }
       }
     )
@@ -111,7 +111,7 @@ export class HarvestBarMod extends Mod {
         try {
           this.harvestBar?.destroy()
         } catch (ex) {
-          console.error(ex)
+          window.lindoAPI.logger.error(ex)()
         }
       }
     )

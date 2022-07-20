@@ -33,7 +33,7 @@ export class PartyInfoMod extends Mod {
 
   private _start(): void {
     if (this._option.groupProspecting || this._option.groupLevel) {
-      console.info('- enable PartyInfo')
+      window.lindoAPI.logger.info('- enable PartyInfo')()
 
       this.partyInitialized = this.wGame.document.querySelector('#party-info-container') !== null
       setTimeout(() => {

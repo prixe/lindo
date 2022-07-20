@@ -100,7 +100,7 @@ export class PathFinder {
         return [source, this.getCellId(bestFit.i - 1, bestFit.j - 1)]
       }
 
-      console.error(new Error('[pathFinder.getPath] Player is stuck in ' + si + '/' + sj))
+      window.lindoAPI.logger.error(new Error('[pathFinder.getPath] Player is stuck in ' + si + '/' + sj))()
       return [source]
     }
 

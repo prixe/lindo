@@ -110,7 +110,7 @@ export const useGameManager = ({ game, rootStore, LL }: GameManagerProps) => {
           if (row) {
             row.tap()
           } else {
-            console.error('Character not found')
+            window.lindoAPI.logger.error('Character not found')()
           }
           await new Promise<SaveCharacterImageArgs>((resolve, reject) => {
             let i = 0
@@ -132,7 +132,7 @@ export const useGameManager = ({ game, rootStore, LL }: GameManagerProps) => {
               window.lindoAPI.saveCharacterImage(args)
             })
             .catch((e) => {
-              console.warn('Failed to save character image', e)
+              window.lindoAPI.logger.error('Failed to save character image', e)()
             })
 
           characterSelection.btnPlay.tap()

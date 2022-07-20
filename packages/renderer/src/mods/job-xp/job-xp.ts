@@ -24,7 +24,7 @@ export class JobXPMod extends Mod {
   }
 
   private start(): void {
-    console.info('- enable Jobsxp')
+    window.lindoAPI.logger.info('- enable Jobsxp')()
     const jobsXPBarCssCheck = this.wGame.document.getElementById('jobsxpbarCss')
     const remainingXpIdCheck = this.wGame.document.getElementById('xpRestanteId')
     if (jobsXPBarCssCheck && jobsXPBarCssCheck.parentElement) {
@@ -159,7 +159,7 @@ export class JobXPMod extends Mod {
         try {
           this.clean()
         } catch (ex) {
-          console.error(ex)
+          window.lindoAPI.logger.error(ex)()
         }
       }
     )
@@ -173,7 +173,7 @@ export class JobXPMod extends Mod {
         try {
           this.create()
         } catch (ex) {
-          console.error(ex)
+          window.lindoAPI.logger.error(ex)()
         }
       }
     )
@@ -187,7 +187,7 @@ export class JobXPMod extends Mod {
         try {
           this.create()
         } catch (ex) {
-          console.error(ex)
+          window.lindoAPI.logger.error(ex)()
         }
       }
     )
@@ -211,7 +211,7 @@ export class JobXPMod extends Mod {
             this.create()
           }
         } catch (ex) {
-          console.error(ex)
+          window.lindoAPI.logger.error(ex)()
         }
       }
     )
