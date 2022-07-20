@@ -28,6 +28,15 @@ export class UpdaterWindow extends (EventEmitter as new () => TypedEmitter<Updat
     })
     this._win.webContents.setUserAgent(userAgent)
 
+    // Show window when page is ready
+    this._win.webContents.on('ipc-message', (event, channel) => {
+      if (channel === IPCEvents.APP_READY_TO_SHOW) {
+        setTimeout(() => {
+          this._win.show()
+        }, 100)
+      }
+    })
+
     this._win.on('close', (event) => {
       logger.debug('UpdaterWindow -> close')
       this._handleClose(event)
@@ -46,11 +55,6 @@ export class UpdaterWindow extends (EventEmitter as new () => TypedEmitter<Updat
         this._win.webContents.openDevTools({ mode: 'detach' })
       }
     }
-
-    // Show window when page is ready
-    this._win.webContents.on('did-finish-load', () => {
-      this._win.show()
-    })
   }
 
   static async init(store: RootStore): Promise<UpdaterWindow> {

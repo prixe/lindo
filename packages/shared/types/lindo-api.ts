@@ -32,6 +32,7 @@ export interface LindoAPI {
   subscribeToUpdateProgress: (callback: (updateProgress: UpdateProgress) => void) => void
   // context
   fetchGameContext: () => Promise<GameContext>
+  appReadyToShow: () => void
   // window
   openOptionWindow: () => void
   focusCurrentWindow: () => void

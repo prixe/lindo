@@ -36,6 +36,12 @@ export const App = () => {
     }
   }, [])
 
+  useEffect(() => {
+    if (rootStore && gameContext) {
+      window.lindoAPI.appReadyToShow()
+    }
+  }, [rootStore, gameContext])
+
   if (!rootStore || !gameContext) return null
 
   return (

@@ -1,4 +1,4 @@
-import { RootStore } from '@lindo/shared'
+import { IPCEvents, RootStore } from '@lindo/shared'
 import { app, BrowserWindow } from 'electron'
 import { join } from 'path'
 import { EventEmitter } from 'stream'
@@ -27,6 +27,15 @@ export class UnlockWindow extends (EventEmitter as new () => TypedEmitter<Unlock
       }
     })
 
+    // Show window when page is ready
+    this._win.webContents.on('ipc-message', (event, channel) => {
+      if (channel === IPCEvents.APP_READY_TO_SHOW) {
+        setTimeout(() => {
+          this._win.show()
+        }, 100)
+      }
+    })
+
     if (app.isPackaged) {
       this._win.loadURL(`file://${join(__dirname, '../renderer/index.html')}#/unlock`)
     } else {
@@ -43,11 +52,6 @@ export class UnlockWindow extends (EventEmitter as new () => TypedEmitter<Unlock
 
     this._win.on('close', (event) => {
       this._close(event)
-    })
-
-    // Show window when page is ready
-    this._win.webContents.on('did-finish-load', () => {
-      this._win.show()
     })
   }
 

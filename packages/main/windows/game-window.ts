@@ -65,6 +65,15 @@ export class GameWindow extends (EventEmitter as new () => TypedEmitter<GameWind
       }
     )
 
+    // Show window when page is ready
+    this._win.webContents.on('ipc-message', (event, channel) => {
+      if (channel === IPCEvents.APP_READY_TO_SHOW) {
+        setTimeout(() => {
+          this._win.show()
+        }, 100)
+      }
+    })
+
     this._win.webContents.setUserAgent(userAgent)
 
     this._win.webContents.setAudioMuted(this._store.optionStore.window.audioMuted)
@@ -96,15 +105,9 @@ export class GameWindow extends (EventEmitter as new () => TypedEmitter<GameWind
 
       this._win.loadURL(url)
       if (process.env.NODE_ENV === 'development') {
-        this._win.webContents.openDevTools({ mode: 'detach' })
+        // this._win.webContents.openDevTools({ mode: 'detach' })
       }
     }
-
-    // Show window when page is ready
-    this._win.webContents.on('did-finish-load', () => {
-      this._win.show()
-    })
-
     // Make all links open with the browser, not with the application
     this._win.webContents.setWindowOpenHandler(() => {
       // if (url.startsWith('https:')) shell.openExternal(url)

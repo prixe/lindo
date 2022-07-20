@@ -129,6 +129,10 @@ const fetchGameContext = async (): Promise<GameContext> => {
   return JSON.parse(data)
 }
 
+const appReadyToShow = () => {
+  ipcRenderer.send(IPCEvents.APP_READY_TO_SHOW)
+}
+
 // Window
 const openOptionWindow = (): void => {
   ipcRenderer.send(IPCEvents.OPEN_OPTION)
@@ -256,6 +260,7 @@ const lindoApi: LindoAPI = {
   subscribeToCloseTab,
   subscribeToUpdateProgress,
   fetchGameContext,
+  appReadyToShow,
   openOptionWindow,
   focusCurrentWindow,
   closeOptionWindow,
