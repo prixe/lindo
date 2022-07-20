@@ -14,7 +14,7 @@ import { GameWindow, OptionWindow } from './windows'
 import path from 'path'
 import cors from 'cors'
 import { I18n } from './utils'
-import { logger } from './logger'
+import { logger, setupRendererLogger } from './logger'
 
 export class Application {
   private static _instance: Application
@@ -147,6 +147,9 @@ export class Application {
   }
 
   private _setupIPCHandlers() {
+    // logger handler
+    setupRendererLogger()
+
     // handlers
     ipcMain.handle(IPCEvents.GET_GAME_CONTEXT, (event) => {
       const serverAddress: AddressInfo = this._serveGameServer.address() as AddressInfo

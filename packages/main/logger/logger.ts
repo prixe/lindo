@@ -1,7 +1,7 @@
 import path from 'path'
 import winston from 'winston'
 import DailyRotateFile from 'winston-daily-rotate-file'
-import { LOGS_PATH } from './constants'
+import { LOGS_PATH } from '../constants'
 
 console.log('LOGS_PATH', LOGS_PATH)
 
