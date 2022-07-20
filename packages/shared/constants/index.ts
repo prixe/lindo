@@ -35,6 +35,8 @@ export enum IPCEvents {
   LOGGER_ERROR = 'LOGGER_ERROR'
 }
 
+export const OFFICIAL_WEBSITE_URL = 'https://lindo-app.com'
+
 export interface SaveCharacterImageArgs {
   image: string
   name: string

@@ -15,6 +15,7 @@ import {
   useTheme
 } from '@mui/material'
 import React, { useState } from 'react'
+import { About } from './about'
 import { ChangelogDialog } from './changelog'
 import { OptionFeatures } from './features'
 import { OptionGeneral } from './general'
@@ -91,6 +92,9 @@ export const OptionScreen = () => {
             </TabPanel>
             <TabPanel value={selectedTab} index={4}>
               <OptionMultiAccount />
+            </TabPanel>
+            <TabPanel value={selectedTab} index={5}>
+              <About />
             </TabPanel>
           </Paper>
           <Box
