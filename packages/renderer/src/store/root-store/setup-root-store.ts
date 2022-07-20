@@ -10,12 +10,12 @@ import { RootStoreModel } from './root-store'
  * Setup the root state.
  */
 export async function setupRootStore() {
-  console.log('setupRootStore')
+  window.lindoAPI.logger.info('setupRootStore')()
   // prepare the environment that will be associated with the RootStore.
   const env = await Promise.resolve({})
 
   const state = await window.lindoAPI.fetchInitialStateAsync()
-  console.log('Got initial state: ', state)
+  window.lindoAPI.logger.info('Got initial state: ', state)()
 
   // const optionsPlugin = await SystemJS.import("http://localhost:3001/dist/plugin-test.js");
 
@@ -28,13 +28,13 @@ export async function setupRootStore() {
   const patchesFromMain: Array<string> = []
 
   window.window.lindoAPI.subscribeToIPCPatch((patch: IJsonPatch) => {
-    console.log({ patch })
+    window.lindoAPI.logger.debug({ patch })()
     patchesFromMain.push(hash(patch))
     applyPatch(rootStore, patch)
   })
 
   onPatch(rootStore, (patch) => {
-    console.log('onPatch', patch)
+    window.lindoAPI.logger.info('onPatch', patch)()
     // ignore local storage patches
     if (patch.path.startsWith('/gameStore')) {
       return
@@ -42,7 +42,7 @@ export async function setupRootStore() {
 
     const patchHash = hash(patch)
     if (patchesFromMain.includes(patchHash)) {
-      console.log('patch already applied ', patchHash)
+      window.lindoAPI.logger.info('patch already applied ', patchHash)()
       patchesFromMain.splice(patchesFromMain.indexOf(patchHash), 1)
       return
     }

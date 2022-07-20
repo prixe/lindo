@@ -32,8 +32,7 @@ export const TabGame = styled(({ game, className }: TabGameProps) => {
     }
     const disposer = reaction(
       () => game.characterIcon,
-      (characterIcon) => {
-        console.log(characterIcon)
+      () => {
         updateCharIcon()
       }
     )

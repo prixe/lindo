@@ -28,7 +28,6 @@ export const GameScreen = memo(({ game }: GameScreenProps) => {
       () => rootStore.gameStore.selectedGame,
       (selectedGame) => {
         if (selectedGame?.id === game.id) {
-          console.log('force focus')
           setTimeout(() => {
             iframeGameRef.current?.focus()
           }, 100)

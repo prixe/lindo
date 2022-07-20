@@ -60,17 +60,14 @@ export class RapidExchangeMod extends Mod {
 
   // events
   private exchangeInventoryEvent(slot: StorageViewer) {
-    console.log(slot)
     this.moveItem(slot.itemInstance, 'exchangeInventory', false)
   }
 
   private exchangeStorageEvent(slot: StorageViewer) {
-    console.log(slot)
     this.moveItem(slot.itemInstance, 'exchangeStorage', true)
   }
 
   private tradeWithPlayerAndNPCInventoryEvent(slot: StorageViewer) {
-    console.log(slot)
     this.moveItem(slot.itemInstance, 'tradeWithPlayerAndNPCInventory', false)
   }
 

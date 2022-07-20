@@ -52,7 +52,6 @@ export class ShortcutsMod extends Mod {
       if (change.name !== shortcutProp) {
         return
       }
-      console.log(change)
       if (change.type === 'update') {
         const newShortcut = change.newValue.value
         this._shortcuts.remove({ shortcut: change.oldValue.value, handler })
@@ -108,10 +107,10 @@ export class ShortcutsMod extends Mod {
       this._mover.move(
         'top',
         () => {
-          console.debug('Move to Up OK')
+          window.lindoAPI.logger.debug('Move to Up OK')()
         },
         (reason: string = '') => {
-          console.debug('Move to Up Failed... (' + reason + ')')
+          window.lindoAPI.logger.warn('Move to Up Failed... (' + reason + ')')()
         }
       )
     })
@@ -121,10 +120,10 @@ export class ShortcutsMod extends Mod {
       this._mover.move(
         'bottom',
         () => {
-          console.debug('Move to Bottom OK')
+          window.lindoAPI.logger.info('Move to Bottom OK')()
         },
         (reason: string = '') => {
-          console.debug('Move to Bottom Failed... (' + reason + ')')
+          window.lindoAPI.logger.warn('Move to Bottom Failed... (' + reason + ')')()
         }
       )
     })
@@ -133,10 +132,10 @@ export class ShortcutsMod extends Mod {
       this._mover.move(
         'left',
         () => {
-          console.debug('Move to Left OK')
+          window.lindoAPI.logger.info('Move to Left OK')()
         },
         (reason: string = '') => {
-          console.debug('Move to Left Failed... (' + reason + ')')
+          window.lindoAPI.logger.warn('Move to Left Failed... (' + reason + ')')()
         }
       )
     })
@@ -145,10 +144,10 @@ export class ShortcutsMod extends Mod {
       this._mover.move(
         'right',
         () => {
-          console.debug('Move to Right OK')
+          window.lindoAPI.logger.info('Move to Right OK')()
         },
         (reason: string = '') => {
-          console.debug('Move to Right Failed... (' + reason + ')')
+          window.lindoAPI.logger.warn('Move to Right Failed... (' + reason + ')')()
         }
       )
     })
@@ -156,7 +155,6 @@ export class ShortcutsMod extends Mod {
     // Open chat
     this._addShortcut(gameActionHotkey, 'openChat', () => {
       if (!this.wGame.gui.numberInputPad.isVisible()) {
-        console.log('open chat')
         this.wGame.gui.chat.activate()
       }
     })
@@ -173,7 +171,6 @@ export class ShortcutsMod extends Mod {
       const selectedSpell = this.wGame.gui.shortcutBar._panels.spell.slotList[index]
 
       this._addShortcutFromArray(gameInterfaceHotkey.spells, index, () => {
-        console.log('use spell ' + index)
         selectedSpell.tap()
         // return true to prevent spell cast multiple times
         return true
@@ -203,7 +200,6 @@ export class ShortcutsMod extends Mod {
       const selectedItem = this.wGame.gui.shortcutBar._panels.item.slotList[index]
 
       this._addShortcutFromArray(gameInterfaceHotkey.items, index, () => {
-        console.log('use item ' + index)
         selectedItem.tap()
         // return true to prevent spell cast multiple times
         return true
@@ -216,12 +212,11 @@ export class ShortcutsMod extends Mod {
 
       if (hasPropName) {
         this._addShortcut(gameInterfaceHotkey, propName as keyof GameInterfaceHotkey, () => {
-          console.log(propName)
           this.wGame.gui.menuBar._icons._childrenList[index].tap()
           return true
         })
       } else {
-        console.log('no hotkey for ' + propName)
+        window.lindoAPI.logger.info('no hotkey for ' + propName)()
       }
     })
 

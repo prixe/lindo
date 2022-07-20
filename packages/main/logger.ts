@@ -6,9 +6,6 @@ import { LOGS_PATH } from './constants'
 console.log('LOGS_PATH', LOGS_PATH)
 
 const prettyJson = winston.format.printf((info) => {
-  if (!info.message) {
-    console.log(info)
-  }
   if (info.message.constructor === Object) {
     info.message = JSON.stringify(info.message, null, 4)
   }

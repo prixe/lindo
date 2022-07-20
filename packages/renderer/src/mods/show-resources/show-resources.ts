@@ -176,7 +176,7 @@ export class ShowResourcesMod extends Mod {
       } else if (!ressourcesToSkip.includes(r.elementTypeId)) {
         this.data.set(r.elementTypeId, new Resources(r))
         if (iconIdByTypeId[r.elementTypeId] === undefined)
-          console.log('Unknow ressource "' + r.name + '" with typeId = ' + r.elementTypeId)
+          window.lindoAPI.logger.warn('Unknow ressource "' + r.name + '" with typeId = ' + r.elementTypeId)()
       }
 
       this.elemIdToTypeid.set(i.elementId, i.elementTypeId)

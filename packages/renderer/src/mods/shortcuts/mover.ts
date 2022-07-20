@@ -62,7 +62,7 @@ export class Mover {
       const cell = this.getClosestCellToChangeMapRandomised(cells, direction)
 
       if (cell == null) {
-        console.log('No Cell Found.')
+        window.lindoAPI.logger.warn('No Cell Found.')()
         return
       }
 

@@ -17,14 +17,12 @@ export const GameStoreModel = types
   .actions((self) => ({
     toggleMute() {
       self.isMuted = !self.isMuted
-      console.log(self.isMuted)
       window.lindoAPI.setAudioMuteWindow(self.isMuted)
     },
     addGame(character?: GameCharacter) {
       if (self._games.size > 5) {
         throw new Error('More than 6 game tabs are not supported')
       }
-      console.log(character?.id)
       const game = self._games.put({ character: character?.id })
       self.gamesOrder.push(game)
       self.selectedGame = game
@@ -58,11 +56,9 @@ export const GameStoreModel = types
   }))
   .actions((self) => ({
     gamesFromTeamWindow(context: MultiAccountContext) {
-      console.log(context)
       const team = self.rootStore.optionStore.gameMultiAccount
         .selectTeamById(context.teamId)
         ?.windows.find((w) => w.id === context.teamWindowId)
-      console.log(team)
       team?.characters.forEach((character) => {
         self.addGame(character)
       })

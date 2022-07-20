@@ -19,7 +19,7 @@ export const useGameManager = ({ game, rootStore, LL }: GameManagerProps) => {
   const disposers = useRef<Array<() => void>>([])
 
   const destroyMods = () => {
-    console.log('destroy mods')
+    window.lindoAPI.logger.info('destroy mods')()
     for (const mod of mods.current) {
       mod.destroy()
     }
@@ -36,7 +36,7 @@ export const useGameManager = ({ game, rootStore, LL }: GameManagerProps) => {
 
   return {
     init: (dWindow: DofusWindow) => {
-      console.log('init mod')
+      window.lindoAPI.logger.info('init mod')()
       const character = game.character
       if (character) {
         const gameIndex = rootStore.gameStore.games.indexOf(game)
@@ -123,7 +123,7 @@ export const useGameManager = ({ game, rootStore, LL }: GameManagerProps) => {
                 const image = characterSelection.characterDisplay.canvas.rootElement.toDataURL('image/png')
                 resolve({ image, name: characterSelection.selectedCharacter.name })
               } else {
-                console.log('waiting for character display')
+                window.lindoAPI.logger.debug('waiting for character display')()
               }
               i++
             }, 100)

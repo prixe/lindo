@@ -31,7 +31,6 @@ export const OptionScreen = () => {
   const theme = useTheme()
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    console.log(newValue)
     if (newValue === 6) {
       toggleChangelogDialog()
       return
