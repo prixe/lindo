@@ -2,7 +2,7 @@ name: Build & Publish
 
 on:
   push:
-    branches: [ "main", "v3" ]
+    branches: [ "master", "v3" ]
 
 jobs:
   build-artifacts:

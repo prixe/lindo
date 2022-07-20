@@ -39,7 +39,6 @@ export class GameUpdater {
     this._rootStore = rootStore
     this._httpClient = axios.create()
     this._dofusOrigin = rootStore.appStore.dofusTouchEarly ? DOFUS_EARLY_ORIGIN : DOFUS_ORIGIN
-    console.log(this._dofusOrigin)
     axiosRetry(this._httpClient, { retries: 5, retryDelay: () => 1000 })
   }
 
@@ -116,7 +115,6 @@ export class GameUpdater {
         // save to store
         this._rootStore.appStore.setAppVersion(localVersions.appVersion)
         this._rootStore.appStore.setBuildVersion(localVersions.buildVersion)
-        this._rootStore.appStore.setLindoVersion(app.getVersion())
       })
       .finally(() => {
         console.log('UPDATE FINISH')

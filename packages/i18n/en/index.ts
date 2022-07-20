@@ -2,6 +2,12 @@ import type { BaseTranslation } from '../i18n-types'
 
 const en: BaseTranslation = {
   main: {
+    updater: {
+      title: 'New version available {version: string}',
+      message: 'A new version ({version: string}) of Lindo is available. Do you want to update?',
+      download: 'Download on github',
+      ignore: 'Ignore'
+    },
     gameMenu: {
       file: {
         title: 'Application',

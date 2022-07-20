@@ -61,7 +61,7 @@ export class Application {
     this._setupIPCHandlers()
 
     // run updater
-    await runUpdater(this._rootStore)
+    await runUpdater(this._rootStore, this._i18n)
 
     // set the app menu
     this._setAppMenu()

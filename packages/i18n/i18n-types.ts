@@ -14,6 +14,26 @@ export type Translations = RootTranslation
 
 type RootTranslation = {
 	main: {
+		updater: {
+			/**
+			 * New version available {version}
+			 * @param {string} version
+			 */
+			title: RequiredParams<'version'>
+			/**
+			 * A new version ({version}) of Lindo is available. Do you want to update?
+			 * @param {string} version
+			 */
+			message: RequiredParams<'version'>
+			/**
+			 * Download on github
+			 */
+			download: string
+			/**
+			 * Ignore
+			 */
+			ignore: string
+		}
 		gameMenu: {
 			file: {
 				/**
@@ -1053,6 +1073,24 @@ type RootTranslation = {
 
 export type TranslationFunctions = {
 	main: {
+		updater: {
+			/**
+			 * New version available {version}
+			 */
+			title: (arg: { version: string }) => LocalizedString
+			/**
+			 * A new version ({version}) of Lindo is available. Do you want to update?
+			 */
+			message: (arg: { version: string }) => LocalizedString
+			/**
+			 * Download on github
+			 */
+			download: () => LocalizedString
+			/**
+			 * Ignore
+			 */
+			ignore: () => LocalizedString
+		}
 		gameMenu: {
 			file: {
 				/**
