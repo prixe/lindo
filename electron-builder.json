@@ -31,6 +31,7 @@
     "allowToChangeInstallationDirectory": true,
     "deleteAppDataOnUninstall": false
   },
+  "afterPack": "./scripts/afterPackHook.js",
   "mac": {
     "target": [
       {
