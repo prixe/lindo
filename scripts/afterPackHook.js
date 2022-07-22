@@ -9,7 +9,13 @@ exports.default = async function (context) {
   const version = context.packager.appInfo.version
   const platform = context.packager.platform.name
   // console.log(process.env.LINDO_KEY)
-  const path = context.appOutDir + '/Lindo.app/Contents/Resources/app.asar'
+  let resourcesPath
+  if (platform === 'mac') {
+    resourcesPath = '/Lindo.app/Contents/Resources/app.asar'
+  } else {
+    resourcesPath = '/resources/app.asar'
+  }
+  const path = context.appOutDir + resourcesPath
   const fileBuffer = fs.readFileSync(path)
   const hash = crypto.createHash('sha256').update(fileBuffer).digest('hex')
   console.log({ hash, version, platform })
