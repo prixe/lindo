@@ -33,6 +33,7 @@ export interface LindoAPI {
   // context
   fetchGameContext: () => Promise<GameContext>
   appReadyToShow: () => void
+  fetchGameInfo: (context: string) => Promise<GameContext>
   // window
   openOptionWindow: () => void
   focusCurrentWindow: () => void

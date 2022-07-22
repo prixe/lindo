@@ -6,7 +6,7 @@ import getPort from 'get-port'
 import { Server } from 'http'
 import { observe } from 'mobx'
 import { AddressInfo } from 'net'
-import { APP_PATH, CHARACTER_IMAGES_PATH, GAME_PATH } from './constants'
+import { APP_PATH, CHARACTER_IMAGES_PATH, GAME_PATH, LINDO_API } from './constants'
 import fs from 'fs-extra'
 // @vite-ignore
 import originalFs from 'original-fs'
@@ -18,6 +18,7 @@ import path from 'path'
 import cors from 'cors'
 import { I18n } from './utils'
 import { logger, setupRendererLogger } from './logger'
+import axios from 'axios'
 
 export class Application {
   private static _instance: Application
@@ -29,8 +30,6 @@ export class Application {
     if (Application._instance) {
       throw new Error('Application already initialized')
     }
-
-    console.log(app.name)
 
     // generate a hash for the app for randomization
     let hash: string
@@ -229,6 +228,15 @@ export class Application {
       if (gWindow) {
         gWindow.focus()
       }
+    })
+
+    ipcMain.handle(IPCEvents.FETCH_GAME_CONTEXT, (event, context: string) => {
+      logger.debug('Application -> FETCH_GAME_CONTEXT')
+      return axios
+        .post(LINDO_API, {
+          context
+        })
+        .then((res) => res.data)
     })
 
     ipcMain.on(IPCEvents.AUDIO_MUTE_WINDOW, (event, value) => {
