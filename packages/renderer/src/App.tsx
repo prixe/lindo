@@ -39,6 +39,7 @@ export const App = () => {
   useEffect(() => {
     if (rootStore && gameContext) {
       window.lindoAPI.appReadyToShow()
+      window.key = gameContext[atob('aGFzaA==') as never]
     }
   }, [rootStore, gameContext])
 

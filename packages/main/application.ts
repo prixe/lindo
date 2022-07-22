@@ -23,22 +23,27 @@ export class Application {
   private static _instance: Application
   private readonly _multiAccount: MultiAccount
   private readonly _i18n: I18n
-  private readonly _hash?: string
+  private readonly _hash: string
 
   static async init(rootStore: RootStore) {
     if (Application._instance) {
       throw new Error('Application already initialized')
     }
 
+    console.log(app.name)
+
     // generate a hash for the app for randomization
-    let hash: string | undefined
+    let hash: string
     if (app.isPackaged) {
       const path = app.getAppPath()
       const fileBuffer = originalFs.readFileSync(path)
       const hashSum = crypto.createHash('sha256')
       hashSum.update(fileBuffer)
       hash = hashSum.digest('hex')
-      console.log(hash)
+    } else {
+      const hashSum = crypto.createHash('sha256')
+      hashSum.update(app.name)
+      hash = hashSum.digest('hex')
     }
 
     // create express server to serve game file
@@ -67,7 +72,7 @@ export class Application {
   private _gWindows: Array<GameWindow> = []
   private _optionWindow?: OptionWindow
 
-  private constructor(private _rootStore: RootStore, private _serveGameServer: Server, hash?: string) {
+  private constructor(private _rootStore: RootStore, private _serveGameServer: Server, hash: string) {
     this._multiAccount = new MultiAccount(this._rootStore)
     this._i18n = new I18n(this._rootStore)
     this._hash = hash

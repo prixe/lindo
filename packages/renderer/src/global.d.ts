@@ -7,6 +7,7 @@ declare global {
     buildVersion: string
     appVersion: string
     lindoVersion: string
+    key?: string
     titleBar?: LindoTitleBar
   }
 }

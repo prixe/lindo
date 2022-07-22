@@ -9,5 +9,5 @@ export interface GameContext {
   windowId: number
   multiAccount?: MultiAccountContext
   changeLogSrc: string
-  hash?: string
+  hash: string
 }
