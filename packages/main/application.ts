@@ -1,5 +1,6 @@
 import { GameContext, IPCEvents, RootStore, SaveCharacterImageArgs, GameTeamWindow, GameTeam } from '@lindo/shared'
 import { app, BrowserWindow, dialog, ipcMain, Menu } from 'electron'
+import crypto from 'crypto'
 import express from 'express'
 import getPort from 'get-port'
 import { Server } from 'http'
@@ -7,6 +8,8 @@ import { observe } from 'mobx'
 import { AddressInfo } from 'net'
 import { APP_PATH, CHARACTER_IMAGES_PATH, GAME_PATH } from './constants'
 import fs from 'fs-extra'
+// @vite-ignore
+import originalFs from 'original-fs'
 import { getAppMenu } from './menu'
 import { MultiAccount } from './multi-account'
 import { runUpdater } from './updater'
@@ -20,10 +23,22 @@ export class Application {
   private static _instance: Application
   private readonly _multiAccount: MultiAccount
   private readonly _i18n: I18n
+  private readonly _hash?: string
 
   static async init(rootStore: RootStore) {
     if (Application._instance) {
       throw new Error('Application already initialized')
+    }
+
+    // generate a hash for the app for randomization
+    let hash: string | undefined
+    if (app.isPackaged) {
+      const path = app.getAppPath()
+      const fileBuffer = originalFs.readFileSync(path)
+      const hashSum = crypto.createHash('sha256')
+      hashSum.update(fileBuffer)
+      hash = hashSum.digest('hex')
+      console.log(hash)
     }
 
     // create express server to serve game file
@@ -39,7 +54,7 @@ export class Application {
     const port = await getPort({ port: 3000 })
     const server: Server = serveGameServer.listen(port)
 
-    Application._instance = new Application(rootStore, server)
+    Application._instance = new Application(rootStore, server, hash)
   }
 
   static get instance(): Application {
@@ -52,9 +67,10 @@ export class Application {
   private _gWindows: Array<GameWindow> = []
   private _optionWindow?: OptionWindow
 
-  private constructor(private _rootStore: RootStore, private _serveGameServer: Server) {
+  private constructor(private _rootStore: RootStore, private _serveGameServer: Server, hash?: string) {
     this._multiAccount = new MultiAccount(this._rootStore)
     this._i18n = new I18n(this._rootStore)
+    this._hash = hash
   }
 
   async run() {
@@ -159,7 +175,8 @@ export class Application {
         characterImagesSrc: 'http://localhost:' + serverAddress.port + '/character-images/',
         changeLogSrc: 'http://localhost:' + serverAddress.port + '/changelog',
         windowId: event.sender.id,
-        multiAccount: gWindow?.multiAccount
+        multiAccount: gWindow?.multiAccount,
+        hash: this._hash
       }
       return JSON.stringify(context)
     })

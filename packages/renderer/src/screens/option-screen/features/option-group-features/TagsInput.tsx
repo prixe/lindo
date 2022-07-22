@@ -14,7 +14,7 @@ export const TagsInput = ({ label, placeholder, id, defaultValue, onChange }: Ta
     <Autocomplete
       multiple
       id={id}
-      options={[] as string[]}
+      options={[] as readonly string[]}
       defaultValue={defaultValue}
       onChange={(_, value) => {
         if (onChange) {
@@ -22,7 +22,7 @@ export const TagsInput = ({ label, placeholder, id, defaultValue, onChange }: Ta
         }
       }}
       freeSolo
-      renderTags={(value, getTagProps) =>
+      renderTags={(value: readonly string[], getTagProps) =>
         value.map((option: string, index: number) => (
           // eslint-disable-next-line react/jsx-key
           <Chip variant='outlined' label={option} {...getTagProps({ index })} />

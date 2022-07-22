@@ -53,6 +53,10 @@ export default defineConfig({
       )
     })
   ],
+  // cf issue: https://github.com/vitejs/vite/issues/8644
+  esbuild: {
+    logOverride: { 'this-is-undefined-in-esm': 'silent' }
+  },
   base: './',
   build: {
     outDir: '../../dist/renderer',

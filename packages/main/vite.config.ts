@@ -21,7 +21,7 @@ export default defineConfig({
       fileName: () => '[name].cjs'
     },
     rollupOptions: {
-      external: ['electron', ...builtinModules, ...nodeModules]
+      external: ['electron', 'original-fs', ...builtinModules, ...nodeModules]
     }
   },
   resolve: {
