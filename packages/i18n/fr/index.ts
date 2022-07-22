@@ -5,6 +5,8 @@ const fr: Translation = {
     updater: {
       title: 'Nouvelle version disponible {version}',
       message: 'Une nouvelle version ({version}) de Lindo est disponible. Voulez-vous télécharger la mis à jour?',
+      messageRequired:
+        'Une nouvelle version ({version}) obligatoire de Lindo est disponible, vous pouvez la télécharger sur GitHub.',
       download: 'Télécharger sur github',
       ignore: 'Ignorer'
     },

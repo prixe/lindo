@@ -27,7 +27,12 @@ type RootTranslation = {
 			 */
 			message: RequiredParams<'version'>
 			/**
-			 * Download on github
+			 * A required update ({version}) of Lindo is available, you must download it on GitHub.
+			 * @param {string} version
+			 */
+			messageRequired: RequiredParams<'version'>
+			/**
+			 * Download on GitHub
 			 */
 			download: string
 			/**
@@ -1084,7 +1089,11 @@ export type TranslationFunctions = {
 			 */
 			message: (arg: { version: string }) => LocalizedString
 			/**
-			 * Download on github
+			 * A required update ({version}) of Lindo is available, you must download it on GitHub.
+			 */
+			messageRequired: (arg: { version: string }) => LocalizedString
+			/**
+			 * Download on GitHub
 			 */
 			download: () => LocalizedString
 			/**

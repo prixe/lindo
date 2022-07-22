@@ -5,7 +5,8 @@ const en: BaseTranslation = {
     updater: {
       title: 'New version available {version: string}',
       message: 'A new version ({version: string}) of Lindo is available. Do you want to update?',
-      download: 'Download on github',
+      messageRequired: 'A required update ({version: string}) of Lindo is available, you must download it on GitHub.',
+      download: 'Download on GitHub',
       ignore: 'Ignore'
     },
     gameMenu: {

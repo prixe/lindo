@@ -31,21 +31,28 @@ export class AppUpdater {
         repo: 'lindo'
       })
       .then((res) => {
+        console.log(res)
         const latestVersion = res.data.tag_name.replaceAll('v', '')
+        const required = res.data.body?.includes('__update:required__') ?? false
         logger.info({ latestVersion, currentVersion })
         if (compareVersions(latestVersion, currentVersion) === 1) {
-          this._showUpdateDialog(latestVersion)
+          this._showUpdateDialog(latestVersion, required)
         }
       })
   }
 
-  private _showUpdateDialog(newVersion: string) {
-    const buttons: Array<string> = [this._i18n.LL.main.updater.download(), this._i18n.LL.main.updater.ignore()]
+  private _showUpdateDialog(newVersion: string, required: boolean) {
+    const buttons: Array<string> = [this._i18n.LL.main.updater.download()]
+    if (!required) {
+      buttons.push(this._i18n.LL.main.updater.ignore())
+    }
     return dialog
       .showMessageBox({
         type: 'info',
         title: this._i18n.LL.main.updater.title({ version: newVersion }),
-        message: this._i18n.LL.main.updater.message({ version: newVersion }),
+        message: required
+          ? this._i18n.LL.main.updater.messageRequired({ version: newVersion })
+          : this._i18n.LL.main.updater.message({ version: newVersion }),
         buttons
       })
       .then((returnValue) => {
