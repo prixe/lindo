@@ -14,14 +14,12 @@ export class HideShopMod extends Mod {
 
   constructor(wGame: DofusWindow, rootStore: RootStore, LL: TranslationFunctions) {
     super(wGame, rootStore, LL)
-    this.settingDisposer = observe(
-      this.rootStore.optionStore.gameGeneral,
-      'hiddenShop',
-      () => {
-        this.toggle()
-      },
-      true
-    )
+    this.settingDisposer = observe(this.rootStore.optionStore.gameGeneral, 'hiddenShop', () => {
+      this.toggle()
+    })
+
+    setTimeout(() => this.toggle(), 1000)
+
     // At the begining, toggle the shop button
     this.eventManager.on<FightManagerEvents, 'fightEnd'>(this.wGame.gui.fightManager, 'fightEnd', () => this.toggle())
   }
