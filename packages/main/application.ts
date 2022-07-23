@@ -129,19 +129,29 @@ export class Application {
     } else {
       this.createGameWindow()
     }
+    observe(
+      this._rootStore.optionStore.window,
+      'audioMuted',
+      () => {
+        for (const gWindow of this._gWindows) {
+          gWindow.setAudioMute(this._rootStore.optionStore.window.audioMuted)
+        }
+      },
+      true
+    )
   }
 
   private _setAppMenu() {
-    Menu.setApplicationMenu(getAppMenu(this._rootStore.hotkeyStore.window, this._i18n))
+    Menu.setApplicationMenu(getAppMenu(this._rootStore, this._i18n))
     logger.debug('Application -> _setAppMenu')
     observe(this._rootStore.hotkeyStore.window, (change) => {
       logger.debug('Application -> _setAppMenu')
       if (change.type === 'update') {
-        Menu.setApplicationMenu(getAppMenu(this._rootStore.hotkeyStore.window, this._i18n))
+        Menu.setApplicationMenu(getAppMenu(this._rootStore, this._i18n))
       }
     })
     this._i18n.on('localeChanged', () => {
-      Menu.setApplicationMenu(getAppMenu(this._rootStore.hotkeyStore.window, this._i18n))
+      Menu.setApplicationMenu(getAppMenu(this._rootStore, this._i18n))
     })
   }
 

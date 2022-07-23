@@ -34,7 +34,7 @@ export const WindowOptionModel = types
     setSoundOnFocus(value: boolean) {
       self.soundOnFocus = value
     },
-    setAudioMutedd(value: boolean) {
+    setAudioMuted(value: boolean) {
       self.audioMuted = value
     },
     setResolutionFromString(value: string) {

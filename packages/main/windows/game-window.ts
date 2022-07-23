@@ -15,6 +15,7 @@ export class GameWindow extends (EventEmitter as new () => TypedEmitter<GameWind
   private readonly _store: RootStore
   private readonly _teamWindow?: GameTeamWindow
   private readonly _team?: GameTeam
+  private _isMuted = false
 
   get id() {
     return this._win.webContents.id!
@@ -84,13 +85,19 @@ export class GameWindow extends (EventEmitter as new () => TypedEmitter<GameWind
     })
 
     this._win.on('focus', () => {
-      if (this._store.optionStore.window.soundOnFocus && !this._store.optionStore.window.audioMuted) {
-        this._win.webContents.setAudioMuted(false)
+      if (this._store.optionStore.window.audioMuted || this._isMuted) {
+        this._win.webContents.setAudioMuted(true)
+        return
       }
+      this._win.webContents.setAudioMuted(false)
     })
 
     this._win.on('blur', () => {
-      if (this._store.optionStore.window.soundOnFocus && !this._store.optionStore.window.audioMuted) {
+      if (this._store.optionStore.window.audioMuted || this._isMuted) {
+        this._win.webContents.setAudioMuted(true)
+        return
+      }
+      if (this._store.optionStore.window.soundOnFocus) {
         this._win.webContents.setAudioMuted(true)
       }
     })
@@ -136,6 +143,7 @@ export class GameWindow extends (EventEmitter as new () => TypedEmitter<GameWind
   }
 
   setAudioMute(value: boolean) {
+    this._isMuted = value
     this._win.webContents.setAudioMuted(value)
   }
 

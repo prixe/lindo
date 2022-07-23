@@ -1,11 +1,12 @@
-import { IPCEvents, WindowHotkey } from '@lindo/shared'
+import { IPCEvents, RootStore } from '@lindo/shared'
 import { app, Menu, MenuItemConstructorOptions } from 'electron'
 import { Application } from './application'
 import { I18n } from './utils'
 
 const isMac = process.platform === 'darwin'
 
-export const getAppMenu = (windowHotkey: WindowHotkey, i18n: I18n) => {
+export const getAppMenu = (rootStore: RootStore, i18n: I18n) => {
+  const windowHotkey = rootStore.hotkeyStore.window
   const template: MenuItemConstructorOptions[] = [
     {
       label: i18n.LL.main.gameMenu.file.title(),
@@ -109,8 +110,9 @@ export const getAppMenu = (windowHotkey: WindowHotkey, i18n: I18n) => {
         {
           label: i18n.LL.main.gameMenu.window.disableSound(),
           type: 'checkbox',
-          click(item, focusedWindow) {
-            if (focusedWindow) focusedWindow.webContents.setAudioMuted(item.checked)
+          checked: rootStore.optionStore.window.audioMuted,
+          click(item) {
+            rootStore.optionStore.window.setAudioMuted(item.checked)
           }
         },
         {
