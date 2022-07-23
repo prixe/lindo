@@ -66,8 +66,8 @@ export interface LanguageOption {
 
 export const LANGUAGES: ReadonlyArray<LanguageOption> = <const>[
   { name: 'Français', value: 'fr' },
-  { name: 'English', value: 'en' }
-  // { name: 'Español', value: 'es' },
+  { name: 'English', value: 'en' },
+  { name: 'Español', value: 'es' }
   // { name: 'Italiano', value: 'it' },
   // { name: 'Português', value: 'pt' },
   // { name: 'Polskie', value: 'pl' },

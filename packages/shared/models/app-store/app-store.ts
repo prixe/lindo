@@ -1,6 +1,6 @@
 import { Instance, SnapshotOut, types } from 'mobx-state-tree'
 
-export const LANGUAGE_KEYS: ReadonlyArray<string> = <const>['fr', 'en'] // 'es', 'it', 'pt', 'pl', 'tr']
+export const LANGUAGE_KEYS: ReadonlyArray<string> = <const>['fr', 'en', 'es']
 export type LanguageKey = typeof LANGUAGE_KEYS[number]
 
 /**
