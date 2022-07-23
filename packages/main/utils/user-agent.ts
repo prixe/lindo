@@ -9,20 +9,20 @@ interface UserAgentStore {
   }
 }
 
-const _getUA = (appVersion: string): string => {
+const _getUA = (): string => {
   const maxIndex = userAgents.length - 1
   const index = crypto.randomInt(0, maxIndex)
 
-  const userAgent = userAgents[index] + ' DofusTouch Client ' + appVersion
-  return userAgent
+  return userAgents[index]
 }
 
 export const generateUserArgent = async (appVersion: string) => {
   const storage = new ElectronStore<UserAgentStore>()
   const now = new Date()
 
+  let ua: string
   if (!storage.get('userAgent') || new Date(storage.get('userAgent').maxAge) < now) {
-    const ua = _getUA(appVersion)
+    ua = _getUA()
 
     const expireDay = crypto.randomInt(10, 360)
     const maxAge = new Date(now.setDate(now.getDate() + expireDay)).toString()
@@ -31,9 +31,9 @@ export const generateUserArgent = async (appVersion: string) => {
       ua,
       maxAge
     } as UserAgentStore['userAgent'])
-
-    return ua
   } else {
-    return storage.get('userAgent').ua
+    ua = storage.get('userAgent').ua
   }
+
+  return ua + ' DofusTouch Client ' + appVersion
 }
