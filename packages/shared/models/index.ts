@@ -1,4 +1,5 @@
 export * from './root-store'
 export * from './option-store'
 export * from './hotkey-store'
+export * from './app-store'
 export * from './extensions'

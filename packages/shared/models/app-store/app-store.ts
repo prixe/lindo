@@ -1,7 +1,7 @@
+import { Locales } from '@lindo/i18n'
 import { Instance, SnapshotOut, types } from 'mobx-state-tree'
 
-export const LANGUAGE_KEYS: ReadonlyArray<string> = <const>['fr', 'en', 'es']
-export type LanguageKey = typeof LANGUAGE_KEYS[number]
+export const LANGUAGE_KEYS: Array<Locales> = ['fr', 'en', 'es']
 
 /**
  * Model description here for TypeScript hints.
@@ -12,9 +12,14 @@ export const AppStoreModel = types
     appVersion: types.optional(types.string, '1.0.0'),
     buildVersion: types.optional(types.string, '1.0.0'),
     lindoVersion: types.optional(types.string, '1.0.0'),
-    language: types.optional(types.enumeration<LanguageKey>(LANGUAGE_KEYS as Array<LanguageKey>), 'en'),
+    _language: types.maybe(types.enumeration<Locales>(LANGUAGE_KEYS)),
     dofusTouchEarly: types.optional(types.boolean, false)
   })
+  .views((self) => ({
+    get language(): Locales {
+      return self._language ?? 'en'
+    }
+  }))
   .actions((self) => ({
     setAppVersion(appVersion: string) {
       if (self.appVersion !== appVersion) {
@@ -31,8 +36,8 @@ export const AppStoreModel = types
         self.lindoVersion = lindoVersion
       }
     },
-    setLanguageKey(language: LanguageKey) {
-      self.language = language
+    setLanguageKey(language: Locales) {
+      self._language = language
     },
     setDofusTouchEarly(dofusTouchEarly: boolean) {
       self.dofusTouchEarly = dofusTouchEarly

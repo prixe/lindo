@@ -1,5 +1,5 @@
 import { useStores } from '@/store'
-import { Locales, useI18nContext } from '@lindo/i18n'
+import { useI18nContext } from '@lindo/i18n'
 import { reaction } from 'mobx'
 import React, { ReactNode, useEffect } from 'react'
 
@@ -16,7 +16,7 @@ export const LocalProvider = ({ children }: LocalProviderProps) => {
       () => appStore.language,
       (language) => {
         if (language !== locale) {
-          setLocale(language as Locales)
+          setLocale(language)
         }
       },
       { fireImmediately: true }

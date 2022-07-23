@@ -4,7 +4,7 @@ import { setupRootStore, RootStore, RootStoreProvider } from './store'
 import { Navigator } from './navigation'
 import { GameContextProvider, LocalProvider } from './providers'
 import { GameContext } from '@lindo/shared'
-import { Locales, TypesafeI18n } from '@lindo/i18n'
+import { TypesafeI18n } from '@lindo/i18n'
 import { CssBaseline } from '@mui/material'
 import { darkTheme, lightTheme } from './themes'
 
@@ -46,7 +46,7 @@ export const App = () => {
   if (!rootStore || !gameContext) return null
 
   return (
-    <TypesafeI18n locale={rootStore.appStore.language as Locales}>
+    <TypesafeI18n locale={rootStore.appStore.language}>
       <RootStoreProvider value={rootStore}>
         <LocalProvider>
           <GameContextProvider value={gameContext}>

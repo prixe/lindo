@@ -14,7 +14,7 @@ import {
 import { LANGUAGES, RESOLUTIONS } from '@lindo/shared'
 import { useStores } from '@/store'
 import { Observer } from 'mobx-react-lite'
-import { useI18nContext } from '@lindo/i18n'
+import { Locales, useI18nContext } from '@lindo/i18n'
 
 export const OptionGeneral = () => {
   const { appStore, optionStore } = useStores()
@@ -39,12 +39,12 @@ export const OptionGeneral = () => {
             </Typography>
             <FormControl sx={{ minWidth: 150, m: 1 }}>
               <InputLabel id='language-label'>{LL.option.general.language()}</InputLabel>
-              <Select
+              <Select<Locales>
                 labelId='language-label'
                 id='language'
                 label={LL.option.general.language()}
                 value={appStore.language}
-                onChange={(event) => appStore.setLanguageKey(event.target.value)}
+                onChange={(event) => appStore.setLanguageKey(event.target.value as Locales)}
               >
                 {LANGUAGES.map((language) => (
                   <MenuItem value={language.value} key={language.value}>

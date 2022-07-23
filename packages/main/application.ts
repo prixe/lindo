@@ -1,4 +1,12 @@
-import { GameContext, IPCEvents, RootStore, SaveCharacterImageArgs, GameTeamWindow, GameTeam } from '@lindo/shared'
+import {
+  GameContext,
+  IPCEvents,
+  RootStore,
+  SaveCharacterImageArgs,
+  GameTeamWindow,
+  GameTeam,
+  LANGUAGE_KEYS
+} from '@lindo/shared'
 import { app, BrowserWindow, dialog, ipcMain, Menu } from 'electron'
 import crypto from 'crypto'
 import express from 'express'
@@ -19,6 +27,7 @@ import cors from 'cors'
 import { I18n } from './utils'
 import { logger, setupRendererLogger } from './logger'
 import axios from 'axios'
+import { Locales } from '@lindo/i18n'
 
 export class Application {
   private static _instance: Application
@@ -57,6 +66,16 @@ export class Application {
     serveGameServer.use('/changelog', express.static(APP_PATH + '/CHANGELOG.md'))
     const port = await getPort({ port: 3000 })
     const server: Server = serveGameServer.listen(port)
+
+    // set default language
+    if (!rootStore.appStore._language) {
+      const userLocal = app.getLocale()
+      const userLang = userLocal.split('-')[0] as Locales
+      console.log(userLang)
+      if (LANGUAGE_KEYS.includes(userLang)) {
+        rootStore.appStore.setLanguageKey(userLang)
+      }
+    }
 
     Application._instance = new Application(rootStore, server, hash)
   }

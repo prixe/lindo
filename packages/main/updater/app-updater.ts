@@ -31,7 +31,6 @@ export class AppUpdater {
         repo: 'lindo'
       })
       .then((res) => {
-        console.log(res)
         const latestVersion = res.data.tag_name.replaceAll('v', '')
         const required = res.data.body?.includes('__update:required__') ?? false
         logger.info({ latestVersion, currentVersion })
