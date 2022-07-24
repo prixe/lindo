@@ -17,6 +17,7 @@ export const TabGame = styled(({ game, className }: TabGameProps) => {
 
   const handleClose = (event: React.MouseEvent) => {
     gameStore.removeGame(game)
+    event.preventDefault()
     return event.stopPropagation()
   }
 

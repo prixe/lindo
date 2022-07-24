@@ -53,7 +53,7 @@ export const SideBar = () => {
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
-        delay: 100,
+        distance: 1,
         tolerance: 10
       }
     }),
