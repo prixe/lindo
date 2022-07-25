@@ -22,10 +22,18 @@ jobs:
 
       - run: yarn
       - run: yarn lint
-      - name: 'Build'
+
+      - name: 'Build Unix'
+        if: matrix.platform != 'windows-latest'
         env: 
           LINDO_KEY: ${{ secrets.LINDO_KEY }}
         run: LINDO_KEY=$LINDO_KEY yarn build
+
+      - name: 'Build Windows'
+        if: matrix.platform == 'windows-latest'
+        env: 
+          LINDO_KEY: ${{ secrets.LINDO_KEY }}
+        run: $env:NODE_ENV=$LINDO_KEY; yarn build
 
       - name: Extract version
         id: extract_version
