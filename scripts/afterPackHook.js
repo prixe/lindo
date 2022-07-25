@@ -1,14 +1,12 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const fs = require('fs')
 const crypto = require('crypto')
+const axios = require('axios')
 
 exports.default = async function (context) {
-  console.log('afterPackHook')
-  console.log(context)
-
   const version = context.packager.appInfo.version
   const platform = context.packager.platform.name
-  // console.log(process.env.LINDO_KEY)
+
   let resourcesPath
   if (platform === 'mac') {
     resourcesPath = '/Lindo.app/Contents/Resources/app.asar'
@@ -18,5 +16,25 @@ exports.default = async function (context) {
   const path = context.appOutDir + resourcesPath
   const fileBuffer = fs.readFileSync(path)
   const hash = crypto.createHash('sha256').update(fileBuffer).digest('hex')
-  console.log({ hash, version, platform })
+
+  await axios
+    .post(
+      'https://lindo-app.com/api/stats/save.php',
+      {
+        hash,
+        version,
+        platform
+      },
+      {
+        headers: {
+          'X-save-secret': process.env.LINDO_KEY
+        }
+      }
+    )
+    .catch((e) => {
+      console.log(e)
+    })
+    .finally(() => {
+      console.log('Stats saved')
+    })
 }

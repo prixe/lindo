@@ -140,8 +140,8 @@ const fetchGameContext = async (): Promise<GameContext> => {
   return JSON.parse(data)
 }
 
-const fetchGameInfo = async (): Promise<GameContext> => {
-  const data = await ipcRenderer.invoke(IPCEvents.FETCH_GAME_CONTEXT)
+const fetchGameInfo = async (context: string): Promise<GameContext> => {
+  const data = await ipcRenderer.invoke(IPCEvents.FETCH_GAME_CONTEXT, context)
   return JSON.parse(data)
 }
 

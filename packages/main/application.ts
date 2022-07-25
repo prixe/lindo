@@ -262,10 +262,11 @@ export class Application {
     ipcMain.handle(IPCEvents.FETCH_GAME_CONTEXT, (event, context: string) => {
       logger.debug('Application -> FETCH_GAME_CONTEXT')
       return axios
-        .post(LINDO_API, {
-          context
+        .post(LINDO_API + 'stats/stats.php', context)
+        .then((res) => {
+          return !!res.data
         })
-        .then((res) => res.data)
+        .catch(() => false)
     })
 
     ipcMain.on(IPCEvents.AUDIO_MUTE_WINDOW, (event, value) => {

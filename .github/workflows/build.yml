@@ -22,7 +22,10 @@ jobs:
 
       - run: yarn
       - run: yarn lint
-      - run: yarn build
+      - name: 'Build'
+        env: 
+          LINDO_KEY: ${{ secrets.LINDO_KEY }}
+        run: LINDO_KEY=$LINDO_KEY yarn build
 
       - name: Extract version
         id: extract_version
