@@ -1,5 +1,5 @@
 import { FollowInstruction, GameTeam, GameTeamWindow, IPCEvents, MultiAccountContext, RootStore } from '@lindo/shared'
-import { app, BeforeSendResponse, BrowserWindow } from 'electron'
+import { app, BeforeSendResponse, BrowserWindow, shell } from 'electron'
 import { attachTitlebarToWindow } from 'custom-electron-titlebar/main'
 import { join } from 'path'
 import { EventEmitter } from 'stream'
@@ -132,8 +132,8 @@ export class GameWindow extends (EventEmitter as new () => TypedEmitter<GameWind
       }
     }
     // Make all links open with the browser, not with the application
-    this._win.webContents.setWindowOpenHandler(() => {
-      // if (url.startsWith('https:')) shell.openExternal(url)
+    this._win.webContents.setWindowOpenHandler(({ url }) => {
+      if (url.startsWith('https:')) shell.openExternal(url)
       return { action: 'deny' }
     })
 
