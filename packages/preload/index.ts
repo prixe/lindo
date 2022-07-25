@@ -78,6 +78,17 @@ const subscribeToNewTab = (callback: () => void): (() => void) => {
   }
 }
 
+const subscribeToSelectTab = (callback: (tabIndex: number) => void): (() => void) => {
+  const listener = (e: IpcRendererEvent, tabIndex: number) => {
+    callback(tabIndex)
+  }
+  ipcRenderer.on(IPCEvents.SELECT_TAB, listener)
+
+  return () => {
+    ipcRenderer.removeListener(IPCEvents.SELECT_TAB, listener)
+  }
+}
+
 const subscribeToNextTab = (callback: () => void): (() => void) => {
   const listener = () => {
     callback()
@@ -260,6 +271,7 @@ const lindoApi: LindoAPI = {
   forwardPatchToMain,
   subscribeToIPCPatch,
   subscribeToNewTab,
+  subscribeToSelectTab,
   subscribeToNextTab,
   subscribeToPrevTab,
   subscribeToCloseTab,

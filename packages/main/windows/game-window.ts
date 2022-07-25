@@ -6,6 +6,8 @@ import { EventEmitter } from 'stream'
 import TypedEmitter from 'typed-emitter'
 import { generateUserArgent } from '../utils'
 import { logger } from '../logger'
+import { observe } from 'mobx'
+import { electronLocalshortcut } from '@hfelix/electron-localshortcut'
 
 type GameWindowEvents = {
   close: (event: Event) => void
@@ -16,6 +18,7 @@ export class GameWindow extends (EventEmitter as new () => TypedEmitter<GameWind
   private readonly _teamWindow?: GameTeamWindow
   private readonly _team?: GameTeam
   private _isMuted = false
+  private readonly _shortcutStoreDisposer: () => void
 
   get id() {
     return this._win.webContents.id!
@@ -102,6 +105,19 @@ export class GameWindow extends (EventEmitter as new () => TypedEmitter<GameWind
       }
     })
 
+    this._shortcutStoreDisposer = observe(
+      this._store.hotkeyStore.window.tabs,
+      () => {
+        electronLocalshortcut.unregisterAll(this._win)
+        this._store.hotkeyStore.window.tabs.forEach((tab, index) => {
+          electronLocalshortcut.register(this._win, tab, () => {
+            this._win.webContents.send(IPCEvents.SELECT_TAB, index)
+          })
+        })
+      },
+      true
+    )
+
     if (app.isPackaged) {
       this._win.loadFile(join(__dirname, '../renderer/index.html'))
     } else {
@@ -131,6 +147,8 @@ export class GameWindow extends (EventEmitter as new () => TypedEmitter<GameWind
 
   private _close(event: Event) {
     this._win.removeAllListeners()
+    electronLocalshortcut.unregisterAll(this._win)
+    this._shortcutStoreDisposer()
     this.emit('close', event)
   }
 

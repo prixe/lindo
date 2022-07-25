@@ -1,8 +1,5 @@
-import { useConst } from '@/hooks'
 import { useStores } from '@/store'
-import { reaction } from 'mobx'
 import React, { useEffect } from 'react'
-import { Shortcuts } from 'shortcuts'
 export interface TabManagerProps {
   children: React.ReactNode
 }
@@ -11,8 +8,7 @@ export interface TabManagerProps {
  * Manage hotkeys and action for game tabs
  **/
 export const TabManager = ({ children }: TabManagerProps) => {
-  const { gameStore, hotkeyStore } = useStores()
-  const shortcuts = useConst(new Shortcuts())
+  const { gameStore } = useStores()
 
   useEffect(
     () =>
@@ -46,26 +42,11 @@ export const TabManager = ({ children }: TabManagerProps) => {
     []
   )
 
-  useEffect(() => {
-    const setTabHotKeys = () => {
-      shortcuts.reset()
-      shortcuts.add(
-        hotkeyStore.window.tabs.map((tab, index) => ({
-          shortcut: tab,
-          handler: () => {
-            gameStore.selectGameIndex(index)
-          }
-        }))
-      )
-    }
-    setTabHotKeys()
-    return reaction(
-      () => hotkeyStore.window.tabs,
-      () => {
-        setTabHotKeys()
-      }
-    )
-  }, [hotkeyStore.window.tabs])
+  useEffect(() =>
+    window.lindoAPI.subscribeToSelectTab((tabIndex: number) => {
+      gameStore.selectGameIndex(tabIndex)
+    })
+  )
 
   return <>{children}</>
 }

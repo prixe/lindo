@@ -25,6 +25,7 @@ export interface LindoAPI {
   resetStore: () => void
   // hotkeys
   subscribeToNewTab: (callback: () => void) => () => void
+  subscribeToSelectTab: (callback: (tabIndex: number) => void) => () => void
   subscribeToNextTab: (callback: () => void) => () => void
   subscribeToPrevTab: (callback: () => void) => () => void
   subscribeToCloseTab: (callback: () => void) => () => void
