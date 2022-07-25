@@ -6,7 +6,8 @@ const KEY_MAPPER = {
   ArrowRight: 'Right',
   ArrowLeft: 'Left',
   ArrowDown: 'Down',
-  ArrowUp: 'Up'
+  ArrowUp: 'Up',
+  ' ': 'Space'
 }
 
 export interface ShortcutInputProps {
