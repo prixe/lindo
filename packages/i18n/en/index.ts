@@ -266,7 +266,7 @@ const en: BaseTranslation = {
     },
     multiAccount: {
       title: 'Multi Account',
-      enable: 'The multi account is enabled with your master password',
+      enable: 'Enable the multi account with your master password',
       notConfigured:
         'To use this feature, a password must be configured. It will be used to start Lindo with multi-account automation.',
       configurePassword: 'Configure password',

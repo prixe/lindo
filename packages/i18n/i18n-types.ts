@@ -831,7 +831,7 @@ type RootTranslation = {
 			 */
 			title: string
 			/**
-			 * The multi account is enabled with your master password
+			 * Enable the multi account with your master password
 			 */
 			enable: string
 			/**
@@ -1886,7 +1886,7 @@ export type TranslationFunctions = {
 			 */
 			title: () => LocalizedString
 			/**
-			 * The multi account is enabled with your master password
+			 * Enable the multi account with your master password
 			 */
 			enable: () => LocalizedString
 			/**

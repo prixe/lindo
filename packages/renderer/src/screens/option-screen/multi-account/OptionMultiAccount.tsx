@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button, Stack, Typography } from '@mui/material'
+import { Box, Button, Checkbox, FormControl, FormControlLabel, Stack, Typography } from '@mui/material'
 import { Observer } from 'mobx-react-lite'
 import { useI18nContext } from '@lindo/i18n'
 import { AccountContainer } from './account-container'
@@ -12,9 +12,8 @@ import { RemovePasswordDialog } from './password-form-dialog/RemovePasswordDialo
 
 export const OptionMultiAccount = () => {
   const { LL } = useI18nContext()
-  const {
-    optionStore: { gameMultiAccount }
-  } = useStores()
+  const { optionStore } = useStores()
+  const gameMultiAccount = optionStore.gameMultiAccount
   const [openConfigurePasswordDialog, , toggleConfigurePasswordDialog] = useDialog()
   const [openChangePasswordDialog, , toggleChangePasswordDialog] = useDialog()
   const [openRemovePasswordDialog, , toggleRemovePasswordDialog] = useDialog()
@@ -46,7 +45,14 @@ export const OptionMultiAccount = () => {
               )}
               {!gameMultiAccount.locked && gameMultiAccount.configured && (
                 <Box>
-                  <Typography>{LL.option.multiAccount.enable()}</Typography>
+                  <FormControl fullWidth>
+                    <FormControlLabel
+                      control={<Checkbox />}
+                      label={LL.option.multiAccount.enable()}
+                      checked={optionStore.multiAccountEnabled}
+                      onChange={(_, checked) => optionStore.setMultiAccountEnabled(checked)}
+                    />
+                  </FormControl>
 
                   <Stack spacing={2} direction='row' sx={{ mt: 3 }}>
                     <Button variant='outlined' onClick={toggleChangePasswordDialog}>

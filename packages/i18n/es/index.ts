@@ -266,7 +266,7 @@ const es: Translation = {
     },
     multiAccount: {
       title: 'Cuenta Múltiple',
-      enable: 'La cuenta múltiple está habilitada con su contraseña maestra',
+      enable: 'Habilite la cuenta múltiple con su contraseña maestra',
       notConfigured:
         'Para utilizar esta función, se debe configurar una contraseña. Se utilizará para iniciar Lindo con las automatizaciones multicuenta.',
       configurePassword: 'Configurar contraseña',

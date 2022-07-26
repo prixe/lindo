@@ -21,11 +21,15 @@ export const OptionStoreModel = types
     gameGroup: types.optional(GameGroupOptionModel, {}),
     gameJob: types.optional(GameJobOptionModel, {}),
     gameNotification: types.optional(GameNotificationOptionModel, {}),
-    gameMultiAccount: types.optional(GameMultiAccountModel, {})
+    gameMultiAccount: types.optional(GameMultiAccountModel, {}),
+    multiAccountEnabled: types.optional(types.boolean, false)
   })
   .actions((self) => ({
     restoreGameMultiAccount(gameMultiAccount: GameMultiAccountSnapshotIn) {
       applySnapshot(self.gameMultiAccount, gameMultiAccount)
+    },
+    setMultiAccountEnabled(value: boolean) {
+      self.multiAccountEnabled = value
     }
   }))
 

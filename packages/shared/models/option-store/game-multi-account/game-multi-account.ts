@@ -13,11 +13,6 @@ export const GameMultiAccountModel = types
     teams: types.array(GameTeamModel),
     characters: types.array(GameCharacterModel)
   })
-  .views((self) => ({
-    get isEnabled() {
-      return !self.locked && self.teams.length > 0
-    }
-  }))
   .actions((self) => ({
     unlock() {
       self.locked = false

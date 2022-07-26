@@ -82,8 +82,8 @@ export class MultiAccount {
     })
   }
 
-  isEnabled() {
-    return this._isMasterPasswordConfigured()
+  async isEnabled() {
+    return (await this._isMasterPasswordConfigured()) && this._rootStore.optionStore.multiAccountEnabled
   }
 
   async unlockWithTeam() {

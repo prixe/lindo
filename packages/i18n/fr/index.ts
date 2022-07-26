@@ -267,7 +267,7 @@ const fr: Translation = {
     },
     multiAccount: {
       title: 'Multi Compte',
-      enable: 'Le multi compte est activé avec motre mot de passe maître',
+      enable: 'Activer le multi compte avec motre mot de passe maître',
       notConfigured:
         'Pour utiliser cette fonctionnalité, un mot de passe doit être configuré. Il sera utilisé afin de démarrer Lindo avec les automatismes du multi-compte.',
       configurePassword: 'Configurer le mot de passe',
