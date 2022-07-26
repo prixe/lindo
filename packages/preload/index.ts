@@ -1,4 +1,4 @@
-import { contextBridge, ipcRenderer, IpcRendererEvent, shell } from 'electron'
+import { contextBridge, ipcRenderer, IpcRendererEvent } from 'electron'
 import { domReady } from './utils'
 import { IJsonPatch } from 'mobx-state-tree'
 import {
@@ -8,7 +8,6 @@ import {
   LindoAPI,
   LindoLogger,
   LindoTitleBar,
-  OFFICIAL_WEBSITE_URL,
   RootStoreSnapshot,
   SaveCharacterImageArgs,
   UpdateProgress
@@ -230,10 +229,6 @@ const clearCache = () => {
   ipcRenderer.send(IPCEvents.CLEAR_CACHE)
 }
 
-const openOfficialWebsite = () => {
-  shell.openExternal(OFFICIAL_WEBSITE_URL)
-}
-
 const logger: LindoLogger = {
   debug: (...params: unknown[]) => {
     ipcRenderer.send(IPCEvents.LOGGER_DEBUG, ...params)
@@ -297,7 +292,6 @@ const lindoApi: LindoAPI = {
   sendAutoGroupPathInstruction,
   resetGameData,
   clearCache,
-  openOfficialWebsite,
   logger
 }
 contextBridge.exposeInMainWorld('lindoAPI', lindoApi)

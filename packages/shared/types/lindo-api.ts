@@ -57,6 +57,5 @@ export interface LindoAPI {
   // options
   resetGameData: () => void
   clearCache: () => void
-  openOfficialWebsite: () => void
   logger: LindoLogger
 }
