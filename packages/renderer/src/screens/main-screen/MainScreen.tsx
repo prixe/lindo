@@ -22,7 +22,7 @@ export const MainScreen = () => {
     } else {
       gameStore.addGame()
     }
-  })
+  }, [])
 
   return (
     <TabManager>

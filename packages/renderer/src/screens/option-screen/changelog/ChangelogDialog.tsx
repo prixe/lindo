@@ -1,8 +1,7 @@
 // import { useI18nContext } from '@lindo/i18n'
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material'
-import React, { memo, useEffect, useState } from 'react'
-import { marked } from 'marked'
-import { useGameContext } from '@/providers'
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Tab, Tabs, useTheme } from '@mui/material'
+import React, { memo } from 'react'
+import { useChangelog } from './use-changelog'
 
 export interface ChangelogDialogProps {
   open: boolean
@@ -12,28 +11,68 @@ export interface ChangelogDialogProps {
 // eslint-disable-next-line react/display-name
 export const ChangelogDialog = memo(({ open, onClose }: ChangelogDialogProps) => {
   // const { LL } = useI18nContext()
-  const context = useGameContext()
+  const theme = useTheme()
+  const { currentChangelog, selectedVersionIndex, versions, selectVersionIndex } = useChangelog()
 
-  const [changelog, setChangelog] = useState('')
-
-  useEffect(() => {
-    fetch(context.changeLogSrc)
-      .then((res) => res.blob())
-      .then((blob) => blob.text())
-      .then((text) => {
-        setChangelog(marked.parse(text))
-      })
-  })
+  const handleSelectVersion = (event: React.SyntheticEvent, index: number) => {
+    selectVersionIndex(index)
+  }
 
   return (
     <Dialog open={open} onClose={onClose} fullScreen>
-      <DialogTitle>Changelog</DialogTitle>
-      <DialogContent dangerouslySetInnerHTML={{ __html: changelog }}></DialogContent>
-      <DialogActions>
-        <Button variant='outlined' onClick={onClose}>
-          Close
-        </Button>
-      </DialogActions>
+      <Box
+        sx={{
+          flexGrow: 1,
+          width: '100vw',
+          display: 'flex',
+          height: '100vh',
+          backgroundColor: theme.palette.background.paper
+        }}
+      >
+        <Tabs
+          orientation='vertical'
+          variant='scrollable'
+          value={selectedVersionIndex}
+          onChange={handleSelectVersion}
+          aria-label='option-categories'
+          sx={{
+            borderRight: 1,
+            borderColor: 'divider',
+            width: '150px',
+            flexShrink: 0,
+            backgroundColor: theme.palette.background.default
+          }}
+        >
+          {versions.map((version) => (
+            <Tab key={version.version} label={version.version} />
+          ))}
+        </Tabs>
+        <Box
+          sx={{
+            display: 'flex',
+            flex: 1,
+            flexDirection: 'column'
+          }}
+        >
+          <Box sx={{ display: 'flex', flex: 1, flexDirection: 'column', overflowY: 'auto' }}>
+            {currentChangelog && (
+              <>
+                <DialogTitle>
+                  Release - {currentChangelog.title.version} ({currentChangelog.title.date.toDateString()})
+                </DialogTitle>
+                <DialogContent>
+                  <Box dangerouslySetInnerHTML={{ __html: currentChangelog.content }} />
+                </DialogContent>
+              </>
+            )}
+          </Box>
+          <DialogActions>
+            <Button variant='outlined' onClick={onClose}>
+              Close
+            </Button>
+          </DialogActions>
+        </Box>
+      </Box>
     </Dialog>
   )
 })

@@ -35,7 +35,7 @@ export const GameScreen = memo(({ game }: GameScreenProps) => {
       },
       { fireImmediately: true }
     )
-  })
+  }, [])
 
   const handleLoad = () => {
     if (iframeGameRef.current) {

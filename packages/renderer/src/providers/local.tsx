@@ -21,7 +21,7 @@ export const LocalProvider = ({ children }: LocalProviderProps) => {
       },
       { fireImmediately: true }
     )
-  })
+  }, [])
 
   return <>{children}</>
 }

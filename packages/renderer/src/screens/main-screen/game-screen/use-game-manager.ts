@@ -32,7 +32,7 @@ export const useGameManager = ({ game, rootStore, LL }: GameManagerProps) => {
         destroyMods()
       }
     })
-  })
+  }, [])
 
   return {
     init: (dWindow: DofusWindow) => {
