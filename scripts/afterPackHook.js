@@ -27,14 +27,11 @@ exports.default = async function (context) {
       },
       {
         headers: {
-          'X-save-secret': process.env.LINDO_KEY
+          'X-save-secret': process.env.LINDO_KEY ?? ''
         }
       }
     )
     .catch((e) => {
-      console.log(e)
-    })
-    .finally(() => {
-      console.log('Stats saved')
+      console.log(e.toString())
     })
 }
