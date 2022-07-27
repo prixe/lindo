@@ -23,6 +23,7 @@ import {
 import { RootStore } from '@lindo/shared'
 import { logger } from '../logger'
 import { generateUserArgent } from '../utils'
+import { Agent } from 'https'
 
 interface GameVersion {
   buildVersion: string
@@ -41,10 +42,18 @@ export class GameUpdater {
     this._httpClient = axios.create({
       headers: {
         'User-Agent': userAgent
-      }
+      },
+      httpsAgent: new Agent({ keepAlive: true })
     })
     this._dofusOrigin = rootStore.appStore.dofusTouchEarly ? DOFUS_EARLY_ORIGIN : DOFUS_ORIGIN
-    axiosRetry(this._httpClient, { retries: 5, retryDelay: () => 1000 })
+    axiosRetry(this._httpClient, {
+      retries: 5,
+      retryDelay: () => 1000,
+      shouldResetTimeout: true,
+      onRetry: (retryCount, error) => {
+        logger.warn({ retryCount, error: error.toString() })
+      }
+    })
   }
 
   static async init(rootStore: RootStore): Promise<GameUpdater> {
@@ -78,11 +87,11 @@ export class GameUpdater {
     })
 
     this._updaterWindow.sendProgress({ message: 'DOWNLOAD MISSING ASSETS FILES ON DISK..', percent: 10 })
-    return this._downloadAssetsFiles(assetDiffManifest, remoteAssetManifest)
+    return this._downloadAssetsFiles(assetDiffManifest, remoteAssetManifest, false)
       .catch((error) => {
         logger.error('Error while downloading assets files:', error)
-        logger.info('Will restart in non async mod')
-        return this._downloadAssetsFiles(assetDiffManifest, remoteAssetManifest, false)
+        // logger.info('Will restart in non async mod')
+        // return this._downloadAssetsFiles(assetDiffManifest, remoteAssetManifest, false)
       })
       .then(async () => {
         this._updaterWindow.sendProgress({ message: 'DOWNLOAD MISSING LINDO AND DOFUS FILES IN MEMORY..', percent: 40 })
@@ -275,22 +284,16 @@ export class GameUpdater {
             throw err
           })
           .then((response) => {
-            // response.data.pipe(fileWriteStream)
             return new Promise<void>((resolve, reject) => {
-              const timeoutInt = setTimeout(() => {
-                reject(new Error('Timeout'))
-              }, 40000)
-
               fileWriteStream.on('finish', function () {
                 resolve()
-                clearTimeout(timeoutInt)
               })
               fileWriteStream.on('error', (err) => {
-                clearTimeout(timeoutInt)
                 reject(err)
               })
               response.data.pipe(fileWriteStream)
-            }).catch(() => {
+            }).catch((e) => {
+              console.log(e)
               logger.error('Error while downloading ' + url)
             })
           })
@@ -311,7 +314,9 @@ export class GameUpdater {
       })
     } else {
       for (const promise of promises) {
-        await promise
+        await promise.catch((err) => {
+          logger.error('Error while downloading asset file', err)
+        })
       }
     }
   }
