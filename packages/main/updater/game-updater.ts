@@ -22,6 +22,7 @@ import {
 } from '../constants'
 import { RootStore } from '@lindo/shared'
 import { logger } from '../logger'
+import { generateUserArgent } from '../utils'
 
 interface GameVersion {
   buildVersion: string
@@ -34,17 +35,22 @@ export class GameUpdater {
   private readonly _httpClient: AxiosInstance
   private readonly _dofusOrigin: string
 
-  private constructor(updaterWindow: UpdaterWindow, rootStore: RootStore) {
+  private constructor(updaterWindow: UpdaterWindow, rootStore: RootStore, userAgent: string) {
     this._updaterWindow = updaterWindow
     this._rootStore = rootStore
-    this._httpClient = axios.create()
+    this._httpClient = axios.create({
+      headers: {
+        'User-Agent': userAgent
+      }
+    })
     this._dofusOrigin = rootStore.appStore.dofusTouchEarly ? DOFUS_EARLY_ORIGIN : DOFUS_ORIGIN
     axiosRetry(this._httpClient, { retries: 5, retryDelay: () => 1000 })
   }
 
   static async init(rootStore: RootStore): Promise<GameUpdater> {
     const updaterWindow = await UpdaterWindow.init(rootStore)
-    return new GameUpdater(updaterWindow, rootStore)
+    const userAgent = await generateUserArgent(rootStore.appStore.appVersion)
+    return new GameUpdater(updaterWindow, rootStore, userAgent)
   }
 
   async run() {
