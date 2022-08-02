@@ -28,7 +28,7 @@ export class ShowResourcesMod extends Mod {
 
   private resourcesBox?: HTMLDivElement
   private enabled: boolean = true
-  private isHide: boolean = false
+  private isFighting: boolean = false
   private readonly settingDisposer: () => void
 
   constructor(wGame: DofusWindow, rootStore: RootStore, LL: TranslationFunctions) {
@@ -51,34 +51,34 @@ export class ShowResourcesMod extends Mod {
     resourcesBoxCss.id = 'resourcesBoxCss'
     resourcesBoxCss.innerHTML = `
                 #resourcesBox {
-                    display: flex;
-                    flex-direction: row;
-                    align-items: flex-end;
-                    position: absolute;
-                    top: 0;
-                    border: 1px solid #3e3e3e;
-                    border-top: none;
-                    background-color: rgba(0, 0, 0, 0.55);
-                    border-radius: 0 0 5px 5px;
-                    padding: 4px 2px;
+                  display: flex;
+                  flex-direction: row;
+                  align-items: flex-end;
+                  position: absolute;
+                  top: 0;
+                  border-top: none;
+                  border-radius: 0 0 5px 5px;
+                  padding: 4px 0px;
+                  background: rgba(120, 120, 120, 0.25);
+                  box-shadow: #505050 1px 1px 2px;
                 }
 
                 .resource-item {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    padding: 0 5px;
-                    margin: 0 5px;
-                    border-radius: 4px;
-                    background-color: #00000033;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  padding: 0 5px;
+                  margin: 0 5px;
+                  border-radius: 4px;
+                  background-color: #00000033;
                 }
 
                 .resource-item p {
-                    margin: 0;
+                  margin: 0;
                 }
 
                 .resource-item img {
-                    width: 35px;
+                  width: 32px;
                 }
             `
 
@@ -86,7 +86,8 @@ export class ShowResourcesMod extends Mod {
 
     this._shortcuts.add({
       shortcut: this.rootStore.hotkeyStore.gameMod.mapResources,
-      handler: () => {
+      handler: (e) => {
+        e.preventDefault()
         this.toggle()
       }
     })
@@ -106,7 +107,8 @@ export class ShowResourcesMod extends Mod {
       'GameFightStartingMessage',
       () => {
         if (this.enabled) {
-          this.toggle()
+          this.isFighting = true
+          this.clear()
         }
       }
     )
@@ -114,12 +116,16 @@ export class ShowResourcesMod extends Mod {
     this._eventManager.on<ConnectionManagerEvents, 'GameFightLeaveMessage'>(
       this.wGame.dofus.connectionManager,
       'GameFightLeaveMessage',
-      () => (this.isHide = false)
+      () => {
+        this.onFightEnd()
+      }
     )
     this._eventManager.on<ConnectionManagerEvents, 'GameFightEndMessage'>(
       this.wGame.dofus.connectionManager,
       'GameFightEndMessage',
-      () => (this.isHide = false)
+      () => {
+        this.onFightEnd()
+      }
     )
 
     setTimeout(() => this.loadMapInfoOnStart(), 100)
@@ -182,9 +188,7 @@ export class ShowResourcesMod extends Mod {
       this.elemIdToTypeid.set(i.elementId, i.elementTypeId)
     })
 
-    if (this.enabled && !this.isHide) {
-      this.create()
-    }
+    if (this.enabled) this.create()
   }
 
   /**
@@ -206,7 +210,7 @@ export class ShowResourcesMod extends Mod {
         window.lindoAPI.logger.error('Unabled to update resource with typeId = ' + typeId)()
       }
 
-      if (this.enabled) this.updateResourceInDom(typeId)
+      if (this.enabled && !this.isFighting) this.updateResourceInDom(typeId)
     }, 500)
   }
 
@@ -216,8 +220,6 @@ export class ShowResourcesMod extends Mod {
   }
 
   private create() {
-    if (this.isHide) this.isHide = false
-
     this.resourcesBox = this.wGame.document.createElement('div')
     this.resourcesBox.id = 'resourcesBox'
 
@@ -246,13 +248,9 @@ export class ShowResourcesMod extends Mod {
 
   private toggle() {
     this.enabled = !this.enabled
-    if (!this.enabled) {
-      this.isHide = true
-      this.clearHtml()
-    } else {
-      this.isHide = false
-      this.create()
-    }
+
+    if (!this.enabled) this.clearHtml()
+    else this.create()
   }
 
   private clearHtml() {
@@ -270,6 +268,13 @@ export class ShowResourcesMod extends Mod {
     this.clear()
     this._eventManager.close()
     this._shortcuts.reset()
+  }
+
+  private onFightEnd() {
+    if (this.enabled) {
+      this.isFighting = false
+      this.create()
+    }
   }
 
   destroy(): void {
