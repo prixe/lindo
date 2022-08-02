@@ -25,8 +25,8 @@ export class HarvestBar {
   }
 
   private createBar() {
-    this.createContainer();
-    
+    this.createContainer()
+
     const scenePos = this.wGame.isoEngine.mapRenderer.getCellSceneCoordinate(this.cellId)
     const pos = this.wGame.isoEngine.mapScene.convertSceneToCanvasCoordinate(scenePos.x, scenePos.y)
 
