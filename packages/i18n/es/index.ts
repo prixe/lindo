@@ -327,7 +327,10 @@ const es: Translation = {
       title: 'Acerca',
       links: {
         website: 'Sitio web',
-        changelog: 'Notes de version'
+        github: 'Github (código fuente)',
+        chat: 'Servidor de chat',
+        reddit: 'Reddit (foro)',
+        changelog: 'Registro de cambios'
       },
       text0: 'Lindo es un software de código abierto que te permite jugar DOFUS Touch desde tu computador.',
       text1:

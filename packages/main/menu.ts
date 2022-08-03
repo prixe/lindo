@@ -135,18 +135,6 @@ export const getAppMenu = (rootStore: RootStore, i18n: I18n) => {
           role: 'togglefullscreen'
         }
       ]
-    },
-    {
-      label: i18n.LL.main.gameMenu.infos.title(),
-      submenu: [
-        {
-          label: i18n.LL.main.gameMenu.infos.console(),
-          accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
-          click(item, focusedWindow) {
-            if (focusedWindow) focusedWindow.webContents.toggleDevTools()
-          }
-        }
-      ]
     }
   ]
   if (isMac) {

@@ -43,6 +43,7 @@ export enum IPCEvents {
 export const OFFICIAL_WEBSITE_URL = 'https://lindo-app.com'
 export const GITHUB_URL = 'https://github.com/prixe/lindo'
 export const MATRIX_URL = 'https://matrix.to/#/#lindo-official:matrix.org'
+export const REDDIT_URL = 'https://www.reddit.com/r/LindoApp/'
 
 export interface SaveCharacterImageArgs {
   image: string
