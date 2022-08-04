@@ -4,7 +4,11 @@ export interface MapScene {
   areasToRefresh: Record<string, Array<number>>
   camera: {
     zoom: number
+    maxZoom: number
     zoomTo: (zoom: number) => void
+  }
+  canvas: {
+    height: number
   }
   convertSceneToCanvasCoordinate: (
     x: number,
