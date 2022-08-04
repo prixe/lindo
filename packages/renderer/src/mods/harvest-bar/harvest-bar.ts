@@ -2,9 +2,9 @@ import { DofusWindow } from '@/dofus-window'
 
 export class HarvestBar {
   private wGame: DofusWindow
-  private container: HTMLDivElement
-  private harvestBar: HTMLDivElement
-  private harvestTimeText: HTMLDivElement
+  private container!: HTMLDivElement
+  private harvestBar!: HTMLDivElement
+  private harvestTimeText!: HTMLDivElement
   private updateInterval?: number
   private interval: number = 200
 
@@ -14,12 +14,18 @@ export class HarvestBar {
 
   constructor(wGame: DofusWindow) {
     this.wGame = wGame
+  }
 
+  private createContainer() {
     this.container = document.createElement('div')
     this.container.id = 'harvestBarContainer'
     this.container.className = 'harvestBarContainer'
 
     this.wGame.foreground.rootElement.appendChild(this.container)
+  }
+
+  private createBar() {
+    this.createContainer()
 
     const scenePos = this.wGame.isoEngine.mapRenderer.getCellSceneCoordinate(this.cellId)
     const pos = this.wGame.isoEngine.mapScene.convertSceneToCanvasCoordinate(scenePos.x, scenePos.y)
@@ -46,7 +52,7 @@ export class HarvestBar {
   }
 
   private show() {
-    // this.createBar()
+    this.createBar()
     this.container.style.visibility = 'visible'
 
     this.updateInterval = window.setInterval(() => {
