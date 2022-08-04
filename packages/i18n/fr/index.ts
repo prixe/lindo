@@ -4,7 +4,7 @@ const fr: Translation = {
   main: {
     updater: {
       title: 'Nouvelle version disponible {version}',
-      message: 'Une nouvelle version ({version}) de Lindo est disponible. Voulez-vous télécharger la mis à jour?',
+      message: 'Une nouvelle version ({version}) de Lindo est disponible. Voulez-vous télécharger la mise à jour?',
       messageRequired:
         'Une nouvelle version ({version}) obligatoire de Lindo est disponible, vous pouvez la télécharger sur GitHub.',
       download: 'Télécharger sur github',
@@ -86,7 +86,7 @@ const fr: Translation = {
       title: 'Mise à jour de Lindo',
       step0: 'Préparation de la mise à jours..',
       step1: 'Étape 1 : Téléchargement des fichiers de Dofus',
-      step2: 'Étape 2 : Téléchargement des patch Lindo',
+      step2: 'Étape 2 : Téléchargement des patchs Lindo',
       step3: 'Étape 3 : Résolution des versions',
       step4: 'Étape 4 : Application des patchs',
       step5: 'Étape 5 : Écriture des fichiers modifiés',
@@ -107,8 +107,8 @@ const fr: Translation = {
       },
       dialogs: {
         resetSettings: {
-          title: 'Réinitialiser toutes les options?',
-          message: "En continuant, tout les paramètres seront remis à zéro. Cette opération n'est pas réversible.",
+          title: 'Réinitialiser toutes les options ?',
+          message: "En continuant, tous les paramètres seront remis à zéro. Cette opération n'est pas réversible.",
           confirm: 'Réinitialiser',
           cancel: 'Annuler'
         }
@@ -123,10 +123,10 @@ const fr: Translation = {
       gameData: 'Données du jeu',
       language: 'Langue',
       resolution: 'Résolution',
-      fullScreen: 'Plein écran',
+      fullScreen: 'Activer le mode plein écran',
       hideTab: "Masquer la barre d'onglets multi-compte",
       localContent: 'Activer le téléchargement local des cartes (beta)',
-      soundFocus: 'Son du jeu uniquement sur la fenêtre au premier plan',
+      soundFocus: 'Activer le son du jeu uniquement sur la fenêtre au premier plan',
       early: 'Jouer sur Dofus Touch Early',
       restart: 'Appliquer et redémarrer',
       resetGame: 'Re-télécharger les données du jeu',
@@ -204,18 +204,18 @@ const fr: Translation = {
       },
       fight: {
         header: 'Combat',
-        healthBar: 'Barres de vie en-dessous des combatants',
+        healthBar: 'Afficher des barres de vie en-dessous des combatants',
         focusFightTurn: 'Basculer automatiquement vers un compte à son tour de jeu',
-        estimator: 'Estimation des dégats des sorts en combat',
-        fightChronometer: 'Afficher le chronomètre de combats',
-        monsterTooltip: 'Affiche les informations des groupes de monstres sur la carte',
-        monsterTooltipShortcut: 'Raccourci pour les informations des groupes de monstres',
+        estimator: "Afficher l'estimation des dégats des sorts en combat",
+        fightChronometer: 'Afficher le chronomètre de combat',
+        monsterTooltip: 'Afficher les informations des groupes de monstres sur la carte',
+        monsterTooltipShortcut: 'Afficher le raccourci pour les informations des groupes de monstres',
         verticalTimeline: 'Afficher la barre des combatants de manière verticale',
         challengePercent: 'Afficher le bonus XP/Drop du challenge'
       },
       group: {
         header: 'Groupes',
-        partyMemberOnMap: "Ajoute un indicateur pour savoir si les membres d'un groupe sont sur la même carte",
+        partyMemberOnMap: "Ajouter un indicateur pour savoir si les membres d'un groupe sont sur la même carte",
         partyInfo: {
           level: 'Afficher le niveau du groupe',
           prospecting: 'Afficher la prospection du groupe'
@@ -236,7 +236,7 @@ const fr: Translation = {
           followLeader: 'Suivre le meneur du groupe',
           disableTimer: "Désactiver le Timer pour l'auto groupe",
           ready: 'Passer automatique en ready',
-          fight: 'Entrée dans les combats automatique',
+          fight: 'Entrer dans les combats automatiquement',
           delay: 'Délai avant de suivre (en seconde)',
           followOnMap: 'Suivre le leader sur une carte',
           strictMove: 'Aller sur la même case que le leader',
@@ -245,8 +245,8 @@ const fr: Translation = {
       },
       job: {
         header: 'Métiers',
-        showResources: 'Affiches les ressources de la carte',
-        harvestIndicator: 'Barres de temps sous les récoltes',
+        showResources: 'Afficher les ressources de la carte',
+        harvestIndicator: 'Afficher des barres de temps sous les récoltes',
         jobsXp: "Activer l'affichage de l'xp a obtenir pour monter de niveau (métier)"
       },
       accounts: {
@@ -328,6 +328,9 @@ const fr: Translation = {
       title: 'À propos',
       links: {
         website: 'Site web',
+        github: 'Github (code source)',
+        chat: 'Serveur de chat',
+        reddit: 'Reddit (forum)',
         changelog: 'Notes de version'
       },
       text0: 'Lindo est un logiciel open-source vous permettant de jouer à DOFUS Touch depuis votre ordinateur.',
