@@ -66,12 +66,20 @@ export const GameStoreModel = types
     },
     selectNextGame() {
       const index = self.gamesOrder.indexOf(self.selectedGame!)
+      if (index >= self.gamesOrder.length - 1) {
+        self.selectGameIndex(0)
+        return
+      }
       if (index !== -1) {
         self.selectGameIndex(index + 1)
       }
     },
     selectPreviousGame() {
       const index = self.gamesOrder.indexOf(self.selectedGame!)
+      if (index === 0) {
+        self.selectGameIndex(self.gamesOrder.length - 1)
+        return
+      }
       if (index !== -1) {
         self.selectGameIndex(index - 1)
       }
