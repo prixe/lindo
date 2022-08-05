@@ -7,9 +7,16 @@ import { logger } from './logger'
 import { electronLocalshortcut } from '@hfelix/electron-localshortcut'
 import { getCurrentKeyboardLayout, getKeyMap } from 'native-keymap'
 
+// prevent chrome using cpu instead of the gpu
+app.commandLine.appendSwitch('ignore-gpu-blacklist', 'true')
+
+// prevent throttling when window is not focus
 app.commandLine.appendSwitch('disable-site-isolation-trials')
 app.commandLine.appendSwitch('disable-renderer-backgrounding')
 app.commandLine.appendSwitch('disable-background-timer-throttling')
+
+// more webgl and less black screen (default is probably 16, maybe...)
+app.commandLine.appendSwitch('max-active-webgl-contexts', '32')
 
 electronLocalshortcut.setKeyboardLayout(getCurrentKeyboardLayout(), getKeyMap())
 
