@@ -97,7 +97,7 @@ export const FormTeamDialog = ({ onClose, open, value }: AddTeamDialogProps) => 
               </Grid>
             ))}
           </Grid>
-          <Button startIcon={<AddIcon />} variant='outlined' sx={{ mt: 2 }} onClick={() => append({})}>
+          <Button startIcon={<AddIcon />} variant='outlined' sx={{ mt: 2 }} onClick={() => append({ characters: [] })}>
             {LL.option.multiAccount.dialogs.teamDialog.addWindow()}
           </Button>
         </Box>
