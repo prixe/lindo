@@ -30,12 +30,12 @@ export const GameInterfaceHotkeyModel = types
       '',
       ...Array.from({ length: 9 }, (_, i) => (i + 1).toString()),
       '0',
-      ...Array.from({ length: 20 }, () => '')
+      ...Array.from({ length: 22 }, () => '')
     ]),
     items: types.optional(types.array(types.string), [
       ...Array.from({ length: 9 }, (_, i) => `CmdOrCtrl+${i + 1}`),
       'CmdOrCtrl+0',
-      ...Array.from({ length: 21 }, () => '')
+      ...Array.from({ length: 22 }, () => '')
     ])
   })
   .actions((self) => ({

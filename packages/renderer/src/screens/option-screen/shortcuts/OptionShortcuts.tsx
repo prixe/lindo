@@ -238,7 +238,7 @@ export const OptionShortcuts = () => {
                   {Array.from({ length: 4 }, (_, k) => k).map((i) => (
                     <Grid item xs={3} key={'grid-spell-' + i}>
                       <Stack spacing={2}>
-                        {Array.from({ length: 7 }, (_, k) => k + i * 8).map((j) => (
+                        {Array.from({ length: 8 }, (_, k) => k + i * 8).map((j) => (
                           <ShortcutInput
                             key={'spell-' + j}
                             id={'spell-' + j}
@@ -257,7 +257,7 @@ export const OptionShortcuts = () => {
                   {Array.from({ length: 4 }, (_, k) => k).map((i) => (
                     <Grid item xs={3} key={'grid-item-' + i}>
                       <Stack spacing={2}>
-                        {Array.from({ length: 7 }, (_, k) => k + i * 8).map((j) => (
+                        {Array.from({ length: 8 }, (_, k) => k + i * 8).map((j) => (
                           <ShortcutInput
                             key={'item-' + j}
                             id={'item-' + j}
