@@ -64,77 +64,81 @@ export class GameUpdater {
 
   async run() {
     // create folder if missing
-    // fs.rmSync(GAME_PATH, { recursive: true, force: true })
-    fs.mkdirSync(GAME_PATH, { recursive: true })
-    fs.mkdirSync(GAME_PATH + 'build', { recursive: true })
+    return (async () => {
+      // fs.rmSync(GAME_PATH, { recursive: true, force: true })
+      fs.mkdirSync(GAME_PATH, { recursive: true })
+      fs.mkdirSync(GAME_PATH + 'build', { recursive: true })
 
-    this._updaterWindow.sendProgress({ message: 'DOWNLOADING ALL MANIFESTS', percent: 0 })
+      this._updaterWindow.sendProgress({ message: 'DOWNLOADING ALL MANIFESTS', percent: 0 })
 
-    const [, remoteAssetManifest, assetDiffManifest] = await retrieveManifests({
-      localManifestPath: LOCAL_ASSET_MAP_PATH,
-      remoteManifestUrl: REMOTE_ASSET_MAP_URL,
-      httpClient: this._httpClient
-    })
-    const [, remoteLindoManifest, lindoDiffManifest] = await retrieveManifests({
-      localManifestPath: LOCAL_LINDO_MANIFEST_PATH,
-      remoteManifestUrl: REMOTE_LINDO_MANIFEST_URL,
-      httpClient: this._httpClient
-    })
-    const [, remoteDofusManifest, dofusDiffManifest] = await retrieveManifests({
-      localManifestPath: LOCAL_DOFUS_MANIFEST_PATH,
-      remoteManifestUrl: REMOTE_DOFUS_MANIFEST_URL,
-      httpClient: this._httpClient
-    })
-
-    this._updaterWindow.sendProgress({ message: 'DOWNLOAD MISSING ASSETS FILES ON DISK..', percent: 10 })
-    return this._downloadAssetsFiles(assetDiffManifest, remoteAssetManifest, false)
-      .catch((error) => {
-        logger.error('Error while downloading assets files:', error)
-        // logger.info('Will restart in non async mod')
-        // return this._downloadAssetsFiles(assetDiffManifest, remoteAssetManifest, false)
+      const [, remoteAssetManifest, assetDiffManifest] = await retrieveManifests({
+        localManifestPath: LOCAL_ASSET_MAP_PATH,
+        remoteManifestUrl: REMOTE_ASSET_MAP_URL,
+        httpClient: this._httpClient
       })
-      .then(async () => {
-        this._updaterWindow.sendProgress({ message: 'DOWNLOAD MISSING LINDO AND DOFUS FILES IN MEMORY..', percent: 40 })
-        const [missingLindoFiles, missingDofusFiles] = await this._retrieveMissingLindoAndDofusFiles(
-          lindoDiffManifest,
-          remoteLindoManifest,
-          dofusDiffManifest,
-          remoteDofusManifest
-        )
+      const [, remoteLindoManifest, lindoDiffManifest] = await retrieveManifests({
+        localManifestPath: LOCAL_LINDO_MANIFEST_PATH,
+        remoteManifestUrl: REMOTE_LINDO_MANIFEST_URL,
+        httpClient: this._httpClient
+      })
+      const [, remoteDofusManifest, dofusDiffManifest] = await retrieveManifests({
+        localManifestPath: LOCAL_DOFUS_MANIFEST_PATH,
+        remoteManifestUrl: REMOTE_DOFUS_MANIFEST_URL,
+        httpClient: this._httpClient
+      })
 
-        this._updaterWindow.sendProgress({ message: 'FINDING VERSIONS..', percent: 60 })
-        const localVersions = await this._findingVersions(missingDofusFiles)
-
-        this._updaterWindow.sendProgress({
-          message: 'APPLYING REGEX (LINDO OVERRIDE) ON DOFUS MISSING FILES',
-          percent: 70
+      this._updaterWindow.sendProgress({ message: 'DOWNLOAD MISSING ASSETS FILES ON DISK..', percent: 10 })
+      return this._downloadAssetsFiles(assetDiffManifest, remoteAssetManifest, false)
+        .catch((error) => {
+          logger.error('Error while downloading assets files:', error)
+          // logger.info('Will restart in non async mod')
+          // return this._downloadAssetsFiles(assetDiffManifest, remoteAssetManifest, false)
         })
-        this._applyRegex(lindoDiffManifest, missingLindoFiles, missingDofusFiles)
+        .then(async () => {
+          this._updaterWindow.sendProgress({
+            message: 'DOWNLOAD MISSING LINDO AND DOFUS FILES IN MEMORY..',
+            percent: 40
+          })
+          const [missingLindoFiles, missingDofusFiles] = await this._retrieveMissingLindoAndDofusFiles(
+            lindoDiffManifest,
+            remoteLindoManifest,
+            dofusDiffManifest,
+            remoteDofusManifest
+          )
 
-        this._updaterWindow.sendProgress({ message: 'WRITING LINDO AND DOFUS MISSING FILES TO DISK', percent: 80 })
-        this._writeMissingFiles(missingLindoFiles)
-        this._writeMissingFiles(missingDofusFiles)
+          this._updaterWindow.sendProgress({ message: 'FINDING VERSIONS..', percent: 60 })
+          const localVersions = await this._findingVersions(missingDofusFiles)
 
-        this._updaterWindow.sendProgress({ message: 'REMOVING OLD ASSETS AND DOFUS FILES..', percent: 90 })
-        this._removeOldAssets(dofusDiffManifest, remoteDofusManifest)
-        this._removeOldAssets(lindoDiffManifest, remoteLindoManifest)
+          this._updaterWindow.sendProgress({
+            message: 'APPLYING REGEX (LINDO OVERRIDE) ON DOFUS MISSING FILES',
+            percent: 70
+          })
+          this._applyRegex(lindoDiffManifest, missingLindoFiles, missingDofusFiles)
 
-        this._updaterWindow.sendProgress({ message: 'SAVING ALL JSON FILES TO DISK', percent: 100 })
-        await Promise.all([
-          fs.promises.writeFile(LOCAL_ASSET_MAP_PATH, JSON.stringify(remoteAssetManifest)),
-          fs.promises.writeFile(LOCAL_LINDO_MANIFEST_PATH, JSON.stringify(remoteLindoManifest)),
-          fs.promises.writeFile(LOCAL_DOFUS_MANIFEST_PATH, JSON.stringify(remoteDofusManifest)),
-          fs.promises.writeFile(LOCAL_VERSIONS_PATH, JSON.stringify(localVersions))
-        ])
+          this._updaterWindow.sendProgress({ message: 'WRITING LINDO AND DOFUS MISSING FILES TO DISK', percent: 80 })
+          this._writeMissingFiles(missingLindoFiles)
+          this._writeMissingFiles(missingDofusFiles)
 
-        // save to store
-        this._rootStore.appStore.setAppVersion(localVersions.appVersion)
-        this._rootStore.appStore.setBuildVersion(localVersions.buildVersion)
-      })
-      .finally(() => {
-        logger.info('GAME UPDATE FINISH')
-        this._updaterWindow.close()
-      })
+          this._updaterWindow.sendProgress({ message: 'REMOVING OLD ASSETS AND DOFUS FILES..', percent: 90 })
+          this._removeOldAssets(dofusDiffManifest, remoteDofusManifest)
+          this._removeOldAssets(lindoDiffManifest, remoteLindoManifest)
+
+          this._updaterWindow.sendProgress({ message: 'SAVING ALL JSON FILES TO DISK', percent: 100 })
+          await Promise.all([
+            fs.promises.writeFile(LOCAL_ASSET_MAP_PATH, JSON.stringify(remoteAssetManifest)),
+            fs.promises.writeFile(LOCAL_LINDO_MANIFEST_PATH, JSON.stringify(remoteLindoManifest)),
+            fs.promises.writeFile(LOCAL_DOFUS_MANIFEST_PATH, JSON.stringify(remoteDofusManifest)),
+            fs.promises.writeFile(LOCAL_VERSIONS_PATH, JSON.stringify(localVersions))
+          ])
+
+          // save to store
+          this._rootStore.appStore.setAppVersion(localVersions.appVersion)
+          this._rootStore.appStore.setBuildVersion(localVersions.buildVersion)
+        })
+    })().finally(() => {
+      logger.info('GAME UPDATE FINISH')
+      this._updaterWindow.close()
+    })
   }
 
   private _writeMissingFiles(files: Files) {
