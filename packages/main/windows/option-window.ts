@@ -23,6 +23,7 @@ export class OptionWindow extends (EventEmitter as new () => TypedEmitter<Option
       autoHideMenuBar: true,
       webPreferences: {
         preload: join(__dirname, '../preload/index.cjs'),
+        sandbox: false,
         defaultEncoding: 'UTF-8'
       }
     })

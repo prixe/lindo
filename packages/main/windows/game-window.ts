@@ -50,6 +50,7 @@ export class GameWindow extends (EventEmitter as new () => TypedEmitter<GameWind
       webPreferences: {
         preload: join(__dirname, '../preload/index.cjs'),
         backgroundThrottling: false,
+        sandbox: false,
         allowRunningInsecureContent: true,
         webviewTag: true,
         webSecurity: false // require to load dofus files
@@ -110,7 +111,7 @@ export class GameWindow extends (EventEmitter as new () => TypedEmitter<GameWind
       () => {
         electronLocalshortcut.unregisterAll(this._win)
         this._store.hotkeyStore.window.tabs.forEach((tab, index) => {
-          if(tab){
+          if (tab) {
             electronLocalshortcut.register(this._win, tab, () => {
               this._win.webContents.send(IPCEvents.SELECT_TAB, index)
             })

@@ -23,6 +23,7 @@ export class UpdaterWindow extends (EventEmitter as new () => TypedEmitter<Updat
       autoHideMenuBar: true,
       webPreferences: {
         preload: join(__dirname, '../preload/index.cjs'),
+        sandbox: false,
         defaultEncoding: 'UTF-8'
       }
     })
