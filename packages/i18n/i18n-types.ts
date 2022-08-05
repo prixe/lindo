@@ -174,7 +174,7 @@ type RootTranslation = {
 	}
 	notifications: {
 		/**
-		 * Starting turn for {characterName}
+		 * Start of turn for {characterName}
 		 * @param {string} characterName
 		 */
 		fightTurn: RequiredParams<'characterName'>
@@ -386,7 +386,7 @@ type RootTranslation = {
 			 */
 			localContent: string
 			/**
-			 * Game sound only on foreground window
+			 * Enable game sound only on foreground window
 			 */
 			soundFocus: string
 			/**
@@ -640,7 +640,7 @@ type RootTranslation = {
 				 */
 				header: string
 				/**
-				 * Activate the display of the life bars below the fighters
+				 * Activate life bar display below fighters
 				 */
 				healthBar: string
 				/**
@@ -648,11 +648,11 @@ type RootTranslation = {
 				 */
 				focusFightTurn: string
 				/**
-				 * Estimating spell damage in battle
+				 * Show spell damage estimations in battle
 				 */
 				estimator: string
 				/**
-				 * Show combats chronometer
+				 * Show combat chronometer
 				 */
 				fightChronometer: string
 				/**
@@ -678,7 +678,7 @@ type RootTranslation = {
 				 */
 				header: string
 				/**
-				 * Add an indicator to know if the members of a group are on the same map
+				 * Add an indicator to know if group members are on the same map
 				 */
 				partyMemberOnMap: string
 				partyInfo: {
@@ -772,11 +772,11 @@ type RootTranslation = {
 				 */
 				showResources: string
 				/**
-				 * Activate the display of the remaining time below the resources
+				 * Activate display of ressources remaining time
 				 */
 				harvestIndicator: string
 				/**
-				 * Activate the display of the job xp need for leveling
+				 * Activate the display of job xp needed for leveling
 				 */
 				jobsXp: string
 			}
@@ -801,7 +801,7 @@ type RootTranslation = {
 			 */
 			fightTurn: string
 			/**
-			 * By incoming private messages
+			 * When you receive private messages
 			 */
 			privateMessage: string
 			/**
@@ -1009,6 +1009,18 @@ type RootTranslation = {
 				 * Website
 				 */
 				website: string
+				/**
+				 * Github (source code)
+				 */
+				github: string
+				/**
+				 * Chat server
+				 */
+				chat: string
+				/**
+				 * Reddit (forum)
+				 */
+				reddit: string
 				/**
 				 * Release notes
 				 */
@@ -1235,7 +1247,7 @@ export type TranslationFunctions = {
 	}
 	notifications: {
 		/**
-		 * Starting turn for {characterName}
+		 * Start of turn for {characterName}
 		 */
 		fightTurn: (arg: { characterName: string }) => LocalizedString
 		/**
@@ -1444,7 +1456,7 @@ export type TranslationFunctions = {
 			 */
 			localContent: () => LocalizedString
 			/**
-			 * Game sound only on foreground window
+			 * Enable game sound only on foreground window
 			 */
 			soundFocus: () => LocalizedString
 			/**
@@ -1695,7 +1707,7 @@ export type TranslationFunctions = {
 				 */
 				header: () => LocalizedString
 				/**
-				 * Activate the display of the life bars below the fighters
+				 * Activate life bar display below fighters
 				 */
 				healthBar: () => LocalizedString
 				/**
@@ -1703,11 +1715,11 @@ export type TranslationFunctions = {
 				 */
 				focusFightTurn: () => LocalizedString
 				/**
-				 * Estimating spell damage in battle
+				 * Show spell damage estimations in battle
 				 */
 				estimator: () => LocalizedString
 				/**
-				 * Show combats chronometer
+				 * Show combat chronometer
 				 */
 				fightChronometer: () => LocalizedString
 				/**
@@ -1733,7 +1745,7 @@ export type TranslationFunctions = {
 				 */
 				header: () => LocalizedString
 				/**
-				 * Add an indicator to know if the members of a group are on the same map
+				 * Add an indicator to know if group members are on the same map
 				 */
 				partyMemberOnMap: () => LocalizedString
 				partyInfo: {
@@ -1827,11 +1839,11 @@ export type TranslationFunctions = {
 				 */
 				showResources: () => LocalizedString
 				/**
-				 * Activate the display of the remaining time below the resources
+				 * Activate display of ressources remaining time
 				 */
 				harvestIndicator: () => LocalizedString
 				/**
-				 * Activate the display of the job xp need for leveling
+				 * Activate the display of job xp needed for leveling
 				 */
 				jobsXp: () => LocalizedString
 			}
@@ -1856,7 +1868,7 @@ export type TranslationFunctions = {
 			 */
 			fightTurn: () => LocalizedString
 			/**
-			 * By incoming private messages
+			 * When you receive private messages
 			 */
 			privateMessage: () => LocalizedString
 			/**
@@ -2062,6 +2074,18 @@ export type TranslationFunctions = {
 				 * Website
 				 */
 				website: () => LocalizedString
+				/**
+				 * Github (source code)
+				 */
+				github: () => LocalizedString
+				/**
+				 * Chat server
+				 */
+				chat: () => LocalizedString
+				/**
+				 * Reddit (forum)
+				 */
+				reddit: () => LocalizedString
 				/**
 				 * Release notes
 				 */

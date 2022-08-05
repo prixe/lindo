@@ -6,6 +6,7 @@ import { TranslationFunctions } from '@lindo/i18n'
 import { SaveCharacterImageArgs } from '@lindo/shared'
 import { useEffect, useRef } from 'react'
 import { IMapDidChange, observe } from 'mobx'
+import { debounceTime, Subject } from 'rxjs'
 
 export interface GameManagerProps {
   game: Game
@@ -16,6 +17,8 @@ export interface GameManagerProps {
 export const useGameManager = ({ game, rootStore, LL }: GameManagerProps) => {
   const mods = useRef<Array<Mod>>([])
   const gameId = game.id
+  const windowResized = useRef<Subject<void>>(new Subject())
+  let backupMaxZoom: number | undefined
   const disposers = useRef<Array<() => void>>([])
 
   const destroyMods = () => {
@@ -51,6 +54,21 @@ export const useGameManager = ({ game, rootStore, LL }: GameManagerProps) => {
         }, gameIndex * 1500 + 1500)
       }
 
+      const onWindowResized = windowResized.current.pipe(debounceTime(300)).subscribe(() => {
+        try {
+          dWindow.gui._resizeUi()
+        } catch (e) {}
+        fixMaxZoom()
+      })
+
+      const fixMaxZoom = () => {
+        if (!backupMaxZoom) backupMaxZoom = dWindow.isoEngine.mapScene.camera.maxZoom
+        dWindow.isoEngine.mapScene.camera.maxZoom = Math.max(
+          backupMaxZoom,
+          backupMaxZoom + (dWindow.isoEngine.mapScene.canvas.height / 800 - 1)
+        )
+      }
+
       const startMods = () => {
         for (const key in MODS) {
           const mod: Mod = new MODS[key](dWindow, rootStore, LL)
@@ -67,9 +85,7 @@ export const useGameManager = ({ game, rootStore, LL }: GameManagerProps) => {
       }
 
       dWindow.onresize = () => {
-        try {
-          dWindow.gui._resizeUi()
-        } catch (e) {}
+        windowResized.current.next()
       }
 
       const handleCharacterSelectedSuccess = () => {
@@ -89,10 +105,12 @@ export const useGameManager = ({ game, rootStore, LL }: GameManagerProps) => {
 
         game.setCharacterIcon(char.rootElement)
         startMods()
+        fixMaxZoom()
       }
 
       const handleDisconnect = () => {
         game.disconnected()
+        onWindowResized.unsubscribe()
         destroyMods()
       }
 

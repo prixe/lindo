@@ -110,9 +110,11 @@ export class GameWindow extends (EventEmitter as new () => TypedEmitter<GameWind
       () => {
         electronLocalshortcut.unregisterAll(this._win)
         this._store.hotkeyStore.window.tabs.forEach((tab, index) => {
-          electronLocalshortcut.register(this._win, tab, () => {
-            this._win.webContents.send(IPCEvents.SELECT_TAB, index)
-          })
+          if(tab){
+            electronLocalshortcut.register(this._win, tab, () => {
+              this._win.webContents.send(IPCEvents.SELECT_TAB, index)
+            })
+          }
         })
       },
       true

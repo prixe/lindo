@@ -54,7 +54,7 @@ const en: BaseTranslation = {
     }
   },
   notifications: {
-    fightTurn: 'Starting turn for {characterName: string}',
+    fightTurn: 'Start of turn for {characterName: string}',
     privateMessage: 'Incoming message from {senderName: string}',
     taxCollector: 'A tax collector is being attacked !',
     kolizeum: 'A Kolizeum has been found !',
@@ -125,7 +125,7 @@ const en: BaseTranslation = {
       fullScreen: 'Full screen',
       hideTab: 'Hide the multi-account tab bar',
       localContent: 'Enable local map download (beta)',
-      soundFocus: 'Game sound only on foreground window',
+      soundFocus: 'Enable game sound only on foreground window',
       early: 'Play on Dofus Touch Early',
       restart: 'Apply and restart',
       resetGame: 'Re-download game data',
@@ -203,10 +203,10 @@ const en: BaseTranslation = {
       },
       fight: {
         header: 'Fight',
-        healthBar: 'Activate the display of the life bars below the fighters',
+        healthBar: 'Activate life bar display below fighters',
         focusFightTurn: 'Automatically switch to an account when its turn starts',
-        estimator: 'Estimating spell damage in battle',
-        fightChronometer: 'Show combats chronometer',
+        estimator: 'Show spell damage estimations in battle',
+        fightChronometer: 'Show combat chronometer',
         monsterTooltip: 'Display monsters groups information on the map',
         monsterTooltipShortcut: 'Shortcut for show/hide monsters tooltip',
         verticalTimeline: 'Show fighters timeline vertically',
@@ -214,7 +214,7 @@ const en: BaseTranslation = {
       },
       group: {
         header: 'Group',
-        partyMemberOnMap: 'Add an indicator to know if the members of a group are on the same map',
+        partyMemberOnMap: 'Add an indicator to know if group members are on the same map',
         partyInfo: {
           level: "Show party's level",
           prospecting: "Show party's prospecting"
@@ -245,8 +245,8 @@ const en: BaseTranslation = {
       job: {
         header: 'Job',
         showResources: 'Show map resources',
-        harvestIndicator: 'Activate the display of the remaining time below the resources',
-        jobsXp: 'Activate the display of the job xp need for leveling'
+        harvestIndicator: 'Activate display of ressources remaining time',
+        jobsXp: 'Activate the display of job xp needed for leveling'
       },
       accounts: {
         header: 'Accounts'
@@ -257,7 +257,7 @@ const en: BaseTranslation = {
       description:
         'You can receive notifications from the game when the application is on the background. You will be notified:',
       fightTurn: 'When your turn starts (fight)',
-      privateMessage: 'By incoming private messages',
+      privateMessage: 'When you receive private messages',
       taxCollector: 'When a tax collector is attacked',
       kolizeum: 'When a kolizeum fight is found',
       partyInvitation: 'When someone invites you to join a group',
@@ -327,6 +327,9 @@ const en: BaseTranslation = {
       title: 'About',
       links: {
         website: 'Website',
+        github: 'Github (source code)',
+        chat: 'Chat server',
+        reddit: 'Reddit (forum)',
         changelog: 'Release notes'
       },
       text0: 'Lindo is an open-source software that allows you to play DOFUS Touch from your computer.',

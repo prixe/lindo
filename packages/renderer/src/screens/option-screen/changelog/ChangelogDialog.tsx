@@ -1,6 +1,6 @@
 // import { useI18nContext } from '@lindo/i18n'
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Tab, Tabs, useTheme } from '@mui/material'
-import React, { memo } from 'react'
+import React, { memo, useEffect } from 'react'
 import { useChangelog } from './use-changelog'
 
 export interface ChangelogDialogProps {
@@ -14,9 +14,15 @@ export const ChangelogDialog = memo(({ open, onClose }: ChangelogDialogProps) =>
   const theme = useTheme()
   const { currentChangelog, selectedVersionIndex, versions, selectVersionIndex } = useChangelog()
 
-  const handleSelectVersion = (event: React.SyntheticEvent, index: number) => {
+  const handleSelectVersion = (_event: React.SyntheticEvent | undefined, index: number) => {
     selectVersionIndex(index)
   }
+
+  useEffect(() => {
+    if (open) {
+      handleSelectVersion(undefined, 0)
+    }
+  }, [open])
 
   return (
     <Dialog open={open} onClose={onClose} fullScreen>
