@@ -2,8 +2,8 @@ import { Mod } from '../mod'
 import { DofusWindow, WuiDom, GUIEvents } from '@/dofus-window'
 import { RootStore } from '@/store'
 import { TranslationFunctions } from '@lindo/i18n'
-import { PlayerDataEvents } from '@/dofus-window/gui/player-data'
 import { EventManager } from '../helpers'
+import { observe } from 'mobx'
 
 export class GripPositionSaveMod extends Mod {
   private readonly disposer: () => void
@@ -12,52 +12,49 @@ export class GripPositionSaveMod extends Mod {
 
   constructor(wGame: DofusWindow, rootStore: RootStore, LL: TranslationFunctions) {
     super(wGame, rootStore, LL)
-    this.registerEvent(this.wGame.gui.isConnected)
+    this.registerEvent()
+
+    observe(this.rootStore.modStore.gripPosition.grips, (change) => {
+      if (change.type === 'update') {
+        console.log(change)
+        // this.moveElement(target)
+      }
+    })
 
     const storageListener = (e: StorageEvent) => {
+      console.log('storageListener')
       if (e.key?.includes('Position')) {
         const target = e.key.slice(0, -8)
         this.moveElement(target)
       }
     }
 
-    wGame.addEventListener('storage', storageListener)
+    window.addEventListener('storage', storageListener)
 
     this.disposer = () => {
-      wGame.removeEventListener('storage', storageListener)
+      console.log('storage disposer')
+      window.removeEventListener('storage', storageListener)
     }
   }
 
-  public registerEvent(skipLogin = false): void {
-    const onCharacterSelectedSuccess = () => {
-      // Register events for each grips
-      this.grips.forEach((grip) => {
-        this.registerGrip(grip)
-      })
-    }
+  public registerEvent(): void {
+    this.grips.forEach((grip) => {
+      this.registerGrip(grip)
+    })
 
     const onResize = () => {
+      console.log('onResize')
       // Move grips to not overlap foreground
       this.grips.forEach((grip) => {
         this.moveElement(grip)
       })
     }
-
-    if (skipLogin) {
-      onCharacterSelectedSuccess()
-    }
-
-    this.eventManager.on<PlayerDataEvents, 'characterSelectedSuccess'>(
-      this.wGame.gui.playerData,
-      'characterSelectedSuccess',
-      onCharacterSelectedSuccess
-    )
     this.eventManager.on<GUIEvents, 'resize'>(this.wGame.gui, 'resize', onResize)
   }
 
   private moveElement(target: string) {
-    if (localStorage.getItem(target + 'Position') && this.wGame?.gui?.isConnected) {
-      const position = JSON.parse(localStorage.getItem(target + 'Position')!)
+    if (window.localStorage.getItem(target + 'Position') && this.wGame?.gui?.isConnected) {
+      const position = JSON.parse(window.localStorage.getItem(target + 'Position')!)
       const mapScene = this.wGame.document.querySelector<HTMLCanvasElement>('#mapScene-canvas')!
       let availableWidth = mapScene.clientWidth
       const availableHeight = mapScene.clientHeight
@@ -99,11 +96,14 @@ export class GripPositionSaveMod extends Mod {
 
   private savePosition(element: string, top: string, left: string) {
     const obj = { top, left }
-    localStorage.setItem(element + 'Position', JSON.stringify(obj))
+    console.log('savePosition', obj)
+    window.localStorage.setItem(element + 'Position', JSON.stringify(obj))
+    window.dispatchEvent(new Event('storage'))
   }
 
   private registerGrip(grip: string) {
     this.eventManager.on(this.wGame.gui[grip as never], 'dragEnd', () => {
+      console.log('try move ' + grip)
       const element = this.wGame.gui[grip as never] as WuiDom
       this.savePosition(grip, element.rootElement.style.top, element.rootElement.style.left)
     })
@@ -114,7 +114,7 @@ export class GripPositionSaveMod extends Mod {
       })
     }
 
-    if (JSON.parse(localStorage.getItem(grip + 'Position')!)) {
+    if (JSON.parse(window.localStorage.getItem(grip + 'Position')!)) {
       this.moveElement(grip)
     }
   }
