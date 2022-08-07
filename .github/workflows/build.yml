@@ -46,8 +46,11 @@ jobs:
           name: windows
           path: |
             release/${{ steps.extract_version.outputs.version }}/Lindo-${{ steps.extract_version.outputs.version }}-win.zip
+            release/${{ steps.extract_version.outputs.version }}/Lindo-${{ steps.extract_version.outputs.version }}-ia32-win.zip
             release/${{ steps.extract_version.outputs.version }}/Lindo ${{ steps.extract_version.outputs.version }}.exe
+            release/${{ steps.extract_version.outputs.version }}/Lindo ${{ steps.extract_version.outputs.version }}-ia32.exe
             release/${{ steps.extract_version.outputs.version }}/Lindo Setup ${{ steps.extract_version.outputs.version }}.exe
+            release/${{ steps.extract_version.outputs.version }}/Lindo Setup ${{ steps.extract_version.outputs.version }}-ia32.exe
       
       - name: Upload MacOS artifacts
         uses: actions/upload-artifact@v2
@@ -99,8 +102,11 @@ jobs:
           title: "v${{ steps.extract_version.outputs.version }}"
           files: |
             windows/Lindo ${{ steps.extract_version.outputs.version }}.exe
+            windows/Lindo ${{ steps.extract_version.outputs.version }}-ia32.exe
             windows/Lindo Setup ${{ steps.extract_version.outputs.version }}.exe
+            windows/Lindo Setup ${{ steps.extract_version.outputs.version }}-ia32.exe
             windows/Lindo-${{ steps.extract_version.outputs.version }}-win.zip
+            windows/Lindo-${{ steps.extract_version.outputs.version }}-ia32-win.zip
             linux/Lindo-${{ steps.extract_version.outputs.version }}.AppImage
             linux/Lindo-${{ steps.extract_version.outputs.version }}-arm64.AppImage
             linux/lindo-${{ steps.extract_version.outputs.version }}.tar.gz
