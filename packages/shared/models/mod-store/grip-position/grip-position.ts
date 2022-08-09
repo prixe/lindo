@@ -5,6 +5,9 @@ export interface GripPositionCoordinates {
   left: number
 }
 
+export const GRIP_ELEMENTS = <const>['timeline', 'party', 'notificationBar', 'challengeIndicator', 'roleplayBuffs']
+export type GripElement = typeof GRIP_ELEMENTS[number]
+
 /**
  * Model description here for TypeScript hints.
  */
@@ -22,7 +25,11 @@ export const GripPositionModel = types
       return [self.timeline, self.party, self.notificationBar, self.challengeIndicator, self.roleplayBuffs]
     }
   }))
-  .actions((self) => ({}))
+  .actions((self) => ({
+    setGripPosition(key: GripElement, position: GripPositionCoordinates) {
+      self[key] = position
+    }
+  }))
 
 /**
  * Un-comment the following to omit model attributes from your snapshots (and from async storage).

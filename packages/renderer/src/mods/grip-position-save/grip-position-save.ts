@@ -2,68 +2,53 @@ import { Mod } from '../mod'
 import { DofusWindow, WuiDom, GUIEvents } from '@/dofus-window'
 import { RootStore } from '@/store'
 import { TranslationFunctions } from '@lindo/i18n'
+import { GripElement, GripPositionCoordinates, GRIP_ELEMENTS } from '@lindo/shared'
 import { EventManager } from '../helpers'
 import { observe } from 'mobx'
 
 export class GripPositionSaveMod extends Mod {
   private readonly disposer: () => void
   private readonly eventManager = new EventManager()
-  private grips = ['timeline', 'party', 'notificationBar', 'challengeIndicator', 'roleplayBuffs']
 
   constructor(wGame: DofusWindow, rootStore: RootStore, LL: TranslationFunctions) {
     super(wGame, rootStore, LL)
     this.registerEvent()
 
-    observe(this.rootStore.modStore.gripPosition.grips, (change) => {
+    this.disposer = observe(this.rootStore.modStore.gripPosition, (change) => {
       if (change.type === 'update') {
         console.log(change)
-        // this.moveElement(target)
+        this.moveElement(change.name as GripElement)
       }
     })
-
-    const storageListener = (e: StorageEvent) => {
-      console.log('storageListener')
-      if (e.key?.includes('Position')) {
-        const target = e.key.slice(0, -8)
-        this.moveElement(target)
-      }
-    }
-
-    window.addEventListener('storage', storageListener)
-
-    this.disposer = () => {
-      console.log('storage disposer')
-      window.removeEventListener('storage', storageListener)
-    }
   }
 
   public registerEvent(): void {
-    this.grips.forEach((grip) => {
+    GRIP_ELEMENTS.forEach((grip) => {
       this.registerGrip(grip)
     })
 
     const onResize = () => {
       console.log('onResize')
       // Move grips to not overlap foreground
-      this.grips.forEach((grip) => {
+      GRIP_ELEMENTS.forEach((grip) => {
         this.moveElement(grip)
       })
     }
     this.eventManager.on<GUIEvents, 'resize'>(this.wGame.gui, 'resize', onResize)
   }
 
-  private moveElement(target: string) {
-    if (window.localStorage.getItem(target + 'Position') && this.wGame?.gui?.isConnected) {
-      const position = JSON.parse(window.localStorage.getItem(target + 'Position')!)
+  private moveElement(target: GripElement) {
+    const elementPosition = this.rootStore.modStore.gripPosition[target]
+    if (elementPosition && this.wGame?.gui?.isConnected) {
       const mapScene = this.wGame.document.querySelector<HTMLCanvasElement>('#mapScene-canvas')!
-      let availableWidth = mapScene.clientWidth
-      const availableHeight = mapScene.clientHeight
+      let availableWidth = mapScene.width
+      const availableHeight = mapScene.height
       if (mapScene.offsetLeft) {
         availableWidth = availableWidth + mapScene.offsetLeft
       }
       const cssTarget = '.' + target.charAt(0).toUpperCase() + target.slice(1)
-      const targetWidth = this.wGame.document?.querySelector?.(cssTarget)?.clientWidth
-      const targetHeight = this.wGame.document?.querySelector?.(cssTarget)?.clientHeight
+      const targetWidth = this.wGame.document?.querySelector<HTMLDivElement>(cssTarget)?.clientWidth
+      const targetHeight = this.wGame.document?.querySelector<HTMLDivElement>(cssTarget)?.clientHeight
       if (
         targetWidth !== undefined &&
         targetHeight !== undefined &&
@@ -71,13 +56,9 @@ export class GripPositionSaveMod extends Mod {
         availableHeight !== undefined
       ) {
         const left =
-          position.left.slice(0, -2) < availableWidth - targetWidth
-            ? position.left.slice(0, -2)
-            : availableWidth - targetWidth
+          elementPosition.left < availableWidth - targetWidth ? elementPosition.left : availableWidth - targetWidth
         const top =
-          position.top.slice(0, -2) < availableHeight - targetHeight
-            ? position.top.slice(0, -2)
-            : availableHeight - targetHeight
+          elementPosition.top < availableHeight - targetHeight ? elementPosition.top : availableHeight - targetHeight
 
         // Removing existing stylesheet
         this.wGame?.document?.querySelector?.('#' + target + 'stylesheet')?.remove?.()
@@ -94,18 +75,18 @@ export class GripPositionSaveMod extends Mod {
     }
   }
 
-  private savePosition(element: string, top: string, left: string) {
-    const obj = { top, left }
-    console.log('savePosition', obj)
-    window.localStorage.setItem(element + 'Position', JSON.stringify(obj))
-    window.dispatchEvent(new Event('storage'))
+  private savePosition(element: GripElement, position: GripPositionCoordinates) {
+    this.rootStore.modStore.gripPosition.setGripPosition(element, position)
   }
 
-  private registerGrip(grip: string) {
+  private registerGrip(grip: GripElement) {
     this.eventManager.on(this.wGame.gui[grip as never], 'dragEnd', () => {
-      console.log('try move ' + grip)
       const element = this.wGame.gui[grip as never] as WuiDom
-      this.savePosition(grip, element.rootElement.style.top, element.rootElement.style.left)
+      const position: GripPositionCoordinates = {
+        top: parseFloat(element.rootElement.style.top.slice(0, -2)),
+        left: parseFloat(element.rootElement.style.left.slice(0, -2))
+      }
+      this.savePosition(grip, position)
     })
 
     if (grip === 'timeline') {
