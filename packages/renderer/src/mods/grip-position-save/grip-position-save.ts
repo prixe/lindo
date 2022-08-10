@@ -6,6 +6,10 @@ import { GripElement, GripPositionCoordinates, GRIP_ELEMENTS } from '@lindo/shar
 import { EventManager } from '../helpers'
 import { observe } from 'mobx'
 
+const getNumberFromPixelValue = (value: string) => {
+  return parseFloat(value)
+}
+
 export class GripPositionSaveMod extends Mod {
   private readonly disposer: () => void
   private readonly eventManager = new EventManager()
@@ -39,14 +43,15 @@ export class GripPositionSaveMod extends Mod {
     const elementPosition = this.rootStore.modStore.gripPosition[target]
     if (elementPosition && this.wGame?.gui?.isConnected) {
       const mapScene = this.wGame.document.querySelector<HTMLCanvasElement>('#mapScene-canvas')!
-      let availableWidth = mapScene.width
-      const availableHeight = mapScene.height
+      let availableWidth = getNumberFromPixelValue(mapScene.style.width)
+      const availableHeight = getNumberFromPixelValue(mapScene.style.height)
       if (mapScene.offsetLeft) {
         availableWidth = availableWidth + mapScene.offsetLeft
       }
       const cssTarget = '.' + target.charAt(0).toUpperCase() + target.slice(1)
       const targetWidth = this.wGame.document?.querySelector<HTMLDivElement>(cssTarget)?.clientWidth
       const targetHeight = this.wGame.document?.querySelector<HTMLDivElement>(cssTarget)?.clientHeight
+
       if (
         targetWidth !== undefined &&
         targetHeight !== undefined &&
@@ -81,8 +86,8 @@ export class GripPositionSaveMod extends Mod {
     this.eventManager.on(this.wGame.gui[grip as never], 'dragEnd', () => {
       const element = this.wGame.gui[grip as never] as WuiDom
       const position: GripPositionCoordinates = {
-        top: parseFloat(element.rootElement.style.top.slice(0, -2)),
-        left: parseFloat(element.rootElement.style.left.slice(0, -2))
+        top: getNumberFromPixelValue(element.rootElement.style.top),
+        left: getNumberFromPixelValue(element.rootElement.style.left)
       }
       this.savePosition(grip, position)
     })
