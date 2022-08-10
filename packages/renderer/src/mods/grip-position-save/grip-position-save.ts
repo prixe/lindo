@@ -15,8 +15,7 @@ export class GripPositionSaveMod extends Mod {
     this.registerEvent()
 
     this.disposer = observe(this.rootStore.modStore.gripPosition, (change) => {
-      if (change.type === 'update') {
-        console.log(change)
+      if (change.type === 'update' && GRIP_ELEMENTS.includes(change.name as GripElement)) {
         this.moveElement(change.name as GripElement)
       }
     })
@@ -28,7 +27,6 @@ export class GripPositionSaveMod extends Mod {
     })
 
     const onResize = () => {
-      console.log('onResize')
       // Move grips to not overlap foreground
       GRIP_ELEMENTS.forEach((grip) => {
         this.moveElement(grip)
