@@ -266,7 +266,7 @@ export class Application {
         .then((res) => {
           return !!res.data
         })
-        .catch(() => false)
+        .catch(() => true)
     })
 
     ipcMain.on(IPCEvents.AUDIO_MUTE_WINDOW, (event, value) => {
