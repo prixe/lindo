@@ -1,5 +1,4 @@
 import { app } from 'electron'
-import { release } from 'os'
 import { Application } from './application'
 import { setupRootStore } from './store'
 import { setupTitlebar } from 'custom-electron-titlebar/main'
@@ -19,9 +18,6 @@ app.commandLine.appendSwitch('disable-background-timer-throttling')
 app.commandLine.appendSwitch('max-active-webgl-contexts', '32')
 
 electronLocalshortcut.setKeyboardLayout(getCurrentKeyboardLayout(), getKeyMap())
-
-// Disable GPU Acceleration for Windows 7
-if (release().startsWith('6.1')) app.disableHardwareAcceleration()
 
 // Set application name for Windows 10+ notifications
 if (process.platform === 'win32') app.setAppUserModelId(app.getName())
