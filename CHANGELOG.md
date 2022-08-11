@@ -2,6 +2,7 @@
 
 ### Fixes
 - Fix performance issue on windows 7
+- Improve windows icon
 - Fix windows positions synchronization / movements issue
 
 ### Correctifs
