@@ -1,4 +1,4 @@
-## [3.0.0-beta.8] - 2022-08-11
+## [3.0.0-beta.9] - 2022-08-11
 
 ### Fixes
 - Fix performance issue on windows 7
