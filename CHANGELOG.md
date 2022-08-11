@@ -1,5 +1,13 @@
-## ⚠ ATTENTION, VÉRIFIEZ QUE VOUS TÉLÉCHARGEZ LINDO DEPUIS LINDO-APP.COM
-## ⚠ CERTAINS SITES MALVEILLANTS INSTALLERONT UN VIRUS SUR VOTRE ORDINATEUR
+## [3.0.0-beta.8] - 2022-08-11
+
+### Fixes
+- Fix performance issue on windows 7
+- Fix windows positions synchronization / movements issue
+
+### Correctifs
+- Correction de la touche échap qui n'ouvrait plus le menu suite à une mise à jour du jeu
+- Les paramètres ne devraient plus se réinitialiser en activant certaines options (affichage bonus challenge, timeline verticale)
+
 
 
 ## [2.7.3] - 2022-04-14
