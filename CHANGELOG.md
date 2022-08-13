@@ -1,15 +1,15 @@
+## [3.0.0-beta.10] - 2022-08-13
+
+### Fixes
+- Fix issue with shortcuts like ² and §
+- Fix rapid exchange (send whole item stack with control from a storage)
+
 ## [3.0.0-beta.9] - 2022-08-11
 
 ### Fixes
 - Fix performance issue on windows 7
 - Improve windows icon
 - Fix windows positions synchronization / movements issue
-
-### Correctifs
-- Correction de la touche échap qui n'ouvrait plus le menu suite à une mise à jour du jeu
-- Les paramètres ne devraient plus se réinitialiser en activant certaines options (affichage bonus challenge, timeline verticale)
-
-
 
 ## [2.7.3] - 2022-04-14
 
