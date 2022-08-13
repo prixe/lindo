@@ -4,11 +4,11 @@ import { ConnectionManagerEvents, DofusWindow, InteractiveElement, StatedElement
 import { RootStore } from '@/store'
 import { TranslationFunctions } from '@lindo/i18n'
 import { observe } from 'mobx'
-import { Shortcuts } from 'shortcuts'
 import { EventManager, ignoreKeyboardEvent } from '../helpers'
+import { LindoShortcuts } from '@/utils'
 
 export class ShowResourcesMod extends Mod {
-  private readonly _shortcuts = new Shortcuts({
+  private readonly _shortcuts = new LindoShortcuts({
     target: this.wGame.document,
     shouldHandleEvent: (event) => {
       // don't apply the shortcut if the user is on a input (like chat)

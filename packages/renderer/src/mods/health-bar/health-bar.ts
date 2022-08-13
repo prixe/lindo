@@ -1,8 +1,8 @@
 import { ConnectionManagerEvents, DofusWindow, GUIEvents } from '@/dofus-window'
 import { RootStore } from '@/store'
+import { LindoShortcuts } from '@/utils'
 import { TranslationFunctions } from '@lindo/i18n'
 import { observe } from 'mobx'
-import { Shortcuts } from 'shortcuts'
 import { EventManager, ignoreKeyboardEvent } from '../helpers'
 import { Mod } from '../mod'
 import { Bar } from './bar'
@@ -11,7 +11,7 @@ export class HealthBarMod extends Mod {
   private bars: { [fighterId: number]: Bar } = {}
   private rendered: boolean = true
   private settingDisposer: () => void
-  private readonly _shortcuts = new Shortcuts({
+  private readonly _shortcuts = new LindoShortcuts({
     target: this.wGame.document,
     shouldHandleEvent: (event) => {
       // don't apply the shortcut if the user is on a input (like chat)

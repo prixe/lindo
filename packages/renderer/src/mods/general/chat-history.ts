@@ -1,5 +1,6 @@
 import { DofusWindow } from '@/dofus-window'
 import { RootStore } from '@/store'
+import { LindoShortcuts } from '@/utils'
 import { TranslationFunctions } from '@lindo/i18n'
 import { Shortcuts } from 'shortcuts'
 import { Mod } from '../mod'
@@ -11,7 +12,7 @@ export class ChatHistoryMod extends Mod {
   constructor(wGame: DofusWindow, rootStore: RootStore, LL: TranslationFunctions) {
     super(wGame, rootStore, LL)
     this._input = this.wGame.document.getElementsByClassName('inputChat')[0]! as HTMLInputElement
-    this._shortcuts = new Shortcuts({ target: this._input })
+    this._shortcuts = new LindoShortcuts({ target: this._input })
     this.start()
   }
 
