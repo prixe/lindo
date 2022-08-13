@@ -12,7 +12,6 @@ export class LindoShortcuts extends Shortcuts {
     Object.keys(shortcutFixes).forEach((key) => {
       fixedShortcut = fixedShortcut.replaceAll(key, shortcutFixes[key])
     })
-    console.log({ fixedShortcut, shortcut })
     return fixedShortcut
   }
 
