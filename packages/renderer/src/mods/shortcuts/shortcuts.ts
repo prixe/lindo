@@ -1,10 +1,10 @@
 import { DofusWindow, GUIButton } from '@/dofus-window'
 import { RootStore } from '@/store'
+import { LindoShortcuts } from '@/utils'
 import { TranslationFunctions } from '@lindo/i18n'
 import { GameInterfaceHotkey } from '@lindo/shared'
 import { IArrayDidChange, IObjectDidChange, Lambda, observe } from 'mobx'
 import { IAnyType, IMSTArray } from 'mobx-state-tree'
-import { Shortcuts } from 'shortcuts'
 import { ignoreKeyboardEvent } from '../helpers'
 import { Mod } from '../mod'
 import { Mover } from './mover'
@@ -19,7 +19,7 @@ interface ValueDidChange {
 }
 export class ShortcutsMod extends Mod {
   private readonly _disposers: Array<Lambda> = []
-  private readonly _shortcuts = new Shortcuts({
+  private readonly _shortcuts = new LindoShortcuts({
     target: this.wGame.document,
     shouldHandleEvent: (event) => {
       // don't apply the shortcut if the user is on a input (like chat)
