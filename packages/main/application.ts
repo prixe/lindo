@@ -175,8 +175,9 @@ export class Application {
   }
 
   async createGameWindow(team?: GameTeam, teamWindow?: GameTeamWindow) {
-    logger.debug('Application -> _createGameWindow')
-    const gWindow = await GameWindow.init(this._rootStore, team, teamWindow)
+    const index = this._gWindows.length
+    logger.debug('Application -> _createGameWindow ' + index)
+    const gWindow = await GameWindow.init({ index, store: this._rootStore, team, teamWindow })
     gWindow.on('close', () => {
       this._gWindows.splice(this._gWindows.indexOf(gWindow), 1)
     })
