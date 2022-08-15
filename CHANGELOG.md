@@ -1,3 +1,11 @@
+## [3.0.0-beta.11] - 2022-08-15
+
+### Fixes
+- Fix visibility issue with multiple game tabs (could introduce issues in DT UI) 
+
+## Improvements
+- Add windows session persistence 
+
 ## [3.0.0-beta.10] - 2022-08-13
 
 ### Fixes
