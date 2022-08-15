@@ -35,12 +35,12 @@ export class AppUpdater {
         const required = res.data.body?.includes('__update:required__') ?? false
         logger.info({ latestVersion, currentVersion })
         if (compareVersions(latestVersion, currentVersion) === 1) {
-          this._showUpdateDialog(latestVersion, required)
+          return this._showUpdateDialog(latestVersion, required)
         }
       })
   }
 
-  private _showUpdateDialog(newVersion: string, required: boolean) {
+  private _showUpdateDialog(newVersion: string, required: boolean): Promise<void> {
     const buttons: Array<string> = [this._i18n.LL.main.updater.download()]
     if (!required) {
       buttons.push(this._i18n.LL.main.updater.ignore())
