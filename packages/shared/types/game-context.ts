@@ -10,4 +10,6 @@ export interface GameContext {
   multiAccount?: MultiAccountContext
   changeLogSrc: string
   hash: string
+  macAddress: string
+  platform: string
 }

@@ -28,12 +28,15 @@ import { I18n } from './utils'
 import { logger, setupRendererLogger } from './logger'
 import axios from 'axios'
 import { Locales } from '@lindo/i18n'
+import macaddress from 'macaddress'
+import { platform } from 'os'
 
 export class Application {
   private static _instance: Application
   private readonly _multiAccount: MultiAccount
   private readonly _i18n: I18n
   private readonly _hash: string
+  private readonly _macAddress: string
 
   static async init(rootStore: RootStore) {
     if (Application._instance) {
@@ -77,7 +80,9 @@ export class Application {
       }
     }
 
-    Application._instance = new Application(rootStore, server, hash)
+    const macAddress = await macaddress.one()
+
+    Application._instance = new Application(rootStore, server, hash, macAddress)
   }
 
   static get instance(): Application {
@@ -90,10 +95,16 @@ export class Application {
   private _gWindows: Array<GameWindow> = []
   private _optionWindow?: OptionWindow
 
-  private constructor(private _rootStore: RootStore, private _serveGameServer: Server, hash: string) {
+  private constructor(
+    private _rootStore: RootStore,
+    private _serveGameServer: Server,
+    hash: string,
+    macAddress: string
+  ) {
     this._multiAccount = new MultiAccount(this._rootStore)
     this._i18n = new I18n(this._rootStore)
     this._hash = hash
+    this._macAddress = macAddress
   }
 
   async run() {
@@ -210,7 +221,9 @@ export class Application {
         changeLogSrc: 'http://localhost:' + serverAddress.port + '/changelog',
         windowId: event.sender.id,
         multiAccount: gWindow?.multiAccount,
-        hash: this._hash
+        hash: this._hash,
+        macAddress: this._macAddress,
+        platform: platform()
       }
       return JSON.stringify(context)
     })
