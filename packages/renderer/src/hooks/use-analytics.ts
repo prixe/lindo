@@ -4,7 +4,7 @@ import * as Analytics from 'firebase/analytics'
 import { getPerformance } from 'firebase/performance'
 import { useAnalyticsContext } from '@/providers'
 
-export type EventTypes = 'game_start'
+export type EventTypes = 'login' | 'logout'
 
 export interface ReturnUseAnalytics {
   createInstance: (userId: string, appVersion: string, platform: string) => Analytics.Analytics
@@ -22,6 +22,8 @@ const firebaseConfig = {
 }
 
 export const useAnalytics = (): ReturnUseAnalytics => {
+  const analytics = useAnalyticsContext()
+
   const createInstance = (userId: string, appVersion: string, platform: string) => {
     // Initialize Firebase
     const app = initializeApp(firebaseConfig)
@@ -38,12 +40,11 @@ export const useAnalytics = (): ReturnUseAnalytics => {
     return analytics
   }
 
-  const logEvent = (eventName: EventTypes, params?: { [key: string]: string }) => {
-    const analytics = useAnalyticsContext()
+  const logEvent = (eventName: EventTypes) => {
     if (!analytics) {
       throw new Error('Analytics not initialized')
     }
-    Analytics.logEvent(analytics, eventName, params)
+    Analytics.logEvent(analytics, eventName as string)
   }
 
   return { createInstance, logEvent }
