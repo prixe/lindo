@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app'
 import * as Analytics from 'firebase/analytics'
+import { getPerformance } from 'firebase/performance'
 import { useAnalyticsContext } from '@/providers'
 
 export type EventTypes = 'game_start'
@@ -25,6 +26,7 @@ export const useAnalytics = (): ReturnUseAnalytics => {
     // Initialize Firebase
     const app = initializeApp(firebaseConfig)
     const analytics = Analytics.getAnalytics(app)
+    getPerformance()
 
     Analytics.setUserId(analytics, userId)
     Analytics.setUserProperties(analytics, {
