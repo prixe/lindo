@@ -15,9 +15,10 @@ Find us on Reddit to exchange with the community!
 
 - [Reddit](https://www.reddit.com/r/LindoApp/)
 
-We are also on Twitter and Telegram if you want to get notified of new updates:
+We are also on Twitter, Telegram and Matrix if you want to get notified of new updates:
 
 - [Twitter](https://twitter.com/Lindo_Officiel)
+- [Matrix](https://matrix.to/#/#lindo-official:matrix.org) (chat server like discord)
 - [Telegram](https://t.me/+8jEjvFd5M-g4NTc0)
 
 
