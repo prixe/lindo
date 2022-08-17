@@ -48,7 +48,7 @@ export const App = () => {
 
       // set analytics
       const analyticsInstance = analytics.createInstance(
-        gameContext.macAddress,
+        rootStore.appStore.userId,
         rootStore.appStore.lindoVersion,
         gameContext.platform
       )

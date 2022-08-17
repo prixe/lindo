@@ -4835,11 +4835,6 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
-macaddress@^0.5.3:
-  version "0.5.3"
-  resolved "https://registry.yarnpkg.com/macaddress/-/macaddress-0.5.3.tgz#2b9d6832be934cb775749f30f57d6537184a2bda"
-  integrity sha512-vGBKTA+jwM4KgjGZ+S/8/Mkj9rWzePyGY6jManXPGhiWu63RYwW8dKPyk5koP+8qNVhPhHgFa1y/MJ4wrjsNrg==
-
 magic-string@^0.26.2:
   version "0.26.2"
   resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.26.2.tgz#5331700e4158cd6befda738bb6b0c7b93c0d4432"

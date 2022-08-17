@@ -1,4 +1,5 @@
 import { Locales } from '@lindo/i18n'
+import { v4 as uuidv4 } from 'uuid'
 import { Instance, SnapshotOut, types } from 'mobx-state-tree'
 
 export const LANGUAGE_KEYS: Array<Locales> = ['fr', 'en', 'es']
@@ -9,6 +10,7 @@ export const LANGUAGE_KEYS: Array<Locales> = ['fr', 'en', 'es']
 export const AppStoreModel = types
   .model('AppStore')
   .props({
+    userId: types.optional(types.string, () => uuidv4()),
     appVersion: types.optional(types.string, '1.0.0'),
     buildVersion: types.optional(types.string, '1.0.0'),
     lindoVersion: types.optional(types.string, '1.0.0'),
