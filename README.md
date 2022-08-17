@@ -1,7 +1,7 @@
 # Lindo
 
 [![Build & Publish](https://github.com/prixe/lindo/actions/workflows/build.yml/badge.svg)](https://github.com/prixe/lindo/actions/workflows/build.yml)
-[![Current release](https://badgen.net/github/release/prixe/lindo)](https://github.com/zenoxs/tauri-appcenter-companion/releases/latest)
+[![Current release](https://badgen.net/github/release/prixe/lindo)](https://github.com/prixe/lindo/releases/latest)
 [![Compatible os](https://badgen.net/badge/os/windows%20%7C%20macOS%20%7C%20linux/black)](https://github.com/prixe/lindo/releases/latest)
 [![Minimum node](https://img.shields.io/badge/node-%3E%3D%2016.0.0-green.svg)]()
 [![Github All Releases](https://img.shields.io/github/downloads/prixe/lindo/total.svg)](https://github.com/prixe/lindo/releases)
