@@ -1,5 +1,6 @@
 import { IconButton, InputAdornment, TextField } from '@mui/material'
-import React, { KeyboardEvent, memo } from 'react'
+import React, { useState, KeyboardEvent, memo } from 'react'
+import { useI18nContext } from '@lindo/i18n'
 import { Close } from '@mui/icons-material'
 
 const KEY_MAPPER = {
@@ -19,6 +20,7 @@ export interface ShortcutInputProps {
   label: string
   value: string
   onChange?: (shortcut: string) => void
+  restrictKeyCode?: boolean
 }
 
 export const capitalizeFirstLetter = (value: string) => {
@@ -26,7 +28,9 @@ export const capitalizeFirstLetter = (value: string) => {
 }
 
 // eslint-disable-next-line react/display-name
-export const ShortcutInput = memo<ShortcutInputProps>(({ id, label, value, onChange }) => {
+export const ShortcutInput = memo<ShortcutInputProps>(({ id, label, value, onChange, restrictKeyCode = false }) => {
+  const { LL } = useI18nContext()
+  const [isInvalidKeyCode, setInvalidKeyCode] = useState(false)
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     event.preventDefault()
     event.stopPropagation()
@@ -53,8 +57,13 @@ export const ShortcutInput = memo<ShortcutInputProps>(({ id, label, value, onCha
     // prevent using modifier key as shortcut
     if (MODIFIERS.test(event.key)) return
     // prevent using invalid electron accelerator for tab switching
-    if (id === 'new-window' || id.includes('tab')) if (!KEY_CODES.test(event.key)) return
-
+    if (restrictKeyCode) {
+      if (!KEY_CODES.test(event.key)) {
+        setInvalidKeyCode(true)
+        return
+      }
+      setInvalidKeyCode(false)
+    }
     const normalizeKey = Object.hasOwn(KEY_MAPPER, event.key)
       ? KEY_MAPPER[event.key as never]
       : capitalizeFirstLetter(event.key)
@@ -74,6 +83,9 @@ export const ShortcutInput = memo<ShortcutInputProps>(({ id, label, value, onCha
       label={label}
       onKeyDown={handleKeyDown}
       value={value}
+      error={isInvalidKeyCode}
+      helperText={isInvalidKeyCode && LL.option.shortcuts.error()}
+      onBlur={() => setInvalidKeyCode(false)}
       InputProps={{
         endAdornment: (
           <InputAdornment position='end'>

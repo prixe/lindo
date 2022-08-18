@@ -40,12 +40,14 @@ export const OptionShortcuts = () => {
                         label={LL.option.shortcuts.application.newWindow()}
                         value={hotkeyStore.window.newWindow}
                         onChange={hotkeyStore.window.setNewWindow}
+                        restrictKeyCode
                       />
                       <ShortcutInput
                         id='new-tab'
                         label={LL.option.shortcuts.application.newTab()}
                         value={hotkeyStore.window.newTab}
                         onChange={hotkeyStore.window.setNewTab}
+                        restrictKeyCode
                       />
                     </Stack>
                   </Grid>
@@ -56,12 +58,14 @@ export const OptionShortcuts = () => {
                         label={LL.option.shortcuts.application.nextTab()}
                         value={hotkeyStore.window.nextTab}
                         onChange={hotkeyStore.window.setNextTab}
+                        restrictKeyCode
                       />
                       <ShortcutInput
                         id='previous-tab'
                         label={LL.option.shortcuts.application.prevTab()}
                         value={hotkeyStore.window.prevTab}
                         onChange={hotkeyStore.window.setPrevTab}
+                        restrictKeyCode
                       />
                     </Stack>
                   </Grid>
@@ -74,6 +78,7 @@ export const OptionShortcuts = () => {
                           label={LL.option.shortcuts.application.tab({ x: i + 1 })}
                           value={hotkeyStore.window.tabs[i]}
                           onChange={(shortcut) => hotkeyStore.window.setTab(shortcut, i)}
+                          restrictKeyCode
                         />
                       ))}
                     </Stack>
@@ -87,6 +92,7 @@ export const OptionShortcuts = () => {
                           label={LL.option.shortcuts.application.tab({ x: i + 1 })}
                           value={hotkeyStore.window.tabs[i]}
                           onChange={(shortcut) => hotkeyStore.window.setTab(shortcut, i)}
+                          restrictKeyCode
                         />
                       ))}
                     </Stack>
