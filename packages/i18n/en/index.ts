@@ -190,7 +190,8 @@ const en: BaseTranslation = {
         monsterTooltip: 'Show/hide monsters tooltip'
       },
       information:
-        'You can use special keys CTRL, SHIFT, SPACE, ALT/CMD You can specify your shortcut by pressing the desired keys at the same time after selecting the input'
+        'You can use special keys CTRL, SHIFT, SPACE, ALT/CMD You can specify your shortcut by pressing the desired keys at the same time after selecting the input',
+      error: 'This shortcut key cannot be used.'
     },
     features: {
       title: 'Features',

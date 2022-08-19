@@ -191,7 +191,8 @@ const fr: Translation = {
         monsterTooltip: 'Afficher/Cacher les informations des groupes de monstres'
       },
       information:
-        'Vous pouvez utiliser les touches CTRL/CMD, SHIFT, ESPACE, ALT. Pour rentrer vos raccourcis pressez la combinaison de touche souhaitée dans le champ.'
+        'Vous pouvez utiliser les touches CTRL/CMD, SHIFT, ESPACE, ALT. Pour rentrer vos raccourcis pressez la combinaison de touche souhaitée dans le champ.',
+      error: 'Cette touche de raccourci ne peut pas être utilisée.'
     },
     features: {
       title: 'Fonctionnalités',

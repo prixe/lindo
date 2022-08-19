@@ -191,7 +191,8 @@ const es: Translation = {
         monsterTooltip: 'Mostrar/ocultar información del grupo de monstruos'
       },
       information:
-        'Puede usar las teclas CTRL/CMD, MAYÚS, ESPACIO, ALT. Para ingresar sus accesos directos, presione la combinación de teclas deseada en el campo.'
+        'Puede usar las teclas CTRL/CMD, MAYÚS, ESPACIO, ALT. Para ingresar sus accesos directos, presione la combinación de teclas deseada en el campo.',
+      error: 'No se puede utilizar esta tecla de acceso directo.'
     },
     features: {
       title: 'Características',
