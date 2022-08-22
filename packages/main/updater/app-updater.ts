@@ -1,23 +1,23 @@
 import { RootStore } from '@lindo/shared'
-import { Octokit } from '@octokit/rest'
-import compareVersions from 'compare-versions'
-import { app, dialog, shell } from 'electron'
+import { app, dialog } from 'electron'
 import { logger } from '../logger'
 import { I18n } from '../utils'
-
+import { autoUpdater, UpdateInfo } from 'electron-updater'
+import { UpdaterWindow } from '../windows/updater-window'
 export class AppUpdater {
+  private readonly _updaterWindow: UpdaterWindow
   private readonly _rootStore: RootStore
-  private readonly _octokit: Octokit
   private readonly _i18n: I18n
 
-  private constructor(rootStore: RootStore, i18n: I18n) {
+  private constructor(updaterWindow: UpdaterWindow, rootStore: RootStore, i18n: I18n) {
+    this._updaterWindow = updaterWindow
     this._rootStore = rootStore
     this._i18n = i18n
-    this._octokit = new Octokit()
   }
 
   static async init(rootStore: RootStore, i18n: I18n): Promise<AppUpdater> {
-    return new AppUpdater(rootStore, i18n)
+    const updaterWindow = await UpdaterWindow.init(rootStore)
+    return new AppUpdater(updaterWindow, rootStore, i18n)
   }
 
   async run() {
@@ -25,19 +25,37 @@ export class AppUpdater {
     const currentVersion = app.getVersion()
     this._rootStore.appStore.setLindoVersion(currentVersion)
 
-    return this._octokit.repos
-      .getLatestRelease({
-        owner: 'prixe',
-        repo: 'lindo'
-      })
-      .then((res) => {
-        const latestVersion = res.data.tag_name.replaceAll('v', '')
-        const required = res.data.body?.includes('__update:required__') ?? false
-        logger.info({ latestVersion, currentVersion })
-        if (compareVersions(latestVersion, currentVersion) === 1) {
-          return this._showUpdateDialog(latestVersion, required)
-        }
-      })
+    autoUpdater.logger = logger
+    autoUpdater.autoDownload = false
+    autoUpdater.setFeedURL({ provider: 'github', owner: 'prixe', repo: 'lindo' })
+
+    autoUpdater.on('checking-for-update', () => {
+      logger.info('appUpdater -> Checking for updates...')
+    })
+
+    autoUpdater.on('update-available', ({ version }: UpdateInfo) => {
+      logger.info('appUpdater -> An Update is available v' + version)
+      this._showUpdateDialog(version, false)
+    })
+
+    autoUpdater.on('update-not-available', () => {
+      logger.info('appUpdater -> There is no available update')
+    })
+
+    autoUpdater.on('download-progress', ({ percent }) => {
+      this._updaterWindow.sendProgress({ message: 'DOWNLOADING UPDATE', percent })
+    })
+
+    autoUpdater.on('update-downloaded', () => {
+      logger.info('appUpdater -> Update downloaded, will install now')
+      autoUpdater.quitAndInstall()
+    })
+
+    autoUpdater.on('error', (error: Error) => {
+      if (error) logger.info('appUpdater -> An error occured: ' + error)
+    })
+
+    autoUpdater.checkForUpdatesAndNotify()
   }
 
   private _showUpdateDialog(newVersion: string, required: boolean): Promise<void> {
@@ -56,11 +74,9 @@ export class AppUpdater {
       })
       .then((returnValue) => {
         if (returnValue.response === 0) {
-          logger.info('[UPDATE] Redirected to app download page.')
-          shell.openExternal('https://github.com/prixe/lindo/releases/latest')
-          app.exit()
+          autoUpdater.downloadUpdate()
         } else {
-          logger.info('[UPDATE] App update ignored.')
+          logger.info('appUpdater -> App update ignored.')
         }
       })
   }

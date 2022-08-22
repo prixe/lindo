@@ -47,8 +47,9 @@ jobs:
           path: |
             release/${{ steps.extract_version.outputs.version }}/Lindo-${{ steps.extract_version.outputs.version }}-win.zip
             release/${{ steps.extract_version.outputs.version }}/Lindo-${{ steps.extract_version.outputs.version }}-ia32-win.zip
-            release/${{ steps.extract_version.outputs.version }}/Lindo ${{ steps.extract_version.outputs.version }}.exe
-            release/${{ steps.extract_version.outputs.version }}/Lindo Setup ${{ steps.extract_version.outputs.version }}.exe
+            release/${{ steps.extract_version.outputs.version }}/Lindo-${{ steps.extract_version.outputs.version }}.exe
+            release/${{ steps.extract_version.outputs.version }}/Lindo-Setup-${{ steps.extract_version.outputs.version }}.exe
+            release/${{ steps.extract_version.outputs.version }}/latest.yml
       
       - name: Upload MacOS artifacts
         uses: actions/upload-artifact@v2
@@ -99,10 +100,11 @@ jobs:
           automatic_release_tag: "v${{ steps.extract_version.outputs.version }}"
           title: "v${{ steps.extract_version.outputs.version }}"
           files: |
-            windows/Lindo ${{ steps.extract_version.outputs.version }}.exe
-            windows/Lindo Setup ${{ steps.extract_version.outputs.version }}.exe
+            windows/Lindo-${{ steps.extract_version.outputs.version }}.exe
+            windows/Lindo-Setup-${{ steps.extract_version.outputs.version }}.exe
             windows/Lindo-${{ steps.extract_version.outputs.version }}-win.zip
             windows/Lindo-${{ steps.extract_version.outputs.version }}-ia32-win.zip
+            windows/latest.yml
             linux/Lindo-${{ steps.extract_version.outputs.version }}.AppImage
             linux/Lindo-${{ steps.extract_version.outputs.version }}-arm64.AppImage
             linux/lindo-${{ steps.extract_version.outputs.version }}.tar.gz
@@ -111,4 +113,3 @@ jobs:
             linux/lindo_${{ steps.extract_version.outputs.version }}_arm64.deb
             macos/Lindo-${{ steps.extract_version.outputs.version }}.dmg
             macos/Lindo-${{ steps.extract_version.outputs.version }}-arm64.dmg
-

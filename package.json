@@ -27,6 +27,7 @@
     "crypto-js": "^4.1.1",
     "custom-electron-titlebar": "^4.1.0",
     "electron-store": "^8.0.1",
+    "electron-updater": "^5.2.1",
     "eventemitter3": "^4.0.7",
     "express": "^4.18.1",
     "firebase": "^9.9.2",
