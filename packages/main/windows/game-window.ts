@@ -8,6 +8,7 @@ import { generateUserArgent } from '../utils'
 import { logger } from '../logger'
 import { observe } from 'mobx'
 import { electronLocalshortcut } from '@hfelix/electron-localshortcut'
+import { platform } from 'os'
 
 type GameWindowEvents = {
   close: (event: Event) => void
@@ -41,6 +42,7 @@ export class GameWindow extends (EventEmitter as new () => TypedEmitter<GameWind
     this._win = new BrowserWindow({
       show: false,
       resizable: true,
+      frame: platform() !== 'linux',
       title: 'Lindo',
       fullscreenable: true,
       fullscreen: this._store.optionStore.window.fullScreen,
@@ -110,7 +112,7 @@ export class GameWindow extends (EventEmitter as new () => TypedEmitter<GameWind
       () => {
         electronLocalshortcut.unregisterAll(this._win)
         this._store.hotkeyStore.window.tabs.forEach((tab, index) => {
-          if(tab){
+          if (tab) {
             electronLocalshortcut.register(this._win, tab, () => {
               this._win.webContents.send(IPCEvents.SELECT_TAB, index)
             })
