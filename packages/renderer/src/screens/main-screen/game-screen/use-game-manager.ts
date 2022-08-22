@@ -7,6 +7,7 @@ import { SaveCharacterImageArgs } from '@lindo/shared'
 import { useEffect, useRef } from 'react'
 import { IMapDidChange, observe } from 'mobx'
 import { debounceTime, Subject } from 'rxjs'
+import { useAnalytics } from '@/hooks'
 
 export interface GameManagerProps {
   game: Game
@@ -16,6 +17,7 @@ export interface GameManagerProps {
 
 export const useGameManager = ({ game, rootStore, LL }: GameManagerProps) => {
   const mods = useRef<Array<Mod>>([])
+  const analytics = useAnalytics()
   const gameId = game.id
   const windowResized = useRef<Subject<void>>(new Subject())
   let backupMaxZoom: number | undefined
@@ -89,6 +91,7 @@ export const useGameManager = ({ game, rootStore, LL }: GameManagerProps) => {
       }
 
       const handleCharacterSelectedSuccess = () => {
+        analytics.logEvent('login')
         game.setCharacterName(dWindow.gui.playerData.characterBaseInformations.name)
 
         /* create icon */
@@ -109,6 +112,7 @@ export const useGameManager = ({ game, rootStore, LL }: GameManagerProps) => {
       }
 
       const handleDisconnect = () => {
+        analytics.logEvent('logout')
         game.disconnected()
         onWindowResized.unsubscribe()
         destroyMods()

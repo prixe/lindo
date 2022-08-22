@@ -22,12 +22,13 @@ import { getAppMenu } from './menu'
 import { MultiAccount } from './multi-account'
 import { runUpdater } from './updater'
 import { GameWindow, OptionWindow } from './windows'
-import path from 'path'
+import path, { join } from 'path'
 import cors from 'cors'
 import { I18n } from './utils'
 import { logger, setupRendererLogger } from './logger'
 import axios from 'axios'
 import { Locales } from '@lindo/i18n'
+import { platform } from 'os'
 
 export class Application {
   private static _instance: Application
@@ -61,11 +62,12 @@ export class Application {
         origin: '*'
       })
     )
-    serveGameServer.use('/', express.static(GAME_PATH))
+    serveGameServer.use('/game', express.static(GAME_PATH))
+    serveGameServer.use('/renderer', express.static(join(__dirname, '../renderer/')))
     serveGameServer.use('/character-images', express.static(CHARACTER_IMAGES_PATH))
     serveGameServer.use('/changelog', express.static(APP_PATH + '/CHANGELOG.md'))
-    const port = await getPort({ port: 3000 })
-    const server: Server = serveGameServer.listen(port)
+    const gameServerPort = await getPort({ port: 3000 })
+    const gameServer: Server = serveGameServer.listen(gameServerPort)
 
     // set default language
     if (!rootStore.appStore._language) {
@@ -77,7 +79,7 @@ export class Application {
       }
     }
 
-    Application._instance = new Application(rootStore, server, hash)
+    Application._instance = new Application(rootStore, gameServer, hash)
   }
 
   static get instance(): Application {
@@ -90,7 +92,7 @@ export class Application {
   private _gWindows: Array<GameWindow> = []
   private _optionWindow?: OptionWindow
 
-  private constructor(private _rootStore: RootStore, private _serveGameServer: Server, hash: string) {
+  private constructor(private _rootStore: RootStore, private _gameServer: Server, hash: string) {
     this._multiAccount = new MultiAccount(this._rootStore)
     this._i18n = new I18n(this._rootStore)
     this._hash = hash
@@ -177,7 +179,14 @@ export class Application {
   async createGameWindow(team?: GameTeam, teamWindow?: GameTeamWindow) {
     const index = this._gWindows.length
     logger.debug('Application -> _createGameWindow ' + index)
-    const gWindow = await GameWindow.init({ index, store: this._rootStore, team, teamWindow })
+    const serverAddress: AddressInfo = this._gameServer.address() as AddressInfo
+    const gWindow = await GameWindow.init({
+      index,
+      url: 'http://localhost:' + serverAddress.port + '/renderer/index.html',
+      store: this._rootStore,
+      team,
+      teamWindow
+    })
     gWindow.on('close', () => {
       this._gWindows.splice(this._gWindows.indexOf(gWindow), 1)
     })
@@ -202,15 +211,16 @@ export class Application {
 
     // handlers
     ipcMain.handle(IPCEvents.GET_GAME_CONTEXT, (event) => {
-      const serverAddress: AddressInfo = this._serveGameServer.address() as AddressInfo
+      const serverAddress: AddressInfo = this._gameServer.address() as AddressInfo
       const gWindow = this._gWindows.find((gWindow) => gWindow.id === event.sender.id)
       const context: GameContext = {
-        gameSrc: 'http://localhost:' + serverAddress.port + '/index.html?delayed=true',
+        gameSrc: 'http://localhost:' + serverAddress.port + '/game/index.html?delayed=true',
         characterImagesSrc: 'http://localhost:' + serverAddress.port + '/character-images/',
         changeLogSrc: 'http://localhost:' + serverAddress.port + '/changelog',
         windowId: event.sender.id,
         multiAccount: gWindow?.multiAccount,
-        hash: this._hash
+        hash: this._hash,
+        platform: platform()
       }
       return JSON.stringify(context)
     })

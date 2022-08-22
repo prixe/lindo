@@ -40,11 +40,13 @@ export class GameWindow extends (EventEmitter as new () => TypedEmitter<GameWind
     userAgent,
     store,
     team,
+    url,
     teamWindow
   }: {
     index: number
     userAgent: string
     store: RootStore
+    url: string
     team?: GameTeam
     teamWindow?: GameTeamWindow
   }) {
@@ -139,7 +141,7 @@ export class GameWindow extends (EventEmitter as new () => TypedEmitter<GameWind
     )
 
     if (app.isPackaged) {
-      this._win.loadFile(join(__dirname, '../renderer/index.html'))
+      this._win.loadURL(url)
     } else {
       // 🚧 Use ['ENV_NAME'] avoid vite:define plugin
 
@@ -164,15 +166,17 @@ export class GameWindow extends (EventEmitter as new () => TypedEmitter<GameWind
     index,
     store,
     team,
+    url,
     teamWindow
   }: {
     index: number
     store: RootStore
+    url: string
     team?: GameTeam
     teamWindow?: GameTeamWindow
   }): Promise<GameWindow> {
     const userAgent = await generateUserArgent(store.appStore.appVersion)
-    return new GameWindow({ index, userAgent, store, team, teamWindow })
+    return new GameWindow({ index, url, userAgent, store, team, teamWindow })
   }
 
   private _close(event: Event) {

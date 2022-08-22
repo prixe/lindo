@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: '16.15.1'
       - name: Install app dependencies
-        run: yarn
+        run: yarn --frozen-lockfile --network-timeout 600000
       - name: Check linter
         run: yarn lint
       - name: Build the application

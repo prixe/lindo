@@ -1,5 +1,6 @@
 import { IconButton, InputAdornment, TextField } from '@mui/material'
-import React, { KeyboardEvent, memo } from 'react'
+import React, { useState, KeyboardEvent, memo } from 'react'
+import { useI18nContext } from '@lindo/i18n'
 import { Close } from '@mui/icons-material'
 
 const KEY_MAPPER = {
@@ -10,11 +11,16 @@ const KEY_MAPPER = {
   ' ': 'Space'
 }
 
+const MODIFIERS = /^(Meta|CommandOrControl|CmdOrCtrl|Command|Cmd|Control|Ctrl|AltGr|Option|Alt|Shift|Super)$/i
+const KEY_CODES =
+  /^(Num[0-9]|Plus|Space|Tab|Backspace|Delete|Insert|Return|Enter|Up|Down|Left|Right|Home|End|PageUp|PageDown|Escape|Esc|VolumeUp|VolumeDown|VolumeMute|MediaNextTrack|MediaPreviousTrack|MediaStop|MediaPlayPause|PrintScreen|F24|F23|F22|F21|F20|F19|F18|F17|F16|F15|F14|F13|F12|F11|F10|F9|F8|F7|F6|F5|F4|F3|F2|F1|[0-9A-Z)!@#$%^&*(:<_>?~{|}";=,\-./`[\\\]'])$/i
+
 export interface ShortcutInputProps {
   id: string
   label: string
   value: string
   onChange?: (shortcut: string) => void
+  restrictKeyCode?: boolean
 }
 
 export const capitalizeFirstLetter = (value: string) => {
@@ -22,7 +28,9 @@ export const capitalizeFirstLetter = (value: string) => {
 }
 
 // eslint-disable-next-line react/display-name
-export const ShortcutInput = memo<ShortcutInputProps>(({ id, label, value, onChange }) => {
+export const ShortcutInput = memo<ShortcutInputProps>(({ id, label, value, onChange, restrictKeyCode = false }) => {
+  const { LL } = useI18nContext()
+  const [isInvalidKeyCode, setInvalidKeyCode] = useState(false)
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     event.preventDefault()
     event.stopPropagation()
@@ -47,14 +55,15 @@ export const ShortcutInput = memo<ShortcutInputProps>(({ id, label, value, onCha
     }
 
     // prevent using modifier key as shortcut
-    switch (event.key) {
-      case 'Meta':
-      case 'Shift':
-      case 'Ctrl':
-      case 'Alt':
+    if (MODIFIERS.test(event.key)) return
+    // prevent using invalid electron accelerator for tab switching
+    if (restrictKeyCode) {
+      if (!KEY_CODES.test(event.key)) {
+        setInvalidKeyCode(true)
         return
+      }
+      setInvalidKeyCode(false)
     }
-
     const normalizeKey = Object.hasOwn(KEY_MAPPER, event.key)
       ? KEY_MAPPER[event.key as never]
       : capitalizeFirstLetter(event.key)
@@ -74,6 +83,9 @@ export const ShortcutInput = memo<ShortcutInputProps>(({ id, label, value, onCha
       label={label}
       onKeyDown={handleKeyDown}
       value={value}
+      error={isInvalidKeyCode}
+      helperText={isInvalidKeyCode && LL.option.shortcuts.error()}
+      onBlur={() => setInvalidKeyCode(false)}
       InputProps={{
         endAdornment: (
           <InputAdornment position='end'>

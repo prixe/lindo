@@ -1,7 +1,7 @@
 # Lindo
 
 [![Build & Publish](https://github.com/prixe/lindo/actions/workflows/build.yml/badge.svg)](https://github.com/prixe/lindo/actions/workflows/build.yml)
-[![Current release](https://badgen.net/github/release/prixe/lindo)](https://github.com/zenoxs/tauri-appcenter-companion/releases/latest)
+[![Current release](https://badgen.net/github/release/prixe/lindo)](https://github.com/prixe/lindo/releases/latest)
 [![Compatible os](https://badgen.net/badge/os/windows%20%7C%20macOS%20%7C%20linux/black)](https://github.com/prixe/lindo/releases/latest)
 [![Minimum node](https://img.shields.io/badge/node-%3E%3D%2016.0.0-green.svg)]()
 [![Github All Releases](https://img.shields.io/github/downloads/prixe/lindo/total.svg)](https://github.com/prixe/lindo/releases)
@@ -15,9 +15,10 @@ Find us on Reddit to exchange with the community!
 
 - [Reddit](https://www.reddit.com/r/LindoApp/)
 
-We are also on Twitter and Telegram if you want to get notified of new updates:
+We are also on Twitter, Telegram and Matrix if you want to get notified of new updates:
 
 - [Twitter](https://twitter.com/Lindo_Officiel)
+- [Matrix](https://matrix.to/#/#lindo-official:matrix.org) (chat server like discord)
 - [Telegram](https://t.me/+8jEjvFd5M-g4NTc0)
 
 
