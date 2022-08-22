@@ -10,7 +10,8 @@
   "files": [
     "dist",
     "CHANGELOG.md",
-    "LICENCE"
+    "LICENCE",
+    "resources/icon.png"
   ],
   "win": {
     "icon": "resources/icon.ico",
@@ -48,6 +49,7 @@
     "executableName": "Lindo",
     "description": "Lindo Client for Linux",
     "icon": "resources/icon.png",
+    "desktop": "resources/lindo.desktop",
     "target": [
       {
         "target": "AppImage",
