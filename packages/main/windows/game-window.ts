@@ -19,6 +19,7 @@ export class GameWindow extends (EventEmitter as new () => TypedEmitter<GameWind
   private readonly _teamWindow?: GameTeamWindow
   private readonly _team?: GameTeam
   private _isMuted = false
+  private readonly _index: number
   private readonly _shortcutStoreDisposer: () => void
 
   get id() {
@@ -34,8 +35,21 @@ export class GameWindow extends (EventEmitter as new () => TypedEmitter<GameWind
     }
   }
 
-  private constructor(userAgent: string, store: RootStore, team?: GameTeam, teamWindow?: GameTeamWindow) {
+  private constructor({
+    index,
+    userAgent,
+    store,
+    team,
+    teamWindow
+  }: {
+    index: number
+    userAgent: string
+    store: RootStore
+    team?: GameTeam
+    teamWindow?: GameTeamWindow
+  }) {
     super()
+    this._index = index
     this._store = store
     this._teamWindow = teamWindow
     this._team = team
@@ -52,6 +66,8 @@ export class GameWindow extends (EventEmitter as new () => TypedEmitter<GameWind
       webPreferences: {
         preload: join(__dirname, '../preload/index.cjs'),
         backgroundThrottling: false,
+        partition: 'persist:' + this._index,
+        sandbox: false,
         allowRunningInsecureContent: true,
         webviewTag: true,
         webSecurity: false // require to load dofus files
@@ -144,9 +160,19 @@ export class GameWindow extends (EventEmitter as new () => TypedEmitter<GameWind
     attachTitlebarToWindow(this._win)
   }
 
-  static async init(store: RootStore, team?: GameTeam, teamWindow?: GameTeamWindow): Promise<GameWindow> {
+  static async init({
+    index,
+    store,
+    team,
+    teamWindow
+  }: {
+    index: number
+    store: RootStore
+    team?: GameTeam
+    teamWindow?: GameTeamWindow
+  }): Promise<GameWindow> {
     const userAgent = await generateUserArgent(store.appStore.appVersion)
-    return new GameWindow(userAgent, store, team, teamWindow)
+    return new GameWindow({ index, userAgent, store, team, teamWindow })
   }
 
   private _close(event: Event) {

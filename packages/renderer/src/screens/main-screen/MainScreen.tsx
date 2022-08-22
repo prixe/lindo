@@ -28,23 +28,32 @@ export const MainScreen = () => {
     <TabManager>
       <Box sx={{ display: 'flex', flex: 1 }} height='100%' width='100vw'>
         <SideBar />
-        <Observer>
-          {() => (
-            <>
-              {gameStore.games.map((game) => (
-                <div
-                  style={{
-                    flex: 1,
-                    display: gameStore.selectedGame?.id !== game.id ? 'none' : 'flex'
-                  }}
-                  key={game.id}
-                >
-                  <GameScreen key={game.id} game={game} />
-                </div>
-              ))}
-            </>
-          )}
-        </Observer>
+        <Box sx={{ display: 'flex', position: 'relative', flex: 1 }}>
+          <Observer>
+            {() => (
+              <>
+                {gameStore.games.map((game) => {
+                  const selected = gameStore.selectedGame?.id === game.id
+                  return (
+                    <div
+                      style={{
+                        display: 'block',
+                        width: '100%',
+                        height: '100%',
+                        position: 'absolute',
+                        overflow: 'hidden',
+                        visibility: selected ? 'visible' : 'hidden'
+                      }}
+                      key={game.id}
+                    >
+                      <GameScreen key={game.id} game={game} />
+                    </div>
+                  )
+                })}
+              </>
+            )}
+          </Observer>
+        </Box>
       </Box>
     </TabManager>
   )

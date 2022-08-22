@@ -2,6 +2,7 @@ import { applySnapshot, SnapshotOut, types } from 'mobx-state-tree'
 import { AppStore, AppStoreModel } from '../app-store'
 import { OptionStore, OptionStoreModel } from '../option-store'
 import { HotkeyStore, HotkeyStoreModel } from '../hotkey-store'
+import { ModStore, ModStoreModel } from '../mod-store'
 
 /**
  * A RootStore model.
@@ -11,7 +12,8 @@ export const RootStoreModel = types
   .props({
     optionStore: types.optional(OptionStoreModel, {}),
     appStore: types.optional(AppStoreModel, {}),
-    hotkeyStore: types.optional(HotkeyStoreModel, {})
+    hotkeyStore: types.optional(HotkeyStoreModel, {}),
+    modStore: types.optional(ModStoreModel, {})
   })
   .actions((self) => ({
     reset() {
@@ -26,6 +28,7 @@ export interface RootStore {
   optionStore: OptionStore
   appStore: AppStore
   hotkeyStore: HotkeyStore
+  modStore: ModStore
   reset: () => void
 }
 

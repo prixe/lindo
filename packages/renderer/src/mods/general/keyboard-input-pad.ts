@@ -1,11 +1,11 @@
 import { DofusWindow } from '@/dofus-window'
 import { RootStore } from '@/store'
+import { LindoShortcuts } from '@/utils'
 import { TranslationFunctions } from '@lindo/i18n'
-import { Shortcuts } from 'shortcuts'
 import { Mod } from '../mod'
 
 export class KeyboardInputPadMod extends Mod {
-  private readonly _shortcuts = new Shortcuts({ target: this.wGame.document })
+  private readonly _shortcuts = new LindoShortcuts({ target: this.wGame.document })
 
   constructor(wGame: DofusWindow, rootStore: RootStore, LL: TranslationFunctions) {
     super(wGame, rootStore, LL)

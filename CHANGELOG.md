@@ -1,6 +1,23 @@
-## ⚠ ATTENTION, VÉRIFIEZ QUE VOUS TÉLÉCHARGEZ LINDO DEPUIS LINDO-APP.COM
-## ⚠ CERTAINS SITES MALVEILLANTS INSTALLERONT UN VIRUS SUR VOTRE ORDINATEUR
+## [3.0.0-beta.11] - 2022-08-15
 
+### Fixes
+- Fix visibility issue with multiple game tabs (could introduce issues in DT UI) 
+
+## Improvements
+- Add windows session persistence 
+
+## [3.0.0-beta.10] - 2022-08-13
+
+### Fixes
+- Fix issue with shortcuts like ² and §
+- Fix rapid exchange (send whole item stack with control from a storage)
+
+## [3.0.0-beta.9] - 2022-08-11
+
+### Fixes
+- Fix performance issue on windows 7
+- Improve windows icon
+- Fix windows positions synchronization / movements issue
 
 ## [2.7.3] - 2022-04-14
 

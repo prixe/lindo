@@ -77,7 +77,7 @@ export const GameScreen = memo(({ game }: GameScreenProps) => {
       id={`iframe-game-${game.id}`}
       ref={iframeGameRef}
       onLoad={handleLoad}
-      style={{ flex: 1, border: 'none' }}
+      style={{ border: 'none', width: '100%', height: '100%' }}
       src={gameContext.gameSrc}
     />
   )
