@@ -66,7 +66,7 @@
   "linux": {
     "executableName": "Lindo",
     "description": "Lindo Client for Linux",
-    "icon": "resources/icon.png",
+    "icon": "resources/icons",
     "desktop": "resources/lindo.desktop",
     "target": [
       {
