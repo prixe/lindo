@@ -8,6 +8,7 @@ import { generateUserArgent } from '../utils'
 import { logger } from '../logger'
 import { observe } from 'mobx'
 import { electronLocalshortcut } from '@hfelix/electron-localshortcut'
+import { platform } from 'os'
 
 type GameWindowEvents = {
   close: (event: Event) => void
@@ -57,6 +58,7 @@ export class GameWindow extends (EventEmitter as new () => TypedEmitter<GameWind
     this._win = new BrowserWindow({
       show: false,
       resizable: true,
+      frame: platform() !== 'linux',
       title: 'Lindo',
       fullscreenable: true,
       fullscreen: this._store.optionStore.window.fullScreen,
