@@ -1,5 +1,5 @@
 import { RootStore } from '@lindo/shared'
-import { app, dialog } from 'electron'
+import { app, dialog, shell } from 'electron'
 import { logger } from '../logger'
 import { I18n } from '../utils'
 import { autoUpdater, UpdateInfo } from 'electron-updater'
@@ -35,7 +35,7 @@ export class AppUpdater {
 
     autoUpdater.on('update-available', ({ version }: UpdateInfo) => {
       logger.info('appUpdater -> An Update is available v' + version)
-      this._showUpdateDialog(version, false)
+      this._showUpdateDialog(version, true)
     })
 
     autoUpdater.on('update-not-available', () => {
@@ -74,10 +74,24 @@ export class AppUpdater {
       })
       .then((returnValue) => {
         if (returnValue.response === 0) {
-          autoUpdater.downloadUpdate()
+          if (process.platform === 'win32') {
+            this._handleWindows()
+          } else {
+            this._handleOther()
+          }
         } else {
           logger.info('appUpdater -> App update ignored.')
         }
       })
+  }
+
+  private _handleWindows() {
+    autoUpdater.downloadUpdate()
+  }
+
+  private _handleOther() {
+    logger.info('appUpdater -> Redirected to app download page.')
+    shell.openExternal('https://github.com/prixe/lindo/releases/latest')
+    app.exit()
   }
 }
