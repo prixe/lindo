@@ -116,4 +116,4 @@ jobs:
             linux/latest-linux.yml
             macos/Lindo-${{ steps.extract_version.outputs.version }}.dmg
             macos/Lindo-${{ steps.extract_version.outputs.version }}-arm64.dmg
-            macos/latest-linux.yml
+            macos/latest-mac.yml
