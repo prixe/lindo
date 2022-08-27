@@ -18,6 +18,6 @@ export const LOCAL_VERSIONS_PATH = GAME_PATH + 'versions.json'
 export const LOCAL_REGEX_PATH = GAME_PATH + 'regex.json'
 
 // GitHub
-export const GITHUB_OWNER = 'zenoxs'
-export const GITHUB_REPO = 'lindo-poc-update'
+export const GITHUB_OWNER = 'prixe'
+export const GITHUB_REPO = 'lindo'
 export const GITHUB_LATEST_RELEASE_URL = 'https://github.com/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/releases/latest'
