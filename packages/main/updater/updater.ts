@@ -11,6 +11,7 @@ export const runUpdater = async (rootStore: RootStore, i18n: I18n) => {
     logger.error('Error running app updater:', err)
   })
 
+  logger.info('runUpdater -> Start game update checking...')
   const gameUpdater = await GameUpdater.init(rootStore)
   await gameUpdater.run().catch((e) => {
     console.log(e)

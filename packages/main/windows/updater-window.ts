@@ -10,10 +10,14 @@ type UpdaterWindowEvents = {
   close: (event: Event) => void
 }
 
+export interface UpdaterWindowOptions {
+  show?: boolean // will automatically show the window when dom is ready
+}
+
 export class UpdaterWindow extends (EventEmitter as new () => TypedEmitter<UpdaterWindowEvents>) {
   private readonly _win: BrowserWindow
 
-  private constructor(userAgent: string) {
+  private constructor(userAgent: string, options?: UpdaterWindowOptions) {
     super()
     this._win = new BrowserWindow({
       show: false,
@@ -32,9 +36,11 @@ export class UpdaterWindow extends (EventEmitter as new () => TypedEmitter<Updat
     // Show window when page is ready
     this._win.webContents.on('ipc-message', (event, channel) => {
       if (channel === IPCEvents.APP_READY_TO_SHOW) {
-        setTimeout(() => {
-          this._win.show()
-        }, 100)
+        if (options?.show ?? true) {
+          setTimeout(() => {
+            this._win.show()
+          }, 100)
+        }
       }
     })
 
@@ -58,9 +64,9 @@ export class UpdaterWindow extends (EventEmitter as new () => TypedEmitter<Updat
     }
   }
 
-  static async init(store: RootStore): Promise<UpdaterWindow> {
+  static async init(store: RootStore, options?: UpdaterWindowOptions): Promise<UpdaterWindow> {
     const userAgent = await generateUserArgent(store.appStore.appVersion)
-    return new UpdaterWindow(userAgent)
+    return new UpdaterWindow(userAgent, options)
   }
 
   sendProgress(progress: UpdateProgress) {
@@ -75,6 +81,10 @@ export class UpdaterWindow extends (EventEmitter as new () => TypedEmitter<Updat
 
   close() {
     this._win.close()
+  }
+
+  show() {
+    this._win.show()
   }
 
   focus = () => this._win.focus()

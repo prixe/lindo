@@ -7,7 +7,7 @@ const es: Translation = {
       message: 'Una nueva version ({version}) de Lindo esta disponible. ¿Quieres descargar la actualización?',
       messageRequired:
         'Está disponible una nueva versión ({version}) obligatoria de Lindo, puedes descárgarla en GitHub.',
-      download: 'Descárgarla en GitHub.',
+      download: 'Descárgarla.',
       ignore: 'Ignorar'
     },
     gameMenu: {
