@@ -47,8 +47,10 @@ jobs:
           path: |
             release/${{ steps.extract_version.outputs.version }}/Lindo-${{ steps.extract_version.outputs.version }}-win.zip
             release/${{ steps.extract_version.outputs.version }}/Lindo-${{ steps.extract_version.outputs.version }}-ia32-win.zip
-            release/${{ steps.extract_version.outputs.version }}/Lindo ${{ steps.extract_version.outputs.version }}.exe
-            release/${{ steps.extract_version.outputs.version }}/Lindo Setup ${{ steps.extract_version.outputs.version }}.exe
+            release/${{ steps.extract_version.outputs.version }}/Lindo-${{ steps.extract_version.outputs.version }}.exe
+            release/${{ steps.extract_version.outputs.version }}/Lindo-Setup-${{ steps.extract_version.outputs.version }}.exe
+            release/${{ steps.extract_version.outputs.version }}/Lindo-Setup-${{ steps.extract_version.outputs.version }}.exe.blockmap
+            release/${{ steps.extract_version.outputs.version }}/latest.yml
       
       - name: Upload MacOS artifacts
         uses: actions/upload-artifact@v2
@@ -57,7 +59,14 @@ jobs:
           name: macos
           path: |
             release/${{ steps.extract_version.outputs.version }}/Lindo-${{ steps.extract_version.outputs.version }}.dmg
+            release/${{ steps.extract_version.outputs.version }}/Lindo-${{ steps.extract_version.outputs.version }}.dmg.blockmap
             release/${{ steps.extract_version.outputs.version }}/Lindo-${{ steps.extract_version.outputs.version }}-arm64.dmg
+            release/${{ steps.extract_version.outputs.version }}/Lindo-${{ steps.extract_version.outputs.version }}-arm64.dmg.blockmap
+            release/${{ steps.extract_version.outputs.version }}/Lindo-${{ steps.extract_version.outputs.version }}-mac.zip
+            release/${{ steps.extract_version.outputs.version }}/Lindo-${{ steps.extract_version.outputs.version }}-mac.zip.blockmap
+            release/${{ steps.extract_version.outputs.version }}/Lindo-${{ steps.extract_version.outputs.version }}-arm64-mac.zip
+            release/${{ steps.extract_version.outputs.version }}/Lindo-${{ steps.extract_version.outputs.version }}-arm64-mac.zip.blockmap
+            release/${{ steps.extract_version.outputs.version }}/latest-mac.yml
 
       - name: Upload Linux artifacts
         uses: actions/upload-artifact@v2
@@ -71,6 +80,7 @@ jobs:
             release/${{ steps.extract_version.outputs.version }}/lindo-${{ steps.extract_version.outputs.version }}-arm64.tar.gz
             release/${{ steps.extract_version.outputs.version }}/lindo_${{ steps.extract_version.outputs.version }}_amd64.deb
             release/${{ steps.extract_version.outputs.version }}/lindo_${{ steps.extract_version.outputs.version }}_arm64.deb
+            release/${{ steps.extract_version.outputs.version }}/latest-linux.yml
 
   create-release:
     name: "Upload Release"
@@ -99,16 +109,25 @@ jobs:
           automatic_release_tag: "v${{ steps.extract_version.outputs.version }}"
           title: "v${{ steps.extract_version.outputs.version }}"
           files: |
-            windows/Lindo ${{ steps.extract_version.outputs.version }}.exe
-            windows/Lindo Setup ${{ steps.extract_version.outputs.version }}.exe
+            windows/Lindo-${{ steps.extract_version.outputs.version }}.exe
+            windows/Lindo-Setup-${{ steps.extract_version.outputs.version }}.exe
+            windows/Lindo-Setup-${{ steps.extract_version.outputs.version }}.exe.blockmap
             windows/Lindo-${{ steps.extract_version.outputs.version }}-win.zip
             windows/Lindo-${{ steps.extract_version.outputs.version }}-ia32-win.zip
+            windows/latest.yml
             linux/Lindo-${{ steps.extract_version.outputs.version }}.AppImage
             linux/Lindo-${{ steps.extract_version.outputs.version }}-arm64.AppImage
             linux/lindo-${{ steps.extract_version.outputs.version }}.tar.gz
             linux/lindo-${{ steps.extract_version.outputs.version }}-arm64.tar.gz
             linux/lindo_${{ steps.extract_version.outputs.version }}_amd64.deb
             linux/lindo_${{ steps.extract_version.outputs.version }}_arm64.deb
+            linux/latest-linux.yml
             macos/Lindo-${{ steps.extract_version.outputs.version }}.dmg
+            macos/Lindo-${{ steps.extract_version.outputs.version }}.dmg.blockmap
             macos/Lindo-${{ steps.extract_version.outputs.version }}-arm64.dmg
-
+            macos/Lindo-${{ steps.extract_version.outputs.version }}-arm64.dmg.blockmap
+            macos/Lindo-${{ steps.extract_version.outputs.version }}-mac.zip
+            macos/Lindo-${{ steps.extract_version.outputs.version }}-mac.zip.blockmap
+            macos/Lindo-${{ steps.extract_version.outputs.version }}-arm64-mac.zip
+            macos/Lindo-${{ steps.extract_version.outputs.version }}-arm64-mac.zip.blockmap
+            macos/latest-mac.yml

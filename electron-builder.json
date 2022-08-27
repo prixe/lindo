@@ -45,16 +45,20 @@
     ]
   },
   "nsis": {
+    "artifactName": "${productName}-Setup-${version}.${ext}",
     "oneClick": false,
     "perMachine": false,
     "allowToChangeInstallationDirectory": true,
     "deleteAppDataOnUninstall": false
   },
+  "portable": {
+    "artifactName": "${productName}-${version}.${ext}"
+  },
   "afterPack": "./scripts/afterPackHook.js",
   "mac": {
     "target": [
       {
-        "target": "dmg",
+        "target": "default",
         "arch": [
           "x64",
           "arm64"
