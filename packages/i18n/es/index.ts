@@ -188,7 +188,7 @@ const es: Translation = {
       mods: {
         header: 'Mods',
         mapResources: 'Mostrar/Ocultar recursos',
-        healthBar: 'Mostrar/Ocultar barra de vida',
+        healthBar: 'Mostrar/Ocultar barra de vida'
       },
       information:
         'Puede usar las teclas CTRL/CMD, MAYÚS, ESPACIO, ALT. Para ingresar sus accesos directos, presione la combinación de teclas deseada en el campo.',

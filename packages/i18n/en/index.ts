@@ -187,7 +187,7 @@ const en: BaseTranslation = {
       mods: {
         header: 'Mods',
         mapResources: 'Show/hide map resources',
-        healthBar: 'Show/hide life bars',
+        healthBar: 'Show/hide life bars'
       },
       information:
         'You can use special keys CTRL, SHIFT, SPACE, ALT/CMD You can specify your shortcut by pressing the desired keys at the same time after selecting the input',

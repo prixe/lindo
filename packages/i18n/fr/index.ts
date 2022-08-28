@@ -188,7 +188,7 @@ const fr: Translation = {
       mods: {
         header: 'Mods',
         mapResources: 'Affichage/Cacher des ressources',
-        healthBar: 'Affichage/Cacher la barres de vie',
+        healthBar: 'Affichage/Cacher la barres de vie'
       },
       information:
         'Vous pouvez utiliser les touches CTRL/CMD, SHIFT, ESPACE, ALT. Pour rentrer vos raccourcis pressez la combinaison de touche souhaitée dans le champ.',

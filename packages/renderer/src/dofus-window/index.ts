@@ -16,8 +16,8 @@ export interface DofusWindow extends Window {
   openDatabase: unknown
   dofus: Dofus
   foreground: {
-    rootElement: HTMLDivElement,
-    _monsterTooltips: [],
+    rootElement: HTMLDivElement
+    _monsterTooltips: []
     showAllMonsterGroupTooltips: () => void
     removeAllMonsterGroupTooltips: () => void
   }

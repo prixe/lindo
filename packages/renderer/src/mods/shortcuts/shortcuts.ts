@@ -258,19 +258,23 @@ export class ShortcutsMod extends Mod {
 
     // Monster tooltips
     const showMonsterTooltips = (e: KeyboardEvent) => {
-      if (e.key.toLocaleUpperCase() == gameActionHotkey['showMonsterTooltips'].toLocaleUpperCase()
-        && this.wGame.foreground._monsterTooltips.length == 0) 
+      if (
+        e.key.toLocaleUpperCase() === gameActionHotkey.showMonsterTooltips.toLocaleUpperCase() &&
+        this.wGame.foreground._monsterTooltips.length === 0
+      )
         this.wGame.foreground.showAllMonsterGroupTooltips()
     }
     const hideMonsterTooltips = (e: KeyboardEvent) => {
-      if (e.key.toLocaleUpperCase() == gameActionHotkey['showMonsterTooltips'].toLocaleUpperCase() 
-        && this.wGame.foreground._monsterTooltips.length > 0)
-          this.wGame.foreground.removeAllMonsterGroupTooltips()
+      if (
+        e.key.toLocaleUpperCase() === gameActionHotkey.showMonsterTooltips.toLocaleUpperCase() &&
+        this.wGame.foreground._monsterTooltips.length > 0
+      )
+        this.wGame.foreground.removeAllMonsterGroupTooltips()
     }
 
     this.wGame.addEventListener('keydown', showMonsterTooltips)
     this.wGame.addEventListener('keyup', hideMonsterTooltips)
-    
+
     this._disposers.push(() => this.wGame.removeEventListener('keydown', showMonsterTooltips))
     this._disposers.push(() => this.wGame.removeEventListener('keyup', hideMonsterTooltips))
   }
