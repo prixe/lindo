@@ -143,7 +143,7 @@ const fr: Translation = {
         goDown: 'Aller à la carte du dessous',
         goLeft: 'Aller à la carte de gauche',
         goRight: 'Aller à la carte de droite',
-        showMonsterTooltips: 'Afficher/Cacher les infos des groupes de monstre de la carte'
+        showMonsterTooltips: 'Afficher/Cacher les informations des groupes de monstres'
       },
       interfaces: {
         header: 'Interfaces',
@@ -189,7 +189,6 @@ const fr: Translation = {
         header: 'Mods',
         mapResources: 'Affichage/Cacher des ressources',
         healthBar: 'Affichage/Cacher la barres de vie',
-        monsterTooltip: 'Afficher/Cacher les informations des groupes de monstres'
       },
       information:
         'Vous pouvez utiliser les touches CTRL/CMD, SHIFT, ESPACE, ALT. Pour rentrer vos raccourcis pressez la combinaison de touche souhaitée dans le champ.',

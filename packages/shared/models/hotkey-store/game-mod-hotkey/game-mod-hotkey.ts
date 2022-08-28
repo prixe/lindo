@@ -6,14 +6,10 @@ import { Instance, SnapshotOut, types } from 'mobx-state-tree'
 export const GameModHotkeyModel = types
   .model('GameModHotkey')
   .props({
-    monsterTooltip: types.optional(types.string, 'P'),
     mapResources: types.optional(types.string, ''),
     toggleHealthBar: types.optional(types.string, '')
   })
   .actions((self) => ({
-    setMonsterTooltip(hotkey: string) {
-      self.monsterTooltip = hotkey
-    },
     setMapResources(hotkey: string) {
       self.mapResources = hotkey
     },

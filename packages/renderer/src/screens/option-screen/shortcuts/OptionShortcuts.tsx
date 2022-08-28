@@ -346,16 +346,6 @@ export const OptionShortcuts = () => {
                   <Grid item xs={4}>
                     <Stack spacing={2}>
                       <ShortcutInput
-                        id='monster-tooltip-hotkey'
-                        label={LL.option.shortcuts.mods.monsterTooltip()}
-                        value={hotkeyStore.gameMod.monsterTooltip}
-                        onChange={hotkeyStore.gameMod.setMonsterTooltip}
-                      />
-                    </Stack>
-                  </Grid>
-                  <Grid item xs={4}>
-                    <Stack spacing={2}>
-                      <ShortcutInput
                         id='map-resources-hotkey'
                         label={LL.option.shortcuts.mods.mapResources()}
                         value={hotkeyStore.gameMod.mapResources}
