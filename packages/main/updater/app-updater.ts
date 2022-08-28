@@ -74,6 +74,7 @@ export class AppUpdater {
 
       autoUpdater.checkForUpdatesAndNotify().then(() => {
         logger.info('appUpdater -> Update check done')
+        resolve()
       })
     })
   }
