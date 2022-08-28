@@ -33,7 +33,7 @@ type RootTranslation = {
 			 */
 			messageRequired: RequiredParams<'version'>
 			/**
-			 * Download on GitHub
+			 * Download
 			 */
 			download: string
 			/**
@@ -444,6 +444,10 @@ type RootTranslation = {
 				 * Go to Right Map
 				 */
 				goRight: string
+				/**
+				 * Show/Hide monster groups tooltips
+				 */
+				showMonsterTooltips: string
 			}
 			interfaces: {
 				/**
@@ -1110,7 +1114,7 @@ export type TranslationFunctions = {
 			 */
 			messageRequired: (arg: { version: string }) => LocalizedString
 			/**
-			 * Download on GitHub
+			 * Download
 			 */
 			download: () => LocalizedString
 			/**
@@ -1518,6 +1522,10 @@ export type TranslationFunctions = {
 				 * Go to Right Map
 				 */
 				goRight: () => LocalizedString
+				/**
+				 * Show/Hide monster groups tooltips
+				 */
+				showMonsterTooltips: () => LocalizedString
 			}
 			interfaces: {
 				/**

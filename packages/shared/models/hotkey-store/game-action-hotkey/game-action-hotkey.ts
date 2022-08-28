@@ -12,7 +12,8 @@ export const GameActionHotkeyModel = types
     goUp: types.optional(types.string, 'CmdOrCtrl+Up'),
     goDown: types.optional(types.string, 'CmdOrCtrl+Down'),
     goLeft: types.optional(types.string, 'CmdOrCtrl+Left'),
-    goRight: types.optional(types.string, 'CmdOrCtrl+Right')
+    goRight: types.optional(types.string, 'CmdOrCtrl+Right'),
+    showMonsterTooltips: types.optional(types.string, '')
   })
   .actions((self) => ({
     setEndTurn(hotkey: string) {
@@ -35,6 +36,9 @@ export const GameActionHotkeyModel = types
     },
     setGoRight(hotkey: string) {
       self.goRight = hotkey
+    },
+    setShowMonsterTooltips(hotkey: string) {
+      self.showMonsterTooltips = hotkey
     }
   }))
 

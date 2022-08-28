@@ -142,7 +142,8 @@ const fr: Translation = {
         goUp: 'Aller à la carte du dessus',
         goDown: 'Aller à la carte du dessous',
         goLeft: 'Aller à la carte de gauche',
-        goRight: 'Aller à la carte de droite'
+        goRight: 'Aller à la carte de droite',
+        showMonsterTooltips: 'Afficher/Cacher les infos des groupes de monstre de la carte'
       },
       interfaces: {
         header: 'Interfaces',

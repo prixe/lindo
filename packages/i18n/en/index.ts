@@ -141,7 +141,8 @@ const en: BaseTranslation = {
         goUp: 'Go to Upper Map',
         goDown: 'Go to Lower Map',
         goLeft: 'Go to Left Map',
-        goRight: 'Go to Right Map'
+        goRight: 'Go to Right Map',
+        showMonsterTooltips: 'Show/Hide monster groups tooltips'
       },
       interfaces: {
         header: 'Interfaces',

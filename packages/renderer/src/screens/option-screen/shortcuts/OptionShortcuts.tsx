@@ -321,6 +321,12 @@ export const OptionShortcuts = () => {
                         value={hotkeyStore.gameAction.openChat}
                         onChange={hotkeyStore.gameAction.setOpenChat}
                       />
+                      <ShortcutInput
+                        id='show-monster-tooltips'
+                        label={LL.option.shortcuts.diver.showMonsterTooltips()}
+                        value={hotkeyStore.gameAction.showMonsterTooltips}
+                        onChange={hotkeyStore.gameAction.setShowMonsterTooltips}
+                      />
                     </Stack>
                   </Grid>
                   <Grid item xs={4}>
