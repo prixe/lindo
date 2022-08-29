@@ -142,7 +142,8 @@ const es: Translation = {
         goUp: 'Ir al Mapa superior',
         goDown: 'Ir al Mapa inferior',
         goLeft: 'Ir al Mapa de la izquierda',
-        goRight: 'Ir al Mapa de la derecha'
+        goRight: 'Ir al Mapa de la derecha',
+        showMonsterTooltips: 'Mostrar/ocultar información del grupo de monstruos'
       },
       interfaces: {
         header: 'Interfaces',
@@ -187,8 +188,7 @@ const es: Translation = {
       mods: {
         header: 'Mods',
         mapResources: 'Mostrar/Ocultar recursos',
-        healthBar: 'Mostrar/Ocultar barra de vida',
-        monsterTooltip: 'Mostrar/ocultar información del grupo de monstruos'
+        healthBar: 'Mostrar/Ocultar barra de vida'
       },
       information:
         'Puede usar las teclas CTRL/CMD, MAYÚS, ESPACIO, ALT. Para ingresar sus accesos directos, presione la combinación de teclas deseada en el campo.',

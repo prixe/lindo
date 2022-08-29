@@ -88,6 +88,7 @@ export class ShowResourcesMod extends Mod {
       shortcut: this.rootStore.hotkeyStore.gameMod.mapResources,
       handler: (e) => {
         e.preventDefault()
+        e.stopPropagation()
         this.toggle()
       }
     })

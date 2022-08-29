@@ -17,6 +17,9 @@ export interface DofusWindow extends Window {
   dofus: Dofus
   foreground: {
     rootElement: HTMLDivElement
+    _monsterTooltips: []
+    showAllMonsterGroupTooltips: () => void
+    removeAllMonsterGroupTooltips: () => void
   }
   gui: GUI
   isoEngine: IsoEngine

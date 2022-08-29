@@ -33,7 +33,7 @@ type RootTranslation = {
 			 */
 			messageRequired: RequiredParams<'version'>
 			/**
-			 * Download on GitHub
+			 * Download
 			 */
 			download: string
 			/**
@@ -444,6 +444,10 @@ type RootTranslation = {
 				 * Go to Right Map
 				 */
 				goRight: string
+				/**
+				 * Show/Hide monster groups tooltips
+				 */
+				showMonsterTooltips: string
 			}
 			interfaces: {
 				/**
@@ -597,10 +601,6 @@ type RootTranslation = {
 				 * Show/hide life bars
 				 */
 				healthBar: string
-				/**
-				 * Show/hide monsters tooltip
-				 */
-				monsterTooltip: string
 			}
 			/**
 			 * You can use special keys CTRL, SHIFT, SPACE, ALT/CMD You can specify your shortcut by pressing the desired keys at the same time after selecting the input
@@ -1110,7 +1110,7 @@ export type TranslationFunctions = {
 			 */
 			messageRequired: (arg: { version: string }) => LocalizedString
 			/**
-			 * Download on GitHub
+			 * Download
 			 */
 			download: () => LocalizedString
 			/**
@@ -1518,6 +1518,10 @@ export type TranslationFunctions = {
 				 * Go to Right Map
 				 */
 				goRight: () => LocalizedString
+				/**
+				 * Show/Hide monster groups tooltips
+				 */
+				showMonsterTooltips: () => LocalizedString
 			}
 			interfaces: {
 				/**
@@ -1668,10 +1672,6 @@ export type TranslationFunctions = {
 				 * Show/hide life bars
 				 */
 				healthBar: () => LocalizedString
-				/**
-				 * Show/hide monsters tooltip
-				 */
-				monsterTooltip: () => LocalizedString
 			}
 			/**
 			 * You can use special keys CTRL, SHIFT, SPACE, ALT/CMD You can specify your shortcut by pressing the desired keys at the same time after selecting the input

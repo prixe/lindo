@@ -321,6 +321,12 @@ export const OptionShortcuts = () => {
                         value={hotkeyStore.gameAction.openChat}
                         onChange={hotkeyStore.gameAction.setOpenChat}
                       />
+                      <ShortcutInput
+                        id='show-monster-tooltips'
+                        label={LL.option.shortcuts.diver.showMonsterTooltips()}
+                        value={hotkeyStore.gameAction.showMonsterTooltips}
+                        onChange={hotkeyStore.gameAction.setShowMonsterTooltips}
+                      />
                     </Stack>
                   </Grid>
                   <Grid item xs={4}>
@@ -337,16 +343,6 @@ export const OptionShortcuts = () => {
               </TabPanel>
               <TabPanel value={value} index={5}>
                 <Grid component='form' noValidate autoComplete='off' container spacing={1} margin={0}>
-                  <Grid item xs={4}>
-                    <Stack spacing={2}>
-                      <ShortcutInput
-                        id='monster-tooltip-hotkey'
-                        label={LL.option.shortcuts.mods.monsterTooltip()}
-                        value={hotkeyStore.gameMod.monsterTooltip}
-                        onChange={hotkeyStore.gameMod.setMonsterTooltip}
-                      />
-                    </Stack>
-                  </Grid>
                   <Grid item xs={4}>
                     <Stack spacing={2}>
                       <ShortcutInput

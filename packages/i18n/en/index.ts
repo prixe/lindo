@@ -141,7 +141,8 @@ const en: BaseTranslation = {
         goUp: 'Go to Upper Map',
         goDown: 'Go to Lower Map',
         goLeft: 'Go to Left Map',
-        goRight: 'Go to Right Map'
+        goRight: 'Go to Right Map',
+        showMonsterTooltips: 'Show/Hide monster groups tooltips'
       },
       interfaces: {
         header: 'Interfaces',
@@ -186,8 +187,7 @@ const en: BaseTranslation = {
       mods: {
         header: 'Mods',
         mapResources: 'Show/hide map resources',
-        healthBar: 'Show/hide life bars',
-        monsterTooltip: 'Show/hide monsters tooltip'
+        healthBar: 'Show/hide life bars'
       },
       information:
         'You can use special keys CTRL, SHIFT, SPACE, ALT/CMD You can specify your shortcut by pressing the desired keys at the same time after selecting the input',
