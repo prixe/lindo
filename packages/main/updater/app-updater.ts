@@ -74,7 +74,10 @@ export class AppUpdater {
 
       autoUpdater.checkForUpdatesAndNotify().then(() => {
         logger.info('appUpdater -> Update check done')
-        resolve()
+        // import app from electron
+        if (!app.isPackaged) {
+          resolve()
+        }
       })
     })
   }
