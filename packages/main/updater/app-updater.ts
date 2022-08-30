@@ -5,15 +5,20 @@ import { I18n } from '../utils'
 import { autoUpdater, UpdateInfo } from 'electron-updater'
 import { UpdaterWindow } from '../windows/updater-window'
 import { GITHUB_LATEST_RELEASE_URL, GITHUB_OWNER, GITHUB_REPO } from '../constants'
+import { platform } from 'os'
+import { Octokit } from '@octokit/rest'
+import compareVersions from 'compare-versions'
 
 export class AppUpdater {
   private readonly _updaterWindow: UpdaterWindow
   private readonly _rootStore: RootStore
+  private readonly _octokit: Octokit
   private readonly _i18n: I18n
 
   private constructor(updaterWindow: UpdaterWindow, rootStore: RootStore, i18n: I18n) {
     this._updaterWindow = updaterWindow
     this._rootStore = rootStore
+    this._octokit = new Octokit()
     this._i18n = i18n
   }
 
@@ -56,6 +61,11 @@ export class AppUpdater {
         resolve()
       })
 
+      autoUpdater.on('update-cancelled', () => {
+        logger.info('appUpdater -> Update is cancelled')
+        resolve()
+      })
+
       autoUpdater.on('download-progress', ({ percent }) => {
         this._updaterWindow.show()
         this._updaterWindow.sendProgress({ message: 'DOWNLOADING UPDATE', percent })
@@ -74,12 +84,42 @@ export class AppUpdater {
 
       autoUpdater.checkForUpdatesAndNotify().then(() => {
         logger.info('appUpdater -> Update check done')
-        // import app from electron
+        // if app is not packaged, we skip the update
         if (!app.isPackaged) {
-          resolve()
+          return resolve()
+        }
+        // if app is not an appimage under linux then we check for update manually
+        if (platform() === 'linux' && !process.env.APPIMAGE) {
+          this._manuallyCheckUpdate().then((ignored) => {
+            if (ignored) {
+              resolve()
+            }
+          })
         }
       })
     })
+  }
+
+  private _isUpdateRequired(releaseNotes?: string): boolean {
+    return releaseNotes?.includes('__update:required__') ?? false
+  }
+
+  private _manuallyCheckUpdate(): Promise<boolean> {
+    return this._octokit.repos
+      .getLatestRelease({
+        owner: GITHUB_OWNER,
+        repo: GITHUB_REPO
+      })
+      .then((res) => {
+        const currentVersion = app.getVersion()
+        const latestVersion = res.data.tag_name.replaceAll('v', '')
+        const required = this._isUpdateRequired(res.data.body ?? '')
+        logger.info({ latestVersion, currentVersion })
+        if (compareVersions(latestVersion, currentVersion) === 1) {
+          return this._showUpdateDialog(latestVersion, required)
+        }
+        return true
+      })
   }
 
   /**
