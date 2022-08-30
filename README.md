@@ -8,6 +8,8 @@
 [![Contributors](https://img.shields.io/github/contributors/prixe/lindo.svg)](https://github.com/prixe/lindo/graphs/contributors)
 [![Website lindo-app.com](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://lindo-app.com)
 
+![Lindo in game screenshot](./screenshots/lindo-ingame.png)
+
 ## Links
 Official [WebSite](https://lindo-app.com) 
 
