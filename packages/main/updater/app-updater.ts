@@ -90,7 +90,11 @@ export class AppUpdater {
         }
         // if app is not an appimage under linux then we check for update manually
         if (platform() === 'linux' && !process.env.APPIMAGE) {
-          this._manuallyCheckUpdate()
+          this._manuallyCheckUpdate().then((ignored) => {
+            if (ignored) {
+              resolve()
+            }
+          })
         }
       })
     })
@@ -100,7 +104,7 @@ export class AppUpdater {
     return releaseNotes?.includes('__update:required__') ?? false
   }
 
-  private _manuallyCheckUpdate() {
+  private _manuallyCheckUpdate(): Promise<boolean> {
     return this._octokit.repos
       .getLatestRelease({
         owner: GITHUB_OWNER,
@@ -112,8 +116,9 @@ export class AppUpdater {
         const required = this._isUpdateRequired(res.data.body ?? '')
         logger.info({ latestVersion, currentVersion })
         if (compareVersions(latestVersion, currentVersion) === 1) {
-          this._showUpdateDialog(latestVersion, required)
+          return this._showUpdateDialog(latestVersion, required)
         }
+        return true
       })
   }
 
