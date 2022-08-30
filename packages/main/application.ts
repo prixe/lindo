@@ -189,6 +189,9 @@ export class Application {
     })
     gWindow.on('close', () => {
       this._gWindows.splice(this._gWindows.indexOf(gWindow), 1)
+      if (this._gWindows.length === 0) {
+        if (process.platform !== 'darwin') app.quit()
+      }
     })
     this._gWindows.push(gWindow)
   }
