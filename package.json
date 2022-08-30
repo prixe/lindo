@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@hfelix/electron-localshortcut": "^4.0.1",
+    "@octokit/rest": "^19.0.4",
     "argon2": "^0.28.7",
     "axios": "^0.27.2",
     "axios-retry": "^3.2.5",
