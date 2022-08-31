@@ -221,6 +221,9 @@ export class ShowResourcesMod extends Mod {
   }
 
   private create() {
+    // Clear html to prevent duplication
+    this.clearResourcesBoxIfExist()
+
     this.resourcesBox = this.wGame.document.createElement('div')
     this.resourcesBox.id = 'resourcesBox'
 
@@ -252,6 +255,12 @@ export class ShowResourcesMod extends Mod {
 
     if (!this.enabled) this.clearHtml()
     else this.create()
+  }
+
+  private clearResourcesBoxIfExist() {
+    this.clearHtml()
+    const resourcesBox = this.wGame.document.getElementById('resourcesBox')
+    if (resourcesBox) resourcesBox.remove()
   }
 
   private clearHtml() {
