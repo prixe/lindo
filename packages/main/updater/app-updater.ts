@@ -142,8 +142,14 @@ export class AppUpdater {
           : this._i18n.LL.main.updater.message({ version: newVersion }),
         buttons
       })
-      .then((returnValue) => {
+      .then(async (returnValue) => {
         if (returnValue.response === 0) {
+          // automatic update cant work on macos until we sign the app
+          if (platform() === 'darwin') {
+            logger.warn('appUpdater -> unable to download automatically the release on MacOS')
+            await this._downloadFromWeb()
+            return false
+          }
           return autoUpdater.downloadUpdate().catch(async (err) => {
             logger.error('appUpdater -> unable to download automatically the release', err)
             await this._downloadFromWeb()
