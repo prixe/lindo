@@ -16,6 +16,7 @@ export interface DisplayActor {
   data: GameRolePlayActor
   cancelMovement: (callback: () => void) => void
   isMerchant: () => boolean
+  openNpcContextualMenu?: () => void
   direction: number
   emoteAnimated: boolean
   circleGraphic: unknown

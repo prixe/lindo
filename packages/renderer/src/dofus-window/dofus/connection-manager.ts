@@ -1,4 +1,5 @@
 import TypedEmitter from 'typed-emitter'
+import { GameFightTurnStartMessage } from '../gui'
 import { InteractiveElement, StatedElement } from '../iso-engine'
 import { _GameRolePlayActor } from './actor'
 import { _CharacterBaseInformations } from './character'
@@ -53,6 +54,28 @@ export interface InteractiveUsedMessage {
   skillId: number
   duration: number
 }
+
+export interface ChatSmileyMessage {
+  entityId: number
+  smileyId: number
+}
+
+export interface FightLoot {
+  kamas: number
+}
+
+export interface FightResultPlayer {
+  alive: boolean
+  id: number
+  level: number
+  rewards: FightLoot
+}
+
+export interface GameFightEndMessage {
+  results: Array<FightResultPlayer>
+  duration: number
+}
+
 export interface JobExperienceUpdateMessage {
   experiencesUpdate: {
     jobXpNextLevelFloor: number
@@ -120,6 +143,12 @@ export interface PartyNewMemberMessage {}
 export interface PartyNewGuestMessage {}
 export interface PartyLeaderUpdateMessage {}
 
+export interface ExchangeItemAddMessage {
+  itemInfo: {
+    objectPrice: number
+  }
+}
+
 export interface ObjectQuantityMessage extends DataSchema {
   objectUID: number
   quantity: number
@@ -150,9 +179,18 @@ export interface MessageSent {
   }
 }
 
+export interface InteractiveUseEndedMessage {
+  elemId: number
+}
+
+export interface ExchangeBidhouseMinimumItemPriceListMessage {
+  objectGID: number
+  prices: number[]
+}
+
 export type ConnectionManagerEvents = {
   ChallengeInfoMessage: (msg: ChallengeInfoMessage) => void
-  GameFightEndMessage: () => void
+  GameFightEndMessage: (msg: GameFightEndMessage) => void
   GameFightStartMessage: () => void
   GameFightLeaveMessage: () => void
   MapComplementaryInformationsDataMessage: (msg: MapComplementaryInformationsDataMessage) => void
@@ -162,13 +200,14 @@ export type ConnectionManagerEvents = {
   PartyInvitationMessage: (msg: PartyInvitationMessage) => void
   GameRolePlayAggressionMessage: (msg: GameRolePlayAggressionMessage) => void
   TextInformationMessage: (msg: TextInformationMessage) => void
-  GameFightTurnStartMessage: () => void
+  GameActionFightNoSpellCastMessage: () => void
+  GameFightTurnStartMessage: (msg: GameFightTurnStartMessage) => void
   GameFightTurnEndMessage: () => void
   GameActionFightLifePointsGainMessage: () => void
   InventoryWeightMessage: (msg: InventoryWeightMessage) => void
   StatedElementUpdatedMessage: (msg: StatedElementUpdatedMessage) => void
   InteractiveUsedMessage: (msg: InteractiveUsedMessage) => void
-  InteractiveUseEndedMessage: () => void
+  InteractiveUseEndedMessage: (msg: InteractiveUseEndedMessage) => void
   GameFightStartingMessage: () => void
   JobExperienceUpdateMessage: (msg: JobExperienceUpdateMessage) => void
   ExchangeStartOkHumanVendorMessage: (msg: ExchangeStartOkHumanVendorMessage) => void
@@ -177,6 +216,7 @@ export type ConnectionManagerEvents = {
   GameMapMovementMessage: (msg: GameMapMovementMessage) => void
   GameContextRemoveElementMessage: (msg: GameContextRemoveElementMessage) => void
   CharactersListMessage: (msg: CharactersListMessage) => void
+  ChatSmileyMessage: (msg: ChatSmileyMessage) => void
   BasicWhoIsMessage: (msg: BasicWhoIsMessage) => void
   CurrentMapMessage: (msg: CurrentMapMessage) => void
   PartyMemberInFightMessage: (msg: PartyMemberInFightMessage) => void
@@ -188,6 +228,8 @@ export type ConnectionManagerEvents = {
   PartyNewMemberMessage: (msg: PartyNewMemberMessage) => void
   PartyNewGuestMessage: (msg: PartyNewGuestMessage) => void
   PartyLeaderUpdateMessage: (msg: PartyLeaderUpdateMessage) => void
+  ExchangeBidhouseMinimumItemPriceListMessage: (msg: ExchangeBidhouseMinimumItemPriceListMessage) => void
+  ExchangeBidHouseItemAddOkMessage: (msg: ExchangeItemAddMessage) => void
   send: (msg: MessageSent) => void
   data: (msg: Data) => void
 }

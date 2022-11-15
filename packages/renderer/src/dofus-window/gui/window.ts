@@ -33,6 +33,8 @@ export type WindowID =
   | 'tradeWithNPC'
   | 'tradeWithPlayer'
   | 'worldMap'
+  | 'tradeItemConfirm'
+  | 'crafting'
 export interface GUIWindowSchema extends WuiDom {
   id: WindowID
   isVisible: () => boolean
@@ -41,7 +43,7 @@ export interface GUIWindowSchema extends WuiDom {
 }
 
 export interface GenericWindow extends GUIWindowSchema, TypedEmitter<GUIWindowEvents> {
-  id: 'itemRecipes' | 'bidHouseShop' | 'grimoire' | 'social' | 'recaptcha'
+  id: 'itemRecipes' | 'bidHouseShop' | 'grimoire' | 'social' | 'recaptcha' | 'tradeItemConfirm' | 'crafting'
 }
 
 export type StorageViewEvents = {
@@ -94,6 +96,15 @@ export interface WorldMapWindow extends GUIWindowSchema, TypedEmitter<GUIWindowE
   _worldMap: WorldMap
 }
 
+export interface TradeItemConfirmWindow extends GUIWindowSchema, TypedEmitter<GUIWindowEvents> {
+  id: 'tradeItemConfirm'
+  buyBtn: GUIButton
+}
+
+export interface CraftingWindow extends GUIWindowSchema, TypedEmitter<GUIWindowEvents> {
+  id: 'crafting'
+}
+
 export type GUIWindow =
   | EquipmentWindow
   | GenericWindow
@@ -104,3 +115,5 @@ export type GUIWindow =
   | TradeWithNPCWindow
   | TradeWithPlayerWindow
   | WorldMapWindow
+  | TradeItemConfirmWindow
+  | CraftingWindow
