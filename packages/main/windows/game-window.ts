@@ -89,6 +89,19 @@ export class GameWindow extends (EventEmitter as new () => TypedEmitter<GameWind
       }
     )
 
+    // remove sec headers on requests
+    this._win.webContents.session.webRequest.onBeforeSendHeaders((details, callback) => {
+      const requestHeaders = { ...(details.requestHeaders ?? {}) }
+      delete requestHeaders['sec-ch-ua']
+      delete requestHeaders['sec-ch-ua-mobile']
+      delete requestHeaders['sec-ch-ua-platform']
+      delete requestHeaders['Sec-Fetch-Site']
+      delete requestHeaders['Sec-Fetch-Mode']
+      delete requestHeaders['Sec-Fetch-Dest']
+      const beforeSendResponse: BeforeSendResponse = { requestHeaders }
+      callback(beforeSendResponse)
+    })
+
     // Show window when page is ready
     this._win.webContents.on('ipc-message', (event, channel) => {
       if (channel === IPCEvents.APP_READY_TO_SHOW) {

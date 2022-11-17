@@ -1,5 +1,5 @@
 import { IPCEvents, RootStore, UpdateProgress } from '@lindo/shared'
-import { app, BrowserWindow } from 'electron'
+import { app, BeforeSendResponse, BrowserWindow } from 'electron'
 import { join } from 'path'
 import { EventEmitter } from 'stream'
 import TypedEmitter from 'typed-emitter'
@@ -32,6 +32,19 @@ export class UpdaterWindow extends (EventEmitter as new () => TypedEmitter<Updat
       }
     })
     this._win.webContents.setUserAgent(userAgent)
+
+    // remove sec headers on requests
+    this._win.webContents.session.webRequest.onBeforeSendHeaders((details, callback) => {
+      const requestHeaders = { ...(details.requestHeaders ?? {}) }
+      delete requestHeaders['sec-ch-ua']
+      delete requestHeaders['sec-ch-ua-mobile']
+      delete requestHeaders['sec-ch-ua-platform']
+      delete requestHeaders['Sec-Fetch-Site']
+      delete requestHeaders['Sec-Fetch-Mode']
+      delete requestHeaders['Sec-Fetch-Dest']
+      const beforeSendResponse: BeforeSendResponse = { requestHeaders }
+      callback(beforeSendResponse)
+    })
 
     // Show window when page is ready
     this._win.webContents.on('ipc-message', (event, channel) => {
