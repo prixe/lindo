@@ -1,15 +1,5 @@
 export interface Config {
   adjust: { appToken: string; environment: string }
-  analytics: {
-    ankAnalytics: {
-      analog: boolean
-      debug: boolean
-      haapi: boolean
-      useUrlMap: boolean
-      version: string
-    }
-    wizAnalytics: unknown
-  }
   assetsUrl: string
   dataUrl: string
   disabledFeatures: { betaAccess: boolean; shopByServerIdList: Array<string> }

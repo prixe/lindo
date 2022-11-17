@@ -30,4 +30,7 @@ export interface CharacterStats {
   agility: number
   intelligence: number
   wisdom: number
+  experience: number
+  experienceLevelFloor: number
+  experienceNextLevelFloor: number
 }

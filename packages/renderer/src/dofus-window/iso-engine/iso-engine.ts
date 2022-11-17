@@ -1,14 +1,17 @@
 import { ActorManager } from './actor-manager'
 import { InteractiveElement, StatedElement } from './element'
 import { MapCell, MapDirection, MapScene } from './map'
+import { CellInfo, SpellRangeLayer } from './spell-range-layer'
 
 export interface IsoEngine {
+  attackActor: (actorId: number) => void
   background: {
     render: () => void
   }
   useInteractive: (elemId: number, skillInstanceUid?: number) => void
-  _movePlayerOnMap: (cellId: number, bool: boolean, cb: () => void) => void
+  _movePlayerOnMap: (cellId: number, bool?: boolean, cb?: () => void) => void
   _castSpellImmediately: (cellId: number) => void
+  _spellRangeLayer: SpellRangeLayer
   mapScene: MapScene
   gotoNeighbourMap: (direction: MapDirection, cell: number, x: number, y: number) => void
   mapRenderer: {
@@ -22,6 +25,7 @@ export interface IsoEngine {
       x: number
       y: number
     }
+    getCellId: (x: number, y: number) => CellInfo
     map: {
       cells: MapCell[]
     }

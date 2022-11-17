@@ -8,6 +8,7 @@ export interface Fighter {
   isCreature: boolean
   buffs: Array<SpellBuff>
   level: number
+  name: string
   data: {
     teamId: number
     alive: boolean
@@ -21,10 +22,12 @@ export type FightManagerEvents = {
 }
 
 export interface FightManager extends TypedEmitter<FightManagerEvents> {
+  _fighters: { [fighterId: string]: Fighter }
   fightState: number
   isInBattle: () => boolean
   finishTurn: () => void
   getFighters: () => Array<number>
   isFighterOnUsersTeam: (fighterId: number) => boolean
   getFighter: (actorId: number) => Fighter
+  turnCount: number
 }

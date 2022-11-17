@@ -109,12 +109,29 @@ export interface PartyData {
   _pastParties: {}
 }
 
+export interface Coordinates {
+  posX: number
+  posY: number
+}
+
 export interface PlayerData extends TypedEmitter<PlayerDataEvents> {
   id: number
   inventory: {
+    kamas: number
     maxWeight: number
     weight: number
     objects: Record<number, _ObjectItem>
+    equippedItems: Record<
+      number,
+      {
+        exchangeAllowed: boolean
+        exchangeable: boolean
+        id: number
+        quantity: number
+        shortName: string
+        weight: number
+      }
+    >
   }
   alliance: Alliance
   guild: Guild
@@ -166,16 +183,25 @@ export interface PlayerData extends TypedEmitter<PlayerDataEvents> {
   }
   position: {
     area: Area
-    coordinates: { posX: number; posY: number }
+    coordinates: Coordinates
     currentMapHouses: unknown
     isInMyHouse: boolean
     mapId: number
     mapPosition: MapPosition
-    subArea: unknown
+    subArea: {
+      nameId: string
+    }
     subAreaId: number
     superArea: unknown
     worldmapId: number
   }
   isRiding: boolean
   mountXpRatio?: number
+  characterBreed: {
+    breedSpellsId: number[]
+    femaleArtwork: number
+    longNameId: string
+    maleArtwork: number
+    shortNameId: string
+  }
 }

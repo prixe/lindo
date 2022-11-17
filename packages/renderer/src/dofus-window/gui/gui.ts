@@ -12,6 +12,8 @@ export type SlotEvents = {
   doubletap: () => void
 }
 export interface Slot extends TypedEmitter<SlotEvents> {
+  isDisabled: boolean
+  selected: boolean
   tap: () => void
 }
 
@@ -60,6 +62,15 @@ export interface ExchangeObjectAddedMessage {
   }
 }
 
+export interface ReplyBox extends GUIButton {
+  replyId: number
+  _currentTextContent: string
+}
+
+export interface ReplyBoxContainer {
+  _childrenList: Array<ReplyBox>
+}
+
 export type GUIEvents = {
   disconnect: () => void
   resize: () => void
@@ -84,6 +95,7 @@ export interface GUI extends TypedEmitter<GUIEvents> {
   shopFloatingToolbar: {
     hide: () => void
     show: () => void
+    _childrenList: Array<GUIButton>
   }
   notificationBar: {
     _elementIsVisible: boolean
@@ -144,4 +156,12 @@ export interface GUI extends TypedEmitter<GUIEvents> {
   }
   chat: Chat
   party: Party
+  wBody: {
+    _childrenList: Array<GUIWindow>
+  }
+  npcDialogUi: {
+    npcName: string
+    replyBoxes: Array<ReplyBoxContainer>
+    replies: Array<string>
+  }
 }

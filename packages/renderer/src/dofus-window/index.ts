@@ -1,6 +1,7 @@
 import { Config } from './config'
 import { Dofus } from './dofus'
 import { CharacterDisplayClass, GUI } from './gui'
+import { NpcDialogUi } from './gui/npc-dialog-ui'
 import { ActorManager, IsoEngine } from './iso-engine'
 
 export * from './dofus'
@@ -30,6 +31,7 @@ export interface DofusWindow extends Window {
     c: Array<{ exports: { prototype: object } }>
   }
   findSingleton: (name: string, window: DofusWindow) => unknown
+  npcDialogUi: NpcDialogUi
 }
 
 export interface HTMLIFrameElementWithDofus extends HTMLIFrameElement {
