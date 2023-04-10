@@ -57,8 +57,8 @@ export class RecipePrice extends Mod {
   }
 
   private hookFunction(object: any, functionName: string, callback: any) {
-    ;(function(originalFunction) {
-      object[functionName] = function() {
+    ;(function (originalFunction) {
+      object[functionName] = function () {
         const returnValue = originalFunction.apply(this, arguments)
         callback.apply(this, [returnValue, originalFunction, arguments])
         return returnValue
