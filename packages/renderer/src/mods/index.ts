@@ -15,6 +15,7 @@ import { ShortcutsMod } from './shortcuts'
 import { ShowResourcesMod } from './show-resources'
 import { VerticalTimelineMod } from './vertical-timeline'
 import { ZaapSearchFilterMod } from './zaap-search-filter'
+import { RecipePrice } from './recipe-price'
 
 export * from './shortcuts'
 export * from './notifications'
@@ -46,5 +47,6 @@ export const MODS = [
   RuneListerMod,
   ShowResourcesMod,
   ZaapSearchFilterMod,
+  RecipePrice,
   ...GENERAL_MODS
 ] as const
