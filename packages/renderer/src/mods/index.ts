@@ -17,6 +17,7 @@ import { VerticalTimelineMod } from './vertical-timeline'
 import { ZaapSearchFilterMod } from './zaap-search-filter'
 import { RecipePrice } from './recipe-price'
 import { OffensiveMonsters } from '@/mods/ofensive monsters'
+import { DebugMessagesMod } from '@/mods/debug message helper'
 
 export * from './shortcuts'
 export * from './notifications'
@@ -50,5 +51,6 @@ export const MODS = [
   ZaapSearchFilterMod,
   RecipePrice,
   OffensiveMonsters,
+  DebugMessagesMod,
   ...GENERAL_MODS
 ] as const
