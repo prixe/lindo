@@ -242,7 +242,7 @@ export class ZaapSearchFilterMod extends Mod {
 
         currentZaap.style.display = 'none'
         if (currentZaap.innerText.toLowerCase().includes(zaapWanted)) {
-          currentZaap.style.display = 'block'
+          currentZaap.style.display = ''
         }
       }
     })
@@ -407,7 +407,7 @@ export class ZaapSearchFilterMod extends Mod {
 
         currentZaap.style.display = 'none'
         if (currentZaap.innerText.toLowerCase().includes(zaapWanted)) {
-          currentZaap.style.display = 'block'
+          currentZaap.style.display = ''
         }
       }
     })
