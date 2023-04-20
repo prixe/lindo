@@ -120,6 +120,8 @@ const en: BaseTranslation = {
       interface: 'Interface',
       sound: 'Sound',
       gameData: 'Game data',
+      debug: 'Debug',
+      activateDebugLogs: 'Activate the debug logs. Warning: this may worsen the performance',
       language: 'Language',
       resolution: 'Resolution',
       fullScreen: 'Full screen',

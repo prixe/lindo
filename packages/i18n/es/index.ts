@@ -121,6 +121,8 @@ const es: Translation = {
       interface: 'Interfaz',
       sound: 'Sonido',
       gameData: 'Datos del juego',
+      debug: 'Debug',
+      activateDebugLogs: 'Activa los logs de debug. Atencion: Esto puede empeorar el rendimiento',
       language: 'Lenguaje',
       resolution: 'Resolución',
       fullScreen: 'Pantalla completa',

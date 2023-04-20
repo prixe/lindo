@@ -12,6 +12,7 @@ export const WindowOptionModel = types
   .model('WindowOption')
   .props({
     fullScreen: types.optional(types.boolean, false),
+    debugLogs: types.optional(types.boolean, false),
     resolution: types.optional(types.frozen<Resolution>(), {
       width: 1280,
       height: 720
@@ -25,6 +26,9 @@ export const WindowOptionModel = types
     }
   }))
   .actions((self) => ({
+    setDebugLogs(value: boolean) {
+      self.debugLogs = value
+    },
     setFullScreen(value: boolean) {
       self.fullScreen = value
     },
@@ -56,8 +60,10 @@ export const WindowOptionModel = types
 
 type WindowOptionType = Instance<typeof WindowOptionModel>
 
-export interface WindowOption extends WindowOptionType {}
+export interface WindowOption extends WindowOptionType {
+}
 
 type WindowOptionSnapshotType = SnapshotOut<typeof WindowOptionModel>
 
-export interface WindowOptionSnapshot extends WindowOptionSnapshotType {}
+export interface WindowOptionSnapshot extends WindowOptionSnapshotType {
+}
