@@ -60,10 +60,8 @@ export const WindowOptionModel = types
 
 type WindowOptionType = Instance<typeof WindowOptionModel>
 
-export interface WindowOption extends WindowOptionType {
-}
+export interface WindowOption extends WindowOptionType {}
 
 type WindowOptionSnapshotType = SnapshotOut<typeof WindowOptionModel>
 
-export interface WindowOptionSnapshot extends WindowOptionSnapshotType {
-}
+export interface WindowOptionSnapshot extends WindowOptionSnapshotType {}
