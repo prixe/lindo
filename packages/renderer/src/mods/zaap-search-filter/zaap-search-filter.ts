@@ -77,7 +77,7 @@ export class ZaapSearchFilterMod extends Mod {
         currentZaap.style.display = 'none'
 
         if (currentZaap.innerText.toLowerCase().includes(zaapWanted)) {
-          currentZaap.style.display = 'block'
+          currentZaap.style.display = ''
         }
       }
     })
@@ -156,11 +156,11 @@ export class ZaapSearchFilterMod extends Mod {
             if (unfav !== 0) {
               favorites.splice(unfav, 1)
               divButton.innerHTML = `
-                            <img width="25" height="24" src="./assets/ui/icons/greyStar.png">
+                            <img width='25' height='24' src='./assets/ui/icons/greyStar.png'>
                             `
             } else {
               divButton.innerHTML = `
-                            <img width="25" height="24" src="./assets/ui/icons/goldenStar.png">
+                            <img width='25' height='24' src='./assets/ui/icons/goldenStar.png'>
                             `
               favorites.push(zaap)
             }
@@ -183,11 +183,11 @@ export class ZaapSearchFilterMod extends Mod {
 
           if (found) {
             divButton.innerHTML = `
-                        <img width="25" height="24" src="./assets/ui/icons/goldenStar.png">
+                        <img width='25' height='24' src='./assets/ui/icons/goldenStar.png'>
                         `
           } else {
             divButton.innerHTML = `
-                        <img width="25" height="24" src="./assets/ui/icons/greyStar.png">
+                        <img width='25' height='24' src='./assets/ui/icons/greyStar.png'>
                         `
           }
 
@@ -242,7 +242,7 @@ export class ZaapSearchFilterMod extends Mod {
 
         currentZaap.style.display = 'none'
         if (currentZaap.innerText.toLowerCase().includes(zaapWanted)) {
-          currentZaap.style.display = 'block'
+          currentZaap.style.display = ''
         }
       }
     })
@@ -321,11 +321,11 @@ export class ZaapSearchFilterMod extends Mod {
             if (unfav !== 0) {
               favorites.splice(unfav, 1)
               divButton.innerHTML = `
-                            <img width="25" height="24" src="./assets/ui/icons/greyStar.png">
+                            <img width='25' height='24' src='./assets/ui/icons/greyStar.png'>
                             `
             } else {
               divButton.innerHTML = `
-                            <img width="25" height="24" src="./assets/ui/icons/goldenStar.png">
+                            <img width='25' height='24' src='./assets/ui/icons/goldenStar.png'>
                             `
               favorites.push(zaap)
             }
@@ -348,11 +348,11 @@ export class ZaapSearchFilterMod extends Mod {
 
           if (found) {
             divButton.innerHTML = `
-                        <img width="25" height="24" src="./assets/ui/icons/goldenStar.png">
+                        <img width='25' height='24' src='./assets/ui/icons/goldenStar.png'>
                         `
           } else {
             divButton.innerHTML = `
-                        <img width="25" height="24" src="./assets/ui/icons/greyStar.png">
+                        <img width='25' height='24' src='./assets/ui/icons/greyStar.png'>
                         `
           }
 
@@ -407,7 +407,7 @@ export class ZaapSearchFilterMod extends Mod {
 
         currentZaap.style.display = 'none'
         if (currentZaap.innerText.toLowerCase().includes(zaapWanted)) {
-          currentZaap.style.display = 'block'
+          currentZaap.style.display = ''
         }
       }
     })
@@ -487,11 +487,11 @@ export class ZaapSearchFilterMod extends Mod {
             if (unfav !== 0) {
               favorites.splice(unfav, 1)
               divButton.innerHTML = `
-                            <img width="25" height="24" src="./assets/ui/icons/greyStar.png">
+                            <img width='25' height='24' src='./assets/ui/icons/greyStar.png'>
                             `
             } else {
               divButton.innerHTML = `
-                            <img width="25" height="24" src="./assets/ui/icons/goldenStar.png">
+                            <img width='25' height='24' src='./assets/ui/icons/goldenStar.png'>
                             `
               favorites.push(zaap)
             }
@@ -514,11 +514,11 @@ export class ZaapSearchFilterMod extends Mod {
 
           if (found) {
             divButton.innerHTML = `
-                        <img width="25" height="24" src="./assets/ui/icons/goldenStar.png">
+                        <img width='25' height='24' src='./assets/ui/icons/goldenStar.png'>
                         `
           } else {
             divButton.innerHTML = `
-                        <img width="25" height="24" src="./assets/ui/icons/greyStar.png">
+                        <img width='25' height='24' src='./assets/ui/icons/greyStar.png'>
                         `
           }
 

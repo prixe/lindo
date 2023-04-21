@@ -143,6 +143,17 @@ export const OptionGeneral = () => {
                 </Button>
               )}
             </Stack>
+            <Typography variant='h5' component='h2' gutterBottom>
+              {LL.option.general.debug()}
+            </Typography>
+            <FormControl fullWidth>
+              <FormControlLabel
+                control={<Checkbox />}
+                label={LL.option.general.activateDebugLogs()}
+                checked={optionStore.window.debugLogs}
+                onChange={(_, checked) => optionStore.window.setDebugLogs(checked)}
+              />
+            </FormControl>
           </Box>
         </>
       )}

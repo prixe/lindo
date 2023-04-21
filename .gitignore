@@ -88,3 +88,6 @@ release
 dist-ssr
 *.local
 .vscode/settings.json
+
+# Webstorm
+.idea

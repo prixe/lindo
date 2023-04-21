@@ -121,6 +121,8 @@ const fr: Translation = {
       interface: 'Interface',
       sound: 'Son',
       gameData: 'Données du jeu',
+      debug: 'Debug',
+      activateDebugLogs: 'Activer les journaux de débogage. Attention : Cela peut nuire à la performance du système.',
       language: 'Langue',
       resolution: 'Résolution',
       fullScreen: 'Activer le mode plein écran',

@@ -54,7 +54,7 @@ export const GameScreen = memo(({ game }: GameScreenProps) => {
         })
 
         if (results.length > 1) {
-          window.lindoAPI.logger.error(
+          window.lindoAPI?.logger?.error(
             `[MG] Singleton searcher found multiple results for key "${searchKey}". Returning all of them.`
           )()
           return results
