@@ -20,7 +20,7 @@ export const OptionGeneral = () => {
   const { appStore, optionStore } = useStores()
   const [displayRestart, setDisplayRestart] = React.useState(false)
   const { LL } = useI18nContext()
-
+  
   const handleResetGameData = () => {
     window.lindoAPI.resetGameData()
   }
@@ -75,6 +75,14 @@ export const OptionGeneral = () => {
                 label={LL.option.general.fullScreen()}
                 checked={optionStore.window.fullScreen}
                 onChange={(_, checked) => optionStore.window.setFullScreen(checked)}
+              />
+            </FormControl>
+            <FormControl fullWidth>
+              <FormControlLabel
+                control={<Checkbox />}
+                label={LL.option.general.minimalInterface()}
+                checked={optionStore.window.minimalInterface}
+                onChange={(_, checked) => optionStore.window.setMinimalInterface(checked)}
               />
             </FormControl>
             <FormControl fullWidth>

@@ -123,6 +123,7 @@ const en: BaseTranslation = {
       language: 'Language',
       resolution: 'Resolution',
       fullScreen: 'Full screen',
+      minimalInterface: 'Minimal interface',
       hideTab: 'Hide the multi-account tab bar',
       localContent: 'Enable local map download (beta)',
       soundFocus: 'Enable game sound only on foreground window',
