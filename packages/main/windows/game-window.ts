@@ -14,7 +14,7 @@ type GameWindowEvents = {
   close: (event: Event) => void
 }
 export class GameWindow extends (EventEmitter as new () => TypedEmitter<GameWindowEvents>) {
-  private readonly _win: BrowserWindow
+  readonly _win: BrowserWindow
   private readonly _store: RootStore
   private readonly _teamWindow?: GameTeamWindow
   private readonly _team?: GameTeam
@@ -76,9 +76,7 @@ export class GameWindow extends (EventEmitter as new () => TypedEmitter<GameWind
       }
     })
     const currIndex = JSON.parse(JSON.stringify(this))["_index"];
-    console.log("currIndex ", currIndex);
     const ua_ch = userAgentFromIndex(currIndex);
-    console.log("ua_ch ", ua_ch);
     // when Referer is send to the ankama server, the request can be blocked
     this._win.webContents.session.webRequest.onBeforeSendHeaders(
       {
