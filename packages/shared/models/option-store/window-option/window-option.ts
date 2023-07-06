@@ -12,6 +12,7 @@ export const WindowOptionModel = types
   .model('WindowOption')
   .props({
     fullScreen: types.optional(types.boolean, false),
+    minimalInterface: types.optional(types.boolean, false),
     resolution: types.optional(types.frozen<Resolution>(), {
       width: 1280,
       height: 720
@@ -27,6 +28,9 @@ export const WindowOptionModel = types
   .actions((self) => ({
     setFullScreen(value: boolean) {
       self.fullScreen = value
+    },
+    setMinimalInterface(value: boolean){
+      self.minimalInterface = value
     },
     setResolution(resolution: Resolution) {
       self.resolution = resolution

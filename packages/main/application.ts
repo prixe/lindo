@@ -150,6 +150,18 @@ export class Application {
     } else {
       this.createGameWindow()
     }
+    // Observe changes in minimalInterface option
+    observe(
+      this._rootStore.optionStore.window,
+      'minimalInterface',
+      (change) => {
+          if(change.type === 'update'){
+              for (const gWindow of this._gWindows) {
+                  gWindow._win.reload();
+              }
+          }
+      }
+  )
     observe(
       this._rootStore.optionStore.window,
       'audioMuted',

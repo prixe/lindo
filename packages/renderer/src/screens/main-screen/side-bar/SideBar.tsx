@@ -24,16 +24,6 @@ import { Game, useStores } from '@/store'
 import { TabAdd, TabGame } from './tab'
 import { Box, IconButton } from '@mui/material'
 
-const SideBarContainer = styled('div')(({ theme }) => ({
-  backgroundColor: theme.palette.background.paper,
-  overflowX: 'hidden',
-  overflowY: 'auto',
-  width: '71px',
-  display: 'flex',
-  alignItems: 'center',
-  flexDirection: 'column'
-}))
-
 const SortableItem = ({ game }: { game: Game }) => {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: game.id })
 
@@ -49,7 +39,35 @@ const SortableItem = ({ game }: { game: Game }) => {
   )
 }
 export const SideBar = () => {
-  const { gameStore } = useStores()
+  const { gameStore, optionStore } = useStores()
+  const SideBarContainer = styled('div')(({ theme }) => (
+    optionStore.window.minimalInterface ?
+      {
+        backgroundColor: "#ffffff00",
+        overflowX: 'hidden',
+        overflowY: 'hidden',
+        width: 'auto',
+        height: '40px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        position: 'fixed',
+        left: '50%',
+        transform: "translateX(-50%)",
+        top: '32px',
+        zIndex: '2',
+      } :
+      {
+        backgroundColor: theme.palette.background.paper,
+        overflowX: 'hidden',
+        overflowY: 'auto',
+        width: '71px',
+        display: 'flex',
+        alignItems: 'center',
+        flexDirection: 'column'
+      }
+  ))
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
@@ -79,7 +97,7 @@ export const SideBar = () => {
   }
 
   return (
-    <SideBarContainer>
+    <SideBarContainer sx={optionStore.window.minimalInterface ? { 'margin-top': "16px" } : {  }}>
       <Observer>
         {() => (
           <DndContext
@@ -99,12 +117,12 @@ export const SideBar = () => {
       <TabAdd />
       <Box sx={{ flex: 1 }} />
 
-      <IconButton onClick={handleToggleVolume} sx={{ mb: 1 }} aria-label='toggle-volume'>
+      <IconButton onClick={handleToggleVolume} sx={optionStore.window.minimalInterface ? { margin: "0px 2px", backgroundColor: "#2E2E2E90", width: "40px", height: "40px" } : { mb: 1 }} aria-label='toggle-volume'>
         <Observer>
           {() => (gameStore.isMuted ? <VolumeOff color={'error'} /> : <VolumeUp color={'primary'} />)}
         </Observer>
       </IconButton>
-      <IconButton onClick={handleOpenOption} sx={{ mb: 1 }} aria-label='settings'>
+      <IconButton onClick={handleOpenOption} sx={optionStore.window.minimalInterface ? { margin: "0px 2px", backgroundColor: "#2E2E2E90", width: "40px", height: "40px" } : { mb: 1 }} aria-label='settings'>
         <Settings />
       </IconButton>
     </SideBarContainer>

@@ -12,7 +12,7 @@ export interface TabGameProps {
 }
 
 export const TabGame = styled(({ game, className }: TabGameProps) => {
-  const { gameStore } = useStores()
+  const { gameStore, optionStore } = useStores()
   const characterIconRef = useRef<HTMLDivElement>(null)
 
   const handleClose = (event: React.MouseEvent) => {
@@ -50,7 +50,7 @@ export const TabGame = styled(({ game, className }: TabGameProps) => {
           <Tooltip title={game.characterName ?? ''} placement='right'>
             <div
               onClick={() => gameStore.selectGame(game)}
-              className={classNames(styles.tab, styles['tab-game'], className, {
+              className={classNames(optionStore.window.minimalInterface ? styles.tabMini : styles.tab, styles['tab-game'], className, {
                 focus: active,
                 notification: game.hasNotification
               })}

@@ -4,7 +4,7 @@ import { attachTitlebarToWindow } from 'custom-electron-titlebar/main'
 import { join } from 'path'
 import { EventEmitter } from 'stream'
 import TypedEmitter from 'typed-emitter'
-import { generateUserArgent } from '../utils'
+import { generateUserArgent, userAgentFromIndex } from '../utils'
 import { logger } from '../logger'
 import { observe } from 'mobx'
 import { electronLocalshortcut } from '@hfelix/electron-localshortcut'
@@ -14,7 +14,7 @@ type GameWindowEvents = {
   close: (event: Event) => void
 }
 export class GameWindow extends (EventEmitter as new () => TypedEmitter<GameWindowEvents>) {
-  private readonly _win: BrowserWindow
+  readonly _win: BrowserWindow
   private readonly _store: RootStore
   private readonly _teamWindow?: GameTeamWindow
   private readonly _team?: GameTeam
@@ -75,7 +75,8 @@ export class GameWindow extends (EventEmitter as new () => TypedEmitter<GameWind
         webSecurity: false // require to load dofus files
       }
     })
-
+    const currIndex = JSON.parse(JSON.stringify(this))["_index"];
+    const ua_ch = userAgentFromIndex(currIndex);
     // when Referer is send to the ankama server, the request can be blocked
     this._win.webContents.session.webRequest.onBeforeSendHeaders(
       {
@@ -92,13 +93,17 @@ export class GameWindow extends (EventEmitter as new () => TypedEmitter<GameWind
     // remove sec headers on requests
     this._win.webContents.session.webRequest.onBeforeSendHeaders((details, callback) => {
       const requestHeaders = { ...(details.requestHeaders ?? {}) }
-      delete requestHeaders['sec-ch-ua']
-      delete requestHeaders['sec-ch-ua-mobile']
-      delete requestHeaders['sec-ch-ua-platform']
+      details.requestHeaders['sec-ch-ua-mobile']="?1";
+      details.requestHeaders['sec-ch-ua-platform']="Android";
+      details.requestHeaders['sec-ch-ua-platform-version']=ua_ch.platformVersion
+      details.requestHeaders['sec-ch-ua-model']=ua_ch.model;
+      // delete requestHeaders['sec-ch-ua']
+      // delete requestHeaders['sec-ch-ua-mobile']
+      // delete requestHeaders['sec-ch-ua-platform']
       delete requestHeaders['Sec-Fetch-Site']
       delete requestHeaders['Sec-Fetch-Mode']
       delete requestHeaders['Sec-Fetch-Dest']
-      const beforeSendResponse: BeforeSendResponse = { requestHeaders }
+      const beforeSendResponse: BeforeSendResponse = { requestHeaders: details.requestHeaders }
       callback(beforeSendResponse)
     })
 
@@ -188,7 +193,7 @@ export class GameWindow extends (EventEmitter as new () => TypedEmitter<GameWind
     team?: GameTeam
     teamWindow?: GameTeamWindow
   }): Promise<GameWindow> {
-    const userAgent = await generateUserArgent(store.appStore.appVersion)
+    const userAgent = await generateUserArgent(store.appStore.appVersion, index)
     return new GameWindow({ index, url, userAgent, store, team, teamWindow })
   }
 

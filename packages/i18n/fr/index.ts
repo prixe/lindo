@@ -124,6 +124,7 @@ const fr: Translation = {
       language: 'Langue',
       resolution: 'Résolution',
       fullScreen: 'Activer le mode plein écran',
+      minimalInterface: 'Interface minimale',
       hideTab: "Masquer la barre d'onglets multi-compte",
       localContent: 'Activer le téléchargement local des cartes (beta)',
       soundFocus: 'Activer le son du jeu uniquement sur la fenêtre au premier plan',

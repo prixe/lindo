@@ -38,7 +38,7 @@ const es: Translation = {
         zoomIn: 'Acercar zoom',
         zoomOut: 'Alejar zoom',
         resetZoom: 'Reiniciar zoom',
-        fullScreen: 'Pantalla completa'
+        fullScreen: 'Pantalla completa',
       },
       infos: {
         title: '?',
@@ -124,6 +124,7 @@ const es: Translation = {
       language: 'Lenguaje',
       resolution: 'Resolución',
       fullScreen: 'Pantalla completa',
+      minimalInterface: 'interfaz mínima',
       hideTab: 'Ocultar la barra de pestañas multicuenta',
       localContent: 'Habilitar la descarga de mapas locales (beta)',
       soundFocus: 'Sonido del juego solo en la ventana de primer plano',

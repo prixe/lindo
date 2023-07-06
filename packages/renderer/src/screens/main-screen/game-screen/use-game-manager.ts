@@ -1,4 +1,4 @@
-import { Game, RootStore } from '@/store'
+import { Game, RootStore, useStores } from '@/store'
 import { MODS, NotificationsMod } from '@/mods'
 import { Mod } from '@/mods/mod'
 import { DofusWindow } from '@/dofus-window'
@@ -22,7 +22,7 @@ export const useGameManager = ({ game, rootStore, LL }: GameManagerProps) => {
   const windowResized = useRef<Subject<void>>(new Subject())
   let backupMaxZoom: number | undefined
   const disposers = useRef<Array<() => void>>([])
-
+  const { optionStore } = useStores();
   const destroyMods = () => {
     window.lindoAPI.logger.info('destroy mods')()
     for (const mod of mods.current) {
@@ -59,7 +59,7 @@ export const useGameManager = ({ game, rootStore, LL }: GameManagerProps) => {
       const onWindowResized = windowResized.current.pipe(debounceTime(300)).subscribe(() => {
         try {
           dWindow.gui._resizeUi()
-        } catch (e) {}
+        } catch (e) { }
         fixMaxZoom()
       })
 
@@ -105,7 +105,11 @@ export const useGameManager = ({ game, rootStore, LL }: GameManagerProps) => {
         })
         char.rootElement.style.width = '100%'
         char.rootElement.style.height = '100%'
-
+        if (optionStore.window.minimalInterface) {
+          char.canvas.rootElement.style.height = '30px'
+          char.canvas.rootElement.style.marginLeft = '2px'
+          char.canvas.rootElement.style.aspectRatio = '2 / 1'
+        }
         game.setCharacterIcon(char.rootElement)
         startMods()
         fixMaxZoom()

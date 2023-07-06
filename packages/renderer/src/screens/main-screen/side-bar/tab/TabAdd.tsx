@@ -10,7 +10,7 @@ interface TabAddProps {
 }
 
 export const TabAdd = styled((props: TabAddProps) => {
-  const { gameStore } = useStores()
+  const { gameStore, optionStore } = useStores()
   const { LL } = useI18nContext()
 
   const handleAddGame = () => {
@@ -23,7 +23,7 @@ export const TabAdd = styled((props: TabAddProps) => {
   }
 
   return (
-    <div onClick={handleAddGame} className={classNames(styles.tab, props.className)}>
+    <div onClick={handleAddGame} className={classNames(optionStore.window.minimalInterface ? styles.tabMini : styles.tab, props.className)}>
       <Icon sx={{ fontSize: 24 }}>add</Icon>
     </div>
   )

@@ -378,6 +378,10 @@ type RootTranslation = {
 			 */
 			fullScreen: string
 			/**
+			 * Minimal interface
+			 */
+			minimalInterface: string
+			/**
 			 * Hide the multi-account tab bar
 			 */
 			hideTab: string
@@ -1451,6 +1455,10 @@ export type TranslationFunctions = {
 			 * Full screen
 			 */
 			fullScreen: () => LocalizedString
+			/**
+			 * Minimal interface
+			 */
+			minimalInterface: () => LocalizedString
 			/**
 			 * Hide the multi-account tab bar
 			 */
