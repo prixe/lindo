@@ -39,7 +39,6 @@ const es: Translation = {
         zoomOut: 'Alejar zoom',
         resetZoom: 'Reiniciar zoom',
         fullScreen: 'Pantalla completa',
-        minimalInterface: 'interfaz mínima'
       },
       infos: {
         title: '?',
